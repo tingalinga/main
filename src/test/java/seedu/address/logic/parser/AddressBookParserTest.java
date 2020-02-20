@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.people.AddCommand;
+import seedu.address.logic.commands.people.ClearCommand;
+import seedu.address.logic.commands.people.DeleteCommand;
+import seedu.address.logic.commands.people.EditCommand;
+import seedu.address.logic.commands.people.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.people.ExitCommand;
+import seedu.address.logic.commands.people.FindCommand;
+import seedu.address.logic.commands.people.HelpCommand;
+import seedu.address.logic.commands.people.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -31,7 +31,7 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SharkieParser parser = new SharkieParser();
 
     @Test
     public void parseCommand_add() throws Exception {
