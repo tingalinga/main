@@ -1,5 +1,7 @@
-package seedu.address.logic.commands.people;
+package seedu.address.logic.commands.sharkie;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**

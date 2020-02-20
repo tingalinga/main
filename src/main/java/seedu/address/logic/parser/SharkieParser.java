@@ -7,20 +7,20 @@ import static seedu.address.logic.parser.CliPrefix.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.people.AddCommand;
-import seedu.address.logic.commands.people.ClearCommand;
-import seedu.address.logic.commands.people.Command;
-import seedu.address.logic.commands.people.DeleteCommand;
-import seedu.address.logic.commands.people.EditCommand;
-import seedu.address.logic.commands.people.ExitCommand;
-import seedu.address.logic.commands.people.FindCommand;
-import seedu.address.logic.commands.people.HelpCommand;
-import seedu.address.logic.commands.people.ListCommand;
+import seedu.address.logic.commands.people.PeopleAddCommand;
+import seedu.address.logic.commands.people.PeopleClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.people.PeopleDeleteCommand;
+import seedu.address.logic.commands.people.PeopleEditCommand;
+import seedu.address.logic.commands.sharkie.ExitCommand;
+import seedu.address.logic.commands.people.PeopleFindCommand;
+import seedu.address.logic.commands.sharkie.HelpCommand;
+import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.people.AddCommandParser;
-import seedu.address.logic.parser.people.DeleteCommandParser;
-import seedu.address.logic.parser.people.EditCommandParser;
-import seedu.address.logic.parser.people.FindCommandParser;
+import seedu.address.logic.parser.people.PeopleAddCommandParser;
+import seedu.address.logic.parser.people.PeopleDeleteCommandParser;
+import seedu.address.logic.parser.people.PeopleEditCommandParser;
+import seedu.address.logic.parser.people.PeopleFindCommandParser;
 
 /**
  * Parses user input.
@@ -66,23 +66,23 @@ public class SharkieParser {
     private Command getPeopleCommand(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+            case PeopleAddCommand.COMMAND_WORD:
+                return new PeopleAddCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+            case PeopleEditCommand.COMMAND_WORD:
+                return new PeopleEditCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+            case PeopleDeleteCommand.COMMAND_WORD:
+                return new PeopleDeleteCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+            case PeopleClearCommand.COMMAND_WORD:
+                return new PeopleClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+            case PeopleFindCommand.COMMAND_WORD:
+                return new PeopleFindCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+            case PeopleListCommand.COMMAND_WORD:
+                return new PeopleListCommand();
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
