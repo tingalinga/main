@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliPrefix.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,9 +30,8 @@ public class SharkieParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandType>\\S+) (?<commandWord>\\S+)(?<arguments>.*)");
-    private static final String PEOPLE_COMMAND_TYPE = "people";
-    private static final String WALLET_COMMAND_TYPE = "wallet";
+    private static final Pattern BASIC_COMMAND_FORMAT =
+            Pattern.compile("(?<commandType>\\S+) ?(?<commandWord>\\S+)?(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -55,6 +55,8 @@ public class SharkieParser {
             return getPeopleCommand(commandWord, arguments);
         case WALLET_COMMAND_TYPE:
             return getWalletCommand(commandWord, arguments);
+        case SHARKIE_COMMAND_TYPE:
+            return getSharkieCommand(commandWord, arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -82,12 +84,6 @@ public class SharkieParser {
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
-
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -101,4 +97,16 @@ public class SharkieParser {
         }
     }
 
+    private Command getSharkieCommand(String commandWord, String arguments) throws ParseException {
+        switch(commandWord) {
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
 }
