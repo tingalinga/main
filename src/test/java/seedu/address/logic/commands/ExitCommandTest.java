@@ -1,12 +1,11 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.people.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static seedu.address.logic.commands.sharkie.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.people.CommandResult;
-import seedu.address.logic.commands.people.ExitCommand;
+import seedu.address.logic.commands.sharkie.ExitCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 

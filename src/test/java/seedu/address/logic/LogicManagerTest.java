@@ -17,10 +17,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.people.AddCommand;
-import seedu.address.logic.commands.people.CommandResult;
-import seedu.address.logic.commands.people.HelpCommand;
-import seedu.address.logic.commands.people.ListCommand;
+import seedu.address.logic.commands.people.PeopleAddCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -65,8 +64,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = "people " + ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = "people " + PeopleListCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, PeopleListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -80,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = PEOPLE_COMMAND_TYPE + " " + AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = PEOPLE_COMMAND_TYPE + " " + PeopleAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

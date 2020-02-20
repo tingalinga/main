@@ -15,15 +15,15 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.people.AddCommand;
-import seedu.address.logic.commands.people.ClearCommand;
-import seedu.address.logic.commands.people.DeleteCommand;
-import seedu.address.logic.commands.people.EditCommand;
-import seedu.address.logic.commands.people.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.people.ExitCommand;
-import seedu.address.logic.commands.people.FindCommand;
-import seedu.address.logic.commands.people.HelpCommand;
-import seedu.address.logic.commands.people.ListCommand;
+import seedu.address.logic.commands.people.PeopleAddCommand;
+import seedu.address.logic.commands.people.PeopleClearCommand;
+import seedu.address.logic.commands.people.PeopleDeleteCommand;
+import seedu.address.logic.commands.people.PeopleEditCommand;
+import seedu.address.logic.commands.people.PeopleEditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.sharkie.ExitCommand;
+import seedu.address.logic.commands.people.PeopleFindCommand;
+import seedu.address.logic.commands.sharkie.HelpCommand;
+import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -38,33 +38,33 @@ public class SharkieParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        PeopleAddCommand command = (PeopleAddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new PeopleAddCommand(person), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + ClearCommand.COMMAND_WORD)
-                instanceof ClearCommand);
-        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + ClearCommand.COMMAND_WORD + " 3")
-                instanceof ClearCommand);
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleClearCommand.COMMAND_WORD)
+                instanceof PeopleClearCommand);
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleClearCommand.COMMAND_WORD + " 3")
+                instanceof PeopleClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
-                + DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        PeopleDeleteCommand command = (PeopleDeleteCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new PeopleDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
-                + EditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+        PeopleEditCommand command = (PeopleEditCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleEditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new PeopleEditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -78,10 +78,10 @@ public class SharkieParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                PEOPLE_COMMAND_TYPE + " " + FindCommand.COMMAND_WORD + " "
+        PeopleFindCommand command = (PeopleFindCommand) parser.parseCommand(
+                PEOPLE_COMMAND_TYPE + " " + PeopleFindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new PeopleFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -94,10 +94,10 @@ public class SharkieParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + ListCommand.COMMAND_WORD)
-                instanceof ListCommand);
-        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + ListCommand.COMMAND_WORD + " 3")
-                instanceof ListCommand);
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleListCommand.COMMAND_WORD)
+                instanceof PeopleListCommand);
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleListCommand.COMMAND_WORD + " 3")
+                instanceof PeopleListCommand);
     }
 
     @Test
