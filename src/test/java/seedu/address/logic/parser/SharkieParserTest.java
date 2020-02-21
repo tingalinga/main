@@ -1,34 +1,35 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliPrefix.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.people.PeopleAddCommand;
 import seedu.address.logic.commands.people.PeopleClearCommand;
 import seedu.address.logic.commands.people.PeopleDeleteCommand;
 import seedu.address.logic.commands.people.PeopleEditCommand;
 import seedu.address.logic.commands.people.PeopleEditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.sharkie.ExitCommand;
 import seedu.address.logic.commands.people.PeopleFindCommand;
-import seedu.address.logic.commands.sharkie.HelpCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
+import seedu.address.logic.commands.sharkie.ExitCommand;
+import seedu.address.logic.commands.sharkie.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
+import static seedu.address.logic.parser.CliPrefix.SHARKIE_COMMAND_TYPE;
+import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 public class SharkieParserTest {
 
