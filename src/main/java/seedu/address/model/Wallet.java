@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -129,7 +130,7 @@ public class Wallet implements ReadOnlyWallet {
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         transactions.addAll(getIncomeList());
         transactions.addAll(getExpenseList());
-        return transactions;
+        return FXCollections.unmodifiableObservableList(transactions);
     }
 
     @Override
@@ -140,6 +141,19 @@ public class Wallet implements ReadOnlyWallet {
     @Override
     public ObservableList<Expense> getExpenseList() {
         return expenses.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Wallet // instanceof handles nulls
+                && incomes.equals(((Wallet) other).incomes)
+                && expenses.equals(((Wallet) other).expenses));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(incomes, expenses);
     }
 
 }
