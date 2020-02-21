@@ -16,10 +16,10 @@ import seedu.address.model.tag.Tag;
 public abstract class Transaction {
 
     // Data fields
-    private final Description description;
-    private final Amount amount;
-    private final LocalDate date;
-    private final Set<Tag> tags = new HashSet<>();
+    protected final Description description;
+    protected final Amount amount;
+    protected final LocalDate date;
+    protected final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
