@@ -14,7 +14,7 @@ public class DescriptionTest {
     }
 
     @Test
-    public void constructor_invalidDescription_throwsIllegalArgumentException() {
+    public void constructor_emptyDescription_throwsIllegalArgumentException() {
         String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
@@ -22,19 +22,18 @@ public class DescriptionTest {
     @Test
     public void isValidDescription() {
         // null description
-        assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
+        assertFalse(Description.isValidDescription(null));
 
         // invalid description
         assertFalse(Description.isValidDescription("")); // empty string
-        assertFalse(Description.isValidDescription(" ")); // spaces only
-        assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
-        assertFalse(Description.isValidDescription("peter*")); // contains non-alphanumeric characters
+        assertFalse(Description.isValidDescription("   ")); // spaces only
 
         // valid description
-        assertTrue(Description.isValidDescription("peter jack")); // alphabets only
+        assertTrue(Description.isValidDescription("duck rice")); // alphabets only
         assertTrue(Description.isValidDescription("12345")); // numbers only
-        assertTrue(Description.isValidDescription("peter the 2nd")); // alphanumeric characters
-        assertTrue(Description.isValidDescription("Capital Tan")); // with capital letters
-        assertTrue(Description.isValidDescription("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Description.isValidDescription("328 katong laksa")); // alphanumeric characters
+        assertTrue(Description.isValidDescription("P6 Tuition")); // with capital letters
+        assertTrue(Description.isValidDescription("Fisherman's Friend")); // with non-alphanumeric characters
+        assertTrue(Description.isValidDescription("Gift for Grace (Soft toy plushie)")); // long descriptions
     }
 }
