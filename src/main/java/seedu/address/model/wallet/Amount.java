@@ -4,7 +4,7 @@ package seedu.address.model.wallet;
  * Represents an Amount of money.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Amount {
+public class Amount implements Comparable<Amount> {
 
     public final double amount;
 
@@ -45,6 +45,11 @@ public class Amount {
     @Override
     public int hashCode() {
         return Double.valueOf(amount).hashCode();
+    }
+
+    @Override
+    public int compareTo(Amount o) {
+        return Double.compare(amount, o.amount);
     }
 
 }

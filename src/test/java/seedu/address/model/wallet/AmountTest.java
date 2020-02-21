@@ -32,4 +32,10 @@ public class AmountTest {
         assertEquals("$9.99", new Amount(9.98765).toString()); // rounds up
     }
 
+    @Test
+    public void compareTo_comparesAmountsCorrectly() {
+        assertTrue(new Amount(0).compareTo(new Amount(1)) < 0); // 0 is less than 1
+        assertTrue(new Amount(0).compareTo(new Amount(0.00)) == 0); // 0 equals 0
+    }
+
 }
