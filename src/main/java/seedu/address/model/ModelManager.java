@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Expense;
+import seedu.address.model.transaction.Income;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,28 +22,38 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final Wallet wallet;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+
+    /**
+     * Initializes a ModelManager with the given addressBook, wallet and userPrefs.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyWallet wallet, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(addressBook, wallet, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + ", wallet: " + wallet + " and user prefs "
+                + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.wallet = new Wallet(wallet);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+    }
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this(addressBook, new Wallet(), userPrefs);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new Wallet(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -76,7 +88,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -112,11 +124,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    // =========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -143,9 +155,42 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
+        return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    // =========== Wallet ==================================================================================
+
+    @Override
+    public void addIncome(Income income) {
+        wallet.addIncome(income);
+    }
+
+    @Override
+    public void deleteIncome(Income target) {
+        wallet.removeIncome(target);
+    }
+
+    @Override
+    public void setIncome(Income target, Income editedIncome) {
+        requireAllNonNull(target, editedIncome);
+        wallet.setIncome(target, editedIncome);
+    }
+
+    @Override
+    public void addExpense(Expense expense) {
+        wallet.addExpense(expense);
+    }
+
+    @Override
+    public void deleteExpense(Expense target) {
+        wallet.removeExpense(target);
+    }
+
+    @Override
+    public void setExpense(Expense target, Expense editedExpense) {
+        requireAllNonNull(target, editedExpense);
+        wallet.setExpense(target, editedExpense);
     }
 
 }

@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Expense;
+import seedu.address.model.transaction.Income;
 
 /**
  * The API of the Model component.
@@ -84,4 +86,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds the given {@code income} to the Wallet.
+     */
+    void addIncome(Income income);
+
+    /**
+     * Deletes the given income.
+     * The income must exist in the address book.
+     */
+    void deleteIncome(Income target);
+
+    /**
+     * Replaces the given income {@code target} with {@code editedIncome}.
+     * {@code target} must exist in the Wallet.
+     */
+    void setIncome(Income target, Income editedIncome);
+
+    /**
+     * Adds the given {@code expense} to the Wallet.
+     */
+    void addExpense(Expense expense);
+
+    /**
+     * Deletes the given expense.
+     * The expense must exist in the address book.
+     */
+    void deleteExpense(Expense target);
+
+    /**
+     * Replaces the given expense {@code target} with {@code editedExpense}.
+     * {@code target} must exist in the Wallet.
+     */
+    void setExpense(Expense target, Expense editedExpense);
 }
