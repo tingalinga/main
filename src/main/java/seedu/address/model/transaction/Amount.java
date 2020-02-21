@@ -1,4 +1,4 @@
-package seedu.address.model.wallet;
+package seedu.address.model.transaction;
 
 /**
  * Represents an Amount of money.

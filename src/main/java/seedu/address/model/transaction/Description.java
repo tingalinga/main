@@ -1,4 +1,4 @@
-package seedu.address.model.wallet;
+package seedu.address.model.transaction;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
