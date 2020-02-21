@@ -1,5 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
+import static seedu.address.logic.parser.CliPrefix.SHARKIE_COMMAND_TYPE;
+import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.people.PeopleAddCommand;
 import seedu.address.logic.commands.people.PeopleClearCommand;
@@ -14,15 +23,6 @@ import seedu.address.logic.parser.people.PeopleAddCommandParser;
 import seedu.address.logic.parser.people.PeopleDeleteCommandParser;
 import seedu.address.logic.parser.people.PeopleEditCommandParser;
 import seedu.address.logic.parser.people.PeopleFindCommandParser;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
-import static seedu.address.logic.parser.CliPrefix.SHARKIE_COMMAND_TYPE;
-import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 
 /**
  * Parses user input.
@@ -66,7 +66,7 @@ public class SharkieParser {
     }
 
     private Command getPeopleCommand(String commandWord, String arguments) throws ParseException {
-        if(commandWord == null) {
+        if (commandWord == null) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
@@ -95,7 +95,7 @@ public class SharkieParser {
     }
 
     private Command getWalletCommand(String commandWord, String arguments) throws ParseException {
-        if(commandWord == null) {
+        if (commandWord == null) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
@@ -107,7 +107,7 @@ public class SharkieParser {
     }
 
     private Command getSharkieCommand(String commandWord, String arguments) throws ParseException {
-        if(commandWord == null) {
+        if (commandWord == null) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
         switch (commandWord) {
