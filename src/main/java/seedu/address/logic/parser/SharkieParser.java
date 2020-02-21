@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliPrefix.*;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliPrefix.*;
 import seedu.address.logic.commands.people.PeopleAddCommand;
 import seedu.address.logic.commands.people.PeopleClearCommand;
 import seedu.address.logic.commands.Command;
@@ -50,7 +49,7 @@ public class SharkieParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        switch(commandType) {
+        switch (commandType) {
         case PEOPLE_COMMAND_TYPE:
             return getPeopleCommand(commandWord, arguments);
         case WALLET_COMMAND_TYPE:
@@ -64,33 +63,40 @@ public class SharkieParser {
     }
 
     private Command getPeopleCommand(String commandWord, String arguments) throws ParseException {
+        if(commandWord == null) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+
         switch (commandWord) {
+        case PeopleAddCommand.COMMAND_WORD:
+            return new PeopleAddCommandParser().parse(arguments);
 
-            case PeopleAddCommand.COMMAND_WORD:
-                return new PeopleAddCommandParser().parse(arguments);
+        case PeopleEditCommand.COMMAND_WORD:
+            return new PeopleEditCommandParser().parse(arguments);
 
-            case PeopleEditCommand.COMMAND_WORD:
-                return new PeopleEditCommandParser().parse(arguments);
+        case PeopleDeleteCommand.COMMAND_WORD:
+            return new PeopleDeleteCommandParser().parse(arguments);
 
-            case PeopleDeleteCommand.COMMAND_WORD:
-                return new PeopleDeleteCommandParser().parse(arguments);
+        case PeopleClearCommand.COMMAND_WORD:
+            return new PeopleClearCommand();
 
-            case PeopleClearCommand.COMMAND_WORD:
-                return new PeopleClearCommand();
+        case PeopleFindCommand.COMMAND_WORD:
+            return new PeopleFindCommandParser().parse(arguments);
 
-            case PeopleFindCommand.COMMAND_WORD:
-                return new PeopleFindCommandParser().parse(arguments);
+        case PeopleListCommand.COMMAND_WORD:
+            return new PeopleListCommand();
 
-            case PeopleListCommand.COMMAND_WORD:
-                return new PeopleListCommand();
-
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
     private Command getWalletCommand(String commandWord, String arguments) throws ParseException {
-        switch(commandWord) {
+        if(commandWord == null) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+
+        switch (commandWord) {
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -98,7 +104,10 @@ public class SharkieParser {
     }
 
     private Command getSharkieCommand(String commandWord, String arguments) throws ParseException {
-        switch(commandWord) {
+        if(commandWord == null) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+        switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.people;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -17,7 +17,7 @@ import seedu.address.logic.parser.people.PeopleDeleteCommandParser;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class PeoplePeopleDeleteCommandParserTest {
+public class PeopleDeleteCommandParserTest {
 
     private PeopleDeleteCommandParser parser = new PeopleDeleteCommandParser();
 

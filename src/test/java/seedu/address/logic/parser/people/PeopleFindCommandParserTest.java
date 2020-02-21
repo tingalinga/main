@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.people;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -12,7 +12,7 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.parser.people.PeopleFindCommandParser;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-public class PeoplePeopleFindCommandParserTest {
+public class PeopleFindCommandParserTest {
 
     private PeopleFindCommandParser parser = new PeopleFindCommandParser();
 
