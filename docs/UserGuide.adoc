@@ -170,7 +170,6 @@ Expected Outcome:
 
     Increased debt to Grace by $5.00!
 
-
 ==== Recording the money you lend: `lend` [coming in v2.0]
 
 Records the amount of money that you lend to a person. This will increase that person's debt. +
@@ -181,7 +180,7 @@ Format: `people lend <index> $/<amount> [d/<date:dd/mm/yyyy>]`
 * The index refers to the index number shown in the displayed person list.
 * The index *must be a positive integer* 1, 2, 3, ...
 * Price *must be positive*.
-****
+=======
 
 Examples:
 
@@ -193,7 +192,7 @@ Expected Outcome:
 
 ==== Finding a person: `find`
 
-Find a person in your contact list by his or her name. +
+Finds a person in your contact list by his or her name. +
 Format: `people find <keyword>`
 
 Examples:
