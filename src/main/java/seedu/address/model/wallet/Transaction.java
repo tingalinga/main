@@ -11,9 +11,9 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents an entry in the Wallet.
+ * Represents a Transaction in the Wallet.
  */
-public abstract class WalletEntry {
+public abstract class Transaction {
 
     // Data fields
     private final Description description;
@@ -24,7 +24,7 @@ public abstract class WalletEntry {
     /**
      * Every field must be present and not null.
      */
-    public WalletEntry(Description description, Amount amount, LocalDate date, Set<Tag> tags) {
+    public Transaction(Description description, Amount amount, LocalDate date, Set<Tag> tags) {
         requireAllNonNull(description, amount, date, tags);
         this.description = description;
         this.amount = amount;
@@ -53,7 +53,7 @@ public abstract class WalletEntry {
     }
 
     /**
-     * Returns true if both WalletEntries have the same identity and data fields.
+     * Returns true if both Transactions have the same data fields.
      */
     @Override
     public boolean equals(Object other) {
@@ -61,15 +61,15 @@ public abstract class WalletEntry {
             return true;
         }
 
-        if (!(other instanceof WalletEntry)) {
+        if (!(other instanceof Transaction)) {
             return false;
         }
 
-        WalletEntry otherWalletEntry = (WalletEntry) other;
-        return otherWalletEntry.getDescription().equals(getDescription())
-                && otherWalletEntry.getAmount().equals(getAmount())
-                && otherWalletEntry.getDate().equals(getDate())
-                && otherWalletEntry.getTags().equals(getTags());
+        Transaction otherTransaction = (Transaction) other;
+        return otherTransaction.getDescription().equals(getDescription())
+                && otherTransaction.getAmount().equals(getAmount())
+                && otherTransaction.getDate().equals(getDate())
+                && otherTransaction.getTags().equals(getTags());
     }
 
     @Override
