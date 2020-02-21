@@ -1,14 +1,12 @@
 package seedu.address.logic.commands.sharkie;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.sharkie.HelpCommand.SHOWING_HELP_MESSAGE;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.sharkie.HelpCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.sharkie.HelpCommand.SHOWING_HELP_MESSAGE;
 
 public class HelpCommandTest {
     private Model model = new ModelManager();
