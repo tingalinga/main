@@ -1,7 +1,5 @@
 package seedu.address.model.wallet;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Represents an Amount of money.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -16,7 +14,6 @@ public class Amount {
      * @param amount A valid amount of money.
      */
     public Amount(double amount) {
-        requireNonNull(amount);
         this.amount = amount;
     }
 
