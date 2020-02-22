@@ -46,9 +46,11 @@ This symbol indicates tips.
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `addressbook.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
+.  Type the command in the command box and press [enter] to execute it.
+.  Refer to Section 5, “Commands” for details of each command.
 +
 image::Ui.png[width="790"]
 +
@@ -83,6 +85,13 @@ There is no need to save manually.
 
 _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
+
+// tag::debts[]
+=== Debts `[coming in v2.0]`
+
+*Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you.
+*Sharkie* then allow you to remind your friends through email to return you the money they owe you!
+// end::debts[]
 
 == Commands
 //tag::commandintro[]
