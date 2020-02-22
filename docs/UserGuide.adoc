@@ -112,7 +112,7 @@ Format: `exit`
 ==== Tagging an expense: `tag`
 
 Tag an expense with respective tag. +
-Format: `tag <index> t/<tag>`
+Format: `wallet tag <index> t/<tag>`
 
 Examples:
 
@@ -123,6 +123,36 @@ Expected Outcome:
     Added (food) to expense 1:
     1. Chicken Rice (food)
     …
+
+==== Editing an income or expense: `edit`
+
+Edits the details of an income or expense in your wallet. +
+Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
+
+Examples:
+
+* `wallet edit 1 n/Duck rice $/4.00`
+Returns the respective expense with the changes made. +
+Expected Outcome:
+
+    Edited Item: Duck Rice Date: 10/10/2010 Amount: $4.00
+
+==== Finding an income or expense: `find`
+
+Find an income or expense in your wallet by the keyword inputted. +
+Format: `wallet find <keyword>`
+
+Examples:
+
+* `wallet find rice`
+Returns a list of expenses containing the keyword. +
+Expected Outcome:
+
+    1. Duck Rice Date: 10/10/2010 Amount: $4.00
+    2. Chicken Rice Date: 10/11/2010 Amount: $2.50
+    ...
+
+
 
 === People Commands
 ==== Adding a person: `add`
