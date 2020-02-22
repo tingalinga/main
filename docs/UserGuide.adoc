@@ -152,7 +152,18 @@ Expected Outcome:
     2. Chicken Rice Date: 10/11/2010 Amount: $2.50
     ...
 
+==== Deleting an income or expense: `delete`
 
+Deletes an income or an expense from your wallet. +
+Format: `wallet delete <index>`
+
+Examples:
+
+* `wallet delete 1`
+Removes the expenses relative to the index. +
+Expected Outcome:
+
+    Removed Chicken Rice from your wallet
 
 === People Commands
 ==== Adding a person: `add`
