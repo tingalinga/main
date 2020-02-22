@@ -109,6 +109,20 @@ Exits the program. +
 Format: `exit`
 
 === Wallet Commands
+==== Tagging an expense: `tag`
+
+Tag an expense with respective tag. +
+Format: `tag <index> t/<tag>`
+
+Examples:
+
+* `tag 1 t/food`
+Returns the respective expense with its tag. +
+Expected Outcome:
+
+    Added (food) to expense 1:
+    1. Chicken Rice (food)
+    …
 
 === People Commands
 ==== Adding a person: `add`
