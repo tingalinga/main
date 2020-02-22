@@ -677,6 +677,7 @@ Use case ends.
 
 _{More to be added}_
 
+//tag::apendixd[]
 [appendix]
 == Non Functional Requirements
 
@@ -687,6 +688,7 @@ _{More to be added}_
 _{More to be added}_
 
 [appendix]
+//end::apendixd[]
 == Glossary
 
 [[mainstream-os]] Mainstream OS::
