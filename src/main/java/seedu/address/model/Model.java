@@ -94,6 +94,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+
+    /**
+     * Returns true if the given {@code income} exists in the Wallet.
+     */
+    boolean hasIncome(Income income);
+
     /**
      * Adds the given {@code income} to the Wallet.
      */
@@ -101,7 +107,7 @@ public interface Model {
 
     /**
      * Deletes the given income.
-     * The income must exist in the address book.
+     * The income must exist in the Wallet.
      */
     void deleteIncome(Income target);
 
@@ -112,13 +118,18 @@ public interface Model {
     void setIncome(Income target, Income editedIncome);
 
     /**
+     * Returns true if the given {@code expense} exists in the Wallet.
+     */
+    boolean hasExpense(Expense expense);
+
+    /**
      * Adds the given {@code expense} to the Wallet.
      */
     void addExpense(Expense expense);
 
     /**
      * Deletes the given expense.
-     * The expense must exist in the address book.
+     * The expense must exist in the Wallet.
      */
     void deleteExpense(Expense target);
 
