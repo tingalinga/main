@@ -310,6 +310,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 _{More to be added}_
 
+//tag::useCases[]
 [appendix]
 == Use Cases
 
@@ -676,6 +677,7 @@ Use case ends.
 Use case ends.
 
 _{More to be added}_
+//end::useCases[]
 
 //tag::apendixd[]
 [appendix]
