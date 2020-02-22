@@ -68,8 +68,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Expenditure and income `[coming in v2.0]`
 *Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
 
+//tag::contacts[]
 === Contacts
 *Sharkie* notes down and remembers contacts that you have entered in an address book, for easy reference later on!
+//end::contacts[]
 
 === Saving the data
 
@@ -83,6 +85,7 @@ _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
 
 == Commands
+//tag::commandintro[]
 *Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated it into two parts:
 `people` commands and `wallet` commands.
 
@@ -97,7 +100,7 @@ _{explain how the user can enable/disable data encryption}_
 `wallet expense n/<item> d/<date:dd/mm/yyyy> $/<price>`
 * Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
 ====
-
+//end::commandintro[]
 === Global Commands
 ==== Viewing help : `help`
 
@@ -109,6 +112,61 @@ Exits the program. +
 Format: `exit`
 
 === Wallet Commands
+==== Tagging an expense: `tag`
+
+Tag an expense with respective tag. +
+Format: `wallet tag <index> t/<tag>`
+
+Examples:
+
+* `tag 1 t/food`
+Returns the respective expense with its tag. +
+Expected Outcome:
+
+    Added (food) to expense 1:
+    1. Chicken Rice (food)
+    …
+
+==== Editing an income or expense: `edit`
+
+Edits the details of an income or expense in your wallet. +
+Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
+
+Examples:
+
+* `wallet edit 1 n/Duck rice $/4.00`
+Returns the respective expense with the changes made. +
+Expected Outcome:
+
+    Edited Item: Duck Rice Date: 10/10/2010 Amount: $4.00
+
+==== Finding an income or expense: `find`
+
+Find an income or expense in your wallet by the keyword inputted. +
+Format: `wallet find <keyword>`
+
+Examples:
+
+* `wallet find rice`
+Returns a list of expenses containing the keyword. +
+Expected Outcome:
+
+    1. Duck Rice Date: 10/10/2010 Amount: $4.00
+    2. Chicken Rice Date: 10/11/2010 Amount: $2.50
+    ...
+
+==== Deleting an income or expense: `delete`
+
+Deletes an income or an expense from your wallet. +
+Format: `wallet delete <index>`
+
+Examples:
+
+* `wallet delete 1`
+Removes the expenses relative to the index. +
+Expected Outcome:
+
+    Removed Chicken Rice from your wallet
 
 === People Commands
 ==== Adding a person: `add`
@@ -124,7 +182,7 @@ Expected Outcome:
 
     New person added: Joel Phone: 91234567 Email: joel@u.nus.edu
 
-==== Sending reminder to a friend: `remind` [coming in v2.0]
+==== Sending reminder to a friend: `remind` `[coming in v2.0]`
 
 Sends a reminder through email to a friend to return their debts to you. +
 Format: `people remind <index>`
@@ -143,7 +201,7 @@ Expected Outcome:
 
     Reminded Daniel to return $10.00!
 
-==== Sending reminder to all friend: `remindall` [coming in v2.0]
+==== Sending reminder to all friend: `remindall` `[coming in v2.0]`
 
 Sends reminders through email to all the friends that have not yet paid up. +
 Format: `people remindall`
@@ -157,7 +215,8 @@ Expected Outcome:
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
 
-==== Recording the money you owe: `owe` [coming in v2.0]
+// tag::owe[]
+==== Recording the money you owe: `owe` `[coming in v2.0]`
 
 Records the amount of money that you owe a person. +
 Format: `people owe <index> $/<amount> [d/<date:dd/mm/yyyy>]`
@@ -177,7 +236,10 @@ Expected Outcome:
 
     Increased debt to Grace by $5.00!
 
-==== Recording the money you lend: `lend` [coming in v2.0]
+// end::owe[]
+
+// tag::lend[]
+==== Recording the money you lend: `lend` `[coming in v2.0]`
 
 Records the amount of money that you lend to a person. This will increase that person's debt. +
 Format: `people lend <index> $/<amount> [d/<date:dd/mm/yyyy>]`
@@ -197,6 +259,8 @@ Expected Outcome:
 
     Increased Syin Yi's debt by $5.00!
 
+// end::lend[]
+
 ==== Finding a person: `find`
 
 Finds a person in your contact list by his or her name. +
@@ -213,6 +277,7 @@ Expected Outcome:
     2. Grace Pan
     …
 
+// tag::edit[]
 ==== Editing a person : `edit`
 
 Edits an existing person in the address book. +
@@ -231,6 +296,8 @@ Edits the email address of the 1st person to be `johndoe@example.com`. +
 Expected Outcome:
 
     Person: John Doe Phone: 91234568 Email: johndoe@example.com
+
+// end::edit[]
 
 // tag::delete[]
 ==== Deleting a person : `delete`
@@ -259,6 +326,7 @@ Expected Outcome:
 
     Removed Betsy from your list of contacts! :(
 
+// end::delete[]
 
 == FAQ
 
