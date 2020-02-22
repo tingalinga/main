@@ -1,4 +1,4 @@
-= AddressBook Level 3 - Developer Guide
+= Sharkie - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -313,17 +313,216 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+=== Wallet Tab
+
+(For all use cases below, the *System* is the `Wallet` and the *Actor* is the `User`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+==== Use case: Recording an expense
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User keys in an expense.
+2.  Wallet adds the expense.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The expense keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the expense.
++
+Steps 1a1-1a2 are repeated until the expense keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Recording an income
+
+*MSS*
+
+1. User keys in an income.
+2. Wallet adds the income.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The income keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the income.
++
+Steps 1a1-1a2 are repeated until the income keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Setting budget
+
+*MSS*
+
+1. User keys in a budget.
+2. Wallet sets the amount keyed in as the budget of the month.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The amount keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the budget.
++
+Steps 1a1-1a2 are repeated until the amount keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Deleting an income/expense
+
+*MSS*
+
+1. User requests to delete a specific income/expense in the wallet.
+2. Wallet deletes the income/expense.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Editing an income/expense
+
+*MSS*
+
+1. User requests to edit a specific income/expense in the wallet.
+2. Wallet edits the income/expense.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The new income/expense keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the new income/expense.
++
+Steps 1a1-1a2 are repeated until the new income/expense keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Finding an income/expense
+
+*MSS*
+
+1. User keys in a keyword.
+2. Wallet lists out the incomes or expenses containing the keyword.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The keyword entered does not exist in the wallet.
++
+Use case ends.
+
+=== People Tab
+
+(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `User`, unless specified otherwise)
+
+[discrete]
+==== Use case: Adding a person
+
+*MSS*
+
+1. User requests to add a person into the address book.
+2. Address book adds the person into the list.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The person’s details keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the person’s details.
++
+Steps 1a1-1a2 are repeated until the details keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Sending reminder to a friend
+
+*MSS*
+
+1. User requests to send a reminder to a friend.
+2. Address book sends a reminder to the friend.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The friend does not owe the user money.
++
+Use case ends.
+
+[discrete]
+==== Use case: Sending reminders to all friends
+
+*MSS*
+
+1. User requests to send reminders to all friends.
+2. Address book lists out all the friends who owe the user money.
+3. Address book sends reminders to all the friends on the list obtained in step 2.
 +
 Use case ends.
 
@@ -334,12 +533,147 @@ Use case ends.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+[discrete]
+==== Use case: Recording the money the user owes
+
+*MSS*
+
+1. User enters the amount borrowed from a friend.
+2. Address book records the amount, which the user owes the friend.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
 +
 Use case resumes at step 2.
+
+[none]
+* 1a. The amount keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the amount.
++
+Steps 1a1-1a2 are repeated until the amount keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Recording the money the user lends
+
+*MSS*
+
+1. User enters the amount lent to a friend.
+2. Address book records the amount, which the user lends to the friend.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The amount keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the amount.
++
+Steps 1a1-1a2 are repeated until the amount keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Deleting a person
+
+*MSS*
+
+1. User requests to delete a specific person in the address book.
+2. Address book deletes the person.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Editing a person
+
+*MSS*
+
+1. User requests to edit a specific person in the address book.
+2. Address book edits the person.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The new person’s details keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the details.
++
+Steps 1a1-1a2 are repeated until the details keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Finding a person
+
+*MSS*
+
+1. User keys in a keyword.
+2. Address book lists out the people, who contain the keyword in their names.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. None of the names in the address book contains the keyword.
++
+Use case ends.
 
 _{More to be added}_
 
