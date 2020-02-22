@@ -22,6 +22,7 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB3 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
+//tag::about[]
 == About
 This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding his usage is available below. +
 
@@ -42,6 +43,7 @@ Note the following symbols and formatting used in this document: +
 [TIP]
 This symbol indicates tips.
 ====
+//end::about[]
 
 == Quick Start
 
@@ -67,8 +69,10 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
+//tag::expenditureAndIncome[]
 === Expenditure and income `[coming in v2.0]`
 *Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
+//end::expenditureAndIncome[]
 
 //tag::contacts[]
 === Contacts
@@ -178,6 +182,7 @@ Expected Outcome:
     Removed Chicken Rice from your wallet
 
 === People Commands
+//tag::peopleadd[]
 ==== Adding a person: `add`
 
 Adds a person to the address book +
@@ -191,6 +196,9 @@ Expected Outcome:
 
     New person added: Joel Phone: 91234567 Email: joel@u.nus.edu
 
+//end::peopleadd[]
+
+//tag::peopleremind[]
 ==== Sending reminder to a friend: `remind` `[coming in v2.0]`
 
 Sends a reminder through email to a friend to return their debts to you. +
@@ -210,6 +218,9 @@ Expected Outcome:
 
     Reminded Daniel to return $10.00!
 
+//end::peopleremind[]
+
+//tag::peopleremindall[]
 ==== Sending reminder to all friend: `remindall` `[coming in v2.0]`
 
 Sends reminders through email to all the friends that have not yet paid up. +
@@ -223,6 +234,8 @@ Expected Outcome:
 
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
+
+//end::peopleremindall[]
 
 // tag::owe[]
 ==== Recording the money you owe: `owe` `[coming in v2.0]`
@@ -270,6 +283,7 @@ Expected Outcome:
 
 // end::lend[]
 
+//tag::peoplefind[]
 ==== Finding a person: `find`
 
 Finds a person in your contact list by his or her name. +
@@ -285,6 +299,8 @@ Expected Outcome:
     1. Grace Lim
     2. Grace Pan
     …
+
+//end::peoplefind[]
 
 // tag::edit[]
 ==== Editing a person : `edit`
