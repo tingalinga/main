@@ -18,9 +18,11 @@ import seedu.address.model.transaction.Income;
 public class TypicalWallet {
 
     public static final Income TA_JOB = new Income(new Description("CS2103 TA"), new Amount(3000),
-                LocalDate.of(2020, 1, 1), new Tag("Job"));
+            LocalDate.of(2020, 1, 1), new Tag("Job"));
     public static final Expense DUCK_RICE = new Expense(new Description("Duck Rice"), new Amount(3.50),
-                LocalDate.of(2020, 1, 2), new Tag("Food"));
+            LocalDate.of(2020, 1, 2), new Tag("Food"));
+    public static final Expense MRT_CONCESSION = new Expense(new Description("Monthly MRT Concession pass"),
+            new Amount(45), LocalDate.of(2020, 1, 3), new Tag("Transport"));
 
     private TypicalWallet() {} // prevents instantiation
 
@@ -43,6 +45,6 @@ public class TypicalWallet {
     }
 
     public static List<Expense> getTypicalExpenses() {
-        return new ArrayList<>(Arrays.asList(DUCK_RICE));
+        return new ArrayList<>(Arrays.asList(DUCK_RICE, MRT_CONCESSION));
     }
 }

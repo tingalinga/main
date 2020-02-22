@@ -124,42 +124,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    // =========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the
-     * internal list of {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
+    // =========== Wallet =====================================================================================
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public boolean hasIncome(Income income) {
+        return wallet.hasIncome(income);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons) && wallet.equals(other.wallet);
-    }
-
-    // =========== Wallet ==================================================================================
 
     @Override
     public void addIncome(Income income) {
@@ -178,6 +148,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasExpense(Expense expense) {
+        return wallet.hasExpense(expense);
+    }
+
+    @Override
     public void addExpense(Expense expense) {
         wallet.addExpense(expense);
     }
@@ -193,4 +168,37 @@ public class ModelManager implements Model {
         wallet.setExpense(target, editedExpense);
     }
 
+    // =========== Util Methods ===============================================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons) && wallet.equals(other.wallet);
+    }
 }

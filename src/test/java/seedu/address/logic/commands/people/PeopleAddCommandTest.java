@@ -153,6 +153,11 @@ public class PeopleAddCommandTest {
         }
 
         @Override
+        public boolean hasIncome(Income income) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addIncome(Income income) {
             throw new AssertionError("This method should not be called.");
         }
@@ -164,6 +169,11 @@ public class PeopleAddCommandTest {
 
         @Override
         public void setIncome(Income target, Income editedIncome) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");
         }
 
