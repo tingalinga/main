@@ -31,7 +31,7 @@ public class Wallet implements ReadOnlyWallet {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // =========== List Overwrite Operations =============================================================
 
     /**
      * Replaces the contents of the income list with {@code incomes}.
@@ -56,7 +56,7 @@ public class Wallet implements ReadOnlyWallet {
         setExpenses(newData.getExpenseList());
     }
 
-    //// income-level operations
+    // =========== Income-related Operations =============================================================
 
     /**
      * Returns true if an identical income exists in the Wallet
@@ -90,7 +90,7 @@ public class Wallet implements ReadOnlyWallet {
         incomes.remove(key);
     }
 
-    //// expense-level operations
+    // =========== Expense-related Operations =============================================================
 
     /**
      * Returns true if an identical expense exists in the Wallet
@@ -123,7 +123,7 @@ public class Wallet implements ReadOnlyWallet {
     public void removeExpense(Expense key) {
         expenses.remove(key);
     }
-    //// util methods
+    // =========== Util methods =============================================================
 
     @Override
     public ObservableList<Transaction> getTransactionList() {

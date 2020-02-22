@@ -32,7 +32,6 @@ public class Description {
         return test != null && !test.trim().isEmpty();
     }
 
-
     @Override
     public String toString() {
         return description;

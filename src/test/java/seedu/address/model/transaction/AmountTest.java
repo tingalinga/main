@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class AmountTest {
 
     @Test
-    public void isValidAmount() {
+    public void isValidAmount_onlyAcceptsValidDoubles() {
         // null amount
         assertThrows(NullPointerException.class, () -> Amount.isValidAmount(null));
 
