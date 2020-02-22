@@ -22,6 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Expense;
+import seedu.address.model.transaction.Income;
 import seedu.address.testutil.PersonBuilder;
 
 public class PeopleAddCommandTest {
@@ -147,6 +149,46 @@ public class PeopleAddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasIncome(Income income) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addIncome(Income income) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteIncome(Income target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIncome(Income target, Income editedIncome) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addExpense(Expense expense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteExpense(Expense target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setExpense(Expense target, Expense editedExpense) {
             throw new AssertionError("This method should not be called.");
         }
     }
