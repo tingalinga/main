@@ -45,7 +45,7 @@ This symbol indicates tips.
 ====
 //end::about[]
 
-//tag::quickstart[]
+//tag::quickStart[]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
@@ -65,6 +65,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`sharkie exit`* : exits the app.
 
 .  Refer to <<Commands>> for details of each command.
+//end::quickStart[]
 
 [[Features]]
 == Features
@@ -89,13 +90,13 @@ There is no need to save manually.
 _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
 
-// tag::debts[]
+//tag::debts[]
 === Debts `[coming in v2.0]`
 
 *Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you. +
 *Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
 *Sharkie* also allows you to set reminders for yourself to return your friend what you owe them!
-// end::debts[]
+//end::debts[]
 
 [[Commands]]
 == Commands
@@ -398,6 +399,7 @@ Expected Outcome:
 *A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
 //end::faq[]
 
+//tag::commandSummary[]
 == Command Summary
 
 === Global Commands
@@ -420,3 +422,4 @@ e.g. `people find Grace`
 e.g. `people delete 3`
 * *Edit* : `people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]` +
 e.g. `people edit 1 e/johndoe@example.com` +
+//end::commandSummary[]
