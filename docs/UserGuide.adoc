@@ -59,10 +59,10 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
-* *`exit`* : exits the app
+* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
+* **`people delete`**`3` : deletes the 3rd contact shown in the current list.
+* **`wallet find`**`rice` : returns a list of expenses or income with keyword rice.
+* *`exit`* : exits the app.
 
 .  Refer to <<Commands>> for details of each command.
 
@@ -133,7 +133,7 @@ Format: `wallet tag <index> t/<tag>`
 
 ****
 * Tags an existing expense specified by <index> of expense.
-* The index must be *positive*.
+* The index *must be a positive integer* 1, 2, 3, ...
 * The index must *exist* in the list of expenses.
 * Both the <tag> and the <index> must be stated.
 ****
@@ -148,6 +148,8 @@ Expected Outcome:
     1. Chicken Rice (food)
     …
 
+//end::wallettag[]
+
 //tag::walletedit[]
 ==== Editing an income or expense: `edit`
 
@@ -157,6 +159,7 @@ Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
 ****
 * Edits the details of the expense or income, specified by <index>.
 * <index> must be stated, and it must *exist* in the list of expenses or income.
+* The index *must be a positive integer* 1, 2, 3, ...
 * At least one of [n/<name>], [d/<date>], [$/<amount>], [t/<tag>] should be stated. Multiples are allowed as well.
 ****
 
@@ -167,6 +170,8 @@ Returns the respective expense with the changes made. +
 Expected Outcome:
 
     Edited Item: Duck Rice Date: 10/10/2010 Amount: $4.00
+
+//end::walletedit[]
 
 //tag::walletfind[]
 ==== Finding an income or expense: `find`
@@ -189,6 +194,8 @@ Expected Outcome:
     2. Chicken Rice Date: 10/11/2010 Amount: $2.50
     ...
 
+//end::walletfind[]
+
 //tag::walletdelete[]
 ==== Deleting an income or expense: `delete`
 
@@ -197,7 +204,7 @@ Format: `wallet delete <index>`
 
 ****
 * Deletes the income or expense specified by <index>.
-* The index must be *positive*.
+* The index *must be a positive integer* 1, 2, 3, ...
 * The index must *exist*.
 ****
 
@@ -208,6 +215,8 @@ Removes the expenses relative to the index. +
 Expected Outcome:
 
     Removed Chicken Rice from your wallet
+
+//end::walletdelete[]
 
 === People Commands
 //tag::peopleadd[]
