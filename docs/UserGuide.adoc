@@ -45,14 +45,13 @@ This symbol indicates tips.
 ====
 //end::about[]
 
+//tag::quickstart[]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
+.  Copy the file to the folder you want to use as the home folder for Sharkie.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
-.  Type the command in the command box and press [enter] to execute it.
-.  Refer to Section 5, “Commands” for details of each command.
 +
 image::Ui.png[width="790"]
 +
@@ -61,11 +60,11 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
-.  Refer to <<Features>> for details of each command.
+.  Refer to <<Commands>> for details of each command.
 
 [[Features]]
 == Features
@@ -97,6 +96,7 @@ _{explain how the user can enable/disable data encryption}_
 *Sharkie* then allow you to remind your friends through email to return you the money they owe you!
 // end::debts[]
 
+[[Commands]]
 == Commands
 //tag::commandintro[]
 *Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated it into two parts:
@@ -125,10 +125,18 @@ Exits the program. +
 Format: `exit`
 
 === Wallet Commands
+//tag::wallettag[]
 ==== Tagging an expense: `tag`
 
 Tag an expense with respective tag. +
 Format: `wallet tag <index> t/<tag>`
+
+****
+* Tags an existing expense specified by <index> of expense.
+* The index must be *positive*.
+* The index must *exist* in the list of expenses.
+* Both the <tag> and the <index> must be stated.
+****
 
 Examples:
 
@@ -140,10 +148,17 @@ Expected Outcome:
     1. Chicken Rice (food)
     …
 
+//tag::walletedit[]
 ==== Editing an income or expense: `edit`
 
 Edits the details of an income or expense in your wallet. +
 Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
+
+****
+* Edits the details of the expense or income, specified by <index>.
+* <index> must be stated, and it must *exist* in the list of expenses or income.
+* At least one of [n/<name>], [d/<date>], [$/<amount>], [t/<tag>] should be stated. Multiples are allowed as well.
+****
 
 Examples:
 
@@ -153,25 +168,38 @@ Expected Outcome:
 
     Edited Item: Duck Rice Date: 10/10/2010 Amount: $4.00
 
+//tag::walletfind[]
 ==== Finding an income or expense: `find`
 
 Find an income or expense in your wallet by the keyword inputted. +
 Format: `wallet find <keyword>`
 
+****
+* Finds the expenses and income with the stated <keyword>.
+* The keyword need not be in full. For example `wallet find ri` will display expenses or income with the keyword `rice` as well.
+****
+
 Examples:
 
 * `wallet find rice`
-Returns a list of expenses containing the keyword. +
+Returns a list of expenses and income containing the keyword. +
 Expected Outcome:
 
     1. Duck Rice Date: 10/10/2010 Amount: $4.00
     2. Chicken Rice Date: 10/11/2010 Amount: $2.50
     ...
 
+//tag::walletdelete[]
 ==== Deleting an income or expense: `delete`
 
 Deletes an income or an expense from your wallet. +
 Format: `wallet delete <index>`
+
+****
+* Deletes the income or expense specified by <index>.
+* The index must be *positive*.
+* The index must *exist*.
+****
 
 Examples:
 

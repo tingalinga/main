@@ -9,9 +9,9 @@
 
 == Overview
 
-Sharkie is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+*Sharkie* is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-== Summary of contributions
+== Summary of contributions *[To be updated]*
 
 * *Major enhancement*: added *the ability to undo/redo previous commands*
 ** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
@@ -25,21 +25,21 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 
 * *Other contributions*:
 
-** Project management:
+** Project management *[To be updated]*:
 *** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
+*** *[To be updated]* (Pull requests https://github.com[#33], https://github.com[#34])
 *** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Updated the User Guide to include more commands, updated Quick Start, and Updated ContactUs: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/52[#52]
+*** Did cosmetic tweaks to existing contents of the User Guide and Quick Start: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/54[#54]
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+*** PRs reviewed (with non-trivial review comments) *[To be updated]*: https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+*** Contributed to forum discussions (examples:  https://github.com/nus-cs2103-AY1920S2/forum/issues/25[25])
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[To be updated])
+*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[To be updated])
 ** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** *[To be updated]*
 
 _{you can add/remove categories in the list above}_
 
@@ -50,9 +50,17 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=debts]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=quickstart]
+
+include::../UserGuide.adoc[tag=wallettag]
+
+include::../UserGuide.adoc[tag=walletedit]
+
+include::../UserGuide.adoc[tag=walletfind]
+
+include::../UserGuide.adoc[tag=walletdelete]
 
 == Contributions to the Developer Guide
 
@@ -60,9 +68,9 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=productScope]
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=userStories]
 
 
 == PROJECT: PowerPointLabs

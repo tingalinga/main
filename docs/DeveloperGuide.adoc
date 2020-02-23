@@ -275,37 +275,94 @@ Refer to the guide <<Testing#, here>>.
 Refer to the guide <<DevOps#, here>>.
 
 [appendix]
+//tag::productScope[]
 == Product Scope
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to record expenses and income
+* has a need to keep to a certain budget every month
+* has a need to record debts
+* want to be reminded of his/her own debts
+* wants to remind his/her friends to pay back their debts
+* has a lot of friends to keep track in address/debt book
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: records expenses/debts faster than a typical mouse/GUI driven app
 
 [appendix]
+//tag::userStories[]
 == User Stories
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|Priority |As a/an ... |I want to ... |So that ...
+|`* * *` |university student that buys a lot of stuff |keep track of my spending |I do not overspend
 
-|`* * *` |user |add a new person |
+|`* * *` |student with fixed monthly allowance |track my spendings in a month |I will make sure I save money every month
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |person with bad mental calculation |auto deduct money I owe from money the person owes me |I don't need to do the math myself
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |computer science student |type instead of click |it is more convenient
+
+|`* * *` |student that always goes out with friends |split shared spendings |I make sure everyone pays back
+
+|`* * *` |poor university person who borrows money from many people |know who I owe money to |I can pay them back when I have money
+
+|`* * *` |person with a lot of friend's |keep track of who owes me what on which day |I can ask them to pay me back
+
+|`* * *` |calculative person |keep track of how much exactly my friends owe me |I can get all my money back
+
+|`* * *` |student who needs to pay bills |get reminded of when to pay them |I don't get my utilities cut/chased out of house etc.
+
+|`* * *` |student with tight budget |set a budget and be notified when nearing it |I won't overspend
+
+|`* * *` |thrifty student |set savings goals |I can have achievable, trackable savings
+
+|`* * *` |unmotivated person |get motivation to spend less/save more |I have the willpower to manage my finances
+
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |a student who lives far from school |keep track of how much i spend on transport |I know whether to get concession
+
+|`* *` |friend |have my friend track how much I owe them |do not have to keep track of it myself
+
+|`* *` |student who travel with friends |keep track of how much each person spent in the trip |there won't be any money issue during the trip
+
+|`* *` |student that always forget to pay my friend back |set a deadline and reminder |I will pay my friend back
+
+|`* *` |forgetful student |send people automated reminders when they owe me money |I won't lose any money
+
+|`* *` |a lazy person |I can ask for my money back from a few friends in a click |I can save time asking them one by one
+
+|`* *` |student who does not dare to request money from friends |send notifications to my friends |I can get my money back
+
+|`* *` |student with no control |know if I hit my budget |I will be guilty and thus try and control myself
+
+|`* *` |student who does part time job |track how much I earn in a month |I'm proud of myself
+
+|`* *` |student who prefers visual data |visualise my income/spendings in a graph/chart |it is easier to keep track of my expenditures
+
+|`* *` |student that needs to explain their spendings to their parents |show them the chart of my everyday spendings |It is convenient and more visual
+
+|`* *` |organised student |categorise my spendings |I know the proportions of my spendings
+
+|`* *` |student with a huge wardrobe |keep track of my expenditure on clothing |I can control my shopaholic tendencies
+
+|`* *` |student on diet |track how much I spend on food |I would control myself from spending too much on food
+
+|`*` |rich student |keep track of what I bought |I can show off to my friends
+
+|`*` |rich student who always lends people money |take note of who owes me money |I can track them and ask them for it back
+
+|`*` |someone with few friends |keep track of who I paid for or who paid for me first |I know who are my friends, and the frequency I go out with them
 |=======================================================================
 
 _{More to be added}_
