@@ -1,4 +1,4 @@
-= Simon Lam - Project Portfolio
+= Zhang Yuanyu - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
@@ -28,7 +28,7 @@ written in Java.
 * *Other contributions*:
 
 ** Project management:
-*** Git master of the project. Managed all the pull requests, ensuring there are no merge conflicts, and helped my team members with git related issues.
+*** Team lead of the project, carved out the direction of project flow and ensured the team is up to date.
 *** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 ** Enhancements to existing features:
 *** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
@@ -68,4 +68,8 @@ include::../DeveloperGuide.adoc[tag=undoredo]
 include::../DeveloperGuide.adoc[tag=dataencryption]
 
 
+== PROJECT: PowerPointLabs
 
+---
+
+_{Optionally, you may include other projects in your portfolio.}_
