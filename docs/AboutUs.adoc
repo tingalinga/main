@@ -5,15 +5,14 @@
 :stylesDir: stylesheets
 
 TeaPet - TeaPet was developed by us. +
-_{The dummy content given below serves as a placeholder to be used by future forks of the project.}_ +
-{empty} +
+
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
 == Project Team
 
 === Simon Lam
-image::simon.png[width="150", align="left"]
-{empty}[https://github.com/TheElectricBlender[github]] [<<johndoe#, portfolio>>]
+image::Simon.png[width="150", align="left"]
+{empty}[https://github.com/TheElectricBlender[github]] [<<TheElectricBlender#, portfolio>>]
 
 Role: Team Leader +
 Responsibility: In charge of overall progress and direction of project.
@@ -21,7 +20,7 @@ Responsibility: In charge of overall progress and direction of project.
 '''
 
 === Zhang Yuanyu
-image::freddy.png[width="150", align="left"]
+image::Freddy.png[width="150", align="left"]
 {empty}[http://github.com/Yuanyu97[github]] [<<johndoe#, portfolio>>]
 
 Role: Git master +
@@ -30,7 +29,7 @@ Responsibility: Help team members to get familiar with git tools.
 '''
 
 === Gary Lim
-image::gary.png[width="150", align="left"]
+image::Gary.png[width="150", align="left"]
 {empty}[http://github.com/garysyndromes[github]] [<<johndoe#, portfolio>>]
 
 Role: Integration +
@@ -40,7 +39,7 @@ software to create a whole.
 '''
 
 === Gerren Seow
-image::gerren.png[width="150", align="left"]
+image::Gerren.png[width="150", align="left"]
 {empty}[http://github.com/jerrenss[github]] [<<johndoe#, portfolio>>]
 
 Role: Scheduling and Tracking +
@@ -49,7 +48,7 @@ Responsibilities: In charge of defining, assigning and tracking project tasks.
 '''
 
 === Lee Huiting
-image::huiting.png[width="150", align="left"]
+image::Huiting.png[width="150", align="left"]
 {empty}[http://github.com/tingalinga[github]] [<<johndoe#, portfolio>>]
 
 Role: Code quality and Documentation +
