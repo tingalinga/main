@@ -1,15 +1,17 @@
-= John Doe - Project Portfolio
+= Simon Lam - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: AddressBook - Level 3
+== PROJECT: TeaPet
 
 ---
 
 == Overview
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+TeaPet is a personal manager application for primary school form teachers. The user interacts with it via
+a Command Line Interface (CLI) along with a Graphical User Interface (GUI) created with JavaFX. The application is
+written in Java.
 
 == Summary of contributions
 
@@ -26,6 +28,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 * *Other contributions*:
 
 ** Project management:
+*** Team lead of the project, carved out the direction of project flow and ensured the team is up to date.
 *** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 ** Enhancements to existing features:
 *** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
