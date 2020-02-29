@@ -20,7 +20,8 @@ public class EditStudentDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        seedu.address.logic.commands.EditCommand.EditStudentDescriptor descriptorWithSameValues = new EditStudentDescriptor(DESC_AMY);
+        seedu.address.logic.commands.EditCommand.EditStudentDescriptor descriptorWithSameValues =
+                new EditStudentDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
