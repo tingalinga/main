@@ -22,9 +22,9 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Student;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,7 +55,7 @@ public class EditCommand extends Command {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+     * @param index                 of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
@@ -133,7 +133,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditStudentDescriptor() {}
+        public EditStudentDescriptor() {
+        }
 
         /**
          * Copy constructor.
