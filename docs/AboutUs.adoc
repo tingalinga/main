@@ -11,7 +11,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Simon Lam
-image::Simon.png[width="150", align="left"]
+image::TheElectricBlender.png[width="150", align="left"]
 {empty}[https://github.com/TheElectricBlender[github]] [<<TheElectricBlender#, portfolio>>]
 
 Role: Team Leader +
@@ -20,7 +20,7 @@ Responsibility: In charge of overall progress and direction of project.
 '''
 
 === Zhang Yuanyu
-image::Freddy.png[width="150", align="left"]
+image::Yuanyu97.png[width="150", align="left"]
 {empty}[http://github.com/Yuanyu97[github]] [<<johndoe#, portfolio>>]
 
 Role: Git master +
@@ -29,7 +29,7 @@ Responsibility: Help team members to get familiar with git tools.
 '''
 
 === Gary Lim
-image::Gary.png[width="150", align="left"]
+image::garysyndromes.png[width="150", align="left"]
 {empty}[http://github.com/garysyndromes[github]] [<<johndoe#, portfolio>>]
 
 Role: Integration +
@@ -39,7 +39,7 @@ software to create a whole.
 '''
 
 === Gerren Seow
-image::Gerren.png[width="150", align="left"]
+image::jerrenss.png[width="150", align="left"]
 {empty}[http://github.com/jerrenss[github]] [<<johndoe#, portfolio>>]
 
 Role: Scheduling and Tracking +
@@ -48,7 +48,7 @@ Responsibilities: In charge of defining, assigning and tracking project tasks.
 '''
 
 === Lee Huiting
-image::Huiting.png[width="150", align="left"]
+image::tingalinga.png[width="150", align="left"]
 {empty}[http://github.com/tingalinga[github]] [<<johndoe#, portfolio>>]
 
 Role: Code quality and Documentation +
