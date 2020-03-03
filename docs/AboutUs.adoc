@@ -39,10 +39,6 @@ software to create a whole.
 '''
 
 === Gerren Seow
-<<<<<<< HEAD
-image::Gerren.png[width="150", align="left"]
-{empty}[http://github.com/j errenss[github]] [<<johndoe#, portfolio>>]
-=======
 image::jerrenss.png[width="150", align="left"]
 {empty}[http://github.com/jerrenss[github]] [<<jerrenss#, portfolio>>]
 >>>>>>> 9f2024939d300c4ea78f361f0ebe9316c3298faf
