@@ -21,7 +21,7 @@ Responsibility: In charge of overall progress and direction of project.
 
 === Zhang Yuanyu
 image::Yuanyu97.png[width="150", align="left"]
-{empty}[http://github.com/Yuanyu97[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/Yuanyu97[github]] [<<Yuanyu97#, portfolio>>]
 
 Role: Git master +
 Responsibility: Help team members to get familiar with git tools.
@@ -30,7 +30,7 @@ Responsibility: Help team members to get familiar with git tools.
 
 === Gary Lim
 image::garysyndromes.png[width="150", align="left"]
-{empty}[http://github.com/garysyndromes[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/garysyndromes[github]] [<<garysyndromes#, portfolio>>]
 
 Role: Integration +
 Responsibilities: In charge of versioning of the code, maintaining the code repository, integrating various parts of the
@@ -40,7 +40,7 @@ software to create a whole.
 
 === Gerren Seow
 image::jerrenss.png[width="150", align="left"]
-{empty}[http://github.com/jerrenss[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/jerrenss[github]] [<<jerrenss#, portfolio>>]
 
 Role: Scheduling and Tracking +
 Responsibilities: In charge of defining, assigning and tracking project tasks.
@@ -49,7 +49,7 @@ Responsibilities: In charge of defining, assigning and tracking project tasks.
 
 === Lee Huiting
 image::tingalinga.png[width="150", align="left"]
-{empty}[http://github.com/tingalinga[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/tingalinga[github]] [<<tingalinga#, portfolio>>]
 
 Role: Code quality and Documentation +
 Responsibilities: Looks after the code, ensures adherence to coding standard. Also responsible of the quality of various

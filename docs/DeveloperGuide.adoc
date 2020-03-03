@@ -279,7 +279,12 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* is the form teacher of a class
+* has a need to manage a significant number of students
+* has a need to take the attendance of students
+* wants to be able to track the homework and progress of students
+* wants to be able to keep a schedule of his/her classes and events
+* wants to be able to keep track of students' behavior in class
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
@@ -297,11 +302,27 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new student |
+|`* * *` |form teacher |take the attendance of my students |know who is present for my class
 
-|`* * *` |user |delete a student |remove entries that I no longer need
+|`* * *` |form teacher |have a schedule tracking my events |know what I need to attend/do in a day
 
-|`* * *` |user |find a student by name |locate details of students without having to go through the entire list
+|`* * *` |form teacher |maintain of a list of students who have completed my homework |know who has not submitted my homework
+
+|`* * *` |form teacher |take down notes for student's behavior |track the behaviour of my students
+
+|`* * *` |form teacher |see the scores of my class |know the academic progress of my class
+
+|`* * *` |form teacher |add a new student |
+
+|`* * *` |form teacher |delete a student |remove entries that I no longer need
+
+|`* * *` |form teacher |find a student by name |locate details of students without having to go through the entire list
+
+|`* *` |form teacher |specify if a student is late or absent for class |know why my student is absent
+
+|`* *` |form teacher |update the details of my students |make necessary changes to my student's particulars
+
+|`* *` |form teacher |see usage instructions |refer to instructions when I forget how to use the App
 
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
@@ -313,7 +334,55 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `TeaPet` and the *Actor* is the `Teacher`, unless specified otherwise)
+
+[discrete]
+=== Use case: Add student
+
+*MSS*
+
+1.  User keys in a student
+2.  TeaPet adds the student to the class list
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Student is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: Edit student
+
+*MSS*
+
+1.  User specifies which student and what particulars he/she wants to edit
+2.  TeaPet edits the student's particulars in the class list
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Student is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
++
+[none]
+* 2a. Particulars is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
 
 [discrete]
 === Use case: Delete student
@@ -333,13 +402,34 @@ Use case ends.
 * 2a. The list is empty.
 +
 Use case ends.
-
++
+[none]
 * 3a. The given index is invalid.
 +
 [none]
 ** 3a1. AddressBook shows an error message.
 +
 Use case resumes at step 2.
+
+[discrete]
+=== Use case: Add event
+
+*MSS*
+
+1.  User keys in an event
+2.  TeaPet adds the event to the schedule
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Event is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
 
 _{More to be added}_
 
