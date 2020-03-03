@@ -40,7 +40,7 @@ software to create a whole.
 
 === Gerren Seow
 image::Gerren.png[width="150", align="left"]
-{empty}[http://github.com/jerrenss[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/j errenss[github]] [<<johndoe#, portfolio>>]
 
 Role: Scheduling and Tracking +
 Responsibilities: In charge of defining, assigning and tracking project tasks.
