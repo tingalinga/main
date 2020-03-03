@@ -79,7 +79,7 @@ image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -100,7 +100,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `AddressBookParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+.  The command execution can affect the `Model` (e.g. adding a student).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -123,11 +123,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 [NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
+As a more OOP model, we can store a `Tag` list in `Address Book`, which `Student` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Student` needing their own `Tag` object. An example of how such a model may look like is given below. +
  +
 image:BetterModelClassDiagram.png[]
 
@@ -173,18 +173,18 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 image::UndoRedoState0.png[]
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 image::UndoRedoState1.png[]
 
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 image::UndoRedoState2.png[]
 
 [NOTE]
 If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 image::UndoRedoState3.png[]
 
@@ -222,7 +222,7 @@ image::CommitActivityDiagram.png[]
 ** Pros: Easy to implement.
 ** Cons: May have performance issues in terms of memory usage.
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+** Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
 ** Cons: We must ensure that the implementation of each individual command are correct.
 
 ===== Aspect: Data structure to support the undo/redo commands
@@ -279,7 +279,12 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* is the form teacher of a class
+* has a need to manage a significant number of students
+* has a need to take the attendance of students
+* wants to be able to track the homework and progress of students
+* wants to be able to keep a schedule of his/her classes and events
+* wants to be able to keep track of students' behavior in class
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
@@ -297,15 +302,31 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |form teacher |take the attendance of my students |know who is present for my class
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |form teacher |have a schedule tracking my events |know what I need to attend/do in a day
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |form teacher |maintain of a list of students who have completed my homework |know who has not submitted my homework
+
+|`* * *` |form teacher |take down notes for student's behavior |track the behaviour of my students
+
+|`* * *` |form teacher |see the scores of my class |know the academic progress of my class
+
+|`* * *` |form teacher |add a new student |
+
+|`* * *` |form teacher |delete a student |remove entries that I no longer need
+
+|`* * *` |form teacher |find a student by name |locate details of students without having to go through the entire list
+
+|`* *` |form teacher |specify if a student is late or absent for class |know why my student is absent
+
+|`* *` |form teacher |update the details of my students |make necessary changes to my student's particulars
+
+|`* *` |form teacher |see usage instructions |refer to instructions when I forget how to use the App
 
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`*` |user with many students in the address book |sort students by name |locate a student easily
 |=======================================================================
 
 _{More to be added}_
@@ -313,17 +334,65 @@ _{More to be added}_
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `TeaPet` and the *Actor* is the `Teacher`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+=== Use case: Add student
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User keys in a student
+2.  TeaPet adds the student to the class list
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Student is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: Edit student
+
+*MSS*
+
+1.  User specifies which student and what particulars he/she wants to edit
+2.  TeaPet edits the student's particulars in the class list
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Student is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
++
+[none]
+* 2a. Particulars is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: Delete student
+
+*MSS*
+
+1.  User requests to list students
+2.  AddressBook shows a list of students
+3.  User requests to delete a specific student in the list
+4.  AddressBook deletes the student
 +
 Use case ends.
 
@@ -333,7 +402,8 @@ Use case ends.
 * 2a. The list is empty.
 +
 Use case ends.
-
++
+[none]
 * 3a. The given index is invalid.
 +
 [none]
@@ -341,25 +411,56 @@ Use case ends.
 +
 Use case resumes at step 2.
 
+[discrete]
+=== Use case: Add event
+
+*MSS*
+
+1.  User keys in an event
+2.  TeaPet adds the event to the schedule
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Event is invalid.
++
+[none]
+** 2a1. TeaPet shows an error message.
++
+Use case ends.
+
 _{More to be added}_
 
 [appendix]
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
+.  A teacher with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  TeaPet should be used only for a teacher handling his/her own form class.
 
 _{More to be added}_
 
 [appendix]
 == Glossary
 
+[[class-list]] Class List::
+Class list of students
+
+[[cli]] CLI::
+Command line interface
+
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
 
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
+
+[[schedule]] Schedule::
+TeaPet's schedule that stores all of the teacher's events
+
 
 [appendix]
 == Product Survey
@@ -402,15 +503,15 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
-=== Deleting a person
+=== Deleting a student
 
-. Deleting a person while all persons are listed
+. Deleting a student while all students are listed
 
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+.. Prerequisites: List all students using the `list` command. Multiple students in the list.
 .. Test case: `delete 1` +
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
    Expected: Similar to previous.
 
