@@ -1,4 +1,4 @@
-= Lee Huiting - Project Portfolio
+= Seow Wei Xiang Gerren - Project Portfolio
 :site-section: AboutUs
 :imagesDir: ../images
 :stylesDir: ../stylesheets
