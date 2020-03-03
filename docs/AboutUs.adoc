@@ -11,8 +11,8 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Simon Lam
-image::TheElectricBlender.png[width="150", align="left"]
-{empty}[https://github.com/TheElectricBlender[github]] [<<TheElectricBlender#, portfolio>>]
+image::theelectricblender.png[width="150", align="left"]
+{empty}[https://github.com/TheElectricBlender[github]] [<<theelectricblender#, portfolio>>]
 
 Role: Team Leader +
 Responsibility: In charge of overall progress and direction of project.
@@ -20,8 +20,8 @@ Responsibility: In charge of overall progress and direction of project.
 '''
 
 === Zhang Yuanyu
-image::Yuanyu97.png[width="150", align="left"]
-{empty}[http://github.com/Yuanyu97[github]] [<<Yuanyu97#, portfolio>>]
+image::yuanyu97.png[width="150", align="left"]
+{empty}[http://github.com/Yuanyu97[github]] [<<yuanyu97#, portfolio>>]
 
 Role: Git master +
 Responsibility: Help team members to get familiar with git tools.
