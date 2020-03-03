@@ -446,8 +446,8 @@ _{More to be added}_
 [appendix]
 == Glossary
 
-[[address-book fdsa]] CLI::
-Command line interface
+[[class-list]] Class List::
+Class list of students
 
 [[cli]] CLI::
 Command line interface
