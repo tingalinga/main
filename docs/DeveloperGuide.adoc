@@ -562,7 +562,7 @@ _{ more test cases ... }_
    Expected: Student "John Tan Jun Wei" is deleted from the list. Status message displays that the specified student has been deleted. Timestamp in the status bar is updated.
 .. Test case: `delete Tan John Wei Jun` +
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete john Tan Jun Wei` (where the specified student is not a student in the class list due to the capitalisation of the of the first alphabet.) _{give more}_ +
+.. Other incorrect delete commands to try: `delete`, `delete john Tan Jun Wei` (where the specified student is not a student in the class list due to the capitalisation of the first alphabet.) _{give more}_ +
    Expected: Similar to test case b.
 
 _{ more test cases ... }_
