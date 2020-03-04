@@ -1,4 +1,4 @@
-= AddressBook Level 3 - Developer Guide
+= TeaPet - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -390,9 +390,9 @@ Use case ends.
 *MSS*
 
 1.  User requests to list students
-2.  AddressBook shows a list of students
+2.  TeaPet shows a list of students
 3.  User requests to delete a specific student in the list
-4.  AddressBook deletes the student
+4.  TeaPet deletes the student
 +
 Use case ends.
 
@@ -407,7 +407,7 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. TeaPet shows an error message.
 +
 Use case resumes at step 2.
 
