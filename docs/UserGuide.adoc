@@ -1,5 +1,6 @@
-= AddressBook Level 3 - User Guide
+= TeaPet - User Guide
 :site-section: UserGuide
+:toclevels: 5
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -15,16 +16,41 @@ endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level3
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
-
+//tag::intro[]
 == Introduction
 
-AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB3 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+TeaPet is an all-in-one desktop program for primary school form teachers to *manage their classroom effectively*.
+It manages your *personal curriculum schedule*, *student particulars*, and can also *track your class progress* all in
+one simple program.
+TeaPet flexes its simple and clean Graphical User Interface (GUI)
+TeaPet is
+optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having a simple
+and clean Graphical User Interface (GUI). If you are looking for a way to easily manage your administrative classroom chores
+and have quick hands, TeaPet is for you! Interested? Hop into <<Getting started>>. Enjoy!
+//end::intro[]
 
-== Quick Start
+== About
+The user guide will provide all the information needed to fully utilise *TeaPet*.
+If you need help on setting up *TeaPet*, you can go to the <<Getting started>> guide below.
+If you want to check out *TeaPet's* features, you can go to the <<Features>> section.
+If you need help regarding usage of *TeaPet's* commands, head on to the <<Commands>> section.
+
+Take note of the following symbols and formatting used in this document:
+
+[TIP]
+This symbol indicates tips.
+
+[cols="1,12"]
+|===
+|`command`
+|A grey highlight indicates that this is a command that can be typed into the command line and executed by the program.
+|===
+
+== Getting started
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `TeaPet.jar` link:{repoURL}/releases[here] *[Coming soon]*
+.  Copy the file to the folder you want to use as the home folder for TeaPet.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -33,9 +59,8 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
+* **`part add`**`n/Xiao Ming p/98765432 e/xiaoming@example.com a/Ming Dynasty, block 123, #01-01` : adds a contact named `Xiao Ming` to the Class List.
+* **`part delete`**`3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -43,119 +68,51 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [[Features]]
 == Features
 
-====
-*Command Format*
+=== Class particulars
+*TeaPet* records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-====
+=== Class administration
 
-=== Viewing help : `help`
+=== Curriculum scheduler
 
-Format: `help`
+=== Class progress tracker
 
-=== Adding a person: `add`
+=== Sticky notes
 
-Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+=== Saving data
 
-[TIP]
-A person can have any number of tags (including 0)
-
-Examples:
-
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-=== Listing all persons : `list`
-
-Shows a list of all persons in the address book. +
-Format: `list`
-
-=== Editing a person : `edit`
-
-Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
-****
-
-Examples:
-
-* `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-=== Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords. +
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-****
-* The search is case insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-****
-
-Examples:
-
-* `find John` +
-Returns `john` and `John Doe`
-* `find Betsy Tim John` +
-Returns any person having names `Betsy`, `Tim`, or `John`
-
-// tag::delete[]
-=== Deleting a person : `delete`
-
-Deletes the specified person from the address book. +
-Format: `delete INDEX`
-
-****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
-
-Examples:
-
-* `list` +
-`delete 2` +
-Deletes the 2nd person in the address book.
-* `find Betsy` +
-`delete 1` +
-Deletes the 1st person in the results of the `find` command.
-
-// end::delete[]
-=== Clearing all entries : `clear`
-
-Clears all entries from the address book. +
-Format: `clear`
-
-=== Exiting the program : `exit`
-
-Exits the program. +
-Format: `exit`
-
-=== Saving the data
-
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+All data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 // tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
+=== Encrypting data files `[coming in like never lmao]`
 
 _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
+
+== Commands
+// tag::commandintro[]
+*TeaPet* utilises manny different commands which may be complicated at times. Hence, we have segmented it....[To be filled later]
+
+====
+*Command Format*
+
+* Words in `<angle brackets>` are the parameters to be supplied by the user e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/Xiao Ming`.
+* Items in square brackets are optional e.g `n/<name> [t/<tag>]` can be used as `n/Xiao Ming t/friend` or as `n/Xiao Ming`.
+* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
+
+====
+// end::commandintro[]
+=== Default Commands
+
+==== Viewing help: `help`
+Displays the list of commands. Or displays *TeaPet* user guide.
+Format: `help`
+
+==== Exiting program: `exit`
+Exits the program. +
+Format: `exit`
 
 == FAQ
 

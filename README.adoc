@@ -1,4 +1,4 @@
-= Address Book (Level 3)
+= TeaPet
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
 https://travis-ci.org/se-edu/addressbook-level3[image:https://travis-ci.org/se-edu/addressbook-level3.svg?branch=master[Build Status]]
@@ -15,15 +15,17 @@ ifndef::env-github[]
 image::images/Ui.png[width="600"]
 endif::[]
 
-* This is a desktop Address Book application. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
-* It is a Java sample application intended for students learning Software Engineering while using Java as the main programming language.
-* It is *written in OOP fashion*. It provides a *reasonably well-written* code example that is *significantly bigger* (around 6 KLoC)than what students usually write in beginner-level SE modules.
+* TeaPet is an all-in-one desktop program for primary school form teachers to *manage their classroom effectively*.
+It manages your *personal curriculum schedule*, *student particulars*, and can also *track your class progress* all in
+one simple program.
+* TeaPet flexes its simple and clean Graphical User Interface (GUI)
+* TeaPet is optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having a simple
+and clean Graphical User Interface (GUI).
 
 == Site Map
 
 * <<UserGuide#, User Guide>>
 * <<DeveloperGuide#, Developer Guide>>
-* <<LearningOutcomes#, Learning Outcomes>>
 * <<AboutUs#, About Us>>
 * <<ContactUs#, Contact Us>>
 
@@ -32,5 +34,6 @@ endif::[]
 * Some parts of this sample application were inspired by the excellent http://code.makery.ch/library/javafx-8-tutorial/[Java FX tutorial] by
 _Marco Jakob_.
 * Libraries used: https://openjfx.io/[JavaFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/junit-team/junit5[JUnit5]
+* Morphed original source code from AddressBook-Level3 project created by SE-EDU initiative at https://se-education.org
 
 == Licence : link:LICENSE[MIT]
