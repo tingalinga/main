@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.student.Student;
 
 /**
@@ -49,7 +50,13 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
+//        if (student.getAddress().value.equals("Insert address here")) {
+//            address.setText(student.getAddress().value);
+//            address.setTextFill(Color.RED);
+//        } else {
+        address.setTextFill(Color.RED);
         address.setText(student.getAddress().value);
+//        }
         email.setText(student.getEmail().value);
         remark.setText(student.getRemark().value);
         student.getTags().stream()

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,10 @@ public class ArgumentMultimap {
      * Returns the last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {
+        if (!argMultimap.containsKey(prefix)) {
+            Optional<String> string = Optional.of("Insert address here");
+            return string;
+        }
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
