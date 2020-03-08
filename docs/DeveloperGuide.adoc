@@ -484,8 +484,8 @@ _{More to be added}_
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
-.  A teacher with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be able to hold up to 500 students without a noticeable sluggishness in performance for typical usage.
+.  A teacher with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish majority of the tasks faster using commands than using the mouse.
 .  TeaPet should be used only for a teacher handling his/her own form class, not by any other teachers.
 .  TeaPet should be able to work without internet access.
 .  The teacher should be able to familiarise himself/herself within half an hour of usage.
@@ -516,19 +516,34 @@ t
 [appendix]
 == Product Survey
 
-*Product Name*
-
-Author: ...
+*TeacherKit*
 
 Pros:
 
-* ...
-* ...
+** Functionality
+* Ease of data tracking
+* Tracks attendance and grades
+
+** Non-funtional requirements
+* Attractive looking GUI
+* Cross platform
 
 Cons:
 
-* ...
-* ...
+** Functionality
+* Unable to tag notes to students
+* Unable to track behavioural score
+* Unable to show statistics on exam assessment
+
+** Non-functional requirements
+* Requires internet access
+* Some features are blocked by advertisements and pop ups
+* GUI-reliant, many buttons have to be pressed and many screens traversed to perform a task
+
+Author: Simon Lam
+
+Product information can be found at <https://www.teacherkit.net/>
+
 
 [appendix]
 == Instructions for Manual Testing
