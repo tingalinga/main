@@ -50,8 +50,8 @@ public class ArgumentMultimap {
                 Optional<String> missingEmailString = Optional.of("Insert email here!");
                 return missingEmailString;
             default:
-                Optional<String> unrecognisedString = Optional.of("Prefix is not recognised.");
-                return unrecognisedString;
+                List<String> values = getAllValues(prefix);
+                return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
             }
 
         }
