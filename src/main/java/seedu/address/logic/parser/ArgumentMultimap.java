@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,19 +35,23 @@ public class ArgumentMultimap {
 
     /**
      * Returns the last value of {@code prefix}.
+     * If value does not exist, returns insert comment
      */
     public Optional<String> getValue(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
             switch (prefix.getPrefix()) {
-                case ("a/"):
-                    Optional<String> missingAddressString = Optional.of("Insert address here!");
-                    return missingAddressString;
-                case ("p/"):
-                    Optional<String> missingPhoneNumberString = Optional.of("Insert phone number here!");
-                    return missingPhoneNumberString;
-                case ("e/"):
-                    Optional<String> missingEmailString = Optional.of("Insert email here!");
-                    return missingEmailString;
+            case ("a/"):
+                Optional<String> missingAddressString = Optional.of("Insert address here!");
+                return missingAddressString;
+            case ("p/"):
+                Optional<String> missingPhoneNumberString = Optional.of("Insert phone number here!");
+                return missingPhoneNumberString;
+            case ("e/"):
+                Optional<String> missingEmailString = Optional.of("Insert email here!");
+                return missingEmailString;
+            default:
+                Optional<String> unrecognisedString = Optional.of("Prefix is not recognised.");
+                return unrecognisedString;
             }
 
         }

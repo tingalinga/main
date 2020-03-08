@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's phone number in the address book.
- *
  */
 public class Phone {
 
