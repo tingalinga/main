@@ -516,19 +516,34 @@ t
 [appendix]
 == Product Survey
 
-*Product Name*
-
-Author: ...
+*TeacherKit*
 
 Pros:
 
-* ...
-* ...
+** Functionality
+* Ease of data tracking
+* Tracks attendance and grades
+
+** Non-funtional requirements
+* Attractive looking GUI
+* Cross platform
 
 Cons:
 
-* ...
-* ...
+** Functionality
+* Unable to tag notes to students
+* Unable to track behavioural score
+* Unable to show statistics on exam assessment
+
+** Non-functional requirements
+* Requires internet access
+* Some features are blocked by advertisements and pop ups
+* GUI-reliant, many buttons have to be pressed and many screens traversed to perform a task
+
+Author: Simon Lam
+
+Product information can be found at <https://www.teacherkit.net/>
+
 
 [appendix]
 == Instructions for Manual Testing
