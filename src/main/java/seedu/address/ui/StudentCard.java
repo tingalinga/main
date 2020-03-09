@@ -50,11 +50,10 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
-        if (student.getAddress().value.equals("Insert address here")) {
+        if (student.getAddress().value.equals("Insert address here!")) {
             address.setText(student.getAddress().value);
             address.setTextFill(Color.RED);
         } else {
-            address.setTextFill(Color.RED);
             address.setText(student.getAddress().value);
         }
         email.setText(student.getEmail().value);
