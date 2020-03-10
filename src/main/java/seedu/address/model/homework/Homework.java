@@ -6,8 +6,10 @@ import java.util.Iterator;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.UniqueStudentList;
 
+/**
+ * Represents a Homework assigned to the class.
+ */
 public class Homework {
 
     // Homework properties
