@@ -2,6 +2,7 @@ package seedu.address.model.homework;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
@@ -21,6 +22,10 @@ public class Homework {
         this.description = description;
         this.deadline = LocalDateTime.parse(deadline);
         this.students = students;
+        Iterator<Student> itr = students.iterator();
+        while (itr.hasNext()) {
+            submissionTracker.put(itr.next(), false);
+        }
 
     }
 
@@ -38,6 +43,16 @@ public class Homework {
 
     public void setDeadline(String deadline) {
         this.deadline = LocalDateTime.parse(deadline);
+    }
+
+    public void markSingleSubmitted(Student student) {
+        submissionTracker.put(student, true);
+    }
+
+    public void markMultipleSubmitted(Student ...studentList) {
+        for (Student student: studentList) {
+            submissionTracker.put(student, true);
+        }
     }
 
     @Override
