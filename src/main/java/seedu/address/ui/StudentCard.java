@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Student;
 
 /**
@@ -43,6 +44,13 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label remark;
+    @FXML
+    private Label nokName;
+    @FXML
+    private Label nokRelationship;
+    @FXML
+    private Label nokContact;
+
 
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
@@ -50,14 +58,12 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
-        if (student.getAddress().value.equals("Insert address here!")) {
-            address.setText(student.getAddress().value);
-            address.setTextFill(Color.RED);
-        } else {
-            address.setText(student.getAddress().value);
-        }
+      address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         remark.setText(student.getRemark().value);
+        nokName.setText(student.getNok().getNameOfNOK());
+        nokRelationship.setText(student.getNok().getRelationshipOfNOK());
+        nokContact.setText(student.getNok().getContactOfNOK());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
