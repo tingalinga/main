@@ -16,6 +16,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,6 +30,7 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
+    private final String temperature;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -38,11 +40,13 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
              @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+             @JsonProperty("temperature") String temperature, @JsonProperty("remark") String remark,
+             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.temperature = temperature;
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -57,6 +61,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        temperature = source.getTemperature().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -106,13 +111,22 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
+        if (temperature == null) {
+            throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Temperature.class.getSimpleName())));
+        }
+        if (!Temperature.isValidTemperature(temperature)) {
+            throw new IllegalValueException(Temperature.MESSAGE_CONSTRAINTS);
+        }
+        final Temperature modelTemperature = new Temperature(temperature);
+
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelRemark, modelTags);
     }
 
 }

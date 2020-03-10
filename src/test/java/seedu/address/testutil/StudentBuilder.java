@@ -9,6 +9,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,12 +22,14 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TEMPERATURE = "36.5";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Temperature temperature;
     private Remark remark;
     private Set<Tag> tags;
 
@@ -35,6 +38,7 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        temperature = new Temperature(DEFAULT_TEMPERATURE);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
@@ -47,6 +51,7 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
+        temperature = studentToCopy.getTemperature();
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
     }
@@ -92,6 +97,14 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code Temperature} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withTemperature(String temperature) {
+        this.temperature = new Temperature(temperature);
+        return this;
+    }
+
+    /**
      * Sets the {@code Remark} of the {@code Student} that we are building.
      */
     public StudentBuilder withRemark(String remark) {
@@ -100,7 +113,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, address, remark, tags);
+        return new Student(name, phone, email, address, temperature, remark, tags);
     }
 
 }

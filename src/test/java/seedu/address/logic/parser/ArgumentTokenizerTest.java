@@ -65,6 +65,9 @@ public class ArgumentTokenizerTest {
         case "e/":
             assertFalse(argMultimap.getValue(prefix).equals("Insert email here!"));
             break;
+        case "temp/":
+            assertFalse(argMultimap.getValue(prefix).equals("Insert temperature here!"));
+            break;
         default:
             break;
         }
