@@ -1,35 +1,24 @@
 package seedu.address.model.notes;
 
-public class StickyNotes {
-    private final String student;
-    private final String content;
+public class StickyNotes extends Notes {
 
     public StickyNotes(String student, String content) {
-        this.student = student;
-        this.content = content;
-    }
-
-    public String getStudent() {
-        return student;
-    }
-
-    public String getContent() {
-        return content;
+        super(student, content);
     }
 
     public StickyNotes setStudent(String newStudent) {
-        return new StickyNotes(newStudent, this.content);
+        return new StickyNotes(newStudent, this.getContent());
     }
 
     public StickyNotes setContent(String newContent) {
-        return new StickyNotes(this.student, newContent);
+        return new StickyNotes(this.getStudent(), newContent);
     }
 
     @Override
     public String toString() {
         return "StickyNotes{" +
-                "student='" + student + '\'' +
-                ", content='" + content + '\'' +
+                "student='" + getStudent() + '\'' +
+                ", content='" + getContent() + '\'' +
                 '}';
     }
 
