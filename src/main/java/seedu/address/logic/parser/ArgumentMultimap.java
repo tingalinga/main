@@ -15,7 +15,9 @@ import java.util.Optional;
  */
 public class ArgumentMultimap {
 
-    /** Prefixes mapped to their respective arguments**/
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**
@@ -33,8 +35,26 @@ public class ArgumentMultimap {
 
     /**
      * Returns the last value of {@code prefix}.
+     * If value does not exist, returns insert comment
      */
     public Optional<String> getValue(Prefix prefix) {
+        if (!argMultimap.containsKey(prefix)) {
+            switch (prefix.getPrefix()) {
+            case ("a/"):
+                Optional<String> missingAddressString = Optional.of("Insert address here!");
+                return missingAddressString;
+            case ("p/"):
+                Optional<String> missingPhoneNumberString = Optional.of("Insert phone number here!");
+                return missingPhoneNumberString;
+            case ("e/"):
+                Optional<String> missingEmailString = Optional.of("Insert email here!");
+                return missingEmailString;
+            default:
+                List<String> values = getAllValues(prefix);
+                return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
+            }
+
+        }
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }

@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student's phone number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
 
@@ -30,7 +29,11 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.equals("Insert phone number here!")) {
+            return true;
+        } else {
+            return test.matches(VALIDATION_REGEX);
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-= AddressBook Level 3 - Developer Guide
+= TeaPet - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -14,7 +14,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level3/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `CS2103T-W12-02`      Since: `Jan 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -279,7 +279,7 @@ Refer to the guide <<DevOps#, here>>.
 
 *Target user profile*:
 
-* is the form teacher of a class
+* form teacher of a class
 * has a need to manage a significant number of students
 * has a need to take the attendance of students
 * wants to be able to track the homework and progress of students
@@ -310,23 +310,31 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |form teacher |take down notes for student's behavior |track the behaviour of my students
 
-|`* * *` |form teacher |see the scores of my class |know the academic progress of my class
+|`* * *` |form teacher |see the scores of my class |track the academic progress of my class
 
-|`* * *` |form teacher |add a new student |
+|`* * *` |form teacher |add students |add new students to the class list
 
-|`* * *` |form teacher |delete a student |remove entries that I no longer need
+|`* * *` |form teacher |delete a student |remove students that I no longer need
 
 |`* * *` |form teacher |find a student by name |locate details of students without having to go through the entire list
 
+|`* * *` |form teacher |sort students by alphabetical order |locate a student easily
+
+|`* * *` |form teacher |update the details of my students |make necessary changes to my student's particulars
+
+|`* * *` |form teacher |maintain emergency contacts of my students |know who to contact in case of emergency
+
 |`* *` |form teacher |specify if a student is late or absent for class |know why my student is absent
-
-|`* *` |form teacher |update the details of my students |make necessary changes to my student's particulars
-
-|`* *` |form teacher |see usage instructions |refer to instructions when I forget how to use the App
 
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`*` |user with many students in the address book |sort students by name |locate a student easily
+|`* *` |form teacher |keep track of the sitting arrangement of the class |students who change their seats unknowingly
+
+|`* *` |form teacher |record the temperature of students |track the health of my students
+
+|`*` |form teacher |get feedback from other teachers teaching the students of my class |better understand the progress of the class
+
+
 |=======================================================================
 
 _{More to be added}_
@@ -337,99 +345,138 @@ _{More to be added}_
 (For all use cases below, the *System* is the `TeaPet` and the *Actor* is the `Teacher`, unless specified otherwise)
 
 [discrete]
-=== Use case: Add student
+=== Use case: UC01 - Add student
 
 *MSS*
 
-1.  User keys in a student
-2.  TeaPet adds the student to the class list
+1. User keys in a student, followed by optional <<attributes,attributes>> such as emergency contacts  at the command line.
+2. TeaPet adds the student and his or her <<attributes,attributes>> to the class list.
+3. TeaPet feedback to the user that a the student is being added.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. Student is invalid.
+* 1a. Student is invalid.
 +
 [none]
-** 2a1. TeaPet shows an error message.
+** 1a1. TeaPet shows an error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case: Edit student
+=== Use case: UC02 - Edit student
 
 *MSS*
 
-1.  User specifies which student and what particulars he/she wants to edit
-2.  TeaPet edits the student's particulars in the class list
+1. User specifies which student, using the name, and what particulars he/she wants to edit in the command line.
+2. TeaPet edits the student's particulars in the class list as instructed by the commands.
+3. TeaPet feedback to the user that the student has been edited, followed by the updates made.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. Student is invalid.
+* 1a. Student is invalid.
 +
 [none]
-** 2a1. TeaPet shows an error message.
+** 1a1. TeaPet shows an error message.
 +
 Use case ends.
 +
 [none]
-* 2a. Particulars is invalid.
+* 1b. Particulars are invalid.
 +
 [none]
-** 2a1. TeaPet shows an error message.
+** 1b1. TeaPet shows an error message.
 +
 Use case ends.
 
 [discrete]
-=== Use case: Delete student
+=== Use case: UC03 - Delete student
 
 *MSS*
 
-1.  User requests to list students
-2.  AddressBook shows a list of students
-3.  User requests to delete a specific student in the list
-4.  AddressBook deletes the student
+1. User specifies which student, using the name, he/she wants to remove.
+2. TeaPet removes the student from the class list.
+3. TeaPet feedback to the user that a the student is being removed.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 1a. Student name entered is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
 +
 Use case ends.
-+
-[none]
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. AddressBook shows an error message.
-+
-Use case resumes at step 2.
 
 [discrete]
-=== Use case: Add event
+=== Use case: UC04 - Add event
 
 *MSS*
 
-1.  User keys in an event
-2.  TeaPet adds the event to the schedule
+1. User keys in an event.
+2. TeaPet adds the event to the schedule.
+3. TeaPet feedback the event has been added.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. Event is invalid.
+* 1a. Event entered is invalid.
 +
 [none]
-** 2a1. TeaPet shows an error message.
+** 1a1. TeaPet shows an error message.
 +
 Use case ends.
+
+[discrete]
+=== Use case: UC05 - Display <<schedule,schedule>>
+
+*MSS*
+
+1. User keys in the command to display events.
+2. TeaPet displays the events in chronological order.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC06 - Display students' academic progress
+
+*MSS*
+
+1. User enters the command to display academic progress of students.
+2. TeaPet displays the academic progress in chronological order.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
 
 _{More to be added}_
 
@@ -437,14 +484,19 @@ _{More to be added}_
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
-.  A teacher with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-.  TeaPet should be used only for a teacher handling his/her own form class.
+.  Should be able to hold up to 500 students without a noticeable sluggishness in performance for typical usage.
+.  A teacher with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish majority of the tasks faster using commands than using the mouse.
+.  TeaPet should be used only for a teacher handling his/her own form class, not by any other teachers.
+.  TeaPet should be able to work without internet access.
+.  The teacher should be able to familiarise himself/herself within half an hour of usage.
 
 _{More to be added}_
 
 [appendix]
 == Glossary
+
+[[attributes]] Attributes::
+The information of a student. For example, phone number, address or emergency contacts.
 
 [[class-list]] Class List::
 Class list of students
@@ -460,24 +512,38 @@ A contact detail that is not meant to be shared with others
 
 [[schedule]] Schedule::
 TeaPet's schedule that stores all of the teacher's events
-
-
+t
 [appendix]
 == Product Survey
 
-*Product Name*
-
-Author: ...
+*TeacherKit*
 
 Pros:
 
-* ...
-* ...
+** Functionality
+* Ease of data tracking
+* Tracks attendance and grades
+
+** Non-funtional requirements
+* Attractive looking GUI
+* Cross platform
 
 Cons:
 
-* ...
-* ...
+** Functionality
+* Unable to tag notes to students
+* Unable to track behavioural score
+* Unable to show statistics on exam assessment
+
+** Non-functional requirements
+* Requires internet access
+* Some features are blocked by advertisements and pop ups
+* GUI-reliant, many buttons have to be pressed and many screens traversed to perform a task
+
+Author: Simon Lam
+
+Product information can be found at <https://www.teacherkit.net/>
+
 
 [appendix]
 == Instructions for Manual Testing
@@ -505,15 +571,14 @@ _{ more test cases ... }_
 
 === Deleting a student
 
-. Deleting a student while all students are listed
+. Deleting a student from class list with the specific name entered by user
 
-.. Prerequisites: List all students using the `list` command. Multiple students in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
+.. Test case: `delete John Tan Jun Wei` +
+   Expected: Student "John Tan Jun Wei" is deleted from the list. Status message displays that the specified student has been deleted. Timestamp in the status bar is updated.
+.. Test case: `delete Tan John Wei Jun` +
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
-   Expected: Similar to previous.
+.. Other incorrect delete commands to try: `delete`, `delete john Tan Jun Wei` (where the specified student is not a student in the class list due to the capitalisation of the first alphabet.) _{give more}_ +
+   Expected: Similar to test case b.
 
 _{ more test cases ... }_
 
