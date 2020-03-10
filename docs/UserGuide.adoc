@@ -74,23 +74,31 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [[Features]]
 == Features
 
-=== Class particulars
-TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars
+=== Class Particulars
+TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
+Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
 
-=== Class administration
+=== Class Administration
+TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
+temperature recordings. Data will be displayed in a weekly format for further perusal.
 
-=== Personal scheduler
-TeaPet records down your personal schedule for the week sorted nicely according to time, allowing you to easily
-view what events you have coming up
+=== Personal Scheduler
+TeaPet's Personal Scheduler feature allows you records down your commitments for the week, which will be
+sorted according to date and time. You will then be able to view your weekly schedule at a glance.
 
-=== Class progress tracker
+=== Class Progress Tracker
+TeaPet's Class Progress Tracker is able to keep tabs on the class' academic progress. You will be able to store data of
+every student's subject grades with this feature. Thereafter, there will be a graph plot displayed to highlight the
+progress of individual students as well as the entire class.
 
-=== Sticky notes
+=== Sticky Notes
+TeaPet's Sticky Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
+track of important information of their students spontaneously. Every note is tagged to one or more students, such you will be able to
+better keep track of the stakeholder and information.
 
 === Saving data
-
-All data are saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
+Changes are saved in the hard disk automatically upon entering a command that alters the data.
+There is no requirement to save any form of data manually.
 
 // tag::dataencryption[]
 === Encrypting data files `[coming in like never lmao lol yes]`
