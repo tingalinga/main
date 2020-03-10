@@ -24,8 +24,8 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
  */
 public class UniqueStudentList implements Iterable<Student> {
 
-    private final ObservableList<Student> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Student> internalUnmodifiableList =
+    private static final ObservableList<Student> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
@@ -100,7 +100,7 @@ public class UniqueStudentList implements Iterable<Student> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Student> asUnmodifiableObservableList() {
+    public static ObservableList<Student> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
