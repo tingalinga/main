@@ -13,29 +13,35 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3
+:repoURL: https://github.com/AY1920S2-CS2103T-W12-2/main/releases
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `CS2103T-W12-2`      Since: `Feb 2020`      Licence: `MIT`
 //tag::intro[]
+
 == Introduction
 
 TeaPet is an all-in-one desktop program for primary school form teachers to *manage their classroom effectively*.
 It manages your *personal curriculum schedule*, *student particulars*, and can also *track your class progress* all in
 one simple program.
-TeaPet flexes its simple and clean Graphical User Interface (GUI)
-TeaPet is
-optimized for those who prefer to work with a *Command Line Interface (CLI)* while still having a simple
-and clean Graphical User Interface (GUI). If you are looking for a way to easily manage your administrative classroom chores
-and have quick hands, TeaPet is for you! Interested? Hop into <<Getting started>>. Enjoy!
+
+TeaPet flexes its simple and clean Graphical User Interface (GUI) and is optimized for those who prefer to work on a *Command Line Interface (CLI).*
+
+If you are looking for a way to easily manage your administrative classroom chores
+and have quick hands, TeaPet is for you!
+
+Interested? Hop into <<Getting started>>. Enjoy!
 //end::intro[]
 
 == About
 The user guide will provide all the information needed to fully utilise *TeaPet*.
+
 If you need help on setting up *TeaPet*, you can go to the <<Getting started>> guide below.
+
 If you want to check out *TeaPet's* features, you can go to the <<Features>> section.
+
 If you need help regarding usage of *TeaPet's* commands, head on to the <<Commands>> section.
 
-Take note of the following symbols and formatting used in this document:
+*Take note of the following symbols and formatting used in this document:*
 
 [TIP]
 This symbol indicates tips.
@@ -69,11 +75,13 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 == Features
 
 === Class particulars
-*TeaPet* records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars
+TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars
 
 === Class administration
 
-=== Curriculum scheduler
+=== Personal scheduler
+TeaPet records down your personal schedule for the week sorted nicely according to time, allowing you to easily
+view what events you have coming up
 
 === Class progress tracker
 
@@ -85,22 +93,28 @@ All data are saved in the hard disk automatically after any command that changes
 There is no need to save manually.
 
 // tag::dataencryption[]
-=== Encrypting data files `[coming in like never lmao]`
+=== Encrypting data files `[coming in like never lmao lol yes]`
 
 _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
 
 == Commands
 // tag::commandintro[]
-*TeaPet* utilises manny different commands which may be complicated at times. Hence, we have segmented it....[To be filled later]
+*TeaPet* utilises manny different commands which may be complicated at times. Hence, we have segmented it....[TO BE FILLED LATER]
 
 ====
-*Command Format*
+*Using Commands in TeaPet*
 
-* Words in `<angle brackets>` are the parameters to be supplied by the user e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/Xiao Ming`.
-* Items in square brackets are optional e.g `n/<name> [t/<tag>]` can be used as `n/Xiao Ming t/friend` or as `n/Xiao Ming`.
-* Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
+****
+- Words in `<ANGLE_BRACKETS>` are the parameters to be supplied by the user
+** e.g. `add n/<name>`, `<name>` is a parameter which can be used as `add n/Xiao Ming`
+- Items in square brackets are optional
+** e.g `n/<name> [t/<tag>]` can be used as `n/Xiao Ming t/friend` or `n/Xiao Ming`
+- Items with `…`​ after them can be used multiple times or not at all
+** e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend` or `t/friend t/family`
+- Parameters can be in any order
+** e.g. `n/<name> p/<phone number>` or `p/<phone number> n/<name>` both are acceptable.
+****
 
 ====
 // end::commandintro[]
@@ -132,3 +146,4 @@ e.g. `edit 2 n/James Lee e/jameslee@example.com`
 e.g. `find James Jake`
 * *List* : `list`
 * *Help* : `help`
+* *Schedule* : `schedule`
