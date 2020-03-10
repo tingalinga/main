@@ -14,11 +14,19 @@ public class NextOfKin {
     private final String contactOfNOK;
 
     public NextOfKin(String detailsOfNOK) {
-        this.detailsOfNOK = detailsOfNOK;
-        this.nameOfNOK = this.detailsOfNOK.split("-")[0];
-        this.relationshipOfNOK = this.detailsOfNOK.split("-")[1];
-        this.contactOfNOK = this.detailsOfNOK.split("-")[2];
-        value = detailsOfNOK;
+        if (detailsOfNOK.equals("Insert NOK details here!")) {
+            this.detailsOfNOK = detailsOfNOK;
+            this.nameOfNOK = "Insert NOK name here!";
+            this.relationshipOfNOK = "Insert NOK relationship here!";
+            this.contactOfNOK = "Insert NOK contact here!";
+            value = detailsOfNOK;
+        } else {
+            this.detailsOfNOK = detailsOfNOK;
+            this.nameOfNOK = this.detailsOfNOK.split("-")[0];
+            this.relationshipOfNOK = this.detailsOfNOK.split("-")[1];
+            this.contactOfNOK = this.detailsOfNOK.split("-")[2];
+            value = detailsOfNOK;
+        }
     }
 
 
@@ -74,12 +82,30 @@ public class NextOfKin {
     }
 
     public static boolean isValidNok(String test) {
-        String nameOfNOK = test.split("-")[0];
-        String relationshipOfNOK = test.split("-")[1];
-        String contactOfNOK = test.split("-")[2];
-        boolean name = isValidNokName(nameOfNOK);
-        boolean contact = isValidNokContact(contactOfNOK);
-        boolean relationship = isValidNokRelationship(relationshipOfNOK);
-        return isValidNokName(nameOfNOK) && isValidNokContact(contactOfNOK) && isValidNokRelationship(relationshipOfNOK);
+        if (test.equals("Insert NOK details here!")) {
+            return true;
+        } else {
+            String nameOfNOK = test.split("-")[0];
+            String relationshipOfNOK = test.split("-")[1];
+            String contactOfNOK = test.split("-")[2];
+            return isValidNokName(nameOfNOK) && isValidNokContact(contactOfNOK) && isValidNokRelationship(relationshipOfNOK);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Address // instanceof handles nulls
+                && value.equals(((Address) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
 }

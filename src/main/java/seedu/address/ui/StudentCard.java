@@ -58,7 +58,7 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText(student.getPhone().value);
-      address.setText(student.getAddress().value);
+        address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         remark.setText(student.getRemark().value);
         nokName.setText(student.getNok().getNameOfNOK());

@@ -126,10 +126,11 @@ public class ParserUtil {
 
     public static NextOfKin parseNok(String nok) throws ParseException {
         requireNonNull(nok);
-        String trimmedPhone = nok.trim();
-        if (!NextOfKin.isValidNok(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        String trimmedNOK = nok.trim();
+        boolean bool = NextOfKin.isValidNok(trimmedNOK);
+        if (!NextOfKin.isValidNok(trimmedNOK)) {
+            throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        return new NextOfKin(trimmedPhone);
+        return new NextOfKin(trimmedNOK);
     }
 }
