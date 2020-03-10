@@ -22,22 +22,22 @@ public class Student {
 
     // Data fields
     private final Address address;
-    private final Remark remark;
     private final Temperature temperature;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Temperature temperature,
+    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, Remark remark,
                    Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = remark;
         this.temperature = temperature;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -57,11 +57,12 @@ public class Student {
         return address;
     }
 
-    public Remark getRemark() {
-        return remark;
-    }
     public Temperature getTemperature() {
         return temperature;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -105,13 +106,14 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTemperature().equals(getTemperature())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, remark, temperature, tags);
+        return Objects.hash(name, phone, email, address, temperature, remark, tags);
     }
 
     @Override
@@ -124,10 +126,10 @@ public class Student {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Remark: ")
-                .append(getRemark())
                 .append(" Temperature: ")
                 .append(getTemperature())
+                .append(" Remark: ")
+                .append(getRemark())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

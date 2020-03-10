@@ -53,8 +53,8 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
-        remark.setText(student.getRemark().value);
         temperature.setText(student.getTemperature().value);
+        remark.setText(student.getRemark().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

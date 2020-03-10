@@ -101,11 +101,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Temperature updatedTemperature = editStudentDescriptor.getTemperature().orElse(studentToEdit.getTemperature());
+        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTemperature,
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature, updatedRemark,
                 updatedTags);
     }
 

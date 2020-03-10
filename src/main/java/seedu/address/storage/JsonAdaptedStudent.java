@@ -30,8 +30,8 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
-    private final String remark;
     private final String temperature;
+    private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,14 +40,14 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
              @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("remark") String remark, @JsonProperty("temperature") String temperature,
+             @JsonProperty("temperature") String temperature, @JsonProperty("remark") String remark,
              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = remark;
         this.temperature = temperature;
+        this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -61,8 +61,8 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        remark = source.getRemark().value;
         temperature = source.getTemperature().value;
+        remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -111,17 +111,22 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        if (temperature == null) {
+            throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Temperature.class.getSimpleName())));
         }
-        final Remark modelRemark = new Remark(remark);
         if (!Temperature.isValidTemperature(temperature)) {
             throw new IllegalValueException(Temperature.MESSAGE_CONSTRAINTS);
         }
         final Temperature modelTemperature = new Temperature(temperature);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTemperature, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelRemark, modelTags);
     }
 
 }

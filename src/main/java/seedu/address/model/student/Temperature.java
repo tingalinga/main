@@ -10,7 +10,7 @@ public class Temperature {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Temperature should only contain a 2 digits number followed by 1 decimal place";
-    public static final String VALIDATION_REGEX = "\\d{2}" + "." + "\\d";
+    public static final String VALIDATION_REGEX = "\\d{2}" + "\\." + "\\d";
     public final String value;
 
     /**
@@ -25,7 +25,7 @@ public class Temperature {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid temperature.
      */
     public static boolean isValidTemperature(String test) {
         if (test.equals("Insert temperature here!")) {
@@ -33,5 +33,22 @@ public class Temperature {
         } else {
             return test.matches(VALIDATION_REGEX);
         }
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Temperature // instanceof handles nulls
+                && value.equals(((Temperature) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
 }
