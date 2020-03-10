@@ -9,6 +9,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,12 +23,14 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_TEMPERATURE = "36.5";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Remark remark;
+    private Temperature temperature;
     private Set<Tag> tags;
 
     public StudentBuilder() {
@@ -36,6 +39,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
+        temperature = new Temperature(DEFAULT_TEMPERATURE);
         tags = new HashSet<>();
     }
 
@@ -48,6 +52,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         remark = studentToCopy.getRemark();
+        temperature = studentToCopy.getTemperature();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -99,8 +104,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Temperature} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withTemperature(String temperature) {
+        this.temperature = new Temperature(temperature);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, remark, tags);
+        return new Student(name, phone, email, address, remark, temperature, tags);
     }
 
 }

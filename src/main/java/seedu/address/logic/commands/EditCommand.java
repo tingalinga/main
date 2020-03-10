@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
@@ -25,6 +26,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TEMPERATURE + "TEMPERATURE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -55,7 +58,7 @@ public class EditCommand extends Command {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
-     * @param index                 of the student in the filtered student list to edit
+     * @param index of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
     public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
@@ -99,9 +102,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
+        Temperature updatedTemperature = editStudentDescriptor.getTemperature().orElse(studentToEdit.getTemperature());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTemperature,
+                updatedTags);
     }
 
     @Override
@@ -131,6 +136,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Temperature temperature;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {
@@ -145,6 +151,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setTemperature(toCopy.temperature);
             setTags(toCopy.tags);
         }
 
@@ -152,7 +159,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, temperature,
+                    tags);
         }
 
         public void setName(Name name) {
@@ -185,6 +193,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setTemperature(Temperature temperature) {
+            this.temperature = temperature;
+        }
+
+        public Optional<Temperature> getTemperature() {
+            return Optional.ofNullable(temperature);
         }
 
         /**
@@ -223,6 +239,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTemperature().equals(e.getTemperature())
                     && getTags().equals(e.getTags());
         }
     }

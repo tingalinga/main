@@ -23,18 +23,21 @@ public class Student {
     // Data fields
     private final Address address;
     private final Remark remark;
+    private final Temperature temperature;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Temperature temperature,
+                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
+        this.temperature = temperature;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +59,9 @@ public class Student {
 
     public Remark getRemark() {
         return remark;
+    }
+    public Temperature getTemperature() {
+        return temperature;
     }
 
     /**
@@ -105,7 +111,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, remark, temperature, tags);
     }
 
     @Override
@@ -120,6 +126,8 @@ public class Student {
                 .append(getAddress())
                 .append(" Remark: ")
                 .append(getRemark())
+                .append(" Temperature: ")
+                .append(getTemperature())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
