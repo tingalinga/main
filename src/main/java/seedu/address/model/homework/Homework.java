@@ -51,6 +51,10 @@ public class Homework {
         submissionTracker.put(student, true);
     }
 
+    /**
+     * Marks multiple students' homework as submitted.
+     * @param studentList List of students who have completed their homework.
+     */
     public void markMultipleSubmitted(Student ...studentList) {
         for (Student student: studentList) {
             submissionTracker.put(student, true);
