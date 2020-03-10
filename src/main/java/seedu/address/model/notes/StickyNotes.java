@@ -1,5 +1,8 @@
 package seedu.address.model.notes;
 
+/**
+ * A class representing the StickyNotes feature.
+ */
 public class StickyNotes extends Notes {
 
     public StickyNotes(String student, String content) {
@@ -16,12 +19,16 @@ public class StickyNotes extends Notes {
 
     @Override
     public String toString() {
-        return "StickyNotes{" +
-                "student='" + getStudent() + '\'' +
-                ", content='" + getContent() + '\'' +
-                '}';
+        return "StickyNotes{"
+                + "student='" + getStudent() + '\''
+                + ", content='" + getContent() + '\''
+                + '}';
     }
 
+    /**
+     * Driver function to test the functionality of StickyNotes
+     * @param args
+     */
     public static void main(String[] args) {
         StickyNotes s1 = new StickyNotes("Alex Yeoh", "Late for class today");
         System.out.println(s1);
