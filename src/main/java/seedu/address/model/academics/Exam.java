@@ -15,14 +15,14 @@ public class Exam extends Assessment {
     private String description;
     private LocalDateTime examDate;
 
-    private HashMap<Student, Boolean> submissionTracker = new HashMap<>();
+    private HashMap<Student, Submission> submissionTracker = new HashMap<>();
 
     public Exam(String description, String examDate, ObservableList<Student> students) {
         super(description, students);
         this.examDate = LocalDateTime.parse(examDate);
         Iterator<Student> itr = students.iterator();
         while (itr.hasNext()) {
-            submissionTracker.put(itr.next(), false);
+            submissionTracker.put(itr.next(), new Submission());
         }
 
     }

@@ -15,14 +15,14 @@ public class Homework extends Assessment {
     private String description;
     private LocalDateTime deadline;
 
-    private HashMap<Student, Boolean> submissionTracker = new HashMap<>();
+    private HashMap<Student, Submission> submissionTracker = new HashMap<>();
 
     public Homework(String description, String deadline, ObservableList<Student> students) {
         super(description, students);
         this.deadline = LocalDateTime.parse(deadline);
         Iterator<Student> itr = students.iterator();
         while (itr.hasNext()) {
-            submissionTracker.put(itr.next(), false);
+            submissionTracker.put(itr.next(), new Submission());
         }
 
     }

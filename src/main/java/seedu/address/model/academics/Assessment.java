@@ -7,25 +7,25 @@ import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
- * Represents a Homework assigned to the class.
+ * Represents a Assessment assigned to the class.
  */
 public abstract class Assessment {
 
-    // Homework properties
+    // Assessment properties
     private String description;
+    private Submission submission;
 
     // Tracking submissions
     private ObservableList<Student> students;
-    private HashMap<Student, Boolean> submissionTracker = new HashMap<>();
+    private HashMap<Student, Submission> submissionTracker = new HashMap<>();
 
     public Assessment(String description, ObservableList<Student> students) {
         this.description = description;
         this.students = students;
         Iterator<Student> itr = students.iterator();
         while (itr.hasNext()) {
-            submissionTracker.put(itr.next(), false);
+            submissionTracker.put(itr.next(), new Submission());
         }
-
     }
 
     public String getDescription() {
@@ -36,18 +36,30 @@ public abstract class Assessment {
         this.description = newDescription;
     }
 
-    public void markSingleSubmitted(Student student) {
-        submissionTracker.put(student, true);
+    public void setSingleSubmitted(Student student) {
+        submissionTracker.get(student).markAsSubmitted();
     }
 
     /**
-     * Marks multiple students' homework as submitted.
-     * @param studentList List of students who have completed their homework.
+     * Marks multiple students' assessments as submitted.
+     * @param studentList List of students who have completed their assessment.
      */
-    public void markMultipleSubmitted(Student ...studentList) {
+    public void setMultipleSubmitted(Student ...studentList) {
         for (Student student: studentList) {
-            submissionTracker.put(student, true);
+            submissionTracker.get(student).markAsSubmitted();
         }
+    }
+
+    public void markAssessment(Student student, int score) {
+        submissionTracker.get(student).markAssessment(score);
+    }
+    
+    public int averageScore() {
+        int totalScore = 0;
+        for (Student student: students) {
+            totalScore += submissionTracker.get(student).getScore();
+        }
+        return totalScore / students.size();
     }
 
     @Override
