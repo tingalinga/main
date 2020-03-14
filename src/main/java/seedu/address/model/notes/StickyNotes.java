@@ -19,10 +19,9 @@ public class StickyNotes extends Notes {
 
     @Override
     public String toString() {
-        return "StickyNotes{"
-                + "student='" + getStudent() + '\''
-                + ", content='" + getContent() + '\''
-                + '}';
+        return "[StickyNotes]"
+                + " Student:'" + getStudent() + '\''
+                + ", Content: '" + getContent() + '\'';
     }
 
     /**
