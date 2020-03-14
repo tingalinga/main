@@ -1,11 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -84,8 +87,8 @@ public class AdminNotesCommand extends Command {
         Set<Tag> originalTags = lastShownList.get(indexOfStudent).getTags();
 
         originalNotes.add(adminNotes);
-        Student editedStudent = new Student(originalName, originalPhone,originalEmail, originalAddress,
-                originalTemperature, originalNotes, originalRemarks, originalTags);
+        Student editedStudent = new Student(originalName, originalPhone, originalEmail,
+                originalAddress, originalTemperature, originalNotes, originalRemarks, originalTags);
 
         model.setStudent(lastShownList.get(indexOfStudent), editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);

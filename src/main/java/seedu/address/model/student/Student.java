@@ -2,7 +2,11 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
@@ -28,8 +32,8 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, ArrayList<Notes> notes, Remark remark,
-                   Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature,
+                   ArrayList<Notes> notes, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;

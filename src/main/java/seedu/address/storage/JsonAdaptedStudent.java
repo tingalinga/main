@@ -42,14 +42,14 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
              @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("temperature") String temperature,@JsonProperty("noted") List<JsonAdaptedNotes> noted, @JsonProperty("remark") String remark,
-             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+             @JsonProperty("temperature") String temperature, @JsonProperty("noted") List<JsonAdaptedNotes> noted,
+              @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.temperature = temperature;
-        if(noted != null) {
+        if (noted != null) {
             this.noted.addAll(noted);
         }
         this.remark = remark;
@@ -68,7 +68,7 @@ class JsonAdaptedStudent {
         address = source.getAddress().value;
         temperature = source.getTemperature().value;
         ArrayList<Notes> allNotes = source.getNotes();
-        for(Notes n : allNotes) {
+        for (Notes n : allNotes) {
             noted.add(new JsonAdaptedNotes(n));
         }
         remark = source.getRemark().value;
@@ -84,7 +84,7 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<Notes> studentNotes = new ArrayList<>();
-        for(JsonAdaptedNotes note : noted) {
+        for (JsonAdaptedNotes note : noted) {
             studentNotes.add(note.toModelType());
         }
         final List<Tag> studentTags = new ArrayList<>();
@@ -141,7 +141,8 @@ class JsonAdaptedStudent {
         final ArrayList<Notes> modelNotes = new ArrayList<>(studentNotes);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelNotes, modelRemark, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature,
+                modelNotes, modelRemark, modelTags);
     }
 
 }

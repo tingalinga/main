@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.notes.AdminNotes;
@@ -34,22 +33,12 @@ class JsonAdaptedNotes {
         this.content = source.getContent();
     }
 
-//    @JsonValue
-//    public String getStudent() {
-//        return student;
-//    }
-//
-//    @JsonValue
-//    public String getContent() {
-//        return content;
-//    }
-
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Notes toModelType()  {
+    public Notes toModelType() {
         return new AdminNotes(student, content);
     }
 
