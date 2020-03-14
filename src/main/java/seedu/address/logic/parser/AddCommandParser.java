@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -20,6 +21,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
+import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,10 +50,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Temperature temperature = ParserUtil.parseTemperature(argMultimap.getValue(PREFIX_TEMPERATURE).get());
+        ArrayList<Notes> notes = new ArrayList<>();
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, phone, email, address, temperature, remark, tagList);
+        Student student = new Student(name, phone, email, address, temperature, notes, remark, tagList);
 
         return new AddCommand(student);
     }

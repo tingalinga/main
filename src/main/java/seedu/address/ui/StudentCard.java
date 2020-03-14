@@ -43,6 +43,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label temperature;
     @FXML
+    private Label notes;
+    @FXML
     private Label remark;
 
     public StudentCard(Student student, int displayedIndex) {
@@ -54,6 +56,7 @@ public class StudentCard extends UiPart<Region> {
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         temperature.setText(student.getTemperature().value);
+        notes.setText("No. of Notes: " + student.getNotes().size());
         remark.setText(student.getRemark().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

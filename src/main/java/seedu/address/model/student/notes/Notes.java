@@ -1,4 +1,4 @@
-package seedu.address.model.notes;
+package seedu.address.model.student.notes;
 
 /**
  * An abstract class representing the Notes.
@@ -19,10 +19,6 @@ public abstract class Notes {
     public String getContent() {
         return content;
     }
-
-    public abstract Notes setStudent(String student);
-
-    public abstract Notes setContent(String content);
 
 }
 

@@ -17,6 +17,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
+import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final String address;
     private final String temperature;
+    private final List<JsonAdaptedNotes> noted = new ArrayList<>();
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -40,13 +42,16 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
              @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("temperature") String temperature, @JsonProperty("remark") String remark,
+             @JsonProperty("temperature") String temperature,@JsonProperty("noted") List<JsonAdaptedNotes> noted, @JsonProperty("remark") String remark,
              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.temperature = temperature;
+        if(noted != null) {
+            this.noted.addAll(noted);
+        }
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -62,6 +67,10 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         address = source.getAddress().value;
         temperature = source.getTemperature().value;
+        ArrayList<Notes> allNotes = source.getNotes();
+        for(Notes n : allNotes) {
+            noted.add(new JsonAdaptedNotes(n));
+        }
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -74,6 +83,10 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
+        final List<Notes> studentNotes = new ArrayList<>();
+        for(JsonAdaptedNotes note : noted) {
+            studentNotes.add(note.toModelType());
+        }
         final List<Tag> studentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             studentTags.add(tag.toModelType());
@@ -125,8 +138,10 @@ class JsonAdaptedStudent {
         }
         final Remark modelRemark = new Remark(remark);
 
+        final ArrayList<Notes> modelNotes = new ArrayList<>(studentNotes);
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelRemark, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelNotes, modelRemark, modelTags);
     }
 
 }
