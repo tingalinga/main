@@ -43,10 +43,11 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-             @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("temperature") String temperature, @JsonProperty("nok") String nok, 
-             @JsonProperty("noted") List<JsonAdaptedNotes> noted, @JsonProperty("remark") String remark, 
-             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("temperature") String temperature, @JsonProperty("nok") String nok,
+                              @JsonProperty("noted") List<JsonAdaptedNotes> noted,
+                              @JsonProperty("remark") String remark,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
         this.name = name;
         this.phone = phone;
@@ -143,7 +144,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
-      
+
         if (nok == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     NextOfKin.class.getSimpleName()));
@@ -151,13 +152,14 @@ class JsonAdaptedStudent {
         if (!NextOfKin.isValidNok(nok)) {
             throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
+
         final NextOfKin modelNok = new NextOfKin(nok);
-      
+
         final ArrayList<Notes> modelNotes = new ArrayList<>(studentNotes);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, 
-                           modelNok, modelNotes, modelRemark, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature,
+                modelNok, modelNotes, modelRemark, modelTags);
 
     }
 

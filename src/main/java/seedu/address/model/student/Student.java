@@ -33,7 +33,7 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, NextOfKin nok, 
+    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, NextOfKin nok,
                    ArrayList<Notes> notes, Remark remark, Set<Tag> tags) {
 
 
@@ -76,13 +76,15 @@ public class Student {
     public void addNotes(Notes note) {
         this.notes.add(note);
     }
+
     /**
      * Returns an immutable Notes ArrayList
      */
     public ArrayList<Notes> getNotes() {
         return notes;
-      
-    public NextOfKin getNok() {
+
+    }
+    public NextOfKin getNok () {
         return nok;
 
     }
@@ -91,7 +93,7 @@ public class Student {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<Tag> getTags () {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -99,7 +101,7 @@ public class Student {
      * Returns true if both students of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two students.
      */
-    public boolean isSameStudent(Student otherStudent) {
+    public boolean isSameStudent (Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
@@ -114,7 +116,7 @@ public class Student {
      * This defines a stronger notion of equality between two students.
      */
     @Override
-    public boolean equals(Object other) {
+    public boolean equals (Object other) {
         if (other == this) {
             return true;
         }
@@ -134,13 +136,13 @@ public class Student {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, temperature, remark, notes, tags);
     }
 
     @Override
-    public String toString() {
+    public String toString () {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Phone: ")
