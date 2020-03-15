@@ -57,9 +57,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArrayList<Notes> notes = new ArrayList<>();
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        
         Student student = new Student(name, phone, email, address, temperature, nok, notes, remark, tagList);
-
         return new AddCommand(student);
     }
 

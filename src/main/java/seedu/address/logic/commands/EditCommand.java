@@ -112,9 +112,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         NextOfKin updatedNok = studentToEdit.getNok();
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature, updatedNok, 
-                updatedNotes, updatedRemark, updatedTags);
-
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature,
+                updatedNok, updatedNotes, updatedRemark, updatedTags);
     }
 
     @Override
