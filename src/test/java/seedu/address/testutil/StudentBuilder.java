@@ -7,6 +7,7 @@ import java.util.Set;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
@@ -26,6 +27,7 @@ public class StudentBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TEMPERATURE = "36.5";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_NOK = "Joseph-Father-90045722";
 
     private Name name;
     private Phone phone;
@@ -35,6 +37,7 @@ public class StudentBuilder {
     private ArrayList<Notes> notes;
     private Remark remark;
     private Set<Tag> tags;
+    private NextOfKin nok;
 
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -45,6 +48,7 @@ public class StudentBuilder {
         notes = new ArrayList<>();
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        nok = new NextOfKin(DEFAULT_NOK);
     }
 
     /**
@@ -59,6 +63,7 @@ public class StudentBuilder {
         notes = new ArrayList<>(studentToCopy.getNotes());
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
+        nok = studentToCopy.getNok();
     }
 
     /**
@@ -117,8 +122,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Nok} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withNok(String nok) {
+        this.nok = new NextOfKin(nok);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, temperature, notes, remark, tags);
+        return new Student(name, phone, email, address, temperature, nok, notes, remark, tags);
     }
 
 }

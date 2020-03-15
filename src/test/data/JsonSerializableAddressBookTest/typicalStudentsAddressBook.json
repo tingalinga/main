@@ -8,6 +8,7 @@
     "temperature": "36.5",
     "notes": [],
     "remark" : "",
+    "nok" : "Joseph Pauline - father - 99999999",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -17,6 +18,7 @@
     "temperature": "36.5",
     "notes": [],
     "remark" : "",
+    "nok" : "Joseph Meier - father - 99999999",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -26,6 +28,7 @@
     "temperature": "36.5",
     "notes": [],
     "remark" : "",
+    "nok" : "Joseph Kurz - father - 99999999",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -35,6 +38,7 @@
     "temperature": "36.5",
     "notes": [],
     "remark" : "",
+    "nok" : "Joseph Meier - father - 99999999",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -44,6 +48,7 @@
     "temperature": "36.5",
     "notes": [],
     "remark" : "",
+    "nok" : "Joseph Meyer - father - 99999999",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -53,6 +58,7 @@
     "temperature": "36.5",
     "notes": [],
     "remark" : "",
+    "nok" : "Joseph Kunz - father - 99999999",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -62,6 +68,7 @@
     "temperature": "36.5",
     "notes": [],
     "remark" : "",
+    "nok" : "Joseph Best - father - 99999999",
     "tagged" : [ ]
   } ]
 }

@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
@@ -109,9 +110,11 @@ public class EditCommand extends Command {
         ArrayList<Notes> updatedNotes = editStudentDescriptor.getNotes().orElse(studentToEdit.getNotes());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        NextOfKin updatedNok = studentToEdit.getNok();
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature,
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature, updatedNok, 
                 updatedNotes, updatedRemark, updatedTags);
+
     }
 
     @Override

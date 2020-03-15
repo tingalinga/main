@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
@@ -34,6 +35,7 @@ class JsonAdaptedStudent {
     private final String temperature;
     private final List<JsonAdaptedNotes> noted = new ArrayList<>();
     private final String remark;
+    private final String nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,8 +44,10 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
              @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("temperature") String temperature, @JsonProperty("noted") List<JsonAdaptedNotes> noted,
-              @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+             @JsonProperty("temperature") String temperature, @JsonProperty("nok") String nok, 
+             @JsonProperty("noted") List<JsonAdaptedNotes> noted, @JsonProperty("remark") String remark, 
+             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,6 +57,7 @@ class JsonAdaptedStudent {
             this.noted.addAll(noted);
         }
         this.remark = remark;
+        this.nok = nok;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -72,6 +77,7 @@ class JsonAdaptedStudent {
             noted.add(new JsonAdaptedNotes(n));
         }
         remark = source.getRemark().value;
+        nok = source.getNok().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -137,12 +143,22 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
-
+      
+        if (nok == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    NextOfKin.class.getSimpleName()));
+        }
+        if (!NextOfKin.isValidNok(nok)) {
+            throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
+        }
+        final NextOfKin modelNok = new NextOfKin(nok);
+      
         final ArrayList<Notes> modelNotes = new ArrayList<>(studentNotes);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature,
-                modelNotes, modelRemark, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, 
+                           modelNok, modelNotes, modelRemark, modelTags);
+
     }
 
 }

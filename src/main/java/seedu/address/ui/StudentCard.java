@@ -46,6 +46,13 @@ public class StudentCard extends UiPart<Region> {
     private Label notes;
     @FXML
     private Label remark;
+    @FXML
+    private Label nokName;
+    @FXML
+    private Label nokRelationship;
+    @FXML
+    private Label nokContact;
+
 
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
@@ -58,6 +65,9 @@ public class StudentCard extends UiPart<Region> {
         temperature.setText(student.getTemperature().value);
         notes.setText("No. of Notes: " + student.getNotes().size());
         remark.setText(student.getRemark().value);
+        nokName.setText(student.getNok().getNameOfNok());
+        nokRelationship.setText(student.getNok().getRelationshipOfNok());
+        nokContact.setText(student.getNok().getContactOfNok());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
