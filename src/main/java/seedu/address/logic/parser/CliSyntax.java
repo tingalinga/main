@@ -13,5 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_NOK = new Prefix("nok/");
+    public static final Prefix PREFIX_TEMPERATURE = new Prefix("temp/");
+
 
 }

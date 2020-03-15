@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
-import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Student;
 
 /**
@@ -43,6 +41,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label temperature;
+    @FXML
     private Label remark;
     @FXML
     private Label nokName;
@@ -60,10 +60,11 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
+        temperature.setText(student.getTemperature().value);
         remark.setText(student.getRemark().value);
-        nokName.setText(student.getNok().getNameOfNOK());
-        nokRelationship.setText(student.getNok().getRelationshipOfNOK());
-        nokContact.setText(student.getNok().getContactOfNOK());
+        nokName.setText(student.getNok().getNameOfNok());
+        nokRelationship.setText(student.getNok().getRelationshipOfNok());
+        nokContact.setText(student.getNok().getContactOfNok());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

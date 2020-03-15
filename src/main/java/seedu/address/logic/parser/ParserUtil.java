@@ -14,6 +14,7 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -98,6 +99,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String temperature} into an {@code Temperature}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code temperature} is invalid.
+     */
+    public static Temperature parseTemperature(String temperature) throws ParseException {
+        requireNonNull(temperature);
+        String trimmedTemperature = temperature.trim();
+        if (!Temperature.isValidTemperature(trimmedTemperature)) {
+            throw new ParseException(Temperature.MESSAGE_CONSTRAINTS);
+        }
+        return new Temperature(trimmedTemperature);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -124,13 +140,20 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String nok} into an {@code Nok}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Nok} is invalid.
+     */
     public static NextOfKin parseNok(String nok) throws ParseException {
         requireNonNull(nok);
-        String trimmedNOK = nok.trim();
-        boolean bool = NextOfKin.isValidNok(trimmedNOK);
-        if (!NextOfKin.isValidNok(trimmedNOK)) {
+        String trimmedNok = nok.trim();
+        boolean bool = NextOfKin.isValidNok(trimmedNok);
+        System.out.println(bool);
+        if (!NextOfKin.isValidNok(trimmedNok)) {
             throw new ParseException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        return new NextOfKin(trimmedNOK);
+        return new NextOfKin(trimmedNok);
     }
 }

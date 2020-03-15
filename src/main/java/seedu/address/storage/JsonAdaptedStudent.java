@@ -17,8 +17,8 @@ import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.student.NextOfKin;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -31,6 +31,7 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String email;
     private final String address;
+    private final String temperature;
     private final String remark;
     private final String nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -40,12 +41,16 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-             @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("remark") String remark, @JsonProperty("nok") String nok, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("remark") String remark, @JsonProperty("nok") String nok,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("temperature") String temperature) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.temperature = temperature;
         this.remark = remark;
         this.nok = nok;
         if (tagged != null) {
@@ -61,6 +66,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        temperature = source.getTemperature().value;
         remark = source.getRemark().value;
         nok = source.getNok().value;
         tagged.addAll(source.getTags().stream()
@@ -111,21 +117,33 @@ class JsonAdaptedStudent {
         }
         final Address modelAddress = new Address(address);
 
+        if (temperature == null) {
+            throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Temperature.class.getSimpleName())));
+        }
+        if (!Temperature.isValidTemperature(temperature)) {
+            throw new IllegalValueException(Temperature.MESSAGE_CONSTRAINTS);
+        }
+        final Temperature modelTemperature = new Temperature(temperature);
+
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
 
         if (nok == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NextOfKin.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    NextOfKin.class.getSimpleName()));
         }
         if (!NextOfKin.isValidNok(nok)) {
             throw new IllegalValueException(NextOfKin.MESSAGE_CONSTRAINTS);
         }
-        final NextOfKin modelNOK = new NextOfKin(nok);
+        final NextOfKin modelNok = new NextOfKin(nok);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelNOK);
+
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelNok,
+                modelTemperature);
     }
 
 }
