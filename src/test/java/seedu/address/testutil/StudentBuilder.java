@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
+import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -32,6 +34,7 @@ public class StudentBuilder {
     private Email email;
     private Address address;
     private Temperature temperature;
+    private ArrayList<Notes> notes;
     private Remark remark;
     private Set<Tag> tags;
     private NextOfKin nok;
@@ -42,6 +45,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         temperature = new Temperature(DEFAULT_TEMPERATURE);
+        notes = new ArrayList<>();
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         nok = new NextOfKin(DEFAULT_NOK);
@@ -56,6 +60,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         temperature = studentToCopy.getTemperature();
+        notes = new ArrayList<>(studentToCopy.getNotes());
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
         nok = studentToCopy.getNok();
@@ -126,7 +131,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, address, remark, tags, nok, temperature);
+        return new Student(name, phone, email, address, temperature, nok, notes, remark, tags);
     }
 
 }

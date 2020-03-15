@@ -2,11 +2,13 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,14 +26,16 @@ public class Student {
     private final Address address;
     private final Temperature temperature;
     private final Remark remark;
+    private ArrayList<Notes> notes = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
     private final NextOfKin nok;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, NextOfKin nok,
-                   Temperature temperature) {
+    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, NextOfKin nok, 
+                   ArrayList<Notes> notes, Remark remark, Set<Tag> tags) {
+
 
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
@@ -39,6 +43,7 @@ public class Student {
         this.email = email;
         this.address = address;
         this.temperature = temperature;
+        this.notes.addAll(notes);
         this.remark = remark;
         this.tags.addAll(tags);
         this.nok = nok;
@@ -68,8 +73,18 @@ public class Student {
         return remark;
     }
 
+    public void addNotes(Notes note) {
+        this.notes.add(note);
+    }
+    /**
+     * Returns an immutable Notes ArrayList
+     */
+    public ArrayList<Notes> getNotes() {
+        return notes;
+      
     public NextOfKin getNok() {
         return nok;
+
     }
 
     /**
@@ -114,13 +129,14 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTemperature().equals(getTemperature())
+                && otherStudent.getNotes().equals(getNotes())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, temperature, remark, tags);
+        return Objects.hash(name, phone, email, address, temperature, remark, notes, tags);
     }
 
     @Override
@@ -135,6 +151,8 @@ public class Student {
                 .append(getAddress())
                 .append(" Temperature: ")
                 .append(getTemperature())
+                .append("Notes: ")
+                .append(notes.size())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Tags: ");

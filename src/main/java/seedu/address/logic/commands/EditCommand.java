@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +29,10 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
+
+import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing student in the address book.
@@ -103,12 +107,13 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Temperature updatedTemperature = editStudentDescriptor.getTemperature().orElse(studentToEdit.getTemperature());
+        ArrayList<Notes> updatedNotes = editStudentDescriptor.getNotes().orElse(studentToEdit.getNotes());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         NextOfKin updatedNok = studentToEdit.getNok();
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                updatedNok, updatedTemperature);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature, updatedNok, 
+                updatedNotes, updatedRemark, updatedTags);
 
     }
 
@@ -140,6 +145,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Temperature temperature;
+        private ArrayList<Notes> notes;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {
@@ -155,6 +161,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTemperature(toCopy.temperature);
+            setNotes(toCopy.notes);
             setTags(toCopy.tags);
         }
 
@@ -196,6 +203,15 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setNotes(ArrayList<Notes> notes) {
+            this.notes = notes;
+        }
+
+        public Optional<ArrayList<Notes>> getNotes() {
+            return (notes != null)
+                    ? Optional.of((ArrayList<Notes>) Collections.unmodifiableList(notes)) : Optional.empty();
         }
 
         public void setTemperature(Temperature temperature) {
@@ -243,6 +259,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTemperature().equals(e.getTemperature())
+                    && getNotes().equals(e.getNotes())
                     && getTags().equals(e.getTags());
         }
     }
