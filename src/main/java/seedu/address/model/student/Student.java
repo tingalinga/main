@@ -25,12 +25,14 @@ public class Student {
     private final Temperature temperature;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final NextOfKin nok;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, Remark remark,
-                   Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, NextOfKin nok,
+                   Temperature temperature) {
+
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
@@ -39,6 +41,7 @@ public class Student {
         this.temperature = temperature;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.nok = nok;
     }
 
     public Name getName() {
@@ -63,6 +66,10 @@ public class Student {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public NextOfKin getNok() {
+        return nok;
     }
 
     /**

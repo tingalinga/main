@@ -7,6 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "temperature": "36.5",
     "remark" : "",
+    "nok" : "Joseph Pauline - father - 99999999",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "temperature": "36.5",
     "remark" : "",
+    "nok" : "Joseph Meier - father - 99999999",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "address" : "wall street",
     "temperature": "36.5",
     "remark" : "",
+    "nok" : "Joseph Kurz - father - 99999999",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "address" : "10th street",
     "temperature": "36.5",
     "remark" : "",
+    "nok" : "Joseph Meier - father - 99999999",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "address" : "michegan ave",
     "temperature": "36.5",
     "remark" : "",
+    "nok" : "Joseph Meyer - father - 99999999",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "address" : "little tokyo",
     "temperature": "36.5",
     "remark" : "",
+    "nok" : "Joseph Kunz - father - 99999999",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "address" : "4th street",
     "temperature": "36.5",
     "remark" : "",
+    "nok" : "Joseph Best - father - 99999999",
     "tagged" : [ ]
   } ]
 }
