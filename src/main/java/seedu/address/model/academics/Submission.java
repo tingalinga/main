@@ -3,7 +3,7 @@ package seedu.address.model.academics;
 /**
  * Represents a students submission for an assessment.
  */
-public class Submission {
+public class Submission implements Comparable<Submission> {
     private boolean submitted;
     private boolean marked;
     private int score;
@@ -33,5 +33,10 @@ public class Submission {
     public void markAssessment(int score) {
         this.marked = true;
         this.score = score;
+    }
+
+    @Override
+    public int compareTo(Submission s) {
+        return 0;
     }
 }

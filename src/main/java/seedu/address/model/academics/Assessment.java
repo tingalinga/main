@@ -1,5 +1,8 @@
 package seedu.address.model.academics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -53,13 +56,23 @@ public abstract class Assessment {
     public void markAssessment(Student student, int score) {
         submissionTracker.get(student).markAssessment(score);
     }
-    
+
     public int averageScore() {
         int totalScore = 0;
         for (Student student: students) {
             totalScore += submissionTracker.get(student).getScore();
         }
         return totalScore / students.size();
+    }
+
+    public int medianScore() {
+        ArrayList<Integer> scores = new ArrayList<>();
+        for (Student student: students) {
+            scores.add(submissionTracker.get(student).getScore());
+        }
+        Collections.sort(scores);
+        int median = (scores.size() % 2) == 0 ? scores.get(scores.size() / 2) :  scores.get((scores.size() / 2) + 1);
+        return median;
     }
 
     @Override
