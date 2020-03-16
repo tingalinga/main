@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.academics.Assessment;
@@ -28,11 +29,16 @@ public abstract class AcademicsAddCommand extends AcademicsCommand {
         toAdd = assessment;
     }
 
-    public AcademicsAddCommand(String description, String type, String date, ObservableList<Student> students) {
-        if (type.equals("homework")) {
-            toAdd = new Homework(description, date, students);
-        } else {
-            toAdd = new Exam(description, date, students);
+    public AcademicsAddCommand(String description, String type, String date, ObservableList<Student> students) throws CommandException {
+        switch (type) {
+            case "homework":
+                toAdd = new Homework(description, date, students);
+                break;
+            case "exam":
+                toAdd = new Exam(description, date, students);
+                break;
+            default:
+                throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
         }
     }
 
@@ -40,7 +46,7 @@ public abstract class AcademicsAddCommand extends AcademicsCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-//        model.addStudent(toAdd);
+        model.addAssessment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
