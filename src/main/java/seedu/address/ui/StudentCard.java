@@ -42,6 +42,8 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label remark;
+    @FXML
+    private Label remark2;
 
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
@@ -52,6 +54,7 @@ public class StudentCard extends UiPart<Region> {
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         remark.setText(student.getRemark().value);
+        remark.setText(student.getRemark2().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

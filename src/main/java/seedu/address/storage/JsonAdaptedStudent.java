@@ -15,6 +15,7 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
+import seedu.address.model.student.Remark2;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -30,6 +31,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final String address;
     private final String remark;
+    private final String remark2;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,12 +40,14 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
              @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+             @JsonProperty("remark") String remark, @JsonProperty("remark2") String remark2,
+             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
+        this.remark2 = remark2;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -58,6 +62,7 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
+        remark2 = source.getRemark2().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -110,9 +115,13 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
+        if (remark2 == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark2.class.getSimpleName()));
+        }
+        final Remark2 modelRemark2 = new Remark2(remark2);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelRemark2, modelTags);
     }
 
 }

@@ -24,6 +24,7 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
+import seedu.address.model.student.Remark2;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -99,9 +100,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
+        Remark2 updatedRemark2 = studentToEdit.getRemark2(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedRemark2, updatedTags);
     }
 
     @Override
