@@ -45,7 +45,14 @@ public class Homework extends Assessment {
 
     @Override
     public String toString() {
-        return "Homework : " + this.description + "\n";
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+                .append("Homework")
+                .append("Due by: ")
+                .append(getDeadline())
+                .append("Unsubmitted: ")
+                .append(noOfUnmarkedSubmissions());
+        return builder.toString();
     }
 
 }

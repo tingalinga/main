@@ -53,10 +53,48 @@ public abstract class Assessment {
         }
     }
 
-    public void markAssessment(Student student, int score) {
+    public void mark(Student student, int score) {
         submissionTracker.get(student).markAssessment(score);
     }
 
+    public ArrayList<Student> checkUnsubmittedStudents() {
+        ArrayList<Student> unsubmitted = new ArrayList<>();
+        for (Student student: students) {
+            if (!submissionTracker.get(student).hasSubmitted()) {
+                unsubmitted.add(student);
+            }
+        }
+        return unsubmitted;
+    }
+
+    public ArrayList<Student> checkUnmarkedSubmissions() {
+        ArrayList<Student> unmarked = new ArrayList<>();
+        for (Student student: students) {
+            if (!submissionTracker.get(student).isMarked()) {
+                unmarked.add(student);
+            }
+        }
+        return unmarked;
+    }
+
+    public int noOfUnmarkedSubmissions() {
+        int unmarked = 0;
+        for (Student student: students) {
+            if (!submissionTracker.get(student).isMarked()) {
+                unmarked++;
+            }
+        }
+        return unmarked;
+    }
+
+    public boolean isSameAssessment(Assessment otherAssessment) {
+        if (otherAssessment == this) {
+            return true;
+        }
+
+        return otherAssessment.getDescription().equals(getDescription());
+    }
+    
     public int averageScore() {
         int totalScore = 0;
         for (Student student: students) {
@@ -77,7 +115,11 @@ public abstract class Assessment {
 
     @Override
     public String toString() {
-        return "Assessment : " + this.description + "\n";
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+                .append(" Unsubmitted: ")
+                .append(noOfUnmarkedSubmissions());
+        return builder.toString();
     }
 
 }

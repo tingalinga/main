@@ -45,7 +45,14 @@ public class Exam extends Assessment {
 
     @Override
     public String toString() {
-        return "Exam : " + this.description + "\n";
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription())
+                .append("Exam")
+                .append("Date: ")
+                .append(getExamDate())
+                .append("Unsubmitted: ")
+                .append(noOfUnmarkedSubmissions());
+        return builder.toString();
     }
 
 }
