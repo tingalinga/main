@@ -2,11 +2,13 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,20 +24,29 @@ public class Student {
 
     // Data fields
     private final Address address;
+    private final Temperature temperature;
     private final Remark remark;
+    private ArrayList<Notes> notes = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final NextOfKin nok;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, NextOfKin nok,
+                   ArrayList<Notes> notes, Remark remark, Set<Tag> tags) {
+
+
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.temperature = temperature;
+        this.notes.addAll(notes);
         this.remark = remark;
         this.tags.addAll(tags);
+        this.nok = nok;
     }
 
     public Name getName() {
@@ -54,15 +65,35 @@ public class Student {
         return address;
     }
 
+    public Temperature getTemperature() {
+        return temperature;
+    }
+
     public Remark getRemark() {
         return remark;
+    }
+
+    public void addNotes(Notes note) {
+        this.notes.add(note);
+    }
+
+    /**
+     * Returns an immutable Notes ArrayList
+     */
+    public ArrayList<Notes> getNotes() {
+        return notes;
+
+    }
+    public NextOfKin getNok () {
+        return nok;
+
     }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<Tag> getTags () {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -70,7 +101,7 @@ public class Student {
      * Returns true if both students of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two students.
      */
-    public boolean isSameStudent(Student otherStudent) {
+    public boolean isSameStudent (Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
@@ -85,7 +116,7 @@ public class Student {
      * This defines a stronger notion of equality between two students.
      */
     @Override
-    public boolean equals(Object other) {
+    public boolean equals (Object other) {
         if (other == this) {
             return true;
         }
@@ -99,17 +130,19 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTemperature().equals(getTemperature())
+                && otherStudent.getNotes().equals(getNotes())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, temperature, remark, notes, tags);
     }
 
     @Override
-    public String toString() {
+    public String toString () {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Phone: ")
@@ -118,6 +151,10 @@ public class Student {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Temperature: ")
+                .append(getTemperature())
+                .append("Notes: ")
+                .append(notes.size())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Tags: ");

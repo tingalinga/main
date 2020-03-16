@@ -1,14 +1,18 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
+import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Temperature;
+import seedu.address.model.student.notes.Notes;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,22 +25,30 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TEMPERATURE = "36.5";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_NOK = "Joseph-Father-90045722";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Temperature temperature;
+    private ArrayList<Notes> notes;
     private Remark remark;
     private Set<Tag> tags;
+    private NextOfKin nok;
 
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        temperature = new Temperature(DEFAULT_TEMPERATURE);
+        notes = new ArrayList<>();
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        nok = new NextOfKin(DEFAULT_NOK);
     }
 
     /**
@@ -47,8 +59,11 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
+        temperature = studentToCopy.getTemperature();
+        notes = new ArrayList<>(studentToCopy.getNotes());
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
+        nok = studentToCopy.getNok();
     }
 
     /**
@@ -92,6 +107,14 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code Temperature} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withTemperature(String temperature) {
+        this.temperature = new Temperature(temperature);
+        return this;
+    }
+
+    /**
      * Sets the {@code Remark} of the {@code Student} that we are building.
      */
     public StudentBuilder withRemark(String remark) {
@@ -99,8 +122,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Nok} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withNok(String nok) {
+        this.nok = new NextOfKin(nok);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, remark, tags);
+        return new Student(name, phone, email, address, temperature, nok, notes, remark, tags);
     }
 
 }
