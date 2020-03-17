@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.academics.Assessment;
 import seedu.address.model.student.Student;
 
 /**
@@ -77,6 +78,12 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
+    /**
+     * Adds the given assessment.
+     * {@code assessment} must not already exist in the address book.
+     */
+    void addAssessment(Assessment assessment);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
@@ -85,4 +92,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
 }
