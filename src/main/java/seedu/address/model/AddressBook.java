@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.academics.Academics;
+import seedu.address.model.academics.Assessment;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.student.UniqueStudentList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
+    private final Academics academics;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         students = new UniqueStudentList();
+        academics = new Academics();
     }
 
     public AddressBook() {}
@@ -86,6 +90,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         students.setStudent(target, editedStudent);
     }
 
+    public void addAssessment(Assessment assessment) {
+        academics.addAssessment(assessment);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -105,6 +113,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Assessment> getAcademicsList() {
+        return academics.asUnmodifiableObservableList();
     }
 
     @Override
