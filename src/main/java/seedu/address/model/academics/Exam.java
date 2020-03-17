@@ -1,11 +1,9 @@
 package seedu.address.model.academics;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
@@ -14,13 +12,13 @@ import seedu.address.model.student.Student;
 public class Exam extends Assessment {
 
     private String description;
-    private LocalDateTime examDate;
+    private LocalDate examDate;
 
     private HashMap<Student, Submission> submissionTracker = new HashMap<>();
 
     public Exam(String description, String examDate) {
         super(description);
-        this.examDate = LocalDateTime.parse(examDate);
+        this.examDate = LocalDate.parse(examDate);
     }
 
     public String getDescription() {
@@ -33,7 +31,7 @@ public class Exam extends Assessment {
         }
     }
 
-    public LocalDateTime getExamDate() {
+    public LocalDate getExamDate() {
         return examDate;
     }
 
@@ -42,7 +40,7 @@ public class Exam extends Assessment {
     }
 
     public void setExamDate(String examDate) {
-        this.examDate = LocalDateTime.parse(examDate);
+        this.examDate = LocalDate.parse(examDate);
     }
 
     @Override

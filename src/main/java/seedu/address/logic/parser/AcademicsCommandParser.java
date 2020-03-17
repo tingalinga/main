@@ -4,13 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-import org.junit.platform.commons.util.StringUtils;
-
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AcademicsAddCommand;
 import seedu.address.logic.commands.AcademicsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,8 +13,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AcademicsCommandParser implements Parser<AcademicsCommand> {
 
-    public static final String HELP_MESSAGE = "Academics command has to include an action.\n";
-    
+    public static final String HELP_MESSAGE = "Academics command has to include an action.\n"
+            + AcademicsAddCommand.MESSAGE_USAGE;
+
     @Override
     public AcademicsCommand parse(String args) throws ParseException, CommandException {
         requireNonNull(args);

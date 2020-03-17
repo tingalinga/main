@@ -9,48 +9,62 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.academics.exceptions.AssessmentNotFoundException;
+import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
 
 public class Academics {
     private final ObservableList<Assessment> assessments = FXCollections.observableArrayList();
-    private final ObservableList<Assessment> assessmentsFiltered = FXCollections.observableArrayList();
     private final ObservableList<Assessment> assessmentsUnmodifiableList =
             FXCollections.unmodifiableObservableList(assessments);
 
-    public void setAssessments(List<Assessment> assessments) {
-        requireAllNonNull(assessments);
-        if (isUniqueList(assessments)) {
+    public boolean contains(Assessment toCheck) {
+        requireNonNull(toCheck);
+        return assessments.stream().anyMatch(toCheck::isSameAssessment);
+    }
 
+    public void addAssessment(Assessment toAdd) {
+        requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateAssessmentException();
         }
-        this.assessments.addAll(assessments);
+        this.assessments.add(toAdd);
     }
 
-    public void addAssessment(Assessment assessment) {
-        requireNonNull(assessment);
-        this.assessments.add(assessment);
-    }
-
-    public Assessment deleteAssessment(Index index) {
-        return assessments.remove(index.getZeroBased());
-    }
-
-    public Assessment getAssessment(Index index) {
-        return assessments.get(index.getZeroBased());
-
-    }
-
-    public void setAssessment(Index index, Assessment assessment) {
-        assessments.set(index.getZeroBased(), assessment);
-    }
-
-    public void setQuestion(Assessment target, Assessment editedAssessment) {
+    // for future edit assessment command
+    public void setAssessment(Assessment target, Assessment editedAssessment) {
         requireAllNonNull(target, editedAssessment);
 
         int index = assessments.indexOf(target);
+        if (index == -1) {
+            throw new AssessmentNotFoundException();
+        }
+        if (!target.isSameAssessment(editedAssessment) && contains(editedAssessment)) {
+            throw new DuplicateAssessmentException();
+        }
         assessments.set(index, editedAssessment);
     }
 
-    public ObservableList<Assessment> getAllAssessments() {
-        return assessments;
+    public void remove(Assessment toRemove) {
+        requireNonNull(toRemove);
+        if (!assessments.remove(toRemove)) {
+            throw new AssessmentNotFoundException();
+        }
+    }
+
+    public void setAssessments(Academics replacement) {
+        requireAllNonNull(replacement);
+        assessments.setAll(replacement.assessments);
+    }
+
+    public void setAssessments(List<Assessment> assessments) {
+        requireAllNonNull(assessments);
+        if (!assessmentsAreUnique(assessments)) {
+            throw new DuplicateAssessmentException();
+        }
+        this.assessments.setAll(assessments);
     }
 
     public ObservableList<Assessment> getAllHomework() {
@@ -73,28 +87,23 @@ public class Academics {
         return exams;
     }
 
-    public boolean isUniqueList(List<Assessment> assessments) {
-        for (Assessment assessment : assessments) {
-            for (Assessment otherAssessment : assessments) {
-                if (assessment.isSameAssessment(otherAssessment)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    public boolean contains(Assessment toCheck) {
-        requireNonNull(toCheck);
-        return assessments.stream().anyMatch((assessment) -> assessment.equals(toCheck));
-    }
-
     public ObservableList<Assessment> asUnmodifiableObservableList() {
         return assessmentsUnmodifiableList;
     }
 
     public Iterator<Assessment> iterator() {
         return assessments.iterator();
+    }
+
+    private boolean assessmentsAreUnique(List<Assessment> assessments) {
+        for (int i = 0; i < assessments.size() - 1; i++) {
+            for (int j = i + 1; j < assessments.size(); j++) {
+                if (assessments.get(i).isSameAssessment(assessments.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
