@@ -53,10 +53,6 @@ public class Academics {
         return assessments;
     }
 
-    public ObservableList<Assessment> getSearchAssessments() {
-        return assessmentsFiltered;
-    }
-
     public ObservableList<Assessment> getAllHomework() {
         ObservableList<Assessment> homeworkAssessments = FXCollections.observableArrayList();
         for (Assessment a : assessments) {
