@@ -187,8 +187,17 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            String consoleReply = commandResult.getFeedbackToUser();
+            logger.info("Result: " + consoleReply);
+            resultDisplay.setFeedbackToUser(consoleReply);
+            if (consoleReply.equals("The Student list now displays ALL details")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), true);
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+            if (consoleReply.equals("The Student list now displays DEFAULT details")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
