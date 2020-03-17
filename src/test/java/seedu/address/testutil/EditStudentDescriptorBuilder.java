@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -38,6 +39,7 @@ public class EditStudentDescriptorBuilder {
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
         descriptor.setTemperature(student.getTemperature());
+        descriptor.setAttendance(student.getAttendance());
         descriptor.setTags(student.getTags());
     }
 
@@ -78,6 +80,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withTemperature(String temperature) {
         descriptor.setTemperature(new Temperature(temperature));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Temperature} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withAttendance(String attendance) {
+        descriptor.setAttendance(new Attendance(attendance));
         return this;
     }
 

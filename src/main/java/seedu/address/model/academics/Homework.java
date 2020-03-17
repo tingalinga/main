@@ -48,5 +48,4 @@ public class Homework extends Assessment {
         return "Homework: " + this.description + "\n"
                 + "due by " + this.deadline;
     }
-
 }
