@@ -30,15 +30,29 @@ public class StudentListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {
+
+        private boolean minimised = false;
+
         @Override
         protected void updateItem(Student student, boolean empty) {
-            super.updateItem(student, empty);
+            if(minimised) {
+                super.updateItem(student, empty);
 
-            if (empty || student == null) {
-                setGraphic(null);
-                setText(null);
+                if (empty || student == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    setGraphic(new StudentCardMinimised(student, getIndex() + 1).getRoot());
+                }
             } else {
-                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+                super.updateItem(student, empty);
+
+                if (empty || student == null) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+                }
             }
         }
     }

@@ -75,8 +75,6 @@ public class AdminNotesCommand extends Command {
             throw new CommandException("Name of Student not found");
         }
 
-
-
         Name originalName = lastShownList.get(indexOfStudent).getName();
         Phone originalPhone = lastShownList.get(indexOfStudent).getPhone();
         Email originalEmail = lastShownList.get(indexOfStudent).getEmail();
