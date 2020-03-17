@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -25,6 +26,9 @@ public class StudentCard extends UiPart<Region> {
      */
 
     public final Student student;
+
+    @FXML
+    private ImageView image;
 
     @FXML
     private HBox cardPane;
