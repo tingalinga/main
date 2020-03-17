@@ -1,10 +1,8 @@
 package seedu.address.model.academics;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -60,6 +58,9 @@ public abstract class Assessment {
         submissionTracker.get(student).markAssessment(score);
     }
 
+    /**
+     * Returns a list of students who have yet submitted.
+     */
     public ArrayList<Student> checkUnsubmittedStudents() {
         ArrayList<Student> unsubmitted = new ArrayList<>();
         for (Student student: students) {
@@ -70,6 +71,9 @@ public abstract class Assessment {
         return unsubmitted;
     }
 
+    /**
+     * Returns a list of students who have yet being marked.
+     */
     public ArrayList<Student> checkUnmarkedSubmissions() {
         ArrayList<Student> unmarked = new ArrayList<>();
         for (Student student: students) {
@@ -80,6 +84,9 @@ public abstract class Assessment {
         return unmarked;
     }
 
+    /**
+     * Returns the number of students that have yet been marked
+     */
     public int noOfUnmarkedSubmissions() {
         int unmarked = 0;
         for (Student student: students) {
@@ -90,14 +97,19 @@ public abstract class Assessment {
         return unmarked;
     }
 
+    /**
+     * Returns true if provided assessment is a replica.
+     */
     public boolean isSameAssessment(Assessment otherAssessment) {
         if (otherAssessment == this) {
             return true;
         }
-
         return otherAssessment.getDescription().equals(getDescription());
     }
-    
+
+    /**
+     * Returns the average score scored by the class.
+     */
     public int averageScore() {
         int totalScore = 0;
         for (Student student: students) {
@@ -106,13 +118,16 @@ public abstract class Assessment {
         return totalScore / students.size();
     }
 
+    /**
+     * Returns the median score scored by the class.
+     */
     public int medianScore() {
         ArrayList<Integer> scores = new ArrayList<>();
         for (Student student: students) {
             scores.add(submissionTracker.get(student).getScore());
         }
         Collections.sort(scores);
-        int median = (scores.size() % 2) == 0 ? scores.get(scores.size() / 2) :  scores.get((scores.size() / 2) + 1);
+        int median = (scores.size() % 2) == 0 ? scores.get(scores.size() / 2) : scores.get((scores.size() / 2) + 1);
         return median;
     }
 
@@ -120,5 +135,4 @@ public abstract class Assessment {
     public String toString() {
         return "Assessment: " + this.description + "\n";
     }
-
 }

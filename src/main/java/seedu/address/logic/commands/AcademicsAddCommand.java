@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -13,6 +12,9 @@ import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.student.Student;
 
+/**
+ * Adds an academic progress report to address book.
+ */
 public class AcademicsAddCommand extends AcademicsCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new assessment"
@@ -33,14 +35,14 @@ public class AcademicsAddCommand extends AcademicsCommand {
 
     public AcademicsAddCommand(String description, String type, String date) throws CommandException {
         switch (type) {
-            case "homework":
-                toAdd = new Homework(description, date);
-                break;
-            case "exam":
-                toAdd = new Exam(description, date);
-                break;
-            default:
-                throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
+        case "homework":
+            toAdd = new Homework(description, date);
+            break;
+        case "exam":
+            toAdd = new Exam(description, date);
+            break;
+        default:
+            throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
         }
     }
 

@@ -30,6 +30,9 @@ public class Submission implements Comparable<Submission> {
         this.submitted = true;
     }
 
+    /**
+     * Assigns a mark to the the assessment.
+     */
     public void markAssessment(int score) {
         this.marked = true;
         this.score = score;

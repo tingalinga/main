@@ -11,16 +11,25 @@ import javafx.collections.ObservableList;
 import seedu.address.model.academics.exceptions.AssessmentNotFoundException;
 import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
 
+/**
+ * Represents the academic report of the class
+ */
 public class Academics {
     private final ObservableList<Assessment> assessments = FXCollections.observableArrayList();
     private final ObservableList<Assessment> assessmentsUnmodifiableList =
             FXCollections.unmodifiableObservableList(assessments);
 
+    /**
+     * Returns true if the provided assessment is a replica.
+     */
     public boolean contains(Assessment toCheck) {
         requireNonNull(toCheck);
         return assessments.stream().anyMatch(toCheck::isSameAssessment);
     }
 
+    /**
+     * Adds an assessment to the list of current assessments.
+     */
     public void addAssessment(Assessment toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
@@ -29,6 +38,9 @@ public class Academics {
         this.assessments.add(toAdd);
     }
 
+    /**
+     * Sets a current assessment with the updated one.
+     */
     // for future edit assessment command
     public void setAssessment(Assessment target, Assessment editedAssessment) {
         requireAllNonNull(target, editedAssessment);
@@ -43,6 +55,9 @@ public class Academics {
         assessments.set(index, editedAssessment);
     }
 
+    /**
+     * Removes an assessment.
+     */
     // for future remove assessment command
     public void remove(Assessment toRemove) {
         requireNonNull(toRemove);
@@ -51,11 +66,17 @@ public class Academics {
         }
     }
 
+    /**
+     * Few in the functionality here!
+     */
     public void setAssessments(Academics replacement) {
         requireAllNonNull(replacement);
         assessments.setAll(replacement.assessments);
     }
 
+    /**
+     * Few in the functionality here!
+     */
     public void setAssessments(List<Assessment> assessments) {
         requireAllNonNull(assessments);
         if (!assessmentsAreUnique(assessments)) {
@@ -64,10 +85,16 @@ public class Academics {
         this.assessments.setAll(assessments);
     }
 
+    /**
+     * Returns all the assessments.
+     */
     public ObservableList<Assessment> getAllAssessments() {
         return assessments;
     }
 
+    /**
+     * Returns all the homework.
+     */
     // for future filter assessment command
     public ObservableList<Assessment> getAllHomework() {
         ObservableList<Assessment> homeworkAssessments = FXCollections.observableArrayList();
@@ -79,6 +106,9 @@ public class Academics {
         return homeworkAssessments;
     }
 
+    /**
+     * Returns all the exams.
+     */
     // for future filter assessment command
     public ObservableList<Assessment> getAllExams() {
         ObservableList<Assessment> exams = FXCollections.observableArrayList();
@@ -98,6 +128,9 @@ public class Academics {
         return assessments.iterator();
     }
 
+    /**
+     * Returns true if all the assessments are unique.
+     */
     private boolean assessmentsAreUnique(List<Assessment> assessments) {
         for (int i = 0; i < assessments.size() - 1; i++) {
             for (int j = i + 1; j < assessments.size(); j++) {
