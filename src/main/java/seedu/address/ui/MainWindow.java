@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SchedulePage schedulePage;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -63,6 +64,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        schedulePage = new SchedulePage();
     }
 
     public Stage getPrimaryStage() {
@@ -142,6 +144,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     *  Opens the Personal Schedule Page
+     */
+    @FXML
+    public void handleSchedule() {
+        if (!schedulePage.isShowing()) {
+            schedulePage.show();
+        } else {
+            schedulePage.focus();
         }
     }
 
