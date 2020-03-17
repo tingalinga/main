@@ -3,10 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -15,14 +12,25 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE =
+            "Add: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] nok/NAME-RELATIONSHIP-PHONE-NUMBER temp/XX.X..."
+            + "\n"
+            + "e.g. add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague"
+            + "nok/jon-father-87654321 temp/36.2" + "\n" + "\n"
+            + "Clear : clear" + "\n" + "\n"
+            + "Delete : delete INDEX" + "\n"
+            + "e.g. delete 3" + "\n" + "\n"
+            + "Edit : edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]..." + "\n"
+            + "e.g. edit 2 n/James Lee e/jameslee@example.com" + "\n" + "\n"
+            + "Find : find KEYWORD [MORE_KEYWORDS]" + "\n"
+            + "e.g. find James Jake" + "\n" + "\n"
+            + "List : list" + "\n" + "\n"
+            + "Help : help" + "\n" + "\n"
+            + "Schedule : schedule";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
-    @FXML
-    private Button copyButton;
 
     @FXML
     private Label helpMessage;
@@ -89,14 +97,4 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     */
-    @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
-    }
 }
