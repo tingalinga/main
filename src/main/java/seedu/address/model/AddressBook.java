@@ -14,7 +14,7 @@ import seedu.address.model.student.UniqueStudentList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook, ReadOnlyAcademics {
+public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
     private final Academics academics;
@@ -115,7 +115,6 @@ public class AddressBook implements ReadOnlyAddressBook, ReadOnlyAcademics {
         return students.asUnmodifiableObservableList();
     }
 
-    @Override
     public ObservableList<Assessment> getAcademicsList() {
         return academics.asUnmodifiableObservableList();
     }

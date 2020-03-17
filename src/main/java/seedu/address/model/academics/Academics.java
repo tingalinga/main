@@ -8,12 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.exceptions.AssessmentNotFoundException;
 import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.UniqueStudentList;
-import seedu.address.model.student.exceptions.DuplicateStudentException;
 
 public class Academics {
     private final ObservableList<Assessment> assessments = FXCollections.observableArrayList();
@@ -47,6 +43,7 @@ public class Academics {
         assessments.set(index, editedAssessment);
     }
 
+    // for future remove assessment command
     public void remove(Assessment toRemove) {
         requireNonNull(toRemove);
         if (!assessments.remove(toRemove)) {
@@ -67,6 +64,11 @@ public class Academics {
         this.assessments.setAll(assessments);
     }
 
+    public ObservableList<Assessment> getAllAssessments() {
+        return assessments;
+    }
+
+    // for future filter assessment command
     public ObservableList<Assessment> getAllHomework() {
         ObservableList<Assessment> homeworkAssessments = FXCollections.observableArrayList();
         for (Assessment a : assessments) {
@@ -77,6 +79,7 @@ public class Academics {
         return homeworkAssessments;
     }
 
+    // for future filter assessment command
     public ObservableList<Assessment> getAllExams() {
         ObservableList<Assessment> exams = FXCollections.observableArrayList();
         for (Assessment a : exams) {
