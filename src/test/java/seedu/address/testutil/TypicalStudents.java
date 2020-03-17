@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -28,38 +30,42 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRemark("She likes aardvarks.").withNok("Joseph-Father-90045722")
-            .withTags("friends").withTemperature("36.5").build();
+            .withTags("friends").withTemperature("36.5").withAttendance("Present").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
             .withEmail("johnd@example.com").withPhone("98765432").withNok("Jojo-Father-90045712")
-            .withTags("owesMoney", "friends").withTemperature("36.5").build();
+            .withTags("owesMoney", "friends").withTemperature("36.5").withAttendance("Present").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withNok("Joji-Father-91045722")
-            .withTemperature("36.5").build();
+            .withAttendance("Present").withTemperature("36.5").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTemperature("36.5")
-            .withTags("friends").build();
+            .withAttendance("Present").withTags("friends").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withTemperature("36.5").build();
+            .withEmail("werner@example.com").withAddress("michegan ave").withTemperature("36.5")
+            .withAttendance("Present").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withTemperature("36.5").withAddress("little tokyo")
-            .withTemperature("36.5").build();
+            .withAttendance("Present").withTemperature("36.5").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withTemperature("36.5").withAddress("4th street").build();
+            .withEmail("anna@example.com").withTemperature("36.5").withAddress("4th street")
+            .withAttendance("Present").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withTemperature("36.5").withAddress("little india").build();
+            .withEmail("stefan@example.com").withTemperature("36.5").withAddress("little india")
+            .withAttendance("Present").build();
     public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withTemperature("36.5").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withTemperature("36.5").withAddress("chicago ave")
+            .withAttendance("Present").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-            .withTemperature(VALID_TEMPERATURE_AMY).build();
+            .withTemperature(VALID_TEMPERATURE_AMY).withAttendance(VALID_ATTENDANCE_AMY).build();
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withTemperature(VALID_TEMPERATURE_BOB).build();
+            .withTemperature(VALID_TEMPERATURE_BOB).withAttendance(VALID_ATTENDANCE_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

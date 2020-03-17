@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
@@ -36,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ATTENDANCE_AMY = "Present";
+    public static final String VALID_ATTENDANCE_BOB = "Absent";
     public static final String VALID_REMARK_AMY = "Like skiing.";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TEMPERATURE_AMY = "36.5";
@@ -57,6 +60,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TEMPERATURE_DESC_AMY = " " + PREFIX_TEMPERATURE + VALID_TEMPERATURE_AMY;
     public static final String TEMPERATURE_DESC_BOB = " " + PREFIX_TEMPERATURE + VALID_TEMPERATURE_BOB;
+    public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_AMY;
+    public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String NOK_DESC_AMY = " " + PREFIX_NOK + VALID_NOK_AMY;
@@ -68,8 +73,9 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TEMPERATURE_DESC = " " + PREFIX_TEMPERATURE + "3a.5"; //"a" not allowed in
     // temperature
+    public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE + "Present!"; //"!" not allowed in
+    //attendance
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -79,10 +85,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTemperature(VALID_TEMPERATURE_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withTemperature(VALID_TEMPERATURE_AMY).withAttendance(VALID_ATTENDANCE_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTemperature(VALID_TEMPERATURE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTemperature(VALID_TEMPERATURE_BOB).withAttendance(VALID_ATTENDANCE_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

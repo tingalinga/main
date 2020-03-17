@@ -43,6 +43,8 @@ public class StudentCardDetailed extends UiPart<Region> {
     @FXML
     private Label temperature;
     @FXML
+    private Label attendance;
+    @FXML
     private Label notes;
     @FXML
     private Label nokName;
@@ -62,6 +64,7 @@ public class StudentCardDetailed extends UiPart<Region> {
         address.setText("Address: " + student.getAddress().value);
         email.setText("Email:   " + student.getEmail().value);
         temperature.setText("Temperature:   " + student.getTemperature().value + " \u2103");
+        attendance.setText("Attendance:   " + student.getAttendance().value);
         notes.setText("No. of Notes:    " + student.getNotes().size());
         nokName.setText("NOK Name:  " + student.getNok().getNameOfNok());
         nokRelationship.setText("NOK Relationship:  " + student.getNok().getRelationshipOfNok());
