@@ -16,6 +16,7 @@ import seedu.address.model.student.Student;
 public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "StudentListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
+    private boolean detailed;
 
     @FXML
     private ListView<Student> studentListView;
@@ -24,7 +25,16 @@ public class StudentListPanel extends UiPart<Region> {
         super(FXML);
         studentListView.setItems(studentList);
         studentListView.setCellFactory(listView -> new StudentListViewCell());
+        detailed = false;
     }
+
+    public StudentListPanel(ObservableList<Student> studentList, boolean detailed) {
+        super(FXML);
+        studentListView.setItems(studentList);
+        studentListView.setCellFactory(listView -> new StudentListViewCellDetailed());
+        detailed = true;
+    }
+
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
@@ -39,6 +49,23 @@ public class StudentListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+            }
+        }
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
+     */
+    class StudentListViewCellDetailed extends ListCell<Student> {
+        @Override
+        protected void updateItem(Student student, boolean empty) {
+            super.updateItem(student, empty);
+
+            if (empty || student == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new StudentCardDetailed(student, getIndex() + 1).getRoot());
             }
         }
     }

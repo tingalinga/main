@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Address;
@@ -74,8 +76,6 @@ public class AdminNotesCommand extends Command {
         if (indexOfStudent == -1) {
             throw new CommandException("Name of Student not found");
         }
-
-
 
         Name originalName = lastShownList.get(indexOfStudent).getName();
         Phone originalPhone = lastShownList.get(indexOfStudent).getPhone();

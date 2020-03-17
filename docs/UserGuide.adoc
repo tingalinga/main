@@ -91,9 +91,10 @@ TeaPet's Class Progress Tracker is able to keep tabs on the class' academic prog
 every student's subject grades with this feature. Thereafter, there will be a graph plot displayed to highlight the
 progress of individual students as well as the entire class.
 
-=== Sticky Notes
-TeaPet's Sticky Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
-track of important information of their students spontaneously. Every note is tagged to one or more students, such you will be able to
+=== Notes
+TeaPet's Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
+track of important information of their students spontaneously. This feature supports two types of notes,
+*administrative* notes and *behavioural* notes. Every note is tagged to one or more students, such you will be able to
 better keep track of the stakeholder and information.
 
 === Saving data
@@ -155,3 +156,8 @@ e.g. `find James Jake`
 * *List* : `list`
 * *Help* : `help`
 * *Schedule* : `schedule`
+* *Notes* : `anotes [n/NAME] [c/CONTENT]`
+* *Detailed Student Information*: `detailed`
+* *Default Student Information*: `default`
+
+
