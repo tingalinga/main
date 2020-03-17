@@ -118,11 +118,7 @@ public abstract class Assessment {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append(" Unsubmitted: ")
-                .append(noOfUnmarkedSubmissions());
-        return builder.toString();
+        return "Assessment: " + this.description + "\n";
     }
 
 }
