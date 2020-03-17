@@ -1,13 +1,13 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -47,7 +47,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText("Mobile:  "+ student.getPhone().value);
+        phone.setText("Mobile:  " + student.getPhone().value);
         email.setText("Email:   " + student.getEmail().value);
         notes.setText("No. of Notes:    " + student.getNotes().size());
         student.getTags().stream()

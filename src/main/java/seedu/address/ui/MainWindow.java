@@ -176,11 +176,11 @@ public class MainWindow extends UiPart<Stage> {
             String consoleReply = commandResult.getFeedbackToUser();
             logger.info("Result: " + consoleReply);
             resultDisplay.setFeedbackToUser(consoleReply);
-            if(consoleReply.equals("The Student list now displays ALL details")) {
+            if (consoleReply.equals("The Student list now displays ALL details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), true);
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
-            if(consoleReply.equals("The Student list now displays DEFAULT details")) {
+            if (consoleReply.equals("The Student list now displays DEFAULT details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }

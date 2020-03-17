@@ -1,11 +1,11 @@
-package seedu.address.logic.commands.StudentDisplay;
+package seedu.address.logic.commands.studentdisplay;
+
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Adds a student to the address book.

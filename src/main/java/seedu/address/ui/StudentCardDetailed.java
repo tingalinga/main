@@ -58,8 +58,8 @@ public class StudentCardDetailed extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText("Mobile:  "+ student.getPhone().value);
-        address.setText("Address: " +   student.getAddress().value);
+        phone.setText("Mobile:  " + student.getPhone().value);
+        address.setText("Address: " + student.getAddress().value);
         email.setText("Email:   " + student.getEmail().value);
         temperature.setText("Temperature:   " + student.getTemperature().value + " \u2103");
         notes.setText("No. of Notes:    " + student.getNotes().size());
