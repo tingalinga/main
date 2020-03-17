@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
@@ -22,17 +23,19 @@ public abstract class Assessment {
     private ObservableList<Student> students;
     private HashMap<Student, Submission> submissionTracker = new HashMap<>();
 
-    public Assessment(String description, ObservableList<Student> students) {
+    public Assessment(String description) {
         this.description = description;
-        this.students = students;
-        Iterator<Student> itr = students.iterator();
-        while (itr.hasNext()) {
-            submissionTracker.put(itr.next(), new Submission());
-        }
+        this.students = null;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public void setStudents(List<Student> students) {
+        for (Student student: students) {
+            submissionTracker.put(student, new Submission());
+        }
     }
 
     public void changeDescription(String newDescription) {
