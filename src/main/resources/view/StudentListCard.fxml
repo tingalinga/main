@@ -1,47 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-      <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
-      </padding>
-      <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="46.0" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-      </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="temperature" styleClass="cell_small_label" text="\$temperature" />
-      <Label fx:id="nokName" styleClass="cell_small_label" text="\$nokName" />
-      <Label fx:id="nokRelationship" styleClass="cell_small_label" text="\$nokRelationship" />
-      <Label fx:id="nokContact" prefHeight="17.0" prefWidth="80.0" styleClass="cell_small_label" text="\$nokContact" />
-      <Label fx:id="notes" styleClass="cell_small_label" text="\$notes"/>
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
-
-    </VBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
-  </GridPane>
+<HBox id="cardPane" fx:id="cardPane" prefHeight="184.0" prefWidth="547.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox alignment="CENTER" prefHeight="331.0" prefWidth="85.0">
+      <children>
+         <ImageView fx:id="image" fitHeight="88.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/default_image.png" />
+            </image></ImageView>
+      </children>
+   </VBox>
+   <HBox prefHeight="184.0" prefWidth="458.0">
+      <children>
+        <GridPane prefHeight="184.0" prefWidth="230.0">
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+          </columnConstraints>
+          <VBox alignment="CENTER_LEFT" maxHeight="340.0" maxWidth="250.0" minHeight="105" minWidth="72.0" prefHeight="184.0" prefWidth="250.0" GridPane.columnIndex="0">
+            <padding>
+              <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="46.0" spacing="5">
+              <Label fx:id="id" styleClass="cell_big_label">
+                <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+              </Label>
+              <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            </HBox>
+            <FlowPane fx:id="tags" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            <Label fx:id="address" prefHeight="17.0" prefWidth="280.0" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
+      
+          </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+         <GridPane prefHeight="336.0" prefWidth="144.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+            <children>
+               <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minHeight="105" minWidth="-Infinity" prefHeight="184.0" prefWidth="230.0" GridPane.columnIndex="1">
+                  <padding>
+                     <Insets bottom="5" left="15" right="5" top="5" />
+                  </padding>
+                  <children>
+                     <Label fx:id="remark" prefHeight="17.0" prefWidth="140.0" styleClass="cell_small_label" text="\$remark" />
+                     <FlowPane fx:id="tags1" />
+                     <Label fx:id="email" prefHeight="17.0" prefWidth="140.0" styleClass="cell_small_label" text="\$email" />
+                     <Label fx:id="temperature" prefHeight="17.0" prefWidth="140.0" styleClass="cell_small_label" text="\$temperature" />
+                     <Label fx:id="nokName" prefHeight="17.0" prefWidth="140.0" styleClass="cell_small_label" text="\$nokName" />
+                     <Label fx:id="nokRelationship" prefHeight="17.0" prefWidth="140.0" styleClass="cell_small_label" text="\$nokRelationship" />
+                     <Label fx:id="nokContact" prefHeight="17.0" prefWidth="140.0" styleClass="cell_small_label" text="\$nokContact" />
+                  </children>
+               </VBox>
+            </children>
+         </GridPane>
+      </children>
+   </HBox>
 </HBox>

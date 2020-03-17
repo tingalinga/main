@@ -45,19 +45,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        if (argMultimap.getValueOptional(PREFIX_NAME).isPresent()) {
             editStudentDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+        if (argMultimap.getValueOptional(PREFIX_PHONE).isPresent()) {
             editStudentDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+        if (argMultimap.getValueOptional(PREFIX_EMAIL).isPresent()) {
             editStudentDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+        if (argMultimap.getValueOptional(PREFIX_ADDRESS).isPresent()) {
             editStudentDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimap.getValue(PREFIX_TEMPERATURE).isPresent()) {
+        if (argMultimap.getValueOptional(PREFIX_TEMPERATURE).isPresent()) {
             editStudentDescriptor.setTemperature(ParserUtil.parseTemperature(argMultimap.getValue(PREFIX_TEMPERATURE)
                     .get()));
         }
