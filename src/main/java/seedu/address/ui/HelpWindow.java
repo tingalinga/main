@@ -20,13 +20,15 @@ public class HelpWindow extends UiPart<Stage> {
             + "Clear : clear" + "\n" + "\n"
             + "Delete : delete INDEX" + "\n"
             + "e.g. delete 3" + "\n" + "\n"
-            + "Edit : edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]..." + "\n"
+            + "Edit : edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRcdESS] [t/TAG]..." + "\n"
             + "e.g. edit 2 n/James Lee e/jameslee@example.com" + "\n" + "\n"
             + "Find : find KEYWORD [MORE_KEYWORDS]" + "\n"
             + "e.g. find James Jake" + "\n" + "\n"
             + "List : list" + "\n" + "\n"
             + "Help : help" + "\n" + "\n"
-            + "Schedule : schedule";
+            + "Schedule : schedule" + "\n" + "\n"
+            + "Detailed student list : detailed" + "\n" + "\n"
+            + "Default student list : default";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
