@@ -13,14 +13,15 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP_MESSAGE =
-            "Add: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] nok/NAME-RELATIONSHIP-PHONE-NUMBER temp/XX.X..."
-            + "\n"
+            "Add: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] nok/NAME-RELATIONSHIP-PHONE-NUMBER temp/XX.X "
+            + "att/Present" + "\n"
             + "e.g. add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague"
             + "nok/jon-father-87654321 temp/36.2" + "\n" + "\n"
             + "Clear : clear" + "\n" + "\n"
             + "Delete : delete INDEX" + "\n"
             + "e.g. delete 3" + "\n" + "\n"
-            + "Edit : edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRcdESS] [t/TAG]..." + "\n"
+            + "Edit : edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [temp/TEMPERATURE] "
+            + "[att/ATTENDANCE]..." + "\n"
             + "e.g. edit 2 n/James Lee e/jameslee@example.com" + "\n" + "\n"
             + "Find : find KEYWORD [MORE_KEYWORDS]" + "\n"
             + "e.g. find James Jake" + "\n" + "\n"

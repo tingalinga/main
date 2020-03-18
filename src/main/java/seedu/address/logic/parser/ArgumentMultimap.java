@@ -59,6 +59,9 @@ public class ArgumentMultimap {
             case ("temp/"):
                 Optional<String> missingTemperatureString = Optional.of("Insert temperature here!");
                 return missingTemperatureString;
+            case ("att/"):
+                Optional<String> missingAttendanceString = Optional.of("Present");
+                return missingAttendanceString;
             default:
                 List<String> values = getAllValues(prefix);
                 return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));

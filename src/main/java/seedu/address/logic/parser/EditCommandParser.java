@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -34,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TEMPERATURE, PREFIX_TAG);
+                        PREFIX_ATTENDANCE, PREFIX_TEMPERATURE, PREFIX_TAG);
 
         Index index;
 
@@ -59,6 +60,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValueOptional(PREFIX_TEMPERATURE).isPresent()) {
             editStudentDescriptor.setTemperature(ParserUtil.parseTemperature(argMultimap.getValue(PREFIX_TEMPERATURE)
+                    .get()));
+        }
+        if (argMultimap.getValueOptional(PREFIX_ATTENDANCE).isPresent()) {
+            editStudentDescriptor.setAttendance(ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE)
                     .get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);

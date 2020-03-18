@@ -6,6 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 
+/**
+ * Represents the save academic report of the class.
+ */
 public class SavedAcademics implements ReadOnlyAcademics {
 
     private final Academics academics;
@@ -30,6 +33,9 @@ public class SavedAcademics implements ReadOnlyAcademics {
         this.academics.setAssessments(academics);
     }
 
+    /**
+     * Resets the academic report to default.
+     */
     public void resetData(ReadOnlyAcademics newData) {
         requireNonNull(newData);
 
@@ -60,7 +66,6 @@ public class SavedAcademics implements ReadOnlyAcademics {
         return academics.asUnmodifiableObservableList().size() + " Assessments";
     }
 
-//    @Override
     public ObservableList<Assessment> getSavedAcademics() {
         return academics.asUnmodifiableObservableList();
     }

@@ -15,6 +15,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
@@ -82,6 +83,7 @@ public class AdminNotesCommand extends Command {
         Email originalEmail = lastShownList.get(indexOfStudent).getEmail();
         Address originalAddress = lastShownList.get(indexOfStudent).getAddress();
         Temperature originalTemperature = lastShownList.get(indexOfStudent).getTemperature();
+        Attendance originalAttendance = lastShownList.get(indexOfStudent).getAttendance();
         NextOfKin originalNok = lastShownList.get(indexOfStudent).getNok();
         ArrayList<Notes> originalNotes = lastShownList.get(indexOfStudent).getNotes();
         Remark originalRemarks = lastShownList.get(indexOfStudent).getRemark();
@@ -89,7 +91,8 @@ public class AdminNotesCommand extends Command {
 
         originalNotes.add(adminNotes);
         Student editedStudent = new Student(originalName, originalPhone, originalEmail,
-                originalAddress, originalTemperature, originalNok, originalNotes, originalRemarks, originalTags);
+                originalAddress, originalTemperature, originalAttendance, originalNok, originalNotes, originalRemarks,
+                originalTags);
 
         model.setStudent(lastShownList.get(indexOfStudent), editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);

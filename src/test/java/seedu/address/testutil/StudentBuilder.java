@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
@@ -26,6 +27,7 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TEMPERATURE = "36.5";
+    public static final String DEFAULT_ATTENDANCE = "Present";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
     public static final String DEFAULT_NOK = "Joseph-Father-90045722";
 
@@ -34,6 +36,7 @@ public class StudentBuilder {
     private Email email;
     private Address address;
     private Temperature temperature;
+    private Attendance attendance;
     private ArrayList<Notes> notes;
     private Remark remark;
     private Set<Tag> tags;
@@ -45,6 +48,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         temperature = new Temperature(DEFAULT_TEMPERATURE);
+        attendance = new Attendance(DEFAULT_ATTENDANCE);
         notes = new ArrayList<>();
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
@@ -60,6 +64,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         temperature = studentToCopy.getTemperature();
+        attendance = studentToCopy.getAttendance();
         notes = new ArrayList<>(studentToCopy.getNotes());
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
@@ -115,6 +120,14 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendance(String attendance) {
+        this.attendance = new Attendance(attendance);
+        return this;
+    }
+
+    /**
      * Sets the {@code Remark} of the {@code Student} that we are building.
      */
     public StudentBuilder withRemark(String remark) {
@@ -130,8 +143,12 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Builds a student.
+     */
     public Student build() {
-        return new Student(name, phone, email, address, temperature, nok, notes, remark, tags);
+        return new Student(name, phone, email, address, temperature,
+                attendance, nok, notes, remark, tags);
     }
 
 }

@@ -3,10 +3,12 @@ package seedu.address.model.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEMPERATURE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
@@ -50,8 +52,10 @@ public class StudentTest {
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withTemperature(VALID_TEMPERATURE_BOB).withAttendance(VALID_ATTENDANCE_BOB).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
+
     }
 
     @Test
@@ -87,6 +91,12 @@ public class StudentTest {
         // different address -> returns false
         editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        //different temperature -> return false
+        editedAlice = new StudentBuilder(ALICE).withTemperature(VALID_TEMPERATURE_BOB).build();
+
+        //different attendance state -> return false
+        editedAlice = new StudentBuilder(ALICE).withAttendance(VALID_ATTENDANCE_BOB).build();
 
         // different tags -> returns false
         editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();

@@ -25,6 +25,7 @@ public class Student {
     // Data fields
     private final Address address;
     private final Temperature temperature;
+    private final Attendance attendance;
     private final Remark remark;
     private ArrayList<Notes> notes = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
@@ -33,8 +34,8 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, NextOfKin nok,
-                   ArrayList<Notes> notes, Remark remark, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, Attendance attendance,
+                   NextOfKin nok, ArrayList<Notes> notes, Remark remark, Set<Tag> tags) {
 
 
         requireAllNonNull(name, phone, email, tags);
@@ -43,6 +44,7 @@ public class Student {
         this.email = email;
         this.address = address;
         this.temperature = temperature;
+        this.attendance = attendance;
         this.notes.addAll(notes);
         this.remark = remark;
         this.tags.addAll(tags);
@@ -67,6 +69,10 @@ public class Student {
 
     public Temperature getTemperature() {
         return temperature;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
     }
 
     public Remark getRemark() {
@@ -131,6 +137,7 @@ public class Student {
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTemperature().equals(getTemperature())
+                && otherStudent.getAttendance().equals(getAttendance())
                 && otherStudent.getNotes().equals(getNotes())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -138,7 +145,7 @@ public class Student {
     @Override
     public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, temperature, remark, notes, tags);
+        return Objects.hash(name, phone, email, address, temperature, attendance, remark, notes, tags);
     }
 
     @Override
@@ -153,6 +160,8 @@ public class Student {
                 .append(getAddress())
                 .append(" Temperature: ")
                 .append(getTemperature())
+                .append(" Attendance: ")
+                .append(getAttendance())
                 .append("Notes: ")
                 .append(notes.size())
                 .append(" Remark: ")

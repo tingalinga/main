@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
@@ -33,6 +34,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final String address;
     private final String temperature;
+    private final String attendance;
     private final List<JsonAdaptedNotes> noted = new ArrayList<>();
     private final String remark;
     private final String nok;
@@ -44,7 +46,8 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("temperature") String temperature, @JsonProperty("nok") String nok,
+                              @JsonProperty("temperature") String temperature,
+                              @JsonProperty("attendance") String attendance, @JsonProperty("nok") String nok,
                               @JsonProperty("noted") List<JsonAdaptedNotes> noted,
                               @JsonProperty("remark") String remark,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -54,6 +57,7 @@ class JsonAdaptedStudent {
         this.email = email;
         this.address = address;
         this.temperature = temperature;
+        this.attendance = attendance;
         if (noted != null) {
             this.noted.addAll(noted);
         }
@@ -73,6 +77,7 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         address = source.getAddress().value;
         temperature = source.getTemperature().value;
+        attendance = source.getAttendance().value;
         ArrayList<Notes> allNotes = source.getNotes();
         for (Notes n : allNotes) {
             noted.add(new JsonAdaptedNotes(n));
@@ -140,6 +145,15 @@ class JsonAdaptedStudent {
         }
         final Temperature modelTemperature = new Temperature(temperature);
 
+        if (attendance == null) {
+            throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName())));
+        }
+        if (!Attendance.isValidAttendance(attendance)) {
+            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        final Attendance modelAttendance = new Attendance(attendance);
+
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
@@ -158,7 +172,7 @@ class JsonAdaptedStudent {
         final ArrayList<Notes> modelNotes = new ArrayList<>(studentNotes);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature,
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelAttendance,
                 modelNok, modelNotes, modelRemark, modelTags);
 
     }
