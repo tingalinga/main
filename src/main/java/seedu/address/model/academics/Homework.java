@@ -7,7 +7,7 @@ import java.util.List;
 import seedu.address.model.student.Student;
 
 /**
- * Represents a Homework assigned to the class.
+ * Represents a Homework assigned by the teacher to the class.
  */
 public class Homework extends Assessment {
 
@@ -18,6 +18,7 @@ public class Homework extends Assessment {
 
     public Homework(String description, String deadline) {
         super(description);
+        this.description = description;
         this.deadline = LocalDate.parse(deadline);
     }
 
@@ -46,6 +47,6 @@ public class Homework extends Assessment {
     @Override
     public String toString() {
         return "Homework: " + this.description + "\n"
-                + "due by " + this.deadline;
+                + "Due by " + this.deadline;
     }
 }

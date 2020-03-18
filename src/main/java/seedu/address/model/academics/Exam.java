@@ -18,6 +18,7 @@ public class Exam extends Assessment {
 
     public Exam(String description, String examDate) {
         super(description);
+        this.description = description;
         this.examDate = LocalDate.parse(examDate);
     }
 
@@ -46,7 +47,7 @@ public class Exam extends Assessment {
     @Override
     public String toString() {
         return "Exam: " + this.description + "\n"
-                + "due by " + this.examDate;
+                + "Due by " + this.examDate;
     }
 
 }
