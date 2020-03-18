@@ -13,7 +13,6 @@
   <!-- There's an issue with the alignment and maximum width of the TextArea. Need to revisit-->
 
   <HBox fx:id="cardPane" styleClass="cardPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
-    <TextArea fx:id="resultDisplay" editable="false" centerShape="true" wrapText="true" styleClass="result-display"/>
     <VBox alignment="CENTER" >
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
@@ -25,5 +24,6 @@
           </image></ImageView>
       </children>
     </VBox>
+    <TextArea fx:id="resultDisplay" editable="false" centerShape="true" wrapText="true" styleClass="result-display"/>
   </HBox>
 </StackPane>

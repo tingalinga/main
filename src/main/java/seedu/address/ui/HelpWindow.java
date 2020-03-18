@@ -13,23 +13,24 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP_MESSAGE =
-            "Add: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] nok/NAME-RELATIONSHIP-PHONE-NUMBER temp/XX.X "
-            + "att/Present" + "\n"
-            + "e.g. add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague"
-            + "nok/jon-father-87654321 temp/36.2" + "\n" + "\n"
-            + "Clear : clear" + "\n" + "\n"
-            + "Delete : delete INDEX" + "\n"
-            + "e.g. delete 3" + "\n" + "\n"
-            + "Edit : edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [temp/TEMPERATURE] "
-            + "[att/ATTENDANCE]..." + "\n"
-            + "e.g. edit 2 n/James Lee e/jameslee@example.com" + "\n" + "\n"
-            + "Find : find KEYWORD [MORE_KEYWORDS]" + "\n"
-            + "e.g. find James Jake" + "\n" + "\n"
-            + "List : list" + "\n" + "\n"
-            + "Help : help" + "\n" + "\n"
-            + "Schedule : schedule" + "\n" + "\n"
-            + "Detailed student list : detailed" + "\n" + "\n"
-            + "Default student list : default";
+            "This is the comprehensive list of Commands and and help on how to use them. Enjoy! :)" + "\n" + "\n"
+            + "\u2022 Adding Student: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]"
+            + "nok/NAME-RELATIONSHIP-PHONE-NUMBER " + "temp/XX.X " + "att/PRESENCE" + "\n" + "\n"
+            + "Example. add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend "
+            + "t/colleague nok/jon-father-87654321 temp/36.2 att/Present" + "\n" + "\n"
+            + "\u2022 Clear : clear" + "\n" + "\n"
+            + "\u2022 Delete Student: delete INDEX" + "\n" + "\n"
+            + "Example. delete 3" + "\n" + "\n"
+            + "\u2022 Edit Student: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]"
+            + "[temp/TEMPERATURE] [att/ATTENDANCE]" + "\n" + "\n"
+            + "Example. edit 2 n/James Lee e/jameslee@example.com" + "\n" + "\n"
+            + "\u2022 Finding keywords: find KEYWORD(S)" + "\n" + "\n"
+            + "Example. find James Jake" + "\n" + "\n"
+            + "\u2022 Help Display : help" + "\n" + "\n"
+            + "\u2022 Display personal Schedule : myschedule" + "\n" + "\n"
+            + "\u2022 Display detailed student list : detailed" + "\n" + "\n"
+            + "\u2022 Display default student list : default" + "\n" + "\n"
+            + "\u2022 Adding admin notes: anotes n/NAME c/CONTENT";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
