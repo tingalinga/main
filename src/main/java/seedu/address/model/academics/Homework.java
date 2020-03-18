@@ -2,12 +2,12 @@ package seedu.address.model.academics;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.List;
 
 import seedu.address.model.student.Student;
 
 /**
- * Represents a Homework assigned by the teacher to the class.
+ * Represents a Homework assigned to the class.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Homework extends Assessment {
 
@@ -16,30 +16,29 @@ public class Homework extends Assessment {
 
     private HashMap<Student, Submission> submissionTracker = new HashMap<>();
 
+    /**
+     * Every entry field must be present and not null.
+     * @param description description of homework.
+     * @param deadline deadline of homework.
+     */
     public Homework(String description, String deadline) {
         super(description);
         this.description = description;
         this.deadline = LocalDate.parse(deadline);
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setStudents(List<Student> students) {
-        for (Student student: students) {
-            submissionTracker.put(student, new Submission());
-        }
-    }
-
+    /**
+     * Returns the deadline of homework.
+     * @return deadline of homework.
+     */
     public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void changeDescription(String newDescription) {
-        this.description = newDescription;
-    }
-
+    /**
+     * Edit the deadline of the homework.
+     * @param deadline homework deadline.
+     */
     public void setDeadline(String deadline) {
         this.deadline = LocalDate.parse(deadline);
     }

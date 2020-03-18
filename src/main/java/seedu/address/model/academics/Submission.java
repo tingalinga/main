@@ -14,10 +14,18 @@ public class Submission implements Comparable<Submission> {
         this.score = 0;
     }
 
+    /**
+     * Returns a boolean that indicates if assessment has been submitted.
+     * @return boolean showing whether assessment is submitted by the student.
+     */
     public boolean hasSubmitted() {
         return this.submitted;
     }
 
+    /**
+     * Returns a boolean that indicates if assessment is marked.
+     * @return boolean showing whether assessment is marked.
+     */
     public boolean isMarked() {
         return this.marked;
     }
@@ -26,6 +34,9 @@ public class Submission implements Comparable<Submission> {
         return this.score;
     }
 
+    /**
+     * Submits current assessment.
+     */
     public void markAsSubmitted() {
         this.submitted = true;
     }

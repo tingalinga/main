@@ -20,21 +20,34 @@ public class SavedAcademics implements ReadOnlyAcademics {
     public SavedAcademics() {
     }
 
+    /**
+     * Creates a list of SavedAssessments using the assessments in {@code toBeCopied}
+     * @param toBeCopied list of assessments.
+     */
     public SavedAcademics(ReadOnlyAcademics toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
+    /**
+     * Returns the academic tracker for assessments.
+     * @return academic tracker for assessments.
+     */
     public Academics getAcademics() {
         return academics;
     }
 
+    /**
+     * Replaces the contents of the academic assessments with {@Code Assessments}.
+     * {@code Assessments} must not contain duplicate assessments.
+     * @param academics academic list of assessments.
+     */
     public void setAcademics(List<Assessment> academics) {
         this.academics.setAssessments(academics);
     }
 
     /**
-     * Resets the academic report to default.
+     * Resets the existing data of this {@code SavedAcademics} with {@code newData}.
      */
     public void resetData(ReadOnlyAcademics newData) {
         requireNonNull(newData);

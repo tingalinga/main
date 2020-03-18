@@ -9,7 +9,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
- * Represents a Assessment assigned to the class.
+ * Represents an Assessment given to the class to complete.
+ * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public abstract class Assessment {
 
@@ -21,32 +22,52 @@ public abstract class Assessment {
     private ObservableList<Student> students;
     private HashMap<Student, Submission> submissionTracker = new HashMap<>();
 
+    /**
+     * Every entry field must be present and not null.
+     * @param description description of assessment.
+     */
     public Assessment(String description) {
         this.description = description;
         this.students = null;
     }
 
+    /**
+     * Returns the description of the assessment.
+     * @return description of assessment.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Set the submission of each student to not submitted and unmarked.
+     * @param students list of students assigned with the assessment.
+     */
     public void setStudents(List<Student> students) {
         for (Student student: students) {
             submissionTracker.put(student, new Submission());
         }
     }
 
+    /**
+     * Edit the description of the assessment.
+     * @param newDescription new description of the assessment.
+     */
     public void changeDescription(String newDescription) {
         this.description = newDescription;
     }
 
+    /**
+     * Submits the submission of the student.
+     * @param student student submitting his/her assessment.
+     */
     public void setSingleSubmitted(Student student) {
         submissionTracker.get(student).markAsSubmitted();
     }
 
     /**
-     * Marks multiple students' assessments as submitted.
-     * @param studentList List of students who have completed their assessment.
+     * Submits multiple students' assessments.
+     * @param studentList list of students who have completed their assessment.
      */
     public void setMultipleSubmitted(Student ...studentList) {
         for (Student student: studentList) {
@@ -54,12 +75,17 @@ public abstract class Assessment {
         }
     }
 
+    /**
+     * Marks student's submission and assigns a score to the student's submission.
+     * @param student student submitting his/her assessment.
+     * @param score score given to the student's submission.
+     */
     public void mark(Student student, int score) {
         submissionTracker.get(student).markAssessment(score);
     }
 
     /**
-     * Returns a list of students who have yet submitted.
+     * Returns a list of students who have yet to submit their assessment.
      */
     public ArrayList<Student> checkUnsubmittedStudents() {
         ArrayList<Student> unsubmitted = new ArrayList<>();
@@ -72,7 +98,7 @@ public abstract class Assessment {
     }
 
     /**
-     * Returns a list of students who have yet being marked.
+     * Returns a list of students whose submissions have not been marked.
      */
     public ArrayList<Student> checkUnmarkedSubmissions() {
         ArrayList<Student> unmarked = new ArrayList<>();
@@ -85,7 +111,7 @@ public abstract class Assessment {
     }
 
     /**
-     * Returns the number of students that have yet been marked
+     * Returns the number of students whose submissions have not been marked.
      */
     public int noOfUnmarkedSubmissions() {
         int unmarked = 0;
@@ -98,7 +124,7 @@ public abstract class Assessment {
     }
 
     /**
-     * Returns true if provided assessment is a replica.
+     * Returns true if both assessments have the same description.
      */
     public boolean isSameAssessment(Assessment otherAssessment) {
         if (otherAssessment == this) {
@@ -108,7 +134,7 @@ public abstract class Assessment {
     }
 
     /**
-     * Returns the average score scored by the class.
+     * Returns the average score scored by the class for this assessment.
      */
     public int averageScore() {
         int totalScore = 0;
@@ -119,7 +145,7 @@ public abstract class Assessment {
     }
 
     /**
-     * Returns the median score scored by the class.
+     * Returns the median score scored by the class for this assessment.
      */
     public int medianScore() {
         ArrayList<Integer> scores = new ArrayList<>();
