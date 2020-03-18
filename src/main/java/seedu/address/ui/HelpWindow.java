@@ -24,6 +24,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\u2022 Edit Student: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]"
             + "[temp/TEMPERATURE] [att/ATTENDANCE]" + "\n" + "\n"
             + "Example. edit 2 n/James Lee e/jameslee@example.com" + "\n" + "\n"
+            + "\u2022 Listing out all the students : list" + "\n" + "\n"
             + "\u2022 Finding keywords: find KEYWORD(S)" + "\n" + "\n"
             + "Example. find James Jake" + "\n" + "\n"
             + "\u2022 Help Display : help" + "\n" + "\n"
