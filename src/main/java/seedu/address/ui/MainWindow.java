@@ -206,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
-            if(consoleReply.contains("New Admin Note added! Yay!")) {
+            if (consoleReply.contains("New Admin Note added! Yay!")) {
                 notesPanel = new NotesPanel(logic.getFilteredStudentList());
                 notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
             }

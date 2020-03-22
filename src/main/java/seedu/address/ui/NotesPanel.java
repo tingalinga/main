@@ -13,6 +13,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.notes.Notes;
 
+/**
+ * Controller class for NotesPanel fxml
+ */
 public class NotesPanel extends UiPart<Region> {
     private static final String FXML = "NotesPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(NotesPanel.class);
@@ -34,6 +37,9 @@ public class NotesPanel extends UiPart<Region> {
         return allNotes;
     }
 
+    /**
+     * Displays the note graphics
+     */
     class NotesViewCell extends ListCell<Notes> {
         @Override
         protected void updateItem(Notes note, boolean empty) {
