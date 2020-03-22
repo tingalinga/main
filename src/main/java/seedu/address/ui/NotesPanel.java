@@ -48,17 +48,5 @@ public class NotesPanel extends UiPart<Region> {
         }
     }
 
-    class StudentListViewCell extends ListCell<Student> {
-        @Override
-        protected void updateItem(Student student, boolean empty) {
-            super.updateItem(student, empty);
 
-            if (empty || student == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
-            }
-        }
-    }
 }
