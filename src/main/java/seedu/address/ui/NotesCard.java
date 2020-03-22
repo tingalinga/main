@@ -17,7 +17,7 @@ public class NotesCard extends UiPart<Region> {
 
     private static final String FXML = "NotesCard.fxml";
 
-    public final Student student;
+    public final Notes note;
 
     @FXML
     private Label name;
@@ -26,16 +26,17 @@ public class NotesCard extends UiPart<Region> {
     @FXML
     private Label content;
 
-    public NotesCard(Student student, int displayedIndex) {
+    public NotesCard(Notes note) {
         super(FXML);
-        this.student = student;
+        this.note = note;
+        name.setText(note.getStudent());
         noteId.setText("#1");
 //        ArrayList<Notes> notes = student.getNotes();
 //        String output = "";
 //        for(Notes n : notes) {
 //            output += n.getContent() + '\n';
 //        }
-        content.setText("Temp");
+        content.setText(note.getContent());
 
     }
 
