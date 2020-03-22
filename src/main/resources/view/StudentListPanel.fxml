@@ -3,6 +3,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="studentListView" VBox.vgrow="ALWAYS"/>
-</VBox>
+<?import javafx.scene.layout.HBox?>
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" >
+  <children>
+    <ListView fx:id="studentListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" prefWidth="500"/>
+    <ListView fx:id="notesView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
+  </children>
+</HBox>
