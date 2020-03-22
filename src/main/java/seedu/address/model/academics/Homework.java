@@ -28,6 +28,17 @@ public class Homework extends Assessment {
     }
 
     /**
+     * Every entry field must be present and not null.
+     * @param description description of homework.
+     * @param deadline deadline of homework.
+     */
+    public Homework(String description, LocalDate deadline) {
+        super(description);
+        this.description = description;
+        this.deadline = deadline;
+    }
+
+    /**
      * Returns the deadline of homework.
      * @return deadline of homework.
      */
@@ -46,6 +57,8 @@ public class Homework extends Assessment {
     @Override
     public String toString() {
         return "Homework: " + this.description + "\n"
-                + "Due by " + this.deadline;
+                + "Due by: " + this.deadline
+                + "Submitted: " + noOfSubmittedStudents()
+                + "Unsubmitted: " + noOfUnsubmittedStudents();
     }
 }

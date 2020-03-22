@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
 
 /**
  * Represents the save academic report of the class.
@@ -44,6 +45,21 @@ public class SavedAcademics implements ReadOnlyAcademics {
      */
     public void setAcademics(List<Assessment> academics) {
         this.academics.setAssessments(academics);
+    }
+
+    /**
+     * Returns true if an assessment with the same identity as {@code assessment} exists in the academics list.
+     */
+    public boolean hasAssessment(Assessment assessment) {
+        requireNonNull(assessment);
+        return academics.hasAssessment(assessment);
+    }
+
+    /**
+     * Adds an assessment to the list of current assessments.
+     */
+    public void addAssessment(Assessment toAdd) {
+        academics.addAssessment(toAdd);
     }
 
     /**

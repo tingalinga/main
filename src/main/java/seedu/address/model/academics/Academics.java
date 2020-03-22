@@ -39,6 +39,14 @@ public class Academics {
     }
 
     /**
+     * Returns true if an assessment with the same identity as {@code assessment} exists in the academics list.
+     */
+    public boolean hasAssessment(Assessment assessment) {
+        requireNonNull(assessment);
+        return assessments.contains(assessment);
+    }
+
+    /**
      * Sets a current assessment with the updated one.
      */
     // for future edit assessment command

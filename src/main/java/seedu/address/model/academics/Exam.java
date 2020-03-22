@@ -18,13 +18,24 @@ public class Exam extends Assessment {
 
     /**
      * Every entry field must be present and not null.
-     * @param description description of assessment.
+     * @param description description of exam.
      * @param examDate date of examination.
      */
     public Exam(String description, String examDate) {
         super(description);
         this.description = description;
         this.examDate = LocalDate.parse(examDate);
+    }
+
+    /**
+     * Every entry field must be present and not null.
+     * @param description description of exam.
+     * @param examDate date of examination.
+     */
+    public Exam(String description, LocalDate examDate) {
+        super(description);
+        this.description = description;
+        this.examDate = examDate;
     }
 
     /**
@@ -46,7 +57,9 @@ public class Exam extends Assessment {
     @Override
     public String toString() {
         return "Exam: " + this.description + "\n"
-                + "Due by " + this.examDate;
+                + "At: " + this.examDate
+                + "Submitted: " + noOfSubmittedStudents()
+                + "Unsubmitted: " + noOfUnsubmittedStudents();
     }
 
 }

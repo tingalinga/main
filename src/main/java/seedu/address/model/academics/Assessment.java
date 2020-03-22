@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
@@ -16,7 +18,6 @@ public abstract class Assessment {
 
     // Assessment properties
     private String description;
-    private Submission submission;
 
     // Tracking submissions
     private ObservableList<Student> students;
@@ -37,6 +38,21 @@ public abstract class Assessment {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Returns the submission tracker of the assessment.
+     * @return submission tracker of assessment.
+     */
+    public HashMap<Student, Submission> getSubmissionTracker() {
+        return submissionTracker;
+    }
+
+    public void setSubmissionTracker(HashMap<Student, Submission> newSubmissionTracker) {
+        Set<Map.Entry<Student, Submission>> entries = newSubmissionTracker.entrySet();
+        for (Map.Entry<Student, Submission> mapEntry: entries) {
+            submissionTracker.put(mapEntry.getKey(), mapEntry.getValue());
+        }
     }
 
     /**
@@ -95,6 +111,32 @@ public abstract class Assessment {
             }
         }
         return unsubmitted;
+    }
+
+    /**
+     * Returns the number of students who have yet to submit their assessment.
+     */
+    public int noOfUnsubmittedStudents() {
+        int unsubmitted = 0;
+        for (Student student: students) {
+            if (!submissionTracker.get(student).hasSubmitted()) {
+                unsubmitted++;
+            }
+        }
+        return unsubmitted;
+    }
+
+    /**
+     * Returns the number of students who have submitted their assessment.
+     */
+    public int noOfSubmittedStudents() {
+        int submitted = 0;
+        for (Student student: students) {
+            if (submissionTracker.get(student).hasSubmitted()) {
+                submitted++;
+            }
+        }
+        return submitted;
     }
 
     /**
@@ -159,6 +201,8 @@ public abstract class Assessment {
 
     @Override
     public String toString() {
-        return "Assessment: " + this.description + "\n";
+        return "Assessment: " + this.description + "\n"
+                + "Submitted: " + noOfSubmittedStudents()
+                + "Unsubmitted: " + noOfUnsubmittedStudents();
     }
 }
