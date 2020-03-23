@@ -36,6 +36,8 @@ public class StudentListPanel extends UiPart<Region> {
         case "admin":
             studentListView.setCellFactory(listView -> new StudentListViewCellAdmin());
             break;
+        default:
+            assert type.equals("detailed") || type.equals("admin") : "The string type is invalid.";
         }
     }
 
@@ -73,6 +75,9 @@ public class StudentListPanel extends UiPart<Region> {
         }
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
+     */
     class StudentListViewCellAdmin extends ListCell<Student> {
         @Override
         protected void updateItem(Student student, boolean empty) {
