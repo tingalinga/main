@@ -46,7 +46,7 @@
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="temperature" styleClass="cell_small_label" text="\$temperature" />
-      <Label fx:id="attendance" styleClass="cell_small_label" text="\$temperature" />
+      <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
       <Label fx:id="nokName" styleClass="cell_small_label" text="\$nokName" />
       <Label fx:id="nokRelationship" styleClass="cell_small_label" text="\$nokRelationship" />
       <Label fx:id="nokContact" styleClass="cell_small_label" text="\$nokContact" />

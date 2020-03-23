@@ -108,8 +108,11 @@ public class ParserUtil {
     public static Temperature parseTemperature(String temperature) throws ParseException {
         requireNonNull(temperature);
         String trimmedTemperature = temperature.trim();
-        if (!Temperature.isValidTemperature(trimmedTemperature)) {
-            throw new ParseException(Temperature.MESSAGE_CONSTRAINTS);
+        if (!Temperature.isValidTemperatureFirst(trimmedTemperature)) {
+            throw new ParseException(Temperature.MESSAGE_CONSTRAINTS_1);
+        }
+        if (!Temperature.isValidTemperatureSecond(trimmedTemperature)) {
+            throw new ParseException(Temperature.MESSAGE_CONSTRAINTS_2);
         }
         return new Temperature(trimmedTemperature);
     }

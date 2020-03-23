@@ -198,7 +198,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + consoleReply);
             resultDisplay.setFeedbackToUser(consoleReply);
             if (consoleReply.equals("The Student list now displays ALL details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), true);
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+            if (consoleReply.equals("The Student list now displays ADMIN details")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays DEFAULT details")) {
