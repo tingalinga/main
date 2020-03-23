@@ -67,6 +67,11 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        File file = new File("images");
+        if (!file.exists()) {
+            new File("images").mkdir();
+        }
     }
 
     /**
