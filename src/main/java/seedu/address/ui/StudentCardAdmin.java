@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
 
 /**
- * An UI component that displays information of a {@code Student}.
+ * An UI component that displays administrative information of a {@code Student}.
  */
 public class StudentCardAdmin extends UiPart<Region> {
 
