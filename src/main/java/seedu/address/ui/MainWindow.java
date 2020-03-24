@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
+    private NotesPanel notesPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private SchedulePage schedulePage;
@@ -44,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane notesPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +116,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        notesPanel = new NotesPanel(logic.getFilteredStudentList());
+        notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -191,12 +198,21 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + consoleReply);
             resultDisplay.setFeedbackToUser(consoleReply);
             if (consoleReply.equals("The Student list now displays ALL details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), true);
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+            if (consoleReply.equals("The Student list now displays ADMIN details")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays DEFAULT details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("New Admin Note added! Yay!")) {
+                notesPanel = new NotesPanel(logic.getFilteredStudentList());
+                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
             }
 
             if (commandResult.isShowHelp()) {

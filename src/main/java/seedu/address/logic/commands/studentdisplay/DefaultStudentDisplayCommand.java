@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds a student to the address book.
+ * Displays a concise version of the students list.
  */
 public class DefaultStudentDisplayCommand extends Command {
 
@@ -17,7 +17,7 @@ public class DefaultStudentDisplayCommand extends Command {
     public static final String MESSAGE_SUCCESS = "The Student list now displays DEFAULT details";
 
     /**
-     * Creates an DetailedStudentDisplayCommand
+     * Creates an DefaultStudentDisplayCommand
      */
     public DefaultStudentDisplayCommand() {
 
