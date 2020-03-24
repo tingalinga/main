@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -13,8 +16,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
-import java.io.File;
-import java.util.logging.Logger;
+
 
 /**
  * An UI component that displays administrative information of a {@code Student}.
@@ -47,7 +49,6 @@ public class StudentCardAdmin extends UiPart<Region> {
     private Label temperature;
     @FXML
     private Label attendance;
-
 
 
     public StudentCardAdmin(Student student, int displayedIndex) {
