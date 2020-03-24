@@ -8,8 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Temperature {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Temperature should only contain a 2 digits number followed by 1 decimal place";
+    public static final String MESSAGE_CONSTRAINTS_1 =
+            "Temperature should only contain a 2 digits number followed by 1 decimal place.";
+    public static final String MESSAGE_CONSTRAINTS_2 =
+            "Temperature should be between 25.0°C and 41.0°C";
     public static final String VALIDATION_REGEX = "\\d{2}" + "\\." + "\\d";
     public final String value;
 
@@ -20,18 +22,31 @@ public class Temperature {
      */
     public Temperature(String temperature) {
         requireNonNull(temperature);
-        checkArgument(isValidTemperature(temperature), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTemperatureFirst(temperature), MESSAGE_CONSTRAINTS_1);
+        checkArgument(isValidTemperatureSecond(temperature), MESSAGE_CONSTRAINTS_2);
         value = temperature;
     }
 
     /**
-     * Returns true if a given string is a valid temperature.
+     * Returns true if a given temperature is in the correct format.
      */
-    public static boolean isValidTemperature(String test) {
+    public static boolean isValidTemperatureFirst(String test) {
         if (test.equals("Insert temperature here!")) {
             return true;
         } else {
             return test.matches(VALIDATION_REGEX);
+        }
+    }
+
+    /**
+     * Returns true if a given temperature is in the given range.
+     */
+    public static boolean isValidTemperatureSecond(String test) {
+        if (test.equals("Insert temperature here!")) {
+            return true;
+        } else {
+            Double value = Double.valueOf(test);
+            return 25.0 <= value && value <= 41.0;
         }
     }
 
@@ -52,3 +67,4 @@ public class Temperature {
         return value.hashCode();
     }
 }
+

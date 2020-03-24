@@ -140,8 +140,11 @@ class JsonAdaptedStudent {
             throw new IllegalValueException((String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Temperature.class.getSimpleName())));
         }
-        if (!Temperature.isValidTemperature(temperature)) {
-            throw new IllegalValueException(Temperature.MESSAGE_CONSTRAINTS);
+        if (!Temperature.isValidTemperatureFirst(temperature)) {
+            throw new IllegalValueException(Temperature.MESSAGE_CONSTRAINTS_1);
+        }
+        if (!Temperature.isValidTemperatureSecond(temperature)) {
+            throw new IllegalValueException(Temperature.MESSAGE_CONSTRAINTS_2);
         }
         final Temperature modelTemperature = new Temperature(temperature);
 

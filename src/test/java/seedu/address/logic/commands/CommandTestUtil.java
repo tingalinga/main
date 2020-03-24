@@ -71,8 +71,9 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TEMPERATURE_DESC = " " + PREFIX_TEMPERATURE + "3a.5"; //"a" not allowed in
+    public static final String INVALID_TEMPERATURE_DESC_1 = " " + PREFIX_TEMPERATURE + "3a.5"; //"a" not allowed in
     // temperature
+    public static final String INVALID_TEMPERATURE_DESC_2 = " " + PREFIX_TEMPERATURE + "41.1";
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE + "Present!"; //"!" not allowed in
     //attendance
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags

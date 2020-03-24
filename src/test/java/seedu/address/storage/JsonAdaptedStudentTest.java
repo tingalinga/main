@@ -26,7 +26,8 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_TEMPERATURE = "36";
+    private static final String INVALID_TEMPERATURE_1 = "36";
+    private static final String INVALID_TEMPERATURE_2 = "41.1";
     private static final String INVALID_ATTENDANCE = "present";
     private static final String INVALID_NOK = "Jim-friend-9238457";
 
@@ -150,12 +151,22 @@ public class JsonAdaptedStudentTest {
     }
 
     @Test
-    public void toModelType_invalidTemperature_throwsIllegalValueException() {
+    public void toModelType_invalidTemperatureFormat_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_TEMPERATURE, VALID_ATTENDANCE, VALID_NOK, VALID_NOTES, VALID_REMARK, VALID_TAGS);
+                        INVALID_TEMPERATURE_1, VALID_ATTENDANCE, VALID_NOK, VALID_NOTES, VALID_REMARK, VALID_TAGS);
 
-        String expectedMessage = Temperature.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Temperature.MESSAGE_CONSTRAINTS_1;
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTemperatureRange_throwsIllegalValueException() {
+        JsonAdaptedStudent student =
+                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        INVALID_TEMPERATURE_2, VALID_ATTENDANCE, VALID_NOK, VALID_NOTES, VALID_REMARK, VALID_TAGS);
+
+        String expectedMessage = Temperature.MESSAGE_CONSTRAINTS_2;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
