@@ -1,8 +1,13 @@
 package seedu.address.model.academics;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
@@ -14,7 +19,8 @@ public class Homework extends Assessment {
     private String description;
     private LocalDate deadline;
 
-    private HashMap<Student, Submission> submissionTracker = new HashMap<>();
+    private ObservableList<Student> students;
+    private List<Submission> submissionTracker = new ArrayList<>();
 
     /**
      * Every entry field must be present and not null.
@@ -39,6 +45,16 @@ public class Homework extends Assessment {
     }
 
     /**
+     * Sets the submission tracker to the new submission tracker.
+     * @param newSubmissionTracker new submission tracker.
+     */
+    public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
+        for (Submission submission: newSubmissionTracker) {
+            submissionTracker.add(submission);
+        }
+    }
+
+    /**
      * Returns the deadline of homework.
      * @return deadline of homework.
      */
@@ -54,11 +70,35 @@ public class Homework extends Assessment {
         this.deadline = LocalDate.parse(deadline);
     }
 
+    /**
+     * Returns the number of students who have yet to submit their assessment.
+     */
+    public int noOfUnsubmittedStudents() {
+        int unsubmitted = 0;
+        for (Submission submission: submissionTracker) {
+            if (!submission.hasSubmitted()) {
+                unsubmitted++;
+            }
+        }
+        return unsubmitted;
+    }
+
+    /**
+     * Returns the number of students who have submitted their assessment.
+     */
+    public int noOfSubmittedStudents() {
+        int submitted = 0;
+        for (Submission submission: submissionTracker) {
+            if (submission.hasSubmitted()) {
+                submitted++;
+            }
+        }
+        return submitted;
+    }
+
     @Override
     public String toString() {
         return "Homework: " + this.description + "\n"
-                + "Due by: " + this.deadline
-                + "Submitted: " + noOfSubmittedStudents()
-                + "Unsubmitted: " + noOfUnsubmittedStudents();
+                + "Due by: " + this.deadline + "\n";
     }
 }

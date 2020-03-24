@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.academics.Academics;
+import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.Exam;
+import seedu.address.model.academics.Homework;
+import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -68,6 +73,24 @@ public class SampleDataUtil {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
+    }
+
+    public static Assessment[] getSampleAssessments() {
+        return new Assessment[] {
+                new Homework("CS3230 Assignment 2", "2020-03-23"),
+                new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
+                new Homework("CS3240 Paper Prototype", "2020-03-25"),
+                new Exam("CS2103 Finals", "2020-05-25"),
+                new Exam("CS3230 Finals", "2020-05-25")
+        };
+    }
+
+    public static ReadOnlyAcademics getSampleAcademics() {
+        Academics sampleAcademics = new Academics();
+        for (Assessment sampleAssessment : getSampleAssessments()) {
+            sampleAcademics.addAssessment(sampleAssessment);
+        }
+        return sampleAcademics;
     }
 
     /**

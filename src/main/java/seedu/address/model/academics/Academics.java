@@ -8,13 +8,14 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.exceptions.AssessmentNotFoundException;
 import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
 
 /**
  * Represents the academic report of the class
  */
-public class Academics {
+public class Academics implements ReadOnlyAcademics {
     private final ObservableList<Assessment> assessments = FXCollections.observableArrayList();
     private final ObservableList<Assessment> assessmentsUnmodifiableList =
             FXCollections.unmodifiableObservableList(assessments);
@@ -36,6 +37,16 @@ public class Academics {
             throw new DuplicateAssessmentException();
         }
         this.assessments.add(toAdd);
+    }
+
+    /**
+     * Deletes the assessment at the specified index in the list.
+     *
+     * @param index of the assessment in the list.
+     * @return Assessment object.
+     */
+    public Assessment deleteAssessment(Index index) {
+        return assessments.remove(index.getZeroBased());
     }
 
     /**
@@ -61,6 +72,29 @@ public class Academics {
             throw new DuplicateAssessmentException();
         }
         assessments.set(index, editedAssessment);
+    }
+
+    /**
+     * Sets the assessment object at the specified index in the list.
+     *
+     * @param index of the question in the list.
+     * @param assessment object.
+     */
+    public void setAssessment(Index index, Assessment assessment) {
+        if (contains(assessment)) {
+            throw new DuplicateAssessmentException();
+        }
+        assessments.set(index.getZeroBased(), assessment);
+    }
+
+    /**
+     * Returns the assessment object.
+     *
+     * @param index of the assessment in the list.
+     * @return Assessment object.
+     */
+    public Assessment getAssessment(Index index) {
+        return assessments.get(index.getZeroBased());
     }
 
     /**
@@ -155,4 +189,8 @@ public class Academics {
         return "You have " + assessments.size() + " assessments.\n";
     }
 
+    @Override
+    public ObservableList<Assessment> getAcademicsList() {
+        return assessments;
+    }
 }

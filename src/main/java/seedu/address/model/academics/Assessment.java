@@ -2,10 +2,7 @@ package seedu.address.model.academics;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
@@ -21,7 +18,7 @@ public abstract class Assessment {
 
     // Tracking submissions
     private ObservableList<Student> students;
-    private HashMap<Student, Submission> submissionTracker = new HashMap<>();
+    private List<Submission> submissionTracker = new ArrayList<>();
 
     /**
      * Every entry field must be present and not null.
@@ -44,14 +41,13 @@ public abstract class Assessment {
      * Returns the submission tracker of the assessment.
      * @return submission tracker of assessment.
      */
-    public HashMap<Student, Submission> getSubmissionTracker() {
+    public List<Submission> getSubmissionTracker() {
         return submissionTracker;
     }
 
-    public void setSubmissionTracker(HashMap<Student, Submission> newSubmissionTracker) {
-        Set<Map.Entry<Student, Submission>> entries = newSubmissionTracker.entrySet();
-        for (Map.Entry<Student, Submission> mapEntry: entries) {
-            submissionTracker.put(mapEntry.getKey(), mapEntry.getValue());
+    public void setSubmissionTracker(ArrayList<Submission> newSubmissionTracker) {
+        for (Submission submission: newSubmissionTracker) {
+            submissionTracker.add(submission);
         }
     }
 
@@ -61,7 +57,7 @@ public abstract class Assessment {
      */
     public void setStudents(List<Student> students) {
         for (Student student: students) {
-            submissionTracker.put(student, new Submission());
+            submissionTracker.add(new Submission(student.getName().fullName));
         }
     }
 
@@ -75,19 +71,27 @@ public abstract class Assessment {
 
     /**
      * Submits the submission of the student.
-     * @param student student submitting his/her assessment.
+     * @param studentName student submitting his/her assessment.
      */
-    public void setSingleSubmitted(Student student) {
-        submissionTracker.get(student).markAsSubmitted();
+    public void setSingleSubmitted(String studentName) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(studentName)) {
+                submission.markAsSubmitted();
+            }
+        }
     }
 
     /**
      * Submits multiple students' assessments.
      * @param studentList list of students who have completed their assessment.
      */
-    public void setMultipleSubmitted(Student ...studentList) {
-        for (Student student: studentList) {
-            submissionTracker.get(student).markAsSubmitted();
+    public void setMultipleSubmitted(String ...studentList) {
+        for (String studentName: studentList) {
+            for (Submission submission: submissionTracker) {
+                if (submission.getStudentName().equals(studentName)) {
+                    submission.markAsSubmitted();
+                }
+            }
         }
     }
 
@@ -96,18 +100,22 @@ public abstract class Assessment {
      * @param student student submitting his/her assessment.
      * @param score score given to the student's submission.
      */
-    public void mark(Student student, int score) {
-        submissionTracker.get(student).markAssessment(score);
+    public void mark(String student, int score) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(student)) {
+                submission.markAssessment(score);
+            }
+        }
     }
 
     /**
      * Returns a list of students who have yet to submit their assessment.
      */
-    public ArrayList<Student> checkUnsubmittedStudents() {
-        ArrayList<Student> unsubmitted = new ArrayList<>();
-        for (Student student: students) {
-            if (!submissionTracker.get(student).hasSubmitted()) {
-                unsubmitted.add(student);
+    public ArrayList<String> checkUnsubmittedStudents() {
+        ArrayList<String> unsubmitted = new ArrayList<>();
+        for (Submission submission: submissionTracker) {
+            if (!submission.hasSubmitted()) {
+                unsubmitted.add(submission.getStudentName());
             }
         }
         return unsubmitted;
@@ -118,8 +126,8 @@ public abstract class Assessment {
      */
     public int noOfUnsubmittedStudents() {
         int unsubmitted = 0;
-        for (Student student: students) {
-            if (!submissionTracker.get(student).hasSubmitted()) {
+        for (Submission submission: submissionTracker) {
+            if (!submission.hasSubmitted()) {
                 unsubmitted++;
             }
         }
@@ -131,8 +139,8 @@ public abstract class Assessment {
      */
     public int noOfSubmittedStudents() {
         int submitted = 0;
-        for (Student student: students) {
-            if (submissionTracker.get(student).hasSubmitted()) {
+        for (Submission submission: submissionTracker) {
+            if (submission.hasSubmitted()) {
                 submitted++;
             }
         }
@@ -142,11 +150,11 @@ public abstract class Assessment {
     /**
      * Returns a list of students whose submissions have not been marked.
      */
-    public ArrayList<Student> checkUnmarkedSubmissions() {
-        ArrayList<Student> unmarked = new ArrayList<>();
-        for (Student student: students) {
-            if (!submissionTracker.get(student).isMarked()) {
-                unmarked.add(student);
+    public ArrayList<String> checkUnmarkedSubmissions() {
+        ArrayList<String> unmarked = new ArrayList<>();
+        for (Submission submission: submissionTracker) {
+            if (!submission.isMarked()) {
+                unmarked.add(submission.getStudentName());
             }
         }
         return unmarked;
@@ -157,8 +165,8 @@ public abstract class Assessment {
      */
     public int noOfUnmarkedSubmissions() {
         int unmarked = 0;
-        for (Student student: students) {
-            if (!submissionTracker.get(student).isMarked()) {
+        for (Submission submission: submissionTracker) {
+            if (!submission.isMarked()) {
                 unmarked++;
             }
         }
@@ -180,8 +188,8 @@ public abstract class Assessment {
      */
     public int averageScore() {
         int totalScore = 0;
-        for (Student student: students) {
-            totalScore += submissionTracker.get(student).getScore();
+        for (Submission submission: submissionTracker) {
+            totalScore += submission.getScore();
         }
         return totalScore / students.size();
     }
@@ -191,8 +199,8 @@ public abstract class Assessment {
      */
     public int medianScore() {
         ArrayList<Integer> scores = new ArrayList<>();
-        for (Student student: students) {
-            scores.add(submissionTracker.get(student).getScore());
+        for (Submission submission: submissionTracker) {
+            scores.add(submission.getScore());
         }
         Collections.sort(scores);
         int median = (scores.size() % 2) == 0 ? scores.get(scores.size() / 2) : scores.get((scores.size() / 2) + 1);

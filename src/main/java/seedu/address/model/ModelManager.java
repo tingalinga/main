@@ -11,7 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.academics.SavedAcademics;
 import seedu.address.model.student.Student;
 
 /**
@@ -23,23 +26,29 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final SavedAcademics savedAcademics;
+    private final FilteredList<Assessment> filteredAssessments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook,
+                        ReadOnlyAcademics academics,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, academics, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.savedAcademics = new SavedAcademics(academics);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredAssessments = new FilteredList<>(this.savedAcademics.getAcademicsList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new SavedAcademics(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -113,10 +122,49 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
+    //=========== Academics ================================================================================
+
+    @Override
+    public ReadOnlyAcademics getAcademics() {
+        return savedAcademics;
+    }
+
     @Override
     public void addAssessment(Assessment assessment) {
-        addressBook.addAssessment(assessment);
-        // todo updatefilteredstudentlist version
+        savedAcademics.addAssessment(assessment);
+        updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
+    }
+
+    @Override
+    public void updateFilteredAcademicsList(Predicate<Assessment> predicate) {
+        requireNonNull(predicate);
+        filteredAssessments.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Assessment> getAllAssessments() {
+        return savedAcademics.getAllAssessments();
+    }
+
+    @Override
+    public Assessment getAssessment(Index index) {
+        return savedAcademics.getAssessment(index);
+    }
+
+    @Override
+    public Assessment deleteAssessment(Index index) {
+        return savedAcademics.deleteAssessment(index);
+    }
+
+    @Override
+    public boolean hasAssessment(Assessment assessment) {
+        requireNonNull(assessment);
+        return savedAcademics.hasAssessment(assessment);
+    }
+
+    @Override
+    public void setAssessment(Index index, Assessment assessment) {
+        savedAcademics.setAssessment(index, assessment);
     }
 
     //=========== Filtered Student List Accessors =============================================================
@@ -134,6 +182,11 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Assessment> getFilteredAcademicsList() {
+        return filteredAssessments;
     }
 
     @Override

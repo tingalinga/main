@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
 
 /**
@@ -56,10 +57,39 @@ public class SavedAcademics implements ReadOnlyAcademics {
     }
 
     /**
+     * Returns the assessment object.
+     *
+     * @param index of the assessment in the list.
+     * @return Assessment object.
+     */
+    public Assessment getAssessment(Index index) {
+        return academics.getAssessment(index);
+    }
+
+    /**
      * Adds an assessment to the list of current assessments.
      */
     public void addAssessment(Assessment toAdd) {
         academics.addAssessment(toAdd);
+    }
+
+    /**
+     * Removes {@code key} from this {@code SavedAcademics}. {@code key} must exist in saved
+     * academics.
+     */
+    public Assessment deleteAssessment(Index index) {
+        return academics.deleteAssessment(index);
+    }
+
+    /**
+     * Replaces the given Assessment {@code target} in the list with {@code editedAssessment}. {@code
+     * target} must exist in saved academics. The Assessment identity of {@code editedAssessment} must
+     * not be the same as another existing Assessment in the saved academics.
+     */
+    public void setAssessment(Index index, Assessment editedAssessment) {
+        requireNonNull(editedAssessment);
+
+        academics.setAssessment(index, editedAssessment);
     }
 
     /**
