@@ -158,13 +158,54 @@ This section describes some noteworthy details on how certain features are imple
 // tag::undoredo[]
 
 === Class particulars feature
-The class particulars feature uses the `AddCommandParser` class to parse the user command input into the different command types
-and validates the input.
-The feature comprises of five commands namely,
+The class particulars feature keeps track of essential student details.
+The feature comprises of four commands namely,
 
-* `AddCommand` -Adding students
+* `AddCommand` - Adds the student particulars into the class list
+* `EditCommand` - Edits the particulars of a student
+* `DeleteCommand` - Deletes the student information
+* `FindCommand` - Finds information of the required student
 
-The `add nok/` is
+The commands when executed, will interface with the methods exposed by the `Model` interface to perform the related operations
+(See <<Design-Logic,logic component>> for the general overview).
+
+[[Feature-Add]]
+==== Add command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `AddCommand` performs.
+
+*Step 1*. The `AddCommand#execute(Model model)` method is executed which takes in a necessary student name and additional attributes.
+[NOTE]
+Format for adding NOK details is `add n/<NAME> nok/<NAME-RELATIONSHIP-CONTACT>`.
+
+*Step 2*. The student is then searched through the `UniqueStudentList#students` list using the
+ `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
+with the duplicate students error message.
+
+*Step 3*. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
+the `AddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+
+==== Edit command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `EditCommand` performs.
+
+*Step 1*. The `EditCommand#execute(Model model)` method is executed which edit attributes of the selected student. The method
+checks if the `index` defined when instantiating `EditCommand(Index index, EditStudentDescriptor editStudentDescriptor)` is
+valid. Since it is optional for users to input fields, the fields not entered will reuse the existing values that are currently stored and defined
+in the `Student` object.
+
+*Step 2*. A new `Student` with the updated values is created and it is then searched  through the `UniqueStudentList#students` list using the
+ `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
+with the duplicate students error message.
+
+*Step 3*. The newly created `Student` will replace the old one through the `Model#setStudent(Student oldStudent, Student editedStudent`
+method.
+
+*Step 4*. The command box will be reflected with the `EditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
 
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
