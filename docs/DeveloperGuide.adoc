@@ -364,6 +364,14 @@ Use case ends.
 ** 1a1. TeaPet shows an error message.
 +
 Use case ends.
++
+[none]
+* 1b. Particulars are invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+Use case ends.
 
 [discrete]
 === Use case: UC02 - Edit student
@@ -457,7 +465,67 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC06 - Display students' academic progress
+=== Use case: UC06 - Display default class list.
+
+*MSS*
+
+1. User enters the command to display the default version of the class list.
+2. TeaPet displays the class list with the students' tags, mobile number, email, and notes.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC07 - Display admin class list.
+
+*MSS*
+
+1. User enters the command to display the administrative version of the class list.
+2. TeaPet displays the class list with the students' attendance status and temperature.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC08 - Display detailed class list.
+
+*MSS*
+
+1. User enters the command to display the detailed version of the class list.
+2. TeaPet displays the class list with all of the students' attributes.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC09 - Display students' academic progress
 
 *MSS*
 
@@ -496,7 +564,7 @@ _{More to be added}_
 == Glossary
 
 [[attributes]] Attributes::
-The information of a student. For example, phone number, address or emergency contacts.
+The information of a student. For example, phone number, address or next-of-kin contact details.
 
 [[class-list]] Class List::
 Class list of students
@@ -569,22 +637,36 @@ These instructions only provide a starting point for testers to work on; testers
 
 _{ more test cases ... }_
 
+=== Adding a student
+
+. Adding a student from class list with the specific name entered by user.
+
+.. Test case: `add n/John Tan Jun Wei p/83391329 e/john@gmail.com temp/36.0 a/Punggol Street 22` +
+   Expected: Student John Tan Jun Wei has been added to the class list.
+
+.. Test case: `add n/John Tan Jun Wei p/83393129 e/john@gmail.com temp/3@.5 a/Punggol Street 22` +
+   Expected: No student is added. Error details shown in the status message. Status bar remains the same.
+.. Other incorrect delete commands to try: `add John Tan Jun Wei`, `add n/John Tan Jun Wei p/phone number` (where the specified student is not a student in the class list due to invalid phone number.) _{give more}_ +
+   Expected: Similar to test case b.
+
+_{ more test cases ... }_
+
 === Deleting a student
 
-. Deleting a student from class list with the specific name entered by user
+. Deleting a student from class list with the specific name entered by user.
 
-.. Test case: `delete John Tan Jun Wei` +
-   Expected: Student "John Tan Jun Wei" is deleted from the list. Status message displays that the specified student has been deleted. Timestamp in the status bar is updated.
+.. Test case: `delete 1` +
+   Expected: The student at the first index is deleted from the list. Status message displays that the specified student has been deleted.
 .. Test case: `delete Tan John Wei Jun` +
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete john Tan Jun Wei` (where the specified student is not a student in the class list due to the capitalisation of the first alphabet.) _{give more}_ +
+.. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
 
 _{ more test cases ... }_
 
 === Saving data
 
-. Dealing with missing/corrupted data files
+. Dealing with missing/corrupted data files.
 
 .. _{explain how to simulate a missing/corrupted file and the expected behavior}_
 
