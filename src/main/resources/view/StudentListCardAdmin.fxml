@@ -11,7 +11,7 @@
             <Insets bottom="5" left="15" right="5" top="5" />
         </padding>
       <children>
-         <Circle fx:id="circle" fill="DODGERBLUE" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fx:id="circle" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
       </children>
     </VBox>
     <GridPane HBox.hgrow="ALWAYS">
