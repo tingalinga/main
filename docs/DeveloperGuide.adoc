@@ -207,6 +207,8 @@ method.
 
 *Step 4*. The command box will be reflected with the `EditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
 
+=== Import image feature
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
