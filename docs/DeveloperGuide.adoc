@@ -166,6 +166,9 @@ The feature comprises of four commands namely,
 The commands when executed, will interface with the methods exposed by the `Model` interface to perform the related operations
 (See <<Design-Logic,logic component>> for the general overview).
 
+.Class Diagram for Commands
+image::CommandClassDiagram.png[]
+
 [[Feature-Add]]
 ==== Add command
 
