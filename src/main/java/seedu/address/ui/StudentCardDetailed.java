@@ -1,12 +1,18 @@
 package seedu.address.ui;
 
+import java.io.File;
 import java.util.Comparator;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
 /**
@@ -15,6 +21,7 @@ import seedu.address.model.student.Student;
 public class StudentCardDetailed extends UiPart<Region> {
 
     private static final String FXML = "StudentListCardDetailed.fxml";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,6 +32,9 @@ public class StudentCardDetailed extends UiPart<Region> {
      */
 
     public final Student student;
+
+    @FXML
+    private ImageView image;
 
     @FXML
     private HBox cardPane;
@@ -54,7 +64,13 @@ public class StudentCardDetailed extends UiPart<Region> {
     private Label nokContact;
 
 
-
+    /**
+     * Constructor to create the student card controller.
+     * Important to note the format of the image, [namelowercasenospace].png
+     * eg. Name is Simon Lam, image name is simonlam.png. 1
+     * 1. All lower case
+     * 2. No whitespaces
+     */
     public StudentCardDetailed(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
@@ -72,6 +88,18 @@ public class StudentCardDetailed extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        try {
+            String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
+            File file = new File(path);
+            if (!file.exists()) {
+
+            } else {
+                Image newImage = new Image(file.toURI().toString());
+                image.setImage(newImage);
+            }
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+        }
     }
 
     @Override

@@ -57,9 +57,6 @@ public class StudentCard extends UiPart<Region> {
      * eg. Name is Simon Lam, image name is simonlam.png. 1
      * 1. All lower case
      * 2. No whitespaces
-     *
-     * @param student
-     * @param displayedIndex
      */
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
