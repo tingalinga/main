@@ -6,11 +6,15 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
@@ -35,6 +39,9 @@ public class StudentCard extends UiPart<Region> {
 
     @FXML
     private ImageView image;
+
+    @FXML
+    private Circle circle;
 
     @FXML
     private HBox cardPane;
@@ -73,10 +80,15 @@ public class StudentCard extends UiPart<Region> {
             String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
             File file = new File(path);
             if (!file.exists()) {
-
+                Image defaultImage = new Image("images/default_person.png");
+                circle.setStroke(Color.SEAGREEN);
+                circle.setFill(new ImagePattern(defaultImage));
+                circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
             } else {
                 Image newImage = new Image(file.toURI().toString());
-                image.setImage(newImage);
+                circle.setStroke(Color.SEAGREEN);
+                circle.setFill(new ImagePattern(newImage));
+                circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
             }
         } catch (Exception e) {
             logger.severe(e.getMessage());
