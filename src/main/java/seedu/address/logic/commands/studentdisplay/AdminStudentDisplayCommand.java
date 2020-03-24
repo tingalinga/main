@@ -8,18 +8,18 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Displays a comprehensive version of the students list.
+ * Displays an administrative version of the students list.
  */
-public class DetailedStudentDisplayCommand extends Command {
+public class AdminStudentDisplayCommand extends Command {
 
-    public static final String COMMAND_WORD = "detailed";
+    public static final String COMMAND_WORD = "admin";
 
-    public static final String MESSAGE_SUCCESS = "The Student list now displays ALL details";
+    public static final String MESSAGE_SUCCESS = "The Student list now displays ADMIN details";
 
     /**
-     * Creates an DetailedStudentDisplayCommand
+     * Creates an AdminStudentDisplayCommand.
      */
-    public DetailedStudentDisplayCommand() {
+    public AdminStudentDisplayCommand() {
 
     }
 

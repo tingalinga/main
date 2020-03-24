@@ -14,6 +14,7 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class Notes
 
 Package Student {
 Class Student
@@ -22,6 +23,17 @@ Class Email
 Class Name
 Class Phone
 Class UniqueStudentList
+Class Temperature
+Class NextOfKin
+NextOfKin *--> NextOfKinName
+NextOfKin *---> NextOfKinRelationship
+NextOfKin *---> NextOfKinContact
+}
+
+Package Notes {
+Class Notes
+Class AdminNotes
+Notes *--> AdminNotes
 }
 
 Package Tag {
@@ -47,6 +59,11 @@ Student *--> Phone
 Student *--> Email
 Student *--> Address
 Student *--> "*" Tag
+Student *--> Temperature
+Student *--> NextOfKin
+Student *--> Notes
+
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

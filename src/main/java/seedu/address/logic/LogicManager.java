@@ -10,10 +10,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.TeaPetParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -26,12 +28,12 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TeaPetParser teaPetParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        teaPetParser = new TeaPetParser();
     }
 
     @Override
@@ -39,7 +41,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = teaPetParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -52,6 +54,7 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    // ==================== ADDRESS BOOK START ====================
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
@@ -66,6 +69,24 @@ public class LogicManager implements Logic {
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
+    // ==================== ADDRESS BOOK END ====================
+
+    // ==================== ACADEMICS START ====================
+    @Override
+    public ReadOnlyAcademics getAcademics() {
+        return model.getAcademics();
+    }
+
+    @Override
+    public ObservableList<Assessment> getFilteredAcademicsList() {
+        return model.getFilteredAcademicsList();
+    }
+
+    @Override
+    public Path getAcademicsFilePath() {
+        return model.getAcademicsFilePath();
+    }
+    // ==================== ACADEMICS END ====================
 
     @Override
     public GuiSettings getGuiSettings() {

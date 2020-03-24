@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root minHeight="600" minWidth="550" onCloseRequest="#handleExit" title="TeaPet" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/teapot_icon.png" />
@@ -48,12 +49,13 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="studentList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <HBox fx:id="studentList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-          <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+          <StackPane fx:id="studentListPanelPlaceholder" minWidth="500" HBox.hgrow="ALWAYS"/>
+          <StackPane fx:id="notesPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+        </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

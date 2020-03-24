@@ -158,6 +158,7 @@ e.g. `find James Jake`
 * *Schedule* : `schedule`
 * *Notes* : `anotes [n/NAME] [c/CONTENT]`
 * *Detailed Student Information*: `detailed`
+* *Administrative Student Information*: `admin`
 * *Default Student Information*: `default`
 
 

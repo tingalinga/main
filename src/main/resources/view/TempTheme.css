@@ -90,21 +90,24 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#cce6ff, 20%);
+    -fx-background-color: derive(#b3d9ff, 20%);
+    -fx-border-color: black;
+    -fx-border-width: 1;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #b3d9ff;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #b3d9ff;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #b3d9ff;
 }
 
 .list-cell:filled:selected {
@@ -316,6 +319,17 @@
     -fx-border-color: black;
 }
 
+#notesPane {
+    -fx-background-color: #fff556;
+    -fx-background-insets: 10, 10, 10, 10;
+    -fx-background-radius: 10, 10, 10, 10;
+    -fx-border-width: 0.6;
+    -fx-border-color: grey;
+    -fx-border-radius: 10, 10, 10, 10;
+    -fx-padding: 10;
+    -fx-border-insets: 10, 10, 10, 10;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
@@ -333,7 +347,7 @@
     -fx-prompt-text-fill: #808088;
 }
 
-#filterField, #studentListPanel, #studentWebpage {
+#filterField, #ListPanel, #studentWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

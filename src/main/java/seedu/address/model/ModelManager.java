@@ -23,8 +23,8 @@ import seedu.address.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final AddressBook addressBook;
     private final FilteredList<Student> filteredStudents;
     private final SavedAcademics savedAcademics;
     private final FilteredList<Assessment> filteredAssessments;
@@ -75,6 +75,7 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    // ==================== AddressBook START ====================
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
@@ -85,8 +86,6 @@ public class ModelManager implements Model {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
-
-    //=========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -121,9 +120,9 @@ public class ModelManager implements Model {
 
         addressBook.setStudent(target, editedStudent);
     }
+    // ==================== AddressBook END ====================
 
-    //=========== Academics ================================================================================
-
+    // ==================== Academics START ====================
     @Override
     public ReadOnlyAcademics getAcademics() {
         return savedAcademics;
@@ -185,8 +184,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getAcademicsFilePath() {
+        return null;
+    }
+
+    @Override
+    public void setAcademicsFilePath(Path addressBookFilePath) {
+
+    }
+
+    @Override
     public ObservableList<Assessment> getFilteredAcademicsList() {
         return filteredAssessments;
+    }
+
+    @Override
+    public void setAcademics(ReadOnlyAddressBook addressBook) {
+
     }
 
     @Override

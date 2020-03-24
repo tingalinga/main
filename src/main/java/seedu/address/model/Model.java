@@ -38,6 +38,7 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    // ==================== ADDRESS BOOK START ====================
     /**
      * Returns the user prefs' address book file path.
      */
@@ -89,39 +90,29 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+    // ==================== ADDRESS BOOK END ====================
 
-    // ACADEMICS
+    // ==================== ACADEMICS START ====================
+    /**
+     * Returns the user prefs' academics file path.
+     */
+    Path getAcademicsFilePath();
+
+    /**
+     * Sets the user prefs' academics file path.
+     */
+    void setAcademicsFilePath(Path addressBookFilePath);
+
     /** Returns an unmodifiable view of the filtered academics list */
     ObservableList<Assessment> getFilteredAcademicsList();
 
     /**
-     * Updates the filter of the filtered academics list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Replaces address book data with the data in {@code addressBook}.
      */
-    void updateFilteredAcademicsList(Predicate<Assessment> predicate);
+    void setAcademics(ReadOnlyAddressBook addressBook);
 
     /** Returns the Academics */
     ReadOnlyAcademics getAcademics();
-
-    /**
-     * Adds the given assessment. {@code assessment} must not exist in the assessment list.
-     */
-    void addAssessment(Assessment assessment);
-
-    /**
-     * Returns the list of assessments stored.
-     */
-    ObservableList<Assessment> getAllAssessments();
-
-    /**
-     * Returns the assessment based on its Index.
-     */
-    Assessment getAssessment(Index index);
-
-    /**
-     * Returns the assessment that has been deleted based on the index.
-     */
-    Assessment deleteAssessment(Index index);
 
     /**
      * Returns true if an assessment with the same identity as {@code assessment} exists in the Academics
@@ -130,7 +121,24 @@ public interface Model {
     boolean hasAssessment(Assessment assessment);
 
     /**
+     * Returns the assessment that has been deleted based on the index.
+     */
+    Assessment deleteAssessment(Index index);
+
+    /**
+     * Adds the given assessment. {@code assessment} must not exist in the assessment list.
+     */
+    void addAssessment(Assessment assessment);
+
+    /**
      * Replaces the assessment at the specified index.
      */
     void setAssessment(Index index, Assessment assessment);
+
+    /**
+     * Updates the filter of the filtered academics list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAcademicsList(Predicate<Assessment> predicate);
+    // ==================== ACADEMICS END ====================
 }

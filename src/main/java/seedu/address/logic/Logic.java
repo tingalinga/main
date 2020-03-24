@@ -26,6 +26,7 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    // ==================== ADDRESS BOOK START ====================
     /**
      * Returns the AddressBook.
      *
@@ -37,6 +38,13 @@ public interface Logic {
     ObservableList<Student> getFilteredStudentList();
 
     /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getAddressBookFilePath();
+    // ==================== ADDRESS BOOK END ====================
+
+    // ==================== ACADEMICS START ====================
+    /**
      * Returns the Academics.
      *
      * @see Model#getAcademics()
@@ -47,9 +55,10 @@ public interface Logic {
     ObservableList<Assessment> getFilteredAcademicsList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' academics file path.
      */
-    Path getAddressBookFilePath();
+    Path getAcademicsFilePath();
+    // ==================== ACADEMICS START ====================
 
     /**
      * Returns the user prefs' GUI settings.

@@ -10,7 +10,7 @@ public class Attendance {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Attendance should either be 'Present', 'Absent', 'Late' or 'Sick'";
+            "Attendance should either be \"Present\", \"Absent\", \"Late\" or \"Sick\".";
     public static final String VALIDATION_REGEX_PRESENT = "Present";
     public static final String VALIDATION_REGEX_ABSENT = "Absent";
     public static final String VALIDATION_REGEX_LATE = "Late";
