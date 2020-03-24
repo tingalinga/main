@@ -123,6 +123,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
+* stores the Notes data.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -141,6 +142,7 @@ image::StorageClassDiagram.png[]
 
 The `Storage` component,
 
+* converts Model objects into savable data in JSON-format and vice versa.
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in json format and read it back.
 
@@ -154,6 +156,16 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::undoredo[]
+
+=== Class particulars feature
+The class particulars feature uses the `AddCommandParser` class to parse the user command input into the different command types
+and validates the input.
+The feature comprises of five commands namely,
+
+* `AddCommand` -Adding students
+
+The `add nok/` is
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
