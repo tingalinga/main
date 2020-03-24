@@ -1,10 +1,22 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
+
+
 
 /**
  * An UI component that displays administrative information of a {@code Student}.
@@ -12,6 +24,7 @@ import seedu.address.model.student.Student;
 public class StudentCardAdmin extends UiPart<Region> {
 
     private static final String FXML = "StudentListCardAdmin.fxml";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,6 +35,9 @@ public class StudentCardAdmin extends UiPart<Region> {
      */
 
     public final Student student;
+
+    @FXML
+    private Circle circle;
 
     @FXML
     private HBox cardPane;
@@ -35,7 +51,6 @@ public class StudentCardAdmin extends UiPart<Region> {
     private Label attendance;
 
 
-
     public StudentCardAdmin(Student student, int displayedIndex) {
         super(FXML);
         this.student = student;
@@ -43,6 +58,23 @@ public class StudentCardAdmin extends UiPart<Region> {
         name.setText(student.getName().fullName);
         temperature.setText("Temperature:   " + student.getTemperature().value + " \u2103");
         attendance.setText("Attendance:   " + student.getAttendance().value);
+        try {
+            String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
+            File file = new File(path);
+            if (!file.exists()) {
+                Image defaultImage = new Image("images/default_person.png");
+                circle.setStroke(Color.SEAGREEN);
+                circle.setFill(new ImagePattern(defaultImage));
+                circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+            } else {
+                Image newImage = new Image(file.toURI().toString());
+                circle.setStroke(Color.SEAGREEN);
+                circle.setFill(new ImagePattern(newImage));
+                circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+            }
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+        }
     }
 
     @Override

@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <VBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="85.0">
     <padding>
       <Insets bottom="5" left="15" right="5" top="5" />
     </padding>
     <children>
-      <ImageView fx:id="image" fitHeight="88.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
-        <image>
-          <Image url="@../images/default_person.png" />
-        </image></ImageView>
+         <Circle fx:id="circle" fill="DODGERBLUE" radius="58.0" stroke="BLACK" strokeType="INSIDE" />
     </children>
   </VBox>
   <GridPane HBox.hgrow="ALWAYS">
@@ -50,7 +40,7 @@
       <Label fx:id="nokName" styleClass="cell_small_label" text="\$nokName" />
       <Label fx:id="nokRelationship" styleClass="cell_small_label" text="\$nokRelationship" />
       <Label fx:id="nokContact" styleClass="cell_small_label" text="\$nokContact" />
-      <Label fx:id="notes" styleClass="cell_small_label" text="\$notes"/>
+      <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
 
     </VBox>
       <rowConstraints>
