@@ -123,13 +123,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
+* stores the Notes data.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-[NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Student` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Student` needing their own `Tag` object. An example of how such a model may look like is given below. +
- +
-image:BetterModelClassDiagram.png[]
+
 
 [[Design-Storage]]
 === Storage component
@@ -141,6 +139,7 @@ image::StorageClassDiagram.png[]
 
 The `Storage` component,
 
+* converts Model objects into savable data in JSON-format and vice versa.
 * can save `UserPref` objects in json format and read it back.
 * can store `Student`, `Academics` and `PersonalSchedule` data in a single json file, which can be read.
 
@@ -154,6 +153,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::undoredo[]
+
+=== Class particulars feature
+The class particulars feature keeps track of essential student details.
+The feature comprises of four commands namely,
+
+* `AddCommand` - Adds the student particulars into the class list
+* `EditCommand` - Edits the particulars of a student
+* `DeleteCommand` - Deletes the student information
+* `FindCommand` - Finds information of the required student
+
+The commands when executed, will interface with the methods exposed by the `Model` interface to perform the related operations
+(See <<Design-Logic,logic component>> for the general overview).
+
+[[Feature-Add]]
+==== Add command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `AddCommand` performs.
+
+*Step 1*. The `AddCommand#execute(Model model)` method is executed which takes in a necessary student name and additional attributes.
+[NOTE]
+Format for adding NOK details is `add n/<NAME> nok/<NAME-RELATIONSHIP-CONTACT>`.
+
+*Step 2*. The student is then searched through the `UniqueStudentList#students` list using the
+ `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
+with the duplicate students error message.
+
+*Step 3*. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
+the `AddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+
+==== Edit command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `EditCommand` performs.
+
+*Step 1*. The `EditCommand#execute(Model model)` method is executed which edit attributes of the selected student. The method
+checks if the `index` defined when instantiating `EditCommand(Index index, EditStudentDescriptor editStudentDescriptor)` is
+valid. Since it is optional for users to input fields, the fields not entered will reuse the existing values that are currently stored and defined
+in the `Student` object.
+
+*Step 2*. A new `Student` with the updated values is created and it is then searched  through the `UniqueStudentList#students` list using the
+ `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
+with the duplicate students error message.
+
+*Step 3*. The newly created `Student` will replace the old one through the `Model#setStudent(Student oldStudent, Student editedStudent`
+method.
+
+*Step 4*. The command box will be reflected with the `EditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
