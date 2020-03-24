@@ -95,6 +95,25 @@ public class StudentCard extends UiPart<Region> {
         }
     }
 
+    public void refresh() {
+        try {
+            String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
+            File file = new File(path);
+            if (!file.exists()) {
+                Image defaultImage = new Image("images/default_person.png");
+                circle.setStroke(Color.SEAGREEN);
+                circle.setFill(new ImagePattern(defaultImage));
+                circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+            } else {
+                Image newImage = new Image(file.toURI().toString());
+                circle.setStroke(Color.SEAGREEN);
+                circle.setFill(new ImagePattern(newImage));
+                circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
+            }
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+        }
+    }
 
     @Override
     public boolean equals(Object other) {
