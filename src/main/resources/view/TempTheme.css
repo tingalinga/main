@@ -97,6 +97,7 @@
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #b3d9ff;
 }
 
 .list-cell:filled:even {
@@ -344,7 +345,7 @@
     -fx-prompt-text-fill: #808088;
 }
 
-#filterField, #studentListPanel, #studentWebpage {
+#filterField, #ListPanel, #studentWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
