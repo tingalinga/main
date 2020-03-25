@@ -12,6 +12,7 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.academics.Submission;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -83,6 +84,7 @@ public class SampleDataUtil {
     public static ReadOnlyAcademics getSampleAcademics() {
         Academics sampleAcademics = new Academics();
         for (Assessment sampleAssessment : getSampleAssessments()) {
+            sampleAssessment.setStudents(Arrays.asList(getSampleStudents()));
             sampleAcademics.addAssessment(sampleAssessment);
         }
         return sampleAcademics;

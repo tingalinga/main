@@ -45,12 +45,6 @@ public abstract class Assessment {
         return submissionTracker;
     }
 
-    public void setSubmissionTracker(ArrayList<Submission> newSubmissionTracker) {
-        for (Submission submission: newSubmissionTracker) {
-            submissionTracker.add(submission);
-        }
-    }
-
     /**
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.
