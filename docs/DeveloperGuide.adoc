@@ -184,6 +184,13 @@ with the duplicate students error message.
 
 *Step 3*. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
 the `AddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+[NOTE]
+If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be similar to step 2, where either a unknown command
+or wrong format error message will be displayed.
+
+The following sequence diagram shows how the add operation works:
+
+image::AddSequenceDiagram.png[]
 
 ==== Edit command
 
