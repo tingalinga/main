@@ -9,12 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
-import seedu.address.model.academics.SavedAcademics;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Academics that is serializable to JSON format.
  */
 @JsonRootName(value = "academics")
 class JsonSerializableAcademics {
@@ -45,16 +45,16 @@ class JsonSerializableAcademics {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public SavedAcademics toModelType() throws IllegalValueException {
-        SavedAcademics savedAcademics = new SavedAcademics();
+    public Academics toModelType() throws IllegalValueException {
+        Academics academics = new Academics();
         for (JsonAdaptedAssessment jsonAdaptedAssessment : assessments) {
             Assessment assessment = jsonAdaptedAssessment.toModelType();
-            if (savedAcademics.hasAssessment(assessment)) {
+            if (academics.hasAssessment(assessment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ASSESSMENT);
             }
-            savedAcademics.addAssessment(assessment);
+            academics.addAssessment(assessment);
         }
-        return savedAcademics;
+        return academics;
     }
 
 }

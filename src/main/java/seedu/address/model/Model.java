@@ -103,13 +103,10 @@ public interface Model {
      */
     void setAcademicsFilePath(Path addressBookFilePath);
 
-    /** Returns an unmodifiable view of the filtered academics list */
-    ObservableList<Assessment> getFilteredAcademicsList();
-
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAcademics(ReadOnlyAddressBook addressBook);
+    void setAcademics(ReadOnlyAcademics academics);
 
     /** Returns the Academics */
     ReadOnlyAcademics getAcademics();
@@ -123,7 +120,7 @@ public interface Model {
     /**
      * Returns the assessment that has been deleted based on the index.
      */
-    Assessment deleteAssessment(Index index);
+    void deleteAssessment(Assessment target);
 
     /**
      * Adds the given assessment. {@code assessment} must not exist in the assessment list.
@@ -133,7 +130,10 @@ public interface Model {
     /**
      * Replaces the assessment at the specified index.
      */
-    void setAssessment(Index index, Assessment assessment);
+    void setAssessment(Assessment target, Assessment assessment);
+
+    /** Returns an unmodifiable view of the filtered academics list */
+    ObservableList<Assessment> getFilteredAcademicsList();
 
     /**
      * Updates the filter of the filtered academics list to filter by the given {@code predicate}.

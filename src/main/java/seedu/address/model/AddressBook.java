@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.academics.Academics;
-import seedu.address.model.academics.Assessment;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 
@@ -101,7 +99,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students";
-        // TODO: refine later
     }
 
     @Override
