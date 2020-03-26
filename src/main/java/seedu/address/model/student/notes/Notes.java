@@ -1,9 +1,9 @@
 package seedu.address.model.student.notes;
 
 /**
- * An abstract class representing the Notes.
+ * A class representing the Notes feature.
  */
-public abstract class Notes {
+public class Notes {
     private final String student;
     private final String content;
 
@@ -13,13 +13,34 @@ public abstract class Notes {
     }
 
     public String getStudent() {
-        return student;
+        return this.student;
     }
 
     public String getContent() {
-        return content;
+        return this.content;
     }
 
+    public Notes setStudent(String newStudent) {
+        return new Notes(newStudent, this.getContent());
+    }
+
+    public Notes setContent(String newContent) {
+        return new Notes(this.getStudent(), newContent);
+    }
+
+    @Override
+    public String toString() {
+        return "[Notes]"
+                + " Student:'" + getStudent() + '\''
+                + ", Content: '" + getContent() + '\'';
+    }
+
+    /**
+     * Driver function to test the functionality of StickyNotes
+     * @param args
+     */
+    public static void main(String[] args) {
+        Notes s1 = new Notes("Alex Yeoh", "Late for class today");
+        System.out.println(s1);
+    }
 }
-
-
