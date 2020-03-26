@@ -23,12 +23,12 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
-import seedu.address.model.student.notes.Notes;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 
 /**
- * Adds Admin Notes to a Student
+ * Adds Notes to a Student
  */
 public class NotesCommand extends Command {
 
@@ -44,7 +44,7 @@ public class NotesCommand extends Command {
     private final Notes note;
 
     /**
-     *
+     * Creates a NotesCommand to add a note to a student.
      * @param name of the student which the note belongs to
      * @param content of the note
      */
