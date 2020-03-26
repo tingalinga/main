@@ -46,9 +46,10 @@ class JsonAdaptedSubmission {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Submission toModelType() {
-        boolean modelSubmitted = submitted.equals("Submitted") ? true : false;
-        boolean modelMarked = marked.equals("Marked") ? true : false;
+        boolean modelSubmitted = submitted.equals("Submitted");
+        boolean modelMarked = marked.equals("Marked");
         int modelScore = Integer.parseInt(score);
+
         return new Submission(student, modelSubmitted, modelMarked, modelScore);
     }
 

@@ -1,5 +1,6 @@
 package seedu.address.storage.academics;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -19,34 +20,31 @@ import seedu.address.model.academics.Submission;
  */
 class JsonAdaptedAssessment {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "question %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assessments %s field is missing!";
 
     private final String description;
     private final List<JsonAdaptedSubmission> submissionTracker = new ArrayList<>();
     private final String type;
-    private String deadline = null;
-    private String examDate = null;
+    private String date = null;
 
     /**
-     * Constructs a {@code JsonAdaptedAssessment} with the given question details.
+     * Constructs a {@code JsonAdaptedAssessment} with the given assessment details.
      */
     @JsonCreator
     public JsonAdaptedAssessment(@JsonProperty("description") String description,
-                                 @JsonProperty("submission") List<JsonAdaptedSubmission> submissionTracker,
+                                 @JsonProperty("submissions") List<JsonAdaptedSubmission> submissionTracker,
                                  @JsonProperty("type") String type,
-                                 @JsonProperty("date") String deadline,
-                                 @JsonProperty("date") String examDate) {
+                                 @JsonProperty("date") String date) {
         this.description = description;
         if (submissionTracker != null) {
             this.submissionTracker.addAll(submissionTracker);
         }
         this.type = type;
-        this.deadline = deadline;
-        this.examDate = examDate;
+        this.date = date;
     }
 
     /**
-     * Converts a given {@code Question} into this class for Jackson use.
+     * Converts a given {@code Assessment} into this class for Jackson use.
      */
     public JsonAdaptedAssessment(Assessment source) {
         description = source.getDescription();
@@ -57,21 +55,19 @@ class JsonAdaptedAssessment {
 
         if (source instanceof Homework) {
             type = "homework";
-            deadline = ((Homework) source).getDeadline().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+            date = ((Homework) source).getDeadline().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         } else if (source instanceof Exam) {
             type = "exam";
-            examDate = ((Exam) source).getExamDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+            date = ((Exam) source).getExamDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         } else {
             type = null;
         }
     }
 
     /**
-     * Converts this Jackson-friendly adapted assessment object into the model's {@code Assessment}
-     * object.
+     * Converts this Jackson-friendly adapted assessment object into the model's {@code Assessment} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *                               question.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted assessment.
      */
     public Assessment toModelType() throws IllegalValueException {
         if (description == null) {
@@ -90,18 +86,16 @@ class JsonAdaptedAssessment {
         }
         final String modelType = type;
 
-        if (type.equals("homework")) {
-            if (deadline == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DEADLINE"));
-            }
-            Homework modelHomework = new Homework(description, deadline);
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DATE"));
+        }
+        String modelDate = convertDateFormat(date);
+        if (modelType.equals("homework")) {
+            Homework modelHomework = new Homework(description, modelDate);
             modelHomework.setSubmissionTracker(modelSubmission);
             return modelHomework;
-        } else if (type.equals("exam")) {
-            if (examDate == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "EXAM DATE"));
-            }
-            Exam modelExam = new Exam(description, examDate);
+        } else if (modelType.equals("exam")) {
+            Exam modelExam = new Exam(description, modelDate);
             modelExam.setSubmissionTracker(modelSubmission);
             return modelExam;
         } else {
@@ -109,4 +103,51 @@ class JsonAdaptedAssessment {
         }
     }
 
+    /**
+     * Converts string indicating month to its corresponding integer as a string.
+     * @param month string of month.
+     * @return integer of month formatted as a string.
+     */
+    public String convertMonthToInt(String month) {
+        switch (month) {
+            case "Jan":
+                return "01";
+            case "Feb":
+                return "02";
+            case "Mar":
+                return "03";
+            case "Apr":
+                return "04";
+            case "May":
+                return "05";
+            case "Jun":
+                return "06";
+            case "Jul":
+                return "07";
+            case "Aug":
+                return "08";
+            case "Sep":
+                return "09";
+            case "Oct":
+                return "10";
+            case "Nov":
+                return "11";
+            default:
+                return "12";
+        }
+    }
+
+    /**
+     * Converts format of date that can be parsed by java.time.LocalDateTime.
+     *
+     * @param date string of date.
+     * @return formatted string that can be parsed by java.time.LocalDateTime.
+     */
+    public String convertDateFormat(String date) {
+        String[] parts = date.split(" ");
+        String year = parts[2];
+        String month = convertMonthToInt(parts[1]);
+        String day = String.format("%02d", Integer.parseInt(parts[0]));
+        return year + "-" + month + "-" + day;
+    }
 }

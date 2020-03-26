@@ -27,21 +27,21 @@ class JsonSerializableAcademics {
      * Constructs a {@code JsonSerializableAcademics} with the given assessments.
      */
     @JsonCreator
-    public JsonSerializableAcademics(@JsonProperty("assessment") List<JsonAdaptedAssessment> assessments) {
+    public JsonSerializableAcademics(@JsonProperty("assessments") List<JsonAdaptedAssessment> assessments) {
         this.assessments.addAll(assessments);
     }
 
     /**
      * Converts a given {@code ReadOnlyAcademics} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableAcademics}.
      */
     public JsonSerializableAcademics(ReadOnlyAcademics source) {
         assessments.addAll(source.getAcademicsList().stream().map(JsonAdaptedAssessment::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this academics into the model's {@code Academics} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
