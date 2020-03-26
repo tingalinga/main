@@ -20,13 +20,16 @@ public class NotesCard extends UiPart<Region> {
     private Label noteId;
     @FXML
     private Label content;
+    @FXML
+    private Label dateTime;
 
-    public NotesCard(Notes note) {
+    public NotesCard(Notes note, int displayedIndex) {
         super(FXML);
         this.note = note;
-        name.setText(note.getStudent());
-        noteId.setText("#1");
-        content.setText(note.getContent());
+        name.setText("Student: " + note.getStudent());
+        noteId.setText("Note Index: #" + displayedIndex);
+        content.setText("\n" + note.getContent());
+        dateTime.setText("Added on: " + note.getDateTime());
 
     }
 

@@ -10,8 +10,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.student.Student;
 import seedu.address.model.notes.Notes;
+import seedu.address.model.student.Student;
+
 
 /**
  * Controller class for NotesPanel fxml
@@ -49,7 +50,7 @@ public class NotesPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new NotesCard(note).getRoot());
+                setGraphic(new NotesCard(note, getIndex() + 1).getRoot());
             }
         }
     }

@@ -14,6 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -23,7 +24,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
-import seedu.address.model.notes.Notes;
+
 import seedu.address.model.tag.Tag;
 
 
@@ -55,14 +56,28 @@ public class NotesCommand extends Command {
         this.note = new Notes(name, content);
     }
 
+    /**
+     * Getter of String name.
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Getter of String content.
+     * @return String
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * The execute() function which returns to the model an updated student with the new note added.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

@@ -18,6 +18,7 @@
             </padding>
             <Label fx:id="name" styleClass="cell_small_label" text="\$name" />
             <Label fx:id="noteId" styleClass="cell_small_label" text="\$noteId" />
+            <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime"/>
             <Label fx:id="content" styleClass="cell_small_label" text="\$content"/>
         </VBox>
         <rowConstraints>
