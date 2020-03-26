@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.notes.AdminNotes;
-import seedu.address.model.student.notes.Notes;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,7 +38,7 @@ class JsonAdaptedNotes {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Notes toModelType() {
-        return new AdminNotes(student, content);
+        return new Notes(student, content);
     }
 
 }

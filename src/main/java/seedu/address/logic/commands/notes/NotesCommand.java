@@ -23,37 +23,36 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
-import seedu.address.model.student.notes.AdminNotes;
-import seedu.address.model.student.notes.Notes;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 
 /**
- * Adds Admin Notes to a Student
+ * Adds Notes to a Student
  */
-public class AdminNotesCommand extends Command {
+public class NotesCommand extends Command {
 
-    public static final String COMMAND_WORD = "anotes";
+    public static final String COMMAND_WORD = "notes";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
             + PREFIX_NAME + " [Name of Student] " + PREFIX_CONTENT + " [Content of Sticky Note]";
 
-    public static final String MESSAGE_SUCCESS = "New Admin Note added! Yay!";
+    public static final String MESSAGE_SUCCESS = "New Student Note added! Yay!";
 
     private final String name;
     private final String content;
-    private final AdminNotes adminNotes;
+    private final Notes note;
 
     /**
-     *
+     * Creates a NotesCommand to add a note to a student.
      * @param name of the student which the note belongs to
      * @param content of the note
      */
-    public AdminNotesCommand(String name, String content) {
+    public NotesCommand(String name, String content) {
         requireNonNull(name, content);
         this.name = name;
         this.content = content;
-        this.adminNotes = new AdminNotes(name, content);
+        this.note = new Notes(name, content);
     }
 
     public String getName() {
@@ -89,7 +88,7 @@ public class AdminNotesCommand extends Command {
         Remark originalRemarks = lastShownList.get(indexOfStudent).getRemark();
         Set<Tag> originalTags = lastShownList.get(indexOfStudent).getTags();
 
-        originalNotes.add(adminNotes);
+        originalNotes.add(note);
         Student editedStudent = new Student(originalName, originalPhone, originalEmail,
                 originalAddress, originalTemperature, originalAttendance, originalNok, originalNotes, originalRemarks,
                 originalTags);
@@ -97,7 +96,7 @@ public class AdminNotesCommand extends Command {
         model.setStudent(lastShownList.get(indexOfStudent), editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS + '\n'
-                + adminNotes.toString(), editedStudent));
+                + note.toString(), editedStudent));
 
     }
 
@@ -106,12 +105,12 @@ public class AdminNotesCommand extends Command {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof AdminNotesCommand)) {
+        if (!(other instanceof NotesCommand)) {
             return false;
         }
-        AdminNotesCommand s = (AdminNotesCommand) other;
-        return name.equals(((AdminNotesCommand) other).getName())
-                && content.equals(((AdminNotesCommand) other).getContent());
+        NotesCommand s = (NotesCommand) other;
+        return name.equals(((NotesCommand) other).getName())
+                && content.equals(((NotesCommand) other).getContent());
     }
 
 }

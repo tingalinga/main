@@ -11,7 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.notes.Notes;
+import seedu.address.model.notes.Notes;
 
 /**
  * Controller class for NotesPanel fxml
