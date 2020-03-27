@@ -215,6 +215,11 @@ public class MainWindow extends UiPart<Stage> {
                 notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
             }
 
+            if (consoleReply.contains("Student Note deleted.")) {
+                notesPanel = new NotesPanel(logic.getFilteredStudentList());
+                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
