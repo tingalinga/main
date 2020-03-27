@@ -220,6 +220,11 @@ public class MainWindow extends UiPart<Stage> {
                 notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
             }
 
+            if (consoleReply.contains("Notes are exported to studentNotes.txt")) {
+                NotesManager notesManager = new NotesManager(logic.getFilteredStudentList());
+                notesManager.saveToTxt();
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
