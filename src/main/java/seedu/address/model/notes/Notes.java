@@ -1,11 +1,11 @@
 package seedu.address.model.notes;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A class representing the Notes feature.
@@ -106,12 +106,16 @@ public class Notes {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Notes notes = (Notes) o;
-        return Objects.equals(student, notes.student) &&
-                Objects.equals(content, notes.content) &&
-                Objects.equals(dateTime, notes.dateTime);
+        return Objects.equals(student, notes.student)
+                && Objects.equals(content, notes.content)
+                && Objects.equals(dateTime, notes.dateTime);
     }
 
     /**

@@ -20,7 +20,8 @@ class JsonAdaptedNotes {
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedNotes(@JsonProperty("student") String student, @JsonProperty("content") String content, @JsonProperty("dateTime") String dateTime) {
+    public JsonAdaptedNotes(@JsonProperty("student") String student, @JsonProperty("content") String content,
+                            @JsonProperty("dateTime") String dateTime) {
         this.student = student;
         this.content = content;
         this.dateTime = dateTime;

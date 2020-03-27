@@ -26,6 +26,9 @@ import seedu.address.model.student.Temperature;
 
 import seedu.address.model.tag.Tag;
 
+/**
+ *  NotesDeleteCommand class which deletes a note.
+ */
 public class NotesDeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "notesd";
@@ -50,7 +53,7 @@ public class NotesDeleteCommand extends Command {
             allNotes.addAll(student.getNotes());
         }
 
-        if(targetIndex.getZeroBased() >= allNotes.size() || targetIndex.getZeroBased() < 0) {
+        if (targetIndex.getZeroBased() >= allNotes.size() || targetIndex.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSGAE_INVALID_NOTES_DISPLAYED_INDEX);
         }
 
@@ -58,13 +61,13 @@ public class NotesDeleteCommand extends Command {
 
         //Iterate through the list of students
         int indexOfStudent = -1;
-        for(int i = 0; i < lastShownList.size(); i++) {
-            if(lastShownList.get(i).getName().toString().equals(noteToDelete.getStudent())) {
+        for (int i = 0; i < lastShownList.size(); i++) {
+            if (lastShownList.get(i).getName().toString().equals(noteToDelete.getStudent())) {
                 indexOfStudent = i;
             }
         }
 
-        if(indexOfStudent == -1) {
+        if (indexOfStudent == -1) {
             throw new CommandException("Note not found");
         }
 

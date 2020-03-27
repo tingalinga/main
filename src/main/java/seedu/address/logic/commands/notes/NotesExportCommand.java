@@ -4,6 +4,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+/**
+ * NotesExportCommand class which exports the notes into a .txt file
+ */
 public class NotesExportCommand extends Command {
     public static final String COMMAND_WORD = "notese";
 
