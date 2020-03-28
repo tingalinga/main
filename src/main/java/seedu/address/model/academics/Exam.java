@@ -47,6 +47,7 @@ public class Exam extends Assessment {
      */
     public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
         for (Submission submission: newSubmissionTracker) {
+            this.submissionTracker.add(submission);
             submissionTracker.add(submission);
         }
     }

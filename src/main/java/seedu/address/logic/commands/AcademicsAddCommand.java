@@ -25,6 +25,7 @@ public class AcademicsAddCommand extends AcademicsCommand {
             + "Example: academics name/CS2103T assignment 1 type/homework date/2020-03-04\n";
 
     public static final String MESSAGE_SUCCESS = "Added assessment:\n%1$s";
+    public static final String MESSAGE_DUPLICATE_ASSESSMENT = "This assessment already exists in the academics list";
 
     private final Assessment toAdd;
 
@@ -45,6 +46,9 @@ public class AcademicsAddCommand extends AcademicsCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.hasAssessment(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ASSESSMENT);
+        }
         List<Student> lastShownList = model.getFilteredStudentList();
         toAdd.setStudents(lastShownList);
         model.addAssessment(toAdd);
