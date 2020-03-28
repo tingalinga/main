@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class AcademicsCommandParser implements Parser<AcademicsCommand> {
 
     public static final String HELP_MESSAGE = "Academics command has to include an action.\n"
-            + AcademicsAddCommand.MESSAGE_USAGE;
+            + AcademicsCommand.MESSAGE_USAGE;
 
     @Override
     public AcademicsCommand parse(String args) throws ParseException, CommandException {

@@ -7,7 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.student.Student;
 
 /**
@@ -23,10 +26,11 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    // ==================== ADDRESS BOOK START ====================
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
@@ -37,6 +41,24 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+    // ==================== ADDRESS BOOK END ====================
+
+    // ==================== ACADEMICS START ====================
+    /**
+     * Returns the Academics.
+     *
+     * @see Model#getAcademics()
+     */
+    ReadOnlyAcademics getAcademics();
+
+    /** Returns an unmodifiable view of the filtered list of assessments */
+    ObservableList<Assessment> getFilteredAcademicsList();
+
+    /**
+     * Returns the user prefs' academics file path.
+     */
+    Path getAcademicsFilePath();
+    // ==================== ACADEMICS START ====================
 
     /**
      * Returns the user prefs' GUI settings.
