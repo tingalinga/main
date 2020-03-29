@@ -225,6 +225,11 @@ public class MainWindow extends UiPart<Stage> {
                 notesManager.saveToTxt();
             }
 
+            if (consoleReply.contains("Displaying Notes")) {
+                notesPanel = new NotesPanel(logic.getFilteredStudentList(), consoleReply);
+                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
