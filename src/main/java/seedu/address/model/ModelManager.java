@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.student.Student;
 
 /**
@@ -20,26 +22,32 @@ import seedu.address.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final AddressBook addressBook;
     private final FilteredList<Student> filteredStudents;
+    private final Academics academics;
+    private final FilteredList<Assessment> filteredAssessments;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook,
+                        ReadOnlyAcademics academics,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, academics, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.academics = new Academics(academics);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new Academics(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,6 +74,7 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+    // ==================== AddressBook START ====================
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
@@ -76,8 +85,6 @@ public class ModelManager implements Model {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
-
-    //=========== AddressBook ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -113,14 +120,6 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
-    @Override
-    public void addAssessment(Assessment assessment) {
-        addressBook.addAssessment(assessment);
-        // todo updatefilteredstudentlist version
-    }
-
-    //=========== Filtered Student List Accessors =============================================================
-
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
      * {@code versionedAddressBook}
@@ -134,6 +133,64 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+    // ==================== AddressBook END ====================
+
+    // ==================== Academics START ====================
+    @Override
+    public Path getAcademicsFilePath() {
+        return userPrefs.getAcademicsFilePath();
+    }
+
+    @Override
+    public void setAcademicsFilePath(Path academicsFilePath) {
+        requireNonNull(academicsFilePath);
+        userPrefs.setAcademicsFilePath(academicsFilePath);
+    }
+
+    @Override
+    public void setAcademics(ReadOnlyAcademics academics) {
+        this.academics.resetData(academics);
+    }
+
+    @Override
+    public ReadOnlyAcademics getAcademics() {
+        return academics;
+    }
+
+    @Override
+    public boolean hasAssessment(Assessment assessment) {
+        requireNonNull(assessment);
+        return academics.hasAssessment(assessment);
+    }
+
+    @Override
+    public void deleteAssessment(Assessment target) {
+        academics.removeAssessment(target);
+    }
+
+    @Override
+    public void addAssessment(Assessment assessment) {
+        academics.addAssessment(assessment);
+        updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
+    }
+
+    @Override
+    public void setAssessment(Assessment target, Assessment editedAssessment) {
+        requireAllNonNull(target, editedAssessment);
+
+        academics.setAssessment(target, editedAssessment);
+    }
+
+    @Override
+    public ObservableList<Assessment> getFilteredAcademicsList() {
+        return filteredAssessments;
+    }
+
+    @Override
+    public void updateFilteredAcademicsList(Predicate<Assessment> predicate) {
+        requireNonNull(predicate);
+        filteredAssessments.setPredicate(predicate);
     }
 
     @Override
@@ -152,7 +209,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && academics.equals(other.academics)
+                && filteredAssessments.equals(other.filteredAssessments);
     }
 
 }
