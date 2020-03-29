@@ -14,6 +14,8 @@ import seedu.address.logic.parser.TeaPetParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -44,6 +46,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveAcademics(model.getAcademics());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -51,6 +54,7 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    // ==================== ADDRESS BOOK START ====================
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
@@ -65,6 +69,24 @@ public class LogicManager implements Logic {
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
+    // ==================== ADDRESS BOOK END ====================
+
+    // ==================== ACADEMICS START ====================
+    @Override
+    public ReadOnlyAcademics getAcademics() {
+        return model.getAcademics();
+    }
+
+    @Override
+    public ObservableList<Assessment> getFilteredAcademicsList() {
+        return model.getFilteredAcademicsList();
+    }
+
+    @Override
+    public Path getAcademicsFilePath() {
+        return model.getAcademicsFilePath();
+    }
+    // ==================== ACADEMICS END ====================
 
     @Override
     public GuiSettings getGuiSettings() {

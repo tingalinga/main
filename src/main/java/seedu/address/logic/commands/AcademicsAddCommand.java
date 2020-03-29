@@ -17,21 +17,17 @@ import seedu.address.model.student.Student;
  */
 public class AcademicsAddCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a new assessment"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": creates a new assessment\n"
             + "Parameters:\n"
             + "desc/[DESCRIPTION]\n"
             + "type/[TYPE: homework/exam]\n"
             + "date/[DATE]\n"
             + "Example: academics name/CS2103T assignment 1 type/homework date/2020-03-04\n";
 
-    public static final String MESSAGE_SUCCESS = "Added academics:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Added assessment:\n%1$s";
+    public static final String MESSAGE_DUPLICATE_ASSESSMENT = "This assessment already exists in the academics list";
 
     private final Assessment toAdd;
-
-    public AcademicsAddCommand(Assessment assessment) {
-        requireNonNull(assessment);
-        toAdd = assessment;
-    }
 
     public AcademicsAddCommand(String description, String type, String date) throws CommandException {
         switch (type) {
@@ -50,6 +46,9 @@ public class AcademicsAddCommand extends AcademicsCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.hasAssessment(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ASSESSMENT);
+        }
         List<Student> lastShownList = model.getFilteredStudentList();
         toAdd.setStudents(lastShownList);
         model.addAssessment(toAdd);

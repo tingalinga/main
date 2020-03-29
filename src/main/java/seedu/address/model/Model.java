@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.student.Student;
 
 /**
@@ -14,6 +16,7 @@ import seedu.address.model.student.Student;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
+    Predicate<Assessment> PREDICATE_SHOW_ALL_ASSESSMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,6 +38,7 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    // ==================== ADDRESS BOOK START ====================
     /**
      * Returns the user prefs' address book file path.
      */
@@ -78,12 +82,6 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
-    /**
-     * Adds the given assessment.
-     * {@code assessment} must not already exist in the address book.
-     */
-    void addAssessment(Assessment assessment);
-
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
@@ -92,5 +90,55 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+    // ==================== ADDRESS BOOK END ====================
 
+    // ==================== ACADEMICS START ====================
+    /**
+     * Returns the user prefs' academics file path.
+     */
+    Path getAcademicsFilePath();
+
+    /**
+     * Sets the user prefs' academics file path.
+     */
+    void setAcademicsFilePath(Path addressBookFilePath);
+
+    /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setAcademics(ReadOnlyAcademics academics);
+
+    /** Returns the Academics */
+    ReadOnlyAcademics getAcademics();
+
+    /**
+     * Returns true if an assessment with the same identity as {@code assessment} exists in the Academics
+     * record.
+     */
+    boolean hasAssessment(Assessment assessment);
+
+    /**
+     * Returns the assessment that has been deleted based on the index.
+     */
+    void deleteAssessment(Assessment target);
+
+    /**
+     * Adds the given assessment. {@code assessment} must not exist in the assessment list.
+     */
+    void addAssessment(Assessment assessment);
+
+    /**
+     * Replaces the assessment at the specified index.
+     */
+    void setAssessment(Assessment target, Assessment assessment);
+
+    /** Returns an unmodifiable view of the filtered academics list */
+    ObservableList<Assessment> getFilteredAcademicsList();
+
+    /**
+     * Updates the filter of the filtered academics list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAcademicsList(Predicate<Assessment> predicate);
+    // ==================== ACADEMICS END ====================
 }

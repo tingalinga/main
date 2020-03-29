@@ -10,6 +10,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.storage.academics.AcademicsStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -18,12 +20,16 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private AcademicsStorage academicsStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+                          AcademicsStorage academicsStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
+        this.academicsStorage = academicsStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -72,6 +78,33 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    @Override
+    public Path getSavedAcademicsFilePath() {
+        return academicsStorage.getSavedAcademicsFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAcademics> readAcademics() throws DataConversionException, IOException {
+        return readAcademics(getSavedAcademicsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAcademics> readAcademics(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return academicsStorage.readAcademics(filePath);
+    }
+
+    @Override
+    public void saveAcademics(ReadOnlyAcademics academics) throws IOException {
+        saveAcademics(academics, academicsStorage.getSavedAcademicsFilePath());
+    }
+
+    @Override
+    public void saveAcademics(ReadOnlyAcademics academics, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        academicsStorage.saveAcademics(academics, filePath);
     }
 
 }

@@ -1,150 +1,113 @@
 package seedu.address.model.academics;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.academics.exceptions.AssessmentNotFoundException;
-import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
 
 /**
- * Represents the academic report of the class
+ * Represents the save academic report of the class.
  */
-public class Academics {
-    private final ObservableList<Assessment> assessments = FXCollections.observableArrayList();
-    private final ObservableList<Assessment> assessmentsUnmodifiableList =
-            FXCollections.unmodifiableObservableList(assessments);
+public class Academics implements ReadOnlyAcademics {
+
+    private final UniqueAssessmentList assessments;
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        assessments = new UniqueAssessmentList();
+    }
+
+    public Academics() {}
 
     /**
-     * Returns true if the provided assessment is a replica.
+     * Creates a list of SavedAssessments using the assessments in {@code toBeCopied}
+     * @param toBeCopied list of assessments.
      */
-    public boolean contains(Assessment toCheck) {
-        requireNonNull(toCheck);
-        return assessments.stream().anyMatch(toCheck::isSameAssessment);
+    public Academics(ReadOnlyAcademics toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    /**
+     * Replaces the contents of the academic assessments with {@Code Assessments}.
+     * {@code Assessments} must not contain duplicate assessments.
+     * @param assessments academic list of assessments.
+     */
+    public void setAssessments(List<Assessment> assessments) {
+        this.assessments.setAssessments(assessments);
+    }
+
+    /**
+     * Resets the existing data of this {@code Academics} with {@code newData}.
+     */
+    public void resetData(ReadOnlyAcademics newData) {
+        requireNonNull(newData);
+
+        setAssessments(newData.getAcademicsList());
+    }
+
+    /**
+     * Returns true if an assessment with the same identity as {@code assessment} exists in the academics list.
+     */
+    public boolean hasAssessment(Assessment assessment) {
+        requireNonNull(assessment);
+        return assessments.contains(assessment);
     }
 
     /**
      * Adds an assessment to the list of current assessments.
      */
     public void addAssessment(Assessment toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateAssessmentException();
-        }
-        this.assessments.add(toAdd);
+        assessments.add(toAdd);
     }
 
     /**
-     * Sets a current assessment with the updated one.
+     * Replaces the given Assessment {@code target} in the list with {@code editedAssessment}. {@code
+     * target} must exist in saved academics. The Assessment identity of {@code editedAssessment} must
+     * not be the same as another existing Assessment in the saved academics.
      */
-    // for future edit assessment command
     public void setAssessment(Assessment target, Assessment editedAssessment) {
-        requireAllNonNull(target, editedAssessment);
+        requireNonNull(editedAssessment);
 
-        int index = assessments.indexOf(target);
-        if (index == -1) {
-            throw new AssessmentNotFoundException();
-        }
-        if (!target.isSameAssessment(editedAssessment) && contains(editedAssessment)) {
-            throw new DuplicateAssessmentException();
-        }
-        assessments.set(index, editedAssessment);
+        assessments.setAssessment(target, editedAssessment);
     }
 
     /**
-     * Removes an assessment.
+     * Removes {@code key} from this {@code Academics}.
+     * {@code key} must exist in the assessment list.
      */
-    // for future remove assessment command
-    public void remove(Assessment toRemove) {
-        requireNonNull(toRemove);
-        if (!assessments.remove(toRemove)) {
-            throw new AssessmentNotFoundException();
-        }
+    public void removeAssessment(Assessment key) {
+        assessments.remove(key);
     }
 
-    /**
-     * Few in the functionality here!
-     */
-    public void setAssessments(Academics replacement) {
-        requireAllNonNull(replacement);
-        assessments.setAll(replacement.assessments);
-    }
-
-    /**
-     * Few in the functionality here!
-     */
-    public void setAssessments(List<Assessment> assessments) {
-        requireAllNonNull(assessments);
-        if (!assessmentsAreUnique(assessments)) {
-            throw new DuplicateAssessmentException();
-        }
-        this.assessments.setAll(assessments);
-    }
-
-    /**
-     * Returns all the assessments.
-     */
-    public ObservableList<Assessment> getAllAssessments() {
-        return assessments;
-    }
-
-    /**
-     * Returns all the homework.
-     */
-    // for future filter assessment command
-    public ObservableList<Assessment> getAllHomework() {
-        ObservableList<Assessment> homeworkAssessments = FXCollections.observableArrayList();
-        for (Assessment a : assessments) {
-            if (a instanceof Homework) {
-                homeworkAssessments.add(a);
-            }
-        }
-        return homeworkAssessments;
-    }
-
-    /**
-     * Returns all the exams.
-     */
-    // for future filter assessment command
-    public ObservableList<Assessment> getAllExams() {
-        ObservableList<Assessment> exams = FXCollections.observableArrayList();
-        for (Assessment a : exams) {
-            if (a instanceof Exam) {
-                exams.add(a);
-            }
-        }
-        return exams;
-    }
-
-    public ObservableList<Assessment> asUnmodifiableObservableList() {
-        return assessmentsUnmodifiableList;
-    }
-
-    public Iterator<Assessment> iterator() {
-        return assessments.iterator();
-    }
-
-    /**
-     * Returns true if all the assessments are unique.
-     */
-    private boolean assessmentsAreUnique(List<Assessment> assessments) {
-        for (int i = 0; i < assessments.size() - 1; i++) {
-            for (int j = i + 1; j < assessments.size(); j++) {
-                if (assessments.get(i).isSameAssessment(assessments.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+    //// util methods
 
     @Override
     public String toString() {
-        return "You have " + assessments.size() + " assessments.\n";
+        return assessments.asUnmodifiableObservableList().size() + " students";
     }
 
+    @Override
+    public ObservableList<Assessment> getAcademicsList() {
+        return assessments.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Academics // instanceof handles nulls
+                && assessments.equals(((Academics) other).assessments));
+    }
+
+    @Override
+    public int hashCode() {
+        return assessments.hashCode();
+    }
 }
