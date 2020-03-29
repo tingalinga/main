@@ -17,6 +17,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_ATTENDANCE = new Prefix("att/");
     public static final Prefix PREFIX_CONTENT = new Prefix("c/");
 
+    /* Admin Prefix */
+    public static final Prefix PREFIX_FETCH = new Prefix("fetch/");
+    public static final Prefix PREFIX_SAVE = new Prefix("save");
+
     /* Assessment Prefixes */
     public static final Prefix PREFIX_ADD = new Prefix("add");
     public static final Prefix PREFIX_ASSESSMENT_DESCRIPTION = new Prefix("desc/");
