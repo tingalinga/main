@@ -19,10 +19,16 @@ import seedu.address.logic.commands.RefreshCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesCommand;
+import seedu.address.logic.commands.notes.NotesDeleteCommand;
+import seedu.address.logic.commands.notes.NotesExportCommand;
+import seedu.address.logic.commands.notes.NotesFilterCommand;
 import seedu.address.logic.commands.studentdisplay.AdminStudentDisplayCommand;
 import seedu.address.logic.commands.studentdisplay.DefaultStudentDisplayCommand;
 import seedu.address.logic.commands.studentdisplay.DetailedStudentDisplayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.notes.NotesCommandParser;
+import seedu.address.logic.parser.notes.NotesDeleteCommandParser;
+import seedu.address.logic.parser.notes.NotesFilterCommandParser;
 
 /**
  * Parses user input.
@@ -80,6 +86,15 @@ public class TeaPetParser {
 
         case NotesCommand.COMMAND_WORD:
             return new NotesCommandParser().parse(arguments);
+
+        case NotesDeleteCommand.COMMAND_WORD:
+            return new NotesDeleteCommandParser().parse(arguments);
+
+        case NotesExportCommand.COMMAND_WORD:
+            return new NotesExportCommand();
+
+        case NotesFilterCommand.COMMAND_WORD:
+            return new NotesFilterCommandParser().parse(arguments);
 
         case AcademicsCommand.COMMAND_WORD:
             return new AcademicsCommandParser().parse(arguments);

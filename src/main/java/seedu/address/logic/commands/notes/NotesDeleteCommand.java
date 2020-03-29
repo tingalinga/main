@@ -1,15 +1,14 @@
 package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,69 +26,49 @@ import seedu.address.model.student.Temperature;
 
 import seedu.address.model.tag.Tag;
 
-
 /**
- * Adds Notes to a Student
+ *  NotesDeleteCommand class which deletes a note.
  */
-public class NotesCommand extends Command {
+public class NotesDeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "notes";
+    public static final String COMMAND_WORD = "notesd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
-            + PREFIX_NAME + " [Name of Student] " + PREFIX_CONTENT + " [Content of Sticky Note]";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " Index of Note to be deleted.";
 
-    public static final String MESSAGE_SUCCESS = "New Student Note added! Yay!";
+    public static final String MESSAGE_SUCCESS = "Student Note deleted.";
 
-    private final String name;
-    private final String content;
-    private final Notes note;
+    private final Index targetIndex;
 
-    /**
-     * Creates a NotesCommand to add a note to a student.
-     * @param name of the student which the note belongs to
-     * @param content of the note
-     */
-    public NotesCommand(String name, String content) {
-        requireNonNull(name, content);
-        this.name = name;
-        this.content = content;
-        this.note = new Notes(name, content);
+    public NotesDeleteCommand(Index targetIndex) {
+        this.targetIndex = targetIndex;
     }
 
-    /**
-     * Getter of String name.
-     * @return String
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Getter of String content.
-     * @return String
-     */
-    public String getContent() {
-        return content;
-    }
-
-    /**
-     * The execute() function which returns to the model an updated student with the new note added.
-     * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException
-     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
+
+        ArrayList<Notes> allNotes = new ArrayList<>();
+        for (Student student : lastShownList) {
+            allNotes.addAll(student.getNotes());
+        }
+
+        if (targetIndex.getZeroBased() >= allNotes.size() || targetIndex.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSGAE_INVALID_NOTES_DISPLAYED_INDEX);
+        }
+
+        Notes noteToDelete = allNotes.get(targetIndex.getZeroBased());
+
+        //Iterate through the list of students
         int indexOfStudent = -1;
         for (int i = 0; i < lastShownList.size(); i++) {
-            if (lastShownList.get(i).getName().toString().equals(name)) {
+            if (lastShownList.get(i).getName().toString().equals(noteToDelete.getStudent())) {
                 indexOfStudent = i;
             }
         }
+
         if (indexOfStudent == -1) {
-            throw new CommandException("Name of Student not found");
+            throw new CommandException("Note not found");
         }
 
         Name originalName = lastShownList.get(indexOfStudent).getName();
@@ -103,29 +82,22 @@ public class NotesCommand extends Command {
         Remark originalRemarks = lastShownList.get(indexOfStudent).getRemark();
         Set<Tag> originalTags = lastShownList.get(indexOfStudent).getTags();
 
-        originalNotes.add(note);
+        originalNotes.remove(noteToDelete);
+
         Student editedStudent = new Student(originalName, originalPhone, originalEmail,
                 originalAddress, originalTemperature, originalAttendance, originalNok, originalNotes, originalRemarks,
                 originalTags);
 
         model.setStudent(lastShownList.get(indexOfStudent), editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS + '\n'
-                + note.toString(), editedStudent));
-
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if (!(other instanceof NotesCommand)) {
-            return false;
-        }
-        NotesCommand s = (NotesCommand) other;
-        return name.equals(((NotesCommand) other).getName())
-                && content.equals(((NotesCommand) other).getContent());
+        return other == this // short circuit if same object
+                || (other instanceof NotesDeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((NotesDeleteCommand) other).targetIndex)); // state check
     }
 
 }
