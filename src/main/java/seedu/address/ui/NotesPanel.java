@@ -47,25 +47,30 @@ public class NotesPanel extends UiPart<Region> {
     public ArrayList<Notes> getAllFilteredNotes(ObservableList<Student> studentList, String result) {
         String preProcessedKeywords = result.split(":")[1].trim();
         String[] keywords = preProcessedKeywords.substring(1, preProcessedKeywords.length() - 1).split(",");
-        for (String keyword : keywords) {
-            keyword = keyword.trim().toLowerCase();
+        for(int i = 0; i < keywords.length; i++) {
+            keywords[i] = keywords[i].trim().toLowerCase();
         }
 
         ArrayList<Notes> allNotes = new ArrayList<>();
         for (Student student : studentList) {
-            ArrayList<Notes> studentNotes = student.getNotes();
-            for (Notes note : studentNotes) {
-                for (String keyword : keywords) {
-                    if (note.getContent().toLowerCase().contains(keyword)
+            allNotes.addAll(student.getNotes());
+        }
+
+
+        ArrayList<Notes> filteredNotes = new ArrayList<>();
+        for (Notes note : allNotes) {
+            for (String keyword : keywords) {
+                if (note.getContent().toLowerCase().contains(keyword)
                         || note.getDateTime().toLowerCase().contains(keyword)
-                        || note.getStudent().toLowerCase().contains(keyword)) {
-                        allNotes.add(note);
-                        break;
-                    }
+                        || note.getStudent().toLowerCase().contains(keyword)
+                        && !filteredNotes.contains(note)) {
+                    filteredNotes.add(note);
+                    break;
                 }
             }
         }
-        return allNotes;
+
+        return filteredNotes;
     }
 
     /**
