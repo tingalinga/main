@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.admin;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FETCH;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -17,8 +16,8 @@ import seedu.address.model.Model;
  */
 public class AdminFetchCommand extends AdminCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_FETCH
-            + " YYYY-MM-DD to display the class admin details.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_FETCH
+            + " YYYY-MM-DD: to display the class admin details.";
     public static final String MESSAGE_SUCCESS = "The Student list now displays the class admin list for ";
     private final LocalDate thisDate;
 

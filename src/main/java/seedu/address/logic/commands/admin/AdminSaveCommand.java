@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.admin;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SAVE;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -17,7 +16,8 @@ import seedu.address.model.Model;
  */
 public class AdminSaveCommand extends AdminCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_SAVE;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_SAVE
+            + ": to save the most updated admin list as today's date.";
     public static final String MESSAGE_SUCCESS = "This admin list has been saved for ";
     private final LocalDate thisDate;
 
