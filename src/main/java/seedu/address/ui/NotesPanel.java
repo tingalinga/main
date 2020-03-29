@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -34,7 +33,8 @@ public class NotesPanel extends UiPart<Region> {
     public NotesPanel(ObservableList<Student> studentList, String result) {
         super(FXML);
         notesView.setItems(FXCollections.observableArrayList(getAllFilteredNotes(studentList, result)));
-        notesView.setCellFactory(view -> new NotesViewCell());    }
+        notesView.setCellFactory(view -> new NotesViewCell());
+    }
 
     public ArrayList<Notes> getAllNotes(ObservableList<Student> studentList) {
         ArrayList<Notes> allNotes = new ArrayList<>();
@@ -46,7 +46,7 @@ public class NotesPanel extends UiPart<Region> {
 
     public ArrayList<Notes> getAllFilteredNotes(ObservableList<Student> studentList, String result) {
         String preProcessedKeywords = result.split(":")[1].trim();
-        String[] keywords = preProcessedKeywords.substring(1, preProcessedKeywords.length()-1).split(",");
+        String[] keywords = preProcessedKeywords.substring(1, preProcessedKeywords.length() - 1).split(",");
         for (String keyword : keywords) {
             keyword = keyword.trim().toLowerCase();
         }
@@ -57,8 +57,8 @@ public class NotesPanel extends UiPart<Region> {
             for (Notes note : studentNotes) {
                 for (String keyword : keywords) {
                     if (note.getContent().toLowerCase().contains(keyword)
-                    || note.getDateTime().toLowerCase().contains(keyword)
-                    || note.getStudent().toLowerCase().contains(keyword)) {
+                        || note.getDateTime().toLowerCase().contains(keyword)
+                        || note.getStudent().toLowerCase().contains(keyword)) {
                         allNotes.add(note);
                         break;
                     }

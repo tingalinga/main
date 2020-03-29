@@ -12,7 +12,6 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
-import seedu.address.model.academics.Submission;
 
 import seedu.address.model.notes.Notes;
 
@@ -76,11 +75,11 @@ public class SampleDataUtil {
 
     public static Assessment[] getSampleAssessments() {
         return new Assessment[] {
-                new Homework("CS3230 Assignment 2", "2020-03-23"),
-                new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
-                new Homework("CS3240 Paper Prototype", "2020-03-25"),
-                new Exam("CS2103 Finals", "2020-05-25"),
-                new Exam("CS3230 Finals", "2020-05-25")
+            new Homework("CS3230 Assignment 2", "2020-03-23"),
+            new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
+            new Homework("CS3240 Paper Prototype", "2020-03-25"),
+            new Exam("CS2103 Finals", "2020-05-25"),
+            new Exam("CS3230 Finals", "2020-05-25")
         };
     }
 
