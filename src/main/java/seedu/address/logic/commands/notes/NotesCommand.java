@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Adds Notes to a Student
+ * Represents NotesCommand class which adds Note to a Student.
  */
 public class NotesCommand extends Command {
 
@@ -45,7 +45,7 @@ public class NotesCommand extends Command {
     private final Notes note;
 
     /**
-     * Creates a NotesCommand to add a note to a student.
+     * Creates a NotesCommand to add note to a student.
      * @param name of the student which the note belongs to
      * @param content of the note
      */
@@ -76,7 +76,7 @@ public class NotesCommand extends Command {
      * The execute() function which returns to the model an updated student with the new note added.
      * @param model {@code Model} which the command should operate on.
      * @return CommandResult
-     * @throws CommandException
+     * @throws CommandException if student cannot be found.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {

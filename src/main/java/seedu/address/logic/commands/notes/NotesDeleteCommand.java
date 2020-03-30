@@ -27,7 +27,7 @@ import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
 
 /**
- *  NotesDeleteCommand class which deletes a note.
+ *  Represents NotesDeleteCommand which deletes a note from storage.
  */
 public class NotesDeleteCommand extends Command {
 
@@ -43,6 +43,13 @@ public class NotesDeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Overriden execute method which deletes a specified note from a student, and returning the
+     * updated student to the model.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

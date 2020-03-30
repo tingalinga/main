@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * A class representing the Notes feature.
+ * Represents Notes of a student.
  */
 public class Notes {
 
@@ -93,6 +93,10 @@ public class Notes {
         return new Notes(this.getStudent(), newContent);
     }
 
+    /**
+     * Method which checks the validity of a Student's name.
+     * @param test
+     */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }

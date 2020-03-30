@@ -9,7 +9,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- *  Parses input arguments and creates a new FilterNotesComamnd object.
+ *  Represents a Parser for NotesFilterCommand.
  */
 public class NotesFilterCommandParser implements Parser<NotesFilterCommand> {
 

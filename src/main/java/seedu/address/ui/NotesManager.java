@@ -11,7 +11,7 @@ import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Student;
 
 /**
- * NotesManager class which handles the Notes feature's UI
+ * Represents a NotesManager which handles the UI aspects of the Notes feature.
  */
 public class NotesManager {
     private final ObservableList<Student> studentList;

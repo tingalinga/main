@@ -15,7 +15,7 @@ import seedu.address.model.student.Student;
 
 
 /**
- * Controller class for NotesPanel fxml
+ * Represents a Controller class for NotesPanel fxml
  */
 public class NotesPanel extends UiPart<Region> {
     private static final String FXML = "NotesPanel.fxml";
@@ -24,18 +24,32 @@ public class NotesPanel extends UiPart<Region> {
     @FXML
     private ListView<Notes> notesView;
 
+    /**
+     * Constuctor of NotesPanel, with an input of list of students.
+     * @param studentList
+     */
     public NotesPanel(ObservableList<Student> studentList) {
         super(FXML);
         notesView.setItems(FXCollections.observableArrayList(getAllNotes(studentList)));
         notesView.setCellFactory(view -> new NotesViewCell());
     }
 
+    /**
+     * Overloaded Constructor, with input of list of students as well as CommandResult's string content.
+     * @param studentList
+     * @param result
+     */
     public NotesPanel(ObservableList<Student> studentList, String result) {
         super(FXML);
         notesView.setItems(FXCollections.observableArrayList(getAllFilteredNotes(studentList, result)));
         notesView.setCellFactory(view -> new NotesViewCell());
     }
 
+    /**
+     * Method which obtains all the Notes from individual students.
+     * @param studentList
+     * @return ArrayList of Notes
+     */
     public ArrayList<Notes> getAllNotes(ObservableList<Student> studentList) {
         ArrayList<Notes> allNotes = new ArrayList<>();
         for (Student student : studentList) {
@@ -44,19 +58,28 @@ public class NotesPanel extends UiPart<Region> {
         return allNotes;
     }
 
+    /**
+     * Method which obtains all the Notes from individual students, which contain specific keywords
+     * requested by the User.
+     * @param studentList
+     * @param result
+     * @return ArrayList of Notes
+     */
     public ArrayList<Notes> getAllFilteredNotes(ObservableList<Student> studentList, String result) {
+        // Process to obtain an array representation of all keywords.
         String preProcessedKeywords = result.split(":")[1].trim();
         String[] keywords = preProcessedKeywords.substring(1, preProcessedKeywords.length() - 1).split(",");
         for(int i = 0; i < keywords.length; i++) {
             keywords[i] = keywords[i].trim().toLowerCase();
         }
 
+        // Obtains the ArrayList containing all notes currently stored
         ArrayList<Notes> allNotes = new ArrayList<>();
         for (Student student : studentList) {
             allNotes.addAll(student.getNotes());
         }
 
-
+        // Filters the list of notes according to the presence of keywords.
         ArrayList<Notes> filteredNotes = new ArrayList<>();
         for (Notes note : allNotes) {
             for (String keyword : keywords) {

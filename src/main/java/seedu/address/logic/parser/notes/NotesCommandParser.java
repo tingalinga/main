@@ -14,15 +14,15 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parser for Notes Command
+ * Representing a Parser for NotesCommand
  */
 public class NotesCommandParser implements Parser<NotesCommand> {
 
     /**
-     * Parsing of input
+     * Parsing of input arguments
      * @param args
-     * @return
-     * @throws ParseException
+     * @return a NotesCommand
+     * @throws ParseException user input is in invalid format.
      */
     public NotesCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
