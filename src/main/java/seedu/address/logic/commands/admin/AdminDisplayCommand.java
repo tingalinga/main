@@ -13,7 +13,7 @@ public class AdminDisplayCommand extends AdminCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_DISPLAY
             + ": to display the last updated class admin details.";
-    public static final String MESSAGE_SUCCESS = "The Student list now displays the last updated ADMIN details";
+    public static final String MESSAGE_SUCCESS = "The Student list now displays ADMIN details";
 
     /**
      * Creates an AdminDisplayCommand.

@@ -72,7 +72,6 @@ public class JsonAdminStorage implements AdminStorage {
     public void saveAdmin(ReadOnlyAdmin admin, Path filePath) throws IOException {
         requireNonNull(admin);
         requireNonNull(filePath);
-
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableAdmin(admin), filePath);
     }

@@ -9,6 +9,7 @@ public interface ReadOnlyAdmin {
 
     /**
      * Returns an unmodifiable view of the admin list.
+     * This list will not contain any duplicate dates.
      */
     ObservableList<Date> getDateList();
 

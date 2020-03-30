@@ -92,7 +92,6 @@ public class Student {
     }
     public NextOfKin getNok () {
         return nok;
-
     }
 
     /**
@@ -140,20 +139,6 @@ public class Student {
                 && otherStudent.getAttendance().equals(getAttendance())
                 && otherStudent.getNotes().equals(getNotes())
                 && otherStudent.getTags().equals(getTags());
-    }
-
-    /**
-     * Returns the student admin details only.
-     */
-    public String adminToString () {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Name: ")
-                .append(getName())
-                .append(" Temperature: ")
-                .append(getTemperature())
-                .append(" Attendance: ")
-                .append(getAttendance());
-        return builder.toString();
     }
 
     @Override

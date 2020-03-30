@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays ADMIN details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays DEFAULT details")) {
@@ -228,6 +228,21 @@ public class MainWindow extends UiPart<Stage> {
             if (consoleReply.contains("Displaying Notes")) {
                 notesPanel = new NotesPanel(logic.getFilteredStudentList(), consoleReply);
                 notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
+            }
+
+            if (consoleReply.contains("Admin list has been deleted for")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("Class admin details for")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("This admin list has been saved for")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
             if (commandResult.isShowHelp()) {

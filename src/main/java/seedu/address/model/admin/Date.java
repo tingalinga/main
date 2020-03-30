@@ -27,7 +27,7 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid phone date.
+     * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(LocalDate test) {
         return true;
@@ -35,7 +35,6 @@ public class Date {
 
     /**
      * Returns the date of the admin detail.
-     *
      * @return date of admin detail;.
      */
     public LocalDate getDate() {
@@ -64,7 +63,8 @@ public class Date {
         String fullDate = date.toString();
         String studentString = "";
         for (Student student : students) {
-            studentString += student.adminToString() + " ";
+            studentString += "Name: ";
+            studentString += student.toString() + " ";
         }
         studentString.trim();
         String dateString = fullDate + " " + studentString;

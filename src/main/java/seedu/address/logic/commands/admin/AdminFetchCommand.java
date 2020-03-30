@@ -10,6 +10,8 @@ import java.util.Locale;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.admin.DateContainsKeywordsPredicate;
+import seedu.address.model.admin.exceptions.DateNotFoundException;
 
 /**
  * Fetches the administrative details of the students list on a specific date.
@@ -18,29 +20,33 @@ public class AdminFetchCommand extends AdminCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_FETCH
             + " YYYY-MM-DD: to display the class admin details.";
-    public static final String MESSAGE_SUCCESS = "The Student list now displays the class admin list for ";
-    private final LocalDate thisDate;
+    public static final String MESSAGE_SUCCESS = "Class admin details for %1$s listed!";
+    private final DateContainsKeywordsPredicate predicate;
 
-    public AdminFetchCommand(LocalDate date) {
-        requireNonNull(date);
-        thisDate = date;
+    public AdminFetchCommand(DateContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
+        this.predicate = predicate;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, DateNotFoundException {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS + this.toString()));
+        model.updateFilteredDateList(predicate);
+        if (model.getFilteredDateList().size() == 0) {
+            throw new DateNotFoundException();
+        } else {
+            LocalDate date = model.getFilteredDateList().get(0).getDate();
+            String fullDate = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
+                    + date.getDayOfMonth() + " " + date.getYear();
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS, fullDate));
+        }
     }
 
     @Override
     public boolean equals(Object other) {
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        String fullDate = thisDate.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
-                + thisDate.getDayOfMonth() + " " + thisDate.getYear();
-        return fullDate;
+        return other == this // short circuit if same object
+                || (other instanceof AdminFetchCommand // instanceof handles nulls
+                && predicate.equals(((AdminFetchCommand) other).predicate)); // state check
     }
 }

@@ -46,7 +46,6 @@ public class UniqueDateList implements Iterable<Date> {
      */
     public void setDate(Date target, Date editedDate) {
         requireAllNonNull(target, editedDate);
-
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new DateNotFoundException();
@@ -84,7 +83,6 @@ public class UniqueDateList implements Iterable<Date> {
         if (!datesAreUnique(dates)) {
             throw new DuplicateDateException();
         }
-
         internalList.setAll(dates);
     }
 
