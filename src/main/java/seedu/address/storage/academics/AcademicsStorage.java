@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import seedu.address.model.academics.ReadOnlyAcademics;
-
 import seedu.address.commons.exceptions.DataConversionException;
+
+import seedu.address.model.academics.ReadOnlyAcademics;
 
 /**
  * Represents a storage for {@link seedu.address.model.academics.Academics}.

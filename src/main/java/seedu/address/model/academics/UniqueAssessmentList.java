@@ -13,10 +13,11 @@ import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
 
 /**
  * A list of assessments that enforces uniqueness between its elements and does not allow nulls.
- * A student is considered unique by comparing using {@code Assessment#isSameAssessment(Assessment)}. As such, adding and
- * updating of assessments uses Assessment#isSameAssessment(Assessment) for equality so as to ensure that the assessment
- * being added or updated is unique in terms of identity in the UniqueAssessmentList. However, the removal of an assessment
- * uses Assessment#equals(Object) so as to ensure that the student with exactly the same fields will be removed.
+ * A student is considered unique by comparing using {@code Assessment#isSameAssessment(Assessment)}. As such, adding
+ * and updating of assessments uses Assessment#isSameAssessment(Assessment) for equality so as to ensure that the
+ * assessment being added or updated is unique in terms of identity in the UniqueAssessmentList. However, the removal
+ * of an assessment uses Assessment#equals(Object) so as to ensure that the student with exactly the same fields
+ * will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -51,7 +52,8 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
     /**
      * Replaces the assessment {@code target} in the list with {@code editedAssessment}.
      * {@code target} must exist in the list.
-     * The assessment identity of {@code editedAssessment} must not be the same as another existing assessment in the list.
+     * The assessment identity of {@code editedAssessment} must not be the same as another existing assessment in
+     * the list.
      */
     public void setAssessment(Assessment target, Assessment editedAssessment) {
         requireAllNonNull(target, editedAssessment);
