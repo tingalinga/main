@@ -123,6 +123,13 @@ public class Notes {
     }
 
     /**
+     * Returns true if both notes have the same information.
+     */
+    public boolean isSameNote(Notes otherNotes) {
+        return this.equals(otherNotes);
+    }
+
+    /**
      * Driver function to test the functionality of StickyNotes
      * @param args
      */
@@ -130,4 +137,6 @@ public class Notes {
         Notes s1 = new Notes("Alex Yeoh", "Late for class today");
         System.out.println(s1);
     }
+
+
 }
