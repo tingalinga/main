@@ -1,6 +1,5 @@
 package seedu.address.storage.academics;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -109,7 +108,7 @@ class JsonAdaptedAssessment {
      * @return integer of month formatted as a string.
      */
     public String convertMonthToInt(String month) {
-    switch (month) {
+        switch (month) {
         case "Jan":
             return "01";
         case "Feb":
@@ -134,7 +133,7 @@ class JsonAdaptedAssessment {
             return "11";
         default:
             return "12";
-    }
+        }
     }
 
     /**
