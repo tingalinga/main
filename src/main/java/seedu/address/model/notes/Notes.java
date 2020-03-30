@@ -1,7 +1,11 @@
 package seedu.address.model.notes;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  * A class representing the Notes feature.
@@ -15,6 +19,7 @@ public class Notes {
 
     private final String student;
     private final String content;
+    private final String dateTime;
 
     /**
      * Notes constructor
@@ -22,10 +27,28 @@ public class Notes {
      * @param content, representing the content to be stored in the note.
      */
     public Notes(String student, String content) {
-        requireNonNull(student, content);
+        requireAllNonNull(student, content);
         checkArgument(isValidName(student), MESSAGE_CONSTRAINTS);
         this.student = student;
         this.content = content;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = new Date();
+        this.dateTime = formatter.format(date).toString();
+    }
+
+    /**
+     * Overloaded Notes constructor which is used when Json data is drawn from addressbook.json
+     * This allows initial timestamp to be immutable
+     * @param student
+     * @param content
+     * @param dateTime
+     */
+    public Notes(String student, String content, String dateTime) {
+        requireAllNonNull(student, content, dateTime);
+        checkArgument(isValidName(student), MESSAGE_CONSTRAINTS);
+        this.student = student;
+        this.content = content;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -42,6 +65,14 @@ public class Notes {
      */
     public String getContent() {
         return this.content;
+    }
+
+    /**
+     * Getter of Note's timestamp
+     * @return note's timestamp.
+     */
+    public String getDateTime() {
+        return this.dateTime;
     }
 
     /**
@@ -71,6 +102,20 @@ public class Notes {
         return "[Notes]"
                 + " Student:'" + getStudent() + '\''
                 + ", Content: '" + getContent() + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Notes notes = (Notes) o;
+        return Objects.equals(student, notes.student)
+                && Objects.equals(content, notes.content)
+                && Objects.equals(dateTime, notes.dateTime);
     }
 
     /**
