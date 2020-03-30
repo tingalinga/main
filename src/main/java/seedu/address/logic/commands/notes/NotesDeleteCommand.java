@@ -53,51 +53,15 @@ public class NotesDeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Notes> lastShownList = model.getFilteredNotesList();
 
-        ArrayList<Notes> allNotes = new ArrayList<>();
-        for (Student student : lastShownList) {
-            allNotes.addAll(student.getNotes());
-        }
-
-        if (targetIndex.getZeroBased() >= allNotes.size() || targetIndex.getZeroBased() < 0) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSGAE_INVALID_NOTES_DISPLAYED_INDEX);
         }
 
-        Notes noteToDelete = allNotes.get(targetIndex.getZeroBased());
-
-        //Iterate through the list of students
-        int indexOfStudent = -1;
-        for (int i = 0; i < lastShownList.size(); i++) {
-            if (lastShownList.get(i).getName().toString().equals(noteToDelete.getStudent())) {
-                indexOfStudent = i;
-            }
-        }
-
-        if (indexOfStudent == -1) {
-            throw new CommandException("Note not found");
-        }
-
-        Name originalName = lastShownList.get(indexOfStudent).getName();
-        Phone originalPhone = lastShownList.get(indexOfStudent).getPhone();
-        Email originalEmail = lastShownList.get(indexOfStudent).getEmail();
-        Address originalAddress = lastShownList.get(indexOfStudent).getAddress();
-        Temperature originalTemperature = lastShownList.get(indexOfStudent).getTemperature();
-        Attendance originalAttendance = lastShownList.get(indexOfStudent).getAttendance();
-        NextOfKin originalNok = lastShownList.get(indexOfStudent).getNok();
-        ArrayList<Notes> originalNotes = lastShownList.get(indexOfStudent).getNotes();
-        Remark originalRemarks = lastShownList.get(indexOfStudent).getRemark();
-        Set<Tag> originalTags = lastShownList.get(indexOfStudent).getTags();
-
-        originalNotes.remove(noteToDelete);
-
-        Student editedStudent = new Student(originalName, originalPhone, originalEmail,
-                originalAddress, originalTemperature, originalAttendance, originalNok, originalNotes, originalRemarks,
-                originalTags);
-
-        model.setStudent(lastShownList.get(indexOfStudent), editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        Notes toBeDeleted = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteNote(toBeDeleted);
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 
     @Override
