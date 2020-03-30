@@ -16,6 +16,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -87,6 +89,23 @@ public class LogicManager implements Logic {
         return model.getAcademicsFilePath();
     }
     // ==================== ACADEMICS END ====================
+
+    // ==================== ADMIN START ====================
+    @Override
+    public ReadOnlyAdmin getAdmin() {
+        return model.getAdmin();
+    }
+
+    @Override
+    public ObservableList<Date> getFilteredDateList() {
+        return model.getFilteredDateList();
+    }
+
+    @Override
+    public Path getAdminFilePath() {
+        return model.getAdminFilePath();
+    }
+    // ==================== ADMIN END ====================
 
     @Override
     public GuiSettings getGuiSettings() {

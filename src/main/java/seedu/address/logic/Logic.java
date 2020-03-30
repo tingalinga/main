@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.student.Student;
 
 /**
@@ -58,7 +60,24 @@ public interface Logic {
      * Returns the user prefs' academics file path.
      */
     Path getAcademicsFilePath();
-    // ==================== ACADEMICS START ====================
+    // ==================== ACADEMICS END ====================
+
+    // ==================== ADMIN START ====================
+    /**
+     * Returns the Admin page.
+     *
+     * @see Model#getAdmin()
+     */
+    ReadOnlyAdmin getAdmin();
+
+    /** Returns an unmodifiable view of the filtered list of admin list */
+    ObservableList<Date> getFilteredDateList();
+
+    /**
+     * Returns the user prefs' admin file path.
+     */
+    Path getAdminFilePath();
+    // ==================== ADMIN END ====================
 
     /**
      * Returns the user prefs' GUI settings.

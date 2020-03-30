@@ -142,6 +142,20 @@ public class Student {
                 && otherStudent.getTags().equals(getTags());
     }
 
+    /**
+     * Returns the student admin details only.
+     */
+    public String adminToString () {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Name: ")
+                .append(getName())
+                .append(" Temperature: ")
+                .append(getTemperature())
+                .append(" Attendance: ")
+                .append(getAttendance());
+        return builder.toString();
+    }
+
     @Override
     public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
@@ -170,5 +184,4 @@ public class Student {
         getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

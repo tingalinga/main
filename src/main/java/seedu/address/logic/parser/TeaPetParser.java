@@ -17,9 +17,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.RefreshCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.admin.AdminCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesCommand;
-import seedu.address.logic.commands.studentdisplay.AdminStudentDisplayCommand;
 import seedu.address.logic.commands.studentdisplay.DefaultStudentDisplayCommand;
 import seedu.address.logic.commands.studentdisplay.DetailedStudentDisplayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -87,8 +87,8 @@ public class TeaPetParser {
         case DetailedStudentDisplayCommand.COMMAND_WORD:
             return new DetailedStudentDisplayCommand();
 
-        case AdminStudentDisplayCommand.COMMAND_WORD:
-            return new AdminStudentDisplayCommand();
+        case AdminCommand.COMMAND_WORD:
+            return new AdminCommandParser().parse(arguments);
 
         case DefaultStudentDisplayCommand.COMMAND_WORD:
             return new DefaultStudentDisplayCommand();

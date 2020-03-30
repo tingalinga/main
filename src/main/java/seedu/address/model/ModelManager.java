@@ -14,6 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.student.Student;
 
 /**
@@ -27,27 +30,32 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final Academics academics;
     private final FilteredList<Assessment> filteredAssessments;
+    private final Admin admin;
+    private final FilteredList<Date> filteredDates;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
                         ReadOnlyAcademics academics,
+                        ReadOnlyAdmin admin,
                         ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, academics, userPrefs);
+        requireAllNonNull(addressBook, academics, admin, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.academics = new Academics(academics);
+        this.admin = new Admin(admin);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
+        filteredDates = new FilteredList<>(this.admin.getDateList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new Academics(), new UserPrefs());
+        this(new AddressBook(), new Academics(), new Admin(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -116,7 +124,6 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         addressBook.setStudent(target, editedStudent);
     }
 
@@ -213,5 +220,64 @@ public class ModelManager implements Model {
                 && academics.equals(other.academics)
                 && filteredAssessments.equals(other.filteredAssessments);
     }
+    // ==================== Academics END ====================
 
+    // ==================== Admin START ====================
+    @Override
+    public Path getAdminFilePath() {
+        return userPrefs.getAdminFilePath();
+    }
+
+    @Override
+    public void setAdminFilePath(Path adminBookFilePath) {
+        this.admin.resetData(admin);
+    }
+
+    @Override
+    public void setAdmin(ReadOnlyAdmin admin) {
+        this.admin.resetData(admin);
+    }
+
+    @Override
+    public ReadOnlyAdmin getAdmin() {
+        return admin;
+    }
+
+    @Override
+    public boolean hasDate(Date date) {
+        requireNonNull(date);
+        return admin.hasDate(date);
+    }
+
+    @Override
+    public void deleteDate(Date target) {
+        admin.removeDate(target);
+    }
+
+    @Override
+    public void addDate(Date date) {
+        admin.addDate(date);
+        updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
+    }
+
+    @Override
+    public void setDate(Date target, Date editedDate) {
+        requireAllNonNull(target, editedDate);
+        admin.setDate(target, editedDate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Date} backed by the internal list of
+     * {@code versionedDate}
+     */
+    @Override
+    public ObservableList<Date> getFilteredDateList() {
+        return filteredDates;
+    }
+
+    @Override
+    public void updateFilteredDateList(Predicate<Date> predicate) {
+        requireNonNull(predicate);
+        filteredDates.setPredicate(predicate);
+    }
 }
