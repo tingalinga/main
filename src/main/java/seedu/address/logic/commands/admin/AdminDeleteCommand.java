@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
-
 import java.util.Locale;
 
 import seedu.address.logic.commands.CommandResult;
@@ -12,17 +11,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Fetches the administrative details of the students list on a specific date.
+ * Deletes the administrative details of the students list on a specific date.
  */
-public class AdminFetchCommand extends AdminCommand {
+public class AdminDeleteCommand extends AdminCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_FETCH
-            + " YYYY-MM-DD: to display the class admin details.";
-    public static final String MESSAGE_SUCCESS = "The Student list now displays the class admin list for ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_DELETE
+            + "YYYY-MM-DD: to delete the class admin details at the specified date.";
+    public static final String MESSAGE_SUCCESS = "Admin list has been deleted for ";
     private final LocalDate thisDate;
 
-    public AdminFetchCommand(LocalDate date) {
-        requireNonNull(date);
+    public AdminDeleteCommand(LocalDate date) {
         thisDate = date;
     }
 

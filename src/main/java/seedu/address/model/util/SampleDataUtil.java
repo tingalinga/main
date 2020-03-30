@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -12,7 +13,9 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
-import seedu.address.model.academics.Submission;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -99,4 +102,17 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Date[] getSampleDates() {
+        return new Date[] {
+                new Date(LocalDate.now(), Arrays.asList(getSampleStudents()))
+        };
+    }
+
+    public static ReadOnlyAdmin getSampleAdmin() {
+        Admin sampleAd = new Admin();
+        for (Date sampleDate : getSampleDates()) {
+            sampleAd.addDate(sampleDate);
+        }
+        return sampleAd;
+    }
 }

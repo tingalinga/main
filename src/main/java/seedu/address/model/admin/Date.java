@@ -11,6 +11,8 @@ import seedu.address.model.student.Student;
  */
 public class Date {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Date should be in YYYY-MM-DD format";
     private LocalDate date;
     private List<Student> students;
 
@@ -25,12 +27,23 @@ public class Date {
     }
 
     /**
+     * Returns true if a given string is a valid phone date.
+     */
+    public static boolean isValidDate(LocalDate test) {
+        return true;
+    }
+
+    /**
      * Returns the date of the admin detail.
      *
-     * @return date of admin detai;.
+     * @return date of admin detail;.
      */
     public LocalDate getDate() {
         return date;
+    }
+
+    public List<Student> getStudents() {
+        return students;
     }
 
     /**
