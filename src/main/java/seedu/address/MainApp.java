@@ -24,6 +24,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.event.EventHistory;
+import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -33,6 +35,8 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.academics.JsonAcademicsStorage;
+import seedu.address.storage.event.EventStorage;
+import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -63,7 +67,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         AcademicsStorage academicsStorage = new JsonAcademicsStorage(userPrefs.getAcademicsFilePath());
-        storage = new StorageManager(addressBookStorage, academicsStorage, userPrefsStorage);
+        EventStorage eventStorage = new JsonEventStorage(userPrefs.getEventHistoryFilePath());
+        storage = new StorageManager(addressBookStorage, academicsStorage, userPrefsStorage, eventStorage);
 
         initLogging(config);
 
@@ -87,12 +92,15 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyAcademics> academicsOptional;
+        Optional<ReadOnlyEvents> eventsOptional;
 
         ReadOnlyAddressBook initialData;
         ReadOnlyAcademics initialAcademics;
+        ReadOnlyEvents initialEvents;
         try {
             addressBookOptional = storage.readAddressBook();
             academicsOptional = storage.readAcademics();
+            eventsOptional = storage.readEvents();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
                 new File("data").mkdir();
@@ -100,19 +108,26 @@ public class MainApp extends Application {
             if (!academicsOptional.isPresent()) {
                 logger.info("Academics file not found. Will be starting with a sample Academics.");
             }
+
+            if (!eventsOptional.isPresent()) {
+                logger.info("Events file not found, Will be starting with a sample Events file");
+            }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialAcademics = academicsOptional.orElseGet(SampleDataUtil::getSampleAcademics);
+            initialEvents = eventsOptional.orElseGet(SampleDataUtil::getSampleEvents);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
+            initialEvents = new EventHistory();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
+            initialEvents = new EventHistory();
         }
 
-        return new ModelManager(initialData, initialAcademics, userPrefs);
+        return new ModelManager(initialData, initialAcademics, userPrefs, initialEvents);
     }
 
     private void initLogging(Config config) {

@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -12,7 +13,10 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
-import seedu.address.model.academics.Submission;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventHistory;
+import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.event.RecurrenceType;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -69,6 +73,19 @@ public class SampleDataUtil {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyEvents getSampleEvents() {
+        String eventName = "Sample event";
+        String colorCode = "group01";
+        String uniqueIdentifier = "teapethelper";
+        LocalDateTime startDateTime = LocalDateTime.now();
+        LocalDateTime endDateTime = LocalDateTime.now().plusHours(2);
+        Event event = new Event(eventName, startDateTime, endDateTime, colorCode, uniqueIdentifier, RecurrenceType.NONE);
+        ArrayList<Event> events = new ArrayList<>();
+        events.add(event);
+        EventHistory sampleEventHistory = new EventHistory(events);
+        return sampleEventHistory;
     }
 
     public static Assessment[] getSampleAssessments() {

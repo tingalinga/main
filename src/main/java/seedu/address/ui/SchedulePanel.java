@@ -3,13 +3,13 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 import jfxtras.icalendarfx.VCalendar;
 import jfxtras.icalendarfx.components.VEvent;
 import jfxtras.internal.scene.control.skin.agenda.AgendaWeekSkin;
 import jfxtras.scene.control.agenda.icalendar.ICalendarAgenda;
 import seedu.address.commons.core.LogsCenter;
 
-import javax.swing.plaf.synth.Region;
 import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.logging.Logger;

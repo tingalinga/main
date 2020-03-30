@@ -5,9 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
+import org.apache.commons.math3.util.Pair;
+
 import jfxtras.icalendarfx.components.VEvent;
 import jfxtras.icalendarfx.properties.component.recurrence.RecurrenceRule;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.RecurrenceType;
 
 public class EventUtil {
@@ -68,6 +73,70 @@ public class EventUtil {
         mappedEvent.setColorCode(vEvent.getCategories().get(0).getValue().get(0));
 
         return mappedEvent;
+    }
+
+    /**
+     * Makes a unique identifier with current date time and these parameters
+     * @param eventName event name
+     * @param startDateTime start date time of event
+     * @param endDateTime end date time of event
+     * @return unique identifier based on current date time
+     */
+    public static String makeUniqueIdentifier(String eventName, String startDateTime, String endDateTime) {
+        StringBuilder builder = new StringBuilder();
+        builder.append(LocalDateTime.now().toString());
+        builder.append("-");
+        builder.append(eventName);
+        builder.append("-");
+        builder.append(startDateTime);
+        builder.append("-");
+        builder.append(endDateTime);
+        builder.append(".TeaPetHelper");
+        return builder.toString();
+    }
+
+    /**
+     * Converts date time to LocalDateTime object
+     * @param date must be of formate yyyy-mm-dd
+     */
+    public static LocalDateTime dateTimeToLocalDateTimeFormatter(String date) {
+        return LocalDateTime.parse(date, DATE_TIME_FORMATTER);
+    }
+
+    /**
+     * Converts string value to EventScheduleView class object
+     */
+    public static EventScheduleView stringToEventScheduleViewMapper(String eventScheduleViewString)
+            throws IllegalValueException {
+        if (eventScheduleViewString.equalsIgnoreCase(EventScheduleView.DAILY.name())) {
+            return EventScheduleView.DAILY;
+        } else if (eventScheduleViewString.equalsIgnoreCase(EventScheduleView.WEEKLY.name())) {
+            return EventScheduleView.WEEKLY;
+        } else {
+            throw new IllegalValueException("Schedule view is not valid. Input passed: " + eventScheduleViewString);
+        }
+    }
+
+    /**
+     * Converts VEvent to string
+     */
+    public static String vEventToString(VEvent vEvent) {
+        return String.format("event name: %s , start dateime: %s , end datetime: %s\n",
+                vEvent.getSummary().getValue().toString(),
+                vEvent.getDateTimeStart().getValue().toString(),
+                vEvent.getDateTimeEnd().getValue().toString());
+    }
+
+    /**
+     * Presents the index, VEvent pair to user
+     */
+    public static String formatIndexVEventPair(Pair<Index, VEvent> indexVEventPair) {
+        Index index = indexVEventPair.getKey();
+        VEvent vEvent = indexVEventPair.getValue();
+        return String.format("Index: %d , event name: %s , start datetime: %s , end datetime: %s\n",
+                index.getOneBased(), vEvent.getSummary().getValue().toString(),
+                vEvent.getDateTimeStart().getValue().toString(),
+                vEvent.getDateTimeEnd().getValue().toString());
     }
 
     /**

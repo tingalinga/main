@@ -13,5 +13,8 @@ public class Messages {
     public static final String MESSAGE_MISSING_EVENT_NAME = "Missing event name!";
     public static final String MESSAGE_INVALID_EVENT_DATETIME_RANGE = "Invalid date range!";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists!";
-
+    public static final String MESSAGE_INVALID_RECURRENCE_TYPE = "Invalid recurrence type."
+            + " Input either none, daily or weekly.";
+    public static final String MESSAGE_INVALID_COLOR_STRING = "Invalid color input."
+            + " Color code must be from 0 to 23 inclusive.";
 }

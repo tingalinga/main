@@ -21,7 +21,7 @@ public class Event {
     private RecurrenceType recurrenceType;
 
     public Event(String eventName, LocalDateTime startDateTime, LocalDateTime endDateTime, String colorCode, String uniqueIdentifier, RecurrenceType recurrenceType) {
-        requireAllNonNull(eventName, startDateTime, endDateTime, colorCode, uniqueIdentifier);
+        requireAllNonNull(eventName, startDateTime, endDateTime, colorCode, uniqueIdentifier, recurrenceType);
         checkArgument(validateDateTime(startDateTime, endDateTime));
         checkArgument(isValidEventName(eventName), MESSAGE_MISSING_EVENT_NAME);
         checkArgument(isValidColorCode(colorCode), INVALID_COLOR_CATEGORY);
@@ -115,7 +115,6 @@ public class Event {
                 && otherEvent.getStartDateTime().equals(getStartDateTime())
                 && otherEvent.getEndDateTime().equals(getEndDateTime())
                 && otherEvent.getColorCode().equals(getColorCode())
-                && otherEvent.getRecurrenceType().equals(getRecurrenceType())
                 && otherEvent.getRecurrenceType().equals(getRecurrenceType());
     }
 

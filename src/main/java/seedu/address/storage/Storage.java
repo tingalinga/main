@@ -9,12 +9,14 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.storage.academics.AcademicsStorage;
+import seedu.address.storage.event.EventStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, AcademicsStorage, UserPrefsStorage {
+public interface Storage extends AddressBookStorage, AcademicsStorage, UserPrefsStorage, EventStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -40,6 +42,14 @@ public interface Storage extends AddressBookStorage, AcademicsStorage, UserPrefs
     @Override
     void saveAcademics(ReadOnlyAcademics academics) throws IOException;
 
+    // ================ Event methods ==============================
+    @Override
+    Optional<ReadOnlyEvents> readEvents() throws DataConversionException, IOException;
 
+    @Override
+    void saveEvents(ReadOnlyEvents readOnlyEvents) throws IOException;
+
+    @Override
+    Path getEventHistoryFilePath();
 
 }

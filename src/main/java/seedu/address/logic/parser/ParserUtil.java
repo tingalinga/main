@@ -1,14 +1,27 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COLOR_STRING;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_TYPE;
+import static seedu.address.commons.util.EventUtil.BAD_DATE_FORMAT;
+import static seedu.address.commons.util.EventUtil.DAILY_RECUR_RULE;
+import static seedu.address.commons.util.EventUtil.NO_RECUR_RULE;
+import static seedu.address.commons.util.EventUtil.WEEKLY_RECUR_RULE;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import jfxtras.icalendarfx.properties.component.descriptive.Categories;
+import jfxtras.icalendarfx.properties.component.recurrence.RecurrenceRule;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.RecurrenceType;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -175,4 +188,79 @@ public class ParserUtil {
         }
         return new NextOfKin(trimmedNok);
     }
+
+    public static String parseEventName(String eventName) throws ParseException {
+        requireNonNull(eventName);
+        return eventName.trim();
+    }
+
+    public static LocalDateTime parseLocalDateTime(String localDateTimeString) throws ParseException {
+        LocalDateTime result;
+        try {
+            result = LocalDateTime.parse(localDateTimeString);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(BAD_DATE_FORMAT, e);
+        }
+        return result;
+    }
+
+    public static RecurrenceRule parseRecurrenceType(String recurrenceTypeString) throws ParseException {
+        if (!validateRecurType(recurrenceTypeString)) {
+            throw new ParseException(MESSAGE_INVALID_RECURRENCE_TYPE);
+        }
+        RecurrenceRule result;
+        try {
+            result = stringToRecurrenceRuleMapper(recurrenceTypeString);
+        } catch (IllegalValueException ex) {
+            throw new ParseException(ex.getMessage(), ex);
+        }
+        return result;
+    }
+
+    public static boolean validateRecurType(String recurTypeString) {
+        if (recurTypeString.equalsIgnoreCase(RecurrenceType.WEEKLY.name())) {
+            return true;
+        } else if (recurTypeString.equalsIgnoreCase(RecurrenceType.DAILY.name())) {
+            return true;
+        } else if (recurTypeString.equalsIgnoreCase(RecurrenceType.NONE.name())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static RecurrenceRule stringToRecurrenceRuleMapper(String recurrenceString) throws IllegalValueException {
+        if (recurrenceString.equalsIgnoreCase("weekly")) {
+            return RecurrenceRule.parse(WEEKLY_RECUR_RULE);
+        } else if (recurrenceString.equalsIgnoreCase("daily")) {
+            return RecurrenceRule.parse(DAILY_RECUR_RULE);
+        } else if (recurrenceString.equalsIgnoreCase("none")) {
+            return RecurrenceRule.parse(NO_RECUR_RULE);
+        } else {
+            throw new IllegalValueException("recurrence type is  invalid. Input passed: " + recurrenceString);
+        }
+    }
+
+    public static ArrayList<Categories> parseColorCode(String colorCode) throws ParseException {
+        if (!validateColorCode(colorCode)) {
+            throw new ParseException(MESSAGE_INVALID_COLOR_STRING);
+        }
+        String colorCategoryString = "group" + (Integer.parseInt(colorCode) < 10 ? "0" : "") + colorCode;;
+        Categories colorCategory = new Categories(colorCategoryString);
+        ArrayList<Categories> colorCategoryList = new ArrayList<>();
+        colorCategoryList.add(colorCategory);
+        return colorCategoryList;
+    }
+
+    public static boolean validateColorCode(String colorCode) {
+        // to check if the color code is in range
+        try {
+            Integer colorNumberInt = Integer.parseInt(colorCode);
+            boolean result = colorNumberInt <= 23 && colorNumberInt >= 0;
+            return result;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
+
