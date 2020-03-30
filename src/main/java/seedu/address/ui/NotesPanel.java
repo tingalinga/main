@@ -10,8 +10,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.notes.Notes;
+
 
 /**
  * Controller class for NotesPanel fxml
@@ -29,10 +30,40 @@ public class NotesPanel extends UiPart<Region> {
         notesView.setCellFactory(view -> new NotesViewCell());
     }
 
+    public NotesPanel(ObservableList<Student> studentList, String result) {
+        super(FXML);
+        notesView.setItems(FXCollections.observableArrayList(getAllFilteredNotes(studentList, result)));
+        notesView.setCellFactory(view -> new NotesViewCell());
+    }
+
     public ArrayList<Notes> getAllNotes(ObservableList<Student> studentList) {
         ArrayList<Notes> allNotes = new ArrayList<>();
         for (Student student : studentList) {
             allNotes.addAll(student.getNotes());
+        }
+        return allNotes;
+    }
+
+    public ArrayList<Notes> getAllFilteredNotes(ObservableList<Student> studentList, String result) {
+        String preProcessedKeywords = result.split(":")[1].trim();
+        String[] keywords = preProcessedKeywords.substring(1, preProcessedKeywords.length() - 1).split(",");
+        for (String keyword : keywords) {
+            keyword = keyword.trim().toLowerCase();
+        }
+
+        ArrayList<Notes> allNotes = new ArrayList<>();
+        for (Student student : studentList) {
+            ArrayList<Notes> studentNotes = student.getNotes();
+            for (Notes note : studentNotes) {
+                for (String keyword : keywords) {
+                    if (note.getContent().toLowerCase().contains(keyword)
+                        || note.getDateTime().toLowerCase().contains(keyword)
+                        || note.getStudent().toLowerCase().contains(keyword)) {
+                        allNotes.add(note);
+                        break;
+                    }
+                }
+            }
         }
         return allNotes;
     }
@@ -49,7 +80,7 @@ public class NotesPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new NotesCard(note).getRoot());
+                setGraphic(new NotesCard(note, getIndex() + 1).getRoot());
             }
         }
     }

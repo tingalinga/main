@@ -210,8 +210,23 @@ public class MainWindow extends UiPart<Stage> {
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
-            if (consoleReply.contains("New Admin Note added! Yay!")) {
+            if (consoleReply.contains("New Student Note added! Yay!")) {
                 notesPanel = new NotesPanel(logic.getFilteredStudentList());
+                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
+            }
+
+            if (consoleReply.contains("Student Note deleted.")) {
+                notesPanel = new NotesPanel(logic.getFilteredStudentList());
+                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
+            }
+
+            if (consoleReply.contains("Notes are exported to studentNotes.txt")) {
+                NotesManager notesManager = new NotesManager(logic.getFilteredStudentList());
+                notesManager.saveToTxt();
+            }
+
+            if (consoleReply.contains("Displaying Notes")) {
+                notesPanel = new NotesPanel(logic.getFilteredStudentList(), consoleReply);
                 notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
             }
 

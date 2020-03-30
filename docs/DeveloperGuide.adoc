@@ -152,8 +152,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::undoredo[]
-
 === Class particulars feature
 The class particulars feature keeps track of essential student details.
 The feature comprises of four commands namely,
@@ -165,6 +163,9 @@ The feature comprises of four commands namely,
 
 The commands when executed, will interface with the methods exposed by the `Model` interface to perform the related operations
 (See <<Design-Logic,logic component>> for the general overview).
+
+.Class Diagram for Commands
+image::CommandClassDiagram.png[]
 
 [[Feature-Add]]
 ==== Add command
@@ -183,6 +184,13 @@ with the duplicate students error message.
 
 *Step 3*. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
 the `AddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+[NOTE]
+If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be similar to step 2, where either a unknown command
+or wrong format error message will be displayed.
+
+The following sequence diagram shows how the add operation works:
+
+image::AddSequenceDiagram.png[]
 
 ==== Edit command
 
@@ -203,6 +211,8 @@ with the duplicate students error message.
 method.
 
 *Step 4*. The command box will be reflected with the `EditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+
+=== Import image feature
 
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation

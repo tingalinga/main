@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.notes;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
@@ -6,13 +6,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.notes.AdminNotesCommand;
+import seedu.address.logic.commands.notes.NotesCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parser for AdminNotes Command
+ * Parser for Notes Command
  */
-public class AdminNotesCommandParser implements Parser<AdminNotesCommand> {
+public class NotesCommandParser implements Parser<NotesCommand> {
 
     /**
      * Parsing of input
@@ -20,18 +24,18 @@ public class AdminNotesCommandParser implements Parser<AdminNotesCommand> {
      * @return
      * @throws ParseException
      */
-    public AdminNotesCommand parse(String args) throws ParseException {
+    public NotesCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTENT);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !arePrefixesPresent(argMultimap, PREFIX_CONTENT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AdminNotesCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesCommand.MESSAGE_USAGE));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get();
         String content = argMultimap.getValue(PREFIX_CONTENT).get();
 
-        return new AdminNotesCommand(name, content);
+        return new NotesCommand(name, content);
     }
 
     /**
