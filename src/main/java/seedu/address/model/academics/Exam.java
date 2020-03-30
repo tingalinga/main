@@ -14,7 +14,7 @@ import seedu.address.model.student.Student;
 public class Exam extends Assessment {
 
     private String description;
-    private LocalDate examDate;
+    private LocalDate date;
 
     private ObservableList<Student> students;
     private List<Submission> submissionTracker = new ArrayList<>();
@@ -22,23 +22,23 @@ public class Exam extends Assessment {
     /**
      * Every entry field must be present and not null.
      * @param description description of exam.
-     * @param examDate date of examination.
+     * @param date date of examination.
      */
-    public Exam(String description, String examDate) {
-        super(description);
+    public Exam(String description, String date) {
+        super(description, date);
         this.description = description;
-        this.examDate = LocalDate.parse(examDate);
+        this.date = LocalDate.parse(date);
     }
 
     /**
      * Every entry field must be present and not null.
      * @param description description of exam.
-     * @param examDate date of examination.
+     * @param date date of examination.
      */
-    public Exam(String description, LocalDate examDate) {
-        super(description);
+    public Exam(String description, LocalDate date) {
+        super(description, date.toString());
         this.description = description;
-        this.examDate = examDate;
+        this.date = date;
     }
 
     /**
@@ -53,11 +53,27 @@ public class Exam extends Assessment {
     }
 
     /**
+     * Returns the type of assessment.
+     * @return String assessment type
+     */
+    public String getType() {
+        return "exam";
+    }
+
+    /**
      * Returns the date of exam.
-     * @return exam date.
+     * @return LocalDate exam date.
      */
     public LocalDate getExamDate() {
-        return examDate;
+        return date;
+    }
+
+    /**
+     * Returns the deadline of homework as a string.
+     * @return String deadline of homework.
+     */
+    public String getDateString() {
+        return date.toString();
     }
 
     /**
@@ -65,7 +81,7 @@ public class Exam extends Assessment {
      * @param examDate exam date.
      */
     public void setExamDate(String examDate) {
-        this.examDate = LocalDate.parse(examDate);
+        this.date = LocalDate.parse(examDate);
     }
 
     /**
@@ -97,7 +113,7 @@ public class Exam extends Assessment {
     @Override
     public String toString() {
         return "Exam: " + this.description + "\n"
-                + "At: " + this.examDate + "\n";
+                + "At: " + this.date + "\n";
     }
 
 }
