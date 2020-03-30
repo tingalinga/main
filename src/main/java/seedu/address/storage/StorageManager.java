@@ -80,14 +80,15 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ Academics methods ==============================
     @Override
-    public Path getSavedAcademicsFilePath() {
-        return academicsStorage.getSavedAcademicsFilePath();
+    public Path getAcademicsFilePath() {
+        return academicsStorage.getAcademicsFilePath();
     }
 
     @Override
     public Optional<ReadOnlyAcademics> readAcademics() throws DataConversionException, IOException {
-        return readAcademics(getSavedAcademicsFilePath());
+        return readAcademics(getAcademicsFilePath());
     }
 
     @Override
@@ -98,7 +99,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAcademics(ReadOnlyAcademics academics) throws IOException {
-        saveAcademics(academics, academicsStorage.getSavedAcademicsFilePath());
+        saveAcademics(academics, academicsStorage.getAcademicsFilePath());
     }
 
     @Override
