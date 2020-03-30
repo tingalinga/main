@@ -6,6 +6,7 @@ import jfxtras.icalendarfx.components.VEvent;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import seedu.address.model.event.exceptions.DuplicateVEventException;
 
 import static java.util.Objects.requireNonNull;
 
-public class EventHistory implements ReadOnlyEvents, ReadOnlyVEvents, Iterable<VEvent>, EventUtil {
+public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyVEvents, Iterable<VEvent> {
     private final ObservableList<VEvent> vEvents = FXCollections.observableArrayList();
     private final ObservableList<VEvent> vEventsUnmodifiableList = FXCollections.unmodifiableObservableList(vEvents);
 
@@ -167,5 +168,44 @@ public class EventHistory implements ReadOnlyEvents, ReadOnlyVEvents, Iterable<V
         return vEvents.stream().anyMatch(vEvent -> isEqual(vEvent, vEventCheck));
     }
 
+    /**
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
+     */
+    @Override
+    public boolean equals (Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EventHistory)) {
+            return false;
+        }
+
+        EventHistory otherEventHistory = (EventHistory) other;
+        ObservableList<VEvent> myVEventList = this.getVEvents();
+        ObservableList<VEvent> otherVEventList = otherEventHistory.getVEvents();
+
+        if (myVEventList.size() != otherVEventList.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < myVEventList.size(); i++) {
+            VEvent myVEvent = myVEventList.get(i);
+            VEvent otherVEvent = otherVEventList.get(i);
+            if (!myVEvent.getSummary().equals(otherVEvent.getSummary())
+                    || !myVEvent.getDateTimeStart().equals(otherVEvent.getDateTimeStart())
+                    || !myVEvent.getDateTimeEnd().equals(otherVEvent.getDateTimeEnd())
+                    || !myVEvent.getCategories().equals(otherVEvent.getCategories())) {
+                return false;
+            }
+        }
+        return  true;
+    }
+
+    @Override
+    public Iterator<VEvent> iterator() {
+        return vEvents.iterator();
+    }
 
 }
