@@ -11,4 +11,5 @@ public class Messages {
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_INVALID_ASSESSMENT_TYPE = "Invalid assessment type!";
     public static final String MESSAGE_INVALID_DATE_ADMIN = "Date provided is not in database!";
+    public static final String MESSGAE_INVALID_NOTES_DISPLAYED_INDEX = "The note index provided is invalid";
 }

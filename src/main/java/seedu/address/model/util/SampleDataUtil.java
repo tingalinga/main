@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -16,6 +17,7 @@ import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -25,7 +27,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
-import seedu.address.model.notes.Notes;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -76,11 +78,11 @@ public class SampleDataUtil {
 
     public static Assessment[] getSampleAssessments() {
         return new Assessment[] {
-                new Homework("CS3230 Assignment 2", "2020-03-23"),
-                new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
-                new Homework("CS3240 Paper Prototype", "2020-03-25"),
-                new Exam("CS2103 Finals", "2020-05-25"),
-                new Exam("CS3230 Finals", "2020-05-25")
+            new Homework("CS3230 Assignment 2", "2020-03-23"),
+            new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
+            new Homework("CS3240 Paper Prototype", "2020-03-25"),
+            new Exam("CS2103 Finals", "2020-05-25"),
+            new Exam("CS3230 Finals", "2020-05-25")
         };
     }
 
