@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -13,7 +12,6 @@ import seedu.address.logic.commands.admin.AdminFetchCommand;
 import seedu.address.logic.commands.admin.AdminSaveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.admin.DateContainsKeywordsPredicate;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
 
 /**
  * Parses input argument and creates a new AdminCommand object
@@ -53,7 +51,7 @@ public class AdminCommandParser implements Parser<AdminCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         AdminSaveCommand.MESSAGE_USAGE));
             } else {
-                return new AdminSaveCommand();
+                return new AdminSaveCommand(LocalDate.parse(inputs[2]));
             }
 
         case AdminCommand.ADMIN_DELETE:

@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.DateContainsKeywordsPredicate;
+import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.student.Student;
 
 /**
@@ -29,24 +30,22 @@ public class AdminDeleteCommand extends AdminCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, DateNotFoundException {
         requireNonNull(model);
         model.updateFilteredDateList(predicate);
-        LocalDate date = model.getFilteredDateList().get(0).getDate();
-        String fullDate = date.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
-                + date.getDayOfMonth() + " " + date.getYear();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, fullDate);
+        if (model.getFilteredDateList().size() == 0) {
+            throw new DateNotFoundException();
+        } else {
+            Date dateToDelete = model.getFilteredDateList().get(0);
+            String fullDate = dateToDelete.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
+                    + dateToDelete.getDate().getDayOfMonth() + " " + dateToDelete.getDate().getYear();
+            model.deleteDate(dateToDelete);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, fullDate));
+        }
     }
 
     @Override
     public boolean equals(Object other) {
         return true;
-    }
-
-    @Override
-    public String toString() {
-        String fullDate = thisDate.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
-                + thisDate.getDate().getDayOfMonth() + " " + thisDate.getDate().getYear();
-        return fullDate;
     }
 }
