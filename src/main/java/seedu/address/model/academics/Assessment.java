@@ -58,9 +58,35 @@ public abstract class Assessment {
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.
      */
-    public void setStudents(List<Student> students) {
+    public abstract void setSubmissions(List<Student> students);
+
+    /**
+     * Set the submission of each student to not submitted and unmarked.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setAssessmentSubmissions(List<Student> students) {
         for (Student student: students) {
             submissionTracker.add(new Submission(student.getName().fullName));
+        }
+    }
+
+    /**
+     * Sets the submission tracker to the new submission tracker.
+     * @param newSubmissionTracker new submission tracker.
+     */
+    public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
+        for (Submission submission: newSubmissionTracker) {
+            submissionTracker.add(submission);
+        }
+    }
+
+    /**
+     * Sets the submission tracker to the new submission tracker.
+     * @param newSubmissionTracker new submission tracker.
+     */
+    public void setAssessmentSubmissionTracker(List<Submission> newSubmissionTracker) {
+        for (Submission submission: newSubmissionTracker) {
+            submissionTracker.add(submission);
         }
     }
 

@@ -84,7 +84,8 @@ public class SampleDataUtil {
     public static ReadOnlyAcademics getSampleAcademics() {
         Academics sampleAcademics = new Academics();
         for (Assessment sampleAssessment : getSampleAssessments()) {
-            sampleAssessment.setStudents(Arrays.asList(getSampleStudents()));
+            sampleAssessment.setSubmissions(Arrays.asList(getSampleStudents()));
+            sampleAssessment.setAssessmentSubmissions(Arrays.asList(getSampleStudents()));
             sampleAcademics.addAssessment(sampleAssessment);
         }
         return sampleAcademics;

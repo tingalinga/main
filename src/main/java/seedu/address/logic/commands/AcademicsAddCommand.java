@@ -50,7 +50,8 @@ public class AcademicsAddCommand extends AcademicsCommand {
             throw new CommandException(MESSAGE_DUPLICATE_ASSESSMENT);
         }
         List<Student> lastShownList = model.getFilteredStudentList();
-        toAdd.setStudents(lastShownList);
+        toAdd.setSubmissions(lastShownList);
+        toAdd.setAssessmentSubmissions(lastShownList);
         model.addAssessment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

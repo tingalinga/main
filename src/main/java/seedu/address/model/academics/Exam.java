@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
@@ -16,7 +15,6 @@ public class Exam extends Assessment {
     private String description;
     private LocalDate date;
 
-    private ObservableList<Student> students;
     private List<Submission> submissionTracker = new ArrayList<>();
 
     /**
@@ -42,12 +40,21 @@ public class Exam extends Assessment {
     }
 
     /**
+     * Set the submission of each student to not submitted and unmarked.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setSubmissions(List<Student> students) {
+        for (Student student: students) {
+            submissionTracker.add(new Submission(student.getName().fullName));
+        }
+    }
+
+    /**
      * Sets the submission tracker to the new submission tracker.
      * @param newSubmissionTracker new submission tracker.
      */
     public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
         for (Submission submission: newSubmissionTracker) {
-            this.submissionTracker.add(submission);
             submissionTracker.add(submission);
         }
     }
