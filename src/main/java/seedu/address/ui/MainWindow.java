@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private SchedulePage schedulePage;
+    private SchedulePanel schedulePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -44,7 +45,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane studentListPanelPlaceholder;
+    private StackPane mainPanelPlaceholder;
 
     @FXML
     private StackPane notesPanelPlaceholder;
@@ -115,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         notesPanel = new NotesPanel(logic.getFilteredStudentList());
         notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
@@ -128,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        schedulePanel = new SchedulePanel(logic.getVEvents());
+        mainPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
     }
 
     /**
@@ -159,12 +163,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleSchedule() {
-        if (!schedulePage.isShowing()) {
-            schedulePage.show();
-        } else {
-            schedulePage.focus();
-        }
+        schedulePanel.update();
+        schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
+        schedulePanel.getRoot().toFront();
     }
+
 
     void show() {
         primaryStage.show();
@@ -199,15 +202,15 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(consoleReply);
             if (consoleReply.equals("The Student list now displays ALL details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
-                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays ADMIN details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
-                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays DEFAULT details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
             if (consoleReply.contains("New Student Note added! Yay!")) {
@@ -221,6 +224,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (consoleReply.contains("Added Event")) {
+                handleSchedule();
             }
 
             return commandResult;

@@ -19,7 +19,7 @@ public class EventUtil {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR,0).parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
 
-    public static final String INVALID_REPEAT_TYPE = "Invalid repeat type!";
+    public static final String INVALID_RECUR_TYPE = "Invalid recurrence type!";
 
     public static final String BAD_DATE_FORMAT = "Invalid DateTime format.";
 

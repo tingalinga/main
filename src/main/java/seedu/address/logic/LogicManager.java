@@ -2,9 +2,11 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -16,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -47,6 +50,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveAcademics(model.getAcademics());
+            storage.saveEvents(model.getEventHistory());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -97,4 +101,20 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public ObservableList<VEvent> getVEvents() {
+        return model.getVEvents();
+    }
+
+    @Override
+    public LocalDateTime getEventScheduleLocalDateTime() {
+        return model.getEventScheduleLocalDateTime();
+    }
+
+    @Override
+    public EventScheduleView getEventScheduleView() {
+        return model.getEventScheduleView();
+    }
+
 }

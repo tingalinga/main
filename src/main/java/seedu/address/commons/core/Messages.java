@@ -12,5 +12,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ASSESSMENT_TYPE = "Invalid assessment type!";
     public static final String MESSAGE_MISSING_EVENT_NAME = "Missing event name!";
     public static final String MESSAGE_INVALID_EVENT_DATETIME_RANGE = "Invalid date range!";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists!";
 
 }

@@ -1,13 +1,18 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.event.EventScheduleView;
+import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.student.Student;
 
 /**
@@ -141,4 +146,34 @@ public interface Model {
      */
     void updateFilteredAcademicsList(Predicate<Assessment> predicate);
     // ==================== ACADEMICS END ====================
+
+    boolean hasVEvent(VEvent vEvent);
+
+    void addVEvent(VEvent vEvent);
+
+    void delete(Index index);
+
+    void setVEvent(Index index, VEvent vEvent);
+
+    VEvent getVEvent(Index index);
+
+    ObservableList<VEvent> getVEvents();
+
+    void setEventHistory(ReadOnlyEvents events);
+
+    ReadOnlyEvents getEventHistory();
+
+    ReadOnlyVEvents getVEventHistory();
+
+    void setEventScheduleLocalDateTime(LocalDateTime localDateTime);
+
+    String getEventSchedulePref();
+
+    LocalDateTime getEventScheduleLocalDateTime();
+
+    EventScheduleView getEventScheduleView();
+
+    void setEventScheduleView(EventScheduleView eventScheduleView);
+
+    void setEventHistory(Path eventHistoryFilePath);
 }

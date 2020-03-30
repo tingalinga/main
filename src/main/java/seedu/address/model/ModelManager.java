@@ -4,16 +4,25 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.internal.scene.control.skin.agenda.icalendar.base24hour.popup.EditDescriptiveLocatableVBox;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.event.EventHistory;
+import seedu.address.model.event.EventScheduleView;
+import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.event.ReadOnlyVEvents;
+import seedu.address.model.event.exceptions.EventSchedulePrefs;
 import seedu.address.model.student.Student;
 
 /**
@@ -27,13 +36,16 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final Academics academics;
     private final FilteredList<Assessment> filteredAssessments;
+    private final EventHistory eventHistory;
+    private final EventSchedulePrefs eventSchedulePrefs;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
                         ReadOnlyAcademics academics,
-                        ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyEvents events) {
         super();
         requireAllNonNull(addressBook, academics, userPrefs);
 
@@ -44,10 +56,12 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
+        this.eventHistory = new EventHistory(events);
+        this.eventSchedulePrefs = new EventSchedulePrefs(EventScheduleView.WEEKLY, LocalDateTime.now());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new Academics(), new UserPrefs());
+        this(new AddressBook(), new Academics(), new UserPrefs(), new EventHistory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -194,6 +208,81 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setEventHistory(Path eventHistoryFilePath) {
+        userPrefs.setEventHistoryFilePath(eventHistoryFilePath);
+    }
+
+    @Override
+    public void setEventHistory(ReadOnlyEvents events) {
+        this.eventHistory.resetDataWithReadOnlyEvents(events);
+    }
+
+    @Override
+    public ReadOnlyVEvents getVEventHistory() {
+        return eventHistory;
+    }
+
+    @Override
+    public ReadOnlyEvents getEventHistory() {
+        return eventHistory;
+    }
+
+    @Override
+    public LocalDateTime getEventScheduleLocalDateTime() {
+        return eventSchedulePrefs.getLocalDateTime();
+    }
+
+    @Override
+    public void setEventScheduleLocalDateTime(LocalDateTime localDateTime) {
+        this.eventSchedulePrefs.setLocalDateTime(localDateTime);
+    }
+
+    @Override
+    public String getEventSchedulePref() {
+        return eventSchedulePrefs.toString();
+    }
+
+    @Override
+    public EventScheduleView getEventScheduleView() {
+        return eventSchedulePrefs.getEventScheduleView();
+    }
+
+    @Override
+    public void setEventScheduleView(EventScheduleView eventScheduleView) {
+        eventSchedulePrefs.setEventScheduleView(eventScheduleView);
+    }
+
+    @Override
+    public boolean hasVEvent(VEvent vEvent) {
+        return eventHistory.contains(vEvent);
+    }
+
+    @Override
+    public void addVEvent(VEvent vEvent) {
+        eventHistory.addVEvent(vEvent);
+    }
+
+    @Override
+    public void delete(Index index) {
+        eventHistory.deleteVEvent(index);
+    }
+
+    @Override
+    public void setVEvent(Index index, VEvent vEvent) {
+        eventHistory.setVEvent(index, vEvent);
+    }
+
+    @Override
+    public VEvent getVEvent(Index index) {
+        return eventHistory.getVEvent(index);
+    }
+
+    @Override
+    public ObservableList<VEvent> getVEvents() {
+        return eventHistory.getVEvents();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -211,7 +300,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && academics.equals(other.academics)
-                && filteredAssessments.equals(other.filteredAssessments);
+                && filteredAssessments.equals(other.filteredAssessments)
+                && eventHistory.equals(other.eventHistory);
     }
 
 }
