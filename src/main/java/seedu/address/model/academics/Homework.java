@@ -2,10 +2,7 @@ package seedu.address.model.academics;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
@@ -17,7 +14,7 @@ import seedu.address.model.student.Student;
 public class Homework extends Assessment {
 
     private String description;
-    private LocalDate deadline;
+    private LocalDate date;
 
     private ObservableList<Student> students;
     private List<Submission> submissionTracker = new ArrayList<>();
@@ -25,23 +22,23 @@ public class Homework extends Assessment {
     /**
      * Every entry field must be present and not null.
      * @param description description of homework.
-     * @param deadline deadline of homework.
+     * @param date deadline of homework.
      */
-    public Homework(String description, String deadline) {
-        super(description);
+    public Homework(String description, String date) {
+        super(description, date);
         this.description = description;
-        this.deadline = LocalDate.parse(deadline);
+        this.date = LocalDate.parse(date);
     }
 
     /**
      * Every entry field must be present and not null.
      * @param description description of homework.
-     * @param deadline deadline of homework.
+     * @param date deadline of homework.
      */
-    public Homework(String description, LocalDate deadline) {
-        super(description);
+    public Homework(String description, LocalDate date) {
+        super(description, date.toString());
         this.description = description;
-        this.deadline = deadline;
+        this.date = date;
     }
 
     /**
@@ -55,19 +52,35 @@ public class Homework extends Assessment {
     }
 
     /**
+     * Returns the type of assessment.
+     * @return String assessment type
+     */
+    public String getType() {
+        return "homework";
+    }
+
+    /**
      * Returns the deadline of homework.
-     * @return deadline of homework.
+     * @return LocalDate deadline of homework.
      */
     public LocalDate getDeadline() {
-        return deadline;
+        return date;
+    }
+
+    /**
+     * Returns the deadline of homework as a string.
+     * @return String deadline of homework.
+     */
+    public String getDateString() {
+        return date.toString();
     }
 
     /**
      * Edit the deadline of the homework.
-     * @param deadline homework deadline.
+     * @param date homework deadline.
      */
-    public void setDeadline(String deadline) {
-        this.deadline = LocalDate.parse(deadline);
+    public void setDeadline(String date) {
+        this.date = LocalDate.parse(date);
     }
 
     /**
@@ -99,6 +112,6 @@ public class Homework extends Assessment {
     @Override
     public String toString() {
         return "Homework: " + this.description + "\n"
-                + "Due by: " + this.deadline + "\n";
+                + "Due by: " + this.date + "\n";
     }
 }

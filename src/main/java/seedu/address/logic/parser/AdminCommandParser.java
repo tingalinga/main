@@ -6,6 +6,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 
 import seedu.address.logic.commands.admin.AdminCommand;
+import seedu.address.logic.commands.admin.AdminDeleteCommand;
 import seedu.address.logic.commands.admin.AdminDisplayCommand;
 import seedu.address.logic.commands.admin.AdminFetchCommand;
 import seedu.address.logic.commands.admin.AdminSaveCommand;
@@ -46,6 +47,14 @@ public class AdminCommandParser implements Parser<AdminCommand> {
                         AdminSaveCommand.MESSAGE_USAGE));
             } else {
                 return new AdminSaveCommand();
+            }
+
+        case AdminCommand.ADMIN_DELETE:
+            if (inputs.length > 3) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AdminDeleteCommand.MESSAGE_USAGE));
+            } else {
+                return new AdminDeleteCommand(LocalDate.parse(inputs[2]));
             }
 
         default:

@@ -75,10 +75,18 @@ public class CommandTestUtil {
     // temperature
     public static final String INVALID_TEMPERATURE_DESC_2 = " " + PREFIX_TEMPERATURE + "41.1";
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE + "Present!"; //"!" not allowed in
-    //attendance
+    // attendance
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    // academics
+    public static final String VALID_DESCRIPTION_MATH_ASSIGNMENT = "Math Assignment";
+    public static final String VALID_DESCRIPTION_SCIENCE_EXAM = "Science Assignment";
+    public static final String VALID_TYPE_MATH_ASSIGNMENT = "homework";
+    public static final String VALID_TYPE_SCIENCE_EXAM = "exam";
+    public static final String VALID_DATE_MATH_ASSIGNMENT = "2020-03-05";
+    public static final String VALID_DATE_SCIENCE_EXAM = "2020-05-25";
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;

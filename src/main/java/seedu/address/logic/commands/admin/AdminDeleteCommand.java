@@ -27,7 +27,7 @@ public class AdminDeleteCommand extends AdminCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS + thisDate.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS + this.toString()));
     }
 
     @Override
