@@ -25,7 +25,7 @@ public class JsonSerializableNotesManager {
      * @param notes
      */
     @JsonCreator
-    public JsonSerializableNotesManager(@JsonProperty List<JsonAdaptedNotes> notes) {
+    public JsonSerializableNotesManager(@JsonProperty("notes") List<JsonAdaptedNotes> notes) {
         this.notes.addAll(notes);
     }
 
