@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.notes.Notes;
 
+/**
+ * Constructs a JsonAdaptedNotes with given details
+ */
 public class JsonAdaptedNotes {
-    public final static String MISSING_FIELD_MESSAGE_FORMAT = "Notes in incorrect format.";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Notes in incorrect format.";
 
     private final String student;
     private final String content;

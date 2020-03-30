@@ -2,7 +2,6 @@ package seedu.address.logic.commands.notes;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;

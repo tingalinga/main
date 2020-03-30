@@ -1,5 +1,7 @@
 package seedu.address.storage.notes;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_NOTES;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +15,10 @@ import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_NOTES;
+
+/**
+ * Immutable NotesManager that is serializable to JSON format.
+ */
 
 @JsonRootName(value = "notesManager")
 public class JsonSerializableNotesManager {
@@ -29,10 +34,21 @@ public class JsonSerializableNotesManager {
         this.notes.addAll(notes);
     }
 
+    /**
+     * Converts a given {@code ReadOnlyNoes} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableNotesManager}.
+     */
+
     public JsonSerializableNotesManager(ReadOnlyNotes source) {
         notes.addAll(source.getNotesList().stream().map(JsonAdaptedNotes::new).collect(Collectors.toList()));
     }
 
+    /**
+     * Converts notes records into the model's {@code NotesManager} object.
+     * @return
+     * @throws IllegalValueException
+     */
     public NotesManager toModelType() throws IllegalValueException {
         NotesManager notesManager = new NotesManager();
         for (JsonAdaptedNotes jsonAdaptedNotes : notes) {

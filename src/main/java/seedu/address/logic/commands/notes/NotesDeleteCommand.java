@@ -1,11 +1,8 @@
 package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -14,17 +11,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
-import seedu.address.model.student.Address;
-import seedu.address.model.student.Attendance;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.NextOfKin;
-import seedu.address.model.student.Phone;
-import seedu.address.model.student.Remark;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.Temperature;
-
-import seedu.address.model.tag.Tag;
 
 /**
  *  Represents NotesDeleteCommand which deletes a note from storage.

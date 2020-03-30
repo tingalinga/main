@@ -1,10 +1,10 @@
 package seedu.address.model.notes;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 /**
  * Represents the Notes Manager, which keeps track of all the notes.

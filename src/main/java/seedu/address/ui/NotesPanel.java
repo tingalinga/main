@@ -69,7 +69,7 @@ public class NotesPanel extends UiPart<Region> {
         // Process to obtain an array representation of all keywords.
         String preProcessedKeywords = result.split(":")[1].trim();
         String[] keywords = preProcessedKeywords.substring(1, preProcessedKeywords.length() - 1).split(",");
-        for(int i = 0; i < keywords.length; i++) {
+        for (int i = 0; i < keywords.length; i++) {
             keywords[i] = keywords[i].trim().toLowerCase();
         }
 

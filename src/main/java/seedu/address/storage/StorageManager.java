@@ -11,7 +11,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
-import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.notes.NotesManagerStorage;

@@ -26,7 +26,7 @@ public interface NotesManagerStorage {
     Optional<ReadOnlyNotes> readNotesManager() throws DataConversionException, IOException;
 
     /**
-     * @see #getNotesManagerFilePath() 
+     * @see #getNotesManagerFilePath()
      */
     Optional<ReadOnlyNotes> readNotesManager(Path filePath) throws DataConversionException, IOException;
 

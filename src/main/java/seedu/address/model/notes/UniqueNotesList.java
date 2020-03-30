@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.notes.exceptions.NotesUnavailableException;
 import seedu.address.model.notes.exceptions.DuplicateNotesException;
+import seedu.address.model.notes.exceptions.NotesUnavailableException;
 
 /**
  * A list of notes that enforces uniqueness between its elements and does not allow nulls.
@@ -133,13 +133,13 @@ public class UniqueNotesList implements Iterable<Notes> {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        StringBuilder sb = new StringBuilder();
-//        for (Notes note : internalList) {
-//            sb.append(note + "\n");
-//        }
-//        return sb.toString();
-//    }
+    //    @Override
+    //    public String toString() {
+    //        StringBuilder sb = new StringBuilder();
+    //        for (Notes note : internalList) {
+    //            sb.append(note + "\n");
+    //        }
+    //        return sb.toString();
+    //    }
 
 }
