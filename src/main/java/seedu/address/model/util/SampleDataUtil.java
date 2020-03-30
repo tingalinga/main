@@ -12,9 +12,7 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
-
 import seedu.address.model.notes.Notes;
-
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
