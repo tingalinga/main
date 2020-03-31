@@ -17,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path academicsFilePath = Paths.get("data" , "academics.json");
     private Path adminFilePath = Paths.get("data", "admin.json");
+    private Path notesFilePath = Paths.get("data", "notes.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -78,6 +79,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.adminFilePath = adminFilePath;
     }
 
+    public Path getNotesFilePath() {
+        return notesFilePath;
+    }
+
+    public void setNotesFilePath(Path notesFilePath) {
+        requireNonNull(notesFilePath);
+        this.notesFilePath = notesFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -107,6 +117,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data addressbook file location : " + addressBookFilePath);
         sb.append("\nLocal data ad,om file location : " + adminFilePath);
         sb.append("\nLocal data academics file location : " + academicsFilePath);
+        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nAcademics data file location : " + academicsFilePath);
+        sb.append("\nNotes data file location : " + notesFilePath);
         return sb.toString();
     }
 }

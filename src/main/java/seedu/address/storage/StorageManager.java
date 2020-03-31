@@ -12,8 +12,10 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.admin.AdminStorage;
+import seedu.address.storage.notes.NotesManagerStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -24,17 +26,20 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private AdminStorage adminStorage;
     private AcademicsStorage academicsStorage;
+    private NotesManagerStorage notesManagerStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
     public StorageManager(AddressBookStorage addressBookStorage,
                           AdminStorage adminStorage,
                           AcademicsStorage academicsStorage,
+                          NotesManagerStorage notesManagerStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.adminStorage = adminStorage;
         this.academicsStorage = academicsStorage;
+        this.notesManagerStorage = notesManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -114,8 +119,6 @@ public class StorageManager implements Storage {
         academicsStorage.saveAcademics(academics, filePath);
     }
 
-    // ================ Admin methods ==============================
-
     @Override
     public Path getAdminFilePath() {
         return adminStorage.getAdminFilePath();
@@ -141,5 +144,32 @@ public class StorageManager implements Storage {
     public void saveAdmin(ReadOnlyAdmin admin, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         adminStorage.saveAdmin(admin, filePath);
+    }
+
+    @Override
+    public Path getNotesManagerFilePath() {
+        return notesManagerStorage.getNotesManagerFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyNotes> readNotesManager() throws DataConversionException, IOException {
+        return readNotesManager(getNotesManagerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyNotes> readNotesManager(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return notesManagerStorage.readNotesManager(filePath);
+    }
+
+    @Override
+    public void saveNotesManager(ReadOnlyNotes notes) throws IOException {
+        saveNotesManager(notes, notesManagerStorage.getNotesManagerFilePath());
+    }
+
+    @Override
+    public void saveNotesManager(ReadOnlyNotes notes, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        notesManagerStorage.saveNotesManager(notes, filePath);
     }
 }

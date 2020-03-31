@@ -1,9 +1,7 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -11,11 +9,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.notes.Notes;
-import seedu.address.model.student.Student;
 
 
 /**
- * Controller class for NotesPanel fxml
+ * Represents a Controller class for NotesPanel fxml
  */
 public class NotesPanel extends UiPart<Region> {
     private static final String FXML = "NotesPanel.fxml";
@@ -24,49 +21,16 @@ public class NotesPanel extends UiPart<Region> {
     @FXML
     private ListView<Notes> notesView;
 
-    public NotesPanel(ObservableList<Student> studentList) {
+    /**
+     * Constuctor of NotesPanel, with an input of list of students.
+     * @param notesList
+     */
+    public NotesPanel(ObservableList<Notes> notesList) {
         super(FXML);
-        notesView.setItems(FXCollections.observableArrayList(getAllNotes(studentList)));
+        notesView.setItems(notesList);
         notesView.setCellFactory(view -> new NotesViewCell());
     }
 
-    public NotesPanel(ObservableList<Student> studentList, String result) {
-        super(FXML);
-        notesView.setItems(FXCollections.observableArrayList(getAllFilteredNotes(studentList, result)));
-        notesView.setCellFactory(view -> new NotesViewCell());
-    }
-
-    public ArrayList<Notes> getAllNotes(ObservableList<Student> studentList) {
-        ArrayList<Notes> allNotes = new ArrayList<>();
-        for (Student student : studentList) {
-            allNotes.addAll(student.getNotes());
-        }
-        return allNotes;
-    }
-
-    public ArrayList<Notes> getAllFilteredNotes(ObservableList<Student> studentList, String result) {
-        String preProcessedKeywords = result.split(":")[1].trim();
-        String[] keywords = preProcessedKeywords.substring(1, preProcessedKeywords.length() - 1).split(",");
-        for (String keyword : keywords) {
-            keyword = keyword.trim().toLowerCase();
-        }
-
-        ArrayList<Notes> allNotes = new ArrayList<>();
-        for (Student student : studentList) {
-            ArrayList<Notes> studentNotes = student.getNotes();
-            for (Notes note : studentNotes) {
-                for (String keyword : keywords) {
-                    if (note.getContent().toLowerCase().contains(keyword)
-                        || note.getDateTime().toLowerCase().contains(keyword)
-                        || note.getStudent().toLowerCase().contains(keyword)) {
-                        allNotes.add(note);
-                        break;
-                    }
-                }
-            }
-        }
-        return allNotes;
-    }
 
     /**
      * Displays the note graphics

@@ -6,7 +6,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.notes.Notes;
 
 /**
- * Controller for NotesCard fxml
+ * Represents a Controller for NotesCard fxml.
  */
 public class NotesCard extends UiPart<Region> {
 
@@ -23,6 +23,11 @@ public class NotesCard extends UiPart<Region> {
     @FXML
     private Label dateTime;
 
+    /**
+     * Constructor for NotesCard
+     * @param note, with student's name, date added and content
+     * @param displayedIndex, the Note's position in the ListView
+     */
     public NotesCard(Notes note, int displayedIndex) {
         super(FXML);
         this.note = note;

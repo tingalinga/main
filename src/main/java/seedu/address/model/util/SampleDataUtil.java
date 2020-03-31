@@ -18,6 +18,8 @@ import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.NotesManager;
+import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -93,6 +95,20 @@ public class SampleDataUtil {
             sampleAcademics.addAssessment(sampleAssessment);
         }
         return sampleAcademics;
+    }
+
+
+    public static Notes[] getSampleNotes() {
+        return new Notes[] {
+            new Notes("Simon Lam", "He has bad behaviour", "29/03/2020 22:31"),
+            new Notes("Gerren Seow", "He has good behaviour", "29/03/2020 22:40")
+        };
+    }
+
+    public static ReadOnlyNotes getSampleNotesManager() {
+        NotesManager sampleNotesManager = new NotesManager();
+        sampleNotesManager.setNotes(Arrays.asList(getSampleNotes()));
+        return sampleNotesManager;
     }
 
     /**
