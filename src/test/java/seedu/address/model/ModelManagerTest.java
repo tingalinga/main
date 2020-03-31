@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AcademicsBuilder;
@@ -164,7 +163,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentAcademics, notesManager, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentAcademics, notesManager,
+                userPrefs)));
 
         // different filteredList -> returns false
         String[] studentKeywords = ALICE.getName().fullName.split("\\s+");
