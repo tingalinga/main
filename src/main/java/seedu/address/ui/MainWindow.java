@@ -226,7 +226,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (consoleReply.contains("Added Event")) {
+            if (consoleReply.contains("Added event")) {
                 handleSchedule();
             }
 
