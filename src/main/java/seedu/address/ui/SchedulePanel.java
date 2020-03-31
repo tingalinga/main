@@ -28,7 +28,7 @@ public class SchedulePanel extends UiPart<Region> {
         super(FXML);
         this.vCalendar = new VCalendar();
         vCalendar.setVEvents(list);
-        this.agenda = new ICalendarAgenda();
+        this.agenda = new ICalendarAgenda(this.vCalendar);
         init(this.agenda);
         borderPane.setCenter(agenda);
         borderPane.setMaxWidth(Double.MAX_VALUE);
@@ -47,8 +47,6 @@ public class SchedulePanel extends UiPart<Region> {
     public void setSettings(ICalendarAgenda agenda) {
         agenda.setAllowResize(false);
         agenda.setAllowDragging(false);
-        agenda.setActionCallback(null);
-        agenda.setOnMouseClicked(null);
         agenda.setOnMousePressed(null);
         agenda.setOnTouchPressed(null);
         agenda.setEditAppointmentCallback(null);

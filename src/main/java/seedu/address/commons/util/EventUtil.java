@@ -60,8 +60,8 @@ public class EventUtil {
         Event mappedEvent = new Event();
         mappedEvent.setEndTime(LocalDateTime.parse(vEvent.getDateTimeEnd().getValue().toString()));
         mappedEvent.setStartTime(LocalDateTime.parse(vEvent.getDateTimeStart().getValue().toString()));
-        mappedEvent.setUniqueIdentifier(vEvent.getUniqueIdentifier().toString());
-        mappedEvent.setEventName(vEvent.getSummary().toString());
+        mappedEvent.setUniqueIdentifier(vEvent.getUniqueIdentifier().getValue());
+        mappedEvent.setEventName(vEvent.getSummary().getValue());
         RecurrenceRule vEventRule = vEvent.getRecurrenceRule();
         if (vEventRule.toString().contains("DAILY")) {
             mappedEvent.setRecurrenceType(RecurrenceType.DAILY);
