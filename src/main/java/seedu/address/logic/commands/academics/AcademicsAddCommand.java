@@ -18,12 +18,10 @@ import seedu.address.model.student.Student;
  */
 public class AcademicsAddCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": creates a new assessment\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " add: creates a new assessment\n"
             + "Parameters:\n"
-            + "desc/[DESCRIPTION]\n"
-            + "type/[TYPE: homework/exam]\n"
-            + "date/[DATE]\n"
-            + "Example: academics name/CS2103T assignment 1 type/homework date/2020-03-04\n";
+            + "add desc/[DESCRIPTION] type/[TYPE: homework/exam] date/[DATE]\n"
+            + "Example: academics add desc/CS2103T assignment 1 type/homework date/2020-03-04\n";
 
     public static final String MESSAGE_SUCCESS = "Added assessment:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ASSESSMENT = "This assessment already exists in the academics list";

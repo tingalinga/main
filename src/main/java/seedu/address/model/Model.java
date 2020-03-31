@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -133,6 +134,11 @@ public interface Model {
      * Replaces the assessment at the specified index.
      */
     void setAssessment(Assessment target, Assessment assessment);
+
+    /**
+     * Submits students' submission for the specified assessment.
+     */
+    void submitAssessment(Assessment target, List<String> students);
 
     /** Returns an unmodifiable view of the filtered academics list */
     ObservableList<Assessment> getFilteredAcademicsList();

@@ -83,6 +83,17 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         }
     }
 
+    /**
+     * Submits students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void submitAssessment(Assessment target, List<String> students) {
+        requireNonNull(target);
+        requireNonNull(students);
+        int index = internalList.indexOf(target);
+        internalList.get(index).setSubmitted(students);
+    }
+
     public void setAssessments(UniqueAssessmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

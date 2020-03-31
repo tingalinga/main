@@ -95,22 +95,10 @@ public abstract class Assessment {
     }
 
     /**
-     * Submits the submission of the student.
-     * @param studentName student submitting his/her assessment.
-     */
-    public void setSingleSubmitted(String studentName) {
-        for (Submission submission: submissionTracker) {
-            if (submission.getStudentName().equals(studentName)) {
-                submission.markAsSubmitted();
-            }
-        }
-    }
-
-    /**
-     * Submits multiple students' assessments.
+     * Submits students' assessments.
      * @param studentList list of students who have completed their assessment.
      */
-    public void setMultipleSubmitted(String ...studentList) {
+    public void setSubmitted(List<String> studentList) {
         for (String studentName: studentList) {
             for (Submission submission: submissionTracker) {
                 if (submission.getStudentName().equals(studentName)) {
@@ -265,23 +253,23 @@ public abstract class Assessment {
      */
     public void setAssessmentSampleSubmissions(List<Student> students, String assessmentDescription) {
         switch (assessmentDescription) {
-            case "Math Differentiation Homework" :
-                setAssessmentSampleMathSubmissions(students);
-                break;
-            case "Science Plant and Species Scrapbook" :
-                setAssessmentSampleScienceSubmissions(students);
-                break;
-            case "Science Experiment" :
-                setAssessmentSampleExperimentSubmissions(students);
-                break;
-            case "English Spelling Test" :
-                setAssessmentSampleEnglishSubmissions(students);
-                break;
-            case "Chinese Final Exam" :
-                setAssessmentSampleChineseSubmissions(students);
-                break;
-            default:
-                break;
+        case "Math Differentiation Homework" :
+            setAssessmentSampleMathSubmissions(students);
+            break;
+        case "Science Plant and Species Scrapbook" :
+            setAssessmentSampleScienceSubmissions(students);
+            break;
+        case "Science Experiment" :
+            setAssessmentSampleExperimentSubmissions(students);
+            break;
+        case "English Spelling Test" :
+            setAssessmentSampleEnglishSubmissions(students);
+            break;
+        case "Chinese Final Exam" :
+            setAssessmentSampleChineseSubmissions(students);
+            break;
+        default:
+            break;
         }
     }
 
