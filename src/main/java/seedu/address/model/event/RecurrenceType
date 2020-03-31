@@ -1,8 +1,0 @@
-package seedu.address.model.event;
-
-/**
- * Enumerates the 3 types of recurrences available
- */
-public enum RecurrenceType {
-    NONE, DAILY, WEEKLY
-}

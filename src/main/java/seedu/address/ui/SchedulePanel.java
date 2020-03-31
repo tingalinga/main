@@ -54,7 +54,8 @@ public class SchedulePanel extends UiPart<Region> {
         agenda.setEditAppointmentCallback(null);
         agenda.setAppointmentChangedCallback(null);
         agenda.setSelectedOneAppointmentCallback(null);
-
+        agenda.setNewAppointmentCallback(null);
+        agenda.setNewAppointmentDrawnCallback(null);
     }
 
     /**
