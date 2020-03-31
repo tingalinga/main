@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * A class representing the Notes feature.
+ * Represents Notes of a student.
  */
 public class Notes {
 
@@ -93,6 +93,10 @@ public class Notes {
         return new Notes(this.getStudent(), newContent);
     }
 
+    /**
+     * Method which checks the validity of a Student's name.
+     * @param test
+     */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -119,6 +123,13 @@ public class Notes {
     }
 
     /**
+     * Returns true if both notes have the same information.
+     */
+    public boolean isSameNote(Notes otherNotes) {
+        return this.equals(otherNotes);
+    }
+
+    /**
      * Driver function to test the functionality of StickyNotes
      * @param args
      */
@@ -126,4 +137,6 @@ public class Notes {
         Notes s1 = new Notes("Alex Yeoh", "Late for class today");
         System.out.println(s1);
     }
+
+
 }

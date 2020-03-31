@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.Student;
 
 /**
@@ -58,7 +60,24 @@ public interface Logic {
      * Returns the user prefs' academics file path.
      */
     Path getAcademicsFilePath();
-    // ==================== ACADEMICS START ====================
+    // ==================== ACADEMICS END ====================
+
+    // ==================== NOTES START ====================
+    /**
+     * Returns the Academics.
+     *
+     * @see Model#getAcademics()
+     */
+    ReadOnlyNotes getNotesManager();
+
+    /** Returns an unmodifiable view of the filtered list of assessments */
+    ObservableList<Notes> getFilteredNotesList();
+
+    /**
+     * Returns the user prefs' academics file path.
+     */
+    Path getNotesManagerFilePath();
+    // ==================== ACADEMICS END ====================
 
     /**
      * Returns the user prefs' GUI settings.

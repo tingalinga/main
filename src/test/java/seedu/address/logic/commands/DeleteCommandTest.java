@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,8 @@ import seedu.address.model.student.Student;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(),
+            new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +36,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(),
+                model.getNotesManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -57,7 +60,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getNotesManager(),
+                new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 

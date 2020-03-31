@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Displays a comprehensive version of the students list.
+ * Represents a command which displays a comprehensive version of students' list.
  */
 public class DetailedStudentDisplayCommand extends Command {
 
@@ -20,9 +20,14 @@ public class DetailedStudentDisplayCommand extends Command {
      * Creates an DetailedStudentDisplayCommand
      */
     public DetailedStudentDisplayCommand() {
-
     }
 
+    /**
+     * Overriden execute command which returns a new CommandResult containing success message.
+     * @param model {@code Model} which the command should operate on.
+     * @return CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

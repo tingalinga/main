@@ -34,7 +34,10 @@ public class HelpWindow extends UiPart<Stage> {
             + "\u2022 Display detailed student list : detailed" + "\n" + "\n"
             + "\u2022 Displays the administrative content of the student list: admin" + "\n" + "\n"
             + "\u2022 Display default student list : default" + "\n" + "\n"
-            + "\u2022 Adding admin notes: anotes n/NAME c/CONTENT";
+            + "\u2022 Adding Notes: notesa n/NAME c/CONTENT"
+            + "\u2022 Delete Notes: notesd INDEX"
+            + "\u2022 Filter Notes: notesf KEYWORD(S)"
+            + "\u2022 Export Notes: notese";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
