@@ -51,9 +51,9 @@ public class AssessmentCardHomework extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
         type.setText("Homework");
-        date.setText("Deadline:   " + assessment.getDateString());
+        date.setText("Deadline: " + assessment.getDateString());
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
-                + "out of" + assessment.getSubmissionTracker().size());
+                + " / " + assessment.getSubmissionTracker().size());
     }
 
     @Override

@@ -50,10 +50,10 @@ public class AssessmentCardExam extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
-        type.setText("Assessment:  Exam");
+        type.setText("Assessment: Exam");
         date.setText("Exam Date: " + assessment.getDateString());
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
-                + "out of" + assessment.getSubmissionTracker().size());
+                + " / " + assessment.getSubmissionTracker().size());
     }
 
     @Override

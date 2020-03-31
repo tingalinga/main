@@ -117,6 +117,119 @@ public class Exam extends Assessment {
         return submitted;
     }
 
+    // SETTING SAMPLE SUBMISSIONS
+
+    /**
+     * Set the submission of each student to not submitted and unmarked.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setSampleSubmissions(List<Student> students, String assessmentDescription) {
+        switch (assessmentDescription) {
+            case "Math Differentiation Homework" :
+                setSampleMathSubmissions(students);
+                break;
+            case "Science Plant and Species Scrapbook" :
+                setSampleScienceSubmissions(students);
+                break;
+            case "Science Experiment" :
+                setSampleExperimentSubmissions(students);
+                break;
+            case "English Spelling Test" :
+                setSampleEnglishSubmissions(students);
+                break;
+            case "Chinese Final Exam" :
+                setSampleChineseSubmissions(students);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setSampleMathSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                true, true, 70));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                true, true, 78));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, true, 37));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, true, 92));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                true, true, 56));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setSampleScienceSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                true, true, 70));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, true, 37));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                true, false, 0));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setSampleExperimentSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                false, false, 0));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setSampleEnglishSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                true, false, 0));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setSampleChineseSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                false, false, 0));
+    }
+
     @Override
     public String toString() {
         return "Exam: " + this.description + "\n"

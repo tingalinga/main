@@ -11,6 +11,7 @@ import seedu.address.logic.commands.academics.AcademicsCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayExamCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayHomeworkCommand;
+import seedu.address.logic.commands.academics.display.AcademicsDisplayStatisticsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,7 +35,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_HOMEWORK, PREFIX_EXAM,
+                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_HOMEWORK, PREFIX_EXAM, PREFIX_STATISTICS,
                         PREFIX_ASSESSMENT_DESCRIPTION,
                         PREFIX_ASSESSMENT_TYPE, PREFIX_ASSESSMENT_DATE);
 
@@ -44,6 +45,8 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
             return academicsDisplayHomeworkCommand();
         } else if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
             return academicsDisplayExamCommand();
+        } else if (argMultimap.getValue(PREFIX_STATISTICS).isPresent()) {
+            return academicsDisplayStatisticsCommand();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
@@ -80,6 +83,14 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      */
     private AcademicsDisplayExamCommand academicsDisplayExamCommand() throws ParseException, CommandException {
         return new AcademicsDisplayExamCommand();
+    }
+
+    /**
+     * Displays the statistics for assessments.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsDisplayStatisticsCommand academicsDisplayStatisticsCommand() throws ParseException, CommandException {
+        return new AcademicsDisplayStatisticsCommand();
     }
 
     /**

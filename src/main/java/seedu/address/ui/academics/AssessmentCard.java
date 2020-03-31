@@ -53,14 +53,14 @@ public class AssessmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
         if (assessment instanceof Homework) {
-            type.setText("Assessment:  Homework");
-            date.setText("Deadline:   " + assessment.getDateString());
+            type.setText("Assessment: Homework");
+            date.setText("Deadline: " + assessment.getDateString());
         } else if (assessment instanceof Exam) {
-            type.setText("Assessment:  Exam");
+            type.setText("Assessment: Exam");
             date.setText("Exam Date: " + assessment.getDateString());
         }
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
-            + " out of " + assessment.getSubmissionTracker().size());
+            + " / " + assessment.getSubmissionTracker().size());
     }
 
     @Override

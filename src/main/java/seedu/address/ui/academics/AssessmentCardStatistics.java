@@ -4,10 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Circle;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
@@ -20,7 +18,7 @@ import seedu.address.ui.UiPart;
  */
 public class AssessmentCardStatistics extends UiPart<Region> {
 
-    private static final String FXML = "AssessmentCard.fxml";
+    private static final String FXML = "AssessmentCardStatistics.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -32,12 +30,6 @@ public class AssessmentCardStatistics extends UiPart<Region> {
      */
 
     public final Assessment assessment;
-
-    @FXML
-    private ImageView image;
-
-    @FXML
-    private Circle circle;
 
     @FXML
     private HBox cardPane;
@@ -68,9 +60,9 @@ public class AssessmentCardStatistics extends UiPart<Region> {
             type.setText("Assessment:  Exam");
         }
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
-                + "out of" + assessment.getSubmissionTracker().size());
-        median.setText("Median: " + assessment.medianScore());
-        median.setText("Average: " + assessment.averageScore());
+                + " / " + assessment.getSubmissionTracker().size());
+        median.setText("Median Score: " + assessment.medianScore());
+        average.setText("Average Score: " + assessment.averageScore());
     }
 
     @Override

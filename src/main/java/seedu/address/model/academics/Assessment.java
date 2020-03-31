@@ -207,10 +207,16 @@ public abstract class Assessment {
      */
     public int averageScore() {
         int totalScore = 0;
+        int count = 0;
         for (Submission submission: submissionTracker) {
             totalScore += submission.getScore();
+            count++;
         }
-        return totalScore / submissionTracker.size();
+        if (submissionTracker.size() == 0) {
+            return 0;
+        } else {
+            return totalScore / count;
+        }
     }
 
     /**
@@ -222,8 +228,140 @@ public abstract class Assessment {
             scores.add(submission.getScore());
         }
         Collections.sort(scores);
-        int median = (scores.size() % 2) == 0 ? scores.get(scores.size() / 2) : scores.get((scores.size() / 2) + 1);
-        return median;
+        if (scores.size() == 0) {
+            return 0;
+        } else if (scores.size() == 1) {
+            return scores.get(0);
+        } else if (scores.size() == 2) {
+            int sum = scores.get(0) + scores.get(1);
+            return sum / 2;
+        } else if (scores.size() % 2 == 0) {
+            int medianIndex = scores.size() / 2;
+            int sum = scores.get(medianIndex - 1) + scores.get(medianIndex);
+            return sum / 2;
+        } else {
+            int medianIndex = (scores.size() - 1) / 2;
+            return scores.get(medianIndex);
+        }
+    }
+
+    // SETTING SAMPLE SUBMISSIONS
+
+    /**
+     * Set the submission of each student to not submitted and unmarked.
+     * @param students list of students assigned with the assessment.
+     */
+    public abstract void setSampleSubmissions(List<Student> students, String assessmentDescription);
+
+    /**
+     * Set the submission of each student to not submitted and unmarked.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setAssessmentSampleSubmissions(List<Student> students, String assessmentDescription) {
+        switch (assessmentDescription) {
+            case "Math Differentiation Homework" :
+                setAssessmentSampleMathSubmissions(students);
+                break;
+            case "Science Plant and Species Scrapbook" :
+                setAssessmentSampleScienceSubmissions(students);
+                break;
+            case "Science Experiment" :
+                setAssessmentSampleExperimentSubmissions(students);
+                break;
+            case "English Spelling Test" :
+                setAssessmentSampleEnglishSubmissions(students);
+                break;
+            case "Chinese Final Exam" :
+                setAssessmentSampleChineseSubmissions(students);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setAssessmentSampleMathSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                true, true, 70));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                true, true, 78));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, true, 37));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, true, 92));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                true, true, 56));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setAssessmentSampleScienceSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                true, true, 70));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, true, 37));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                true, false, 0));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setAssessmentSampleExperimentSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                false, false, 0));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setAssessmentSampleEnglishSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                true, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                true, false, 0));
+    }
+
+    /**
+     * Sets the sample submissions.
+     * @param students list of students assigned with the assessment.
+     */
+    public void setAssessmentSampleChineseSubmissions(List<Student> students) {
+        submissionTracker.add(new Submission(students.get(0).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(1).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(2).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(3).getName().fullName,
+                false, false, 0));
+        submissionTracker.add(new Submission(students.get(4).getName().fullName,
+                false, false, 0));
     }
 
     @Override
