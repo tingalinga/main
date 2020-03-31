@@ -50,6 +50,16 @@ public class Homework extends Assessment {
     }
 
     /**
+     * Sets the submission tracker to the new submission tracker.
+     * @param newSubmissionTracker new submission tracker.
+     */
+    public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
+        for (Submission submission: newSubmissionTracker) {
+            submissionTracker.add(submission);
+        }
+    }
+
+    /**
      * Returns the type of assessment.
      * @return String assessment type
      */

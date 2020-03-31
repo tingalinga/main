@@ -74,7 +74,13 @@ public abstract class Assessment {
      * Sets the submission tracker to the new submission tracker.
      * @param newSubmissionTracker new submission tracker.
      */
-    public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
+    public abstract void setSubmissionTracker(List<Submission> newSubmissionTracker);
+
+    /**
+     * Sets the submission tracker to the new submission tracker.
+     * @param newSubmissionTracker new submission tracker.
+     */
+    public void setAssessmentSubmissionTracker(List<Submission> newSubmissionTracker) {
         for (Submission submission: newSubmissionTracker) {
             submissionTracker.add(submission);
         }

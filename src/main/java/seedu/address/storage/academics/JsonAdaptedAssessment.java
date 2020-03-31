@@ -91,10 +91,12 @@ class JsonAdaptedAssessment {
         if (modelType.equals("homework")) {
             Homework modelHomework = new Homework(description, modelDate);
             modelHomework.setSubmissionTracker(modelSubmission);
+            modelHomework.setAssessmentSubmissionTracker(modelSubmission);
             return modelHomework;
         } else if (modelType.equals("exam")) {
             Exam modelExam = new Exam(description, modelDate);
             modelExam.setSubmissionTracker(modelSubmission);
+            modelExam.setAssessmentSubmissionTracker(modelSubmission);
             return modelExam;
         } else {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TYPE"));
