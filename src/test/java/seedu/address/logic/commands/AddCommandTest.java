@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -14,7 +15,9 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -24,10 +27,15 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.event.EventScheduleView;
+import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
+
+
 
 
 public class AddCommandTest {
@@ -302,6 +310,81 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredNotesList(Predicate<Notes> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasVEvent(VEvent vEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addVEvent(VEvent vEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void delete(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setVEvent(Index index, VEvent vEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public VEvent getVEvent(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<VEvent> getVEvents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventHistory(ReadOnlyEvents events) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventHistory(Path eventHistoryFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEvents getEventHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyVEvents getVEventHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventScheduleLocalDateTime(LocalDateTime localDateTime) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getEventSchedulePref() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public LocalDateTime getEventScheduleLocalDateTime() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public EventScheduleView getEventScheduleView() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventScheduleView(EventScheduleView eventScheduleView) {
             throw new AssertionError("This method should not be called.");
         }
     }

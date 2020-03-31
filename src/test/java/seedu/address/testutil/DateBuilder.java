@@ -45,4 +45,11 @@ public class DateBuilder {
         this.students = students;
         return this;
     }
+
+    /**
+     * Builds a date.
+     */
+    public Date build() {
+        return new Date(date, students);
+    }
 }

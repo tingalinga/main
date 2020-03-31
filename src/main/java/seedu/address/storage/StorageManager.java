@@ -12,10 +12,13 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.admin.AdminStorage;
+import seedu.address.storage.event.EventStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
+
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -28,19 +31,22 @@ public class StorageManager implements Storage {
     private AcademicsStorage academicsStorage;
     private NotesManagerStorage notesManagerStorage;
     private UserPrefsStorage userPrefsStorage;
+    private EventStorage eventStorage;
 
 
     public StorageManager(AddressBookStorage addressBookStorage,
                           AdminStorage adminStorage,
                           AcademicsStorage academicsStorage,
-                          NotesManagerStorage notesManagerStorage,
-                          UserPrefsStorage userPrefsStorage) {
+                          UserPrefsStorage userPrefsStorage, EventStorage eventStorage,
+                          NotesManagerStorage notesManagerStorage) {
+
         super();
         this.addressBookStorage = addressBookStorage;
         this.adminStorage = adminStorage;
         this.academicsStorage = academicsStorage;
         this.notesManagerStorage = notesManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.eventStorage = eventStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -119,6 +125,36 @@ public class StorageManager implements Storage {
         academicsStorage.saveAcademics(academics, filePath);
     }
 
+    // ================ Event methods ==============================
+
+    @Override
+    public Path getEventHistoryFilePath() {
+        return eventStorage.getEventHistoryFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyEvents> readEvents() throws DataConversionException, IOException {
+        return readEvents(eventStorage.getEventHistoryFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyEvents> readEvents(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Reading events from event file: " + filePath);
+        return eventStorage.readEvents(filePath);
+    }
+
+    @Override
+    public void saveEvents(ReadOnlyEvents readOnlyEvents) throws IOException {
+        saveEvents(readOnlyEvents, eventStorage.getEventHistoryFilePath());
+    }
+
+    @Override
+    public void saveEvents(ReadOnlyEvents events, Path filePath) throws IOException {
+        logger.fine("Writing events into event file :" + filePath);
+        eventStorage.saveEvents(events, filePath);
+    }
+
+    // ================ Notes methods ==============================
     @Override
     public Path getAdminFilePath() {
         return adminStorage.getAdminFilePath();

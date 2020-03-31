@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -24,10 +25,11 @@ public class RefreshCommandTest {
 
     @BeforeEach
     public void setUp() {
+
         model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(),
-                new UserPrefs());
+                new UserPrefs(), null);
         expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
-                model.getNotesManager(), new UserPrefs());
+                model.getNotesManager(), new UserPrefs(), null);
     }
 
     @Test

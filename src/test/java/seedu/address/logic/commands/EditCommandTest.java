@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
@@ -38,7 +39,7 @@ import seedu.address.testutil.StudentBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), new UserPrefs());
+            getTypicalNotes(), new UserPrefs(), null);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -49,7 +50,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getAcademics(),
-                model.getAdmin(), model.getNotesManager(), new UserPrefs());
+                model.getAdmin(), model.getNotesManager(), new UserPrefs(), null);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -72,7 +73,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new UserPrefs());
+                new NotesManager(model.getNotesManager()), new UserPrefs(), null);
+
         expectedModel.setStudent(lastStudent, editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -87,7 +89,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new UserPrefs());
+                new NotesManager(model.getNotesManager()), new UserPrefs(), null);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -105,7 +107,8 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new UserPrefs());
+                new NotesManager(model.getNotesManager()), new UserPrefs(), null);
+
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

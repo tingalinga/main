@@ -1,8 +1,10 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,8 +15,10 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
+
 import seedu.address.model.student.Student;
 
 /**
@@ -107,4 +111,11 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<VEvent> getVEvents();
+
+    LocalDateTime getEventScheduleLocalDateTime();
+
+    EventScheduleView getEventScheduleView();
+
 }

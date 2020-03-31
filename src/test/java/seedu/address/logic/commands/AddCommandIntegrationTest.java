@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
@@ -24,7 +25,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(), new UserPrefs(), null);
     }
 
     @Test
@@ -32,7 +33,8 @@ public class AddCommandIntegrationTest {
         Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
-                model.getNotesManager(), new UserPrefs());
+                model.getNotesManager(), new UserPrefs(), null);
+
         expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddCommand(validStudent), model,
