@@ -61,7 +61,7 @@ public class Event {
     }
 
     /**
-     * Validates the color code
+     * Validates the color codesss
      */
     public boolean isValidColorCode(String colorCode) {
         if (!colorCode.matches(COLOR_CATEGORY_VALIDATION_REGEX)) {
