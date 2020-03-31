@@ -25,8 +25,8 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
 
     public static final String MESSAGE_SUCCESS = "Submitted following submissions:\n";
 
-    Index index;
-    List<String> students;
+    private Index index;
+    private List<String> students;
 
     public AcademicsSubmitCommand(Index index, List<String> students) throws CommandException {
         requireNonNull(index);
@@ -34,6 +34,9 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
         this.index = index;
     }
 
+    /**
+     * Formats list of students.
+     */
     public String formatStudents() {
         String formatted = "";
         Iterator<String> stringIterator = students.iterator();

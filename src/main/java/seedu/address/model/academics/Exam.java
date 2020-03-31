@@ -127,23 +127,23 @@ public class Exam extends Assessment {
     public void setSampleSubmissions(List<Student> students, String assessmentDescription) {
         setAssessmentSampleSubmissions(students, assessmentDescription);
         switch (assessmentDescription) {
-            case "Math Differentiation Homework" :
-                setSampleMathSubmissions(students);
-                break;
-            case "Science Plant and Species Scrapbook" :
-                setSampleScienceSubmissions(students);
-                break;
-            case "Science Experiment" :
-                setSampleExperimentSubmissions(students);
-                break;
-            case "English Spelling Test" :
-                setSampleEnglishSubmissions(students);
-                break;
-            case "Chinese Final Exam" :
-                setSampleChineseSubmissions(students);
-                break;
-            default:
-                break;
+        case "Math Differentiation Homework" :
+            setSampleMathSubmissions(students);
+            break;
+        case "Science Plant and Species Scrapbook" :
+            setSampleScienceSubmissions(students);
+            break;
+        case "Science Experiment" :
+            setSampleExperimentSubmissions(students);
+            break;
+        case "English Spelling Test" :
+            setSampleEnglishSubmissions(students);
+            break;
+        case "Chinese Final Exam" :
+            setSampleChineseSubmissions(students);
+            break;
+        default:
+            break;
         }
     }
 

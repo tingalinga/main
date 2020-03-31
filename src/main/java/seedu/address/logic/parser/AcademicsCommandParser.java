@@ -2,13 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATISTICS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.logic.commands.academics.AcademicsCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
@@ -65,7 +72,8 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     private AcademicsAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
         if (!arePrefixesPresent(argMultimap, PREFIX_ASSESSMENT_DESCRIPTION, PREFIX_ASSESSMENT_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsAddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsAddCommand.MESSAGE_USAGE));
         }
 
         String description = argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get();
@@ -82,14 +90,16 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     private AcademicsSubmitCommand submitCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
         if (!arePrefixesPresent(argMultimap, PREFIX_ASSESSMENT_DESCRIPTION, PREFIX_STUDENT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsSubmitCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsSubmitCommand.MESSAGE_USAGE));
         }
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsSubmitCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsSubmitCommand.MESSAGE_USAGE), pe);
         }
         List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
 
@@ -116,7 +126,8 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      * Displays the statistics for assessments.
      * {@code ArgumentMultimap}.
      */
-    private AcademicsDisplayStatisticsCommand academicsDisplayStatisticsCommand() throws ParseException, CommandException {
+    private AcademicsDisplayStatisticsCommand academicsDisplayStatisticsCommand() throws ParseException,
+            CommandException {
         return new AcademicsDisplayStatisticsCommand();
     }
 
