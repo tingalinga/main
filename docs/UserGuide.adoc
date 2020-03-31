@@ -31,7 +31,7 @@ All your important information is comfortably compartmentalized on our simple an
 working on the Command Line Interface (CLI).
 
 If you are looking for a way to easily manage your administrative classroom chores
-and have quick hands, TeaPet is for you!
+and have quick hands, then TeaPet is definitely for you!
 
 Interested? Hop onto <<Getting started>>. Enjoy!
 //end::intro[]
@@ -48,34 +48,28 @@ If you need an overview regarding the usage of TeaPet's commands, head on to the
 
 Take note of the following symbols and formatting used in this document:
 
+
+IMPORTANT: Use this to highlight important stuff
+
+WARNING: Use this for warnings
+
+CAUTION: Use this for caution
+
+NOTE: Use this for note
+
+TIP: This symbol indicates tips.
+
 .A Summary of symbols used in our User Guide.
 [cols="1,12"]
 |===
-
 |kbd:[Enter]
 |This symbol indicates the Enter button on your keyboard.
-
-|[IMPORTANT]
-| Use this to highlight important stuff
-
-|[WARNING]
-| Use this for warnings
-
-|[CAUTION]
-|Use this for caution
-
-|[NOTE]
-|use this for note
-
-|[TIP]
-|This symbol indicates tips.
 
 |`command`
 |A grey highlight indicates that this is a command that can be typed into the command line and executed by the program.
 |===
 
-
-[TIP] If you have any questions, please check out our <<FAQ>> section.
+TIP: If you have any questions, please check out our <<FAQ>> section.
 
 == Overview of Features
 This section will provide you a brief overview of TeaPet's cool features and functionalities.

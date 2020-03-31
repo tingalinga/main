@@ -16,14 +16,99 @@ endif::[]
 
 By: `CS2103T-W12-02`      Since: `Jan 2020`      Licence: `MIT`
 
-== Setting up
+== Introduction
 
-Refer to the guide <<SettingUp#, here>>.
+Welcome to TeaPet!
+
+image::Ui.png[width="790"]
+
+TeaPet is an integrated platform fully customized for Primary School Form Teachers to help you manage your classroom effectively.
+It contains your personal curriculum schedule, students' particulars, and can also track your class' academic progress.
+
+All your important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI) and we are optimized for users who are very comfortable
+working on the Command Line Interface (CLI).
+
+If you are looking for a way to easily manage your administrative classroom chores
+and have quick hands, then TeaPet is definitely for you!
+
+== About
+The aim of this Developer Guide is to provide an introduction to the software architecture and implementation of TeaPet.
+It is made for developers who wish to understand and maintain the backbone of our application.
+
+At TeaPet, we prioritise teamwork. We welcome you developers to contribute and improve on our application anytime by
+opening an issue should you have any refreshing ideas to improve TeaPet after reading this guide.
+
+== How To Use
+This section will teach you how should you go about understanding our Developer Guide in order to best understand our product.
+
+Reading ahead, you will find that we've adopted the "top-down" approach into the structure of our Developer Guide --
+We will first look at the high-level architecture of our application before delving into the implementation details of each feature that makes up TeaPet.
+
+We encourage you to read every page diligently from the top to the bottom in order to get the highest level of understanding of our application.
+If you are only interested in how we develop one feature, you may read the high-level design then focus on the implementation of that particular feature.
+
+
+Take note of the following symbols and formatting used in this document:
+
+IMPORTANT: Use this to highlight important stuff
+
+WARNING: Use this for warnings
+
+CAUTION: Use this for caution
+
+NOTE: Use this for note
+
+TIP: This symbol indicates tips.
+
+.A Summary of symbols used in our User Guide.
+[cols="1,12"]
+|===
+|kbd:[Enter]
+|This symbol indicates the Enter button on your keyboard.
+
+|`command`
+|A grey highlight indicates that this is a command that can be typed into the command line and executed by the program.
+|===
+
+== Overview of Features
+This section will provide you a brief overview of TeaPet's cool features and functionalities.
+
+. Manage your students easily
+.. Include student's particulars. e.g. address, contact number, next of kin (NOK)
+.. Include administrative details of the students. e.g. attendance, temperature
+
+. Plan your schedule easily
+.. Create and manage your events with a single calendar
+.. View calendar at a glance
+
+. Manage your class academic progress easily
+.. Include every student's grades for every examination.
+.. Easy to track progress using helpful tools. e.g. graph plots
+
+. Add Notes to act as lightweight, digital reminders easily
+.. Include reminders for yourself to help you remember important information.
+.. Search keywords in your notes.
+.. Save the notes as administrative or behavioural
+
+. Toggle different views to find information easily
+.. Different view modes show only the required information. e.g. detailed, admin, default
+
+. Data is saved onto your hard disk automatically
+.. Any changes made will be saved onto your computer so you dont have to worry about data being lost.
+
+
+== Setting up
+This section provides you with the tools needed for you to set up TeaPet.
+
+You can refer to the guide <<SettingUp#, here>>.
 
 == Design
 
+This section describes the high-level design details of TeaPet.
+
 [[Design-Architecture]]
 === Architecture
+This section describes the high-level software architecture of TeaPet.
 
 .Architecture Diagram
 image::ArchitectureDiagram.png[]
@@ -73,6 +158,7 @@ The sections below give more details of each component.
 
 [[Design-Ui]]
 === UI component
+This section describes the high-level software structure of TeaPet's UI Component.
 
 .Structure of the UI Component
 image::UiClassDiagram.png[]
@@ -90,6 +176,7 @@ The `UI` component,
 
 [[Design-Logic]]
 === Logic component
+This section describes the high-level software structure of TeaPet's Logic Component.
 
 [[fig-LogicClassDiagram]]
 .Structure of the Logic Component
@@ -114,6 +201,8 @@ NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X
 [[Design-Model]]
 === Model component
 
+This section describes the high-level software structure of TeaPet's Model Component.
+
 .Structure of the Model Component
 image::ModelClassDiagram.png[]
 
@@ -131,6 +220,7 @@ The `Model`,
 
 [[Design-Storage]]
 === Storage component
+This section describes the high-level software structure of TeaPet's Storage Component.
 
 .Structure of the Storage Component
 image::StorageClassDiagram.png[]
@@ -305,6 +395,7 @@ _{Explain here how the data encryption feature will be implemented}_
 // end::dataencryption[]
 
 === Logging
+This section describes how TeaPet record it's logs.
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
 
