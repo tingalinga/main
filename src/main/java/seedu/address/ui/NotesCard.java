@@ -30,7 +30,6 @@ public class NotesCard extends UiPart<Region> {
         noteId.setText("Note Index: #" + displayedIndex);
         content.setText("\n" + note.getContent());
         dateTime.setText("Added on: " + note.getDateTime());
-
     }
 
     @Override
