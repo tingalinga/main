@@ -83,7 +83,7 @@ public class StorageManagerTest {
 
     @Test
     public void getAcademicsFilePath() {
-        assertNotNull(storageManager.getSavedAcademicsFilePath());
+        assertNotNull(storageManager.getAcademicsFilePath());
     }
 
 }

@@ -12,7 +12,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
 import seedu.address.ui.UiPart;
 
 /**
