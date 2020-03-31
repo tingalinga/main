@@ -22,6 +22,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -198,6 +200,56 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredAcademicsList(Predicate<Assessment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getNotesFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNotesFilePath(Path notesFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNotesManager(ReadOnlyNotes notes) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyNotes getNotesManager() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasNote(Notes note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteNote(Notes note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNote(Notes note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNote(Notes target, Notes edited) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Notes> getFilteredNotesList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredNotesList(Predicate<Notes> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

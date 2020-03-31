@@ -14,6 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.NotesManager;
+import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.Student;
 
 /**
@@ -27,12 +30,15 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final Academics academics;
     private final FilteredList<Assessment> filteredAssessments;
+    private final NotesManager notesManager;
+    private final FilteredList<Notes> filteredNotes;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
                         ReadOnlyAcademics academics,
+                        ReadOnlyNotes notes,
                         ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, academics, userPrefs);
@@ -41,13 +47,15 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.academics = new Academics(academics);
+        this.notesManager = new NotesManager(notes);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
+        filteredNotes = new FilteredList<>(this.notesManager.getNotesList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new Academics(), new UserPrefs());
+        this(new AddressBook(), new Academics(), new NotesManager(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -193,6 +201,66 @@ public class ModelManager implements Model {
         filteredAssessments.setPredicate(predicate);
     }
 
+
+    // ==================== Academics END ====================
+
+    // ==================== Notes START ====================
+    @Override
+    public Path getNotesFilePath() {
+        return userPrefs.getNotesFilePath();
+    }
+
+    @Override
+    public void setNotesFilePath(Path notesFilePath) {
+        requireNonNull(notesFilePath);
+        userPrefs.setNotesFilePath(notesFilePath);
+    }
+
+    @Override
+    public void setNotesManager(ReadOnlyNotes notes) {
+        this.notesManager.resetData(notes);
+    }
+
+    @Override
+    public ReadOnlyNotes getNotesManager() {
+        return notesManager;
+    }
+
+    @Override
+    public boolean hasNote(Notes note) {
+        requireNonNull(note);
+        return notesManager.hasNote(note);
+    }
+
+    @Override
+    public void deleteNote(Notes target) {
+        notesManager.removeNote(target);
+    }
+
+    @Override
+    public void addNote(Notes note) {
+        notesManager.addNote(note);
+        updateFilteredNotesList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    @Override
+    public void setNote(Notes toBeChanged, Notes editedNote) {
+        requireAllNonNull(toBeChanged, editedNote);
+
+        notesManager.setNote(toBeChanged, editedNote);
+    }
+
+    @Override
+    public ObservableList<Notes> getFilteredNotesList() {
+        return filteredNotes;
+    }
+
+    @Override
+    public void updateFilteredNotesList(Predicate<Notes> predicate) {
+        requireNonNull(predicate);
+        filteredNotes.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -211,7 +279,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && academics.equals(other.academics)
-                && filteredAssessments.equals(other.filteredAssessments);
+                && filteredAssessments.equals(other.filteredAssessments)
+                && filteredNotes.equals(other.filteredNotes);
     }
-
 }

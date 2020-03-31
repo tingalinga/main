@@ -4,24 +4,22 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.util.ArrayList;
-
 import javafx.collections.ObservableList;
+
 import seedu.address.model.notes.Notes;
-import seedu.address.model.student.Student;
 
 /**
- * NotesManager class which handles the Notes feature's UI
+ * Represents a NotesExporter which handles the UI aspects of the Notes feature.
  */
-public class NotesManager {
-    private final ObservableList<Student> studentList;
+public class NotesExporter {
+    private final ObservableList<Notes> notesList;
 
     /**
      * Constructor of NotesManager
-     * @param studentList
+     * @param notesList
      */
-    public NotesManager(ObservableList<Student> studentList) {
-        this.studentList = studentList;
+    public NotesExporter(ObservableList<Notes> notesList) {
+        this.notesList = notesList;
     }
 
     /**
@@ -30,17 +28,14 @@ public class NotesManager {
     public void saveToTxt() {
         String filePath = "/Users/gerrenseow/Documents/Gerren/MODULES/Y2S2/CS2103T/Team_Project/main/"
                 + "data/studentNotes.txt";
-        ArrayList<Notes> allNotes = new ArrayList<>();
-        for (Student student : studentList) {
-            allNotes.addAll(student.getNotes());
-        }
+
         BufferedWriter writer;
         try {
             writer = new BufferedWriter(new FileWriter(filePath));
             String toBeSaved = "";
             toBeSaved += "Hello Teacher, here are the notes you have saved in TeaPet! :) \n";
             toBeSaved += "_______________________________________________________________ \n";
-            for (Notes note : allNotes) {
+            for (Notes note : notesList) {
                 toBeSaved += "Student: " + note.getStudent() + "\n";
                 toBeSaved += "Added on: " + note.getDateTime() + "\n";
                 toBeSaved += "Content: " + note.getContent() + "\n";
