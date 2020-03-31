@@ -24,6 +24,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.event.EventHistory;
+import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.util.SampleDataUtil;
@@ -35,8 +37,11 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.academics.JsonAcademicsStorage;
+import seedu.address.storage.event.EventStorage;
+import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
+
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -67,8 +72,11 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         AcademicsStorage academicsStorage = new JsonAcademicsStorage(userPrefs.getAcademicsFilePath());
+        EventStorage eventStorage = new JsonEventStorage(userPrefs.getEventHistoryFilePath());
         NotesManagerStorage notesManagerStorage = new JsonNotesManagerStorage(userPrefs.getNotesFilePath());
-        storage = new StorageManager(addressBookStorage, academicsStorage, notesManagerStorage, userPrefsStorage);
+        storage = new StorageManager(addressBookStorage, academicsStorage, userPrefsStorage, eventStorage,
+                notesManagerStorage);
+
 
         initLogging(config);
 
@@ -92,15 +100,20 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyAcademics> academicsOptional;
+        Optional<ReadOnlyEvents> eventsOptional;
         Optional<ReadOnlyNotes> notesManagerOptional;
+
 
         ReadOnlyAddressBook initialData;
         ReadOnlyAcademics initialAcademics;
+        ReadOnlyEvents initialEvents;
         ReadOnlyNotes initialNotesManager;
         try {
             addressBookOptional = storage.readAddressBook();
             academicsOptional = storage.readAcademics();
+            eventsOptional = storage.readEvents();
             notesManagerOptional = storage.readNotesManager();
+
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
                 new File("data").mkdir();
@@ -108,22 +121,33 @@ public class MainApp extends Application {
             if (!academicsOptional.isPresent()) {
                 logger.info("Academics file not found. Will be starting with a sample Academics.");
             }
+
+            if (!eventsOptional.isPresent()) {
+                logger.info("Events file not found, Will be starting with a sample Events file");
+            }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialAcademics = academicsOptional.orElseGet(SampleDataUtil::getSampleAcademics);
+            initialEvents = eventsOptional.orElseGet(SampleDataUtil::getSampleEvents);
             initialNotesManager = notesManagerOptional.orElseGet(SampleDataUtil::getSampleNotesManager);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
+            initialEvents = new EventHistory();
             initialNotesManager = new NotesManager();
+
+
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
+            initialEvents = new EventHistory();
             initialNotesManager = new NotesManager();
         }
 
-        return new ModelManager(initialData, initialAcademics, initialNotesManager, userPrefs);
+        return new ModelManager(initialData, initialAcademics, userPrefs, initialEvents, initialNotesManager);
+
     }
 
     private void initLogging(Config config) {

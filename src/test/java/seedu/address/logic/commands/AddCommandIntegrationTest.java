@@ -24,15 +24,16 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs(), null,
+                getTypicalNotes());
     }
 
     @Test
     public void execute_newStudent_success() {
         Student validStudent = new StudentBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getNotesManager(),
-                new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(),
+                new UserPrefs(), null, model.getNotesManager());
         expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddCommand(validStudent), model,

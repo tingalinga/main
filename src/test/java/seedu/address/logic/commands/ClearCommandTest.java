@@ -24,10 +24,10 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(),
-                new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(),
-                new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs(),
+                null, getTypicalNotes());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs(),
+                null, getTypicalNotes());
         expectedModel.setAddressBook(new AddressBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.EventHistory;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AcademicsBuilder;
@@ -147,10 +148,11 @@ public class ModelManagerTest {
         Academics differentAcademics = new Academics();
         NotesManager notesManager = new NotesManager();
         UserPrefs userPrefs = new UserPrefs();
+        EventHistory eventHistory = new EventHistory();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, academics, notesManager, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, academics, notesManager, userPrefs);
+        modelManager = new ModelManager(addressBook, academics, userPrefs, eventHistory, notesManager);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, academics, userPrefs, eventHistory, notesManager);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -163,8 +165,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentAcademics, notesManager,
-                userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentAcademics, userPrefs,
+                eventHistory, notesManager)));
 
         // different filteredList -> returns false
         String[] studentKeywords = ALICE.getName().fullName.split("\\s+");
@@ -172,7 +174,8 @@ public class ModelManagerTest {
         String[] assessmentKeywords = SCIENCE_HOMEWORK.getDescription().split("\\s+");
         modelManager.updateFilteredAcademicsList(
                 new DescriptionContainsKeywordsPredicate(Arrays.asList(assessmentKeywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, notesManager, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, userPrefs, eventHistory,
+                notesManager)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -182,6 +185,7 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         differentUserPrefs.setAcademicsFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, notesManager, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, differentUserPrefs, eventHistory,
+                notesManager)));
     }
 }

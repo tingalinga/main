@@ -33,6 +33,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.academics.JsonAcademicsStorage;
+import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
 import seedu.address.testutil.StudentBuilder;
 
@@ -53,9 +54,11 @@ public class LogicManagerTest {
                 new JsonAcademicsStorage(temporaryFolder.resolve("academics.json"));
         JsonNotesManagerStorage notesManagerStorage =
                 new JsonNotesManagerStorage(temporaryFolder.resolve("notes.json"));
+        JsonEventStorage eventHistory =
+                new JsonEventStorage(temporaryFolder.resolve("event.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, academicsStorage, notesManagerStorage,
-                userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, academicsStorage, userPrefsStorage,
+                eventHistory, notesManagerStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -88,8 +91,10 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonNotesManagerStorage notesManagerStorage =
                 new JsonNotesManagerStorage(temporaryFolder.resolve("notes.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, academicsStorage, notesManagerStorage,
-                userPrefsStorage);
+        JsonEventStorage eventHistory =
+                new JsonEventStorage(temporaryFolder.resolve("event.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, academicsStorage, userPrefsStorage,
+                eventHistory, notesManagerStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -143,8 +148,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getNotesManager(),
-                new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), new UserPrefs(),
+                model.getEventHistory(), model.getNotesManager());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

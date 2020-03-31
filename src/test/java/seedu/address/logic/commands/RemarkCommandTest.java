@@ -34,8 +34,8 @@ public class RemarkCommandTest {
 
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(),
-            new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs(), null,
+            getTypicalNotes());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
@@ -45,7 +45,7 @@ public class RemarkCommandTest {
                 new Remark(editedStudent.getRemark().value));
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new Academics(model.getAcademics()), new NotesManager(model.getNotesManager()), new UserPrefs());
+                new Academics(model.getAcademics()), new UserPrefs(), null, new NotesManager(model.getNotesManager()));
         expectedModel.setStudent(firstStudent, editedStudent);
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
     }
@@ -61,7 +61,7 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new Academics(model.getAcademics()), new NotesManager(model.getNotesManager()), new UserPrefs());
+                new Academics(model.getAcademics()), new UserPrefs(), null, new NotesManager(model.getNotesManager()));
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -82,7 +82,7 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new Academics(model.getAcademics()), new NotesManager(model.getNotesManager()), new UserPrefs());
+                new Academics(model.getAcademics()), new UserPrefs(), null, new NotesManager(model.getNotesManager()));
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

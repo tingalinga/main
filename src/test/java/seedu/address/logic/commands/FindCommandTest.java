@@ -26,10 +26,10 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(),
-            new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(),
-            new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs(),
+            null, getTypicalNotes());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(),
+            new UserPrefs(), null, getTypicalNotes());
 
     @Test
     public void equals() {

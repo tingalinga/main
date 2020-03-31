@@ -24,9 +24,10 @@ public class RefreshCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getNotesManager(),
-                new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs(), null,
+                getTypicalNotes());
+        expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), new UserPrefs(),
+                null, model.getNotesManager());
     }
 
     @Test
