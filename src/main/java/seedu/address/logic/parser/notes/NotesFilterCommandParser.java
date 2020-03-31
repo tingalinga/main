@@ -7,6 +7,7 @@ import java.util.Arrays;
 import seedu.address.logic.commands.notes.NotesFilterCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.notes.NotesContainKeywordsPredicate;
 
 /**
  *  Represents a Parser for NotesFilterCommand.
@@ -28,6 +29,6 @@ public class NotesFilterCommandParser implements Parser<NotesFilterCommand> {
 
         String[] keywords = trimmedArgs.split("\\s+");
 
-        return new NotesFilterCommand(Arrays.asList(keywords));
+        return new NotesFilterCommand(new NotesContainKeywordsPredicate(Arrays.asList(keywords)));
     }
 }

@@ -6,6 +6,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.notes.NotesContainKeywordsPredicate;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a NotesFilterCommand which filters the notes displayed based on input keywords.
@@ -19,14 +22,14 @@ public class NotesFilterCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Displaying Notes with Keywords: ";
 
-    private final List<String> keywords;
+    private final NotesContainKeywordsPredicate predicate;
 
     /**
      * Constructor of NotesFilterCommand
-     * @param keywords
+     * @param predicate
      */
-    public NotesFilterCommand(List<String> keywords) {
-        this.keywords = keywords;
+    public NotesFilterCommand(NotesContainKeywordsPredicate predicate) {
+        this.predicate = predicate;
     }
 
     /**
@@ -37,6 +40,8 @@ public class NotesFilterCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS + keywords.toString());
+        requireNonNull(model);
+        model.updateFilteredNotesList(predicate);
+        return new CommandResult(MESSAGE_SUCCESS + predicate.getKeywords().toString());
     }
 }
