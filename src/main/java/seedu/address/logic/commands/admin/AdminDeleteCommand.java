@@ -6,7 +6,6 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.DateContainsKeywordsPredicate;

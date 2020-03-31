@@ -121,9 +121,7 @@ public class SampleDataUtil {
     }
 
     public static Date[] getSampleDates() {
-        return new Date[] {
-                new Date(LocalDate.now(), Arrays.asList(getSampleStudents()))
-        };
+        return new Date[] {new Date(LocalDate.now(), Arrays.asList(getSampleStudents()))};
     }
 
     public static ReadOnlyAdmin getSampleAdmin() {
