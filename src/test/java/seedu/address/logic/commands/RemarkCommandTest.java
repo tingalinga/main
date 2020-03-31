@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
-import static seedu.address.testutil.event.TypicalEvents.getTypicalEvents;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
@@ -83,7 +82,7 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
-                new Academics(model.getAcademics()),  new UserPrefs(), null, new NotesManager(model.getNotesManager()));
+                new Academics(model.getAcademics()), new UserPrefs(), null, new NotesManager(model.getNotesManager()));
         expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
