@@ -32,8 +32,6 @@ NextOfKin *---> NextOfKinContact
 
 Package Notes {
 Class Notes
-Class AdminNotes
-Notes *--> AdminNotes
 }
 
 Package Tag {

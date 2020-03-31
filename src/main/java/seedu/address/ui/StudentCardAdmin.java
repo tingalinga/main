@@ -54,7 +54,9 @@ public class StudentCardAdmin extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        temperature.setText("Temperature:   " + student.getTemperature().value + " \u2103");
+        temperature.setText(student.getTemperature().value.equals("Insert temperature here!")
+                ? "Temperature:   " + student.getTemperature().value
+                : "Temperature:   " + student.getTemperature().value + " \u2103");
         attendance.setText("Attendance:   " + student.getAttendance().value);
         try {
             String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
