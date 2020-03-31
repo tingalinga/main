@@ -4,11 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.util.ArrayList;
-
 import javafx.collections.ObservableList;
+
 import seedu.address.model.notes.Notes;
-import seedu.address.model.student.Student;
 
 /**
  * Represents a NotesExporter which handles the UI aspects of the Notes feature.
