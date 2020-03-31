@@ -17,4 +17,6 @@ public class Messages {
             + " Input either none, daily or weekly.";
     public static final String MESSAGE_INVALID_COLOR_STRING = "Invalid color input."
             + " Color code must be from 0 to 23 inclusive.";
+    public static final String MESSAGE_INVALID_DATE = "Invalid date input passed. "
+            + "The formate should be YYYY-MM-DD and should be a valid date.";
 }

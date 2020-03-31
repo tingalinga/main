@@ -2,11 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COLOR_STRING;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_TYPE;
 import static seedu.address.commons.util.EventUtil.BAD_DATE_FORMAT;
 import static seedu.address.commons.util.EventUtil.DAILY_RECUR_RULE;
 import static seedu.address.commons.util.EventUtil.NO_RECUR_RULE;
 import static seedu.address.commons.util.EventUtil.WEEKLY_RECUR_RULE;
+import static seedu.address.commons.util.EventUtil.dateTimeToLocalDateTimeFormatter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -202,6 +204,15 @@ public class ParserUtil {
             throw new ParseException(BAD_DATE_FORMAT, e);
         }
         return result;
+    }
+
+    public static LocalDateTime parseLocalDate(String localDateString) throws ParseException {
+        try {
+            LocalDateTime targetDateTime = dateTimeToLocalDateTimeFormatter(localDateString);
+            return targetDateTime;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE);
+        }
     }
 
     public static RecurrenceRule parseRecurrenceType(String recurrenceTypeString) throws ParseException {

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.EventCommandParser.logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,6 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.RefreshCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesCommand;
 import seedu.address.logic.commands.studentdisplay.AdminStudentDisplayCommand;
@@ -93,7 +95,11 @@ public class TeaPetParser {
         case DefaultStudentDisplayCommand.COMMAND_WORD:
             return new DefaultStudentDisplayCommand();
 
+        case EventCommand.COMMAND_WORD:
+            return new EventCommandParser().parse(arguments);
+
         default:
+            logger.info("unknown input");
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

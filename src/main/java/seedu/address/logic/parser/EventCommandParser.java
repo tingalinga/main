@@ -108,4 +108,5 @@ public class EventCommandParser implements Parser<EventCommand> {
 
         return new EventAddCommand(vEvent);
     }
+
 }
