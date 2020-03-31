@@ -68,7 +68,7 @@ public class AssessmentCard extends UiPart<Region> {
             date.setText("Exam Date: " + assessment.getDateString());
         }
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
-            + "out of" + assessment.getSubmissionTracker().size());
+            + " out of " + assessment.getSubmissionTracker().size());
     }
 
     @Override

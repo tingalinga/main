@@ -22,7 +22,7 @@ public class NotesPanel extends UiPart<Region> {
     private ListView<Notes> notesView;
 
     /**
-     * Constuctor of NotesPanel, with an input of list of students.
+     * Constructor of NotesPanel, with an input of list of students.
      * @param notesList
      */
     public NotesPanel(ObservableList<Notes> notesList) {

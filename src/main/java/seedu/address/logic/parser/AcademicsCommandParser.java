@@ -9,8 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AcademicsAddCommand;
-import seedu.address.logic.commands.AcademicsCommand;
+import seedu.address.logic.commands.academics.AcademicsAddCommand;
+import seedu.address.logic.commands.academics.AcademicsCommand;
+import seedu.address.logic.commands.academics.display.AcademicsDisplayCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -36,7 +37,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
+            return academicsDisplayCommand();
         }
     }
 
@@ -55,6 +56,14 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         String date = argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get();
 
         return new AcademicsAddCommand(description, type, date);
+    }
+
+    /**
+     * Displays academics list of assessments.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsDisplayCommand academicsDisplayCommand() throws ParseException, CommandException {
+        return new AcademicsDisplayCommand();
     }
 
     /**
