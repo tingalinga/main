@@ -1,10 +1,10 @@
 package seedu.address.model.academics;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
@@ -15,18 +15,19 @@ public abstract class Assessment {
 
     // Assessment properties
     private String description;
+    private LocalDate date;
 
     // Tracking submissions
-    private ObservableList<Student> students;
     private List<Submission> submissionTracker = new ArrayList<>();
 
     /**
      * Every entry field must be present and not null.
      * @param description description of assessment.
+     * @param date date of assessment.
      */
-    public Assessment(String description) {
+    public Assessment(String description, String date) {
         this.description = description;
-        this.students = null;
+        this.date = LocalDate.parse(date);
     }
 
     /**
@@ -35,6 +36,14 @@ public abstract class Assessment {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Returns the date of the assessment.
+     * @return date of assessment.
+     */
+    public String getDateString() {
+        return date.toString();
     }
 
     /**
@@ -185,7 +194,7 @@ public abstract class Assessment {
         for (Submission submission: submissionTracker) {
             totalScore += submission.getScore();
         }
-        return totalScore / students.size();
+        return totalScore / submissionTracker.size();
     }
 
     /**

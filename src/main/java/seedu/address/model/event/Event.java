@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DATETIME_RANGE;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_EVENT_NAME;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -9,6 +8,9 @@ import static seedu.address.commons.util.EventUtil.validateDateTime;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Represents an event of the scheduler
+ */
 public class Event {
     public static final String COLOR_CATEGORY_VALIDATION_REGEX = "group[0-2][0-9]";
     public static final String INVALID_COLOR_CATEGORY = "Invalid color category.";
@@ -20,7 +22,17 @@ public class Event {
     private String uniqueIdentifier;
     private RecurrenceType recurrenceType;
 
-    public Event(String eventName, LocalDateTime startDateTime, LocalDateTime endDateTime, String colorCode, String uniqueIdentifier, RecurrenceType recurrenceType) {
+    /**
+     * Event constructor
+     * @param eventName represents the eventName
+     * @param startDateTime represents the startDateTime
+     * @param endDateTime represents the endDateTime
+     * @param colorCode represents the color code of the event
+     * @param uniqueIdentifier represents the uniqueid
+     * @param recurrenceType represents the recurrence type daily none or weekly
+     */
+    public Event(String eventName, LocalDateTime startDateTime, LocalDateTime endDateTime, String colorCode,
+                 String uniqueIdentifier, RecurrenceType recurrenceType) {
         requireAllNonNull(eventName, startDateTime, endDateTime, colorCode, uniqueIdentifier, recurrenceType);
         checkArgument(validateDateTime(startDateTime, endDateTime));
         checkArgument(isValidEventName(eventName), MESSAGE_MISSING_EVENT_NAME);
@@ -37,6 +49,9 @@ public class Event {
 
     }
 
+    /**
+     * Validates the event name
+     */
     public boolean isValidEventName(String eventName) {
         if (eventName.isBlank()) {
             return false;
@@ -45,6 +60,9 @@ public class Event {
         }
     }
 
+    /**
+     * Validates the color code
+     */
     public boolean isValidColorCode(String colorCode) {
         if (!colorCode.matches(COLOR_CATEGORY_VALIDATION_REGEX)) {
             return false;

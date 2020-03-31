@@ -11,10 +11,13 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
-import seedu.address.model.event.Event;
+
 import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.event.EventStorage;
+import seedu.address.storage.notes.NotesManagerStorage;
+
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -24,16 +27,20 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private AcademicsStorage academicsStorage;
+    private NotesManagerStorage notesManagerStorage;
     private UserPrefsStorage userPrefsStorage;
     private EventStorage eventStorage;
 
 
     public StorageManager(AddressBookStorage addressBookStorage,
                           AcademicsStorage academicsStorage,
-                          UserPrefsStorage userPrefsStorage, EventStorage eventStorage) {
+                          UserPrefsStorage userPrefsStorage, EventStorage eventStorage,
+                          NotesManagerStorage notesManagerStorage) {
+
         super();
         this.addressBookStorage = addressBookStorage;
         this.academicsStorage = academicsStorage;
+        this.notesManagerStorage = notesManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.eventStorage = eventStorage;
     }
@@ -140,5 +147,35 @@ public class StorageManager implements Storage {
         logger.fine("Writing events into event file :" + filePath);
         eventStorage.saveEvents(events, filePath);
     }
+
+    // ================ Notes methods ==============================
+    @Override
+    public Path getNotesManagerFilePath() {
+        return notesManagerStorage.getNotesManagerFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyNotes> readNotesManager() throws DataConversionException, IOException {
+        return readNotesManager(getNotesManagerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyNotes> readNotesManager(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return notesManagerStorage.readNotesManager(filePath);
+    }
+
+    @Override
+    public void saveNotesManager(ReadOnlyNotes notes) throws IOException {
+        saveNotesManager(notes, notesManagerStorage.getNotesManagerFilePath());
+    }
+
+    @Override
+    public void saveNotesManager(ReadOnlyNotes notes, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        notesManagerStorage.saveNotesManager(notes, filePath);
+    }
+
+
 
 }

@@ -1,20 +1,18 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.student.Student;
 import seedu.address.model.notes.Notes;
 
+
 /**
- * Controller class for NotesPanel fxml
+ * Represents a Controller class for NotesPanel fxml
  */
 public class NotesPanel extends UiPart<Region> {
     private static final String FXML = "NotesPanel.fxml";
@@ -23,19 +21,16 @@ public class NotesPanel extends UiPart<Region> {
     @FXML
     private ListView<Notes> notesView;
 
-    public NotesPanel(ObservableList<Student> studentList) {
+    /**
+     * Constuctor of NotesPanel, with an input of list of students.
+     * @param notesList
+     */
+    public NotesPanel(ObservableList<Notes> notesList) {
         super(FXML);
-        notesView.setItems(FXCollections.observableArrayList(getAllNotes(studentList)));
+        notesView.setItems(notesList);
         notesView.setCellFactory(view -> new NotesViewCell());
     }
 
-    public ArrayList<Notes> getAllNotes(ObservableList<Student> studentList) {
-        ArrayList<Notes> allNotes = new ArrayList<>();
-        for (Student student : studentList) {
-            allNotes.addAll(student.getNotes());
-        }
-        return allNotes;
-    }
 
     /**
      * Displays the note graphics
@@ -49,7 +44,7 @@ public class NotesPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new NotesCard(note).getRoot());
+                setGraphic(new NotesCard(note, getIndex() + 1).getRoot());
             }
         }
     }

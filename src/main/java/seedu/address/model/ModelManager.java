@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import jfxtras.icalendarfx.components.VEvent;
-import jfxtras.internal.scene.control.skin.agenda.icalendar.base24hour.popup.EditDescriptiveLocatableVBox;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -19,10 +18,14 @@ import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.event.EventHistory;
+import seedu.address.model.event.EventSchedulePrefs;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.event.ReadOnlyVEvents;
-import seedu.address.model.event.exceptions.EventSchedulePrefs;
+import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.NotesManager;
+import seedu.address.model.notes.ReadOnlyNotes;
+
 import seedu.address.model.student.Student;
 
 /**
@@ -38,6 +41,9 @@ public class ModelManager implements Model {
     private final FilteredList<Assessment> filteredAssessments;
     private final EventHistory eventHistory;
     private final EventSchedulePrefs eventSchedulePrefs;
+    private final NotesManager notesManager;
+    private final FilteredList<Notes> filteredNotes;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -45,7 +51,8 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook,
                         ReadOnlyAcademics academics,
                         ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyEvents events) {
+                        ReadOnlyEvents events, ReadOnlyNotes notes) {
+
         super();
         requireAllNonNull(addressBook, academics, userPrefs);
 
@@ -53,15 +60,18 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.academics = new Academics(academics);
+        this.notesManager = new NotesManager(notes);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
         this.eventHistory = new EventHistory(events);
         this.eventSchedulePrefs = new EventSchedulePrefs(EventScheduleView.WEEKLY, LocalDateTime.now());
+        filteredNotes = new FilteredList<>(this.notesManager.getNotesList());
     }
 
+
     public ModelManager() {
-        this(new AddressBook(), new Academics(), new UserPrefs(), new EventHistory());
+        this(new AddressBook(), new Academics(), new UserPrefs(), new EventHistory(), new NotesManager());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -207,6 +217,66 @@ public class ModelManager implements Model {
         filteredAssessments.setPredicate(predicate);
     }
 
+
+    // ==================== Academics END ====================
+
+    // ==================== Notes START ====================
+    @Override
+    public Path getNotesFilePath() {
+        return userPrefs.getNotesFilePath();
+    }
+
+    @Override
+    public void setNotesFilePath(Path notesFilePath) {
+        requireNonNull(notesFilePath);
+        userPrefs.setNotesFilePath(notesFilePath);
+    }
+
+    @Override
+    public void setNotesManager(ReadOnlyNotes notes) {
+        this.notesManager.resetData(notes);
+    }
+
+    @Override
+    public ReadOnlyNotes getNotesManager() {
+        return notesManager;
+    }
+
+    @Override
+    public boolean hasNote(Notes note) {
+        requireNonNull(note);
+        return notesManager.hasNote(note);
+    }
+
+    @Override
+    public void deleteNote(Notes target) {
+        notesManager.removeNote(target);
+    }
+
+    @Override
+    public void addNote(Notes note) {
+        notesManager.addNote(note);
+        updateFilteredNotesList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    @Override
+    public void setNote(Notes toBeChanged, Notes editedNote) {
+        requireAllNonNull(toBeChanged, editedNote);
+
+        notesManager.setNote(toBeChanged, editedNote);
+    }
+
+    @Override
+    public ObservableList<Notes> getFilteredNotesList() {
+        return filteredNotes;
+    }
+
+    @Override
+    public void updateFilteredNotesList(Predicate<Notes> predicate) {
+        requireNonNull(predicate);
+        filteredNotes.setPredicate(predicate);
+    }
+
     @Override
     public void setEventHistory(Path eventHistoryFilePath) {
         userPrefs.setEventHistoryFilePath(eventHistoryFilePath);
@@ -301,7 +371,7 @@ public class ModelManager implements Model {
                 && filteredStudents.equals(other.filteredStudents)
                 && academics.equals(other.academics)
                 && filteredAssessments.equals(other.filteredAssessments)
-                && eventHistory.equals(other.eventHistory);
+                && eventHistory.equals(other.eventHistory)
+                && filteredNotes.equals(other.filteredNotes);
     }
-
 }

@@ -17,6 +17,10 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventHistory;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.event.RecurrenceType;
+import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.NotesManager;
+import seedu.address.model.notes.ReadOnlyNotes;
+
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -26,7 +30,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
-import seedu.address.model.notes.Notes;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,7 +85,8 @@ public class SampleDataUtil {
         String uniqueIdentifier = "teapethelper";
         LocalDateTime startDateTime = LocalDateTime.now();
         LocalDateTime endDateTime = LocalDateTime.now().plusHours(2);
-        Event event = new Event(eventName, startDateTime, endDateTime, colorCode, uniqueIdentifier, RecurrenceType.NONE);
+        Event event = new Event(eventName, startDateTime, endDateTime, colorCode, uniqueIdentifier,
+                RecurrenceType.NONE);
         ArrayList<Event> events = new ArrayList<>();
         events.add(event);
         EventHistory sampleEventHistory = new EventHistory(events);
@@ -90,11 +95,11 @@ public class SampleDataUtil {
 
     public static Assessment[] getSampleAssessments() {
         return new Assessment[] {
-                new Homework("CS3230 Assignment 2", "2020-03-23"),
-                new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
-                new Homework("CS3240 Paper Prototype", "2020-03-25"),
-                new Exam("CS2103 Finals", "2020-05-25"),
-                new Exam("CS3230 Finals", "2020-05-25")
+            new Homework("CS3230 Assignment 2", "2020-03-23"),
+            new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
+            new Homework("CS3240 Paper Prototype", "2020-03-25"),
+            new Exam("CS2103 Finals", "2020-05-25"),
+            new Exam("CS3230 Finals", "2020-05-25")
         };
     }
 
@@ -105,6 +110,20 @@ public class SampleDataUtil {
             sampleAcademics.addAssessment(sampleAssessment);
         }
         return sampleAcademics;
+    }
+
+
+    public static Notes[] getSampleNotes() {
+        return new Notes[] {
+            new Notes("Simon Lam", "He has bad behaviour", "29/03/2020 22:31"),
+            new Notes("Gerren Seow", "He has good behaviour", "29/03/2020 22:40")
+        };
+    }
+
+    public static ReadOnlyNotes getSampleNotesManager() {
+        NotesManager sampleNotesManager = new NotesManager();
+        sampleNotesManager.setNotes(Arrays.asList(getSampleNotes()));
+        return sampleNotesManager;
     }
 
     /**

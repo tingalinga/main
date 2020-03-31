@@ -15,13 +15,16 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.RecurrenceType;
 
+/**
+ * Utility methods for events
+ */
 public class EventUtil {
     public static final String DAILY_RECUR_RULE = "FREQ=DAILY;INTERVAL=1";
     public static final String WEEKLY_RECUR_RULE = "FREQ=WEEKLY;INTERVAL=1";
     public static final String NO_RECUR_RULE = "FREQ=YEARLY;COUNT=1";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
             .appendPattern("yyyy-MM-dd[ HH:mm:ss]").parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-            .parseDefaulting(ChronoField.MINUTE_OF_HOUR,0).parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0).parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
 
     public static final String INVALID_RECUR_TYPE = "Invalid recurrence type!";

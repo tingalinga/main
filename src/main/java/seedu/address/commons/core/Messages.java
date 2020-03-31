@@ -19,4 +19,8 @@ public class Messages {
             + " Color code must be from 0 to 23 inclusive.";
     public static final String MESSAGE_INVALID_DATE = "Invalid date input passed. "
             + "The formate should be YYYY-MM-DD and should be a valid date.";
+    public static final String MESSGAE_INVALID_NOTES_DISPLAYED_INDEX = "The note index provided is invalid";
+    public static final String MESSAGE_DUPLICATE_NOTES = "This same note already exists";
+    public static final String MESSAGE_UNAVAILABLE_NOTES = "This note is unavailable";
+
 }

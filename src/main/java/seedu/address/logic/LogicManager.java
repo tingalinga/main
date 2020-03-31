@@ -19,6 +19,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.event.EventScheduleView;
+import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.ReadOnlyNotes;
+
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -51,6 +54,8 @@ public class LogicManager implements Logic {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveAcademics(model.getAcademics());
             storage.saveEvents(model.getEventHistory());
+            storage.saveNotesManager(model.getNotesManager());
+
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -91,6 +96,23 @@ public class LogicManager implements Logic {
         return model.getAcademicsFilePath();
     }
     // ==================== ACADEMICS END ====================
+
+    // ==================== NOTES START ====================
+    @Override
+    public ReadOnlyNotes getNotesManager() {
+        return model.getNotesManager();
+    }
+
+    @Override
+    public ObservableList<Notes> getFilteredNotesList() {
+        return model.getFilteredNotesList();
+    }
+
+    @Override
+    public Path getNotesManagerFilePath() {
+        return model.getNotesFilePath();
+    }
+    // ==================== NOTES END ====================
 
     @Override
     public GuiSettings getGuiSettings() {

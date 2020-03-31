@@ -1,18 +1,17 @@
 package seedu.address.storage.event;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.RecurrenceType;
-
-
+import static seedu.address.commons.util.EventUtil.validateDateTime;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import static seedu.address.commons.util.EventUtil.validateDateTime;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.RecurrenceType;
+
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.event.Event}.

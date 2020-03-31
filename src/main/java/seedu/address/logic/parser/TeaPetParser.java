@@ -2,11 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.EventCommandParser.logger;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AcademicsCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -20,16 +21,24 @@ import seedu.address.logic.commands.RefreshCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.notes.NotesCommand;
+import seedu.address.logic.commands.notes.NotesAddCommand;
+import seedu.address.logic.commands.notes.NotesDeleteCommand;
+import seedu.address.logic.commands.notes.NotesExportCommand;
+import seedu.address.logic.commands.notes.NotesFilterCommand;
 import seedu.address.logic.commands.studentdisplay.AdminStudentDisplayCommand;
 import seedu.address.logic.commands.studentdisplay.DefaultStudentDisplayCommand;
 import seedu.address.logic.commands.studentdisplay.DetailedStudentDisplayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.notes.NotesAddCommandParser;
+import seedu.address.logic.parser.notes.NotesDeleteCommandParser;
+import seedu.address.logic.parser.notes.NotesFilterCommandParser;
 
 /**
  * Parses user input.
  */
 public class TeaPetParser {
+
+    private static final Logger logger = LogsCenter.getLogger(TeaPetParser.class);
 
     /**
      * Used for initial separation of command word and args.
@@ -80,8 +89,17 @@ public class TeaPetParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case NotesCommand.COMMAND_WORD:
-            return new NotesCommandParser().parse(arguments);
+        case NotesAddCommand.COMMAND_WORD:
+            return new NotesAddCommandParser().parse(arguments);
+
+        case NotesDeleteCommand.COMMAND_WORD:
+            return new NotesDeleteCommandParser().parse(arguments);
+
+        case NotesExportCommand.COMMAND_WORD:
+            return new NotesExportCommand();
+
+        case NotesFilterCommand.COMMAND_WORD:
+            return new NotesFilterCommandParser().parse(arguments);
 
         case AcademicsCommand.COMMAND_WORD:
             return new AcademicsCommandParser().parse(arguments);

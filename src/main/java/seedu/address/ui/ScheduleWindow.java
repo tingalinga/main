@@ -1,13 +1,17 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
-import java.util.logging.Logger;
 
+/**
+ * Class for screenshot purposes
+ */
 public class ScheduleWindow extends UiPart<Stage> {
     private static final String FXML = "ScheduleWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(ScheduleWindow.class);

@@ -1,10 +1,12 @@
-package seedu.address.model.event.exceptions;
+package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
-import seedu.address.model.event.EventScheduleView;
 
 import java.time.LocalDateTime;
 
+/**
+ * Preferences and settings of scheduler
+ */
 public class EventSchedulePrefs {
     private EventScheduleView eventScheduleView;
     private LocalDateTime localDateTime;

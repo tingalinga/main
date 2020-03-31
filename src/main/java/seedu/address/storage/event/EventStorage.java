@@ -1,13 +1,16 @@
 package seedu.address.storage.event;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.event.ReadOnlyEvents;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.ReadOnlyEvents;
+
+/**
+ * Represents a storage for {@link seedu.address.model.event.EventHistory}
+ */
 public interface EventStorage {
 
     /**

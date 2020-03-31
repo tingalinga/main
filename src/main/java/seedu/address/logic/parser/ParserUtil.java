@@ -191,11 +191,18 @@ public class ParserUtil {
         return new NextOfKin(trimmedNok);
     }
 
+    /**
+     * Parses a {@code String eventName} into a {@code eventName}.
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
     public static String parseEventName(String eventName) throws ParseException {
         requireNonNull(eventName);
         return eventName.trim();
     }
 
+    /**
+     * Parses {@code String localDateTimeString} into a {@code LocalDateTime}.
+     */
     public static LocalDateTime parseLocalDateTime(String localDateTimeString) throws ParseException {
         LocalDateTime result;
         try {
@@ -206,6 +213,9 @@ public class ParserUtil {
         return result;
     }
 
+    /**
+     * Parses {@code String localDateString} into a {@code LocalDate}.
+     */
     public static LocalDateTime parseLocalDate(String localDateString) throws ParseException {
         try {
             LocalDateTime targetDateTime = dateTimeToLocalDateTimeFormatter(localDateString);
@@ -215,6 +225,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code String recurrenceTypeString} into a {@code RecurrenceType}.
+     */
     public static RecurrenceRule parseRecurrenceType(String recurrenceTypeString) throws ParseException {
         if (!validateRecurType(recurrenceTypeString)) {
             throw new ParseException(MESSAGE_INVALID_RECURRENCE_TYPE);
@@ -228,6 +241,9 @@ public class ParserUtil {
         return result;
     }
 
+    /**
+     * Validates if recur type is valid
+     */
     public static boolean validateRecurType(String recurTypeString) {
         if (recurTypeString.equalsIgnoreCase(RecurrenceType.WEEKLY.name())) {
             return true;
@@ -240,6 +256,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Maps recurrence string into RecurrenceRule class
+     */
     public static RecurrenceRule stringToRecurrenceRuleMapper(String recurrenceString) throws IllegalValueException {
         if (recurrenceString.equalsIgnoreCase("weekly")) {
             return RecurrenceRule.parse(WEEKLY_RECUR_RULE);
@@ -252,6 +271,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code String colorCode} into a {@code colorCategoryList}.
+     * @param colorCode
+     * @return
+     * @throws ParseException
+     */
     public static ArrayList<Categories> parseColorCode(String colorCode) throws ParseException {
         if (!validateColorCode(colorCode)) {
             throw new ParseException(MESSAGE_INVALID_COLOR_STRING);
@@ -263,6 +288,10 @@ public class ParserUtil {
         return colorCategoryList;
     }
 
+    /**
+     * Validates if color code is valid
+     * valid from 0 to 23 inclusive
+     */
     public static boolean validateColorCode(String colorCode) {
         // to check if the color code is in range
         try {

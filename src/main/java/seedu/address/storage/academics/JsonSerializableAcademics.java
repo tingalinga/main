@@ -37,7 +37,10 @@ class JsonSerializableAcademics {
      * @param source future changes to this will not affect the created {@code JsonSerializableAcademics}.
      */
     public JsonSerializableAcademics(ReadOnlyAcademics source) {
-        assessments.addAll(source.getAcademicsList().stream().map(JsonAdaptedAssessment::new).collect(Collectors.toList()));
+        assessments.addAll(source.getAcademicsList()
+                .stream()
+                .map(JsonAdaptedAssessment::new)
+                .collect(Collectors.toList()));
     }
 
     /**

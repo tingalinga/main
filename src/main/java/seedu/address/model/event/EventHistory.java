@@ -1,8 +1,6 @@
 package seedu.address.model.event;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import jfxtras.icalendarfx.components.VEvent;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,12 +8,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.EventUtil;
 import seedu.address.model.event.exceptions.DuplicateVEventException;
 
-import static java.util.Objects.requireNonNull;
 
+/**
+ * Event history stores the history of events and provides mappings from events to vevents.
+ */
 public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyVEvents, Iterable<VEvent> {
     private final ObservableList<VEvent> vEvents = FXCollections.observableArrayList();
     private final ObservableList<VEvent> vEventsUnmodifiableList = FXCollections.unmodifiableObservableList(vEvents);
@@ -92,6 +95,9 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
         setVEvents(eventsToVEventsMapper(data));
     }
 
+    /**
+     * Sets the data of EventHistory
+     */
     public void setVEvents(List<VEvent> vEvents) {
         requireNonNull(vEvents);
         if (!isVEventsUnique(vEvents)) {
@@ -100,6 +106,9 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
         this.vEvents.setAll(vEvents);
     }
 
+    /**
+     * Checks if the vEvent list have all unique vEvent.
+     */
     public boolean isVEventsUnique(List<VEvent> vEvents) {
         Set<VEvent> set = new HashSet<VEvent>(vEvents);
         int listSize = vEvents.size();
@@ -141,7 +150,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
     }
 
     /**
-     * Replaces the VEvent at {@param index} with {@param vEvent}
+     * Replaces the VEvent at {@param index}
      */
     public void setVEvent(Index index, VEvent vEvent) {
         requireNonNull(index);
@@ -200,7 +209,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
                 return false;
             }
         }
-        return  true;
+        return true;
     }
 
     @Override

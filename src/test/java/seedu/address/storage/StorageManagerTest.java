@@ -14,6 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.academics.JsonAcademicsStorage;
+import seedu.address.storage.event.JsonEventStorage;
+import seedu.address.storage.notes.JsonNotesManagerStorage;
 
 public class StorageManagerTest {
 
@@ -25,8 +28,12 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonAcademicsStorage academicsStorage = new JsonAcademicsStorage(getTempFilePath("acad"));
+        JsonNotesManagerStorage notesManagerStorage = new JsonNotesManagerStorage(getTempFilePath("notes"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonEventStorage eventStorage = new JsonEventStorage(getTempFilePath("event"));
+        storageManager = new StorageManager(addressBookStorage, academicsStorage, userPrefsStorage, eventStorage,
+                notesManagerStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -63,6 +70,22 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    /*
+    @Test
+    public void academicsReadSave() throws Exception {
+
+        Academics original = getTypicalAcademics();
+        storageManager.saveAcademics(original);
+        ReadOnlyAcademics retrieved = storageManager.readAcademics().get();
+        assertEquals(original, new Academics(retrieved));
+    }
+    */
+
+    @Test
+    public void getAcademicsFilePath() {
+        assertNotNull(storageManager.getSavedAcademicsFilePath());
     }
 
 }
