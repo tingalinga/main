@@ -47,7 +47,7 @@ public class Date {
             return true;
         }
         return otherDate != null
-                && otherDate.getDate().equals(this.getDate()) || otherDate.getStudents().equals(this.getStudents());
+                && otherDate.getDate().equals(this.getDate());
     }
 
     @Override

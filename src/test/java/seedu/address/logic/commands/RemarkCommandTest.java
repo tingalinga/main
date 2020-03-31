@@ -13,6 +13,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEvents;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventsRecord;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +26,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.admin.Admin;
+import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
@@ -37,7 +40,7 @@ public class RemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), new UserPrefs(), null);
+            getTypicalNotes(), new UserPrefs(), getTypicalEventsRecord());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
@@ -48,7 +51,7 @@ public class RemarkCommandTest {
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedStudent);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new UserPrefs(), null);
+                new NotesManager(model.getNotesManager()), new UserPrefs(), getTypicalEventsRecord());
 
         expectedModel.setStudent(firstStudent, editedStudent);
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
