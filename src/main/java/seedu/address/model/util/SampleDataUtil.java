@@ -88,8 +88,6 @@ public class SampleDataUtil {
         for (Assessment sampleAssessment : getSampleAssessments()) {
             sampleAssessment.setSampleSubmissions(Arrays.asList(getSampleStudents()),
                     sampleAssessment.getDescription());
-            sampleAssessment.setAssessmentSampleSubmissions(Arrays.asList(getSampleStudents()),
-                    sampleAssessment.getDescription());
             sampleAcademics.addAssessment(sampleAssessment);
         }
         return sampleAcademics;

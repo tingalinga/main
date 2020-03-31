@@ -54,6 +54,7 @@ public class Homework extends Assessment {
      * @param newSubmissionTracker new submission tracker.
      */
     public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
+        setAssessmentSubmissionTracker(newSubmissionTracker);
         for (Submission submission: newSubmissionTracker) {
             submissionTracker.add(submission);
         }
@@ -124,6 +125,7 @@ public class Homework extends Assessment {
      * @param students list of students assigned with the assessment.
      */
     public void setSampleSubmissions(List<Student> students, String assessmentDescription) {
+        setAssessmentSampleSubmissions(students, assessmentDescription);
         switch (assessmentDescription) {
             case "Math Differentiation Homework" :
                 setSampleMathSubmissions(students);
