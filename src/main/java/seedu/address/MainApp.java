@@ -24,13 +24,10 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.ReadOnlyAcademics;
-<<<<<<< HEAD
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.ReadOnlyAdmin;
-=======
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -40,13 +37,10 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.academics.JsonAcademicsStorage;
-<<<<<<< HEAD
 import seedu.address.storage.admin.AdminStorage;
 import seedu.address.storage.admin.JsonAdminStorage;
-=======
 import seedu.address.storage.notes.JsonNotesManagerStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -77,13 +71,10 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         AcademicsStorage academicsStorage = new JsonAcademicsStorage(userPrefs.getAcademicsFilePath());
-<<<<<<< HEAD
-        AdminStorage adminStorage = new JsonAdminStorage(userPrefs.getAdminFilePath());
-        storage = new StorageManager(addressBookStorage, adminStorage, academicsStorage, userPrefsStorage);
-=======
         NotesManagerStorage notesManagerStorage = new JsonNotesManagerStorage(userPrefs.getNotesFilePath());
-        storage = new StorageManager(addressBookStorage, academicsStorage, notesManagerStorage, userPrefsStorage);
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
+        AdminStorage adminStorage = new JsonAdminStorage(userPrefs.getAdminFilePath());
+        storage = new StorageManager(addressBookStorage, adminStorage, academicsStorage,
+                notesManagerStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -107,27 +98,19 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyAcademics> academicsOptional;
-<<<<<<< HEAD
+        Optional<ReadOnlyNotes> notesManagerOptional;
         Optional<ReadOnlyAdmin> adminOptional;
 
         ReadOnlyAddressBook initialData;
         ReadOnlyAcademics initialAcademics;
         ReadOnlyAdmin initialAdmin;
-        try {
-            addressBookOptional = storage.readAddressBook();
-            academicsOptional = storage.readAcademics();
-            adminOptional = storage.readAdmin();
-=======
-        Optional<ReadOnlyNotes> notesManagerOptional;
-
-        ReadOnlyAddressBook initialData;
-        ReadOnlyAcademics initialAcademics;
         ReadOnlyNotes initialNotesManager;
         try {
             addressBookOptional = storage.readAddressBook();
             academicsOptional = storage.readAcademics();
+            adminOptional = storage.readAdmin();
             notesManagerOptional = storage.readNotesManager();
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
+
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
                 new File("data").mkdir();
@@ -140,35 +123,23 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             initialAcademics = academicsOptional.orElseGet(SampleDataUtil::getSampleAcademics);
-<<<<<<< HEAD
             initialAdmin = adminOptional.orElseGet(SampleDataUtil::getSampleAdmin);
-=======
             initialNotesManager = notesManagerOptional.orElseGet(SampleDataUtil::getSampleNotesManager);
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
-<<<<<<< HEAD
             initialAdmin = new Admin();
-=======
             initialNotesManager = new NotesManager();
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
-<<<<<<< HEAD
             initialAdmin = new Admin();
-        }
-
-        return new ModelManager(initialData, initialAcademics, initialAdmin, userPrefs);
-=======
             initialNotesManager = new NotesManager();
         }
 
-        return new ModelManager(initialData, initialAcademics, initialNotesManager, userPrefs);
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
+        return new ModelManager(initialData, initialAcademics, initialAdmin, initialNotesManager, userPrefs);
     }
 
     private void initLogging(Config config) {

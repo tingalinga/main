@@ -11,13 +11,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
-<<<<<<< HEAD
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
-=======
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
 import seedu.address.model.student.Student;
 
 /**
@@ -67,7 +64,6 @@ public interface Logic {
     Path getAcademicsFilePath();
     // ==================== ACADEMICS END ====================
 
-<<<<<<< HEAD
     // ==================== ADMIN START ====================
     /**
      * Returns the Admin page.
@@ -84,7 +80,7 @@ public interface Logic {
      */
     Path getAdminFilePath();
     // ==================== ADMIN END ====================
-=======
+
     // ==================== NOTES START ====================
     /**
      * Returns the Academics.
@@ -101,7 +97,6 @@ public interface Logic {
      */
     Path getNotesManagerFilePath();
     // ==================== ACADEMICS END ====================
->>>>>>> 638884676a24d65c19402ddea5dd8c35f1d9430d
 
     /**
      * Returns the user prefs' GUI settings.
