@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.admin;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -28,6 +29,7 @@ public class AdminSaveCommand extends AdminCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         Date date = new Date(toAdd, model.getFilteredStudentList());
         model.addDate(date);
         String fullDate = toAdd.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
@@ -37,6 +39,8 @@ public class AdminSaveCommand extends AdminCommand {
 
     @Override
     public boolean equals(Object other) {
-        return true;
+        return other == this // short circuit if same object
+                || (other instanceof AdminSaveCommand // instanceof handles nulls
+                && toAdd.equals(((AdminSaveCommand) other).toAdd));
     }
 }

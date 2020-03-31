@@ -58,10 +58,7 @@ public class JsonAdaptedDate {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-        }
-        final ArrayList<Student> modelStudents = new ArrayList<>(studentList);
+        final List<Student> modelStudents = new ArrayList<>(studentList);
         final LocalDate modelDate = date;
         return new Date(modelDate, modelStudents);
     }

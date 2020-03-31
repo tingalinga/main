@@ -8,7 +8,6 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.admin.DateContainsKeywordsPredicate;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
@@ -29,7 +28,7 @@ public class AdminFetchCommand extends AdminCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, DateNotFoundException {
+    public CommandResult execute(Model model) throws DateNotFoundException {
         requireNonNull(model);
         model.updateFilteredDateList(predicate);
         if (model.getFilteredDateList().size() == 0) {

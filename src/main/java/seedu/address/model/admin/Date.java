@@ -27,13 +27,6 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid date.
-     */
-    public static boolean isValidDate(LocalDate test) {
-        return true;
-    }
-
-    /**
      * Returns the date of the admin detail.
      * @return date of admin detail;.
      */
@@ -54,7 +47,7 @@ public class Date {
             return true;
         }
         return otherDate != null
-                && otherDate.getDate().equals(getDate());
+                && otherDate.getDate().equals(this.getDate()) || otherDate.getStudents().equals(this.getStudents());
     }
 
     @Override
@@ -72,4 +65,3 @@ public class Date {
         return builder.toString();
     }
 }
-

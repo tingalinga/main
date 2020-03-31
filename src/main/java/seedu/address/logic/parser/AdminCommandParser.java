@@ -24,6 +24,7 @@ public class AdminCommandParser implements Parser<AdminCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AdminCommand parse(String arg) throws ParseException, DateTimeParseException {
+        arg.trim();
         String[] inputs = arg.split(" ");
         if (inputs.length < 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -39,7 +40,7 @@ public class AdminCommandParser implements Parser<AdminCommand> {
             }
 
         case AdminCommand.ADMIN_FETCH:
-            if (inputs.length > 3) {
+            if (inputs.length > 3 || inputs.length == 2) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         AdminFetchCommand.MESSAGE_USAGE));
             } else {
@@ -51,11 +52,11 @@ public class AdminCommandParser implements Parser<AdminCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         AdminSaveCommand.MESSAGE_USAGE));
             } else {
-                return new AdminSaveCommand(LocalDate.parse(inputs[2]));
+                return new AdminSaveCommand(LocalDate.now());
             }
 
         case AdminCommand.ADMIN_DELETE:
-            if (inputs.length > 3) {
+            if (inputs.length > 3 || inputs.length == 2) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         AdminDeleteCommand.MESSAGE_USAGE));
             } else {

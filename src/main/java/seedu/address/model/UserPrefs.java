@@ -90,19 +90,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && academicsFilePath.equals(o.academicsFilePath)
+                && adminFilePath.equals(o.adminFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, academicsFilePath, adminFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data addressbook file location : " + addressBookFilePath);
+        sb.append("\nLocal data ad,om file location : " + adminFilePath);
+        sb.append("\nLocal data academics file location : " + academicsFilePath);
         return sb.toString();
     }
 }

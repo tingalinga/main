@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the TeaPet level
- * Duplicates are allowed.
+ * Duplicates are not allowed (by .isSameDate comparison).
  */
 public class Admin implements ReadOnlyAdmin {
 

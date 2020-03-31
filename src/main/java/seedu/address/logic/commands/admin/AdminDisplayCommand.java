@@ -14,7 +14,7 @@ public class AdminDisplayCommand extends AdminCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_DISPLAY
             + ": to display the last updated class admin details.";
-    public static final String MESSAGE_SUCCESS = "The Student list now displays ADMIN details";
+    public static final String MESSAGE_SUCCESS = "The Student list now displays last updated ADMIN details";
 
     /**
      * Creates an AdminDisplayCommand.
@@ -31,7 +31,7 @@ public class AdminDisplayCommand extends AdminCommand {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return true;
+    public boolean equals(Object other) { //dummy method here
+        return false;
     }
 }

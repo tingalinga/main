@@ -22,8 +22,8 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
-    private AcademicsStorage academicsStorage;
     private AdminStorage adminStorage;
+    private AcademicsStorage academicsStorage;
     private UserPrefsStorage userPrefsStorage;
 
 
@@ -85,6 +85,8 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ Academics methods ==============================
+
     @Override
     public Path getSavedAcademicsFilePath() {
         return academicsStorage.getSavedAcademicsFilePath();
@@ -111,6 +113,8 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         academicsStorage.saveAcademics(academics, filePath);
     }
+
+    // ================ Admin methods ==============================
 
     @Override
     public Path getAdminFilePath() {

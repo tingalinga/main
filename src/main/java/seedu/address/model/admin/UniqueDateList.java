@@ -18,6 +18,7 @@ import seedu.address.model.admin.exceptions.DuplicateDateException;
  *
  */
 public class UniqueDateList implements Iterable<Date> {
+
     private final ObservableList<Date> internalList = FXCollections.observableArrayList();
     private final ObservableList<Date> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -36,6 +37,9 @@ public class UniqueDateList implements Iterable<Date> {
      */
     public void add(Date toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateDateException();
+        }
         internalList.add(toAdd);
     }
 
@@ -96,6 +100,13 @@ public class UniqueDateList implements Iterable<Date> {
     @Override
     public Iterator<Date> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueDateList // instanceof handles nulls
+                && internalList.equals(((UniqueDateList) other).internalList));
     }
 
     @Override

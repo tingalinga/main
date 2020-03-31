@@ -7,21 +7,21 @@ import java.util.function.Predicate;
  * Tests that a {@code Date}'s {@code Date} matches any of the keywords given.
  */
 public class DateContainsKeywordsPredicate implements Predicate<Date> {
-    private final LocalDate date;
+    private final LocalDate thisDate;
 
     public DateContainsKeywordsPredicate(LocalDate date) {
-        this.date = date;
+        thisDate = date;
     }
 
     @Override
     public boolean test(Date date) {
-        return date.toString().equals(date.getDate().toString());
+        return thisDate.equals(date.getDate());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateContainsKeywordsPredicate // instanceof handles nulls
-                && date.equals(((DateContainsKeywordsPredicate) other).date)); // state check
+                && thisDate.equals(((DateContainsKeywordsPredicate) other).thisDate)); // state check
     }
 }
