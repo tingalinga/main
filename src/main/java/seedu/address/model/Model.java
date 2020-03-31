@@ -137,6 +137,12 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered academics list */
     ObservableList<Assessment> getFilteredAcademicsList();
 
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getHomeworkList();
+
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getExamList();
+
     /**
      * Updates the filter of the filtered academics list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

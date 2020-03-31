@@ -4,10 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Circle;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
@@ -32,12 +30,6 @@ public class AssessmentCard extends UiPart<Region> {
      */
 
     public final Assessment assessment;
-
-    @FXML
-    private ImageView image;
-
-    @FXML
-    private Circle circle;
 
     @FXML
     private HBox cardPane;

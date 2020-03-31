@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private AcademicsPanel academicsPanel;
+    private AcademicsPanel academicsHomeworkPanel;
+    private AcademicsPanel academicsExamPanel;
     private NotesPanel notesPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -121,6 +123,12 @@ public class MainWindow extends UiPart<Stage> {
 
         academicsPanel = new AcademicsPanel(logic.getFilteredAcademicsList());
         mainPanelPlaceholder.getChildren().add(academicsPanel.getRoot());
+
+        academicsHomeworkPanel = new AcademicsPanel(logic.getHomeworkList());
+        mainPanelPlaceholder.getChildren().add(academicsHomeworkPanel.getRoot());
+
+        academicsExamPanel = new AcademicsPanel(logic.getExamList());
+        mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
 
         notesPanel = new NotesPanel(logic.getFilteredNotesList());
         notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
@@ -238,6 +246,26 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the academics homework window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsHomework() {
+        academicsHomeworkPanel = new AcademicsPanel(logic.getHomeworkList(), "homework");
+        mainPanelPlaceholder.getChildren().add(academicsHomeworkPanel.getRoot());
+        academicsHomeworkPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics exam window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsExam() {
+        academicsExamPanel = new AcademicsPanel(logic.getExamList(), "exam");
+        mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
+        academicsExamPanel.getRoot().toFront();
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -261,6 +289,12 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case "Academics now displays all assessments":
                 handleAcademics();
+                break;
+            case "Academics now displays all HOMEWORK assessments":
+                handleAcademicsHomework();
+                break;
+            case "Academics now displays all EXAM assessments":
+                handleAcademicsExam();
                 break;
             default:
                 break;

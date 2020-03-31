@@ -4,14 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Circle;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Homework;
 import seedu.address.ui.UiPart;
 
 /**
@@ -31,12 +28,6 @@ public class AssessmentCardHomework extends UiPart<Region> {
      */
 
     public final Assessment assessment;
-
-    @FXML
-    private ImageView image;
-
-    @FXML
-    private Circle circle;
 
     @FXML
     private HBox cardPane;
@@ -59,10 +50,8 @@ public class AssessmentCardHomework extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
-        if (assessment instanceof Homework) {
-            type.setText("Homework");
-            date.setText("Deadline:   " + assessment.getDateString());
-        }
+        type.setText("Homework");
+        date.setText("Deadline:   " + assessment.getDateString());
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + "out of" + assessment.getSubmissionTracker().size());
     }

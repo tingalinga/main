@@ -86,6 +86,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Assessment> getHomeworkList() {
+        return model.getHomeworkList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getExamList() {
+        return model.getExamList();
+    }
+
+    @Override
     public Path getAcademicsFilePath() {
         return model.getAcademicsFilePath();
     }

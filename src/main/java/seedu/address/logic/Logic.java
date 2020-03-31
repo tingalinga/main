@@ -56,6 +56,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of assessments */
     ObservableList<Assessment> getFilteredAcademicsList();
 
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getHomeworkList();
+
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getExamList();
+
     /**
      * Returns the user prefs' academics file path.
      */

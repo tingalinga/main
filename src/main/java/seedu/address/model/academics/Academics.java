@@ -100,6 +100,16 @@ public class Academics implements ReadOnlyAcademics {
     }
 
     @Override
+    public ObservableList<Assessment> getHomeworkList() {
+        return assessments.getHomeworkList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getExamList() {
+        return assessments.getExamList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Academics // instanceof handles nulls

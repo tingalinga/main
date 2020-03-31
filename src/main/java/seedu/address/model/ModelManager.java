@@ -196,6 +196,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Assessment> getHomeworkList() {
+        return academics.getHomeworkList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getExamList() {
+        return academics.getExamList();
+    }
+
+    @Override
     public void updateFilteredAcademicsList(Predicate<Assessment> predicate) {
         requireNonNull(predicate);
         filteredAssessments.setPredicate(predicate);
