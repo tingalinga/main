@@ -26,8 +26,8 @@ import seedu.address.model.student.Student;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalNotes(),
-            new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(),
+            getTypicalNotes(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -36,7 +36,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(),
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
                 model.getNotesManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
 
@@ -60,8 +60,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getNotesManager(),
-                new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
+                model.getNotesManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 

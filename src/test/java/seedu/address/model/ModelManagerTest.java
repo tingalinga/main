@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.admin.Admin;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AcademicsBuilder;
@@ -145,12 +146,14 @@ public class ModelManagerTest {
         Academics academics = new AcademicsBuilder().withAssessment(SCIENCE_HOMEWORK)
                 .withAssessment(CHINESE_HOMEWORK).build();
         Academics differentAcademics = new Academics();
+        Admin admin = new AdminBuilder().withDate(JAN_26).withDate(FEB_26).build();
+        Admin differentAdmin = new Admin();
         NotesManager notesManager = new NotesManager();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, academics, notesManager, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, academics, notesManager, userPrefs);
+        modelManager = new ModelManager(addressBook, academics, admin, notesManager, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, academics, admin, notesManager, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -163,8 +166,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentAcademics, notesManager,
-                userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentAcademics, differentAdmin,
+                notesManager, userPrefs)));
 
         // different filteredList -> returns false
         String[] studentKeywords = ALICE.getName().fullName.split("\\s+");
@@ -172,7 +175,7 @@ public class ModelManagerTest {
         String[] assessmentKeywords = SCIENCE_HOMEWORK.getDescription().split("\\s+");
         modelManager.updateFilteredAcademicsList(
                 new DescriptionContainsKeywordsPredicate(Arrays.asList(assessmentKeywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, notesManager, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, admin, notesManager, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -182,6 +185,7 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         differentUserPrefs.setAcademicsFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, notesManager, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, admin, notesManager,
+                differentUserPrefs)));
     }
 }
