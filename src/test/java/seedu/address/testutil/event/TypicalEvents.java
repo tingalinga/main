@@ -7,7 +7,6 @@ import java.util.List;
 
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventHistory;
-import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.event.RecurrenceType;
 
 

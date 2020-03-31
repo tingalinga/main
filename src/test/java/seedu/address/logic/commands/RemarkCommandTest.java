@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-import static seedu.address.testutil.event.TypicalEvents.getTypicalEvents;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventsRecord;
 
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.admin.Admin;
-import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;

@@ -186,7 +186,8 @@ public class ModelManagerTest {
         String[] assessmentKeywords = SCIENCE_HOMEWORK.getDescription().split("\\s+");
         modelManager.updateFilteredAcademicsList(
                 new DescriptionContainsKeywordsPredicate(Arrays.asList(assessmentKeywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, admin, notesManager, userPrefs, eventHistory)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, admin, notesManager, userPrefs,
+                eventHistory)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
