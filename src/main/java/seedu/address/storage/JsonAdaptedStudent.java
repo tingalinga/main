@@ -20,13 +20,12 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
-
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedStudent {
+public class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
@@ -180,5 +179,4 @@ class JsonAdaptedStudent {
                 modelNok, modelNotes, modelRemark, modelTags);
 
     }
-
 }

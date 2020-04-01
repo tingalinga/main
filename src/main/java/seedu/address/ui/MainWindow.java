@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -204,8 +205,8 @@ public class MainWindow extends UiPart<Stage> {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
-            if (consoleReply.equals("The Student list now displays ADMIN details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
+            if (consoleReply.equals("The Student list now displays last updated ADMIN details")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays DEFAULT details")) {
@@ -216,6 +217,24 @@ public class MainWindow extends UiPart<Stage> {
             if (consoleReply.contains("Notes are exported to studentNotes.txt")) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
                 notesExporter.saveToTxt();
+            }
+
+            if (consoleReply.contains("Admin list has been deleted for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("Class admin details for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("This admin list has been saved for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
             if (commandResult.isShowHelp()) {
