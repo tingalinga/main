@@ -42,7 +42,7 @@ public class TypicalEvents {
     public static final Event NON_TYPICAL_EVENT = new EventBuilder()
             .withEventName("Not Typical Event")
             .withStartDateTime(LocalDateTime.parse("2020-04-04T08:00"))
-            .withEndDateTime(LocalDateTime.parse("2019-04-04T10:00"))
+            .withEndDateTime(LocalDateTime.parse("2020-04-04T10:00"))
             .withColorCode("group04")
             .withUniqueIdentifier("eventTestNonTypical")
             .withRecurrenceType(RecurrenceType.NONE).build();
@@ -54,7 +54,7 @@ public class TypicalEvents {
     /**
      * Returns an {@code EventRecord} with all the typical events.
      */
-    public static EventHistory getTypicalEventsRecord() {
+    public static EventHistory getTypicalEventHistory() {
         EventHistory ab = new EventHistory(getTypicalEvents());
         return ab;
     }

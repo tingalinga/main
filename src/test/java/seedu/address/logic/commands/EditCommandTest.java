@@ -16,6 +16,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +40,7 @@ import seedu.address.testutil.StudentBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), new UserPrefs(), null);
+            getTypicalNotes(), new UserPrefs(), getTypicalEventHistory());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -50,7 +51,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getAcademics(),
-                model.getAdmin(), model.getNotesManager(), new UserPrefs(), null);
+                model.getAdmin(), model.getNotesManager(), new UserPrefs(), getTypicalEventHistory());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -73,7 +74,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new UserPrefs(), null);
+                new NotesManager(model.getNotesManager()), new UserPrefs(), getTypicalEventHistory());
 
         expectedModel.setStudent(lastStudent, editedStudent);
 
@@ -89,7 +90,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new UserPrefs(), null);
+                new NotesManager(model.getNotesManager()), new UserPrefs(), getTypicalEventHistory());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -107,7 +108,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new UserPrefs(), null);
+                new NotesManager(model.getNotesManager()), new UserPrefs(), getTypicalEventHistory());
 
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 

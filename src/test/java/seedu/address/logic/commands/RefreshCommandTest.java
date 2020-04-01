@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,9 +28,9 @@ public class RefreshCommandTest {
     public void setUp() {
 
         model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(),
-                new UserPrefs(), null);
+                new UserPrefs(), getTypicalEventHistory());
         expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
-                model.getNotesManager(), new UserPrefs(), null);
+                model.getNotesManager(), new UserPrefs(), getTypicalEventHistory());
     }
 
     @Test

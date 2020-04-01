@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(),
-                new UserPrefs(), null);
+                new UserPrefs(), getTypicalEventHistory());
     }
 
     @Test
@@ -34,7 +35,7 @@ public class AddCommandIntegrationTest {
         Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
-                model.getNotesManager(), new UserPrefs(), null);
+                model.getNotesManager(), new UserPrefs(), getTypicalEventHistory());
 
         expectedModel.addStudent(validStudent);
 
