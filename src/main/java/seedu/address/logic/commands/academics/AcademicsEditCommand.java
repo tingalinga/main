@@ -27,9 +27,9 @@ public class AcademicsEditCommand extends AcademicsCommand {
 
     public static final String MESSAGE_USAGE = "This command edits the details of the assessment identified. \n"
             + "Format: " + COMMAND_WORD + " "
-            + PREFIX_EDIT + " ASSESSMENT INDEX "
+            + PREFIX_EDIT + " ASSESSMENT INDEX (must be a positive integer) "
             + "[" + PREFIX_ASSESSMENT_DESCRIPTION + "ASSESSMENT DESCRIPTION] "
-            + "[" + PREFIX_ASSESSMENT_TYPE + "ASSESSMENT TYPE] "
+            + "[" + PREFIX_ASSESSMENT_TYPE + "ASSESSMENT TYPE] (must be homework or exam) "
             + "[" + PREFIX_ASSESSMENT_DATE + "ASSESSMENT DATE]\n";
 
     public static final String MESSAGE_EDIT_ASSESSMENT_SUCCESS = "Edited Assessment: %1$s";

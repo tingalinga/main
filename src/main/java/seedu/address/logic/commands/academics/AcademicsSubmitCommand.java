@@ -20,7 +20,7 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
 
     public static final String MESSAGE_USAGE = "This command submits students' work for the assessment identified. \n"
             + "Format: " + COMMAND_WORD + " "
-            + PREFIX_SUBMIT + " ASSESSMENT INDEX "
+            + PREFIX_SUBMIT + " ASSESSMENT INDEX (must be a positive integer) "
             + PREFIX_STUDENT + "STUDENT NAME ...\n"
             + "Example: academics submit 1 stu/Simon Lam\n"
             + "Example: academics submit 1 stu/Simon Lam stu/Gerren Seow\n";

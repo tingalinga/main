@@ -23,7 +23,7 @@ public class AcademicsMarkCommand extends AcademicsCommand {
 
     public static final String MESSAGE_USAGE = "This command marks students' work for the assessment identified. \n"
             + "Format: " + COMMAND_WORD + " "
-            + PREFIX_MARK + " ASSESSMENT INDEX "
+            + PREFIX_MARK + " ASSESSMENT INDEX (must be a positive integer) "
             + PREFIX_STUDENT + "STUDENT NAME-SCORE ...\n"
             + "Example: academics mark 1 stu/Simon Lam-80\n"
             + "Example: academics mark 1 stu/Simon Lam-80 stu/Gerren Seow-70\n";
