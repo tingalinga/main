@@ -92,7 +92,6 @@ public class Student {
     }
     public NextOfKin getNok () {
         return nok;
-
     }
 
     /**
@@ -170,5 +169,4 @@ public class Student {
         getTags().forEach(builder::append);
         return builder.toString();
     }
-
 }

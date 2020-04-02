@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private SchedulePage schedulePage;
+    private SchedulePanel schedulePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -44,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane studentListPanelPlaceholder;
+    private StackPane mainPanelPlaceholder;
 
     @FXML
     private StackPane notesPanelPlaceholder;
@@ -115,9 +117,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
-        notesPanel = new NotesPanel(logic.getFilteredStudentList());
+        notesPanel = new NotesPanel(logic.getFilteredNotesList());
         notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -128,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        schedulePanel = new SchedulePanel(logic.getVEvents());
+        mainPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
     }
 
     /**
@@ -159,12 +164,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleSchedule() {
-        if (!schedulePage.isShowing()) {
-            schedulePage.show();
-        } else {
-            schedulePage.focus();
-        }
+        schedulePanel.update();
+        schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
+        schedulePanel.getRoot().toFront();
     }
+
 
     void show() {
         primaryStage.show();
@@ -199,35 +203,38 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(consoleReply);
             if (consoleReply.equals("The Student list now displays ALL details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
-                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
-            if (consoleReply.equals("The Student list now displays ADMIN details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
-                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            if (consoleReply.equals("The Student list now displays last updated ADMIN details")) {
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
             if (consoleReply.equals("The Student list now displays DEFAULT details")) {
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-            }
-
-            if (consoleReply.contains("New Student Note added! Yay!")) {
-                notesPanel = new NotesPanel(logic.getFilteredStudentList());
-                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
-            }
-
-            if (consoleReply.contains("Student Note deleted.")) {
-                notesPanel = new NotesPanel(logic.getFilteredStudentList());
-                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
             if (consoleReply.contains("Notes are exported to studentNotes.txt")) {
-                NotesManager notesManager = new NotesManager(logic.getFilteredStudentList());
-                notesManager.saveToTxt();
+                NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
+                notesExporter.saveToTxt();
             }
 
-            if (consoleReply.contains("Displaying Notes")) {
-                notesPanel = new NotesPanel(logic.getFilteredStudentList(), consoleReply);
-                notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
+            if (consoleReply.contains("Admin list has been deleted for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("Class admin details for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("This admin list has been saved for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
             if (commandResult.isShowHelp()) {
@@ -236,6 +243,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (consoleReply.contains("Added event")) {
+                handleSchedule();
             }
 
             return commandResult;

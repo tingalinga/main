@@ -18,8 +18,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
-
-
 /**
  * An UI component that displays detailed information of a {@code Student}.
  */
@@ -70,7 +68,7 @@ public class StudentCardDetailed extends UiPart<Region> {
 
 
     /**
-     * Constructor to create the student card controller.
+     * Constructor to create the student card (detailed) controller.
      * Important to note the format of the image, [namelowercasenospace].png
      * eg. Name is Simon Lam, image name is simonlam.png. 1
      * 1. All lower case
@@ -84,7 +82,9 @@ public class StudentCardDetailed extends UiPart<Region> {
         phone.setText("Mobile:  " + student.getPhone().value);
         address.setText("Address: " + student.getAddress().value);
         email.setText("Email:   " + student.getEmail().value);
-        temperature.setText("Temperature:   " + student.getTemperature().value + " \u2103");
+        temperature.setText(student.getTemperature().value.equals("Insert temperature here!")
+                ? "Temperature:   " + student.getTemperature().value
+                : "Temperature:   " + student.getTemperature().value + " \u2103");
         attendance.setText("Attendance:   " + student.getAttendance().value);
         notes.setText("No. of Notes:    " + student.getNotes().size());
         nokName.setText("NOK Name:  " + student.getNok().getNameOfNok());
@@ -120,7 +120,7 @@ public class StudentCardDetailed extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentCard)) {
+        if (!(other instanceof StudentCardDetailed)) {
             return false;
         }
 

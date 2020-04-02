@@ -6,10 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.ELLE;
 import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +28,11 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), new UserPrefs());
+
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(),
+            getTypicalNotes(), new UserPrefs(), getTypicalEventHistory());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(),
+            getTypicalNotes(), new UserPrefs(), getTypicalEventHistory());
 
     @Test
     public void equals() {

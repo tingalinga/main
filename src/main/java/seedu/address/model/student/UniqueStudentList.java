@@ -55,7 +55,6 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new StudentNotFoundException();
@@ -93,7 +92,6 @@ public class UniqueStudentList implements Iterable<Student> {
         if (!studentsAreUnique(students)) {
             throw new DuplicateStudentException();
         }
-
         internalList.setAll(students);
     }
 
