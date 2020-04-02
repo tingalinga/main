@@ -1,8 +1,7 @@
 package seedu.address.logic.parser.notes;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
@@ -26,16 +25,17 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
      */
     public NotesAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTENT, PREFIX_PRIORITY);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !arePrefixesPresent(argMultimap, PREFIX_CONTENT)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !arePrefixesPresent(argMultimap, PREFIX_PRIORITY)  || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesAddCommand.MESSAGE_USAGE));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get();
         String content = argMultimap.getValue(PREFIX_CONTENT).get();
+        String priority = argMultimap.getValue(PREFIX_PRIORITY).get();
 
-        return new NotesAddCommand(name, content);
+        return new NotesAddCommand(name, content, priority);
     }
 
     /**

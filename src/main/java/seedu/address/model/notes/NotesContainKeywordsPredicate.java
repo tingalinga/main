@@ -24,6 +24,7 @@ public class NotesContainKeywordsPredicate implements Predicate<Notes> {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(notes.getContent(), keyword)
                 || StringUtil.containsWordIgnoreCase(notes.getDateTime(), keyword)
+                || StringUtil.containsWordIgnoreCase(notes.getPriority(), keyword)
                 || StringUtil.containsWordIgnoreCase(notes.getStudent(), keyword));
     }
 

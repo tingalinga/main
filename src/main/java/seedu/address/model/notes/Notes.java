@@ -17,23 +17,43 @@ public class Notes {
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
+    public static final String PRIORITY_HIGH = "HIGH";
+    public static final String PRIORITY_MEDIUM = "MEDIUM";
+    public static final String PRIORITY_LOW = "LOW";
+
     private final String student;
     private final String content;
     private final String dateTime;
+    private final String priority;
 
     /**
      * Notes constructor
      * @param student, representing the name of student.
      * @param content, representing the content to be stored in the note.
+     * @param priority, representing the priority to be stored in the note.
      */
-    public Notes(String student, String content) {
-        requireAllNonNull(student, content);
+    public Notes(String student, String content, String priority) {
+        requireAllNonNull(student, content, priority);
         checkArgument(isValidName(student), MESSAGE_CONSTRAINTS);
         this.student = student;
         this.content = content;
+        this.priority = checkPriority(priority);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date = new Date();
         this.dateTime = formatter.format(date).toString();
+    }
+
+    public String checkPriority(String priority) {
+        switch (priority.toUpperCase()) {
+            case PRIORITY_HIGH:
+                return PRIORITY_HIGH;
+            case PRIORITY_MEDIUM:
+                return PRIORITY_MEDIUM;
+            case PRIORITY_LOW:
+                return PRIORITY_LOW;
+            default:
+                return PRIORITY_LOW;
+        }
     }
 
     /**
@@ -41,13 +61,15 @@ public class Notes {
      * This allows initial timestamp to be immutable
      * @param student
      * @param content
+     * @param priority
      * @param dateTime
      */
-    public Notes(String student, String content, String dateTime) {
-        requireAllNonNull(student, content, dateTime);
+    public Notes(String student, String content, String priority, String dateTime) {
+        requireAllNonNull(student, content, priority, dateTime);
         checkArgument(isValidName(student), MESSAGE_CONSTRAINTS);
         this.student = student;
         this.content = content;
+        this.priority = priority;
         this.dateTime = dateTime;
     }
 
@@ -76,12 +98,20 @@ public class Notes {
     }
 
     /**
+     * Getter of Note's priority
+     * @return note's priority.
+     */
+    public String getPriority() {
+        return this.priority;
+    }
+
+    /**
      * Setter of String student
      * @param newStudent
      * @return a new Notes object with updated student.
      */
     public Notes setStudent(String newStudent) {
-        return new Notes(newStudent, this.getContent());
+        return new Notes(newStudent, getContent(), getPriority());
     }
 
     /**
@@ -90,7 +120,7 @@ public class Notes {
      * @return a new Notes object with updated note content.
      */
     public Notes setContent(String newContent) {
-        return new Notes(this.getStudent(), newContent);
+        return new Notes(getStudent(), newContent, getPriority());
     }
 
     /**
@@ -105,7 +135,8 @@ public class Notes {
     public String toString() {
         return "[Notes]"
                 + " Student:'" + getStudent() + '\''
-                + ", Content: '" + getContent() + '\'';
+                + ", Content: '" + getContent() + '\''
+                + ", Priority: '" + getPriority() + '\'';
     }
 
     @Override
@@ -119,7 +150,8 @@ public class Notes {
         Notes notes = (Notes) o;
         return Objects.equals(student, notes.student)
                 && Objects.equals(content, notes.content)
-                && Objects.equals(dateTime, notes.dateTime);
+                && Objects.equals(dateTime, notes.dateTime)
+                && Objects.equals(priority, notes.priority);
     }
 
     /**
@@ -134,7 +166,7 @@ public class Notes {
      * @param args
      */
     public static void main(String[] args) {
-        Notes s1 = new Notes("Alex Yeoh", "Late for class today");
+        Notes s1 = new Notes("Alex Yeoh", "Late for class today", "High");
         System.out.println(s1);
     }
 
