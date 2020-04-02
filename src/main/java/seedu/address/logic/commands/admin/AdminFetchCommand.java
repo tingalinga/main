@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.admin;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DATES;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
@@ -32,6 +33,7 @@ public class AdminFetchCommand extends AdminCommand {
         requireNonNull(model);
         model.updateFilteredDateList(predicate);
         if (model.getFilteredDateList().size() == 0) {
+            model.updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
             throw new DateNotFoundException();
         } else {
             LocalDate date = model.getFilteredDateList().get(0).getDate();

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.admin;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DATES;
 
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -31,6 +32,7 @@ public class AdminDeleteCommand extends AdminCommand {
         requireNonNull(model);
         model.updateFilteredDateList(predicate);
         if (model.getFilteredDateList().size() == 0) { //no match
+            model.updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
             throw new DateNotFoundException();
         } else {
             Date dateToDelete = model.getFilteredDateList().get(0);

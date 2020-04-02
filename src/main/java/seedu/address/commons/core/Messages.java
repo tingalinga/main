@@ -15,6 +15,7 @@ public class Messages {
 
     /* Admin Messages */
     public static final String MESSAGE_DATE_NOT_FOUND_ADMIN = "Date provided is not in database!";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "No such student found!";
     public static final String MESSAGE_DUPLICATE_DATE_ADMIN = "Operation would result in duplicate dates";
 
     /* Academics Messages */
