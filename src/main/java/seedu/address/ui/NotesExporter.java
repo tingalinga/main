@@ -26,8 +26,7 @@ public class NotesExporter {
      * Function which saves the notes to a .txt file is user's current directory.
      */
     public void saveToTxt() {
-        String filePath = "/Users/gerrenseow/Documents/Gerren/MODULES/Y2S2/CS2103T/Team_Project/main/"
-                + "data/studentNotes.txt";
+        String filePath = "data/studentNotes.txt";
 
         BufferedWriter writer;
         try {
