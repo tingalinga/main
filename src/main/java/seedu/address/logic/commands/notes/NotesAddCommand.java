@@ -3,14 +3,18 @@ package seedu.address.logic.commands.notes;
 import static java.util.Objects.requireNonNull;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_NOTES;
+import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import javafx.collections.ObservableList;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
+import seedu.address.model.student.Student;
 
 
 /**
@@ -66,6 +70,20 @@ public class NotesAddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        ObservableList<Student> students = model.getFilteredStudentList();
+
+        boolean nameFound = false;
+
+        for (Student student : students) {
+            if (student.getName().toString().toLowerCase().equals(this.name.toLowerCase())) {
+                nameFound = true;
+            }
+        }
+
+        if (nameFound == false) {
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
+        }
 
         if (model.hasNote(note)) {
             throw new CommandException(MESSAGE_DUPLICATE_NOTES);
