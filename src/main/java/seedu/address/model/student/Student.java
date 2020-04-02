@@ -27,7 +27,6 @@ public class Student {
     private final Temperature temperature;
     private final Attendance attendance;
     private final Remark remark;
-    private ArrayList<Notes> notes = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
     private final NextOfKin nok;
 
@@ -35,7 +34,7 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, Attendance attendance,
-                   NextOfKin nok, ArrayList<Notes> notes, Remark remark, Set<Tag> tags) {
+                   NextOfKin nok, Remark remark, Set<Tag> tags) {
 
 
         requireAllNonNull(name, phone, email, tags);
@@ -45,7 +44,6 @@ public class Student {
         this.address = address;
         this.temperature = temperature;
         this.attendance = attendance;
-        this.notes.addAll(notes);
         this.remark = remark;
         this.tags.addAll(tags);
         this.nok = nok;
@@ -79,17 +77,6 @@ public class Student {
         return remark;
     }
 
-    public void addNotes(Notes note) {
-        this.notes.add(note);
-    }
-
-    /**
-     * Returns an immutable Notes ArrayList
-     */
-    public ArrayList<Notes> getNotes() {
-        return notes;
-
-    }
     public NextOfKin getNok () {
         return nok;
     }
@@ -137,14 +124,13 @@ public class Student {
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getTemperature().equals(getTemperature())
                 && otherStudent.getAttendance().equals(getAttendance())
-                && otherStudent.getNotes().equals(getNotes())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, temperature, attendance, remark, notes, tags);
+        return Objects.hash(name, phone, email, address, temperature, attendance, remark, tags);
     }
 
     @Override
@@ -161,8 +147,6 @@ public class Student {
                 .append(getTemperature())
                 .append(" Attendance: ")
                 .append(getAttendance())
-                .append("Notes: ")
-                .append(notes.size())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Tags: ");

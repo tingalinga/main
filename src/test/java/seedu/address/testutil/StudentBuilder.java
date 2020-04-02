@@ -37,7 +37,6 @@ public class StudentBuilder {
     private Address address;
     private Temperature temperature;
     private Attendance attendance;
-    private ArrayList<Notes> notes;
     private Remark remark;
     private Set<Tag> tags;
     private NextOfKin nok;
@@ -49,7 +48,6 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         temperature = new Temperature(DEFAULT_TEMPERATURE);
         attendance = new Attendance(DEFAULT_ATTENDANCE);
-        notes = new ArrayList<>();
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         nok = new NextOfKin(DEFAULT_NOK);
@@ -65,7 +63,6 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         temperature = studentToCopy.getTemperature();
         attendance = studentToCopy.getAttendance();
-        notes = new ArrayList<>(studentToCopy.getNotes());
         remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
         nok = studentToCopy.getNok();
@@ -148,7 +145,7 @@ public class StudentBuilder {
      */
     public Student build() {
         return new Student(name, phone, email, address, temperature,
-                attendance, nok, notes, remark, tags);
+                attendance, nok, remark, tags);
     }
 
 }

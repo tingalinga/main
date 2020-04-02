@@ -106,13 +106,12 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Temperature updatedTemperature = editStudentDescriptor.getTemperature().orElse(studentToEdit.getTemperature());
         Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
-        ArrayList<Notes> updatedNotes = editStudentDescriptor.getNotes().orElse(studentToEdit.getNotes());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         NextOfKin updatedNok = studentToEdit.getNok();
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature,
-                updatedAttendance, updatedNok, updatedNotes, updatedRemark, updatedTags);
+                updatedAttendance, updatedNok, updatedRemark, updatedTags);
     }
 
     @Override
@@ -144,7 +143,6 @@ public class EditCommand extends Command {
         private Address address;
         private Temperature temperature;
         private Attendance attendance;
-        private ArrayList<Notes> notes;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {
@@ -161,7 +159,6 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTemperature(toCopy.temperature);
             setAttendance(toCopy.attendance);
-            setNotes(toCopy.notes);
             setTags(toCopy.tags);
         }
 
@@ -202,15 +199,6 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        public void setNotes(ArrayList<Notes> notes) {
-            this.notes = notes;
-        }
-
-        public Optional<ArrayList<Notes>> getNotes() {
-            return (notes != null)
-                    ? Optional.of((ArrayList<Notes>) Collections.unmodifiableList(notes)) : Optional.empty();
         }
 
         public void setTemperature(Temperature temperature) {
@@ -267,7 +255,6 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTemperature().equals(e.getTemperature())
                     && getAttendance().equals(e.getAttendance())
-                    && getNotes().equals(e.getNotes())
                     && getTags().equals(e.getTags());
         }
     }
