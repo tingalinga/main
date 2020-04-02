@@ -2,9 +2,11 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -16,8 +18,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
+
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -49,11 +55,13 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveAcademics(model.getAcademics());
+            storage.saveAdmin(model.getAdmin());
+            storage.saveEvents(model.getEventHistory());
             storage.saveNotesManager(model.getNotesManager());
+
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
         return commandResult;
     }
 
@@ -101,6 +109,23 @@ public class LogicManager implements Logic {
     }
     // ==================== ACADEMICS END ====================
 
+    // ==================== ADMIN START ====================
+    @Override
+    public ReadOnlyAdmin getAdmin() {
+        return model.getAdmin();
+    }
+
+    @Override
+    public ObservableList<Date> getFilteredDateList() {
+        return model.getFilteredDateList();
+    }
+
+    @Override
+    public Path getAdminFilePath() {
+        return model.getAdminFilePath();
+    }
+    // ==================== ADMIN END ====================
+
     // ==================== NOTES START ====================
     @Override
     public ReadOnlyNotes getNotesManager() {
@@ -127,4 +152,20 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public ObservableList<VEvent> getVEvents() {
+        return model.getVEvents();
+    }
+
+    @Override
+    public LocalDateTime getEventScheduleLocalDateTime() {
+        return model.getEventScheduleLocalDateTime();
+    }
+
+    @Override
+    public EventScheduleView getEventScheduleView() {
+        return model.getEventScheduleView();
+    }
+
 }

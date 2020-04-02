@@ -213,7 +213,9 @@ method.
 *Step 4*. The command box will be reflected with the `EditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
 
 === Import image feature
-
+=== Personal Schedule feature
+==== Command 1
+==== Command 2
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 

@@ -1,5 +1,8 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -12,9 +15,17 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventHistory;
+import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.event.RecurrenceType;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
+
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -73,6 +84,20 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    public static ReadOnlyEvents getSampleEvents() {
+        String eventName = "Sample event";
+        String colorCode = "group01";
+        String uniqueIdentifier = "teapethelper";
+        LocalDateTime startDateTime = LocalDateTime.now();
+        LocalDateTime endDateTime = LocalDateTime.now().plusHours(2);
+        Event event = new Event(eventName, startDateTime, endDateTime, colorCode, uniqueIdentifier,
+                RecurrenceType.NONE);
+        ArrayList<Event> events = new ArrayList<>();
+        events.add(event);
+        EventHistory sampleEventHistory = new EventHistory(events);
+        return sampleEventHistory;
+    }
+
     public static Assessment[] getSampleAssessments() {
         return new Assessment[] {
             new Homework("Math Differentiation Homework", "2020-03-23"),
@@ -116,4 +141,15 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Date[] getSampleDates() {
+        return new Date[] {new Date(LocalDate.now(), Arrays.asList(getSampleStudents()))};
+    }
+
+    public static ReadOnlyAdmin getSampleAdmin() {
+        Admin sampleAd = new Admin();
+        for (Date sampleDate : getSampleDates()) {
+            sampleAd.addDate(sampleDate);
+        }
+        return sampleAd;
+    }
 }

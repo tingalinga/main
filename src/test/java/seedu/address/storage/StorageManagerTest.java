@@ -15,6 +15,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.academics.JsonAcademicsStorage;
+import seedu.address.storage.admin.JsonAdminStorage;
+import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
 
 public class StorageManagerTest {
@@ -28,10 +30,13 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonAcademicsStorage academicsStorage = new JsonAcademicsStorage(getTempFilePath("acad"));
+        JsonAdminStorage adminStorage = new JsonAdminStorage(getTempFilePath("ad"));
         JsonNotesManagerStorage notesManagerStorage = new JsonNotesManagerStorage(getTempFilePath("notes"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, academicsStorage, notesManagerStorage,
-                userPrefsStorage);
+        JsonEventStorage eventStorage = new JsonEventStorage(getTempFilePath("event"));
+
+        storageManager = new StorageManager(addressBookStorage, adminStorage, academicsStorage,
+                userPrefsStorage, eventStorage, notesManagerStorage);
     }
 
     private Path getTempFilePath(String fileName) {

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -41,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private SchedulePage schedulePage;
+    private SchedulePanel schedulePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -143,7 +145,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        studentListPanel.getRoot().toFront();
+        schedulePanel = new SchedulePanel(logic.getVEvents());
+        mainPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
     }
 
     /**
@@ -175,12 +178,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleSchedule() {
-        if (!schedulePage.isShowing()) {
-            schedulePage.show();
-        } else {
-            schedulePage.focus();
-        }
+        schedulePanel.update();
+        schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
+        schedulePanel.getRoot().toFront();
     }
+
 
     void show() {
         primaryStage.show();
@@ -221,7 +223,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleStudentAdmin() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         studentListPanel.getRoot().toFront();
     }
@@ -292,7 +294,7 @@ public class MainWindow extends UiPart<Stage> {
             case "The Student list now displays ALL details":
                 handleStudentDetailed();
                 break;
-            case "The Student list now displays ADMIN details":
+            case "The Student list now displays last updated ADMIN details":
                 handleStudentAdmin();
                 break;
             case "The Student list now displays DEFAULT details":
@@ -319,12 +321,34 @@ public class MainWindow extends UiPart<Stage> {
                 notesExporter.saveToTxt();
             }
 
+            if (consoleReply.contains("Admin list has been deleted for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("Class admin details for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("This admin list has been saved for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (consoleReply.contains("Added event")) {
+                handleSchedule();
             }
 
             return commandResult;
