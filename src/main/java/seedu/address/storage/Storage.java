@@ -40,7 +40,7 @@ public interface Storage extends AddressBookStorage, AcademicsStorage, NotesMana
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     @Override
-    Path getSavedAcademicsFilePath();
+    Path getAcademicsFilePath();
 
     @Override
     Optional<ReadOnlyAcademics> readAcademics() throws DataConversionException, IOException;

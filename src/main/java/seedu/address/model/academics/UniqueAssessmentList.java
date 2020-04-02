@@ -26,6 +26,8 @@ import seedu.address.model.academics.exceptions.DuplicateAssessmentException;
 public class UniqueAssessmentList implements Iterable<Assessment> {
 
     private final ObservableList<Assessment> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Assessment> homeworkList = FXCollections.observableArrayList();
+    private final ObservableList<Assessment> examList = FXCollections.observableArrayList();
     private final ObservableList<Assessment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -81,6 +83,17 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         }
     }
 
+    /**
+     * Submits students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void submitAssessment(Assessment target, List<String> students) {
+        requireNonNull(target);
+        requireNonNull(students);
+        int index = internalList.indexOf(target);
+        internalList.get(index).setSubmitted(students);
+    }
+
     public void setAssessments(UniqueAssessmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -104,6 +117,36 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
      */
     public ObservableList<Assessment> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns the list of homework assessments.
+     */
+    public ObservableList<Assessment> getHomeworkList() {
+        homeworkList.clear();;
+        Iterator<Assessment> iterator = iterator();
+        while (iterator.hasNext()) {
+            Assessment next = iterator.next();
+            if (next instanceof Homework) {
+                homeworkList.add(next);
+            }
+        }
+        return homeworkList;
+    }
+
+    /**
+     * Returns the list of exam assessments.
+     */
+    public ObservableList<Assessment> getExamList() {
+        examList.clear();;
+        Iterator<Assessment> iterator = iterator();
+        while (iterator.hasNext()) {
+            Assessment next = iterator.next();
+            if (next instanceof Exam) {
+                examList.add(next);
+            }
+        }
+        return examList;
     }
 
     @Override

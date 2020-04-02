@@ -13,4 +13,16 @@ public interface ReadOnlyAcademics {
      */
     ObservableList<Assessment> getAcademicsList();
 
+    /**
+     * Returns a list of homework assessments.
+     * This list will not contain any duplicate assessment.
+     */
+    ObservableList<Assessment> getHomeworkList();
+
+    /**
+     * Returns a list of exam assessments.
+     * This list will not contain any duplicate assessment.
+     */
+    ObservableList<Assessment> getExamList();
+
 }

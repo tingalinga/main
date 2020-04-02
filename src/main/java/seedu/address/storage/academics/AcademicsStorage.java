@@ -16,7 +16,7 @@ public interface AcademicsStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getSavedAcademicsFilePath();
+    Path getAcademicsFilePath();
 
     /**
      * Returns Academics data as a {@link ReadOnlyAcademics}.
@@ -27,7 +27,7 @@ public interface AcademicsStorage {
     Optional<ReadOnlyAcademics> readAcademics() throws DataConversionException, IOException;
 
     /**
-     * @see #getSavedAcademicsFilePath()
+     * @see #getAcademicsFilePath()
      */
     Optional<ReadOnlyAcademics> readAcademics(Path filePath) throws DataConversionException, IOException;
 

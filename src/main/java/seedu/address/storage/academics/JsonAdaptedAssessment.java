@@ -22,24 +22,24 @@ class JsonAdaptedAssessment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Assessments %s field is missing!";
 
     private final String description;
-    private final List<JsonAdaptedSubmission> submissionTracker = new ArrayList<>();
     private final String type;
     private String date = null;
+    private final List<JsonAdaptedSubmission> submissionTracker = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAssessment} with the given assessment details.
      */
     @JsonCreator
     public JsonAdaptedAssessment(@JsonProperty("description") String description,
-                                 @JsonProperty("submissions") List<JsonAdaptedSubmission> submissionTracker,
                                  @JsonProperty("type") String type,
-                                 @JsonProperty("date") String date) {
+                                 @JsonProperty("date") String date,
+                                 @JsonProperty("submissionTracker") List<JsonAdaptedSubmission> submissionTracker) {
         this.description = description;
+        this.type = type;
+        this.date = date;
         if (submissionTracker != null) {
             this.submissionTracker.addAll(submissionTracker);
         }
-        this.type = type;
-        this.date = date;
     }
 
     /**
@@ -47,11 +47,6 @@ class JsonAdaptedAssessment {
      */
     public JsonAdaptedAssessment(Assessment source) {
         description = source.getDescription();
-        List<Submission> submissions = source.getSubmissionTracker();
-        for (Submission submission: submissions) {
-            submissionTracker.add(new JsonAdaptedSubmission(submission));
-        }
-
         if (source instanceof Homework) {
             type = "homework";
             date = ((Homework) source).getDeadline().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
@@ -60,6 +55,10 @@ class JsonAdaptedAssessment {
             date = ((Exam) source).getExamDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         } else {
             type = null;
+        }
+        List<Submission> submissions = source.getSubmissionTracker();
+        for (Submission submission: submissions) {
+            submissionTracker.add(new JsonAdaptedSubmission(submission));
         }
     }
 
@@ -73,13 +72,6 @@ class JsonAdaptedAssessment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DESCRIPTION"));
         }
         final String modelDescription = description;
-        if (submissionTracker == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "SUBMISSION TRACKER"));
-        }
-        final List<Submission> modelSubmission = new ArrayList<>();
-        for (JsonAdaptedSubmission jsonAdaptedSubmission: submissionTracker) {
-            modelSubmission.add(jsonAdaptedSubmission.toModelType());
-        }
         if (type == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TYPE"));
         }
@@ -87,6 +79,13 @@ class JsonAdaptedAssessment {
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DATE"));
+        }
+        if (submissionTracker == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "SUBMISSION TRACKER"));
+        }
+        final List<Submission> modelSubmission = new ArrayList<>();
+        for (JsonAdaptedSubmission jsonAdaptedSubmission: submissionTracker) {
+            modelSubmission.add(jsonAdaptedSubmission.toModelType());
         }
         String modelDate = convertDateFormat(date);
         if (modelType.equals("homework")) {

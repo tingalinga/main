@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -137,6 +138,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStudentName(String student) {
+        requireNonNull(student);
+        return addressBook.hasStudentName(student);
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
     }
@@ -216,8 +223,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void submitAssessment(Assessment target, List<String> students) {
+        requireAllNonNull(target, students);
+
+        academics.submitAssessment(target, students);
+    }
+
+    @Override
     public ObservableList<Assessment> getFilteredAcademicsList() {
         return filteredAssessments;
+    }
+
+    @Override
+    public ObservableList<Assessment> getHomeworkList() {
+        return academics.getHomeworkList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getExamList() {
+        return academics.getExamList();
     }
 
     @Override

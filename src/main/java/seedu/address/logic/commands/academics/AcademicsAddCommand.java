@@ -1,10 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.academics.Assessment;
@@ -17,12 +18,10 @@ import seedu.address.model.student.Student;
  */
 public class AcademicsAddCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": creates a new assessment\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " add: creates a new assessment\n"
             + "Parameters:\n"
-            + "desc/[DESCRIPTION]\n"
-            + "type/[TYPE: homework/exam]\n"
-            + "date/[DATE]\n"
-            + "Example: academics name/CS2103T assignment 1 type/homework date/2020-03-04\n";
+            + "add desc/[DESCRIPTION] type/[TYPE: homework/exam] date/[DATE]\n"
+            + "Example: academics add desc/CS2103T assignment 1 type/homework date/2020-03-04\n";
 
     public static final String MESSAGE_SUCCESS = "Added assessment:\n%1$s";
     public static final String MESSAGE_DUPLICATE_ASSESSMENT = "This assessment already exists in the academics list";
@@ -50,7 +49,8 @@ public class AcademicsAddCommand extends AcademicsCommand {
             throw new CommandException(MESSAGE_DUPLICATE_ASSESSMENT);
         }
         List<Student> lastShownList = model.getFilteredStudentList();
-        toAdd.setStudents(lastShownList);
+        toAdd.setSubmissions(lastShownList);
+        toAdd.setAssessmentSubmissions(lastShownList);
         model.addAssessment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

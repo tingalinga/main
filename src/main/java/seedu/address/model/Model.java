@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -75,6 +76,11 @@ public interface Model {
     boolean hasStudent(Student student);
 
     /**
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     */
+    boolean hasStudentName(String student);
+
+    /**
      * Deletes the given student.
      * The student must exist in the address book.
      */
@@ -144,8 +150,19 @@ public interface Model {
      */
     void setAssessment(Assessment target, Assessment assessment);
 
+    /**
+     * Submits students' submission for the specified assessment.
+     */
+    void submitAssessment(Assessment target, List<String> students);
+
     /** Returns an unmodifiable view of the filtered academics list */
     ObservableList<Assessment> getFilteredAcademicsList();
+
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getHomeworkList();
+
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getExamList();
 
     /**
      * Updates the filter of the filtered academics list to filter by the given {@code predicate}.

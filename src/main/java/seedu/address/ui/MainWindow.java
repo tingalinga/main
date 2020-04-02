@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
+import seedu.address.ui.academics.AcademicsPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +39,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
+    private AcademicsPanel academicsPanel;
+    private AcademicsPanel academicsHomeworkPanel;
+    private AcademicsPanel academicsExamPanel;
+    private AcademicsPanel academicsStatisticsPanel;
     private NotesPanel notesPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -124,6 +129,15 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
+        academicsPanel = new AcademicsPanel(logic.getFilteredAcademicsList());
+        mainPanelPlaceholder.getChildren().add(academicsPanel.getRoot());
+
+        academicsHomeworkPanel = new AcademicsPanel(logic.getHomeworkList());
+        mainPanelPlaceholder.getChildren().add(academicsHomeworkPanel.getRoot());
+
+        academicsExamPanel = new AcademicsPanel(logic.getExamList());
+        mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
+
         notesPanel = new NotesPanel(logic.getFilteredNotesList());
         notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
 
@@ -195,6 +209,80 @@ public class MainWindow extends UiPart<Stage> {
         return studentListPanel;
     }
 
+    public AcademicsPanel getAcademicsPanel() {
+        return academicsPanel;
+    }
+
+    /**
+     * Opens the student window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStudentDetailed() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the student window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStudentAdmin() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the student window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStudentDefault() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademics() {
+        academicsPanel = new AcademicsPanel(logic.getFilteredAcademicsList());
+        mainPanelPlaceholder.getChildren().add(academicsPanel.getRoot());
+        academicsPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics homework window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsHomework() {
+        academicsHomeworkPanel = new AcademicsPanel(logic.getHomeworkList(), "homework");
+        mainPanelPlaceholder.getChildren().add(academicsHomeworkPanel.getRoot());
+        academicsHomeworkPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics exam window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsExam() {
+        academicsExamPanel = new AcademicsPanel(logic.getExamList(), "exam");
+        mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
+        academicsExamPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics statistics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsStatistics() {
+        academicsStatisticsPanel = new AcademicsPanel(logic.getFilteredAcademicsList(), "statistics");
+        mainPanelPlaceholder.getChildren().add(academicsStatisticsPanel.getRoot());
+        academicsStatisticsPanel.getRoot().toFront();
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -206,17 +294,35 @@ public class MainWindow extends UiPart<Stage> {
             String consoleReply = commandResult.getFeedbackToUser();
             logger.info("Result: " + consoleReply);
             resultDisplay.setFeedbackToUser(consoleReply);
-            if (consoleReply.equals("The Student list now displays ALL details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
-                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+            switch (consoleReply) {
+            case "The Student list now displays ALL details":
+                handleStudentDetailed();
+                break;
+            case "The Student list now displays last updated ADMIN details":
+                handleStudentAdmin();
+                break;
+            case "The Student list now displays DEFAULT details":
+                handleStudentDefault();
+                break;
+            case "Academics now displays all assessments":
+                handleAcademics();
+                break;
+            case "Academics now displays all HOMEWORK assessments":
+                handleAcademicsHomework();
+                break;
+            case "Academics now displays all EXAM assessments":
+                handleAcademicsExam();
+                break;
+            case "Academics now displays statistics of each assessment.":
+                handleAcademicsStatistics();
+                break;
+            default:
+                break;
             }
-            if (consoleReply.equals("The Student list now displays last updated ADMIN details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
-                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-            }
-            if (consoleReply.equals("The Student list now displays DEFAULT details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+            if (consoleReply.contains("Academics")) {
+                handleAcademics();
             }
 
             if (consoleReply.contains("Notes are exported to studentNotes.txt")) {

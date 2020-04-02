@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -144,6 +145,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasStudentName(String student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -254,7 +260,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void submitAssessment(Assessment target, List<String> students) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Assessment> getFilteredAcademicsList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Assessment> getHomeworkList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Assessment> getExamList() {
             throw new AssertionError("This method should not be called.");
         }
 
