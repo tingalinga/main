@@ -26,7 +26,7 @@ public class NotesContainKeywordsPredicate implements Predicate<Notes> {
 
     /**
      * Getter of keywords
-     * @return List<String> of keywords
+     * @return list of keywords
      */
     public List<String> getKeywords() {
         return keywords;

@@ -7,6 +7,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Represents a NotesCommand, which displays help on specific notes commands
+ * and refreshes the list of notes.
+ */
 public class NotesCommand extends Command {
 
     public static final String COMMAND_WORD = "notes";
@@ -19,8 +23,7 @@ public class NotesCommand extends Command {
             + "EXPORT NOTES: notese";
 
     /**
-     * Creates a NotesCommand, which displays help on specific notes commands
-     * and refreshes the list of notes.
+     * Creates a NotesCommand
      */
     public NotesCommand() {}
 

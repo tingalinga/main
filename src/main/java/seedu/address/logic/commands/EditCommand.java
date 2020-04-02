@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +21,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;

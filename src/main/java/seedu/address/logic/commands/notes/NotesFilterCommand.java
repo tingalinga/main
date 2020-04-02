@@ -14,9 +14,9 @@ import seedu.address.model.notes.NotesContainKeywordsPredicate;
 public class NotesFilterCommand extends Command {
     public static final String COMMAND_WORD = "notesf";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " <Keywords(s)>\n" +
-            "This command looks for keywords present in Student, " +
-            "DateTime, Priority and Content fields";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <Keywords(s)>\n"
+            + "This command looks for keywords present in Student, "
+            + "DateTime, Priority and Content fields";
 
     public static final String MESSAGE_SUCCESS = "Displaying Notes with Keywords: ";
 

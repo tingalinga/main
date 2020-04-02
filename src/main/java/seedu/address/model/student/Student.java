@@ -2,13 +2,11 @@ package seedu.address.model.student;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.notes.Notes;
 import seedu.address.model.tag.Tag;
 
 /**
