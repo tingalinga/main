@@ -157,6 +157,16 @@ public interface Model {
     void submitAssessment(Assessment target, List<String> students);
 
     /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    void addStudentToAssessments(String toAdd);
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    void removeStudentFromAssessments(String toRemove);
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */

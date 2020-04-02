@@ -98,6 +98,22 @@ public class Academics implements ReadOnlyAcademics {
     }
 
     /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public void addStudentToAssessments(String toAdd) {
+        requireNonNull(toAdd);
+        assessments.addStudentToAssessments(toAdd);
+    }
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public void removeStudentFromAssessments(String toRemove) {
+        requireNonNull(toRemove);
+        assessments.removeStudentFromAssessments(toRemove);
+    }
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */

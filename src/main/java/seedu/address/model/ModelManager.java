@@ -229,6 +229,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addStudentToAssessments(String toAdd) {
+        requireNonNull(toAdd);
+        academics.addStudentToAssessments(toAdd);
+    }
+
+    @Override
+    public void removeStudentFromAssessments(String toRemove) {
+        requireNonNull(toRemove);
+        academics.removeStudentFromAssessments(toRemove);
+    }
+
+    @Override
     public boolean hasStudentSubmitted(Assessment assessment, String student) {
         requireAllNonNull(assessment, student);
         return academics.hasStudentSubmitted(assessment, student);

@@ -100,6 +100,35 @@ public abstract class Assessment {
     }
 
     /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public abstract void addStudent(String toAdd);
+
+    /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public void addAssessmentStudent(String toAdd) {
+        submissionTracker.add(new Submission(toAdd));
+    }
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public abstract void removeStudent(String toRemove);
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public void removeAssessmentStudent(String toRemove) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(toRemove)) {
+                submissionTracker.remove(submission);
+                break;
+            }
+        }
+    }
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */

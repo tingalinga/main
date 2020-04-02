@@ -95,6 +95,30 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
     }
 
     /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public void addStudentToAssessments(String toAdd) {
+        requireNonNull(toAdd);
+        Iterator<Assessment> iterator = iterator();
+        while (iterator.hasNext()) {
+            Assessment next = iterator.next();
+            next.addStudent(toAdd);
+        }
+    }
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public void removeStudentFromAssessments(String toRemove) {
+        requireNonNull(toRemove);
+        Iterator<Assessment> iterator = iterator();
+        while (iterator.hasNext()) {
+            Assessment next = iterator.next();
+            next.removeStudent(toRemove);
+        }
+    }
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */
