@@ -1,8 +1,13 @@
 package seedu.address.ui;
 
+import static seedu.address.model.notes.Notes.PRIORITY_HIGH;
+import static seedu.address.model.notes.Notes.PRIORITY_LOW;
+import static seedu.address.model.notes.Notes.PRIORITY_MEDIUM;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.notes.Notes;
 
 /**
@@ -15,9 +20,11 @@ public class NotesCard extends UiPart<Region> {
     public final Notes note;
 
     @FXML
+    private VBox notesPane;
+    @FXML
     private Label name;
     @FXML
-    private Label noteId;
+    private Label priority;
     @FXML
     private Label content;
     @FXML
@@ -31,10 +38,23 @@ public class NotesCard extends UiPart<Region> {
     public NotesCard(Notes note, int displayedIndex) {
         super(FXML);
         this.note = note;
-        name.setText("Student: " + note.getStudent());
-        noteId.setText("Note Index: #" + displayedIndex);
+        name.setText("[#" + displayedIndex + "] Student: " + note.getStudent());
         content.setText("\n" + note.getContent());
+        priority.setText("Priority: " + note.getPriority());
         dateTime.setText("Added on: " + note.getDateTime());
+        switch (note.getPriority()) {
+        case PRIORITY_HIGH:
+            notesPane.setStyle("-fx-background-color: #FF6347;");
+            break;
+        case PRIORITY_MEDIUM:
+            notesPane.setStyle("-fx-background-color: #FF8C00;");
+            break;
+        case PRIORITY_LOW:
+            notesPane.setStyle("-fx-background-color: #fff556;");
+            break;
+        default:
+            notesPane.setStyle("-fx-background-color: #fff556;");
+        }
     }
 
     @Override

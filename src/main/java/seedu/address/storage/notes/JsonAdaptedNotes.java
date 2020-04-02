@@ -14,19 +14,22 @@ public class JsonAdaptedNotes {
 
     private final String student;
     private final String content;
+    private final String priority;
     private final String dateTime;
 
     /**
      * Constructs a {@code JsonAdaptedNotes} with the given note details.
      * @param student
      * @param content
+     * @param priority
      * @param dateTime
      */
     @JsonCreator
     public JsonAdaptedNotes(@JsonProperty("student") String student, @JsonProperty("content") String content,
-                            @JsonProperty("dateTime") String dateTime) {
+                            @JsonProperty("priority") String priority, @JsonProperty("dateTime") String dateTime) {
         this.student = student;
         this.content = content;
+        this.priority = priority;
         this.dateTime = dateTime;
     }
 
@@ -36,6 +39,7 @@ public class JsonAdaptedNotes {
     public JsonAdaptedNotes(Notes source) {
         student = source.getStudent();
         content = source.getContent();
+        priority = source.getPriority();
         dateTime = source.getDateTime();
     }
 
@@ -44,10 +48,10 @@ public class JsonAdaptedNotes {
      * @throws IllegalValueException
      */
     public Notes toModelType() throws IllegalValueException {
-        if (student == null || content == null || dateTime == null) {
+        if (student == null || content == null || priority == null || dateTime == null) {
             throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
-        return new Notes(student, content, dateTime);
+        return new Notes(student, content, priority, dateTime);
     }
 
 

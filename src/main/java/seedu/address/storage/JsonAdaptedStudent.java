@@ -35,7 +35,6 @@ public class JsonAdaptedStudent {
     private final String address;
     private final String temperature;
     private final String attendance;
-    private final List<JsonAdaptedNotes> noted = new ArrayList<>();
     private final String remark;
     private final String nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -48,7 +47,6 @@ public class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("temperature") String temperature,
                               @JsonProperty("attendance") String attendance, @JsonProperty("nok") String nok,
-                              @JsonProperty("noted") List<JsonAdaptedNotes> noted,
                               @JsonProperty("remark") String remark,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
@@ -58,9 +56,6 @@ public class JsonAdaptedStudent {
         this.address = address;
         this.temperature = temperature;
         this.attendance = attendance;
-        if (noted != null) {
-            this.noted.addAll(noted);
-        }
         this.remark = remark;
         this.nok = nok;
         if (tagged != null) {
@@ -78,10 +73,6 @@ public class JsonAdaptedStudent {
         address = source.getAddress().value;
         temperature = source.getTemperature().value;
         attendance = source.getAttendance().value;
-        ArrayList<Notes> allNotes = source.getNotes();
-        for (Notes n : allNotes) {
-            noted.add(new JsonAdaptedNotes(n));
-        }
         remark = source.getRemark().value;
         nok = source.getNok().value;
         tagged.addAll(source.getTags().stream()
@@ -96,9 +87,6 @@ public class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<Notes> studentNotes = new ArrayList<>();
-        for (JsonAdaptedNotes note : noted) {
-            studentNotes.add(note.toModelType());
-        }
         final List<Tag> studentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             studentTags.add(tag.toModelType());
@@ -172,11 +160,9 @@ public class JsonAdaptedStudent {
 
         final NextOfKin modelNok = new NextOfKin(nok);
 
-        final ArrayList<Notes> modelNotes = new ArrayList<>(studentNotes);
-
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelAttendance,
-                modelNok, modelNotes, modelRemark, modelTags);
+                modelNok, modelRemark, modelTags);
 
     }
 }

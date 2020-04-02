@@ -1,9 +1,14 @@
 package seedu.address.model.academics;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import seedu.address.model.student.Student;
 
@@ -36,6 +41,14 @@ public abstract class Assessment {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Returns the date of the assessment.
+     * @return date of assessment.
+     */
+    public LocalDate getDate() {
+        return date;
     }
 
     /**
@@ -87,11 +100,46 @@ public abstract class Assessment {
     }
 
     /**
-     * Edit the description of the assessment.
-     * @param newDescription new description of the assessment.
+     * Adds new student to the submission tracker of all assessments.
      */
-    public void changeDescription(String newDescription) {
-        this.description = newDescription;
+    public abstract void addStudent(String toAdd);
+
+    /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public void addAssessmentStudent(String toAdd) {
+        submissionTracker.add(new Submission(toAdd));
+    }
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public abstract void removeStudent(String toRemove);
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public void removeAssessmentStudent(String toRemove) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(toRemove)) {
+                submissionTracker.remove(submission);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Returns true if the student has submitted their work for the given assessment.
+     * record.
+     */
+    public boolean hasStudentSubmitted(String student) {
+        requireNonNull(student);
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(student)) {
+                return submission.hasSubmitted();
+            }
+        }
+        return false;
     }
 
     /**
@@ -105,6 +153,18 @@ public abstract class Assessment {
                     submission.markAsSubmitted();
                 }
             }
+        }
+    }
+
+    /**
+     * Marks students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void markAssessment(HashMap<String, Integer> submissions) {
+        Iterator<Map.Entry<String, Integer>> iterator = submissions.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> entry = iterator.next();
+            mark(entry.getKey(), entry.getValue());
         }
     }
 
@@ -176,14 +236,14 @@ public abstract class Assessment {
     /**
      * Returns the number of students whose submissions have not been marked.
      */
-    public int noOfUnmarkedSubmissions() {
-        int unmarked = 0;
+    public int noOfMarkedSubmissions() {
+        int marked = 0;
         for (Submission submission: submissionTracker) {
-            if (!submission.isMarked()) {
-                unmarked++;
+            if (submission.isMarked()) {
+                marked++;
             }
         }
-        return unmarked;
+        return marked;
     }
 
     /**
@@ -203,10 +263,12 @@ public abstract class Assessment {
         int totalScore = 0;
         int count = 0;
         for (Submission submission: submissionTracker) {
-            totalScore += submission.getScore();
-            count++;
+            if (submission.getScore() != 0) {
+                totalScore += submission.getScore();
+                count++;
+            }
         }
-        if (submissionTracker.size() == 0) {
+        if (count == 0) {
             return 0;
         } else {
             return totalScore / count;
@@ -219,7 +281,9 @@ public abstract class Assessment {
     public int medianScore() {
         ArrayList<Integer> scores = new ArrayList<>();
         for (Submission submission: submissionTracker) {
-            scores.add(submission.getScore());
+            if (submission.getScore() != 0) {
+                scores.add(submission.getScore());
+            }
         }
         Collections.sort(scores);
         if (scores.size() == 0) {

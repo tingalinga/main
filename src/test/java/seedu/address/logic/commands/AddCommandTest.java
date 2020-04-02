@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -261,6 +262,26 @@ public class AddCommandTest {
 
         @Override
         public void submitAssessment(Assessment target, List<String> students) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudentToAssessments(String toAdd) {
+            /* This method should not add to assessments */
+        }
+
+        @Override
+        public void removeStudentFromAssessments(String toRemove) {
+            /* This method should not add to assessments */
+        }
+
+        @Override
+        public boolean hasStudentSubmitted(Assessment assessment, String student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markAssessment(Assessment target, HashMap<String, Integer> submissions) {
             throw new AssertionError("This method should not be called.");
         }
 

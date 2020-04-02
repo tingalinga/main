@@ -40,7 +40,6 @@
       <Label fx:id="nokName" styleClass="cell_small_label" text="\$nokName" />
       <Label fx:id="nokRelationship" styleClass="cell_small_label" text="\$nokRelationship" />
       <Label fx:id="nokContact" styleClass="cell_small_label" text="\$nokContact" />
-      <Label fx:id="notes" styleClass="cell_small_label" text="\$notes" />
 
     </VBox>
       <rowConstraints>

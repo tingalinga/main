@@ -10,14 +10,15 @@ public class NotesTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Notes(null, null));
+        assertThrows(NullPointerException.class, () -> new Notes(null, null, null));
     }
 
     @Test
     public void constructor_invalidNotes_throwsIllegalArgumentException() {
         String invalidNote = "";
         String content = "Test Content";
-        assertThrows(IllegalArgumentException.class, () -> new Notes(invalidNote, content));
+        String priority = "LOW";
+        assertThrows(IllegalArgumentException.class, () -> new Notes(invalidNote, content, priority));
     }
 
     @Test

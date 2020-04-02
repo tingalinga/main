@@ -16,10 +16,10 @@
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <Label fx:id="name" styleClass="cell_small_label" text="\$name" />
-            <Label fx:id="noteId" styleClass="cell_small_label" text="\$noteId" />
-            <Label fx:id="dateTime" styleClass="cell_small_label" text="\$dateTime"/>
-            <Label fx:id="content" styleClass="cell_small_label" text="\$content" wrapText="true"/>
+            <Label fx:id="name" styleClass="cell_notes_label" text="\$name" />
+            <Label fx:id="priority" styleClass="cell_notes_label" text="\$priority" />
+            <Label fx:id="dateTime" styleClass="cell_notes_label" text="\$dateTime"/>
+            <Label fx:id="content" styleClass="cell_notes_label" text="\$content" wrapText="true"/>
         </VBox>
         <rowConstraints>
             <RowConstraints />

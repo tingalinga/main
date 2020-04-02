@@ -3,6 +3,7 @@ package seedu.address.model.academics;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -88,10 +89,53 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
      * {@code target} must exist in the assessment list.
      */
     public void submitAssessment(Assessment target, List<String> students) {
-        requireNonNull(target);
-        requireNonNull(students);
+        requireAllNonNull(target, students);
         int index = internalList.indexOf(target);
         internalList.get(index).setSubmitted(students);
+    }
+
+    /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public void addStudentToAssessments(String toAdd) {
+        requireNonNull(toAdd);
+        Iterator<Assessment> iterator = iterator();
+        while (iterator.hasNext()) {
+            Assessment next = iterator.next();
+            next.addStudent(toAdd);
+        }
+    }
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public void removeStudentFromAssessments(String toRemove) {
+        requireNonNull(toRemove);
+        Iterator<Assessment> iterator = iterator();
+        while (iterator.hasNext()) {
+            Assessment next = iterator.next();
+            next.removeStudent(toRemove);
+        }
+    }
+
+    /**
+     * Returns true if the student has submitted their work for the given assessment.
+     * record.
+     */
+    public boolean hasStudentSubmitted(Assessment assessment, String student) {
+        requireAllNonNull(assessment, student);
+        int index = internalList.indexOf(assessment);
+        return internalList.get(index).hasStudentSubmitted(student);
+    }
+
+    /**
+     * Marks students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void markAssessment(Assessment target, HashMap<String, Integer> submissions) {
+        requireAllNonNull(target, submissions);
+        int index = internalList.indexOf(target);
+        internalList.get(index).markAssessment(submissions);
     }
 
     public void setAssessments(UniqueAssessmentList replacement) {

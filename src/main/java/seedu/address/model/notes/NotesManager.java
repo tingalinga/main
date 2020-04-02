@@ -7,7 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
- * Represents the Notes Manager, which keeps track of all the notes.
+ * Represents the Notes Manager, which serves to keep track of all notes.
+ * NotesManager implements the interface ReadOnlyNotes
  */
 public class NotesManager implements ReadOnlyNotes {
 

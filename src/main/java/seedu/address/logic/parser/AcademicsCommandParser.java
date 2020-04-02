@@ -6,8 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
@@ -18,6 +21,9 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.logic.commands.academics.AcademicsCommand;
+import seedu.address.logic.commands.academics.AcademicsDeleteCommand;
+import seedu.address.logic.commands.academics.AcademicsEditCommand;
+import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayExamCommand;
@@ -46,14 +52,20 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_HOMEWORK, PREFIX_EXAM, PREFIX_STATISTICS,
-                        PREFIX_SUBMIT, PREFIX_STUDENT, PREFIX_ASSESSMENT_DESCRIPTION,
+                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_DELETE, PREFIX_EDIT, PREFIX_HOMEWORK, PREFIX_EXAM,
+                        PREFIX_STATISTICS, PREFIX_SUBMIT, PREFIX_MARK, PREFIX_STUDENT, PREFIX_ASSESSMENT_DESCRIPTION,
                         PREFIX_ASSESSMENT_TYPE, PREFIX_ASSESSMENT_DATE);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_DELETE).isPresent()) {
+            return deleteCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_EDIT).isPresent()) {
+            return editCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_SUBMIT).isPresent()) {
             return submitCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_MARK).isPresent()) {
+            return markCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
             return academicsDisplayHomeworkCommand();
         } else if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
@@ -66,7 +78,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
-     * Adds the given assessment details to academic report.
+     * Returns a AcademicsAddCommand object for execution.
      * {@code ArgumentMultimap}.
      */
     private AcademicsAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
@@ -84,19 +96,68 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
-     * Submits the students to academic report.
+     * Returns a AcademicsDeleteCommand object for execution.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsDeleteCommand deleteCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
+        try {
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_DELETE.getPrefix()));
+            return new AcademicsDeleteCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsDeleteCommand.MESSAGE_USAGE), pe);
+        }
+    }
+
+    /**
+     * Returns a AcademicsEditCommand object for execution.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsEditCommand editCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
+        requireNonNull(argMultimap);
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble("edit"));
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsEditCommand.MESSAGE_USAGE), pe);
+        }
+
+        AcademicsEditCommand.EditAssessmentDescriptor editAssessmentDescriptor =
+                new AcademicsEditCommand.EditAssessmentDescriptor();
+        if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DESCRIPTION).isPresent()) {
+            editAssessmentDescriptor.setDescription(argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get());
+        }
+        if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_TYPE).isPresent()) {
+            editAssessmentDescriptor.setType(argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get());
+        }
+        if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DATE).isPresent()) {
+            editAssessmentDescriptor.setDate(argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get());
+        }
+
+        if (!editAssessmentDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(AcademicsEditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new AcademicsEditCommand(index, editAssessmentDescriptor);
+    }
+
+    /**
+     * Returns a AcademicsSubmitCommand object for execution.
      * {@code ArgumentMultimap}.
      */
     private AcademicsSubmitCommand submitCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT)
-                || argMultimap.getPreamble("submit").isEmpty()) {
+                || argMultimap.getPreamble(PREFIX_SUBMIT.getPrefix()).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsSubmitCommand.MESSAGE_USAGE));
         }
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble("submit"));
+            index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_SUBMIT.getPrefix()));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsSubmitCommand.MESSAGE_USAGE), pe);
@@ -107,7 +168,30 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
-     * Displays academics list of homework assessments.
+     * Returns a AcademicsMarkCommand object for execution.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsMarkCommand markCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT)
+                || argMultimap.getPreamble(PREFIX_MARK.getPrefix()).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsMarkCommand.MESSAGE_USAGE));
+        }
+
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_MARK.getPrefix()));
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsMarkCommand.MESSAGE_USAGE), pe);
+        }
+        List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
+
+        return new AcademicsMarkCommand(index, students);
+    }
+
+    /**
+     * Returns a AcademicsDisplayHomeworkCommand object for execution.
      * {@code ArgumentMultimap}.
      */
     private AcademicsDisplayHomeworkCommand academicsDisplayHomeworkCommand() throws ParseException, CommandException {
@@ -115,7 +199,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
-     * Displays academics list of exam assessments.
+     * Returns a AcademicsDisplayExamCommand object for execution.
      * {@code ArgumentMultimap}.
      */
     private AcademicsDisplayExamCommand academicsDisplayExamCommand() throws ParseException, CommandException {
@@ -123,7 +207,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
-     * Displays the statistics for assessments.
+     * Returns a AcademicsDisplayStatisticsCommand object for execution.
      * {@code ArgumentMultimap}.
      */
     private AcademicsDisplayStatisticsCommand academicsDisplayStatisticsCommand() throws ParseException,
@@ -132,7 +216,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
-     * Displays academics list of assessments.
+     * Returns a AcademicsDisplayCommand object for execution.
      * {@code ArgumentMultimap}.
      */
     private AcademicsDisplayCommand academicsDisplayCommand() throws ParseException, CommandException {

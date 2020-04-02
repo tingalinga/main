@@ -16,13 +16,16 @@ public class CliSyntax {
     public static final Prefix PREFIX_TEMPERATURE = new Prefix("temp/");
     public static final Prefix PREFIX_ATTENDANCE = new Prefix("att/");
     public static final Prefix PREFIX_CONTENT = new Prefix("c/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
 
     /* Assessment Prefixes */
     public static final Prefix PREFIX_ADD = new Prefix("add");
+    public static final Prefix PREFIX_EDIT = new Prefix("edit");
     public static final Prefix PREFIX_HOMEWORK = new Prefix("homework");
     public static final Prefix PREFIX_EXAM = new Prefix("exam");
     public static final Prefix PREFIX_STATISTICS = new Prefix("statistics");
     public static final Prefix PREFIX_SUBMIT = new Prefix("submit");
+    public static final Prefix PREFIX_MARK = new Prefix("mark");
     public static final Prefix PREFIX_STUDENT = new Prefix("stu/");
     public static final Prefix PREFIX_ASSESSMENT_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_ASSESSMENT_TYPE = new Prefix("type/");
