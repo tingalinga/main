@@ -321,7 +321,8 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             }
 
-            if (consoleReply.contains("Academics")) {
+            if (consoleReply.contains("Academics submitted following submissions")
+                    || consoleReply.contains("Academics marked following submissions")) {
                 handleAcademics();
             }
 

@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -154,6 +155,11 @@ public interface Model {
      * Submits students' submission for the specified assessment.
      */
     void submitAssessment(Assessment target, List<String> students);
+
+    /**
+     * Mark students' submission for the specified assessment.
+     */
+    void markAssessment(Assessment target, HashMap<String, Integer> submissions);
 
     /** Returns an unmodifiable view of the filtered academics list */
     ObservableList<Assessment> getFilteredAcademicsList();

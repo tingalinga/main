@@ -1,7 +1,9 @@
 package seedu.address.model.academics;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -75,7 +77,6 @@ public class Academics implements ReadOnlyAcademics {
      */
     public void setAssessment(Assessment target, Assessment editedAssessment) {
         requireNonNull(editedAssessment);
-
         assessments.setAssessment(target, editedAssessment);
     }
 
@@ -92,9 +93,17 @@ public class Academics implements ReadOnlyAcademics {
      * {@code target} must exist in the assessment list.
      */
     public void submitAssessment(Assessment target, List<String> students) {
-        requireNonNull(target);
-        requireNonNull(students);
+        requireAllNonNull(target, students);
         assessments.submitAssessment(target, students);
+    }
+
+    /**
+     * Marks students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void markAssessment(Assessment target, HashMap<String, Integer> submissions) {
+        requireAllNonNull(target, submissions);
+        assessments.markAssessment(target, submissions);
     }
 
     //// util methods

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATISTICS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
@@ -18,6 +19,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.logic.commands.academics.AcademicsCommand;
+import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayExamCommand;
@@ -47,13 +49,15 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_HOMEWORK, PREFIX_EXAM, PREFIX_STATISTICS,
-                        PREFIX_SUBMIT, PREFIX_STUDENT, PREFIX_ASSESSMENT_DESCRIPTION,
+                        PREFIX_SUBMIT, PREFIX_MARK, PREFIX_STUDENT, PREFIX_ASSESSMENT_DESCRIPTION,
                         PREFIX_ASSESSMENT_TYPE, PREFIX_ASSESSMENT_DATE);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_SUBMIT).isPresent()) {
             return submitCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_MARK).isPresent()) {
+            return markCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
             return academicsDisplayHomeworkCommand();
         } else if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
@@ -89,14 +93,14 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      */
     private AcademicsSubmitCommand submitCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT)
-                || argMultimap.getPreamble("submit").isEmpty()) {
+                || argMultimap.getPreamble(PREFIX_SUBMIT.getPrefix()).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsSubmitCommand.MESSAGE_USAGE));
         }
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble("submit"));
+            index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_SUBMIT.getPrefix()));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsSubmitCommand.MESSAGE_USAGE), pe);
@@ -104,6 +108,29 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
 
         return new AcademicsSubmitCommand(index, students);
+    }
+
+    /**
+     * Marks the students submissions to academic report.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsMarkCommand markCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT)
+                || argMultimap.getPreamble(PREFIX_MARK.getPrefix()).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsSubmitCommand.MESSAGE_USAGE));
+        }
+
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_MARK.getPrefix()));
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsSubmitCommand.MESSAGE_USAGE), pe);
+        }
+        List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
+
+        return new AcademicsMarkCommand(index, students);
     }
 
     /**

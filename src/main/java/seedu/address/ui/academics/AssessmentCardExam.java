@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.MainApp;
@@ -36,7 +37,7 @@ public class AssessmentCardExam extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label type;
+    private FlowPane tags;
     @FXML
     private Label date;
     @FXML
@@ -50,7 +51,7 @@ public class AssessmentCardExam extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
-        type.setText("Assessment: Exam");
+        tags.getChildren().add(new Label("Exam"));
         date.setText("Exam Date: " + assessment.getDateString());
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());

@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.MainApp;
@@ -38,9 +39,11 @@ public class AssessmentCardStatistics extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label type;
+    private FlowPane tags;
     @FXML
     private Label submissionTracker;
+    @FXML
+    private Label markingTracker;
     @FXML
     private Label median;
     @FXML
@@ -55,11 +58,13 @@ public class AssessmentCardStatistics extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
         if (assessment instanceof Homework) {
-            type.setText("Assessment:  Homework");
+            tags.getChildren().add(new Label("Homework"));
         } else if (assessment instanceof Exam) {
-            type.setText("Assessment:  Exam");
+            tags.getChildren().add(new Label("Exam"));
         }
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
+                + " / " + assessment.getSubmissionTracker().size());
+        markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
                 + " / " + assessment.getSubmissionTracker().size());
         median.setText("Median Score: " + assessment.medianScore());
         average.setText("Average Score: " + assessment.averageScore());

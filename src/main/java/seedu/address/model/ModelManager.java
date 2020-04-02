@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -218,15 +219,19 @@ public class ModelManager implements Model {
     @Override
     public void setAssessment(Assessment target, Assessment editedAssessment) {
         requireAllNonNull(target, editedAssessment);
-
         academics.setAssessment(target, editedAssessment);
     }
 
     @Override
     public void submitAssessment(Assessment target, List<String> students) {
         requireAllNonNull(target, students);
-
         academics.submitAssessment(target, students);
+    }
+
+    @Override
+    public void markAssessment(Assessment target, HashMap<String, Integer> submissions) {
+        requireAllNonNull(target, submissions);
+        academics.markAssessment(target, submissions);
     }
 
     @Override

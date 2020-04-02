@@ -17,7 +17,8 @@ import seedu.address.model.academics.Assessment;
  */
 public class AcademicsSubmitCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": creates a new assessment\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": submits students' work for the assessment identified.\n"
             + "Parameters:\n"
             + "submit [ASSESSMENT_INDEX] stu/[STUDENT_EXAM]...\n"
             + "Example: academics submit 1 stu/Simon Lam\n"

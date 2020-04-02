@@ -23,6 +23,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EXAM = new Prefix("exam");
     public static final Prefix PREFIX_STATISTICS = new Prefix("statistics");
     public static final Prefix PREFIX_SUBMIT = new Prefix("submit");
+    public static final Prefix PREFIX_MARK = new Prefix("mark");
     public static final Prefix PREFIX_STUDENT = new Prefix("stu/");
     public static final Prefix PREFIX_ASSESSMENT_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_ASSESSMENT_TYPE = new Prefix("type/");

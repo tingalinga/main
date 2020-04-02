@@ -3,8 +3,13 @@ package seedu.address.model.academics;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.student.Student;
 
 /**
@@ -109,6 +114,18 @@ public abstract class Assessment {
     }
 
     /**
+     * Marks students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void markAssessment(HashMap<String, Integer> submissions) {
+        Iterator<Map.Entry<String, Integer>> iterator = submissions.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> entry = iterator.next();
+            mark(entry.getKey(), entry.getValue());
+        }
+    }
+
+    /**
      * Marks student's submission and assigns a score to the student's submission.
      * @param student student submitting his/her assessment.
      * @param score score given to the student's submission.
@@ -176,14 +193,14 @@ public abstract class Assessment {
     /**
      * Returns the number of students whose submissions have not been marked.
      */
-    public int noOfUnmarkedSubmissions() {
-        int unmarked = 0;
+    public int noOfMarkedSubmissions() {
+        int marked = 0;
         for (Submission submission: submissionTracker) {
-            if (!submission.isMarked()) {
-                unmarked++;
+            if (submission.isMarked()) {
+                marked++;
             }
         }
-        return unmarked;
+        return marked;
     }
 
     /**
@@ -203,10 +220,12 @@ public abstract class Assessment {
         int totalScore = 0;
         int count = 0;
         for (Submission submission: submissionTracker) {
-            totalScore += submission.getScore();
-            count++;
+            if (submission.getScore() != 0) {
+                totalScore += submission.getScore();
+                count++;
+            }
         }
-        if (submissionTracker.size() == 0) {
+        if (count == 0) {
             return 0;
         } else {
             return totalScore / count;
@@ -219,7 +238,9 @@ public abstract class Assessment {
     public int medianScore() {
         ArrayList<Integer> scores = new ArrayList<>();
         for (Submission submission: submissionTracker) {
-            scores.add(submission.getScore());
+            if (submission.getScore() != 0) {
+                scores.add(submission.getScore());
+            }
         }
         Collections.sort(scores);
         if (scores.size() == 0) {

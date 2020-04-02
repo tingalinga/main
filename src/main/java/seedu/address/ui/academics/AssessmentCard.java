@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.MainApp;
@@ -38,11 +39,13 @@ public class AssessmentCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label type;
+    private FlowPane tags;
     @FXML
     private Label date;
     @FXML
     private Label submissionTracker;
+    @FXML
+    private Label markingTracker;
 
     /**
      * Constructor to create the assessment card controller.
@@ -53,14 +56,16 @@ public class AssessmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
         if (assessment instanceof Homework) {
-            type.setText("Assessment: Homework");
+            tags.getChildren().add(new Label("Homework"));
             date.setText("Deadline: " + assessment.getDateString());
         } else if (assessment instanceof Exam) {
-            type.setText("Assessment: Exam");
+            tags.getChildren().add(new Label("Exam"));
             date.setText("Exam Date: " + assessment.getDateString());
         }
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
             + " / " + assessment.getSubmissionTracker().size());
+        markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
+                + " / " + assessment.getSubmissionTracker().size());
     }
 
     @Override
