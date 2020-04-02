@@ -61,6 +61,27 @@ public class Homework extends Assessment {
     }
 
     /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public void addStudent(String toAdd) {
+        submissionTracker.add(new Submission(toAdd));
+        addAssessmentStudent(toAdd);
+    }
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public void removeStudent(String toRemove) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(toRemove)) {
+                submissionTracker.remove(submission);
+                break;
+            }
+        }
+        removeAssessmentStudent(toRemove);
+    }
+
+    /**
      * Returns the type of assessment.
      * @return String assessment type
      */
@@ -72,7 +93,7 @@ public class Homework extends Assessment {
      * Returns the deadline of homework.
      * @return LocalDate deadline of homework.
      */
-    public LocalDate getDeadline() {
+    public LocalDate getDate() {
         return date;
     }
 

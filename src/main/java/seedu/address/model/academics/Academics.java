@@ -1,7 +1,9 @@
 package seedu.address.model.academics;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -75,7 +77,6 @@ public class Academics implements ReadOnlyAcademics {
      */
     public void setAssessment(Assessment target, Assessment editedAssessment) {
         requireNonNull(editedAssessment);
-
         assessments.setAssessment(target, editedAssessment);
     }
 
@@ -92,9 +93,42 @@ public class Academics implements ReadOnlyAcademics {
      * {@code target} must exist in the assessment list.
      */
     public void submitAssessment(Assessment target, List<String> students) {
-        requireNonNull(target);
-        requireNonNull(students);
+        requireAllNonNull(target, students);
         assessments.submitAssessment(target, students);
+    }
+
+    /**
+     * Adds new student to the submission tracker of all assessments.
+     */
+    public void addStudentToAssessments(String toAdd) {
+        requireNonNull(toAdd);
+        assessments.addStudentToAssessments(toAdd);
+    }
+
+    /**
+     * Removes student to the submission tracker of all assessments.
+     */
+    public void removeStudentFromAssessments(String toRemove) {
+        requireNonNull(toRemove);
+        assessments.removeStudentFromAssessments(toRemove);
+    }
+
+    /**
+     * Returns true if the student has submitted their work for the given assessment.
+     * record.
+     */
+    public boolean hasStudentSubmitted(Assessment assessment, String student) {
+        requireAllNonNull(assessment, student);
+        return assessments.hasStudentSubmitted(assessment, student);
+    }
+
+    /**
+     * Marks students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void markAssessment(Assessment target, HashMap<String, Integer> submissions) {
+        requireAllNonNull(target, submissions);
+        assessments.markAssessment(target, submissions);
     }
 
     //// util methods
