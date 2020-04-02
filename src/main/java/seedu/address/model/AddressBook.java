@@ -68,7 +68,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    public boolean hasStudent(String student) {
+    public boolean hasStudentName(String student) {
         requireNonNull(student);
         boolean contains = false;
         for (Student stu : students) {

@@ -1,8 +1,8 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -78,7 +78,7 @@ public interface Model {
     /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    boolean hasStudent(String student);
+    boolean hasStudentName(String student);
 
     /**
      * Deletes the given student.

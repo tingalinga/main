@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -138,9 +138,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasStudent(String student) {
+    public boolean hasStudentName(String student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return addressBook.hasStudentName(student);
     }
 
     @Override

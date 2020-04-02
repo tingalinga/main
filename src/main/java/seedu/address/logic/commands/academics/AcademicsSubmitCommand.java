@@ -11,7 +11,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.student.Student;
 
 /**
  * Adds an academic progress report to address book.
@@ -58,9 +57,8 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
         }
         Assessment assessment = lastShownAssessments.get(index.getZeroBased());
 
-        List<Student> lastShownStudents = model.getFilteredStudentList();
         for (String stu : students) {
-            if (!model.hasStudent(stu)) {
+            if (!model.hasStudentName(stu)) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_SUBMISSION);
             }
         }
