@@ -2,23 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATISTICS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.logic.commands.academics.AcademicsCommand;
+import seedu.address.logic.commands.academics.AcademicsEditCommand;
 import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.academics.display.AcademicsDisplayCommand;
@@ -48,12 +41,14 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_HOMEWORK, PREFIX_EXAM, PREFIX_STATISTICS,
+                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_EDIT, PREFIX_HOMEWORK, PREFIX_EXAM, PREFIX_STATISTICS,
                         PREFIX_SUBMIT, PREFIX_MARK, PREFIX_STUDENT, PREFIX_ASSESSMENT_DESCRIPTION,
                         PREFIX_ASSESSMENT_TYPE, PREFIX_ASSESSMENT_DATE);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_EDIT).isPresent()) {
+            return editCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_SUBMIT).isPresent()) {
             return submitCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_MARK).isPresent()) {
@@ -88,6 +83,41 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
+     * Edits the details of an existing assessment in academics.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsEditCommand editCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
+        requireNonNull(argMultimap);
+
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble("edit"));
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsEditCommand.MESSAGE_USAGE), pe);
+        }
+
+        AcademicsEditCommand.EditAssessmentDescriptor editAssessmentDescriptor =
+                new AcademicsEditCommand.EditAssessmentDescriptor();
+        if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DESCRIPTION).isPresent()) {
+            editAssessmentDescriptor.setDescription(argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get());
+        }
+        if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_TYPE).isPresent()) {
+            editAssessmentDescriptor.setType(argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get());
+        }
+        if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DATE).isPresent()) {
+            editAssessmentDescriptor.setDate(argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get());
+        }
+
+        if (!editAssessmentDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(AcademicsEditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new AcademicsEditCommand(index, editAssessmentDescriptor);
+    }
+
+    /**
      * Submits the students to academic report.
      * {@code ArgumentMultimap}.
      */
@@ -118,7 +148,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT)
                 || argMultimap.getPreamble(PREFIX_MARK.getPrefix()).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AcademicsSubmitCommand.MESSAGE_USAGE));
+                    AcademicsMarkCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -126,7 +156,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_MARK.getPrefix()));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AcademicsSubmitCommand.MESSAGE_USAGE), pe);
+                    AcademicsMarkCommand.MESSAGE_USAGE), pe);
         }
         List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
 

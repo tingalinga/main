@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Iterator;
 import java.util.List;
@@ -17,10 +18,10 @@ import seedu.address.model.academics.Assessment;
  */
 public class AcademicsSubmitCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": submits students' work for the assessment identified.\n"
-            + "Parameters:\n"
-            + "submit [ASSESSMENT_INDEX] stu/[STUDENT_EXAM]...\n"
+    public static final String MESSAGE_USAGE = "This command submits students' work for the assessment identified. \n"
+            + "Format: " + COMMAND_WORD + " "
+            + PREFIX_SUBMIT + " ASSESSMENT INDEX "
+            + PREFIX_STUDENT + "STUDENT NAME ...\n"
             + "Example: academics submit 1 stu/Simon Lam\n"
             + "Example: academics submit 1 stu/Simon Lam stu/Gerren Seow\n";
 

@@ -2,6 +2,11 @@ package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
+
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -20,7 +25,10 @@ public class AcademicsAddCommand extends AcademicsCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " add: creates a new assessment\n"
             + "Parameters:\n"
-            + "add desc/[DESCRIPTION] type/[TYPE: homework/exam] date/[DATE]\n"
+            + PREFIX_ADD + " "
+            + PREFIX_ASSESSMENT_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_ASSESSMENT_TYPE + "TYPE"
+            + PREFIX_ASSESSMENT_DATE + " DATE\n"
             + "Example: academics add desc/CS2103T assignment 1 type/homework date/2020-03-04\n";
 
     public static final String MESSAGE_SUCCESS = "Added assessment:\n%1$s";

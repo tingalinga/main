@@ -1,5 +1,7 @@
 package seedu.address.model.academics;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,8 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.student.Student;
 
 /**
@@ -41,6 +41,14 @@ public abstract class Assessment {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Returns the date of the assessment.
+     * @return date of assessment.
+     */
+    public LocalDate getDate() {
+        return date;
     }
 
     /**
@@ -92,11 +100,17 @@ public abstract class Assessment {
     }
 
     /**
-     * Edit the description of the assessment.
-     * @param newDescription new description of the assessment.
+     * Returns true if the student has submitted their work for the given assessment.
+     * record.
      */
-    public void changeDescription(String newDescription) {
-        this.description = newDescription;
+    public boolean hasStudentSubmitted(String student) {
+        requireNonNull(student);
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(student)) {
+                return submission.hasSubmitted();
+            }
+        }
+        return false;
     }
 
     /**

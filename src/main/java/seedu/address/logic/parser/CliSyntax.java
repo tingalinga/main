@@ -19,6 +19,7 @@ public class CliSyntax {
 
     /* Assessment Prefixes */
     public static final Prefix PREFIX_ADD = new Prefix("add");
+    public static final Prefix PREFIX_EDIT = new Prefix("edit");
     public static final Prefix PREFIX_HOMEWORK = new Prefix("homework");
     public static final Prefix PREFIX_EXAM = new Prefix("exam");
     public static final Prefix PREFIX_STATISTICS = new Prefix("statistics");

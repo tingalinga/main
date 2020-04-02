@@ -80,6 +80,14 @@ public class Exam extends Assessment {
      * Returns the deadline of homework as a string.
      * @return String deadline of homework.
      */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * Returns the deadline of homework as a string.
+     * @return String deadline of homework.
+     */
     public String getDateString() {
         return date.toString();
     }

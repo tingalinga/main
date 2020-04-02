@@ -95,6 +95,16 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
     }
 
     /**
+     * Returns true if the student has submitted their work for the given assessment.
+     * record.
+     */
+    public boolean hasStudentSubmitted(Assessment assessment, String student) {
+        requireAllNonNull(assessment, student);
+        int index = internalList.indexOf(assessment);
+        return internalList.get(index).hasStudentSubmitted(student);
+    }
+
+    /**
      * Marks students' submissions to the assessment in {@code Academics}.
      * {@code target} must exist in the assessment list.
      */

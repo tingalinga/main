@@ -2,6 +2,7 @@ package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,10 +21,10 @@ import seedu.address.model.academics.Assessment;
  */
 public class AcademicsMarkCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": marks students' work for the assessment identified.\n"
-            + "Parameters:\n"
-            + "mark [ASSESSMENT_INDEX] stu/[STUDENT_EXAM]-[SCORE]...\n"
+    public static final String MESSAGE_USAGE = "This command marks students' work for the assessment identified. \n"
+            + "Format: " + COMMAND_WORD + " "
+            + PREFIX_MARK + " ASSESSMENT INDEX "
+            + PREFIX_STUDENT + "STUDENT NAME-SCORE ...\n"
             + "Example: academics mark 1 stu/Simon Lam-80\n"
             + "Example: academics mark 1 stu/Simon Lam-80 stu/Gerren Seow-70\n";
 
@@ -36,8 +37,9 @@ public class AcademicsMarkCommand extends AcademicsCommand {
         requireAllNonNull(index, students);
         this.index = index;
         for (String submission : students) {
-            String student = submission.substring(0, submission.length() - 3);
-            int mark = Integer.parseInt(submission.substring(submission.length() - 2, submission.length()));
+            String[] submissionArray = submission.split("-");
+            String student = submissionArray[0];
+            int mark = Integer.parseInt(submissionArray[1]);
             submissions.put(student, mark);
         }
     }
@@ -70,6 +72,9 @@ public class AcademicsMarkCommand extends AcademicsCommand {
             Map.Entry<String, Integer> entry = iterator.next();
             if (!model.hasStudentName(entry.getKey())) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_SUBMISSION);
+            }
+            if (!model.hasStudentSubmitted(assessment, entry.getKey())) {
+                throw new CommandException(Messages.MESSAGE_STUDENT_HAS_NOT_SUBMITTED);
             }
             if (entry.getValue() < 0 || entry.getValue() > 100) {
                 throw new CommandException(Messages.MESSAGE_INVALID_MARKS_SUBMISSION);

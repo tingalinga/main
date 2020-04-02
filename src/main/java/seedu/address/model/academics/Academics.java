@@ -98,6 +98,15 @@ public class Academics implements ReadOnlyAcademics {
     }
 
     /**
+     * Returns true if the student has submitted their work for the given assessment.
+     * record.
+     */
+    public boolean hasStudentSubmitted(Assessment assessment, String student) {
+        requireAllNonNull(assessment, student);
+        return assessments.hasStudentSubmitted(assessment, student);
+    }
+
+    /**
      * Marks students' submissions to the assessment in {@code Academics}.
      * {@code target} must exist in the assessment list.
      */

@@ -157,6 +157,12 @@ public interface Model {
     void submitAssessment(Assessment target, List<String> students);
 
     /**
+     * Returns true if the student has submitted their work for the given assessment.
+     * record.
+     */
+    boolean hasStudentSubmitted(Assessment assessment, String student);
+
+    /**
      * Mark students' submission for the specified assessment.
      */
     void markAssessment(Assessment target, HashMap<String, Integer> submissions);

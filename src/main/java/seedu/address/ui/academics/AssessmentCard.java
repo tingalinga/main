@@ -1,5 +1,7 @@
 package seedu.address.ui.academics;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -57,10 +59,12 @@ public class AssessmentCard extends UiPart<Region> {
         description.setText(assessment.getDescription());
         if (assessment instanceof Homework) {
             tags.getChildren().add(new Label("Homework"));
-            date.setText("Deadline: " + assessment.getDateString());
+            date.setText("Deadline: "
+                    + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         } else if (assessment instanceof Exam) {
             tags.getChildren().add(new Label("Exam"));
-            date.setText("Exam Date: " + assessment.getDateString());
+            date.setText("Exam Date: "
+                    + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         }
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
             + " / " + assessment.getSubmissionTracker().size());

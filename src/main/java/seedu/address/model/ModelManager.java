@@ -229,6 +229,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStudentSubmitted(Assessment assessment, String student) {
+        requireAllNonNull(assessment, student);
+        return academics.hasStudentSubmitted(assessment, student);
+    }
+
+    @Override
     public void markAssessment(Assessment target, HashMap<String, Integer> submissions) {
         requireAllNonNull(target, submissions);
         academics.markAssessment(target, submissions);

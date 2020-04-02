@@ -72,7 +72,7 @@ public class Homework extends Assessment {
      * Returns the deadline of homework.
      * @return LocalDate deadline of homework.
      */
-    public LocalDate getDeadline() {
+    public LocalDate getDate() {
         return date;
     }
 
