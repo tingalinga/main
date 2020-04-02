@@ -225,8 +225,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (consoleReply.contains("Admin list has been deleted for")) {
-                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
-                        .get(0).getStudents()), "admin display");
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
@@ -237,8 +236,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (consoleReply.contains("This admin list has been saved for")) {
-                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
-                        .get(0).getStudents()), "admin display");
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
