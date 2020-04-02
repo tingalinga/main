@@ -1,11 +1,8 @@
 package seedu.address.ui;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javafx.collections.ObservableList;
 
@@ -34,6 +31,7 @@ public class NotesExporter {
         for (Notes note : notesList) {
             ArrayList<String> noteContent = new ArrayList<>();
             noteContent.add(note.getStudent());
+            noteContent.add(note.getPriority());
             noteContent.add(note.getDateTime());
             noteContent.add(note.getContent());
             rows.add(noteContent);
@@ -43,12 +41,14 @@ public class NotesExporter {
             FileWriter csvWriter = new FileWriter("data/studentNotes.csv");
             csvWriter.append("Student");
             csvWriter.append(",");
+            csvWriter.append("Priority");
+            csvWriter.append(",");
             csvWriter.append("DateTime");
             csvWriter.append(",");
             csvWriter.append("Content");
             csvWriter.append("\n");
 
-            for (List<String> rowData : rows) {
+            for (ArrayList<String> rowData : rows) {
                 csvWriter.append(String.join(",", rowData));
                 csvWriter.append("\n");
             }

@@ -121,7 +121,7 @@ public class SampleDataUtil {
 
     public static Notes[] getSampleNotes() {
         return new Notes[] {
-            new Notes("Simon Lam", "He has bad behaviour", "LOW","29/03/2020 22:31"),
+            new Notes("Simon Lam", "He has bad behaviour", "LOW", "29/03/2020 22:31"),
             new Notes("Gerren Seow", "He has good behaviour", "MEDIUM", "29/03/2020 22:40")
         };
     }

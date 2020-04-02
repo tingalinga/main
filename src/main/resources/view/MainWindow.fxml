@@ -62,7 +62,7 @@
               <children>
                 <VBox>
                   <children>
-                    <Label alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-font-style: italic; -fx-text-fill: #a8a8a8 #a8a8a8;" text="Your notes" textAlignment="RIGHT" textFill="WHITE" VBox.vgrow="NEVER">
+                    <Label alignment="CENTER_RIGHT" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-font-style: italic; -fx-text-fill: black;" text="Notes Section:" textAlignment="RIGHT" textFill="WHITE" VBox.vgrow="NEVER">
                       <VBox.margin>
                         <Insets bottom="5.0" />
                       </VBox.margin>
@@ -72,7 +72,7 @@
                 </VBox>
               </children>
               <padding>
-                <Insets bottom="20.0" left="15.0" right="15.0" top="15.0" />
+                <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
               </padding>
             </HBox>
           </children>

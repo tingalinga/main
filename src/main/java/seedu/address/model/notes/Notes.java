@@ -43,19 +43,6 @@ public class Notes {
         this.dateTime = formatter.format(date).toString();
     }
 
-    public String checkPriority(String priority) {
-        switch (priority.toUpperCase()) {
-            case PRIORITY_HIGH:
-                return PRIORITY_HIGH;
-            case PRIORITY_MEDIUM:
-                return PRIORITY_MEDIUM;
-            case PRIORITY_LOW:
-                return PRIORITY_LOW;
-            default:
-                return PRIORITY_LOW;
-        }
-    }
-
     /**
      * Overloaded Notes constructor which is used when Json data is drawn from addressbook.json
      * This allows initial timestamp to be immutable
@@ -71,6 +58,24 @@ public class Notes {
         this.content = content;
         this.priority = priority;
         this.dateTime = dateTime;
+    }
+
+    /**
+     * Converts user input into formatted Priority.
+     * @param priority
+     * @return
+     */
+    public String checkPriority(String priority) {
+        switch (priority.toUpperCase()) {
+        case PRIORITY_HIGH:
+            return PRIORITY_HIGH;
+        case PRIORITY_MEDIUM:
+            return PRIORITY_MEDIUM;
+        case PRIORITY_LOW:
+            return PRIORITY_LOW;
+        default:
+            return PRIORITY_LOW;
+        }
     }
 
     /**
