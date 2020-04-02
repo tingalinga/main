@@ -3,6 +3,9 @@ package seedu.address.ui;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 
@@ -23,33 +26,40 @@ public class NotesExporter {
     }
 
     /**
-     * Function which saves the notes to a .txt file is user's current directory.
+     * Function which saves the notes to a .csv file is user's current directory.
      */
-    public void saveToTxt() {
-        String filePath = "data/studentNotes.txt";
+    public void saveToCsv() {
+        ArrayList<ArrayList<String>> rows = new ArrayList<>();
 
-        BufferedWriter writer;
+        for (Notes note : notesList) {
+            ArrayList<String> noteContent = new ArrayList<>();
+            noteContent.add(note.getStudent());
+            noteContent.add(note.getDateTime());
+            noteContent.add(note.getContent());
+            rows.add(noteContent);
+        }
+
         try {
-            writer = new BufferedWriter(new FileWriter(filePath));
-            String toBeSaved = "";
-            toBeSaved += "Hello Teacher, here are the notes you have saved in TeaPet! :) \n";
-            toBeSaved += "_______________________________________________________________ \n";
-            for (Notes note : notesList) {
-                toBeSaved += "Student: " + note.getStudent() + "\n";
-                toBeSaved += "Added on: " + note.getDateTime() + "\n";
-                toBeSaved += "Content: " + note.getContent() + "\n";
-                toBeSaved += "\n_______________________________________________________________ \n";
+            FileWriter csvWriter = new FileWriter("data/studentNotes.csv");
+            csvWriter.append("Student");
+            csvWriter.append(",");
+            csvWriter.append("DateTime");
+            csvWriter.append(",");
+            csvWriter.append("Content");
+            csvWriter.append("\n");
+
+            for (List<String> rowData : rows) {
+                csvWriter.append(String.join(",", rowData));
+                csvWriter.append("\n");
             }
 
-            writer.write(toBeSaved);
-            writer.close();
+            csvWriter.flush();
+            csvWriter.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-
-
     }
+
 
 
 }

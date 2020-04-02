@@ -13,7 +13,7 @@ public class NotesExportCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " [with no other parameters]";
 
-    public static final String MESSAGE_SUCCESS = "Notes are exported to studentNotes.txt";
+    public static final String MESSAGE_SUCCESS = "Notes are exported to studentNotes.csv";
 
     /**
      * Overriden execute command which returns CommandResult containing success message.
