@@ -381,6 +381,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleSchedule();
             }
 
+            if (consoleReply.contains("This is your schedule for the week")) {
+                handleSchedule();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

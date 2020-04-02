@@ -32,7 +32,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.EventAddCommand;
 import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.commands.event.EventDisplayCommand;
 
 
 /**
@@ -51,8 +53,13 @@ public class EventCommandParser implements Parser<EventCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EventCommand parse(String args) throws ParseException {
+    public EventCommand parse(String args) throws ParseException,CommandException {
         requireNonNull(args);
+
+        if (args.equals("")) {
+            return eventDisplayCommand();
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_EVENT_NAME,
                 PREFIX_START_DATETIME,
@@ -86,6 +93,15 @@ public class EventCommandParser implements Parser<EventCommand> {
             return editCommand(index, argMultimap);
         } else {*/
         return addCommand(argMultimap);
+    }
+
+
+    /**
+     * Displays schedule of events.
+     * {@code ArgumentMultimap}.
+     */
+    private EventDisplayCommand eventDisplayCommand() throws ParseException, CommandException {
+        return new EventDisplayCommand();
     }
 
     /**
