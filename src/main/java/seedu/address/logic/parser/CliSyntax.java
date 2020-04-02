@@ -19,8 +19,26 @@ public class CliSyntax {
 
     /* Assessment Prefixes */
     public static final Prefix PREFIX_ADD = new Prefix("add");
+    public static final Prefix PREFIX_HOMEWORK = new Prefix("homework");
+    public static final Prefix PREFIX_EXAM = new Prefix("exam");
+    public static final Prefix PREFIX_STATISTICS = new Prefix("statistics");
+    public static final Prefix PREFIX_SUBMIT = new Prefix("submit");
+    public static final Prefix PREFIX_STUDENT = new Prefix("stu/");
     public static final Prefix PREFIX_ASSESSMENT_DESCRIPTION = new Prefix("desc/");
     public static final Prefix PREFIX_ASSESSMENT_TYPE = new Prefix("type/");
     public static final Prefix PREFIX_ASSESSMENT_DATE = new Prefix("date/");
+
+    /* Event Prefixes */
+    public static final Prefix PREFIX_EVENT_NAME = new Prefix("eventName/");
+    public static final Prefix PREFIX_START_DATETIME = new Prefix("startDateTime/");
+    public static final Prefix PREFIX_END_DATETIME = new Prefix("endDateTime/");
+    public static final Prefix PREFIX_VIEW_DATE = new Prefix("targetDate/");
+    public static final Prefix PREFIX_VIEW = new Prefix("view");
+    public static final Prefix PREFIX_RECUR = new Prefix("recur/");
+    public static final Prefix PREFIX_COLOR = new Prefix("color/");
+    public static final Prefix PREFIX_GET_INDEX = new Prefix("index/");
+    public static final Prefix PREFIX_VIEW_MODE = new Prefix("scheduleMode/");
+    public static final Prefix PREFIX_DELETE = new Prefix("delete");
+
 
 }

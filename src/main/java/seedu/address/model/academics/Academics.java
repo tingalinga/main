@@ -87,6 +87,16 @@ public class Academics implements ReadOnlyAcademics {
         assessments.remove(key);
     }
 
+    /**
+     * Submits students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void submitAssessment(Assessment target, List<String> students) {
+        requireNonNull(target);
+        requireNonNull(students);
+        assessments.submitAssessment(target, students);
+    }
+
     //// util methods
 
     @Override
@@ -97,6 +107,16 @@ public class Academics implements ReadOnlyAcademics {
     @Override
     public ObservableList<Assessment> getAcademicsList() {
         return assessments.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getHomeworkList() {
+        return assessments.getHomeworkList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getExamList() {
+        return assessments.getExamList();
     }
 
     @Override

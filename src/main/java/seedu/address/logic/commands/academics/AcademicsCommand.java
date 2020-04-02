@@ -1,4 +1,6 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.academics;
+
+import seedu.address.logic.commands.Command;
 
 /**
  * Adds an academic report to the address book.

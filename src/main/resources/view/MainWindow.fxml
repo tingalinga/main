@@ -12,6 +12,7 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 <fx:root minHeight="600" minWidth="550" onCloseRequest="#handleExit" title="TeaPet" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/teapot_icon.png" />
@@ -49,12 +50,35 @@
           </padding>
         </StackPane>
 
-        <HBox fx:id="studentList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="studentListPanelPlaceholder" minWidth="500" HBox.hgrow="ALWAYS"/>
-          <StackPane fx:id="notesPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+        <HBox>
+          <children>
+            <VBox fx:id="mainPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+              <padding>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="15.0" />
+              </padding>
+              <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"  maxWidth="Infinity"/>
+            </VBox>
+            <HBox fx:id="notesList" alignment="BOTTOM_RIGHT" styleClass="pane-with-border">
+              <children>
+                <VBox>
+                  <children>
+                    <Label alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-font-style: italic; -fx-text-fill: #a8a8a8 #a8a8a8;" text="Your notes" textAlignment="RIGHT" textFill="WHITE" VBox.vgrow="NEVER">
+                      <VBox.margin>
+                        <Insets bottom="5.0" />
+                      </VBox.margin>
+                    </Label>
+                    <StackPane fx:id="notesPanelPlaceholder"/>
+                  </children>
+                </VBox>
+              </children>
+              <padding>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="15.0" />
+              </padding>
+            </HBox>
+          </children>
+          <VBox.margin>
+            <Insets />
+          </VBox.margin>
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

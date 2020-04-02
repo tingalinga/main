@@ -1,25 +1,23 @@
-package seedu.address.logic.commands.studentdisplay;
+package seedu.address.logic.commands.academics.display;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.academics.AcademicsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
  * Displays an administrative version of the students list.
  */
-public class AdminStudentDisplayCommand extends Command {
+public class AcademicsDisplayCommand extends AcademicsCommand {
 
-    public static final String COMMAND_WORD = "admin";
-
-    public static final String MESSAGE_SUCCESS = "The Student list now displays ADMIN details";
+    public static final String MESSAGE_SUCCESS = "Academics now displays all assessments";
 
     /**
-     * Creates an AdminStudentDisplayCommand.
+     * Creates an AcademicsDisplayCommand.
      */
-    public AdminStudentDisplayCommand() {
+    public AcademicsDisplayCommand() {
 
     }
 
