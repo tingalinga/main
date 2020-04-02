@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
 
+
 /**
  * A list of dates that enforces uniqueness between its elements and does not allow nulls.
  * The UniqueDateList cannot be modified after it has been added to prevent unnecessary edits to the admin list.
@@ -58,7 +59,6 @@ public class UniqueDateList implements Iterable<Date> {
         if (!target.isSameDate(editedDate) && contains(editedDate)) {
             throw new DuplicateDateException();
         }
-
         internalList.set(index, editedDate);
     }
 
