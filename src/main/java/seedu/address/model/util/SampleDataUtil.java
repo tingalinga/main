@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,9 @@ import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventHistory;
 import seedu.address.model.event.ReadOnlyEvents;
@@ -95,18 +100,19 @@ public class SampleDataUtil {
 
     public static Assessment[] getSampleAssessments() {
         return new Assessment[] {
-            new Homework("CS3230 Assignment 2", "2020-03-23"),
-            new Homework("CS3240 I2 Presentation Slides", "2020-03-23"),
-            new Homework("CS3240 Paper Prototype", "2020-03-25"),
-            new Exam("CS2103 Finals", "2020-05-25"),
-            new Exam("CS3230 Finals", "2020-05-25")
+            new Homework("Math Differentiation Homework", "2020-03-23"),
+            new Homework("Science Plant and Species Scrapbook", "2020-03-23"),
+            new Homework("Science Experiment", "2020-03-25"),
+            new Exam("English Spelling Test", "2020-05-25"),
+            new Exam("Chinese Final Exam", "2020-05-25")
         };
     }
 
     public static ReadOnlyAcademics getSampleAcademics() {
         Academics sampleAcademics = new Academics();
         for (Assessment sampleAssessment : getSampleAssessments()) {
-            sampleAssessment.setStudents(Arrays.asList(getSampleStudents()));
+            sampleAssessment.setSampleSubmissions(Arrays.asList(getSampleStudents()),
+                    sampleAssessment.getDescription());
             sampleAcademics.addAssessment(sampleAssessment);
         }
         return sampleAcademics;
@@ -135,4 +141,15 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Date[] getSampleDates() {
+        return new Date[] {new Date(LocalDate.now(), Arrays.asList(getSampleStudents()))};
+    }
+
+    public static ReadOnlyAdmin getSampleAdmin() {
+        Admin sampleAd = new Admin();
+        for (Date sampleDate : getSampleDates()) {
+            sampleAd.addDate(sampleDate);
+        }
+        return sampleAd;
+    }
 }

@@ -11,10 +11,11 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
-
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.storage.academics.AcademicsStorage;
+import seedu.address.storage.admin.AdminStorage;
 import seedu.address.storage.event.EventStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
 
@@ -26,6 +27,7 @@ public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
+    private AdminStorage adminStorage;
     private AcademicsStorage academicsStorage;
     private NotesManagerStorage notesManagerStorage;
     private UserPrefsStorage userPrefsStorage;
@@ -33,12 +35,14 @@ public class StorageManager implements Storage {
 
 
     public StorageManager(AddressBookStorage addressBookStorage,
+                          AdminStorage adminStorage,
                           AcademicsStorage academicsStorage,
                           UserPrefsStorage userPrefsStorage, EventStorage eventStorage,
                           NotesManagerStorage notesManagerStorage) {
 
         super();
         this.addressBookStorage = addressBookStorage;
+        this.adminStorage = adminStorage;
         this.academicsStorage = academicsStorage;
         this.notesManagerStorage = notesManagerStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -92,14 +96,15 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ Academics methods ==============================
     @Override
-    public Path getSavedAcademicsFilePath() {
-        return academicsStorage.getSavedAcademicsFilePath();
+    public Path getAcademicsFilePath() {
+        return academicsStorage.getAcademicsFilePath();
     }
 
     @Override
     public Optional<ReadOnlyAcademics> readAcademics() throws DataConversionException, IOException {
-        return readAcademics(getSavedAcademicsFilePath());
+        return readAcademics(getAcademicsFilePath());
     }
 
     @Override
@@ -110,7 +115,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAcademics(ReadOnlyAcademics academics) throws IOException {
-        saveAcademics(academics, academicsStorage.getSavedAcademicsFilePath());
+        saveAcademics(academics, academicsStorage.getAcademicsFilePath());
     }
 
     @Override
@@ -150,6 +155,33 @@ public class StorageManager implements Storage {
 
     // ================ Notes methods ==============================
     @Override
+    public Path getAdminFilePath() {
+        return adminStorage.getAdminFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAdmin> readAdmin() throws DataConversionException, IOException {
+        return readAdmin(adminStorage.getAdminFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAdmin> readAdmin(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return adminStorage.readAdmin(filePath);
+    }
+
+    @Override
+    public void saveAdmin(ReadOnlyAdmin admin) throws IOException {
+        saveAdmin(admin, adminStorage.getAdminFilePath());
+    }
+
+    @Override
+    public void saveAdmin(ReadOnlyAdmin admin, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        adminStorage.saveAdmin(admin, filePath);
+    }
+
+    @Override
     public Path getNotesManagerFilePath() {
         return notesManagerStorage.getNotesManagerFilePath();
     }
@@ -175,7 +207,4 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         notesManagerStorage.saveNotesManager(notes, filePath);
     }
-
-
-
 }

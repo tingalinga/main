@@ -172,7 +172,7 @@ sorted according to date and time. You will then be able to view your weekly sch
 
 ==== Commands related to Personal Scheduler
 
-====== Display Personal Schedule: `schedule`
+===== Display Personal Schedule: `schedule`
 
 Displays the personal schedule (description)
 

@@ -13,6 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
@@ -60,11 +62,34 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of assessments */
     ObservableList<Assessment> getFilteredAcademicsList();
 
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getHomeworkList();
+
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getExamList();
+
     /**
      * Returns the user prefs' academics file path.
      */
     Path getAcademicsFilePath();
     // ==================== ACADEMICS END ====================
+
+    // ==================== ADMIN START ====================
+    /**
+     * Returns the Admin page.
+     *
+     * @see Model#getAdmin()
+     */
+    ReadOnlyAdmin getAdmin();
+
+    /** Returns an unmodifiable view of the filtered list of admin list */
+    ObservableList<Date> getFilteredDateList();
+
+    /**
+     * Returns the user prefs' admin file path.
+     */
+    Path getAdminFilePath();
+    // ==================== ADMIN END ====================
 
     // ==================== NOTES START ====================
     /**

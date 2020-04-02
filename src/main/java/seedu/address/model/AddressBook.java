@@ -52,7 +52,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setStudents(newData.getStudentList());
     }
 
@@ -64,6 +63,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
+    }
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     */
+    public boolean hasStudentName(String student) {
+        requireNonNull(student);
+        boolean contains = false;
+        for (Student stu : students) {
+            if (stu.getName().fullName.equals(student)) {
+                contains = true;
+            }
+        }
+        return contains;
     }
 
     /**
@@ -82,7 +95,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
         students.setStudent(target, editedStudent);
     }
 

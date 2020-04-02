@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.event.ReadOnlyVEvents;
@@ -142,6 +145,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasStudentName(String student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -158,6 +166,56 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getAdminFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAdminFilePath(Path adminBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAdmin(ReadOnlyAdmin admin) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyAdmin getAdmin() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDate(Date date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteDate(Date target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDate(Date date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDate(Date target, Date date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Date> getFilteredDateList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredDateList(Predicate<Date> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -202,7 +260,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void submitAssessment(Assessment target, List<String> students) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Assessment> getFilteredAcademicsList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Assessment> getHomeworkList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Assessment> getExamList() {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -27,7 +27,7 @@ public class JsonAcademicsStorage implements AcademicsStorage {
         this.filePath = filePath;
     }
 
-    public Path getSavedAcademicsFilePath() {
+    public Path getAcademicsFilePath() {
         return filePath;
     }
 

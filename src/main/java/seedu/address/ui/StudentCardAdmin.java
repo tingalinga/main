@@ -16,8 +16,6 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
-
-
 /**
  * An UI component that displays administrative information of a {@code Student}.
  */

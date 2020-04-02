@@ -10,7 +10,6 @@ import seedu.address.model.event.EventHistory;
 import seedu.address.model.event.RecurrenceType;
 
 
-
 /**
  * A utility class containing a list of {@code Events} objects to be used in tests.
  */
@@ -35,7 +34,7 @@ public class TypicalEvents {
             .withEventName("Run cuz feeling fat")
             .withStartDateTime(LocalDateTime.parse("2020-04-03T08:00"))
             .withEndDateTime(LocalDateTime.parse("2020-04-03T10:00"))
-            .withColorCode("group01")
+            .withColorCode("group03")
             .withUniqueIdentifier("eventTest3")
             .withRecurrenceType(RecurrenceType.NONE).build();
 
@@ -43,18 +42,19 @@ public class TypicalEvents {
     public static final Event NON_TYPICAL_EVENT = new EventBuilder()
             .withEventName("Not Typical Event")
             .withStartDateTime(LocalDateTime.parse("2020-04-04T08:00"))
-            .withEndDateTime(LocalDateTime.parse("2019-04-04T10:00"))
+            .withEndDateTime(LocalDateTime.parse("2020-04-04T10:00"))
             .withColorCode("group04")
             .withUniqueIdentifier("eventTestNonTypical")
             .withRecurrenceType(RecurrenceType.NONE).build();
 
 
-    private TypicalEvents() {}
+    private TypicalEvents() {
+    }
 
     /**
      * Returns an {@code EventRecord} with all the typical events.
      */
-    public static EventHistory getTypicalEventsRecord() {
+    public static EventHistory getTypicalEventHistory() {
         EventHistory ab = new EventHistory(getTypicalEvents());
         return ab;
     }
@@ -62,4 +62,5 @@ public class TypicalEvents {
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(EVENT1, EVENT2, EVENT3));
     }
+
 }

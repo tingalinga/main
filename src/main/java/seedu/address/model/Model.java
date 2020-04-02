@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -10,6 +11,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.event.ReadOnlyVEvents;
@@ -25,6 +28,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
     Predicate<Assessment> PREDICATE_SHOW_ALL_ASSESSMENTS = unused -> true;
+    Predicate<Date> PREDICATE_SHOW_ALL_DATES = unused -> true;
     Predicate<Notes> PREDICATE_SHOW_ALL_NOTES = unused -> true;
 
     /**
@@ -70,6 +74,11 @@ public interface Model {
      * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
     boolean hasStudent(Student student);
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     */
+    boolean hasStudentName(String student);
 
     /**
      * Deletes the given student.
@@ -141,8 +150,19 @@ public interface Model {
      */
     void setAssessment(Assessment target, Assessment assessment);
 
+    /**
+     * Submits students' submission for the specified assessment.
+     */
+    void submitAssessment(Assessment target, List<String> students);
+
     /** Returns an unmodifiable view of the filtered academics list */
     ObservableList<Assessment> getFilteredAcademicsList();
+
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getHomeworkList();
+
+    /** Returns a list of homework assessments */
+    ObservableList<Assessment> getExamList();
 
     /**
      * Updates the filter of the filtered academics list to filter by the given {@code predicate}.
@@ -150,6 +170,56 @@ public interface Model {
      */
     void updateFilteredAcademicsList(Predicate<Assessment> predicate);
     // ==================== ACADEMICS END ====================
+
+    // ==================== ADMIN START ====================
+    /**
+     * Returns the user prefs' admin file path.
+     */
+    Path getAdminFilePath();
+
+    /**
+     * Sets the user prefs' admin file path.
+     */
+    void setAdminFilePath(Path adminBookFilePath);
+
+    /**
+     * Replaces admin data with the data in {@code admin}.
+     */
+    void setAdmin(ReadOnlyAdmin admin);
+
+    /** Returns the Admin */
+    ReadOnlyAdmin getAdmin();
+
+    /**
+     * Returns true if an date with the same identity as {@code date} exists in the admin
+     * record.
+     */
+    boolean hasDate(Date date);
+
+    /**
+     * Returns the date that has been deleted based on the index.
+     */
+    void deleteDate(Date target);
+
+    /**
+     * Adds the given date. {@code date} must not exist in the date list.
+     */
+    void addDate(Date date);
+
+    /**
+     * Replaces the date at the specified index.
+     */
+    void setDate(Date target, Date date);
+
+    /** Returns an unmodifiable view of the filtered date list */
+    ObservableList<Date> getFilteredDateList();
+
+    /**
+     * Updates the filter of the filtered date list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDateList(Predicate<Date> predicate);
+    // ==================== ADMIN END ====================
 
     // ==================== EVENTS START ====================
 

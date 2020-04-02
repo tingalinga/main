@@ -42,7 +42,7 @@ public class NotesDeleteCommand extends Command {
         List<Notes> lastShownList = model.getFilteredNotesList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSGAE_INVALID_NOTES_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_NOTES_DISPLAYED_INDEX);
         }
 
         Notes toBeDeleted = lastShownList.get(targetIndex.getZeroBased());

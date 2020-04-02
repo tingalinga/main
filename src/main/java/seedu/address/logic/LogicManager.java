@@ -18,6 +18,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
@@ -53,13 +55,13 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveAcademics(model.getAcademics());
+            storage.saveAdmin(model.getAdmin());
             storage.saveEvents(model.getEventHistory());
             storage.saveNotesManager(model.getNotesManager());
 
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
         return commandResult;
     }
 
@@ -92,10 +94,37 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Assessment> getHomeworkList() {
+        return model.getHomeworkList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getExamList() {
+        return model.getExamList();
+    }
+
+    @Override
     public Path getAcademicsFilePath() {
         return model.getAcademicsFilePath();
     }
     // ==================== ACADEMICS END ====================
+
+    // ==================== ADMIN START ====================
+    @Override
+    public ReadOnlyAdmin getAdmin() {
+        return model.getAdmin();
+    }
+
+    @Override
+    public ObservableList<Date> getFilteredDateList() {
+        return model.getFilteredDateList();
+    }
+
+    @Override
+    public Path getAdminFilePath() {
+        return model.getAdminFilePath();
+    }
+    // ==================== ADMIN END ====================
 
     // ==================== NOTES START ====================
     @Override

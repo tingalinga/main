@@ -1,7 +1,12 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_NOT_FOUND_ADMIN;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DATE_ADMIN;
+import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
+
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +21,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.admin.exceptions.DateNotFoundException;
+import seedu.address.model.admin.exceptions.DuplicateDateException;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
+import seedu.address.ui.academics.AcademicsPanel;
+import seedu.address.ui.admin.DateListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +42,11 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
+    private DateListPanel dateListPanel;
+    private AcademicsPanel academicsPanel;
+    private AcademicsPanel academicsHomeworkPanel;
+    private AcademicsPanel academicsExamPanel;
+    private AcademicsPanel academicsStatisticsPanel;
     private NotesPanel notesPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -118,6 +133,18 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
+        dateListPanel = new DateListPanel(logic.getFilteredDateList());
+        mainPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
+
+        academicsPanel = new AcademicsPanel(logic.getFilteredAcademicsList());
+        mainPanelPlaceholder.getChildren().add(academicsPanel.getRoot());
+
+        academicsHomeworkPanel = new AcademicsPanel(logic.getHomeworkList());
+        mainPanelPlaceholder.getChildren().add(academicsHomeworkPanel.getRoot());
+
+        academicsExamPanel = new AcademicsPanel(logic.getExamList());
+        mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
+
         notesPanel = new NotesPanel(logic.getFilteredNotesList());
         notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
 
@@ -189,33 +216,157 @@ public class MainWindow extends UiPart<Stage> {
         return studentListPanel;
     }
 
+    public DateListPanel getDateListPanel() {
+        return dateListPanel;
+    }
+
+    public AcademicsPanel getAcademicsPanel() {
+        return academicsPanel;
+    }
+
+    /**
+     * Opens the student window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStudentDetailed() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the student window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStudentAdmin() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the student window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStudentDefault() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        studentListPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the date window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleDates() {
+        dateListPanel = new DateListPanel(logic.getFilteredDateList());
+        mainPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
+        dateListPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademics() {
+        academicsPanel = new AcademicsPanel(logic.getFilteredAcademicsList());
+        mainPanelPlaceholder.getChildren().add(academicsPanel.getRoot());
+        academicsPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics homework window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsHomework() {
+        academicsHomeworkPanel = new AcademicsPanel(logic.getHomeworkList(), "homework");
+        mainPanelPlaceholder.getChildren().add(academicsHomeworkPanel.getRoot());
+        academicsHomeworkPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics exam window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsExam() {
+        academicsExamPanel = new AcademicsPanel(logic.getExamList(), "exam");
+        mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
+        academicsExamPanel.getRoot().toFront();
+    }
+
+    /**
+     * Opens the academics statistics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAcademicsStatistics() {
+        academicsStatisticsPanel = new AcademicsPanel(logic.getFilteredAcademicsList(), "statistics");
+        mainPanelPlaceholder.getChildren().add(academicsStatisticsPanel.getRoot());
+        academicsStatisticsPanel.getRoot().toFront();
+    }
+
     /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            DateNotFoundException, DuplicateDateException, StudentNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             String consoleReply = commandResult.getFeedbackToUser();
             logger.info("Result: " + consoleReply);
             resultDisplay.setFeedbackToUser(consoleReply);
-            if (consoleReply.equals("The Student list now displays ALL details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
-                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+            switch (consoleReply) {
+            case "The Student list now displays ALL details":
+                handleStudentDetailed();
+                break;
+            case "The Student list now displays last updated ADMIN details":
+                handleStudentAdmin();
+                break;
+            case "The Student list now displays DEFAULT details":
+                handleStudentDefault();
+                break;
+            case "List of dates with admin details of the class displayed!":
+                handleDates();
+                break;
+            case "Academics now displays all assessments":
+                handleAcademics();
+                break;
+            case "Academics now displays all HOMEWORK assessments":
+                handleAcademicsHomework();
+                break;
+            case "Academics now displays all EXAM assessments":
+                handleAcademicsExam();
+                break;
+            case "Academics now displays statistics of each assessment.":
+                handleAcademicsStatistics();
+                break;
+            default:
+                break;
             }
-            if (consoleReply.equals("The Student list now displays ADMIN details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
-                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-            }
-            if (consoleReply.equals("The Student list now displays DEFAULT details")) {
-                studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+            if (consoleReply.contains("Academics")) {
+                handleAcademics();
             }
 
             if (consoleReply.contains("Notes are exported to studentNotes.txt")) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
                 notesExporter.saveToTxt();
+            }
+
+            if (consoleReply.contains("Admin list has been deleted for")) {
+                handleDates();
+            }
+
+            if (consoleReply.contains("Class admin details for")) {
+                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
+                        .get(0).getStudents()), "admin display");
+                mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            }
+
+            if (consoleReply.contains("This admin list has been saved for")) {
+                handleDates();
             }
 
             if (commandResult.isShowHelp()) {
@@ -235,6 +386,18 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (DateNotFoundException dnfe) {
+            logger.info(MESSAGE_DATE_NOT_FOUND_ADMIN);
+            resultDisplay.setFeedbackToUser(dnfe.getMessage());
+            throw dnfe;
+        } catch (DuplicateDateException dde) {
+            logger.info(MESSAGE_DUPLICATE_DATE_ADMIN);
+            resultDisplay.setFeedbackToUser(dde.getMessage());
+            throw dde;
+        } catch (StudentNotFoundException ssne) {
+            logger.info(MESSAGE_STUDENT_NOT_FOUND);
+            resultDisplay.setFeedbackToUser(ssne.getMessage());
+            throw ssne;
         }
     }
 }

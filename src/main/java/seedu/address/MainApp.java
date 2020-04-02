@@ -24,6 +24,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventHistory;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.NotesManager;
@@ -37,6 +39,8 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.academics.JsonAcademicsStorage;
+import seedu.address.storage.admin.AdminStorage;
+import seedu.address.storage.admin.JsonAdminStorage;
 import seedu.address.storage.event.EventStorage;
 import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
@@ -74,9 +78,9 @@ public class MainApp extends Application {
         AcademicsStorage academicsStorage = new JsonAcademicsStorage(userPrefs.getAcademicsFilePath());
         EventStorage eventStorage = new JsonEventStorage(userPrefs.getEventHistoryFilePath());
         NotesManagerStorage notesManagerStorage = new JsonNotesManagerStorage(userPrefs.getNotesFilePath());
-        storage = new StorageManager(addressBookStorage, academicsStorage, userPrefsStorage, eventStorage,
-                notesManagerStorage);
-
+        AdminStorage adminStorage = new JsonAdminStorage(userPrefs.getAdminFilePath());
+        storage = new StorageManager(addressBookStorage, adminStorage, academicsStorage,
+                 userPrefsStorage, eventStorage, notesManagerStorage);
 
         initLogging(config);
 
@@ -102,15 +106,18 @@ public class MainApp extends Application {
         Optional<ReadOnlyAcademics> academicsOptional;
         Optional<ReadOnlyEvents> eventsOptional;
         Optional<ReadOnlyNotes> notesManagerOptional;
+        Optional<ReadOnlyAdmin> adminOptional;
 
 
         ReadOnlyAddressBook initialData;
         ReadOnlyAcademics initialAcademics;
+        ReadOnlyAdmin initialAdmin;
         ReadOnlyEvents initialEvents;
         ReadOnlyNotes initialNotesManager;
         try {
             addressBookOptional = storage.readAddressBook();
             academicsOptional = storage.readAcademics();
+            adminOptional = storage.readAdmin();
             eventsOptional = storage.readEvents();
             notesManagerOptional = storage.readNotesManager();
 
@@ -121,6 +128,12 @@ public class MainApp extends Application {
             if (!academicsOptional.isPresent()) {
                 logger.info("Academics file not found. Will be starting with a sample Academics.");
             }
+            if (!adminOptional.isPresent()) {
+                logger.info("Admin file not found.");
+            }
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialAcademics = academicsOptional.orElseGet(SampleDataUtil::getSampleAcademics);
+            initialAdmin = adminOptional.orElseGet(SampleDataUtil::getSampleAdmin);
 
             if (!eventsOptional.isPresent()) {
                 logger.info("Events file not found, Will be starting with a sample Events file");
@@ -134,20 +147,22 @@ public class MainApp extends Application {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
+            initialAdmin = new Admin();
             initialEvents = new EventHistory();
             initialNotesManager = new NotesManager();
-
 
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialAcademics = new Academics();
+            initialAdmin = new Admin();
+            initialNotesManager = new NotesManager();
             initialEvents = new EventHistory();
             initialNotesManager = new NotesManager();
         }
 
-        return new ModelManager(initialData, initialAcademics, userPrefs, initialEvents, initialNotesManager);
-
+        return new ModelManager(initialData, initialAcademics, initialAdmin, initialNotesManager, userPrefs,
+                initialEvents);
     }
 
     private void initLogging(Config config) {
@@ -218,7 +233,6 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
         }
-
         return initializedPrefs;
     }
 

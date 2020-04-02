@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -17,6 +18,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.Date;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventHistory;
 import seedu.address.model.event.EventSchedulePrefs;
 import seedu.address.model.event.EventScheduleView;
@@ -39,6 +43,8 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final Academics academics;
     private final FilteredList<Assessment> filteredAssessments;
+    private final Admin admin;
+    private final FilteredList<Date> filteredDates;
     private final EventHistory eventHistory;
     private final EventSchedulePrefs eventSchedulePrefs;
     private final NotesManager notesManager;
@@ -50,20 +56,25 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyAddressBook addressBook,
                         ReadOnlyAcademics academics,
+                        ReadOnlyAdmin admin,
+                        ReadOnlyNotes notes,
                         ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyEvents events, ReadOnlyNotes notes) {
+                        ReadOnlyEvents events) {
+
 
         super();
-        requireAllNonNull(addressBook, academics, userPrefs);
+        requireAllNonNull(addressBook, academics, admin, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.academics = new Academics(academics);
-        this.notesManager = new NotesManager(notes);
+        this.admin = new Admin(admin);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
+        filteredDates = new FilteredList<>(this.admin.getDateList());
+        this.notesManager = new NotesManager(notes);
         this.eventHistory = new EventHistory(events);
         this.eventSchedulePrefs = new EventSchedulePrefs(EventScheduleView.WEEKLY, LocalDateTime.now());
         filteredNotes = new FilteredList<>(this.notesManager.getNotesList());
@@ -71,7 +82,7 @@ public class ModelManager implements Model {
 
 
     public ModelManager() {
-        this(new AddressBook(), new Academics(), new UserPrefs(), new EventHistory(), new NotesManager());
+        this(new AddressBook(), new Academics(), new Admin(), new NotesManager(), new UserPrefs(), new EventHistory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -127,6 +138,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStudentName(String student) {
+        requireNonNull(student);
+        return addressBook.hasStudentName(student);
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
     }
@@ -140,7 +157,6 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         addressBook.setStudent(target, editedStudent);
     }
 
@@ -207,8 +223,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void submitAssessment(Assessment target, List<String> students) {
+        requireAllNonNull(target, students);
+
+        academics.submitAssessment(target, students);
+    }
+
+    @Override
     public ObservableList<Assessment> getFilteredAcademicsList() {
         return filteredAssessments;
+    }
+
+    @Override
+    public ObservableList<Assessment> getHomeworkList() {
+        return academics.getHomeworkList();
+    }
+
+    @Override
+    public ObservableList<Assessment> getExamList() {
+        return academics.getExamList();
     }
 
     @Override
@@ -373,5 +406,66 @@ public class ModelManager implements Model {
                 && filteredAssessments.equals(other.filteredAssessments)
                 && eventHistory.equals(other.eventHistory)
                 && filteredNotes.equals(other.filteredNotes);
+    }
+
+    // ==================== Academics END ====================
+
+    // ==================== Admin START ====================
+    @Override
+    public Path getAdminFilePath() {
+        return userPrefs.getAdminFilePath();
+    }
+
+    @Override
+    public void setAdminFilePath(Path adminBookFilePath) {
+        this.admin.resetData(admin);
+    }
+
+    @Override
+    public void setAdmin(ReadOnlyAdmin admin) {
+        this.admin.resetData(admin);
+    }
+
+    @Override
+    public ReadOnlyAdmin getAdmin() {
+        return admin;
+    }
+
+    @Override
+    public boolean hasDate(Date date) {
+        requireNonNull(date);
+        return admin.hasDate(date);
+    }
+
+    @Override
+    public void deleteDate(Date target) {
+        admin.removeDate(target);
+    }
+
+    @Override
+    public void addDate(Date date) {
+        admin.addDate(date);
+        updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
+    }
+
+    @Override
+    public void setDate(Date target, Date editedDate) {
+        requireAllNonNull(target, editedDate);
+        admin.setDate(target, editedDate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Date} backed by the internal list of
+     * {@code versionedDate}
+     */
+    @Override
+    public ObservableList<Date> getFilteredDateList() {
+        return filteredDates;
+    }
+
+    @Override
+    public void updateFilteredDateList(Predicate<Date> predicate) {
+        requireNonNull(predicate);
+        filteredDates.setPredicate(predicate);
     }
 }
