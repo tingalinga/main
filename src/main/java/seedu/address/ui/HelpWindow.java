@@ -33,6 +33,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "Example. academics homework" + "\n"
             + "\u2022 Display academic statistics: academics statistics" + "\n"
             + "\u2022 Add new assessment: academics add desc/DESCRIPTION type/TYPE date/DATE" + "\n"
+            + "\u2022 Delete assessment: academics delete INDEX" + "\n"
             + "\u2022 Submit students' work: academics submit ASSESSMENT_INDEX [stu/STUDENT_NAME]" + "\n"
             + "\u2022 Mark students' work: academics mark ASSESSMENT_INDEX [stu/STUDENT_NAME-SCORE]" + "\n" + "\n"
             + "\u2022 Help Display : help" + "\n" + "\n"
