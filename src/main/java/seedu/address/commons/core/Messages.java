@@ -24,8 +24,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_STUDENT_SUBMISSION = "Invalid student!";
     public static final String MESSAGE_INVALID_MARKS_SUBMISSION =
             "Invalid score! Score must be from 0 to 100 inclusive.";
-    public static final String MESSAGE_STUDENT_HAS_NOT_SUBMITTED = "Invalid marking! " +
-            "Student has not submitted his/her work.";
+    public static final String MESSAGE_STUDENT_HAS_NOT_SUBMITTED = "Invalid marking! "
+            + "Student has not submitted his/her work.";
 
     /* Scheduler Messages */
     public static final String MESSAGE_MISSING_EVENT_NAME = "Missing event name!";

@@ -76,7 +76,8 @@ public class AcademicsEditCommand extends AcademicsCommand {
      * Creates and returns an {@code Assessment} with the details of {@code assessmentToEdit}
      * edited with {@code editAssessmentDescriptor}.
      */
-    private static Assessment createEditedAssessment(Assessment assessmentToEdit, EditAssessmentDescriptor editAssessmentDescriptor) {
+    private static Assessment createEditedAssessment(Assessment assessmentToEdit,
+                                                     EditAssessmentDescriptor editAssessmentDescriptor) {
         assert assessmentToEdit != null;
 
         String updatedDescription = editAssessmentDescriptor.getDescription().orElse(assessmentToEdit.getDescription());

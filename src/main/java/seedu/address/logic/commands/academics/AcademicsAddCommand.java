@@ -1,8 +1,10 @@
 package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
 
 import java.util.List;
 

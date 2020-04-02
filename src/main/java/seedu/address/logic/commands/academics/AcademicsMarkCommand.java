@@ -2,7 +2,8 @@ package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 
 import java.util.HashMap;
 import java.util.Iterator;

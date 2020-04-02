@@ -17,8 +17,8 @@ import seedu.address.model.academics.Assessment;
  */
 public class AcademicsDeleteCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE = "This command deletes the assessment identified by the index number" +
-            "used in the displayed academics list. \n"
+    public static final String MESSAGE_USAGE = "This command deletes the assessment identified by the index number"
+            + "used in the displayed academics list. \n"
             + "Format: " + COMMAND_WORD + " "
             + PREFIX_DELETE + " INDEX (must be a positive integer)\n"
             + "Example: academics delete 1\n";
