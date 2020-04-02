@@ -9,6 +9,8 @@ import java.util.Objects;
 
 /**
  * Represents Notes of a student.
+ * 4 main details are stored.
+ * Student, Priority, Timestamp and Content.
  */
 public class Notes {
 
@@ -23,11 +25,13 @@ public class Notes {
 
     private final String student;
     private final String content;
-    private final String dateTime;
     private final String priority;
+    private final String dateTime;
 
     /**
      * Notes constructor
+     * Every field must be present.
+     * Timestamp of note is automatically generated and saved.
      * @param student, representing the name of student.
      * @param content, representing the content to be stored in the note.
      * @param priority, representing the priority to be stored in the note.
@@ -40,12 +44,13 @@ public class Notes {
         this.priority = checkPriority(priority);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date = new Date();
-        this.dateTime = formatter.format(date).toString();
+        this.dateTime = formatter.format(date);
     }
 
     /**
      * Overloaded Notes constructor which is used when Json data is drawn from addressbook.json
-     * This allows initial timestamp to be immutable
+     * This allows initial timestamp to be immutable.
+     * All fields must be present.
      * @param student
      * @param content
      * @param priority
@@ -63,7 +68,7 @@ public class Notes {
     /**
      * Converts user input into formatted Priority.
      * @param priority
-     * @return
+     * @return a String with formatted priority.
      */
     public String checkPriority(String priority) {
         switch (priority.toUpperCase()) {
@@ -129,11 +134,27 @@ public class Notes {
     }
 
     /**
+     * Setter of String newPriority
+     * @param newPriority
+     * @return a new Notes object with updated note content.
+     */
+    public Notes setPriority(String newPriority) {
+        return new Notes(getStudent(), getContent(), newPriority);
+    }
+
+    /**
      * Method which checks the validity of a Student's name.
      * @param test
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if both notes have the same information.
+     */
+    public boolean isSameNote(Notes otherNotes) {
+        return this.equals(otherNotes);
     }
 
     @Override
@@ -158,22 +179,5 @@ public class Notes {
                 && Objects.equals(dateTime, notes.dateTime)
                 && Objects.equals(priority, notes.priority);
     }
-
-    /**
-     * Returns true if both notes have the same information.
-     */
-    public boolean isSameNote(Notes otherNotes) {
-        return this.equals(otherNotes);
-    }
-
-    /**
-     * Driver function to test the functionality of StickyNotes
-     * @param args
-     */
-    public static void main(String[] args) {
-        Notes s1 = new Notes("Alex Yeoh", "Late for class today", "High");
-        System.out.println(s1);
-    }
-
 
 }

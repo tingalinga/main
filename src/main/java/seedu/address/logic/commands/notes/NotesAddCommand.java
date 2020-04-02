@@ -25,10 +25,10 @@ public class NotesAddCommand extends Command {
     public static final String COMMAND_WORD = "notesa";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
-            + PREFIX_NAME + " [Name of Student] " + PREFIX_CONTENT + " [Content of Sticky Note] "
-            + PREFIX_PRIORITY + " [HIGH/MEDIUM/LOW]";
+            + PREFIX_NAME + "<Name of Student> " + PREFIX_CONTENT + "<Content of Note> "
+            + PREFIX_PRIORITY + "<HIGH/MEDIUM/LOW>";
 
-    public static final String MESSAGE_SUCCESS = "New Student Note added! Yay!";
+    public static final String MESSAGE_SUCCESS = "New Student Note added! Wonderful!";
 
     private final String name;
     private final String content;
@@ -93,8 +93,10 @@ public class NotesAddCommand extends Command {
         }
 
         model.addNote(note);
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + note);
-
+        return new CommandResult(MESSAGE_SUCCESS + "\n"
+            + "Student: " + note.getStudent() + "\n"
+            + "Content: " + note.getContent() + "\n"
+            + "Priority: " + note.getPriority());
     }
 
     @Override

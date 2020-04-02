@@ -22,15 +22,13 @@ import seedu.address.logic.commands.academics.AcademicsCommand;
 import seedu.address.logic.commands.admin.AdminCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.notes.NotesAddCommand;
-import seedu.address.logic.commands.notes.NotesDeleteCommand;
-import seedu.address.logic.commands.notes.NotesExportCommand;
-import seedu.address.logic.commands.notes.NotesFilterCommand;
+import seedu.address.logic.commands.notes.*;
 import seedu.address.logic.commands.studentdisplay.DefaultStudentDisplayCommand;
 import seedu.address.logic.commands.studentdisplay.DetailedStudentDisplayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.notes.NotesAddCommandParser;
 import seedu.address.logic.parser.notes.NotesDeleteCommandParser;
+import seedu.address.logic.parser.notes.NotesExportCommandParser;
 import seedu.address.logic.parser.notes.NotesFilterCommandParser;
 
 /**
@@ -89,6 +87,9 @@ public class TeaPetParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case NotesCommand.COMMAND_WORD:
+            return new NotesCommand();
+
         case NotesAddCommand.COMMAND_WORD:
             return new NotesAddCommandParser().parse(arguments);
 
@@ -96,7 +97,7 @@ public class TeaPetParser {
             return new NotesDeleteCommandParser().parse(arguments);
 
         case NotesExportCommand.COMMAND_WORD:
-            return new NotesExportCommand();
+            return new NotesExportCommandParser().parse(arguments);
 
         case NotesFilterCommand.COMMAND_WORD:
             return new NotesFilterCommandParser().parse(arguments);
@@ -117,7 +118,7 @@ public class TeaPetParser {
             return new EventCommandParser().parse(arguments);
 
         default:
-            logger.info("unknown input");
+            logger.info("Unknown Input");
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
