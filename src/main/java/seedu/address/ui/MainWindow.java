@@ -316,6 +316,10 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             }
 
+            if (consoleReply.contains("Academics")) {
+                handleAcademics();
+            }
+
             if (consoleReply.contains("Notes are exported to studentNotes.txt")) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
                 notesExporter.saveToTxt();

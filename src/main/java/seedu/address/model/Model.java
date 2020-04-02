@@ -76,6 +76,11 @@ public interface Model {
     boolean hasStudent(Student student);
 
     /**
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     */
+    boolean hasStudent(String student);
+
+    /**
      * Deletes the given student.
      * The student must exist in the address book.
      */

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.academics.Assessment;
+import seedu.address.model.student.Student;
 
 /**
  * Adds an academic progress report to address book.
@@ -19,11 +20,11 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": creates a new assessment\n"
             + "Parameters:\n"
-            + "submit desc/[DESCRIPTION] stu/[STUDENT_EXAM]...\n"
-            + "Example: academics submit desc/CS2103T assignment 1 stu/Simon Lam\n"
-            + "Example: academics submit desc/CS2103T assignment 1 stu/Simon Lam stu/Gerren Seow\n";
+            + "submit [ASSESSMENT_INDEX] stu/[STUDENT_EXAM]...\n"
+            + "Example: academics submit 1 stu/Simon Lam\n"
+            + "Example: academics submit 1 stu/Simon Lam stu/Gerren Seow\n";
 
-    public static final String MESSAGE_SUCCESS = "Submitted following submissions:\n";
+    public static final String MESSAGE_SUCCESS = "Academics submitted following submissions:\n";
 
     private Index index;
     private List<String> students;
@@ -32,6 +33,7 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
         requireNonNull(index);
         requireNonNull(students);
         this.index = index;
+        this.students = students;
     }
 
     /**
@@ -50,13 +52,18 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Assessment> lastShownList = model.getFilteredAcademicsList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
+        List<Assessment> lastShownAssessments = model.getFilteredAcademicsList();
+        if (index.getZeroBased() >= lastShownAssessments.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_DISPLAYED_INDEX);
         }
+        Assessment assessment = lastShownAssessments.get(index.getZeroBased());
 
-        Assessment assessment = lastShownList.get(index.getZeroBased());
+        List<Student> lastShownStudents = model.getFilteredStudentList();
+        for (String stu : students) {
+            if (!model.hasStudent(stu)) {
+                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_SUBMISSION);
+            }
+        }
 
         model.submitAssessment(assessment, students);
         return new CommandResult(MESSAGE_SUCCESS + formatStudents());

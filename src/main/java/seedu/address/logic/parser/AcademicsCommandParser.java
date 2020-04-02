@@ -88,15 +88,15 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      * {@code ArgumentMultimap}.
      */
     private AcademicsSubmitCommand submitCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_ASSESSMENT_DESCRIPTION, PREFIX_STUDENT)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT)
+                || argMultimap.getPreamble("submit").isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsSubmitCommand.MESSAGE_USAGE));
         }
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble("submit"));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsSubmitCommand.MESSAGE_USAGE), pe);

@@ -138,6 +138,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasStudent(String student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
+    }
+
+    @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
     }
