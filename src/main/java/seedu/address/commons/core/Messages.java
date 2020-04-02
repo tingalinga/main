@@ -42,4 +42,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_NOTES_DISPLAYED_INDEX = "The note index provided is invalid";
     public static final String MESSAGE_DUPLICATE_NOTES = "This same note already exists";
     public static final String MESSAGE_UNAVAILABLE_NOTES = "This note is unavailable";
+    public static final String MESSAGE_INVALID_PRIORITY =
+            "Invalid Priority indicated. Only HIGH, MEDIUM or LOW is allowed.";
+
 }

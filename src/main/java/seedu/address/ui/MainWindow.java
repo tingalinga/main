@@ -351,9 +351,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleAcademics();
             }
 
-            if (consoleReply.contains("Notes are exported to studentNotes.txt")) {
+            if (consoleReply.contains("Notes are exported to studentNotes.csv")) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
-                notesExporter.saveToTxt();
+                notesExporter.saveToCsv();
             }
 
             if (consoleReply.contains("Admin list has been deleted for")) {

@@ -55,8 +55,6 @@ public class StudentCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label notes;
 
     /**
      * Constructor to create the student card controller.
@@ -72,7 +70,6 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         phone.setText("Mobile:  " + student.getPhone().value);
         email.setText("Email:   " + student.getEmail().value);
-        notes.setText("No. of Notes:    " + student.getNotes().size());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

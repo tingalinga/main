@@ -19,7 +19,7 @@ public class NotesDeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "notesd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " Index of Note to be deleted.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " <Index>";
 
     public static final String MESSAGE_SUCCESS = "Student Note deleted.";
 

@@ -16,6 +16,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TEMPERATURE = new Prefix("temp/");
     public static final Prefix PREFIX_ATTENDANCE = new Prefix("att/");
     public static final Prefix PREFIX_CONTENT = new Prefix("c/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
 
     /* Assessment Prefixes */
     public static final Prefix PREFIX_ADD = new Prefix("add");
