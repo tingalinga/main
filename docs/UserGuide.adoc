@@ -222,12 +222,19 @@ CATER THEIR NEEDS
 
 === Notes
 TeaPet's Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
-track of important information of their students spontaneously. This feature supports two types of notes,
-*administrative* notes and *behavioural* notes. Every note is tagged to one or more students, such you will be able to
+track of important information of their students spontaneously. This feature allows you to label each note with
+different priority to better manage tasks. Every note is tagged to one or more students, such you will be able to
 better keep track of the stakeholder and information.
 
 ==== Commands related to Notes
-anotes
+* *Notes Help and Panel Refresh*: `notes`
+* *Add Note*: `notesa n/[Student Name] c/[Note Content] e/EMAIL pr/[Priority]` +
+Priority must be either HIGH, MEDIUM or LOW, case insensitive. +
+e.g. `notesa n/James Ho c/Reminder to print his testimonial pr/HIGH`
+* *Delete Note*: `notesd [Index]`
+* *Filter Search Note*: `notesf [Keywords(s)]`
+* *Export Notes*: `notese` +
+Notes will be exported to a .csv file format.
 
 GUIDE THEM STEP BY STEP +
 PROVIDE EXAMPLE +
