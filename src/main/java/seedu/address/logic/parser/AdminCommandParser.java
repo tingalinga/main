@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.commands.admin.AdminCommand;
+import seedu.address.logic.commands.admin.AdminDatesCommand;
 import seedu.address.logic.commands.admin.AdminDeleteCommand;
 import seedu.address.logic.commands.admin.AdminDisplayCommand;
 import seedu.address.logic.commands.admin.AdminFetchCommand;
@@ -64,6 +65,14 @@ public class AdminCommandParser implements Parser<AdminCommand> {
                             AdminDeleteCommand.MESSAGE_USAGE));
                 } else {
                     return new AdminDeleteCommand(new DateContainsKeywordsPredicate(LocalDate.parse(inputs[2])));
+                }
+
+            case AdminCommand.ADMIN_DATES:
+                if (inputs.length > 2) {
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            AdminDatesCommand.MESSAGE_USAGE));
+                } else {
+                    return new AdminDatesCommand();
                 }
 
             default:

@@ -12,6 +12,7 @@ public class Messages {
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_INVALID_ASSESSMENT_TYPE = "Invalid assessment type!";
     public static final String MESSAGE_DATE_NOT_FOUND_ADMIN = "Date provided is not in database!";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "No such student found!";
     public static final String MESSAGE_DUPLICATE_DATE_ADMIN = "Operation would result in duplicate dates";
     public static final String MESSAGE_MISSING_EVENT_NAME = "Missing event name!";
     public static final String MESSAGE_INVALID_EVENT_DATETIME_RANGE = "Invalid date range!";
