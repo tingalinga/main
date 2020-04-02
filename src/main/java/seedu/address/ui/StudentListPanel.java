@@ -42,6 +42,7 @@ public class StudentListPanel extends UiPart<Region> {
         default:
             assert type.equals("detailed") || type.equals("admin display") || type.equals("refresh")
                    : "The string type is invalid.";
+            break;
         }
     }
 
