@@ -17,10 +17,10 @@ public class EventAddCommand extends EventCommand {
             + "eventName/[EVENTNAME]\n"
             + "startDateTime/[STARTDATETIME]\n"
             + "endDateTime/[ENDDATETIME]\n"
-            + "recurrence/[DAILY/WEEKLY/NONE]\n"
+            + "recur/[DAILY/WEEKLY/NONE]\n"
             + "color/[0-23]\n"
             + "Example: event eventName/Consultation startDateTime/2020-03-30T08:00 endDateTime/2020-03-30T10:00 "
-            + "recurrence/none color/3";
+            + "recur/none color/3";
     public static final String MESSAGE_SUCCESS = "Added event: %1$s";
 
     private final VEvent vEventToAdd;
