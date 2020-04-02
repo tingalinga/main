@@ -58,7 +58,7 @@
               </padding>
               <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"  maxWidth="Infinity"/>
             </VBox>
-            <HBox fx:id="notesList" alignment="BOTTOM_RIGHT" styleClass="pane-with-border">
+            <HBox fx:id="notesList" alignment="BOTTOM_RIGHT" styleClass="pane-with-border" minWidth="250" prefWidth="350">
               <children>
                 <VBox>
                   <children>
