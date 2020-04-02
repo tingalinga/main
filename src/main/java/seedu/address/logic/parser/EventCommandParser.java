@@ -32,9 +32,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.EventAddCommand;
 import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.event.EventDisplayCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.commands.event.EventDisplayCommand;
+
 
 
 /**
@@ -53,7 +54,7 @@ public class EventCommandParser implements Parser<EventCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EventCommand parse(String args) throws ParseException,CommandException {
+    public EventCommand parse(String args) throws ParseException, CommandException {
         requireNonNull(args);
 
         if (args.equals("")) {
