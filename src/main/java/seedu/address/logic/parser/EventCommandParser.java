@@ -81,7 +81,7 @@ public class EventCommandParser implements Parser<EventCommand> {
             }
         } catch (ParseException e) {
             logger.info("Parser unable to parse preamble index.");
-            throw new ParseException("LOL");
+            throw new ParseException("Check out the Help Tab for Command information");
         }
         /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
