@@ -23,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -63,12 +64,15 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noStudentFound() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredStudentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+        boolean thrown = false;
+        try {
+            NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+            FindCommand command = new FindCommand(predicate);
+            command.execute(model);
+        } catch (StudentNotFoundException snfe) {
+            thrown = true;
+        }
+        assertTrue(thrown);
     }
 
     @Test

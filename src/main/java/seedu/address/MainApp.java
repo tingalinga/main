@@ -151,7 +151,6 @@ public class MainApp extends Application {
             initialEvents = new EventHistory();
             initialNotesManager = new NotesManager();
 
-
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
