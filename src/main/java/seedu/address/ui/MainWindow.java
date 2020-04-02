@@ -130,8 +130,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        schedulePanel = new SchedulePanel(logic.getVEvents());
+        mainPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
         dateListPanel = new DateListPanel(logic.getFilteredDateList());
         mainPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
@@ -157,8 +158,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        schedulePanel = new SchedulePanel(logic.getVEvents());
-        mainPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
     }
 
     /**
@@ -378,6 +380,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (consoleReply.contains("Added event")) {
+                handleSchedule();
+            }
+
+            if (consoleReply.contains("This is your schedule for the week")) {
                 handleSchedule();
             }
 

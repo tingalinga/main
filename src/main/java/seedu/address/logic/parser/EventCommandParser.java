@@ -32,7 +32,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.EventAddCommand;
 import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.event.EventDisplayCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
 
 
 /**
@@ -51,8 +54,13 @@ public class EventCommandParser implements Parser<EventCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EventCommand parse(String args) throws ParseException {
+    public EventCommand parse(String args) throws ParseException, CommandException {
         requireNonNull(args);
+
+        if (args.equals("")) {
+            return eventDisplayCommand();
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_EVENT_NAME,
                 PREFIX_START_DATETIME,
@@ -74,7 +82,7 @@ public class EventCommandParser implements Parser<EventCommand> {
             }
         } catch (ParseException e) {
             logger.info("Parser unable to parse preamble index.");
-            throw new ParseException("LOL");
+            throw new ParseException("Check out the Help Tab for Command information");
         }
         /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
@@ -86,6 +94,15 @@ public class EventCommandParser implements Parser<EventCommand> {
             return editCommand(index, argMultimap);
         } else {*/
         return addCommand(argMultimap);
+    }
+
+
+    /**
+     * Displays schedule of events.
+     * {@code ArgumentMultimap}.
+     */
+    private EventDisplayCommand eventDisplayCommand() throws ParseException, CommandException {
+        return new EventDisplayCommand();
     }
 
     /**

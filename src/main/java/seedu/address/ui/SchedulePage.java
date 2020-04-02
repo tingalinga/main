@@ -32,7 +32,7 @@ public class SchedulePage extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Opens up the Schedule Page
      */
     public SchedulePage() {
         this(new Stage());
@@ -62,25 +62,5 @@ public class SchedulePage extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
-    /**
-     * Returns true if the help window is currently being shown.
-     */
-    public boolean isShowing() {
-        return getRoot().isShowing();
-    }
-
-    /**
-     * Hides the help window.
-     */
-    public void hide() {
-        getRoot().hide();
-    }
-
-    /**
-     * Focuses on the help window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
-    }
 
 }
