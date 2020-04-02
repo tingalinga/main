@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_NOT_FOUND_ADMIN;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DATE_ADMIN;
+
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -17,6 +20,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.admin.exceptions.DateNotFoundException;
+import seedu.address.model.admin.exceptions.DuplicateDateException;
 import seedu.address.ui.academics.AcademicsPanel;
 
 /**
@@ -326,8 +331,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (consoleReply.contains("Admin list has been deleted for")) {
-                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
-                        .get(0).getStudents()), "admin display");
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
@@ -338,8 +342,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (consoleReply.contains("This admin list has been saved for")) {
-                studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
-                        .get(0).getStudents()), "admin display");
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
@@ -360,6 +363,14 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (DateNotFoundException dnfe) {
+            logger.info(MESSAGE_DATE_NOT_FOUND_ADMIN);
+            resultDisplay.setFeedbackToUser(dnfe.getMessage());
+            throw dnfe;
+        } catch (DuplicateDateException dde) {
+            logger.info(MESSAGE_DUPLICATE_DATE_ADMIN);
+            resultDisplay.setFeedbackToUser(dde.getMessage());
+            throw dde;
         }
     }
 }
