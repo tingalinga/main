@@ -173,8 +173,9 @@
 .status-bar .label {
     -fx-font-family: "Trebuchet MS";
     -fx-text-fill: black;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
+    -fx-font-size: 10px;
+    -fx-padding: 2px;
+    -fx-pref-height: 10px;
 }
 
 .status-bar-with-border {
