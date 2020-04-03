@@ -10,14 +10,14 @@ import seedu.address.model.Model;
 /**
  * Displays an administrative version of the students list.
  */
-public class AcademicsDisplayStatisticsCommand extends AcademicsCommand {
+public class AcademicsDisplayReportCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_SUCCESS = "Academics now displays statistics of each assessment.";
+    public static final String MESSAGE_SUCCESS = "Academics now displays the report of each assessment.";
 
     /**
-     * Creates an AcademicsDisplayStatisticsCommand.
+     * Creates an AcademicsDisplayReportCommand.
      */
-    public AcademicsDisplayStatisticsCommand() {
+    public AcademicsDisplayReportCommand() {
 
     }
 

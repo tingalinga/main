@@ -22,9 +22,9 @@ import seedu.address.ui.UiPart;
 /**
  * An UI component that displays minimal information of a {@code Assessment}.
  */
-public class AssessmentCardStatistics extends UiPart<Region> {
+public class AssessmentCardReport extends UiPart<Region> {
 
-    private static final String FXML = "AssessmentCardStatistics.fxml";
+    private static final String FXML = "AssessmentCardReport.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -61,7 +61,7 @@ public class AssessmentCardStatistics extends UiPart<Region> {
     /**
      * Constructor to create the assessment card controller.
      */
-    public AssessmentCardStatistics(Assessment assessment, int displayedIndex) {
+    public AssessmentCardReport(Assessment assessment, int displayedIndex) {
         super(FXML);
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
@@ -109,12 +109,12 @@ public class AssessmentCardStatistics extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AssessmentCardStatistics)) {
+        if (!(other instanceof AssessmentCardReport)) {
             return false;
         }
 
         // state check
-        AssessmentCardStatistics card = (AssessmentCardStatistics) other;
+        AssessmentCardReport card = (AssessmentCardReport) other;
         return id.getText().equals(card.id.getText())
                 && assessment.equals(card.assessment);
     }
