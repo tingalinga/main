@@ -16,8 +16,6 @@ import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
 import seedu.address.ui.UiPart;
 
-import javax.swing.plaf.synth.Region;
-
 /**
  * An UI component that displays minimal information of a {@code Assessment}.
  */

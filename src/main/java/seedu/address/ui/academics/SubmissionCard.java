@@ -4,15 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Submission;
 import seedu.address.ui.UiPart;
-
-import javax.swing.plaf.synth.Region;
 
 /**
  * An UI component that displays minimal information of a {@code Assessment}.
