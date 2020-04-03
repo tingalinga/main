@@ -222,7 +222,7 @@ better keep track of the stakeholder and information.
 
 ==== Commands related to Notes
 * *Notes Help and Panel Refresh*: `notes`
-* *Add Note*: `notesa n/[Student Name] c/[Note Content] e/EMAIL pr/[Priority]` +
+* *Add Note*: `notesa n/[Student Name] c/[Note Content] pr/[Priority]` +
 Priority must be either HIGH, MEDIUM or LOW, case insensitive. +
 e.g. `notesa n/James Ho c/Reminder to print his testimonial pr/HIGH`
 * *Delete Note*: `notesd [Index]`
