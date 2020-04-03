@@ -149,7 +149,7 @@
  }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#white, 30%);
 }
 
 .result-display {
@@ -166,10 +166,11 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill: black;
+    -fx-font-size: 10px;
+    -fx-padding: 2px;
+    -fx-pref-height: 10px;
 }
 
 .status-bar-with-border {
@@ -201,13 +202,13 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#white, 20%);
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 

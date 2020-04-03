@@ -45,19 +45,10 @@ If you need help setting up TeaPet, you can go to the <<Getting started>> sectio
 If you want to find out more about TeaPet's features and commands, you can go to the <<Features>> section.
 
 If you need an overview regarding the usage of TeaPet's commands, head on to the <<Summary>> section.
-
+====
 Take note of the following symbols and formatting used in this document:
 
-
-IMPORTANT: Use this to highlight important stuff
-
-WARNING: Use this for warnings
-
-CAUTION: Use this for caution
-
-NOTE: Use this for note
-
-TIP: This symbol indicates tips.
+****
 
 .A Summary of symbols used in our User Guide.
 [cols="1,12"]
@@ -69,6 +60,17 @@ TIP: This symbol indicates tips.
 |A grey highlight indicates that this is a command that can be typed into the command line and executed by the program.
 |===
 
+IMPORTANT: Use this to highlight important stuff
+
+WARNING: Use this for warnings
+
+CAUTION: Use this for caution
+
+NOTE: Use this for note
+
+TIP: This symbol indicates tips.
+****
+====
 TIP: If you have any questions, please check out our <<FAQ>> section.
 
 == Overview of Features
@@ -222,7 +224,7 @@ better keep track of the stakeholder and information.
 
 ==== Commands related to Notes
 * *Notes Help and Panel Refresh*: `notes`
-* *Add Note*: `notesa n/[Student Name] c/[Note Content] e/EMAIL pr/[Priority]` +
+* *Add Note*: `notesa n/[Student Name] c/[Note Content] pr/[Priority]` +
 Priority must be either HIGH, MEDIUM or LOW, case insensitive. +
 e.g. `notesa n/James Ho c/Reminder to print his testimonial pr/HIGH`
 * *Delete Note*: `notesd [Index]`

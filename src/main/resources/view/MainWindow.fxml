@@ -25,18 +25,48 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" styleClass="menu-bar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Student List">
+            <MenuItem fx:id="studentListMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Student List" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Student Administration">
+            <MenuItem fx:id="studentAdminMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Student Administration" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Student Academics">
+            <MenuItem fx:id="studentAcadMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Student Academics" />
+          </Menu>
           <Menu mnemonicParsing="false" text="Personal Schedule">
             <MenuItem fx:id="scheduleMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Personal Schedule" />
           </Menu>
 
+
         </MenuBar>
+
+        <HBox>
+          <children>
+            <VBox fx:id="mainPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+              <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="400" maxWidth="Infinity"/>
+            </VBox>
+            <VBox fx:id="notesList" alignment="CENTER_LEFT" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+              <children>
+                <Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-font-style: Trebuchet MS; -fx-text-fill: black;" text="Notes Section:" textFill="WHITE" VBox.vgrow="NEVER"></Label>
+                <StackPane fx:id="notesPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" minWidth="300" maxWidth="Infinity"/>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
@@ -44,42 +74,11 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="100.0" styleClass="command-pane" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" maxWidth="Infinity" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <HBox>
-          <children>
-            <VBox fx:id="mainPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-              <padding>
-                <Insets bottom="20.0" left="15.0" right="15.0" top="15.0" />
-              </padding>
-              <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"  maxWidth="Infinity"/>
-            </VBox>
-            <HBox fx:id="notesList" alignment="BOTTOM_RIGHT" styleClass="pane-with-border" minWidth="250" prefWidth="350">
-              <children>
-                <VBox>
-                  <children>
-                    <Label alignment="CENTER_RIGHT" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-font-style: italic; -fx-text-fill: black;" text="Notes Section:" textAlignment="RIGHT" textFill="WHITE" VBox.vgrow="NEVER">
-                      <VBox.margin>
-                        <Insets bottom="5.0" />
-                      </VBox.margin>
-                    </Label>
-                    <StackPane fx:id="notesPanelPlaceholder"/>
-                  </children>
-                </VBox>
-              </children>
-              <padding>
-                <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
-              </padding>
-            </HBox>
-          </children>
-          <VBox.margin>
-            <Insets />
-          </VBox.margin>
-        </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

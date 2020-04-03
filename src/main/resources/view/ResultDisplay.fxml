@@ -24,6 +24,6 @@
           </image></ImageView>
       </children>
     </VBox>
-    <TextArea fx:id="resultDisplay" editable="false" centerShape="true" wrapText="true" styleClass="result-display"/>
+    <TextArea fx:id="resultDisplay" editable="false" centerShape="true" wrapText="true" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="result-display"/>
   </HBox>
 </StackPane>
