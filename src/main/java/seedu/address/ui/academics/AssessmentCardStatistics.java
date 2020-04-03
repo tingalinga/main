@@ -2,8 +2,12 @@ package seedu.address.ui.academics;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -12,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Exam;
 import seedu.address.model.academics.Homework;
+import seedu.address.model.academics.Submission;
 import seedu.address.ui.UiPart;
 
 /**
@@ -48,6 +53,10 @@ public class AssessmentCardStatistics extends UiPart<Region> {
     private Label median;
     @FXML
     private Label average;
+    @FXML
+    private Label submissionListTitle;
+    @FXML
+    private ListView<Submission> submissionListView;
 
     /**
      * Constructor to create the assessment card controller.
@@ -68,6 +77,28 @@ public class AssessmentCardStatistics extends UiPart<Region> {
                 + " / " + assessment.getSubmissionTracker().size());
         median.setText("Median Score: " + assessment.medianScore());
         average.setText("Average Score: " + assessment.averageScore());
+        ObservableList<Submission> submissionsList =
+                FXCollections.observableArrayList(assessment.getSubmissionTracker());
+        submissionListTitle.setText("Submissions");
+        submissionListView.setItems(submissionsList);
+        submissionListView.setCellFactory(listView -> new SubmissionListViewCell());
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Submission} using an {@code SubmissionCard}.
+     */
+    class SubmissionListViewCell extends ListCell<Submission> {
+        @Override
+        protected void updateItem(Submission submission, boolean empty) {
+            super.updateItem(submission, empty);
+
+            if (empty || submission == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new SubmissionCard(submission).getRoot());
+            }
+        }
     }
 
     @Override

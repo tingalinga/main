@@ -2,13 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.FlowPane?>
 <HBox id="cardPane" fx:id="cardPane" styleClass="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-     <VBox alignment="CENTER_LEFT" minHeight="105">
+     <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="105.0" prefWidth="350.0">
          <padding>
              <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
@@ -21,10 +21,9 @@
              </Label>
              <Label fx:id="description" styleClass="cell_big_label" text="\$description" />
          </HBox>
-         <FlowPane fx:id="tags" />
+         <FlowPane fx:id="tags" prefWidth="400.0" />
          <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
          <Label fx:id="submissionTracker" styleClass="cell_small_label" text="\$submissionTracker" />
          <Label fx:id="markingTracker" styleClass="cell_small_label" text="\$markingTracker" />
-
      </VBox>
 </HBox>
