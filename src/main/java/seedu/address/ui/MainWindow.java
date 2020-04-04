@@ -47,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private AcademicsPanel academicsPanel;
     private AcademicsPanel academicsHomeworkPanel;
     private AcademicsPanel academicsExamPanel;
-    private AcademicsPanel academicsStatisticsPanel;
+    private AcademicsPanel academicsReportPanel;
     private NotesPanel notesPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -328,13 +328,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the academics statistics window or focuses on it if it's already opened.
+     * Opens the academics report window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleAcademicsStatistics() {
-        academicsStatisticsPanel = new AcademicsPanel(logic.getFilteredAcademicsList(), "statistics");
-        mainPanelPlaceholder.getChildren().add(academicsStatisticsPanel.getRoot());
-        academicsStatisticsPanel.getRoot().toFront();
+    public void handleAcademicsReport() {
+        academicsReportPanel = new AcademicsPanel(logic.getFilteredAcademicsList(), "report");
+        mainPanelPlaceholder.getChildren().add(academicsReportPanel.getRoot());
+        academicsReportPanel.getRoot().toFront();
     }
 
     /**
@@ -372,8 +372,8 @@ public class MainWindow extends UiPart<Stage> {
             case "Academics now displays all EXAM assessments":
                 handleAcademicsExam();
                 break;
-            case "Academics now displays statistics of each assessment.":
-                handleAcademicsStatistics();
+            case "Academics now displays the report of each assessment.":
+                handleAcademicsReport();
                 break;
             default:
                 break;
