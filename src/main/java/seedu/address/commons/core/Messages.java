@@ -37,7 +37,7 @@ public class Messages {
             + " Color code must be from 0 to 23 inclusive.";
     public static final String MESSAGE_INVALID_DATE = "Invalid date input passed."
             + "The format should be YYYY-MM-DD and should be a valid date.";
-   public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index provided.";
+    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index provided.";
 
     /* Notes Messages */
     public static final String MESSAGE_INVALID_NOTES_DISPLAYED_INDEX = "The note index provided is invalid";

@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * EventDeleteCommand deletes an event according to its index. The index will be shown beside the event name.
+ * EventDeleteCommand deletes an event according to its index, Which is represented by EventIndexCommand
  */
 public class EventDeleteCommand extends EventCommand {
 
@@ -54,4 +54,5 @@ public class EventDeleteCommand extends EventCommand {
                 || (other instanceof EventDeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((EventDeleteCommand) other).targetIndex)); // state check
     }
+
 }

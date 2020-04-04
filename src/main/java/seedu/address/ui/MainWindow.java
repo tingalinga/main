@@ -423,11 +423,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (consoleReply.contains("Added event")) {
-                handleSchedule();
-            }
-
-            if (consoleReply.contains("This is your schedule for the week") || (consoleReply.contains("Deleted Event:"))) {
+            if (consoleReply.contains("This is your schedule for the week")
+                    || (consoleReply.contains("Deleted Event:"))
+                    || (consoleReply.contains("Added event"))) {
                 handleSchedule();
             }
 
