@@ -40,8 +40,8 @@ public class AcademicsPanel extends UiPart<Region> {
         case "exam":
             assessmentListView.setCellFactory(listView -> new AssessmentListViewCellExam());
             break;
-        case "statistics":
-            assessmentListView.setCellFactory(listView -> new AssessmentListViewCellStatistics());
+        case "report":
+            assessmentListView.setCellFactory(listView -> new AssessmentListViewCellReport());
             break;
         default:
             assert type.equals("all") || type.equals("completed")
@@ -103,7 +103,7 @@ public class AcademicsPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Assessment} using an {@code AssessmentCard}.
      */
-    class AssessmentListViewCellStatistics extends ListCell<Assessment> {
+    class AssessmentListViewCellReport extends ListCell<Assessment> {
         @Override
         protected void updateItem(Assessment assessment, boolean empty) {
             super.updateItem(assessment, empty);
@@ -112,7 +112,7 @@ public class AcademicsPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AssessmentCardStatistics(assessment, getIndex() + 1).getRoot());
+                setGraphic(new AssessmentCardReport(assessment, getIndex() + 1).getRoot());
             }
         }
     }

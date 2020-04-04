@@ -2,13 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.FlowPane?>
 <HBox id="cardPane" fx:id="cardPane" styleClass="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="CENTER_LEFT" minHeight="105">
+    <VBox minHeight="105" minWidth="350.0" prefWidth="250.0">
         <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
         </padding>
@@ -28,4 +29,13 @@
         <Label fx:id="average" styleClass="cell_small_label" text="\$average" />
 
     </VBox>
+   <VBox alignment="CENTER_LEFT" minHeight="105" prefWidth="500.0">
+       <Label fx:id="submissionListTitle" styleClass="cell_big_label" text="\$submissionListTitle" />
+       <padding>
+           <Insets bottom="5" left="15" right="5" top="5" />
+       </padding>
+       <children>
+           <ListView id="submissionListView" fx:id="submissionListView" minHeight="105.0" prefHeight="105.0" prefWidth="250.0" />
+       </children>
+   </VBox>
 </HBox>

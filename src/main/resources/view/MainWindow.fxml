@@ -28,13 +28,13 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
           <Menu mnemonicParsing="false" text="Student List">
-            <MenuItem fx:id="studentListMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Student List" />
+            <MenuItem fx:id="studentListMenuItem" mnemonicParsing="false" onAction="#handleStudentDefault" text="Student List" />
           </Menu>
           <Menu mnemonicParsing="false" text="Student Administration">
-            <MenuItem fx:id="studentAdminMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Student Administration" />
+            <MenuItem fx:id="studentAdminMenuItem" mnemonicParsing="false" onAction="#handleStudentAdmin" text="Student Administration" />
           </Menu>
           <Menu mnemonicParsing="false" text="Student Academics">
-            <MenuItem fx:id="studentAcadMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Student Academics" />
+            <MenuItem fx:id="studentAcadMenuItem" mnemonicParsing="false" onAction="#handleAcademics" text="Student Academics" />
           </Menu>
           <Menu mnemonicParsing="false" text="Personal Schedule">
             <MenuItem fx:id="scheduleMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Personal Schedule" />
