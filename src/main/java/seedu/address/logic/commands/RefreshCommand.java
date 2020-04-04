@@ -1,13 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_NOTES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+
 /**
- * Lists all students in the address book to the user.
+ * Refreshes the student card
  */
 public class RefreshCommand extends Command {
 
@@ -17,12 +18,15 @@ public class RefreshCommand extends Command {
             + "Please take note your file must be: \n 1. In png format \n 2. All lower case \n 3. No whitespace \n "
             + "For example, Student Name: Simon Lam, File Name: simonlam.png ";
 
+    public RefreshCommand(){
+
+    }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredNotesList(PREDICATE_SHOW_ALL_NOTES);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
+
 }
