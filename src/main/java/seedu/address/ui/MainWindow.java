@@ -407,7 +407,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (consoleReply.contains("Class admin details for")) {
                 studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
-                        .get(0).getStudents()), "admin display");
+                        .get(0).getStudents()), "admin");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
