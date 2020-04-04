@@ -7,7 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all students in the address book to the user.
+ * Refreshes the student card
  */
 public class RefreshCommand extends Command {
 
@@ -25,4 +25,5 @@ public class RefreshCommand extends Command {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }
