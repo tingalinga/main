@@ -34,9 +34,11 @@
           </Menu>
           <Menu fx:id="studentAdmin" mnemonicParsing="false" text="Student Administration">
             <MenuItem fx:id="studentAdminMenuItem" mnemonicParsing="false" onAction="#handleStudentAdmin" text="Display Administration" />
+            <MenuItem fx:id="datesMenuItem" mnemonicParsing="false" onAction="#handleDates" text="Display Dates" />
           </Menu>
           <Menu fx:id= "studentAcademics" mnemonicParsing="false" text="Student Academics">
             <MenuItem fx:id="studentAcadMenuItem" mnemonicParsing="false" onAction="#handleAcademics" text="Display Academics" />
+            <MenuItem fx:id="studentAcadReportMenuItem" mnemonicParsing="false" onAction="#handleAcademicsReport" text="Display Report" />
           </Menu>
           <Menu fx:id="personalSchedule" mnemonicParsing="false" text="Personal Schedule">
             <MenuItem fx:id="scheduleMenuItem" mnemonicParsing="false" onAction="#handleSchedule" text="Display Schedule" />

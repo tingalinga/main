@@ -291,6 +291,10 @@ public class MainWindow extends UiPart<Stage> {
         dateListPanel = new DateListPanel(logic.getFilteredDateList());
         mainPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
         dateListPanel.getRoot().toFront();
+        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
+        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
+        studentAdmin.setStyle(" -fx-background-color: Orange");
+        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
     }
 
     /**
@@ -335,6 +339,10 @@ public class MainWindow extends UiPart<Stage> {
         academicsReportPanel = new AcademicsPanel(logic.getFilteredAcademicsList(), "report");
         mainPanelPlaceholder.getChildren().add(academicsReportPanel.getRoot());
         academicsReportPanel.getRoot().toFront();
+        studentAcademics.setStyle(" -fx-background-color: Orange");
+        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
+        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
+        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
     }
 
     /**
