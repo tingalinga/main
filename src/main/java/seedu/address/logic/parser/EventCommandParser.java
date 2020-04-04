@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DATETIME_RANGE;
 import static seedu.address.commons.util.EventUtil.makeUniqueIdentifier;
 import static seedu.address.commons.util.EventUtil.validateDateTime;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
@@ -57,12 +58,13 @@ public class EventCommandParser implements Parser<EventCommand> {
     public EventCommand parse(String args) throws ParseException, CommandException {
         requireNonNull(args);
 
-        if (args.equals("")) {
-            return eventDisplayCommand();
-        }
+//        if (args.equals("")) {
+//            return eventDisplayCommand();
+//        }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_EVENT_NAME,
+                PREFIX_ADD,
                 PREFIX_START_DATETIME,
                 PREFIX_END_DATETIME,
                 PREFIX_VIEW,
@@ -83,6 +85,11 @@ public class EventCommandParser implements Parser<EventCommand> {
         } catch (ParseException e) {
             logger.info("Parser unable to parse preamble index.");
             throw new ParseException("Check out the Help Tab for Command information");
+        }
+        if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
+            return addCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
+            return null;
         }
         /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
