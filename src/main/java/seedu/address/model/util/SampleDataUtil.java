@@ -120,8 +120,12 @@ public class SampleDataUtil {
 
     public static Notes[] getSampleNotes() {
         return new Notes[] {
-            new Notes("Simon Lam", "He has bad behaviour", "LOW", "29/03/2020 22:31"),
-            new Notes("Gerren Seow", "He has good behaviour", "MEDIUM", "29/03/2020 22:40")
+            new Notes("Simon Lam", "He was disruptive in class today, "
+                    + "and did not complete his homework as usual.", "LOW", "29/03/2020 22:31"),
+            new Notes("Gerren Seow", "Reminder to print the testimonial as requested.",
+                    "MEDIUM", "29/03/2020 22:40"),
+            new Notes("Lee Hui Ting", "Did not take her temperature for the third day in a row. "
+                    + "Inform parents.", "HIGH", "29/03/2020 22:40")
         };
     }
 
