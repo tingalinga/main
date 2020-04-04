@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INDEX_INVALID_EVENT_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DATETIME_RANGE;
 import static seedu.address.commons.util.EventUtil.makeUniqueIdentifier;
@@ -35,6 +36,7 @@ import seedu.address.logic.commands.event.EventAddCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.EventDeleteCommand;
 import seedu.address.logic.commands.event.EventDisplayCommand;
+import seedu.address.logic.commands.event.EventIndexCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -91,6 +93,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return addCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_DELETE).isPresent()) {
             return deleteCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) {
+            return indexGetCommand(argMultimap);
         }
         /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
@@ -172,6 +176,31 @@ public class EventCommandParser implements Parser<EventCommand> {
                             EventDeleteCommand.MESSAGE_USAGE));
         }
         return new EventDeleteCommand(index);
+    }
+
+    /**
+     * Performs validation and return the EventIndexCommand object.
+     *
+     * @param argMultimap for tokenized input.
+     * @return EventAddCommand object.
+     * @throws ParseException
+     */
+    private EventIndexCommand indexGetCommand(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_GET_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventIndexCommand.MESSAGE_USAGE));
+        }
+
+        if (!(argMultimap.getValue(PREFIX_GET_INDEX).isPresent())
+                || (argMultimap.getValue(PREFIX_GET_INDEX).get().isBlank())) {
+            logger.info("Wrong command entered, the event name is missing.");
+            throw new ParseException(MESSAGE_INDEX_INVALID_EVENT_NAME);
+        }
+
+        String eventName = argMultimap.getValue(PREFIX_GET_INDEX).orElse("");
+
+        return new EventIndexCommand(eventName);
     }
 
 }

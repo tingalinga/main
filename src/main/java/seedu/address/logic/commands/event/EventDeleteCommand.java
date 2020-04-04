@@ -13,11 +13,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * EventDeleteCommand deletes an event according to its index, Which is represented by EventIndexCommand
+ * EventDeleteCommand deletes an event according to its index, Which is represented by EventIndexCommand.
  */
 public class EventDeleteCommand extends EventCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an event identified by the index of the event"
+            + "\n"
+            + "Parameters:"
             + " delete INDEX: deletes the event identified by the index beside the event name." + "\n"
             + "Note: INDEX must be a positive integer\n"
             + "Example: schedule delete 3";
