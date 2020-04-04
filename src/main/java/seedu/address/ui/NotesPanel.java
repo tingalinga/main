@@ -43,6 +43,7 @@ public class NotesPanel extends UiPart<Region> {
             if (empty || note == null) {
                 setGraphic(null);
                 setText(null);
+                setStyle("-fx-background-color: #FFE8D7;");
             } else {
                 setGraphic(new NotesCard(note, getIndex() + 1).getRoot());
             }
