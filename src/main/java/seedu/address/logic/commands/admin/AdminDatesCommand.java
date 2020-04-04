@@ -12,7 +12,7 @@ import seedu.address.model.Model;
  */
 public class AdminDatesCommand extends AdminCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_DISPLAY
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_DATES
             + ": to display the list of dates that has admin information of the class";
     public static final String MESSAGE_SUCCESS = "List of dates with admin details of the class displayed!";
 
