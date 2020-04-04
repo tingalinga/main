@@ -260,7 +260,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleStudentAdmin() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         studentListPanel.getRoot().toFront();
         studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
