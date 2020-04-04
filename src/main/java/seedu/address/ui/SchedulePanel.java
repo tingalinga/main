@@ -33,6 +33,7 @@ public class SchedulePanel extends UiPart<Region> {
         vCalendar.setVEvents(list);
         this.agenda = new ICalendarAgenda(this.vCalendar);
         init(this.agenda);
+        borderPane.setStyle("-fx-background-color: #FFE8D7;");
         borderPane.setCenter(agenda);
         borderPane.setMaxWidth(Double.MAX_VALUE);
     }
