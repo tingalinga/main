@@ -348,6 +348,10 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             }
 
+            if (consoleReply.contains("New student added") || consoleReply.contains("Deleted Student")) {
+                handleStudentDefault();
+            }
+
             if (consoleReply.contains("Academics submitted following submissions")
                     || consoleReply.contains("Academics marked following submissions")) {
                 handleAcademics();
