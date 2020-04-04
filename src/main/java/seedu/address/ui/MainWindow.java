@@ -384,6 +384,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleAcademics();
             }
 
+            if (consoleReply.contains("Refreshed students")) {
+                handleStudentDefault();
+            }
+
             if (consoleReply.contains("Notes are exported to studentNotes.csv")) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
                 notesExporter.saveToCsv();

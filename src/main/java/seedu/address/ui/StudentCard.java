@@ -76,6 +76,9 @@ public class StudentCard extends UiPart<Region> {
         updateImage();
     }
 
+    /**
+     * Updates profile image of student
+     */
     public void updateImage() {
         try {
             String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
