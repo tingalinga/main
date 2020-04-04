@@ -7,12 +7,12 @@ import static seedu.address.commons.util.EventUtil.makeUniqueIdentifier;
 import static seedu.address.commons.util.EventUtil.validateDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GET_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW_MODE;
 import static seedu.address.logic.parser.ParserUtil.parseColorCode;
@@ -33,6 +33,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.event.EventAddCommand;
 import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.event.EventDeleteCommand;
 import seedu.address.logic.commands.event.EventDisplayCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -67,7 +68,7 @@ public class EventCommandParser implements Parser<EventCommand> {
                 PREFIX_ADD,
                 PREFIX_START_DATETIME,
                 PREFIX_END_DATETIME,
-                PREFIX_VIEW,
+                PREFIX_DELETE,
                 PREFIX_COLOR,
                 PREFIX_RECUR,
                 PREFIX_GET_INDEX,
@@ -84,16 +85,16 @@ public class EventCommandParser implements Parser<EventCommand> {
             }
         } catch (ParseException e) {
             logger.info("Parser unable to parse preamble index.");
-            throw new ParseException("Check out the Help Tab for Command information");
+            throw new ParseException("Check out the Help Tab for Command information"); // ADD IN THE PARSE EXCEPTION
         }
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_DELETE).isPresent()) {
+            return deleteCommand(argMultimap);
         }
         /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
-        } else if (argMultimap.getValue(PREFIX_DELETE).isPresent()) {
-            return deleteCommand(argMultimap);
-        } else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) {
+        }  else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) {
             return indexOfCommand(argMultimap);
         } else if (isEdit) {
             return editCommand(index, argMultimap);
@@ -142,6 +143,35 @@ public class EventCommandParser implements Parser<EventCommand> {
                 .withUniqueIdentifier(uniqueIdentifier);
 
         return new EventAddCommand(vEvent);
+    }
+
+    /**
+            * Performs validation and return the EventDeleteCommand object.
+     *
+             * @param argMultimap for tokenized input.
+            * @return EventDeleteCommand object.
+            * @throws ParseException
+     */
+    private EventDeleteCommand deleteCommand(ArgumentMultimap argMultimap)
+            throws ParseException {
+        Index index;
+        try {
+            int indexToDelete = Integer
+                    .parseInt(argMultimap.getValue(PREFIX_DELETE).orElse("0"));
+
+            if (indexToDelete <= 0) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                EventDeleteCommand.MESSAGE_USAGE));
+            }
+            index = Index.fromOneBased(indexToDelete);
+        } catch (NumberFormatException e) {
+            logger.info("Invalid schedule index provided for deleting.");
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            EventDeleteCommand.MESSAGE_USAGE));
+        }
+        return new EventDeleteCommand(index);
     }
 
 }

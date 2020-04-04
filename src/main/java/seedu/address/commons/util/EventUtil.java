@@ -124,7 +124,7 @@ public class EventUtil {
      * Converts VEvent to string
      */
     public static String vEventToString(VEvent vEvent) {
-        return String.format("event name: %s , start dateime: %s , end datetime: %s\n",
+        return String.format("Event Name: %s , Start Datetime: %s , End Datetime: %s\n",
                 vEvent.getSummary().getValue().toString(),
                 vEvent.getDateTimeStart().getValue().toString(),
                 vEvent.getDateTimeEnd().getValue().toString());
@@ -136,7 +136,7 @@ public class EventUtil {
     public static String formatIndexVEventPair(Pair<Index, VEvent> indexVEventPair) {
         Index index = indexVEventPair.getKey();
         VEvent vEvent = indexVEventPair.getValue();
-        return String.format("Index: %d , event name: %s , start datetime: %s , end datetime: %s\n",
+        return String.format("Index: %d , Event Name: %s , Start Datetime: %s , End datetime: %s\n",
                 index.getOneBased(), vEvent.getSummary().getValue().toString(),
                 vEvent.getDateTimeStart().getValue().toString(),
                 vEvent.getDateTimeEnd().getValue().toString());

@@ -36,7 +36,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_START_DATETIME = new Prefix("startDateTime/");
     public static final Prefix PREFIX_END_DATETIME = new Prefix("endDateTime/");
     public static final Prefix PREFIX_VIEW_DATE = new Prefix("targetDate/");
-    public static final Prefix PREFIX_VIEW = new Prefix("view");
     public static final Prefix PREFIX_RECUR = new Prefix("recur/");
     public static final Prefix PREFIX_COLOR = new Prefix("color/");
     public static final Prefix PREFIX_GET_INDEX = new Prefix("index/");
