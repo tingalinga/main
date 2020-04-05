@@ -240,6 +240,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateStudentToAssessments(String prevName, String newName) {
+        requireAllNonNull(prevName, newName);
+        academics.updateStudentToAssessments(prevName, newName);
+    }
+
+    @Override
     public boolean hasStudentSubmitted(Assessment assessment, String student) {
         requireAllNonNull(assessment, student);
         return academics.hasStudentSubmitted(assessment, student);
