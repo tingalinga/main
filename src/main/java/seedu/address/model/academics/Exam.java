@@ -64,10 +64,10 @@ public class Exam extends Assessment {
      * @param students list of students assigned with the assessment.
      */
     public void setSubmissions(List<Student> students) {
+        setAssessmentSubmissions(students);
         for (Student student: students) {
             submissionTracker.add(new Submission(student.getName().fullName));
         }
-        setAssessmentSubmissions(students);
     }
 
     /**

@@ -86,24 +86,34 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         if (split.length < 3 || split[0].length() < 4 || split[1].length() < 2 || split[2].length() < 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
         }
-        if (Integer.parseInt(split[1]) == 1 || Integer.parseInt(split[1]) ==  3
-                || Integer.parseInt(split[1]) ==  5 || Integer.parseInt(split[1]) == 7
-                || Integer.parseInt(split[1]) == 8 || Integer.parseInt(split[1]) == 10
-                || Integer.parseInt(split[1]) == 12) {
-            if (Integer.parseInt(split[2]) < 0 || Integer.parseInt(split[2]) > 31) {
+        int month = Integer.parseInt(split[1]);
+        int day = Integer.parseInt(split[2]);
+        switch (month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            if (day < 0 || day> 31) {
                 throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
             }
-        }
-        if (Integer.parseInt(split[1]) == 4 || Integer.parseInt(split[1]) ==  6
-                || Integer.parseInt(split[1]) ==  9 || Integer.parseInt(split[1]) == 11) {
-            if (Integer.parseInt(split[2]) < 0 || Integer.parseInt(split[2]) > 30) {
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            if (day < 0 || day > 30) {
                 throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
             }
-        }
-        if (Integer.parseInt(split[1]) == 2) {
-            if (Integer.parseInt(split[2]) < 0 || Integer.parseInt(split[2]) > 28) {
+            break;
+        case 2:
+            if (day < 0 || day > 28) {
                 throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
             }
+            break;
+        default:
         }
     }
 

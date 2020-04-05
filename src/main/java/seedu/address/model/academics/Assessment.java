@@ -21,6 +21,8 @@ public abstract class Assessment {
     /* ASSESSMENT PROPERTIES */
     private String description;
     private LocalDate date;
+    private int submitted = 0;
+    private int marked = 0;
 
     /* TRACKING SUBMISSIONS */
     private List<Submission> submissionTracker = new ArrayList<>();
@@ -88,9 +90,15 @@ public abstract class Assessment {
      * @param newSubmissionTracker new submission tracker.
      */
     public void setAssessmentSubmissionTracker(List<Submission> newSubmissionTracker) {
+        int hasSubmitted = 0;
+        int hasMarked = 0;
         for (Submission submission: newSubmissionTracker) {
             submissionTracker.add(submission);
+            hasSubmitted = submission.hasSubmitted() ? hasSubmitted + 1 : hasSubmitted;
+            hasMarked = submission.isMarked() ? hasMarked + 1 : hasMarked;
         }
+        submitted = hasSubmitted;
+        marked = hasMarked;
     }
 
     public abstract void updateNewStudentName(String prevName, String newName);
@@ -132,6 +140,8 @@ public abstract class Assessment {
         for (Submission submission: submissionTracker) {
             if (submission.getStudentName().equals(toRemove)) {
                 submissionTracker.remove(submission);
+                submitted = submission.hasSubmitted() ? submitted - 1 : submitted;
+                marked = submission.isMarked() ? marked - 1 : marked;
                 break;
             }
         }
@@ -160,6 +170,7 @@ public abstract class Assessment {
         for (String studentName: studentList) {
             for (Submission submission: submissionTracker) {
                 if (submission.getStudentName().equals(studentName)) {
+                    submitted = !submission.hasSubmitted() ? submitted + 1 : submitted;
                     submission.markAsSubmitted();
                 }
             }
@@ -186,6 +197,7 @@ public abstract class Assessment {
     public void mark(String student, int score) {
         for (Submission submission: submissionTracker) {
             if (submission.getStudentName().equals(student)) {
+                marked = !submission.isMarked() ? marked + 1 : marked;
                 submission.markAssessment(score);
             }
         }
@@ -195,25 +207,13 @@ public abstract class Assessment {
      * Returns the number of students who have yet to submit their assessment.
      */
     public int noOfUnsubmittedStudents() {
-        int unsubmitted = 0;
-        for (Submission submission: submissionTracker) {
-            if (!submission.hasSubmitted()) {
-                unsubmitted++;
-            }
-        }
-        return unsubmitted;
+        return submissionTracker.size() - submitted;
     }
 
     /**
      * Returns the number of students who have submitted their assessment.
      */
     public int noOfSubmittedStudents() {
-        int submitted = 0;
-        for (Submission submission: submissionTracker) {
-            if (submission.hasSubmitted()) {
-                submitted++;
-            }
-        }
         return submitted;
     }
 
@@ -221,12 +221,6 @@ public abstract class Assessment {
      * Returns the number of students whose submissions have not been marked.
      */
     public int noOfMarkedSubmissions() {
-        int marked = 0;
-        for (Submission submission: submissionTracker) {
-            if (submission.isMarked()) {
-                marked++;
-            }
-        }
         return marked;
     }
 
