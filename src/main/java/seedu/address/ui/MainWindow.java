@@ -25,6 +25,7 @@ import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
+import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.ui.academics.AcademicsPanel;
 import seedu.address.ui.admin.DateListPanel;
@@ -199,11 +200,30 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     *  Opens the Personal Schedule Page
+     *  Handles the Personal Schedule Page
      */
     @FXML
     public void handleSchedule() {
         schedulePanel.update();
+        if (logic.getEventScheduleView().equals(EventScheduleView.DAILY)) {
+            schedulePanel.setDaily();
+        } else if (logic.getEventScheduleView().equals(EventScheduleView.WEEKLY)) {
+            schedulePanel.setWeekly();
+        }
+        schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
+        schedulePanel.getRoot().toFront();
+        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%) ");
+        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
+        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
+        personalSchedule.setStyle(" -fx-background-color: Orange");
+    }
+    /**
+     *  Opens the Personal Schedule Page
+     */
+    @FXML
+    public void openWeeklySchedule() {
+        schedulePanel.update();
+        schedulePanel.setWeekly();
         schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
         schedulePanel.getRoot().toFront();
         studentAcademics.setStyle("-fx-background-color: derive(#white, 20%) ");
@@ -430,12 +450,15 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (consoleReply.contains("Added event")) {
+            if ((consoleReply.contains("Deleted Event:"))
+                    || (consoleReply.contains("Added Event"))
+                    || (consoleReply.contains("Edited Event:"))
+                    || (consoleReply.contains("on reference date"))) {
                 handleSchedule();
             }
 
-            if (consoleReply.contains("This is your schedule for the week")) {
-                handleSchedule();
+            if ((consoleReply.contains("This is your schedule for the week"))) {
+                openWeeklySchedule();
             }
 
             return commandResult;
@@ -457,4 +480,5 @@ public class MainWindow extends UiPart<Stage> {
             throw ssne;
         }
     }
+
 }

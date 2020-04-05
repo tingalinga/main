@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DELETE;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class AcademicsDeleteCommand extends AcademicsCommand {
     public static final String MESSAGE_USAGE = "This command deletes the assessment identified by the index number"
             + "used in the displayed academics list. \n"
             + "Format: " + COMMAND_WORD + " "
-            + PREFIX_DELETE + " INDEX (must be a positive integer)\n"
+            + PREFIX_EVENT_DELETE + " INDEX (must be a positive integer)\n"
             + "Example: academics delete 1\n";
 
     public static final String MESSAGE_DELETE_ASSESSMENT_SUCCESS = "Deleted Assessment: %1$s";

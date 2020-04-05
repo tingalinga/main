@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COLOR_STRING;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_TYPE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VIEW_MODE;
 import static seedu.address.commons.util.EventUtil.BAD_DATE_FORMAT;
 import static seedu.address.commons.util.EventUtil.DAILY_RECUR_RULE;
 import static seedu.address.commons.util.EventUtil.NO_RECUR_RULE;
@@ -23,6 +24,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.RecurrenceType;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
@@ -302,5 +304,22 @@ public class ParserUtil {
             return false;
         }
     }
+
+    /**
+     * Converts string value viewMode to EventScheduleView class object
+     * @param viewMode String representation of the viewMode
+     * @return corresponding EventScheduleViewMode enum
+     * @throws ParseException if viewMode is not equivalent to any of the viewModes
+     */
+    public static EventScheduleView parseEventScheduleView(String viewMode) throws ParseException {
+        if (viewMode.equalsIgnoreCase(EventScheduleView.WEEKLY.name())) {
+            return EventScheduleView.WEEKLY;
+        } else if (viewMode.equalsIgnoreCase(EventScheduleView.DAILY.name())) {
+            return EventScheduleView.DAILY;
+        } else {
+            throw new ParseException(String.format("Input passed: " + viewMode + "\n", MESSAGE_INVALID_VIEW_MODE));
+        }
+    }
+
 }
 

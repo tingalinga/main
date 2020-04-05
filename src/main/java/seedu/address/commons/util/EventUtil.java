@@ -5,14 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
-import org.apache.commons.math3.util.Pair;
-
 import jfxtras.icalendarfx.components.VEvent;
 import jfxtras.icalendarfx.properties.component.recurrence.RecurrenceRule;
+import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.RecurrenceType;
 
 /**
@@ -107,24 +104,10 @@ public class EventUtil {
     }
 
     /**
-     * Converts string value to EventScheduleView class object
-     */
-    public static EventScheduleView stringToEventScheduleViewMapper(String eventScheduleViewString)
-            throws IllegalValueException {
-        if (eventScheduleViewString.equalsIgnoreCase(EventScheduleView.DAILY.name())) {
-            return EventScheduleView.DAILY;
-        } else if (eventScheduleViewString.equalsIgnoreCase(EventScheduleView.WEEKLY.name())) {
-            return EventScheduleView.WEEKLY;
-        } else {
-            throw new IllegalValueException("Schedule view is not valid. Input passed: " + eventScheduleViewString);
-        }
-    }
-
-    /**
      * Converts VEvent to string
      */
     public static String vEventToString(VEvent vEvent) {
-        return String.format("event name: %s , start dateime: %s , end datetime: %s\n",
+        return String.format("Event Name: %s , Start Datetime: %s , End Datetime: %s\n",
                 vEvent.getSummary().getValue().toString(),
                 vEvent.getDateTimeStart().getValue().toString(),
                 vEvent.getDateTimeEnd().getValue().toString());
@@ -136,7 +119,7 @@ public class EventUtil {
     public static String formatIndexVEventPair(Pair<Index, VEvent> indexVEventPair) {
         Index index = indexVEventPair.getKey();
         VEvent vEvent = indexVEventPair.getValue();
-        return String.format("Index: %d , event name: %s , start datetime: %s , end datetime: %s\n",
+        return String.format("Index: %d , Event Name: %s , Start Datetime: %s , End Datetime: %s\n",
                 index.getOneBased(), vEvent.getSummary().getValue().toString(),
                 vEvent.getDateTimeStart().getValue().toString(),
                 vEvent.getDateTimeEnd().getValue().toString());
@@ -148,10 +131,12 @@ public class EventUtil {
      * @param vEvent2 second vevent
      * @return true if equal
      */
-    public static boolean isEqual(VEvent vEvent1, VEvent vEvent2) {
+    public static boolean isEqualEvent(VEvent vEvent1, VEvent vEvent2) {
         return vEvent1.getSummary().equals(vEvent2.getSummary())
                 && vEvent1.getDateTimeStart().equals(vEvent2.getDateTimeEnd())
                 && vEvent2.getDateTimeEnd().equals(vEvent2.getDateTimeEnd());
     }
+
+
 
 }

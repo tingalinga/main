@@ -29,10 +29,10 @@ public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRemark("She likes aardvarks.").withNok("Joseph-Father-90045722")
+            .withPhone("94351253").withNok("Joseph-Father-90045722")
             .withTags("friends").withTemperature("36.5").withAttendance("Present").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
+            .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withNok("Jojo-Father-90045712")
             .withTags("owesMoney", "friends").withTemperature("36.5").withAttendance("Present").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")

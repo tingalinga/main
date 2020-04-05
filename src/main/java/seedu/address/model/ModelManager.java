@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -412,6 +413,18 @@ public class ModelManager implements Model {
     public ObservableList<VEvent> getVEvents() {
         return eventHistory.getVEvents();
     }
+
+
+    @Override
+    public List<Pair<Index, VEvent>> searchVEvents(String eventName) {
+        return eventHistory.searchVEvents(eventName);
+    }
+
+    @Override
+    public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
+        return eventHistory.searchMostSimilarVEventName(eventName);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
