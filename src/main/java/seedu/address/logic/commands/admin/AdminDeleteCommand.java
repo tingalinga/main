@@ -2,7 +2,6 @@ package seedu.address.logic.commands.admin;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DATES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.format.TextStyle;
 import java.util.Locale;
