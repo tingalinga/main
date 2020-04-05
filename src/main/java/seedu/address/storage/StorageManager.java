@@ -19,7 +19,6 @@ import seedu.address.storage.admin.AdminStorage;
 import seedu.address.storage.event.EventStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
 
-
 /**
  * Manages storage of AddressBook data in local storage.
  */

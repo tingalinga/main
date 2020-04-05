@@ -272,7 +272,12 @@ public class AddCommandTest {
 
         @Override
         public void removeStudentFromAssessments(String toRemove) {
-            /* This method should not add to assessments */
+            /* This method should not remove from assessments */
+        }
+
+        @Override
+        public void updateStudentToAssessments(String prevName, String newName) {
+            /* This method should not update to assessments */
         }
 
         @Override

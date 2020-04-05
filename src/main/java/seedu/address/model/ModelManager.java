@@ -30,7 +30,6 @@ import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
-
 import seedu.address.model.student.Student;
 
 /**
@@ -238,6 +237,12 @@ public class ModelManager implements Model {
     public void removeStudentFromAssessments(String toRemove) {
         requireNonNull(toRemove);
         academics.removeStudentFromAssessments(toRemove);
+    }
+
+    @Override
+    public void updateStudentToAssessments(String prevName, String newName) {
+        requireAllNonNull(prevName, newName);
+        academics.updateStudentToAssessments(prevName, newName);
     }
 
     @Override

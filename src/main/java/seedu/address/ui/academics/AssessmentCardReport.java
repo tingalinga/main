@@ -71,6 +71,12 @@ public class AssessmentCardReport extends UiPart<Region> {
         } else if (assessment instanceof Exam) {
             tags.getChildren().add(new Label("Exam"));
         }
+        if (assessment.getSubmissionTracker().size() == assessment.noOfSubmittedStudents()) {
+            tags.getChildren().add(new Label("All Submitted"));
+        }
+        if (assessment.getSubmissionTracker().size() == assessment.noOfMarkedSubmissions()) {
+            tags.getChildren().add(new Label("Completed Marking"));
+        }
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());
         markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()

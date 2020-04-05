@@ -12,7 +12,7 @@
          <padding>
              <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
-         <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="300.0" spacing="5">
+         <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="1000.0" spacing="5">
              <Label fx:id="id" styleClass="cell_big_label">
                  <minWidth>
                      <!-- Ensures that the label text is never truncated -->
@@ -21,7 +21,7 @@
              </Label>
              <Label fx:id="description" styleClass="cell_big_label" text="\$description" />
          </HBox>
-         <FlowPane fx:id="tags" prefWidth="400.0" />
+         <FlowPane fx:id="tags" prefWidth="100.0" />
          <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
          <Label fx:id="submissionTracker" styleClass="cell_small_label" text="\$submissionTracker" />
          <Label fx:id="markingTracker" styleClass="cell_small_label" text="\$markingTracker" />

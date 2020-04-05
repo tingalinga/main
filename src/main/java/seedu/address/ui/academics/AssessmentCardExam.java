@@ -54,6 +54,12 @@ public class AssessmentCardExam extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
         tags.getChildren().add(new Label("Exam"));
+        if (assessment.getSubmissionTracker().size() == assessment.noOfSubmittedStudents()) {
+            tags.getChildren().add(new Label("All Submitted"));
+        }
+        if (assessment.getSubmissionTracker().size() == assessment.noOfMarkedSubmissions()) {
+            tags.getChildren().add(new Label("Completed Marking"));
+        }
         date.setText("Exam Date: "
                 + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
