@@ -1,5 +1,12 @@
 package seedu.address.logic.commands.notes;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -8,13 +15,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 /**
  * Represents NotesEditCommand class which edits Note tagged to a Student.
@@ -57,7 +57,7 @@ public class NotesEditCommand extends Command {
         Notes noteToEdit = lastShownList.get(index.getZeroBased());
         Notes editedNote = createEditedNote(noteToEdit, editNotesDescriptor);
 
-        if(!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
+        if (!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_NOTES);
         }
 

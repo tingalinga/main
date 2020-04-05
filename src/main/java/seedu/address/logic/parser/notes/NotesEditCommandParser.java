@@ -1,27 +1,32 @@
 package seedu.address.logic.parser.notes;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.notes.NotesEditCommand;
-import seedu.address.logic.commands.notes.NotesExportCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
-
-
 import static java.util.Objects.requireNonNull;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.notes.NotesEditCommand;
+import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Parses input arguments and creates a new NotesEditCommand object
  */
 public class NotesEditCommandParser implements Parser<NotesEditCommand> {
+
+    /**
+     * Creates a NotesEditCommand after parsing of arguments.
+     * @param args
+     * @return NotesEditCommand
+     * @throws ParseException
+     */
     public NotesEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
