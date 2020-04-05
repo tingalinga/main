@@ -1,12 +1,14 @@
 package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.List;
 import java.util.Optional;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -15,6 +17,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
+import seedu.address.model.student.Student;
 
 /**
  * Represents NotesEditCommand class which edits Note tagged to a Student.
@@ -49,6 +52,8 @@ public class NotesEditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Notes> lastShownList = model.getFilteredNotesList();
+        ObservableList<Student> students = model.getFilteredStudentList();
+
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_NOTES_DISPLAYED_INDEX);
@@ -56,6 +61,19 @@ public class NotesEditCommand extends Command {
 
         Notes noteToEdit = lastShownList.get(index.getZeroBased());
         Notes editedNote = createEditedNote(noteToEdit, editNotesDescriptor);
+
+        boolean nameFound = false;
+
+        for (Student student : students) {
+            if (student.getName().toString().equals(editedNote.getStudent())) {
+                nameFound = true;
+            }
+        }
+
+        if (!nameFound) {
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
+        }
+
 
         if (!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_NOTES);
