@@ -47,7 +47,10 @@ public class Messages {
             + "schedule add" + "\n"
             + "schedule edit" + "\n"
             + "schedule delete" + "\n"
-            + "schedule indexGet/";
+            + "schedule indexGet/" + "\n"
+            + "schedule view";
+    public static final String MESSAGE_INVALID_VIEW_MODE = "Invalid schedule view mode."
+            + " Please input either weekly or daily.";
 
     /* Notes Messages */
     public static final String MESSAGE_INVALID_NOTES_DISPLAYED_INDEX = "The note index provided is invalid";

@@ -9,9 +9,7 @@ import jfxtras.icalendarfx.components.VEvent;
 import jfxtras.icalendarfx.properties.component.recurrence.RecurrenceRule;
 import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.event.RecurrenceType;
 
 /**
@@ -103,20 +101,6 @@ public class EventUtil {
      */
     public static LocalDateTime dateTimeToLocalDateTimeFormatter(String date) {
         return LocalDateTime.parse(date, DATE_TIME_FORMATTER);
-    }
-
-    /**
-     * Converts string value to EventScheduleView class object
-     */
-    public static EventScheduleView stringToEventScheduleViewMapper(String eventScheduleViewString)
-            throws IllegalValueException {
-        if (eventScheduleViewString.equalsIgnoreCase(EventScheduleView.DAILY.name())) {
-            return EventScheduleView.DAILY;
-        } else if (eventScheduleViewString.equalsIgnoreCase(EventScheduleView.WEEKLY.name())) {
-            return EventScheduleView.WEEKLY;
-        } else {
-            throw new IllegalValueException("Schedule view is not valid. Input passed: " + eventScheduleViewString);
-        }
     }
 
     /**

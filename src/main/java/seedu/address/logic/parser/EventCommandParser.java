@@ -16,10 +16,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GET_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW_MODE;
 import static seedu.address.logic.parser.ParserUtil.parseColorCode;
 import static seedu.address.logic.parser.ParserUtil.parseEventName;
+import static seedu.address.logic.parser.ParserUtil.parseEventScheduleView;
+import static seedu.address.logic.parser.ParserUtil.parseLocalDate;
 import static seedu.address.logic.parser.ParserUtil.parseLocalDateTime;
 import static seedu.address.logic.parser.ParserUtil.parseRecurrenceType;
 
@@ -41,6 +44,7 @@ import seedu.address.logic.commands.event.EventDisplayCommand;
 import seedu.address.logic.commands.event.EventEditCommand;
 import seedu.address.logic.commands.event.EventEditCommand.EditVEventDescriptor;
 import seedu.address.logic.commands.event.EventIndexCommand;
+import seedu.address.logic.commands.event.EventViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -79,6 +83,7 @@ public class EventCommandParser implements Parser<EventCommand> {
                 PREFIX_COLOR,
                 PREFIX_RECUR,
                 PREFIX_GET_INDEX,
+                PREFIX_VIEW,
                 PREFIX_VIEW_MODE,
                 PREFIX_VIEW_DATE);
 
@@ -100,11 +105,11 @@ public class EventCommandParser implements Parser<EventCommand> {
             return indexGetCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_EVENT_EDIT).isPresent()) { // edit command
             return editCommand(argMultimap);
-        }
-        /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
-        }  else {*/
-        return null;
+        } else {
+            return null;
+        }
     }
 
 
@@ -261,6 +266,38 @@ public class EventCommandParser implements Parser<EventCommand> {
         }
 
         return new EventEditCommand(index, editVEventDescriptor);
+    }
+
+    /**
+     * Performs validation and return EventViewCommand object to be executed.
+     * @param argMultimap for tokenized input.
+     * @return EventViewCommand object.
+     * @throws ParseException thrown when invalid view mode or view date format is entered by the user.
+     */
+    private EventViewCommand viewCommand(ArgumentMultimap argMultimap) throws ParseException {
+
+        EventViewCommand eventViewCommand = new EventViewCommand();
+        try {
+            if (argMultimap.getValue(PREFIX_VIEW_MODE).isPresent()
+                    && argMultimap.getValue(PREFIX_VIEW_DATE).isPresent()) {
+                eventViewCommand.setViewMode(parseEventScheduleView(
+                        argMultimap.getValue(PREFIX_VIEW_MODE).get()));
+                eventViewCommand.setTargetViewDate(parseLocalDate(
+                        argMultimap.getValue(PREFIX_VIEW_DATE).get()));
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                EventViewCommand.MESSAGE_USAGE));
+            }
+
+        } catch (ParseException e) {
+            logger.info("Invalid schedule view parameters entered by user. Must contain mode/ or date/");
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            EventViewCommand.MESSAGE_USAGE));
+        }
+
+        return eventViewCommand;
     }
 
 }
