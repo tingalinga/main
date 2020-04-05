@@ -96,7 +96,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         case 8:
         case 10:
         case 12:
-            if (day < 0 || day> 31) {
+            if (day < 0 || day > 31) {
                 throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
             }
             break;
