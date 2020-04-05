@@ -54,6 +54,12 @@ public class AssessmentCardHomework extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
         tags.getChildren().add(new Label("Homework"));
+        if (assessment.getSubmissionTracker().size() == assessment.noOfSubmittedStudents()) {
+            tags.getChildren().add(new Label("All Submitted"));
+        }
+        if (assessment.getSubmissionTracker().size() == assessment.noOfMarkedSubmissions()) {
+            tags.getChildren().add(new Label("Completed Marking"));
+        }
         date.setText("Deadline: "
                 + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
