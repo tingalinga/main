@@ -116,7 +116,6 @@ public class EditCommand extends Command {
         }
 
         model.updateStudentToAssessments(studentToEdit.getName().fullName, editedStudent.getName().fullName);
-      
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
 
