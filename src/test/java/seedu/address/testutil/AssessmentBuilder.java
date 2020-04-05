@@ -39,7 +39,7 @@ public class AssessmentBuilder {
         } else {
             type = "exam";
         }
-        date = assessmentToCopy.getDateString();
+        date = assessmentToCopy.getDate().toString();
         for (Submission submission: submissionTracker) {
             submissionTracker.add(submission);
         }

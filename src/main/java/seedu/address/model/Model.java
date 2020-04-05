@@ -167,6 +167,11 @@ public interface Model {
     void removeStudentFromAssessments(String toRemove);
 
     /**
+     * Updates student name to the submission tracker of all assessments.
+     */
+    void updateStudentToAssessments(String prevName, String newName);
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */

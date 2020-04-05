@@ -52,7 +52,7 @@ class JsonAdaptedAssessment {
             date = ((Homework) source).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         } else if (source instanceof Exam) {
             type = "exam";
-            date = ((Exam) source).getExamDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+            date = ((Exam) source).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         } else {
             type = null;
         }

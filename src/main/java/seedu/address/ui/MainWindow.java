@@ -388,12 +388,18 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             }
 
+            if (consoleReply.contains("New student added") || consoleReply.contains("Deleted Student")) {
+                handleStudentDefault();
+            }
+
             if (consoleReply.contains("Academics submitted following submissions")
-                    || consoleReply.contains("Academics marked following submissions")) {
+                    || consoleReply.contains("Academics marked following submissions")
+                    || consoleReply.contains("Added assessment")
+                    || consoleReply.contains("Edited Assessment")) {
                 handleAcademics();
             }
 
-            if (consoleReply.contains("Refreshed students")) {
+            if (consoleReply.contains("Refreshed students") || consoleReply.contains("Edited Student")) {
                 handleStudentDefault();
             }
 

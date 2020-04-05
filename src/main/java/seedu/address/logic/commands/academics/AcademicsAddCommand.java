@@ -57,7 +57,6 @@ public class AcademicsAddCommand extends AcademicsCommand {
         }
         List<Student> lastShownList = model.getFilteredStudentList();
         toAdd.setSubmissions(lastShownList);
-        toAdd.setAssessmentSubmissions(lastShownList);
         model.addAssessment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
