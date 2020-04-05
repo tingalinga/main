@@ -81,7 +81,7 @@ public class AcademicsEditCommand extends AcademicsCommand {
         assert assessmentToEdit != null;
 
         String updatedDescription = editAssessmentDescriptor.getDescription().orElse(assessmentToEdit.getDescription());
-        String updatedDate = editAssessmentDescriptor.getDate().orElse(assessmentToEdit.getDateString());
+        String updatedDate = editAssessmentDescriptor.getDate().orElse(assessmentToEdit.getDate().toString());
 
         String updatedType;
         if (assessmentToEdit instanceof Homework) {

@@ -32,6 +32,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
     private final ObservableList<Assessment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    /* SET METHODS */
     /**
      * Replaces the assessment {@code target} in the list with {@code editedAssessment}.
      * {@code target} must exist in the list.
@@ -70,6 +71,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         internalList.setAll(assessments);
     }
 
+    /* ASSESSMENT-LEVEL METHODS */
     /**
      * Returns true if the list contains an equivalent assessment as the given argument.
      */
@@ -120,8 +122,18 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         requireNonNull(toRemove);
         Iterator<Assessment> iterator = iterator();
         while (iterator.hasNext()) {
-            Assessment next = iterator.next();
-            next.removeStudent(toRemove);
+            iterator.next().removeStudent(toRemove);
+        }
+    }
+
+    /**
+     * Updates the student name in the submission tracker of assessment.
+     */
+    public void updateStudentToAssessments(String prevName, String newName) {
+        requireAllNonNull(prevName, newName);
+        Iterator<Assessment> iterator = iterator();
+        while (iterator.hasNext()) {
+            iterator.next().updateNewStudentName(prevName, newName);
         }
     }
 
@@ -155,6 +167,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         internalList.get(index).markAssessment(submissions);
     }
 
+    /* UTIL METHODS */
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

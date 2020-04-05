@@ -4,6 +4,7 @@ package seedu.address.model.academics;
  * Represents a students submission for an assessment.
  */
 public class Submission implements Comparable<Submission> {
+    /* SUBMISSION PROPERTIES */
     private String studentName;
     private boolean submitted;
     private boolean marked;
@@ -23,12 +24,17 @@ public class Submission implements Comparable<Submission> {
         this.score = score;
     }
 
+    /* ASSESS METHODS */
     /**
      * Returns student name.
      * @return String student name.
      */
     public String getStudentName() {
         return studentName;
+    }
+
+    public int getScore() {
+        return this.score;
     }
 
     /**
@@ -40,15 +46,20 @@ public class Submission implements Comparable<Submission> {
     }
 
     /**
+     * Sets student of submission to the given student name.
+     * @param newName name of new student.
+     */
+    public void setStudentName(String newName) {
+        this.studentName = newName;
+    }
+
+    /* SUBMISSION-LEVEL METHODS */
+    /**
      * Returns a boolean that indicates if assessment is marked.
      * @return boolean showing whether assessment is marked.
      */
     public boolean isMarked() {
         return this.marked;
-    }
-
-    public int getScore() {
-        return this.score;
     }
 
     /**

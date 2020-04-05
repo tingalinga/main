@@ -30,7 +30,6 @@ import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
-
 import seedu.address.model.student.Student;
 
 /**

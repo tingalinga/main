@@ -12,9 +12,11 @@ import seedu.address.model.student.Student;
  */
 public class Homework extends Assessment {
 
+    /* HOMEWORK ASSESSMENT PROPERTIES */
     private String description;
     private LocalDate date;
 
+    /* TRACKING SUBMISSIONS */
     private List<Submission> submissionTracker = new ArrayList<>();
 
     /**
@@ -39,6 +41,24 @@ public class Homework extends Assessment {
         this.date = date;
     }
 
+    /* ASSESS METHODS */
+    /**
+     * Returns the type of assessment.
+     * @return String assessment type
+     */
+    public String getType() {
+        return "homework";
+    }
+
+    /**
+     * Returns the deadline of homework.
+     * @return LocalDate deadline of homework.
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /* SET METHODS */
     /**
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.
@@ -61,6 +81,20 @@ public class Homework extends Assessment {
     }
 
     /**
+     * Updates the student name in the submission tracker of assessment.
+     */
+    public void updateNewStudentName(String prevName, String newName) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(prevName)) {
+                submission.setStudentName(newName);
+                break;
+            }
+        }
+        updateAssessmentNewStudentName(prevName, newName);
+    }
+
+    /* STUDENT-LEVEL METHODS */
+    /**
      * Adds new student to the submission tracker of all assessments.
      */
     public void addStudent(String toAdd) {
@@ -81,38 +115,7 @@ public class Homework extends Assessment {
         removeAssessmentStudent(toRemove);
     }
 
-    /**
-     * Returns the type of assessment.
-     * @return String assessment type
-     */
-    public String getType() {
-        return "homework";
-    }
-
-    /**
-     * Returns the deadline of homework.
-     * @return LocalDate deadline of homework.
-     */
-    public LocalDate getDate() {
-        return date;
-    }
-
-    /**
-     * Returns the deadline of homework as a string.
-     * @return String deadline of homework.
-     */
-    public String getDateString() {
-        return date.toString();
-    }
-
-    /**
-     * Edit the deadline of the homework.
-     * @param date homework deadline.
-     */
-    public void setDeadline(String date) {
-        this.date = LocalDate.parse(date);
-    }
-
+    /* ASSESSMENT-LEVEL METHODS */
     /**
      * Returns the number of students who have yet to submit their assessment.
      */
@@ -139,8 +142,7 @@ public class Homework extends Assessment {
         return submitted;
     }
 
-    // SETTING SAMPLE SUBMISSIONS
-
+    /* SETTING SAMPLE SUBMISSIONS */
     /**
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.
