@@ -158,7 +158,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
     public void setVEvent(Index index, VEvent vEvent) {
         requireNonNull(index);
         VEvent selectedVEvent = vEvents.get(index.getZeroBased());
-        if (!isEqual(selectedVEvent, vEvent) && contains(vEvent)) {
+        if (!isEqualEvent(selectedVEvent, vEvent) && contains(vEvent)) {
             throw new DuplicateVEventException();
         } else {
             vEvents.set(index.getZeroBased(), vEvent);
@@ -177,7 +177,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
      * Returns true if list contains the VEvent of {@code vEvent}
      */
     public boolean contains(VEvent vEventCheck) {
-        return vEvents.stream().anyMatch(vEvent -> isEqual(vEvent, vEventCheck));
+        return vEvents.stream().anyMatch(vEvent -> isEqualEvent(vEvent, vEventCheck));
     }
 
 

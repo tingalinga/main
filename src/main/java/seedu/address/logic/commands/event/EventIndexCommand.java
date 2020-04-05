@@ -18,6 +18,8 @@ import seedu.address.model.event.exceptions.VEventNotFoundException;
  * EventIndexCommand represent the indexGet command to obtain the index of the event.
  */
 public class EventIndexCommand extends EventCommand {
+    public static final String COMMAND_WORD = "schedule indexGet/";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets Index of a Event" + "\n"
             + "Parameters:" + "\n"
             + "indexGet/eventName"

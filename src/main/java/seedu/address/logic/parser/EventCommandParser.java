@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INDEX_INVALID_EVENT_NAME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DATETIME_RANGE;
+import static seedu.address.commons.core.Messages.MESSAGE_SCHEDULE_HELP;
 import static seedu.address.commons.util.EventUtil.makeUniqueIdentifier;
 import static seedu.address.commons.util.EventUtil.validateDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GET_INDEX;
@@ -36,6 +38,8 @@ import seedu.address.logic.commands.event.EventAddCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.EventDeleteCommand;
 import seedu.address.logic.commands.event.EventDisplayCommand;
+import seedu.address.logic.commands.event.EventEditCommand;
+import seedu.address.logic.commands.event.EventEditCommand.EditVEventDescriptor;
 import seedu.address.logic.commands.event.EventIndexCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -70,40 +74,37 @@ public class EventCommandParser implements Parser<EventCommand> {
                 PREFIX_ADD,
                 PREFIX_START_DATETIME,
                 PREFIX_END_DATETIME,
-                PREFIX_DELETE,
+                PREFIX_EVENT_DELETE,
+                PREFIX_EVENT_EDIT,
                 PREFIX_COLOR,
                 PREFIX_RECUR,
                 PREFIX_GET_INDEX,
                 PREFIX_VIEW_MODE,
                 PREFIX_VIEW_DATE);
-        boolean isEdit = false;
-        Index index = Index.fromZeroBased(0);
+
         try {
             String preamble = argMultimap.getPreamble();
-
             if (!preamble.isBlank()) {
-                index = ParserUtil.parseIndex(preamble);
-                isEdit = true;
+              ParserUtil.parseIndex(preamble);
             }
         } catch (ParseException e) {
             logger.info("Parser unable to parse preamble index.");
-            throw new ParseException("Check out the Help Tab for Command information"); // ADD IN THE PARSE EXCEPTION
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,MESSAGE_SCHEDULE_HELP));
         }
-        if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
-            return addCommand(argMultimap);
-        } else if (argMultimap.getValue(PREFIX_DELETE).isPresent()) {
-            return deleteCommand(argMultimap);
-        } else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) {
-            return indexGetCommand(argMultimap);
-        }
+
+            if (argMultimap.getValue(PREFIX_ADD).isPresent()) { // add command
+                return addCommand(argMultimap);
+            } else if (argMultimap.getValue(PREFIX_EVENT_DELETE).isPresent()) { // delete command
+                return deleteCommand(argMultimap);
+            } else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) { // indexGet command
+                return indexGetCommand(argMultimap);
+            } else if (argMultimap.getValue(PREFIX_EVENT_EDIT).isPresent()) { // edit command
+                return editCommand(argMultimap);
+            }
         /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
-        }  else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) {
-            return indexOfCommand(argMultimap);
-        } else if (isEdit) {
-            return editCommand(index, argMultimap);
-        } else {*/
-        return addCommand(argMultimap);
+        }  else {*/
+        return null;
     }
 
 
@@ -150,18 +151,18 @@ public class EventCommandParser implements Parser<EventCommand> {
     }
 
     /**
-            * Performs validation and return the EventDeleteCommand object.
+     * Performs validation and return the EventDeleteCommand object to be executed
      *
-             * @param argMultimap for tokenized input.
-            * @return EventDeleteCommand object.
-            * @throws ParseException
+     * @param argMultimap for tokenized input.
+     * @return EventDeleteCommand object.
+     * @throws ParseException
      */
     private EventDeleteCommand deleteCommand(ArgumentMultimap argMultimap)
             throws ParseException {
         Index index;
         try {
             int indexToDelete = Integer
-                    .parseInt(argMultimap.getValue(PREFIX_DELETE).orElse("0"));
+                    .parseInt(argMultimap.getValue(PREFIX_EVENT_DELETE).orElse("0"));
 
             if (indexToDelete <= 0) {
                 throw new ParseException(
@@ -179,7 +180,7 @@ public class EventCommandParser implements Parser<EventCommand> {
     }
 
     /**
-     * Performs validation and return the EventIndexCommand object.
+     * Performs validation and return the EventIndexCommand object to be executed.
      *
      * @param argMultimap for tokenized input.
      * @return EventAddCommand object.
@@ -201,6 +202,66 @@ public class EventCommandParser implements Parser<EventCommand> {
         String eventName = argMultimap.getValue(PREFIX_GET_INDEX).orElse("");
 
         return new EventIndexCommand(eventName);
+    }
+
+    /**
+     * Performs validation and return the EventEditCommand object to be executed.
+     *
+     * @param index index of the vEvent in the list.
+     * @param argMultimap for tokenized input.
+     * @return EventEditCommand object.
+     * @throws ParseException
+     */
+    private EventEditCommand editCommand(ArgumentMultimap argMultimap) throws ParseException {
+        Index index;
+        EditVEventDescriptor editVEventDescriptor = new EditVEventDescriptor();
+
+        try {
+            int indexToEdit = Integer
+                    .parseInt(argMultimap.getValue(PREFIX_EVENT_EDIT).orElse("0"));
+
+            if (indexToEdit <= 0) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                EventEditCommand.MESSAGE_USAGE));
+            }
+            index = Index.fromOneBased(indexToEdit);
+        } catch (NumberFormatException e) {
+            logger.info("Invalid schedule index provided for editing.");
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            EventEditCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getValue(PREFIX_COLOR).isPresent()
+                && !argMultimap.getValue(PREFIX_COLOR).get().isBlank()) {
+            editVEventDescriptor.setColorCategory(parseColorCode(argMultimap.getValue(PREFIX_COLOR).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_EVENT_NAME).isPresent()
+                && !argMultimap.getValue(PREFIX_EVENT_NAME).get().isBlank()) {
+            editVEventDescriptor.setEventName(parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_START_DATETIME).isPresent()
+                && !argMultimap.getValue(PREFIX_START_DATETIME).get().isBlank()) {
+            editVEventDescriptor.setStartDateTime(ParserUtil.parseLocalDateTime(
+                    argMultimap.getValue(PREFIX_START_DATETIME).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_END_DATETIME).isPresent()
+                && !argMultimap.getValue(PREFIX_END_DATETIME).get().isBlank()) {
+            editVEventDescriptor.setEndDateTime(ParserUtil.parseLocalDateTime(
+                    argMultimap.getValue(PREFIX_END_DATETIME).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_RECUR).isPresent()
+                && !argMultimap.getValue(PREFIX_RECUR).get().isBlank()) {
+            editVEventDescriptor.setRecurrenceRule(ParserUtil.parseRecurrenceType(
+                    argMultimap.getValue(PREFIX_RECUR).get()));
+        }
+
+        return new EventEditCommand(index, editVEventDescriptor);
     }
 
 }
