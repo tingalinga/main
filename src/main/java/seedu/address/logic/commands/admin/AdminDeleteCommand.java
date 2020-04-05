@@ -2,6 +2,7 @@ package seedu.address.logic.commands.admin;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DATES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -39,6 +40,7 @@ public class AdminDeleteCommand extends AdminCommand {
             String fullDate = dateToDelete.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
                     + dateToDelete.getDate().getDayOfMonth() + " " + dateToDelete.getDate().getYear();
             model.deleteDate(dateToDelete);
+            model.updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
             return new CommandResult(String.format(MESSAGE_SUCCESS, fullDate));
         }
     }
