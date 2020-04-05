@@ -145,6 +145,8 @@ public class Student {
                 .append(getTemperature())
                 .append(" Attendance: ")
                 .append(getAttendance())
+                .append(" NextOfKin: ")
+                .append(getNok())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Tags: ");
