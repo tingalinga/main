@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
@@ -52,13 +52,13 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_EVENT_DELETE, PREFIX_EDIT, PREFIX_HOMEWORK, PREFIX_EXAM,
+                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_DELETE, PREFIX_EDIT, PREFIX_HOMEWORK, PREFIX_EXAM,
                         PREFIX_REPORT, PREFIX_SUBMIT, PREFIX_MARK, PREFIX_STUDENT, PREFIX_ASSESSMENT_DESCRIPTION,
                         PREFIX_ASSESSMENT_TYPE, PREFIX_ASSESSMENT_DATE);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
-        } else if (argMultimap.getValue(PREFIX_EVENT_DELETE).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_DELETE).isPresent()) {
             return deleteCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_EDIT).isPresent()) {
             return editCommand(argMultimap);
@@ -101,7 +101,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      */
     private AcademicsDeleteCommand deleteCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
         try {
-            Index index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_EVENT_DELETE.getPrefix()));
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_DELETE.getPrefix()));
             return new AcademicsDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(

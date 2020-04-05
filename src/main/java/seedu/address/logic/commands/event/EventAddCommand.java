@@ -19,8 +19,8 @@ public class EventAddCommand extends EventCommand {
             + "endDateTime/[ENDDATETIME]\n"
             + "recur/[DAILY/WEEKLY/NONE]\n"
             + "color/[0-23]\n"
-            + "Example: schedule add eventName/Consultation startDateTime/2020-03-30T08:00 endDateTime/2020-03-30T10:00 "
-            + "recur/none color/3";
+            + "Example: schedule add eventName/Consultation startDateTime/2020-03-30T08:00"
+            + " endDateTime/2020-03-30T10:00 recur/none color/3";
     public static final String MESSAGE_SUCCESS = "Added Event: %1$s";
 
     private final VEvent vEventToAdd;

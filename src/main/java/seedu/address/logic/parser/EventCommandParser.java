@@ -9,9 +9,9 @@ import static seedu.address.commons.util.EventUtil.makeUniqueIdentifier;
 import static seedu.address.commons.util.EventUtil.validateDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EDIT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GET_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECUR;
@@ -85,22 +85,22 @@ public class EventCommandParser implements Parser<EventCommand> {
         try {
             String preamble = argMultimap.getPreamble();
             if (!preamble.isBlank()) {
-              ParserUtil.parseIndex(preamble);
+                ParserUtil.parseIndex(preamble);
             }
         } catch (ParseException e) {
             logger.info("Parser unable to parse preamble index.");
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,MESSAGE_SCHEDULE_HELP));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_SCHEDULE_HELP));
         }
 
-            if (argMultimap.getValue(PREFIX_ADD).isPresent()) { // add command
-                return addCommand(argMultimap);
-            } else if (argMultimap.getValue(PREFIX_EVENT_DELETE).isPresent()) { // delete command
-                return deleteCommand(argMultimap);
-            } else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) { // indexGet command
-                return indexGetCommand(argMultimap);
-            } else if (argMultimap.getValue(PREFIX_EVENT_EDIT).isPresent()) { // edit command
-                return editCommand(argMultimap);
-            }
+        if (argMultimap.getValue(PREFIX_ADD).isPresent()) { // add command
+            return addCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_EVENT_DELETE).isPresent()) { // delete command
+            return deleteCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_GET_INDEX).isPresent()) { // indexGet command
+            return indexGetCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_EVENT_EDIT).isPresent()) { // edit command
+            return editCommand(argMultimap);
+        }
         /*if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
         }  else {*/
@@ -207,7 +207,6 @@ public class EventCommandParser implements Parser<EventCommand> {
     /**
      * Performs validation and return the EventEditCommand object to be executed.
      *
-     * @param index index of the vEvent in the list.
      * @param argMultimap for tokenized input.
      * @return EventEditCommand object.
      * @throws ParseException

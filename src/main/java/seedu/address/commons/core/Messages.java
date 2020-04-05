@@ -40,7 +40,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index provided."
             + " Please use indexGet/<eventName> to obtain the right index";
     public static final String MESSAGE_INDEX_INVALID_EVENT_NAME = "Invalid event name entered."
-            + " Please input a valid Event Name."  + "\n"
+            + " Please input a valid Event Name." + "\n"
             + " schedule indexGet/<eventName>";
     public static final String MESSAGE_SCHEDULE_HELP = "Invalid schedule command entered."
             + " Please input a valid schedule command." + "\n"
