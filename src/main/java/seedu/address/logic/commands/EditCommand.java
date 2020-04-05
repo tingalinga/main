@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
@@ -47,6 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_NOK + "NOK] "
             + "[" + PREFIX_TEMPERATURE + "TEMPERATURE] "
             + "[" + PREFIX_ATTENDANCE + "ATTENDANCE] "
             + "[" + PREFIX_TAG + "TAG]...\n";
@@ -107,7 +109,7 @@ public class EditCommand extends Command {
         Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
-        NextOfKin updatedNok = studentToEdit.getNok();
+        NextOfKin updatedNok = editStudentDescriptor.getNok().orElse(studentToEdit.getNok());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature,
                 updatedAttendance, updatedNok, updatedRemark, updatedTags);
@@ -143,6 +145,7 @@ public class EditCommand extends Command {
         private Temperature temperature;
         private Attendance attendance;
         private Set<Tag> tags;
+        private NextOfKin nok;
 
         public EditStudentDescriptor() {
         }
@@ -159,13 +162,14 @@ public class EditCommand extends Command {
             setTemperature(toCopy.temperature);
             setAttendance(toCopy.attendance);
             setTags(toCopy.tags);
+            setNok(toCopy.nok);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, temperature, attendance, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, nok, temperature, attendance, tags);
         }
 
         public void setName(Name name) {
@@ -202,6 +206,14 @@ public class EditCommand extends Command {
 
         public void setTemperature(Temperature temperature) {
             this.temperature = temperature;
+        }
+
+        public Optional<NextOfKin> getNok() {
+            return Optional.ofNullable(nok);
+        }
+
+        public void setNok(NextOfKin nok) {
+            this.nok = nok;
         }
 
         public Optional<Temperature> getTemperature() {
