@@ -29,57 +29,49 @@ public class AdminCommandParser implements Parser<AdminCommand> {
     public AdminCommand parse(String arg) throws ParseException, DateTimeException {
         arg.trim();
         String[] inputs = arg.split(" ");
-        if (inputs.length < 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AdminCommand.MESSAGE_USAGE));
-        }
-        try {
-            switch (inputs[1]) {
-            case AdminCommand.ADMIN_DISPLAY:
-                if (inputs.length > 2) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AdminDisplayCommand.MESSAGE_USAGE));
-                } else {
-                    return new AdminDisplayCommand();
-                }
+        if (inputs.length == 1) {
+            return new AdminDisplayCommand();
+        } else {
+            try {
+                switch (inputs[1]) {
+                case AdminCommand.ADMIN_FETCH:
+                    if (inputs.length > 3 || inputs.length == 2) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                AdminFetchCommand.MESSAGE_USAGE));
+                    } else {
+                        return new AdminFetchCommand(new DateContainsKeywordsPredicate(LocalDate.parse(inputs[2])));
+                    }
 
-            case AdminCommand.ADMIN_FETCH:
-                if (inputs.length > 3 || inputs.length == 2) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AdminFetchCommand.MESSAGE_USAGE));
-                } else {
-                    return new AdminFetchCommand(new DateContainsKeywordsPredicate(LocalDate.parse(inputs[2])));
-                }
+                case AdminCommand.ADMIN_SAVE:
+                    if (inputs.length > 2) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                AdminSaveCommand.MESSAGE_USAGE));
+                    } else {
+                        return new AdminSaveCommand(LocalDate.now());
+                    }
 
-            case AdminCommand.ADMIN_SAVE:
-                if (inputs.length > 2) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AdminSaveCommand.MESSAGE_USAGE));
-                } else {
-                    return new AdminSaveCommand(LocalDate.now());
-                }
+                case AdminCommand.ADMIN_DELETE:
+                    if (inputs.length > 3 || inputs.length == 2) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                AdminDeleteCommand.MESSAGE_USAGE));
+                    } else {
+                        return new AdminDeleteCommand(new DateContainsKeywordsPredicate(LocalDate.parse(inputs[2])));
+                    }
 
-            case AdminCommand.ADMIN_DELETE:
-                if (inputs.length > 3 || inputs.length == 2) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AdminDeleteCommand.MESSAGE_USAGE));
-                } else {
-                    return new AdminDeleteCommand(new DateContainsKeywordsPredicate(LocalDate.parse(inputs[2])));
-                }
+                case AdminCommand.ADMIN_DATES:
+                    if (inputs.length > 2) {
+                        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                                AdminDatesCommand.MESSAGE_USAGE));
+                    } else {
+                        return new AdminDatesCommand();
+                    }
 
-            case AdminCommand.ADMIN_DATES:
-                if (inputs.length > 2) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            AdminDatesCommand.MESSAGE_USAGE));
-                } else {
-                    return new AdminDatesCommand();
+                default:
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AdminCommand.MESSAGE_USAGE));
                 }
-
-            default:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AdminCommand.MESSAGE_USAGE));
+            } catch (DateTimeParseException dtpe) {
+                throw new ParseException(MESSAGE_INVALID_DATE);
             }
-        } catch (DateTimeParseException dtpe) {
-            throw new ParseException(MESSAGE_INVALID_DATE);
         }
     }
 }

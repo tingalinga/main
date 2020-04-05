@@ -260,7 +260,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleStudentAdmin() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         studentListPanel.getRoot().toFront();
         studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
@@ -397,6 +397,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleAcademics();
             }
 
+            if (consoleReply.contains("Refreshed students")) {
+                handleStudentDefault();
+            }
+
             if (consoleReply.contains("Notes are exported to studentNotes.csv")) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
                 notesExporter.saveToCsv();
@@ -408,7 +412,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (consoleReply.contains("Class admin details for")) {
                 studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
-                        .get(0).getStudents()), "admin display");
+                        .get(0).getStudents()), "admin");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 

@@ -52,6 +52,8 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label address;
+    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
@@ -69,10 +71,18 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         phone.setText("Mobile:  " + student.getPhone().value);
+        address.setText("Address: " + student.getAddress().value);
         email.setText("Email:   " + student.getEmail().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        updateImage();
+    }
+
+    /**
+     * Updates profile image of student
+     */
+    public void updateImage() {
         try {
             String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
             File file = new File(path);

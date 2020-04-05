@@ -58,6 +58,13 @@ public class StudentCardAdmin extends UiPart<Region> {
                 ? "Temperature:   " + student.getTemperature().value
                 : "Temperature:   " + student.getTemperature().value + " \u2103");
         attendance.setText("Attendance:   " + student.getAttendance().value);
+        updateImage();
+    }
+
+    /**
+     * Updates profile image of student
+     */
+    public void updateImage() {
         try {
             String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
             File file = new File(path);
