@@ -21,6 +21,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
@@ -402,7 +403,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleStudentDefault();
             }
 
-            if (consoleReply.contains("Notes are exported to studentNotes.csv")) {
+            if (consoleReply.equals(NotesExportCommand.MESSAGE_SUCCESS)) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
                 notesExporter.saveToCsv();
             }

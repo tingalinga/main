@@ -79,7 +79,7 @@ public class NotesAddCommand extends Command {
         boolean nameFound = false;
 
         for (Student student : students) {
-            if (student.getName().toString().toLowerCase().equals(this.name.toLowerCase())) {
+            if (student.getName().toString().equals(this.name)) {
                 nameFound = true;
             }
         }

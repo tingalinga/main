@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_NOTES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.Collections;
@@ -21,7 +22,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
 import seedu.address.model.Model;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
@@ -90,6 +93,28 @@ public class EditCommand extends Command {
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+
+        // Edit Student's Name on Notes
+        if (editStudentDescriptor.getName().isPresent()) {
+            String prevStudentName = studentToEdit.getName().toString();
+            System.out.println(prevStudentName);
+            String newStudentName = editStudentDescriptor.getName().get().toString();
+            System.out.println(newStudentName);
+            List<Notes> lastShownNotes = model.getFilteredNotesList();
+            for (int i = 0; i < lastShownNotes.size(); i++) {
+                if (lastShownNotes.get(i).getStudent().equals(prevStudentName)) {
+                    Notes noteToEdit = lastShownNotes.get(i);
+                    EditNotesDescriptor editNotesDescriptor = new EditNotesDescriptor();
+                    editNotesDescriptor.setStudent(newStudentName);
+                    editNotesDescriptor.setContent(noteToEdit.getContent());
+                    editNotesDescriptor.setPriority(noteToEdit.getPriority());
+                    Notes editedNote = createEditedNote(noteToEdit, editNotesDescriptor);
+                    model.setNote(noteToEdit, editedNote);
+                }
+            }
+            model.updateFilteredNotesList(PREDICATE_SHOW_ALL_NOTES);
+        }
+
         model.updateStudentToAssessments(studentToEdit.getName().fullName, editedStudent.getName().fullName);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
@@ -114,6 +139,22 @@ public class EditCommand extends Command {
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature,
                 updatedAttendance, updatedNok, updatedRemark, updatedTags);
     }
+
+    /**
+     * Creates and returns a {@code Notes} with the details of {@code noteToEdit}
+     * edited with {@code editNotesDescriptor}.
+     */
+    private static Notes createEditedNote(Notes noteToEdit, EditNotesDescriptor editNotesDescriptor) {
+        assert noteToEdit != null;
+
+        String updatedStudent = editNotesDescriptor.getStudent().orElse(noteToEdit.getStudent());
+        String updatedContent = editNotesDescriptor.getContent().orElse(noteToEdit.getContent());
+        String updatedPriority = editNotesDescriptor.getPriority().orElse(noteToEdit.getPriority());
+        String unchangedDateTime = noteToEdit.getDateTime();
+
+        return new Notes(updatedStudent, updatedContent, updatedPriority, unchangedDateTime);
+    }
+
 
     @Override
     public boolean equals(Object other) {
