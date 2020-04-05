@@ -37,7 +37,6 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_TEMPERATURE = BENSON.getTemperature().toString();
     private static final String VALID_ATTENDANCE = BENSON.getAttendance().toString();
-    private static final String VALID_REMARK = BENSON.getRemark().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -53,7 +52,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -63,7 +62,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -73,7 +72,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -83,7 +82,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_NOK, VALID_ATTENDANCE, VALID_REMARK, VALID_TAGS);
+                        VALID_NOK, VALID_ATTENDANCE, VALID_TAGS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -93,7 +92,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -103,7 +102,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TEMPERATURE, VALID_NOK,
-                        VALID_ATTENDANCE, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, VALID_TAGS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -113,7 +112,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -123,7 +122,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TEMPERATURE, VALID_NOK,
-                        VALID_ATTENDANCE, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, VALID_TAGS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -133,7 +132,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidNok_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, INVALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, INVALID_NOK, VALID_TAGS);
         String expectedMessage = NextOfKin.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -142,7 +141,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullNok_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, null, VALID_REMARK, VALID_TAGS);
+                        VALID_ATTENDANCE, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, NextOfKin.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
@@ -151,7 +150,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidTemperatureFormat_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_TEMPERATURE_1, VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        INVALID_TEMPERATURE_1, VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = Temperature.MESSAGE_CONSTRAINTS_1;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -161,7 +160,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidTemperatureRange_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_TEMPERATURE_2, VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        INVALID_TEMPERATURE_2, VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = Temperature.MESSAGE_CONSTRAINTS_2;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -171,7 +170,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullTemperature_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        null, VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        null, VALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Temperature.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -181,7 +180,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_invalidAttendance_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_TEMPERATURE, INVALID_ATTENDANCE, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_TEMPERATURE, INVALID_ATTENDANCE, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = Attendance.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -191,7 +190,7 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullAttendance_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_TEMPERATURE, null, VALID_NOK, VALID_REMARK, VALID_TAGS);
+                        VALID_TEMPERATURE, null, VALID_NOK, VALID_TAGS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
@@ -203,7 +202,7 @@ public class JsonAdaptedStudentTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, VALID_NOK, VALID_REMARK, invalidTags);
+                        VALID_ATTENDANCE, VALID_NOK, invalidTags);
 
         assertThrows(IllegalValueException.class, student::toModelType);
     }

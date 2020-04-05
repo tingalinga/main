@@ -21,7 +21,6 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
 
@@ -55,9 +54,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         NextOfKin nok = ParserUtil.parseNok(argMultimap.getValue(PREFIX_NOK).get());
         Temperature temperature = ParserUtil.parseTemperature(argMultimap.getValue(PREFIX_TEMPERATURE).get());
         Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
-        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Student student = new Student(name, phone, email, address, temperature, attendance, nok, remark,
+        Student student = new Student(name, phone, email, address, temperature, attendance, nok,
                 tagList);
         return new AddCommand(student);
     }
