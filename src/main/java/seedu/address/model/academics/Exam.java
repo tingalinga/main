@@ -47,6 +47,7 @@ public class Exam extends Assessment {
         for (Student student: students) {
             submissionTracker.add(new Submission(student.getName().fullName));
         }
+        setAssessmentSubmissions(students);
     }
 
     /**

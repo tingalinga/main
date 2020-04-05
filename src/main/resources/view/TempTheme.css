@@ -56,10 +56,9 @@
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
+    -fx-border-color: transparent
         transparent
-        transparent
-        derive(-fx-base, 80%)
+        derive(white, 80%)
         transparent;
     -fx-border-insets: 0 10 1 0;
 }
@@ -199,7 +198,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#white, 50%);
+    -fx-background-color: derive(white, 50%);
 }
 
 .context-menu .label {

@@ -33,26 +33,6 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent assessment as the given argument.
-     */
-    public boolean contains(Assessment toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameAssessment);
-    }
-
-    /**
-     * Adds an assessment to the list.
-     * The assessment must not already exist in the list.
-     */
-    public void add(Assessment toAdd) {
-        requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateAssessmentException();
-        }
-        internalList.add(toAdd);
-    }
-
-    /**
      * Replaces the assessment {@code target} in the list with {@code editedAssessment}.
      * {@code target} must exist in the list.
      * The assessment identity of {@code editedAssessment} must not be the same as another existing assessment in
@@ -73,6 +53,43 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         internalList.set(index, editedAssessment);
     }
 
+    public void setAssessments(UniqueAssessmentList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code assessments}.
+     * {@code assessments} must not contain duplicate assessments.
+     */
+    public void setAssessments(List<Assessment> assessments) {
+        requireAllNonNull(assessments);
+        if (!assessmentsAreUnique(assessments)) {
+            throw new DuplicateAssessmentException();
+        }
+        internalList.setAll(assessments);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent assessment as the given argument.
+     */
+    public boolean contains(Assessment toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameAssessment);
+    }
+
+    /**
+     * Adds an assessment to the list.
+     * The assessment must not already exist in the list.
+     */
+    public void add(Assessment toAdd) {
+        requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateAssessmentException();
+        }
+        internalList.add(toAdd);
+    }
+
     /**
      * Removes the equivalent assessment from the list.
      * The assessment must exist in the list.
@@ -82,16 +99,6 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         if (!internalList.remove(toRemove)) {
             throw new AssessmentNotFoundException();
         }
-    }
-
-    /**
-     * Submits students' submissions to the assessment in {@code Academics}.
-     * {@code target} must exist in the assessment list.
-     */
-    public void submitAssessment(Assessment target, List<String> students) {
-        requireAllNonNull(target, students);
-        int index = internalList.indexOf(target);
-        internalList.get(index).setSubmitted(students);
     }
 
     /**
@@ -119,6 +126,16 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
     }
 
     /**
+     * Submits students' submissions to the assessment in {@code Academics}.
+     * {@code target} must exist in the assessment list.
+     */
+    public void submitAssessment(Assessment target, List<String> students) {
+        requireAllNonNull(target, students);
+        int index = internalList.indexOf(target);
+        internalList.get(index).setSubmitted(students);
+    }
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */
@@ -136,24 +153,6 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         requireAllNonNull(target, submissions);
         int index = internalList.indexOf(target);
         internalList.get(index).markAssessment(submissions);
-    }
-
-    public void setAssessments(UniqueAssessmentList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code assessments}.
-     * {@code assessments} must not contain duplicate assessments.
-     */
-    public void setAssessments(List<Assessment> assessments) {
-        requireAllNonNull(assessments);
-        if (!assessmentsAreUnique(assessments)) {
-            throw new DuplicateAssessmentException();
-        }
-
-        internalList.setAll(assessments);
     }
 
     /**

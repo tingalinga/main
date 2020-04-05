@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
@@ -25,10 +26,10 @@ import seedu.address.logic.commands.academics.AcademicsDeleteCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand;
 import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
-import seedu.address.logic.commands.academics.display.AcademicsDisplayCommand;
-import seedu.address.logic.commands.academics.display.AcademicsDisplayExamCommand;
-import seedu.address.logic.commands.academics.display.AcademicsDisplayHomeworkCommand;
-import seedu.address.logic.commands.academics.display.AcademicsDisplayReportCommand;
+import seedu.address.logic.commands.academics.AcademicsDisplayCommand;
+import seedu.address.logic.commands.academics.AcademicsDisplayExamCommand;
+import seedu.address.logic.commands.academics.AcademicsDisplayHomeworkCommand;
+import seedu.address.logic.commands.academics.AcademicsDisplayReportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -77,6 +78,19 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         }
     }
 
+    private void checkValidDate(String date) throws ParseException {
+        String[] split = date.split("-");
+        if (split.length < 3 || split[0].length() < 4 || split[1].length() < 2 || split[2].length() < 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
+        }
+        if (Integer.parseInt(split[1]) < 1 || Integer.parseInt(split[1]) > 12) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
+        }
+        if (Integer.parseInt(split[2]) < 0 || Integer.parseInt(split[2]) > 30) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
+        }
+    }
+
     /**
      * Returns a AcademicsAddCommand object for execution.
      * {@code ArgumentMultimap}.
@@ -91,6 +105,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         String description = argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get();
         String type = argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get();
         String date = argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get();
+        checkValidDate(date);
 
         return new AcademicsAddCommand(description, type, date);
     }

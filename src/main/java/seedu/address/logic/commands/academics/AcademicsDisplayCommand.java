@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.academics.display;
+package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,14 +10,14 @@ import seedu.address.model.Model;
 /**
  * Displays an administrative version of the students list.
  */
-public class AcademicsDisplayExamCommand extends AcademicsCommand {
+public class AcademicsDisplayCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_SUCCESS = "Academics now displays all EXAM assessments";
+    public static final String MESSAGE_SUCCESS = "Academics now displays all assessments";
 
     /**
-     * Creates an AcademicsDisplayExamCommand.
+     * Creates an AcademicsDisplayCommand.
      */
-    public AcademicsDisplayExamCommand() {
+    public AcademicsDisplayCommand() {
 
     }
 
