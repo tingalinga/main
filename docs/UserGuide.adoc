@@ -124,13 +124,6 @@ This section will provide you with an in-depth explanation of our features of Te
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
 Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
 
-==== Commands related to Class Particulars
-part add delete view
-
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
-
 
 '''
 
@@ -138,12 +131,7 @@ CATER THEIR NEEDS
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
 temperature recordings. Data will be displayed in a weekly format for further perusal.
 
-==== Commands related to Class Administration
-temp admin
 
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
 '''
 
@@ -153,47 +141,11 @@ sorted according to date and time. You will then be able to view your weekly sch
 
 
 
-==== Commands related to Personal Scheduler
-
-===== Display Personal Schedule: `schedule`
-
-Displays the personal schedule (description)
-
-Format: `schedule`
-
-The format supported by this command includes:
-
-|===
-|Keyword |Description
-
-|`NONE`
-|NONE
-|===
-
-Examples:
-
-- `schedule` +
-Views your current schedule
-
-====== Add event: `placeholder`
-etc etc
-
-'''
-
-
-
-
 === Class Progress Tracker
 TeaPet's Class Progress Tracker is able to keep tabs on the class' academic progress. You will be able to store data of
 every student's subject grades with this feature. Thereafter, there will be a graph plot displayed to highlight the
 progress of individual students as well as the entire class.
 
-==== Commands related to Class Progress Tracker
-academics
-
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
 //tag::update-profile[]
 [[update-profile]]
@@ -283,6 +235,12 @@ If you want a simple and concise display of the student list, typing the `defaul
 summary of your students. +
 Format: `default`
 
+==== View scheduler: `schedule`
+
+==== View academics: `academics`
+
+==== View notes: `notes`
+
 ==== Exit program: `exit`
 If you are done using TeaPet and would like to safely exit the application, typing the `exit` command will save your data
 and exit the program +
@@ -363,6 +321,7 @@ Expected Outcome:
 
 
 === Schedule Commands
+
 
 ==== Creating a schedule: `add`
 
