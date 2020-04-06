@@ -153,27 +153,34 @@ progress of individual students as well as the entire class.
 TeaPet's student list allows you to upload image of your students into your application.
 The following steps will help you upload photos of your students into the student list.
 
-*Step 1*. Locate the image folder. It is in the root directory folder! +
+*Step 1*. Locate the image folder. It is in the root directory folder!
 
 .Location of image folder
 image::locating_image_folder.png[width="790"]
+
+{nbsp} +
 
 *Step 2*. Open the image folder and drag the image of your student into the folder.
 
 NOTE: The filename of your image must of this format: +
 1. Filename must be of the same name as the student. +
 2. Filename is all lowercase. +
-3. Filename have no whitespaces +
-4. File is in .png format +
+3. Filename have no whitespaces. +
+4. File is in .png format. +
 For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
 
 .Dragging png file into image folder
 image::images_in_folder.png[width="790"]
 
+{nbsp} +
+
 *Step 3*. Type in the `refresh` command in the user interface. Now you can see your students pictures in your student list!
+
 
 .Before using the refresh command
 image::before_picture_upload.png[width="790]
+
+{nbsp} +
 
 .After using the refresh command
 image::after_picture_upload.png[width="790]
@@ -333,6 +340,20 @@ Adds an event to your personal scheduler.
 
 Format: `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
 
+NOTE: All parameters are required.
+
+NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
+For example, 7th April 2020 10AM will be 2020-04-07T10:00
+
+NOTE: Events which are further away in the future have a darker color code. This is intentional.
+
+TIP: Color group is from 0 to 23 inclusive. +
+
+.Color code for TeaPet's calendar
+image::color_code.png[width="790"]
+
+{nbsp} +
+
 Example:
 
 * *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-07T10:00
@@ -340,6 +361,8 @@ endDateTime/2020-04-07T12:00 recur/none color/10`
 Creates a schedule with the title '_Teachers Meeting_' from '_7th Apr 2020, 1000_' to '_7th Apr 2020, 1200_' with no recurrence
 and a color group of '_10_'.
 
+.Adding a consultation event to the schedule
+image::event_add.png[width="790"]
 
 == FAQ
 This section will provide answers to all Frequently Asked Questions by our users.
@@ -350,25 +373,33 @@ How do I transfer my data to another Computer? ::
 
 [[Summary]]
 == Command Summary
-This section provides a summary on all of the commands that we use at TeaPet sorted in alphabetical order.
+This section provides a summary on all of the commands that we use in TeaPet.
 
-* *Academics*: `academics`
-* *Add*: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`     +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Administrative Student Information*: `admin`
-* *Clear*: `clear`
-* *Delete*: `delete INDEX` +
-e.g. `delete 3`
-* *Default Student Information*: `default`
-* *Detailed Student Information*: `detailed`
-* *Edit*: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find*: `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *Help*: `help`
-* *List*: `list`
-* *Notes*: `anotes [n/NAME] [c/CONTENT]`
-* *Schedule*: `schedule`
+=== Default Commands
+Here are the default commands available for use. They do not require prefixes.
 
-'''
+[cols="10%, 45%, 45%"]
+.Default commands of TeaPet.
+|===
+|*Command*|*Format*|*Expected outcome*
+|`help`|`help`|Opens up the User Guide
+|`exit`|`exit`|Safely exits the application
+|`default`|`default`|Displays the default form of student list
+|`detailed`|`detailed`|Displays the detailed details of the class
+|`admin`|`admin`|Displays the administrative details of the class
+|`schedule`|`schedule`|Displays your personal schedule
+|`academics`|`academics`|Displays the academic records of the class
+|===
+
+=== Student Commands
+Here are the commands to manage students. They require the prefix `student`.
+
+[cols="10%, 45%, 45%"]
+.Student commands of TeaPet
+|===
+
+
+
+
+
 
