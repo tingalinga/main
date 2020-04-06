@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import jfxtras.icalendarfx.VCalendar;
 import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.internal.scene.control.skin.agenda.AgendaDaySkin;
 import jfxtras.internal.scene.control.skin.agenda.AgendaWeekSkin;
 import jfxtras.scene.control.agenda.icalendar.ICalendarAgenda;
 import seedu.address.commons.core.LogsCenter;
@@ -71,8 +72,25 @@ public class SchedulePanel extends UiPart<Region> {
     }
 
     /**
+     * Sets the calendar to week view format.
+     */
+    public void setWeekly() {
+        AgendaWeekSkin weekSkin = new AgendaWeekSkin(this.agenda);
+        agenda.setSkin(weekSkin);
+    }
+
+    /**
+     * Sets the calendar to day view format.
+     */
+    public void setDaily() {
+        AgendaDaySkin dailySkin = new AgendaDaySkin(this.agenda);
+        agenda.setSkin(dailySkin);
+    }
+
+
+    /**
      * Changes panel to show time interval
-     * @param localDateTime
+     * @param localDateTime local date and time.
      */
     public void setDisplayedDateTime(LocalDateTime localDateTime) {
         this.agenda.setDisplayedLocalDateTime(localDateTime);

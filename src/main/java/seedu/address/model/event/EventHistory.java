@@ -1,6 +1,7 @@
 package seedu.address.model.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.StringUtil.calculateStringSimilarityPercentage;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,9 +12,11 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.EventUtil;
 import seedu.address.model.event.exceptions.DuplicateVEventException;
+import seedu.address.model.event.exceptions.VEventNotFoundException;
 
 
 /**
@@ -155,7 +158,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
     public void setVEvent(Index index, VEvent vEvent) {
         requireNonNull(index);
         VEvent selectedVEvent = vEvents.get(index.getZeroBased());
-        if (!isEqual(selectedVEvent, vEvent) && contains(vEvent)) {
+        if (!isEqualEvent(selectedVEvent, vEvent) && contains(vEvent)) {
             throw new DuplicateVEventException();
         } else {
             vEvents.set(index.getZeroBased(), vEvent);
@@ -174,8 +177,59 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
      * Returns true if list contains the VEvent of {@code vEvent}
      */
     public boolean contains(VEvent vEventCheck) {
-        return vEvents.stream().anyMatch(vEvent -> isEqual(vEvent, vEventCheck));
+        return vEvents.stream().anyMatch(vEvent -> isEqualEvent(vEvent, vEventCheck));
     }
+
+
+    /**
+     * Searches the list of vEvents and return the VEvents which have the same eventName as the parameter entered.
+     *
+     * @return List of pair of Indexes and VEvents which equal to eventName
+     */
+    public List<Pair<Index, VEvent>> searchVEvents(String eventName) {
+        requireNonNull(eventName);
+
+        List<Pair<Index, VEvent>> resultIndexList = new ArrayList<>();
+        for (int i = 0; i < vEvents.size(); i++) {
+            VEvent currentVEvent = vEvents.get(i);
+            if (currentVEvent.getSummary().getValue().equalsIgnoreCase(eventName)) {
+                resultIndexList.add(new Pair(Index.fromZeroBased(i), currentVEvent));
+            }
+        }
+        return resultIndexList;
+    }
+
+    /**
+     * Search for the event with the most similar name to the event name specified in the parameter.
+     * @param eventName eventName to be found
+     * @return a vEvent object that is closest to the event name specified
+     * @throws VEventNotFoundException if there are no VEvents that is remotely close to the event name specified.
+     */
+    public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) throws VEventNotFoundException {
+        requireNonNull(eventName);
+
+        if (vEvents.isEmpty()) {
+            throw new VEventNotFoundException();
+        }
+        VEvent mostSimilarVEvent = vEvents.get(0);
+        Integer mostSimilarIndex = 0;
+        double highestSimilarityPercentage =
+                calculateStringSimilarityPercentage(mostSimilarVEvent.getSummary().getValue(), eventName);
+
+        for (int i = 1; i < vEvents.size(); i++) {
+            VEvent currentEvent = vEvents.get(i);
+            double eventNameSimilarity =
+                    calculateStringSimilarityPercentage(currentEvent.getSummary().getValue(), eventName);
+            if (eventNameSimilarity > highestSimilarityPercentage) {
+                mostSimilarIndex = i;
+                mostSimilarVEvent = currentEvent;
+                highestSimilarityPercentage = eventNameSimilarity;
+            }
+        }
+
+        return new Pair(Index.fromZeroBased(mostSimilarIndex), mostSimilarVEvent);
+    }
+
 
     /**
      * Returns true if both students have the same identity and data fields.

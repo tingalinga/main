@@ -9,7 +9,6 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
@@ -35,7 +34,6 @@ public class StudentBuilder {
     private Address address;
     private Temperature temperature;
     private Attendance attendance;
-    private Remark remark;
     private Set<Tag> tags;
     private NextOfKin nok;
 
@@ -46,7 +44,6 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         temperature = new Temperature(DEFAULT_TEMPERATURE);
         attendance = new Attendance(DEFAULT_ATTENDANCE);
-        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         nok = new NextOfKin(DEFAULT_NOK);
     }
@@ -61,7 +58,6 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         temperature = studentToCopy.getTemperature();
         attendance = studentToCopy.getAttendance();
-        remark = studentToCopy.getRemark();
         tags = new HashSet<>(studentToCopy.getTags());
         nok = studentToCopy.getNok();
     }
@@ -122,13 +118,6 @@ public class StudentBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Remark} of the {@code Student} that we are building.
-     */
-    public StudentBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
-        return this;
-    }
 
     /**
      * Sets the {@code Nok} of the {@code Student} that we are building.
@@ -143,7 +132,7 @@ public class StudentBuilder {
      */
     public Student build() {
         return new Student(name, phone, email, address, temperature,
-                attendance, nok, remark, tags);
+                attendance, nok, tags);
     }
 
 }

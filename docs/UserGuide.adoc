@@ -118,32 +118,11 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 == Features
 This section will provide you with an in-depth explanation of our features of TeaPet.
 
-====
-*Using Commands in TeaPet*
 
-****
-- Words in `<ANGLE_BRACKETS>` are the parameters to be supplied by the user
-** e.g. `add n/<name>`, `<name>` is a parameter which can be used as `add n/Xiao Ming`
-- Items in square brackets are optional
-** e.g `n/<name> [t/<tag>]` can be used as `n/Xiao Ming t/friend` or `n/Xiao Ming`
-- Items with `…`​ after them can be used multiple times or not at all
-** e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend` or `t/friend t/family`
-- Parameters can be in any order
-** e.g. `n/<name> p/<phone number>` or `p/<phone number> n/<name>` both are acceptable.
-****
-
-====
 
 === Class Particulars
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
 Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
-
-==== Commands related to Class Particulars
-part add delete view
-
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
 
 '''
@@ -152,46 +131,13 @@ CATER THEIR NEEDS
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
 temperature recordings. Data will be displayed in a weekly format for further perusal.
 
-==== Commands related to Class Administration
-temp admin
 
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
 '''
 
 === Personal Scheduler
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
-
-==== Commands related to Personal Scheduler
-
-===== Display Personal Schedule: `schedule`
-
-Displays the personal schedule (description)
-
-Format: `schedule`
-
-The format supported by this command includes:
-
-|===
-|Keyword |Description
-
-|`NONE`
-|NONE
-|===
-
-Examples:
-
-- `schedule` +
-Views your current schedule
-
-====== Add event: `placeholder`
-etc etc
-
-'''
-
 
 
 
@@ -200,17 +146,38 @@ TeaPet's Class Progress Tracker is able to keep tabs on the class' academic prog
 every student's subject grades with this feature. Thereafter, there will be a graph plot displayed to highlight the
 progress of individual students as well as the entire class.
 
-==== Commands related to Class Progress Tracker
-academics
-
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
 //tag::update-profile[]
 [[update-profile]]
 === Update Profile Picture
 TeaPet's student list allows you to upload image of your students into your application.
+The following steps will help you upload photos of your students into the student list.
+
+*Step 1*. Locate the image folder. It is in the root directory folder! +
+
+.Location of image folder
+image::locating_image_folder.png[width="790"]
+
+*Step 2*. Open the image folder and drag the image of your student into the folder.
+
+NOTE: The filename of your image must of this format: +
+1. Filename must be of the same name as the student. +
+2. Filename is all lowercase. +
+3. Filename have no whitespaces +
+4. File is in .png format +
+For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
+
+.Dragging png file into image folder
+image::images_in_folder.png[width="790"]
+
+*Step 3*. Type in the `refresh` command in the user interface. Now you can see your students pictures in your student list!
+
+.Before using the refresh command
+image::before_picture_upload.png[width="790]
+
+.After using the refresh command
+image::after_picture_upload.png[width="790]
+
 [[update-profile]]
 
 '''
@@ -237,6 +204,9 @@ CATER THEIR NEEDS
 
 
 '''
+[[Commands]]
+
+== Commands
 
 === Default Commands
 Default Commands are the commands that help you navigate through TeaPet easily.
@@ -264,6 +234,12 @@ Format: `admin`
 If you want a simple and concise display of the student list, typing the `default` command will bring up a simple
 summary of your students. +
 Format: `default`
+
+==== View scheduler: `schedule`
+
+==== View academics: `academics`
+
+==== View notes: `notes`
 
 ==== Exit program: `exit`
 If you are done using TeaPet and would like to safely exit the application, typing the `exit` command will save your data
@@ -345,6 +321,7 @@ Expected Outcome:
 
 
 === Schedule Commands
+
 
 ==== Creating a schedule: `add`
 

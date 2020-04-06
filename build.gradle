@@ -69,10 +69,11 @@ dependencies {
     compile group: 'org.jfxtras', name: 'jfxtras-icalendaragenda', version: '10.0-r2-SNAPSHOT'
     compile group: 'org.jfxtras', name: 'jfxtras-icalendarfx', version: '10.0-r2-SNAPSHOT'
     compile 'org.apache.commons:commons-math3:3.6.1'
+    compile 'org.apache.commons:commons-text:1.8'
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'TeaPet.jar'
 
     destinationDir = file("${buildDir}/jar/")
 }

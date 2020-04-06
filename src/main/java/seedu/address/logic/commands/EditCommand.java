@@ -31,7 +31,6 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
 
@@ -132,12 +131,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Temperature updatedTemperature = editStudentDescriptor.getTemperature().orElse(studentToEdit.getTemperature());
         Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
-        Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         NextOfKin updatedNok = editStudentDescriptor.getNok().orElse(studentToEdit.getNok());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTemperature,
-                updatedAttendance, updatedNok, updatedRemark, updatedTags);
+                updatedAttendance, updatedNok, updatedTags);
     }
 
     /**
