@@ -343,7 +343,7 @@ For example, 7th April 2020 10AM will be 2020-04-07T10:00
 
 NOTE: Events which are further away in the future have a darker color code. This is intentional.
 
-NOTE: Color group is from 0 to 23 inclusive. +
+TIP: Color group is from 0 to 23 inclusive. +
 
 .Color code for TeaPet's calendar
 image::color_code.png[width="790"]
@@ -369,25 +369,33 @@ How do I transfer my data to another Computer? ::
 
 [[Summary]]
 == Command Summary
-This section provides a summary on all of the commands that we use at TeaPet sorted in alphabetical order.
+This section provides a summary on all of the commands that we use in TeaPet.
 
-* *Academics*: `academics`
-* *Add*: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`     +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Administrative Student Information*: `admin`
-* *Clear*: `clear`
-* *Delete*: `delete INDEX` +
-e.g. `delete 3`
-* *Default Student Information*: `default`
-* *Detailed Student Information*: `detailed`
-* *Edit*: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com`
-* *Find*: `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
-* *Help*: `help`
-* *List*: `list`
-* *Notes*: `anotes [n/NAME] [c/CONTENT]`
-* *Schedule*: `schedule`
+=== Default Commands
+Here are the default commands available for use. They do not require prefixes.
 
-'''
+[cols="10%, 45%, 45%"]
+.Default commands of TeaPet.
+|===
+|*Command*|*Format*|*Expected outcome*
+|`help`|`help`|Opens up the User Guide
+|`exit`|`exit`|Safely exits the application
+|`default`|`default`|Displays the default form of student list
+|`detailed`|`detailed`|Displays the detailed details of the class
+|`admin`|`admin`|Displays the administrative details of the class
+|`schedule`|`schedule`|Displays your personal schedule
+|`academics`|`academics`|Displays the academic records of the class
+|===
+
+=== Student Commands
+Here are the commands to manage students. They require the prefix `student`.
+
+[cols="10%, 45%, 45%"]
+.Student commands of TeaPet
+|===
+
+
+
+
+
 
