@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Assessment;
@@ -167,6 +168,11 @@ public interface Model {
     void removeStudentFromAssessments(String toRemove);
 
     /**
+     * Updates student name to the submission tracker of all assessments.
+     */
+    void updateStudentToAssessments(String prevName, String newName);
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */
@@ -274,6 +280,13 @@ public interface Model {
     EventScheduleView getEventScheduleView();
 
     void setEventScheduleView(EventScheduleView eventScheduleView);
+
+
+    List<Pair<Index, VEvent>> searchVEvents(String eventName);
+
+    Pair<Index, VEvent> searchMostSimilarVEventName(String eventName);
+
+
 
 
 

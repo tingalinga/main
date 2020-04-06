@@ -39,6 +39,9 @@ public class AcademicsMarkCommand extends AcademicsCommand {
         this.index = index;
         for (String submission : students) {
             String[] submissionArray = submission.split("-");
+            if (submissionArray.length < 2) {
+                throw new CommandException(Messages.MESSAGE_MISSING_SCORE);
+            }
             String student = submissionArray[0];
             int mark = Integer.parseInt(submissionArray[1]);
             submissions.put(student, mark);

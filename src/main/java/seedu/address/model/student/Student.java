@@ -24,7 +24,6 @@ public class Student {
     private final Address address;
     private final Temperature temperature;
     private final Attendance attendance;
-    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
     private final NextOfKin nok;
 
@@ -32,7 +31,7 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name name, Phone phone, Email email, Address address, Temperature temperature, Attendance attendance,
-                   NextOfKin nok, Remark remark, Set<Tag> tags) {
+                   NextOfKin nok, Set<Tag> tags) {
 
 
         requireAllNonNull(name, phone, email, tags);
@@ -42,7 +41,6 @@ public class Student {
         this.address = address;
         this.temperature = temperature;
         this.attendance = attendance;
-        this.remark = remark;
         this.tags.addAll(tags);
         this.nok = nok;
     }
@@ -69,10 +67,6 @@ public class Student {
 
     public Attendance getAttendance() {
         return attendance;
-    }
-
-    public Remark getRemark() {
-        return remark;
     }
 
     public NextOfKin getNok () {
@@ -128,7 +122,7 @@ public class Student {
     @Override
     public int hashCode () {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, temperature, attendance, remark, tags);
+        return Objects.hash(name, phone, email, address, temperature, attendance, tags);
     }
 
     @Override
@@ -145,8 +139,9 @@ public class Student {
                 .append(getTemperature())
                 .append(" Attendance: ")
                 .append(getAttendance())
+                .append(" NextOfKin: ")
+                .append(getNok())
                 .append(" Remark: ")
-                .append(getRemark())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

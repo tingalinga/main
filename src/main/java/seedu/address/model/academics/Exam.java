@@ -12,9 +12,11 @@ import seedu.address.model.student.Student;
  */
 public class Exam extends Assessment {
 
+    /* EXAM ASSESSMENT PROPERTIES */
     private String description;
     private LocalDate date;
 
+    /* TRACKING SUBMISSIONS */
     private List<Submission> submissionTracker = new ArrayList<>();
 
     /**
@@ -39,11 +41,30 @@ public class Exam extends Assessment {
         this.date = date;
     }
 
+    /* ASSESS METHODS */
+    /**
+     * Returns the type of assessment.
+     * @return String assessment type
+     */
+    public String getType() {
+        return "exam";
+    }
+
+    /**
+     * Returns the deadline of homework as a string.
+     * @return String deadline of homework.
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /* SET METHODS */
     /**
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.
      */
     public void setSubmissions(List<Student> students) {
+        setAssessmentSubmissions(students);
         for (Student student: students) {
             submissionTracker.add(new Submission(student.getName().fullName));
         }
@@ -60,6 +81,20 @@ public class Exam extends Assessment {
         }
     }
 
+    /**
+     * Updates the student name in the submission tracker of assessment.
+     */
+    public void updateNewStudentName(String prevName, String newName) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(prevName)) {
+                submission.setStudentName(newName);
+                break;
+            }
+        }
+        updateAssessmentNewStudentName(prevName, newName);
+    }
+
+    /* STUDENT-LEVEL METHODS */
     /**
      * Adds new student to the submission tracker of all assessments.
      */
@@ -81,46 +116,7 @@ public class Exam extends Assessment {
         removeAssessmentStudent(toRemove);
     }
 
-    /**
-     * Returns the type of assessment.
-     * @return String assessment type
-     */
-    public String getType() {
-        return "exam";
-    }
-
-    /**
-     * Returns the date of exam.
-     * @return LocalDate exam date.
-     */
-    public LocalDate getExamDate() {
-        return date;
-    }
-
-    /**
-     * Returns the deadline of homework as a string.
-     * @return String deadline of homework.
-     */
-    public LocalDate getDate() {
-        return date;
-    }
-
-    /**
-     * Returns the deadline of homework as a string.
-     * @return String deadline of homework.
-     */
-    public String getDateString() {
-        return date.toString();
-    }
-
-    /**
-     * Edit the date of the exam.
-     * @param examDate exam date.
-     */
-    public void setExamDate(String examDate) {
-        this.date = LocalDate.parse(examDate);
-    }
-
+    /* ASSESSMENT-LEVEL METHODS */
     /**
      * Returns the number of students who have yet to submit their assessment.
      */
@@ -147,8 +143,7 @@ public class Exam extends Assessment {
         return submitted;
     }
 
-    // SETTING SAMPLE SUBMISSIONS
-
+    /* SETTING SAMPLE SUBMISSIONS */
     /**
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.

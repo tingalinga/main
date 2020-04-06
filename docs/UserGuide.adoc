@@ -45,32 +45,27 @@ If you need help setting up TeaPet, you can go to the <<Getting started>> sectio
 If you want to find out more about TeaPet's features and commands, you can go to the <<Features>> section.
 
 If you need an overview regarding the usage of TeaPet's commands, head on to the <<Summary>> section.
-====
-Take note of the following symbols and formatting used in this document:
 
-****
+Take note of the following symbols and formatting used in this document: +
 
+[cols=".^, .^"]
+[%autowidth.stretch]
 .A Summary of symbols used in our User Guide.
-[cols="1,12"]
 |===
-|kbd:[Enter]
-|This symbol indicates the Enter button on your keyboard.
+^|*Symbol/ +
+Format* <|*Meaning*
+^| kbd:[Enter] |[gray]#This symbol indicates the enter button on the keyboard.#
+^|[gray]#`command`# |[gray]#A grey highlight indicates that this is a command that can be executed by the program.#
 
-|`command`
-|A grey highlight indicates that this is a command that can be typed into the command line and executed by the program.
+
+2+.^a|  NOTE: This symbol indicates notes.
+2+.^a|  WARNING: This symbol indicates warnings.
+2+.^a|  TIP: This symbol indicates tips.
+2+.^a|  CAUTION: This symbol indicates cautions.
+2+.^a|  IMPORTANT: This symbol indicates important information.
 |===
 
-IMPORTANT: Use this to highlight important stuff
 
-WARNING: Use this for warnings
-
-CAUTION: Use this for caution
-
-NOTE: Use this for note
-
-TIP: This symbol indicates tips.
-****
-====
 TIP: If you have any questions, please check out our <<FAQ>> section.
 
 == Overview of Features
@@ -120,37 +115,14 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Refer to <<Features>> for details of each command.
 
 [[Features]]
-== Features & Commands
-This section will provide you with an in-depth explanation of our features and
-provide examples on what you can do to make the most out of TeaPet.
-Under each feature, you will find commands related to each feature and how to use each command.
+== Features
+This section will provide you with an in-depth explanation of our features of TeaPet.
 
-====
-*Using Commands in TeaPet*
 
-****
-- Words in `<ANGLE_BRACKETS>` are the parameters to be supplied by the user
-** e.g. `add n/<name>`, `<name>` is a parameter which can be used as `add n/Xiao Ming`
-- Items in square brackets are optional
-** e.g `n/<name> [t/<tag>]` can be used as `n/Xiao Ming t/friend` or `n/Xiao Ming`
-- Items with `…`​ after them can be used multiple times or not at all
-** e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend` or `t/friend t/family`
-- Parameters can be in any order
-** e.g. `n/<name> p/<phone number>` or `p/<phone number> n/<name>` both are acceptable.
-****
-
-====
 
 === Class Particulars
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
 Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
-
-==== Commands related to Class Particulars
-part add delete view
-
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
 
 '''
@@ -159,46 +131,13 @@ CATER THEIR NEEDS
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
 temperature recordings. Data will be displayed in a weekly format for further perusal.
 
-==== Commands related to Class Administration
-temp admin
 
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
 '''
 
 === Personal Scheduler
-TeaPet's Personal Scheduler feature allows you records down your commitments for the week, which will be
+TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
-
-==== Commands related to Personal Scheduler
-
-===== Display Personal Schedule: `schedule`
-
-Displays the personal schedule (description)
-
-Format: `schedule`
-
-The format supported by this command includes:
-
-|===
-|Keyword |Description
-
-|`NONE`
-|NONE
-|===
-
-Examples:
-
-- `schedule` +
-Views your current schedule
-
-====== Add event: `placeholder`
-etc etc
-
-'''
-
 
 
 
@@ -207,12 +146,39 @@ TeaPet's Class Progress Tracker is able to keep tabs on the class' academic prog
 every student's subject grades with this feature. Thereafter, there will be a graph plot displayed to highlight the
 progress of individual students as well as the entire class.
 
-==== Commands related to Class Progress Tracker
-academics
 
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
+//tag::update-profile[]
+[[update-profile]]
+=== Update Profile Picture
+TeaPet's student list allows you to upload image of your students into your application.
+The following steps will help you upload photos of your students into the student list.
+
+*Step 1*. Locate the image folder. It is in the root directory folder! +
+
+.Location of image folder
+image::locating_image_folder.png[width="790"]
+
+*Step 2*. Open the image folder and drag the image of your student into the folder.
+
+NOTE: The filename of your image must of this format: +
+1. Filename must be of the same name as the student. +
+2. Filename is all lowercase. +
+3. Filename have no whitespaces +
+4. File is in .png format +
+For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
+
+.Dragging png file into image folder
+image::images_in_folder.png[width="790"]
+
+*Step 3*. Type in the `refresh` command in the user interface. Now you can see your students pictures in your student list!
+
+.Before using the refresh command
+image::before_picture_upload.png[width="790]
+
+.After using the refresh command
+image::after_picture_upload.png[width="790]
+
+[[update-profile]]
 
 '''
 
@@ -236,44 +202,139 @@ GUIDE THEM STEP BY STEP +
 PROVIDE EXAMPLE +
 CATER THEIR NEEDS
 
-'''
-
-=== Saving data
-Changes are saved in the hard disk automatically upon entering a command that alters the data.
-There is no requirement to save any form of data manually.
 
 '''
+[[Commands]]
+
+== Commands
 
 === Default Commands
 Default Commands are the commands that help you navigate through TeaPet easily.
 
 ==== View help: `help`
-Displays the list of commands. Or displays TeaPet User Guide. +
+If you need help at any point regarding the many features TeaPet has, the default `help` command will bring you
+to this user guide. +
+
 Format: `help`
 
 ==== View in detailed mode: `detailed`
-View all information about students +
+If you require detailed information about your students, the default command `detailed` will bring up the detailed student
+list +
+
 Format: `detailed`
 
 ==== View in admin mode: `admin`
-View administrative details about students +
+If you require administrative information about your students -- such as attendance or temperature, the default command
+`admin` will bring up the admin
+list +
+
 Format: `admin`
 
 ==== View in default mode: `default`
-View all information about students +
+If you want a simple and concise display of the student list, typing the `default` command will bring up a simple
+summary of your students. +
 Format: `default`
 
+==== View scheduler: `schedule`
+
+==== View academics: `academics`
+
+==== View notes: `notes`
+
 ==== Exit program: `exit`
-Exits the program. +
+If you are done using TeaPet and would like to safely exit the application, typing the `exit` command will save your data
+and exit the program +
+
 Format: `exit`
 
-'''
+==== Refresh student list: `refresh`
+If you have just added images of your students into the image folder, simply typing the
+`refresh` command will update the images of your students. Confused on how to do so? See <<update-profile>>.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in like never lmao lol yes]`
+=== Student commands
 
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
+==== Adding students: `add`
+
+Adds a student into the student list.
+
+Format: `student add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
+[temp/TEMPERATURE] [att/ATTENDANCE]`
+
+* Adds a new student with the given attributes.
+* The student name *cannot be empty*.
+
+Example:
+
+* `student add n/Jim p/90045722 e/jim@example.com a/Bishan St 13 Blk 154 #08-18 t/monitor nok/James-Father-91234567
+temp/36.6 att/Present` Adds a student named Jim into the student list along with his details.
+
+Expected Outcome:
+
+    New student added: Jim Phone: 90045722 Email: jim@example.com Address: Bishan St 13 Blk 154 #08-18 Temperature: 36.6 Attendance: Present Tags: [monitor]
+
+
+==== Editing student information: `edit`
+
+Edits personal details of students.
+
+Format: `student edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
+[temp/TEMPERATURE] [att/ATTENDANCE]`
+
+Example:
+
+* `student edit 1 p/90023413` Edits the student phone number in index 1 to a new phone number.
+
+Expected Outcome:
+
+    Edited Student: Simon Lam Phone: 90023413 Email: simonlam@example.com Address: Blk 30 Geylang Street 29,
+    #06-40 Temperature: 36.5 Attendance: Sick Remark:  Tags: [Sheares]
+
+
+==== Delete student: `delete`
+
+Deletes the student and all his personal details from the student list.
+
+Format: `student delete INDEX`
+
+Example:
+
+* `student delete 1` Deletes the student at index 1.
+
+Expected Outcome:
+
+    Deleted Student: Simon Lam Phone: 90023413 Email: simonlam@example.com Address: Blk 30 Geylang Street 29, #06-40 Temperature: 36.5 Attendance: Sick Remark:  Tags: [Sheares]
+
+
+==== Find student: `find`
+
+Finds the student information from the student list and display it.
+
+Format: `student find NAME`
+
+Example:
+
+* `student find simon` Finds the information a student named Simon.
+
+Expected Outcome:
+
+    1 students listed!
+
+
+=== Schedule Commands
+
+
+==== Creating a schedule: `add`
+
+Adds an event to your personal scheduler.
+
+Format: `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
+
+Example:
+
+* *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-07T10:00
+endDateTime/2020-04-07T12:00 recur/none color/10`
+Creates a schedule with the title '_Teachers Meeting_' from '_7th Apr 2020, 1000_' to '_7th Apr 2020, 1200_' with no recurrence
+and a color group of '_10_'.
 
 
 == FAQ

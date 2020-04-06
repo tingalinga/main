@@ -9,7 +9,7 @@ public abstract class AcademicsCommand extends Command {
 
     public static final String COMMAND_WORD = "academics";
     public static final String MESSAGE_USAGE = "Commands: \n"
-            + COMMAND_WORD + " statistics - displays academic statistics.\n"
+            + COMMAND_WORD + " report - displays academic statistics.\n"
             + COMMAND_WORD + " homework - filters homework assessments.\n"
             + COMMAND_WORD + " exam - filters exam assessments.\n"
             + COMMAND_WORD + " add - adds new assessment.\n"

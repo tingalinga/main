@@ -18,11 +18,13 @@ import seedu.address.model.student.Student;
  */
 public abstract class Assessment {
 
-    // Assessment properties
+    /* ASSESSMENT PROPERTIES */
     private String description;
     private LocalDate date;
+    private int submitted = 0;
+    private int marked = 0;
 
-    // Tracking submissions
+    /* TRACKING SUBMISSIONS */
     private List<Submission> submissionTracker = new ArrayList<>();
 
     /**
@@ -35,6 +37,7 @@ public abstract class Assessment {
         this.date = LocalDate.parse(date);
     }
 
+    /* ASSESS METHODS */
     /**
      * Returns the description of the assessment.
      * @return description of assessment.
@@ -52,14 +55,6 @@ public abstract class Assessment {
     }
 
     /**
-     * Returns the date of the assessment.
-     * @return date of assessment.
-     */
-    public String getDateString() {
-        return date.toString();
-    }
-
-    /**
      * Returns the submission tracker of the assessment.
      * @return submission tracker of assessment.
      */
@@ -67,6 +62,7 @@ public abstract class Assessment {
         return submissionTracker;
     }
 
+    /* SET METHODS */
     /**
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.
@@ -94,11 +90,32 @@ public abstract class Assessment {
      * @param newSubmissionTracker new submission tracker.
      */
     public void setAssessmentSubmissionTracker(List<Submission> newSubmissionTracker) {
+        int hasSubmitted = 0;
+        int hasMarked = 0;
         for (Submission submission: newSubmissionTracker) {
             submissionTracker.add(submission);
+            hasSubmitted = submission.hasSubmitted() ? hasSubmitted + 1 : hasSubmitted;
+            hasMarked = submission.isMarked() ? hasMarked + 1 : hasMarked;
+        }
+        submitted = hasSubmitted;
+        marked = hasMarked;
+    }
+
+    public abstract void updateNewStudentName(String prevName, String newName);
+
+    /**
+     * Updates the student name in the submission tracker of assessment.
+     */
+    public void updateAssessmentNewStudentName(String prevName, String newName) {
+        for (Submission submission: submissionTracker) {
+            if (submission.getStudentName().equals(prevName)) {
+                submission.setStudentName(newName);
+                break;
+            }
         }
     }
 
+    /* STUDENT-LEVEL METHODS */
     /**
      * Adds new student to the submission tracker of all assessments.
      */
@@ -123,11 +140,14 @@ public abstract class Assessment {
         for (Submission submission: submissionTracker) {
             if (submission.getStudentName().equals(toRemove)) {
                 submissionTracker.remove(submission);
+                submitted = submission.hasSubmitted() ? submitted - 1 : submitted;
+                marked = submission.isMarked() ? marked - 1 : marked;
                 break;
             }
         }
     }
 
+    /* ASSESSMENT-LEVEL METHODS */
     /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
@@ -150,6 +170,7 @@ public abstract class Assessment {
         for (String studentName: studentList) {
             for (Submission submission: submissionTracker) {
                 if (submission.getStudentName().equals(studentName)) {
+                    submitted = !submission.hasSubmitted() ? submitted + 1 : submitted;
                     submission.markAsSubmitted();
                 }
             }
@@ -176,73 +197,30 @@ public abstract class Assessment {
     public void mark(String student, int score) {
         for (Submission submission: submissionTracker) {
             if (submission.getStudentName().equals(student)) {
+                marked = !submission.isMarked() ? marked + 1 : marked;
                 submission.markAssessment(score);
             }
         }
     }
 
     /**
-     * Returns a list of students who have yet to submit their assessment.
-     */
-    public ArrayList<String> checkUnsubmittedStudents() {
-        ArrayList<String> unsubmitted = new ArrayList<>();
-        for (Submission submission: submissionTracker) {
-            if (!submission.hasSubmitted()) {
-                unsubmitted.add(submission.getStudentName());
-            }
-        }
-        return unsubmitted;
-    }
-
-    /**
      * Returns the number of students who have yet to submit their assessment.
      */
     public int noOfUnsubmittedStudents() {
-        int unsubmitted = 0;
-        for (Submission submission: submissionTracker) {
-            if (!submission.hasSubmitted()) {
-                unsubmitted++;
-            }
-        }
-        return unsubmitted;
+        return submissionTracker.size() - submitted;
     }
 
     /**
      * Returns the number of students who have submitted their assessment.
      */
     public int noOfSubmittedStudents() {
-        int submitted = 0;
-        for (Submission submission: submissionTracker) {
-            if (submission.hasSubmitted()) {
-                submitted++;
-            }
-        }
         return submitted;
-    }
-
-    /**
-     * Returns a list of students whose submissions have not been marked.
-     */
-    public ArrayList<String> checkUnmarkedSubmissions() {
-        ArrayList<String> unmarked = new ArrayList<>();
-        for (Submission submission: submissionTracker) {
-            if (!submission.isMarked()) {
-                unmarked.add(submission.getStudentName());
-            }
-        }
-        return unmarked;
     }
 
     /**
      * Returns the number of students whose submissions have not been marked.
      */
     public int noOfMarkedSubmissions() {
-        int marked = 0;
-        for (Submission submission: submissionTracker) {
-            if (submission.isMarked()) {
-                marked++;
-            }
-        }
         return marked;
     }
 
@@ -256,6 +234,7 @@ public abstract class Assessment {
         return otherAssessment.getDescription().equals(getDescription());
     }
 
+    /* STATISTICS METHODS */
     /**
      * Returns the average score scored by the class for this assessment.
      */
@@ -303,8 +282,7 @@ public abstract class Assessment {
         }
     }
 
-    // SETTING SAMPLE SUBMISSIONS
-
+    /* SETTING SAMPLE SUBMISSIONS */
     /**
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.

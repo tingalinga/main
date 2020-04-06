@@ -39,6 +39,7 @@ public class AdminDeleteCommand extends AdminCommand {
             String fullDate = dateToDelete.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
                     + dateToDelete.getDate().getDayOfMonth() + " " + dateToDelete.getDate().getYear();
             model.deleteDate(dateToDelete);
+            model.updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
             return new CommandResult(String.format(MESSAGE_SUCCESS, fullDate));
         }
     }

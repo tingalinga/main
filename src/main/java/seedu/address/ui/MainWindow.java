@@ -21,9 +21,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
+import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.ui.academics.AcademicsPanel;
 import seedu.address.ui.admin.DateListPanel;
@@ -198,11 +200,30 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     *  Opens the Personal Schedule Page
+     *  Handles the Personal Schedule Page
      */
     @FXML
     public void handleSchedule() {
         schedulePanel.update();
+        if (logic.getEventScheduleView().equals(EventScheduleView.DAILY)) {
+            schedulePanel.setDaily();
+        } else if (logic.getEventScheduleView().equals(EventScheduleView.WEEKLY)) {
+            schedulePanel.setWeekly();
+        }
+        schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
+        schedulePanel.getRoot().toFront();
+        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%) ");
+        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
+        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
+        personalSchedule.setStyle(" -fx-background-color: Orange");
+    }
+    /**
+     *  Opens the Personal Schedule Page
+     */
+    @FXML
+    public void openWeeklySchedule() {
+        schedulePanel.update();
+        schedulePanel.setWeekly();
         schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
         schedulePanel.getRoot().toFront();
         studentAcademics.setStyle("-fx-background-color: derive(#white, 20%) ");
@@ -260,7 +281,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleStudentAdmin() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin display");
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         studentListPanel.getRoot().toFront();
         studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
@@ -387,12 +408,22 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             }
 
+            if (consoleReply.contains("New student added") || consoleReply.contains("Deleted Student")) {
+                handleStudentDefault();
+            }
+
             if (consoleReply.contains("Academics submitted following submissions")
-                    || consoleReply.contains("Academics marked following submissions")) {
+                    || consoleReply.contains("Academics marked following submissions")
+                    || consoleReply.contains("Added assessment")
+                    || consoleReply.contains("Edited Assessment")) {
                 handleAcademics();
             }
 
-            if (consoleReply.contains("Notes are exported to studentNotes.csv")) {
+            if (consoleReply.contains("Refreshed students") || consoleReply.contains("Edited Student")) {
+                handleStudentDefault();
+            }
+
+            if (consoleReply.equals(NotesExportCommand.MESSAGE_SUCCESS)) {
                 NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
                 notesExporter.saveToCsv();
             }
@@ -403,7 +434,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (consoleReply.contains("Class admin details for")) {
                 studentListPanel = new StudentListPanel(FXCollections.observableArrayList(logic.getFilteredDateList()
-                        .get(0).getStudents()), "admin display");
+                        .get(0).getStudents()), "admin");
                 mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
 
@@ -419,12 +450,15 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (consoleReply.contains("Added event")) {
+            if ((consoleReply.contains("Deleted Event:"))
+                    || (consoleReply.contains("Added Event"))
+                    || (consoleReply.contains("Edited Event:"))
+                    || (consoleReply.contains("on reference date"))) {
                 handleSchedule();
             }
 
-            if (consoleReply.contains("This is your schedule for the week")) {
-                handleSchedule();
+            if ((consoleReply.contains("This is your schedule for the week"))) {
+                openWeeklySchedule();
             }
 
             return commandResult;
@@ -446,4 +480,5 @@ public class MainWindow extends UiPart<Stage> {
             throw ssne;
         }
     }
+
 }

@@ -77,11 +77,12 @@ public class AcademicsEditCommand extends AcademicsCommand {
      * edited with {@code editAssessmentDescriptor}.
      */
     private static Assessment createEditedAssessment(Assessment assessmentToEdit,
-                                                     EditAssessmentDescriptor editAssessmentDescriptor) {
+                                                     EditAssessmentDescriptor editAssessmentDescriptor)
+            throws CommandException {
         assert assessmentToEdit != null;
 
         String updatedDescription = editAssessmentDescriptor.getDescription().orElse(assessmentToEdit.getDescription());
-        String updatedDate = editAssessmentDescriptor.getDate().orElse(assessmentToEdit.getDateString());
+        String updatedDate = editAssessmentDescriptor.getDate().orElse(assessmentToEdit.getDate().toString());
 
         String updatedType;
         if (assessmentToEdit instanceof Homework) {
@@ -92,8 +93,10 @@ public class AcademicsEditCommand extends AcademicsCommand {
         Assessment updatedAssessment;
         if (updatedType.equals("homework")) {
             updatedAssessment = new Homework(updatedDescription, updatedDate);
-        } else {
+        } else if (updatedType.equals("exam")) {
             updatedAssessment = new Exam(updatedDescription, updatedDate);
+        } else {
+            throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
         }
         updatedAssessment.setSubmissionTracker(assessmentToEdit.getSubmissionTracker());
 

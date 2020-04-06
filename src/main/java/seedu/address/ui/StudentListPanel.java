@@ -33,14 +33,14 @@ public class StudentListPanel extends UiPart<Region> {
         case "detailed":
             studentListView.setCellFactory(listView -> new StudentListViewCellDetailed());
             break;
-        case "admin display":
+        case "admin":
             studentListView.setCellFactory(listView -> new StudentListViewCellAdmin());
             break;
         case "refresh":
             studentListView.setCellFactory(listView -> new StudentListViewCellRefresh());
             break;
         default:
-            assert type.equals("detailed") || type.equals("admin display") || type.equals("refresh")
+            assert type.equals("detailed") || type.equals("admin") || type.equals("refresh")
                    : "The string type is invalid.";
             break;
         }
@@ -109,7 +109,7 @@ public class StudentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentCardAdmin(student, getIndex() + 1).getRoot());
+                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
             }
         }
     }

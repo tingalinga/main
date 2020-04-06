@@ -9,11 +9,11 @@ import seedu.address.model.Model;
  */
 public class NotesExportCommand extends Command {
 
-    public static final String COMMAND_WORD = "notese";
+    public static final String COMMAND_WORD = "notesex";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " [with no other parameters]";
 
-    public static final String MESSAGE_SUCCESS = "Notes are exported to studentNotes.csv";
+    public static final String MESSAGE_SUCCESS = "Notes are exported to studentNotes.csv in the data folder";
 
     /**
      * Overriden execute command which returns CommandResult containing success message.

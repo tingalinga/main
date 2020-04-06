@@ -56,10 +56,9 @@
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
-    -fx-border-color:
+    -fx-border-color: transparent
         transparent
-        transparent
-        derive(-fx-base, 80%)
+        derive(white, 80%)
         transparent;
     -fx-border-insets: 0 10 1 0;
 }
@@ -90,7 +89,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#FFE8D7, 20%);
+    -fx-background-color: #FFE8D7;
     -fx-border-color: black;
     -fx-border-width: 1;
 }
@@ -199,7 +198,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#white, 50%);
+    -fx-background-color: derive(white, 50%);
 }
 
 .context-menu .label {
@@ -296,11 +295,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(white, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1d1d1d, 90%);
     -fx-background-insets: 3;
 }
 
@@ -314,11 +313,11 @@
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 1 6 1 6;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 6 1 6 1;
 }
 
 #cardPane {

@@ -114,6 +114,14 @@ public class Academics implements ReadOnlyAcademics {
     }
 
     /**
+     * Updates student's new name to all assessments.
+     */
+    public void updateStudentToAssessments(String prevName, String newName) {
+        requireAllNonNull(prevName, newName);
+        assessments.updateStudentToAssessments(prevName, newName);
+    }
+
+    /**
      * Returns true if the student has submitted their work for the given assessment.
      * record.
      */
@@ -131,7 +139,7 @@ public class Academics implements ReadOnlyAcademics {
         assessments.markAssessment(target, submissions);
     }
 
-    //// util methods
+    /* UTIL METHODS */
 
     @Override
     public String toString() {

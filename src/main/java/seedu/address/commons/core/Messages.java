@@ -26,17 +26,34 @@ public class Messages {
             "Invalid score! Score must be from 0 to 100 inclusive.";
     public static final String MESSAGE_STUDENT_HAS_NOT_SUBMITTED = "Invalid marking! "
             + "Student has not submitted his/her work.";
+    public static final String MESSAGE_MISSING_SCORE = "Missing score!";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date! Input YYYY-MM-DD and it should be a valid "
+            + "date";
 
     /* Scheduler Messages */
     public static final String MESSAGE_MISSING_EVENT_NAME = "Missing event name!";
-    public static final String MESSAGE_INVALID_EVENT_DATETIME_RANGE = "Invalid date range!";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists!";
+    public static final String MESSAGE_INVALID_EVENT_DATETIME_RANGE = "Invalid date range! ";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists! Please choose another event.";
     public static final String MESSAGE_INVALID_RECURRENCE_TYPE = "Invalid recurrence type."
             + " Input either none, daily or weekly.";
-    public static final String MESSAGE_INVALID_COLOR_STRING = "Invalid color input."
+    public static final String MESSAGE_INVALID_COLOR_STRING = "Invalid color code."
             + " Color code must be from 0 to 23 inclusive.";
-    public static final String MESSAGE_INVALID_DATE = "Invalid date input passed. "
-            + "The format should be YYYY-MM-DD and should be a valid date.";
+    public static final String MESSAGE_INVALID_DATE = "Invalid date input passed."
+            + " The format should be YYYY-MM-DD and should be a valid date.";
+    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index provided."
+            + " Please use indexGet/<eventName> to obtain the right index";
+    public static final String MESSAGE_INDEX_INVALID_EVENT_NAME = "Invalid event name entered."
+            + " Please input a valid Event Name." + "\n"
+            + " schedule indexGet/<eventName>";
+    public static final String MESSAGE_SCHEDULE_HELP = "Invalid schedule command entered."
+            + " Please input a valid schedule command." + "\n"
+            + "schedule add" + "\n"
+            + "schedule edit" + "\n"
+            + "schedule delete" + "\n"
+            + "schedule indexGet/" + "\n"
+            + "schedule view";
+    public static final String MESSAGE_INVALID_VIEW_MODE = "Invalid schedule view mode."
+            + " Please input either weekly or daily.";
 
     /* Notes Messages */
     public static final String MESSAGE_INVALID_NOTES_DISPLAYED_INDEX = "The note index provided is invalid";

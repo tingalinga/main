@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -30,7 +31,6 @@ import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
-
 import seedu.address.model.student.Student;
 
 /**
@@ -241,6 +241,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateStudentToAssessments(String prevName, String newName) {
+        requireAllNonNull(prevName, newName);
+        academics.updateStudentToAssessments(prevName, newName);
+    }
+
+    @Override
     public boolean hasStudentSubmitted(Assessment assessment, String student) {
         requireAllNonNull(assessment, student);
         return academics.hasStudentSubmitted(assessment, student);
@@ -407,6 +413,18 @@ public class ModelManager implements Model {
     public ObservableList<VEvent> getVEvents() {
         return eventHistory.getVEvents();
     }
+
+
+    @Override
+    public List<Pair<Index, VEvent>> searchVEvents(String eventName) {
+        return eventHistory.searchVEvents(eventName);
+    }
+
+    @Override
+    public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
+        return eventHistory.searchMostSimilarVEventName(eventName);
+    }
+
 
     @Override
     public boolean equals(Object obj) {

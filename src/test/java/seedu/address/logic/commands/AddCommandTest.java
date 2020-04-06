@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -272,7 +273,12 @@ public class AddCommandTest {
 
         @Override
         public void removeStudentFromAssessments(String toRemove) {
-            /* This method should not add to assessments */
+            /* This method should not remove from assessments */
+        }
+
+        @Override
+        public void updateStudentToAssessments(String prevName, String newName) {
+            /* This method should not update to assessments */
         }
 
         @Override
@@ -427,6 +433,15 @@ public class AddCommandTest {
 
         @Override
         public void setEventScheduleView(EventScheduleView eventScheduleView) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public List<Pair<Index, VEvent>> searchVEvents(String eventName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
             throw new AssertionError("This method should not be called.");
         }
     }
