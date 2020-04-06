@@ -44,5 +44,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_EVENT_DELETE = new Prefix("delete");
     public static final Prefix PREFIX_EVENT_EDIT = new Prefix("edit");
 
+    /* Notes Prefixes */
+    //Adding Soon.
+
 
 }

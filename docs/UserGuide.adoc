@@ -193,10 +193,14 @@ better keep track of the stakeholder and information.
 * *Add Note*: `notesa n/[Student Name] c/[Note Content] pr/[Priority]` +
 Priority must be either HIGH, MEDIUM or LOW, case insensitive. +
 e.g. `notesa n/James Ho c/Reminder to print his testimonial pr/HIGH`
+* *Edit Note*: `notese [Index] n/[New Student Name c/New Content pr/[New Priority]` +
+At least one of the three fields must be updated when editing a note.
+e.g. `notese n/Jane Lee c/Reminder to print her testimonial pr/LOW`
 * *Delete Note*: `notesd [Index]`
 * *Filter Search Note*: `notesf [Keywords(s)]`
-* *Export Notes*: `notese` +
-Notes will be exported to a .csv file format.
+* *Export Notes*: `notesex` +
+Notes will be exported to a .csv file format, which is located in the data folder in the same directory.
+The file is named "studentNotes.csv".
 
 GUIDE THEM STEP BY STEP +
 PROVIDE EXAMPLE +
