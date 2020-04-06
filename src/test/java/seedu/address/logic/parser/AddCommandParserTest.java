@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ATTENDANCE_DE
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TEMPERATURE_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TEMPERATURE_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -142,11 +141,6 @@ public class AddCommandParserTest {
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + NOK_DESC_BOB + TEMPERATURE_DESC_BOB
                         + ATTENDANCE_DESC_BOB,
                 Address.MESSAGE_CONSTRAINTS);
-
-        // invalid tag
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND + NOK_DESC_BOB + TEMPERATURE_DESC_BOB
-                + ATTENDANCE_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid temperature format
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
