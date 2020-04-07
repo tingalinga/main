@@ -1,6 +1,6 @@
 package seedu.address.logic.commands.notes;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_EXPORT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPORT;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -13,7 +13,7 @@ public class NotesExportCommand extends NotesCommand {
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + " "
-            + PREFIX_NOTES_EXPORT + " [with no other parameters]";
+            + PREFIX_EXPORT + " [with no other parameters]";
 
     public static final String MESSAGE_SUCCESS = "Notes are exported to studentNotes.csv in the data folder";
 
