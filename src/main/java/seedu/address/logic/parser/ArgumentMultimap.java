@@ -44,13 +44,13 @@ public class ArgumentMultimap {
     public Optional<String> getValue(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
             switch (prefix.getPrefix()) {
-            case "a/":
+            case "addr/":
                 Optional<String> missingAddressString = Optional.of("Insert address here!");
                 return missingAddressString;
-            case "p/":
+            case "phone/":
                 Optional<String> missingPhoneNumberString = Optional.of("Insert phone number here!");
                 return missingPhoneNumberString;
-            case "e/":
+            case "email/":
                 Optional<String> missingEmailString = Optional.of("Insert email here!");
                 return missingEmailString;
             case "nok/":

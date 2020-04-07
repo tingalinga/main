@@ -16,10 +16,8 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
@@ -30,9 +28,9 @@ import seedu.address.model.event.EventHistory;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
+import seedu.address.model.student.ReadOnlyTeaPet;
+import seedu.address.model.student.TeaPet;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -46,6 +44,8 @@ import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
 
+import seedu.address.storage.teapet.JsonTeaPetStorage;
+import seedu.address.storage.teapet.TeaPetStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -66,7 +66,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing TeaPet ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -74,12 +74,12 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        TeaPetStorage teaPetStorage = new JsonTeaPetStorage(userPrefs.getTeaPetFilePath());
         AcademicsStorage academicsStorage = new JsonAcademicsStorage(userPrefs.getAcademicsFilePath());
         EventStorage eventStorage = new JsonEventStorage(userPrefs.getEventHistoryFilePath());
         NotesManagerStorage notesManagerStorage = new JsonNotesManagerStorage(userPrefs.getNotesFilePath());
         AdminStorage adminStorage = new JsonAdminStorage(userPrefs.getAdminFilePath());
-        storage = new StorageManager(addressBookStorage, adminStorage, academicsStorage,
+        storage = new StorageManager(teaPetStorage, adminStorage, academicsStorage,
                  userPrefsStorage, eventStorage, notesManagerStorage);
 
         initLogging(config);
@@ -97,32 +97,32 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s tea pet and {@code userPrefs}. <br>
+     * The data from the sample tea pet will be used instead if {@code storage}'s tea pet is not found,
+     * or an empty tea pet will be used instead if errors occur when reading {@code storage}'s tea pet.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
+        Optional<ReadOnlyTeaPet> teaPetOptional;
         Optional<ReadOnlyAcademics> academicsOptional;
         Optional<ReadOnlyEvents> eventsOptional;
         Optional<ReadOnlyNotes> notesManagerOptional;
         Optional<ReadOnlyAdmin> adminOptional;
 
 
-        ReadOnlyAddressBook initialData;
+        ReadOnlyTeaPet initialData;
         ReadOnlyAcademics initialAcademics;
         ReadOnlyAdmin initialAdmin;
         ReadOnlyEvents initialEvents;
         ReadOnlyNotes initialNotesManager;
         try {
-            addressBookOptional = storage.readAddressBook();
+            teaPetOptional = storage.readTeaPet();
             academicsOptional = storage.readAcademics();
             adminOptional = storage.readAdmin();
             eventsOptional = storage.readEvents();
             notesManagerOptional = storage.readNotesManager();
 
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            if (!teaPetOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TeaPet");
                 new File("data").mkdir();
             }
             if (!academicsOptional.isPresent()) {
@@ -131,29 +131,29 @@ public class MainApp extends Application {
             if (!adminOptional.isPresent()) {
                 logger.info("Admin file not found.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = teaPetOptional.orElseGet(SampleDataUtil::getSampleTeaPet);
             initialAcademics = academicsOptional.orElseGet(SampleDataUtil::getSampleAcademics);
             initialAdmin = adminOptional.orElseGet(SampleDataUtil::getSampleAdmin);
 
             if (!eventsOptional.isPresent()) {
                 logger.info("Events file not found, Will be starting with a sample Events file");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = teaPetOptional.orElseGet(SampleDataUtil::getSampleTeaPet);
             initialAcademics = academicsOptional.orElseGet(SampleDataUtil::getSampleAcademics);
             initialEvents = eventsOptional.orElseGet(SampleDataUtil::getSampleEvents);
             initialNotesManager = notesManagerOptional.orElseGet(SampleDataUtil::getSampleNotesManager);
 
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty TeaPet");
+            initialData = new TeaPet();
             initialAcademics = new Academics();
             initialAdmin = new Admin();
             initialEvents = new EventHistory();
             initialNotesManager = new NotesManager();
 
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty TeaPet");
+            initialData = new TeaPet();
             initialAcademics = new Academics();
             initialAdmin = new Admin();
             initialNotesManager = new NotesManager();
@@ -161,8 +161,8 @@ public class MainApp extends Application {
             initialNotesManager = new NotesManager();
         }
 
-        return new ModelManager(initialData, initialAcademics, initialAdmin, initialNotesManager, userPrefs,
-                initialEvents);
+        return new ModelManager(initialData, initialAcademics, initialAdmin, initialNotesManager, initialEvents,
+                userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -223,7 +223,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty TeaPet");
             initializedPrefs = new UserPrefs();
         }
 
@@ -238,13 +238,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting TeaPet " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping TeaPet ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

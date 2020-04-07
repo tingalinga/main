@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertRuntimeFailure;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import java.time.DateTimeException;
@@ -22,8 +22,8 @@ import seedu.address.testutil.DateBuilder;
 
 public class AdminSaveCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), new UserPrefs(), getTypicalEventHistory());
+    private Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
+            getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertRuntimeFailure;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import java.time.format.TextStyle;
@@ -26,8 +26,8 @@ public class AdminSaveCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(),
-                new UserPrefs(), getTypicalEventHistory());
+        model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(),
+                getTypicalEventHistory(), new UserPrefs());
     }
 
     @Test
@@ -35,8 +35,8 @@ public class AdminSaveCommandIntegrationTest {
 
         Date validDate = new DateBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
-                model.getNotesManager(), new UserPrefs(), model.getEventHistory());
+        Model expectedModel = new ModelManager(model.getTeaPet(), model.getAcademics(), model.getAdmin(),
+                model.getNotesManager(), model.getEventHistory(), new UserPrefs());
 
         expectedModel.addDate(validDate);
         String fullDate = validDate.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "

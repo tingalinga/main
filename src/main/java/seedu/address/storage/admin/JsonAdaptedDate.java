@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.admin.Date;
 import seedu.address.model.student.Student;
-import seedu.address.storage.JsonAdaptedStudent;
+import seedu.address.storage.teapet.JsonAdaptedStudent;
 
 /**
  * Jackson-friendly version of {@link Date}.

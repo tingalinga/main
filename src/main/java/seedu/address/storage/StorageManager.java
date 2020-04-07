@@ -7,25 +7,26 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.ReadOnlyNotes;
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.admin.AdminStorage;
 import seedu.address.storage.event.EventStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
+import seedu.address.storage.teapet.TeaPetStorage;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TeaPet data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TeaPetStorage teaPetStorage;
     private AdminStorage adminStorage;
     private AcademicsStorage academicsStorage;
     private NotesManagerStorage notesManagerStorage;
@@ -33,14 +34,14 @@ public class StorageManager implements Storage {
     private EventStorage eventStorage;
 
 
-    public StorageManager(AddressBookStorage addressBookStorage,
+    public StorageManager(TeaPetStorage teaPetStorage,
                           AdminStorage adminStorage,
                           AcademicsStorage academicsStorage,
                           UserPrefsStorage userPrefsStorage, EventStorage eventStorage,
                           NotesManagerStorage notesManagerStorage) {
 
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.teaPetStorage = teaPetStorage;
         this.adminStorage = adminStorage;
         this.academicsStorage = academicsStorage;
         this.notesManagerStorage = notesManagerStorage;
@@ -48,8 +49,7 @@ public class StorageManager implements Storage {
         this.eventStorage = eventStorage;
     }
 
-    // ================ UserPrefs methods ==============================
-
+    // ==================== USER PREFS ====================
     @Override
     public Path getUserPrefsFilePath() {
         return userPrefsStorage.getUserPrefsFilePath();
@@ -65,37 +65,36 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
-
+    // ==================== TEA PET START ====================
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getTeaPetFilePath() {
+        return teaPetStorage.getTeaPetFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTeaPet> readTeaPet() throws DataConversionException, IOException {
+        return readTeaPet(teaPetStorage.getTeaPetFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTeaPet> readTeaPet(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return teaPetStorage.readTeaPet(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveTeaPet(ReadOnlyTeaPet teaPet) throws IOException {
+        saveTeaPet(teaPet, teaPetStorage.getTeaPetFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveTeaPet(ReadOnlyTeaPet teaPet, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        teaPetStorage.saveTeaPet(teaPet, filePath);
     }
+    // ==================== TEA PET END ====================
 
-    // ================ Academics methods ==============================
+    // ==================== ACADEMICS START ====================
     @Override
     public Path getAcademicsFilePath() {
         return academicsStorage.getAcademicsFilePath();
@@ -122,37 +121,9 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         academicsStorage.saveAcademics(academics, filePath);
     }
+    // ==================== ACADEMICS END ====================
 
-    // ================ Event methods ==============================
-
-    @Override
-    public Path getEventHistoryFilePath() {
-        return eventStorage.getEventHistoryFilePath();
-    }
-
-    @Override
-    public Optional<ReadOnlyEvents> readEvents() throws DataConversionException, IOException {
-        return readEvents(eventStorage.getEventHistoryFilePath());
-    }
-
-    @Override
-    public Optional<ReadOnlyEvents> readEvents(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Reading events from event file: " + filePath);
-        return eventStorage.readEvents(filePath);
-    }
-
-    @Override
-    public void saveEvents(ReadOnlyEvents readOnlyEvents) throws IOException {
-        saveEvents(readOnlyEvents, eventStorage.getEventHistoryFilePath());
-    }
-
-    @Override
-    public void saveEvents(ReadOnlyEvents events, Path filePath) throws IOException {
-        logger.fine("Writing events into event file :" + filePath);
-        eventStorage.saveEvents(events, filePath);
-    }
-
-    // ================ Notes methods ==============================
+    // ==================== ADMIN START ====================
     @Override
     public Path getAdminFilePath() {
         return adminStorage.getAdminFilePath();
@@ -179,7 +150,9 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         adminStorage.saveAdmin(admin, filePath);
     }
+    // ==================== ADMIN END ====================
 
+    // ==================== NOTES START ====================
     @Override
     public Path getNotesManagerFilePath() {
         return notesManagerStorage.getNotesManagerFilePath();
@@ -206,4 +179,34 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         notesManagerStorage.saveNotesManager(notes, filePath);
     }
+    // ==================== NOTES END ====================
+
+    // ==================== EVENTS START ====================
+    @Override
+    public Path getEventHistoryFilePath() {
+        return eventStorage.getEventHistoryFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyEvents> readEvents() throws DataConversionException, IOException {
+        return readEvents(eventStorage.getEventHistoryFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyEvents> readEvents(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Reading events from event file: " + filePath);
+        return eventStorage.readEvents(filePath);
+    }
+
+    @Override
+    public void saveEvents(ReadOnlyEvents readOnlyEvents) throws IOException {
+        saveEvents(readOnlyEvents, eventStorage.getEventHistoryFilePath());
+    }
+
+    @Override
+    public void saveEvents(ReadOnlyEvents events, Path filePath) throws IOException {
+        logger.fine("Writing events into event file :" + filePath);
+        eventStorage.saveEvents(events, filePath);
+    }
+    // ==================== EVENTS END ====================
 }

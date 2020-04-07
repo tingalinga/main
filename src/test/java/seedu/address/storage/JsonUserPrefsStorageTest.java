@@ -72,7 +72,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setTeaPetFilePath(Paths.get("teapet.json"));
         userPrefs.setAcademicsFilePath(Paths.get("academics.json"));
         userPrefs.setAdminFilePath(Paths.get("admin.json"));
         userPrefs.setNotesFilePath(Paths.get("notes.json"));

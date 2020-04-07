@@ -18,12 +18,13 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.model.Model;
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.Date;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TeaPet;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -41,8 +42,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ATTENDANCE_AMY = "Present";
     public static final String VALID_ATTENDANCE_BOB = "Absent";
-    public static final String VALID_REMARK_AMY = "Like skiing.";
-    public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TEMPERATURE_AMY = "36.5";
     public static final String VALID_TEMPERATURE_BOB = "37.0";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -69,7 +68,7 @@ public class CommandTestUtil {
     public static final String NOK_DESC_AMY = " " + PREFIX_NOK + VALID_NOK_AMY;
     public static final String NOK_DESC_BOB = " " + PREFIX_NOK + VALID_NOK_BOB;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James97"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
@@ -90,8 +89,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE_MATH_ASSIGNMENT = "2020-03-05";
     public static final String VALID_DATE_SCIENCE_EXAM = "2020-05-25";
 
-    public static final EditCommand.EditStudentDescriptor DESC_AMY;
-    public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final StudentEditCommand.EditStudentDescriptor DESC_AMY;
+    public static final StudentEditCommand.EditStudentDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -139,11 +138,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        TeaPet expectedTeaPet = new TeaPet(actualModel.getTeaPet());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedTeaPet, actualModel.getTeaPet());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
 
