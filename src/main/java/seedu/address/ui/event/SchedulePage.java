@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.event;
 
 import java.util.logging.Logger;
 
@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.UiPart;
 
 /**
  * Controller for a help page

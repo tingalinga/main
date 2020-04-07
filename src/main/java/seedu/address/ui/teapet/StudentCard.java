@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.teapet;
 
 import java.io.File;
 import java.util.Comparator;
@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays minimal information of a {@code Student}.

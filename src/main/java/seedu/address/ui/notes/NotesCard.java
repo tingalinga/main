@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.notes;
 
 import static seedu.address.model.notes.Notes.PRIORITY_HIGH;
 import static seedu.address.model.notes.Notes.PRIORITY_LOW;
@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.notes.Notes;
+import seedu.address.ui.UiPart;
 
 /**
  * Represents a Controller for NotesCard fxml.

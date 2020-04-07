@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.event;
 
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -14,6 +14,7 @@ import jfxtras.internal.scene.control.skin.agenda.AgendaDaySkin;
 import jfxtras.internal.scene.control.skin.agenda.AgendaWeekSkin;
 import jfxtras.scene.control.agenda.icalendar.ICalendarAgenda;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.UiPart;
 
 /**
  * Represents the controller for the schedulePanel

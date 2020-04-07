@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.event;
 
 import java.util.logging.Logger;
 
@@ -7,6 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.ui.UiPart;
 
 
 /**

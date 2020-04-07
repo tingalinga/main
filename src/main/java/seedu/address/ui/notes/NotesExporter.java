@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.notes;
 
 import java.io.FileWriter;
 import java.io.IOException;
