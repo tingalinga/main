@@ -1,7 +1,7 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -34,16 +34,6 @@ public class HelpWindow extends UiPart<Stage> {
     private WebView webView;
     private WebEngine webEngine = webView.getEngine();
 
-    @FXML
-    private void openBrowser() {
-        try {
-            Desktop.getDesktop().browse(new URL(USER_GUIDE_URL).toURI());
-            hide();
-        } catch (IOException | URISyntaxException e) {
-            hide();
-            MainWindow.editResultDisplay(MESSAGE_FAILURE);
-        }
-    }
 
     /**
      * Creates a new HelpWindow.
@@ -61,6 +51,22 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow() {
         this(new Stage());
     }
+
+    /**
+     * Controller method to open url browser
+     */
+    @FXML
+    private void openBrowser() {
+        try {
+            Desktop.getDesktop().browse(new URL(USER_GUIDE_URL).toURI());
+            hide();
+        } catch (IOException | URISyntaxException e) {
+            hide();
+            MainWindow.editResultDisplay(MESSAGE_FAILURE);
+        }
+    }
+
+
 
     /**
      * Shows the help window.
