@@ -2,7 +2,10 @@ package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
 
 import java.util.List;
 import java.util.Optional;

@@ -5,7 +5,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_NOTES;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CommandResult;
