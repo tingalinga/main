@@ -2,6 +2,7 @@ package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class AcademicsDeleteCommand extends AcademicsCommand {
         }
         Assessment assessmentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAssessment(assessmentToDelete);
+        model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_ASSESSMENT_SUCCESS, assessmentToDelete));
     }
 

@@ -72,7 +72,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'teapet.jar'
 
     destinationDir = file("${buildDir}/jar/")
 }

@@ -2,8 +2,11 @@ package seedu.address.ui.academics;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -12,6 +15,7 @@ import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.Submission;
 import seedu.address.ui.UiPart;
 
 /**
@@ -62,7 +66,16 @@ public class AssessmentCardHomework extends UiPart<Region> {
         }
         date.setText("Deadline: "
                 + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-        submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
+        int submitted = 0;
+        ObservableList<Submission> submissionsList =
+                FXCollections.observableArrayList(assessment.getSubmissionTracker());
+
+        Iterator<Submission> iterator =  submissionsList.iterator();
+        while (iterator.hasNext()) {
+            Submission next = iterator.next();
+            submitted = next.hasSubmitted() ? submitted + 1 : submitted;
+        }
+        submissionTracker.setText("Submissions: " + submitted
                 + " / " + assessment.getSubmissionTracker().size());
     }
 

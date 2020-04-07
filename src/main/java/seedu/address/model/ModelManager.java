@@ -278,7 +278,6 @@ public class ModelManager implements Model {
         filteredAssessments.setPredicate(predicate);
     }
 
-
     // ==================== Academics END ====================
 
     // ==================== Notes START ====================
