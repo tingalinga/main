@@ -81,6 +81,7 @@ This section will bring you through the step-by-step process on getting started 
 .  Copy the TeaPet.jar file to the folder you want to use as the root directory for TeaPet.
 .  Double-click the file to start the app. The Graphical User Interface (GUI) should appear in a matter of seconds.
 +
+.Home View of TeaPet
 image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
