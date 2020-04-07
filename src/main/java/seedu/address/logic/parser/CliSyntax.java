@@ -12,13 +12,14 @@ public class CliSyntax {
     public static final Prefix PREFIX_FIND = new Prefix("find");
 
     /* Prefix definitions */
+    public static final Prefix PREFIX_CLEAR = new Prefix("clear");
     public static final Prefix PREFIX_REFRESH = new Prefix("refresh");
     public static final Prefix PREFIX_DEFAULT = new Prefix("default");
     public static final Prefix PREFIX_DETAILED = new Prefix("detailed");
     public static final Prefix PREFIX_NAME = new Prefix("name/");
     public static final Prefix PREFIX_PHONE = new Prefix("phone/");
     public static final Prefix PREFIX_EMAIL = new Prefix("email/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("addr/");
+    public static final Prefix PREFIX_ADDRESS = new Prefix("adr/");
     public static final Prefix PREFIX_TAG = new Prefix("tag/");
     public static final Prefix PREFIX_NOK = new Prefix("nok/");
     public static final Prefix PREFIX_TEMPERATURE = new Prefix("temp/");

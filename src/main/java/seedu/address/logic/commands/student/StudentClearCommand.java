@@ -1,16 +1,16 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.student.TeaPet;
 
 /**
  * Clears the address book.
  */
-public class ClearCommand extends Command {
+public class StudentClearCommand extends StudentCommand {
 
-    public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Student list has been cleared!";
 
 

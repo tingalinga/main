@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEFAULT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILED;
@@ -30,6 +31,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.student.DefaultStudentDisplayCommand;
 import seedu.address.logic.commands.student.DetailedStudentDisplayCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.logic.commands.student.StudentClearCommand;
 import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
@@ -66,11 +68,10 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         if (args.equals("")) {
             return defaultDisplayCommand();
         }
-
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_EDIT, PREFIX_DELETE, PREFIX_FIND, PREFIX_REFRESH,
-                        PREFIX_DEFAULT, PREFIX_DETAILED, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_NOK, PREFIX_TEMPERATURE, PREFIX_ATTENDANCE);
+                ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_DELETE, PREFIX_EDIT, PREFIX_FIND, PREFIX_REFRESH,
+                        PREFIX_DEFAULT, PREFIX_DETAILED, PREFIX_CLEAR, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_NOK, PREFIX_TEMPERATURE, PREFIX_ATTENDANCE);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
@@ -80,6 +81,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return editCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
             return findCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_CLEAR).isPresent()) {
+            return clearCommand();
         } else if (argMultimap.getValue(PREFIX_REFRESH).isPresent()) {
             return refreshCommand();
         } else if (argMultimap.getValue(PREFIX_DEFAULT).isPresent()) {
@@ -97,7 +100,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      */
     private StudentAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble(PREFIX_ADD.getPrefix()).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAddCommand.MESSAGE_USAGE));
         }
 
@@ -205,6 +208,14 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         return new StudentFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+    }
+
+    /**
+     * Returns a StudentClearCommand object for execution.
+     * {@code ArgumentMultimap}.
+     */
+    private StudentClearCommand clearCommand() throws ParseException, CommandException {
+        return new StudentClearCommand();
     }
 
     /**

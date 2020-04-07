@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.student.StudentClearCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescriptor;
 import seedu.address.model.Model;
@@ -181,7 +182,7 @@ public class StudentEditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new StudentClearCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new StudentEditCommand(INDEX_SECOND_STUDENT, DESC_AMY)));

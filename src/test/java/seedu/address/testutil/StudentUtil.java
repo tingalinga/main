@@ -24,7 +24,7 @@ public class StudentUtil {
      * Returns an add command string for adding the {@code student}.
      */
     public static String getAddCommand(Student student) {
-        return StudentAddCommand.COMMAND_WORD + " " + getStudentDetails(student);
+        return StudentAddCommand.COMMAND_WORD + " add " + getStudentDetails(student);
     }
 
     /**

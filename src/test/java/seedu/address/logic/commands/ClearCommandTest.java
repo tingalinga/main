@@ -9,6 +9,7 @@ import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.student.StudentClearCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -21,7 +22,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new StudentClearCommand(), model, StudentClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -32,7 +33,7 @@ public class ClearCommandTest {
                 getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
         expectedModel.setTeaPet(new TeaPet());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new StudentClearCommand(), model, StudentClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
