@@ -257,7 +257,7 @@ Shows all assessments in the academics list and a guide for academic commands.
 .After using the academics command
 image::academics-view.png[width="790]
 
-==== Add Assessment: `add`
+==== Add Assessment: `academics add`
 
 Adds an assessment into the academics list.
 
@@ -281,7 +281,7 @@ Adds an assessment _Math Graphs Homework_ into the academics list along with its
     Due by: 2020-05-02
 
 
-==== Edit Assessment: `edit`
+==== Edit Assessment: `academics edit`
 
 Edits an assessment from the academics list.
 
@@ -305,7 +305,7 @@ Edits assessment in the academics list with the new description _Chemistry Compo
     Due by: 2020-04-30
 
 
-==== Delete Assessment: `delete`
+==== Delete Assessment: `academics delete`
 
 Deletes an assessment from the academics list.
 
@@ -327,7 +327,7 @@ Deletes an assessment from the academics list.
     Due by: 2020-04-30
 
 
-==== Submit Assessment: `submit`
+==== Submit Assessment: `academics submit`
 
 Submits student(s) work for a specific assessment.
 
@@ -352,7 +352,7 @@ Submits _Freddy Zhang_ and _Gerren Seow_ for the assessment at index 3.
     Gerren Seow
 
 
-==== Mark Assessment: `mark`
+==== Mark Assessment: `academics mark`
 
 Marks student(s) work for a specific assessment.
 
@@ -377,7 +377,7 @@ Marks _Freddy Zhang_ and _Gerren Seow_ for the assessment at index 3.
     Freddy Zhang: 90
 
 
-==== Filter Assessments by type: `homework/exam`
+==== Filter Assessments by type: `academics homework/exam`
 
 Filters assessment list by either homework or exam.
 
@@ -402,7 +402,7 @@ Filters assessment list by either homework or exam.
     Academics now displays all EXAM assessments
 
 
-==== View Academics Report: `report`
+==== View Academics Report: `academics report`
 
 Generates an academic report for each assessment.
 
@@ -414,7 +414,7 @@ Generates an academic report for each assessment.
 
     Academics now displays the report of each assessment.
 
-==== Export Academics Report: `export`
+==== Export Academics Report: `academics export`
 
 Exports the academic report into a csv file.
 
