@@ -21,6 +21,7 @@ public class AdminFetchCommand extends AdminCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_FETCH
             + " YYYY-MM-DD: to display the class admin details.";
     public static final String MESSAGE_SUCCESS = "Class admin details for %1$s listed!";
+    public static final String MESSAGE_DATE_NOT_FOUND_ADMIN = "Date provided is not in database!";
     private final DateContainsKeywordsPredicate predicate;
 
     public AdminFetchCommand(DateContainsKeywordsPredicate predicate) {

@@ -52,16 +52,6 @@ public class Date {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        String fullDate = date.toString();
-        String studentString = "";
-        for (Student student : students) {
-            studentString += "Name: ";
-            studentString += student.toString() + " ";
-        }
-        studentString.trim();
-        String dateString = fullDate + " " + studentString;
-        builder.append(dateString);
-        return builder.toString();
+        return "";
     }
 }

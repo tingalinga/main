@@ -8,15 +8,11 @@ public class Messages {
     /* General Messages */
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_STUDENT_NOT_FOUND = "No such student found!";
 
     /* Student Messages */
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The student index provided is invalid";
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
-
-    /* Admin Messages */
-    public static final String MESSAGE_DATE_NOT_FOUND_ADMIN = "Date provided is not in database!";
-    public static final String MESSAGE_STUDENT_NOT_FOUND = "No such student found!";
-    public static final String MESSAGE_DUPLICATE_DATE_ADMIN = "Operation would result in duplicate dates";
 
     /* Academics Messages */
     public static final String MESSAGE_INVALID_ASSESSMENT_DISPLAYED_INDEX = "The assessment index provided is invalid";
