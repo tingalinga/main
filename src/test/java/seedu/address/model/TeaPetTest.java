@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,29 +18,31 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TeaPet;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddressBookTest {
+public class TeaPetTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final TeaPet teaPet = new TeaPet();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), teaPet.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> teaPet.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyTeaPet_replacesData() {
+        TeaPet newData = getTypicalTeaPet();
+        teaPet.resetData(newData);
+        assertEquals(newData, teaPet);
     }
 
     @Test
@@ -49,47 +51,47 @@ public class AddressBookTest {
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        TeaPetStub newData = new TeaPetStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> teaPet.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> teaPet.hasStudent(null));
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentNotInTeaPet_returnsFalse() {
+        assertFalse(teaPet.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentInTeaPet_returnsTrue() {
+        teaPet.addStudent(ALICE);
+        assertTrue(teaPet.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
+    public void hasStudent_studentWithSameIdentityFieldsInTeaPet_returnsTrue() {
+        teaPet.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(teaPet.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> teaPet.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
+     * A stub ReadOnlyTeaPet whose students list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TeaPetStub implements ReadOnlyTeaPet {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        TeaPetStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 

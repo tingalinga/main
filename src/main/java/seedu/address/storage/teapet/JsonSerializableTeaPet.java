@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.TeaPet;
 import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TeaPet;
 
 /**
  * An Immutable TeaPet that is serializable to JSON format.
  */
 @JsonRootName(value = "teapet")
-class JsonSerializableTeaPet {
+public class JsonSerializableTeaPet {
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();

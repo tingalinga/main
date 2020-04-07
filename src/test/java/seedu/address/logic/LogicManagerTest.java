@@ -18,25 +18,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.RefreshCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.logic.commands.student.StudentRefreshCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.ReadOnlyAdmin;
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.academics.JsonAcademicsStorage;
 import seedu.address.storage.admin.JsonAdminStorage;
 import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
+import seedu.address.storage.teapet.JsonTeaPetStorage;
 import seedu.address.testutil.StudentBuilder;
 
 public class LogicManagerTest {
@@ -50,8 +50,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTeaPetStorage teaPetStorage =
+                new JsonTeaPetStorage(temporaryFolder.resolve("teaPet.json"));
         JsonAdminStorage adminStorage =
                 new JsonAdminStorage(temporaryFolder.resolve("admin.json"));
         JsonAcademicsStorage academicsStorage =
@@ -61,7 +61,7 @@ public class LogicManagerTest {
         JsonEventStorage eventHistory =
                 new JsonEventStorage(temporaryFolder.resolve("event.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, adminStorage, academicsStorage,
+        StorageManager storage = new StorageManager(teaPetStorage, adminStorage, academicsStorage,
                 userPrefsStorage, eventHistory, notesManagerStorage);
 
         logic = new LogicManager(model, storage);
@@ -81,15 +81,15 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = RefreshCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, RefreshCommand.MESSAGE_SUCCESS, model);
+        String listCommand = StudentRefreshCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, StudentRefreshCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub and JsonAcademicsIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonTeaPetIoExceptionThrowingStub and JsonAcademicsIoExceptionThrowingStub
+        JsonTeaPetStorage teaPetStorage =
+                new JsonTeaPetIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTeaPet.json"));
         JsonAdminStorage adminStorage =
                 new JsonAdminIoExceptionThrowingStub(temporaryFolder.resolve("ioException.json"));
         JsonAcademicsStorage academicsStorage =
@@ -101,12 +101,12 @@ public class LogicManagerTest {
         JsonEventStorage eventHistory =
                 new JsonEventStorage(temporaryFolder.resolve("event.json"));
 
-        StorageManager storage = new StorageManager(addressBookStorage, adminStorage, academicsStorage,
+        StorageManager storage = new StorageManager(teaPetStorage, adminStorage, academicsStorage,
                 userPrefsStorage, eventHistory, notesManagerStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = StudentAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + TEMPERATURE_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
@@ -156,8 +156,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getAcademics(), model.getAdmin(),
-                model.getNotesManager(), new UserPrefs(), model.getEventHistory());
+        Model expectedModel = new ModelManager(model.getTeaPet(), model.getAcademics(), model.getAdmin(),
+                model.getNotesManager(), model.getEventHistory(), new UserPrefs());
 
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
@@ -178,13 +178,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonTeaPetIoExceptionThrowingStub extends JsonTeaPetStorage {
+        private JsonTeaPetIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveTeaPet(ReadOnlyTeaPet teaPet, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

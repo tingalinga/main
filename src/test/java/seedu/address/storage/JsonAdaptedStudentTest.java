@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.teapet.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 
@@ -19,6 +19,8 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Temperature;
+import seedu.address.storage.teapet.JsonAdaptedStudent;
+import seedu.address.storage.teapet.JsonAdaptedTag;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";

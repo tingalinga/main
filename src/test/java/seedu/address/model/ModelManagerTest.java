@@ -26,9 +26,10 @@ import seedu.address.model.admin.Admin;
 import seedu.address.model.event.EventHistory;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.TeaPet;
 import seedu.address.testutil.AcademicsBuilder;
-import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.AdminBuilder;
+import seedu.address.testutil.TeaPetBuilder;
 
 public class ModelManagerTest {
 
@@ -38,7 +39,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new TeaPet(), new TeaPet(modelManager.getTeaPet()));
         assertEquals(new Admin(), new Admin(modelManager.getAdmin()));
         assertEquals(new Academics(), new Academics(modelManager.getAcademics()));
         assertEquals(new NotesManager(), new NotesManager(modelManager.getNotesManager()));
@@ -52,7 +53,7 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setTeaPetFilePath(Paths.get("address/book/file/path"));
         userPrefs.setAcademicsFilePath(Paths.get("address/book/file/path"));
         userPrefs.setAdminFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
@@ -61,7 +62,7 @@ public class ModelManagerTest {
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setTeaPetFilePath(Paths.get("new/address/book/file/path"));
         userPrefs.setAcademicsFilePath(Paths.get("new/address/book/file/path"));
         userPrefs.setAdminFilePath(Paths.get("address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
@@ -80,15 +81,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setTeaPetFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTeaPetFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTeaPetFilePath_validPath_setsTeaPetFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setTeaPetFilePath(path);
+        assertEquals(path, modelManager.getTeaPetFilePath());
     }
 
     @Test
@@ -97,12 +98,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInTeaPet_returnsFalse() {
         assertFalse(modelManager.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
+    public void hasStudent_studentInTeaPet_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
     }
@@ -148,8 +149,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        TeaPet teaPet = new TeaPetBuilder().withStudent(ALICE).withStudent(BENSON).build();
+        TeaPet differentTeaPet = new TeaPet();
         Academics academics = new AcademicsBuilder().withAssessment(SCIENCE_HOMEWORK)
                 .withAssessment(CHINESE_HOMEWORK).build();
         Academics differentAcademics = new Academics();
@@ -161,9 +162,9 @@ public class ModelManagerTest {
 
         // same values -> returns true
 
-        modelManager = new ModelManager(addressBook, academics, admin, notesManager, userPrefs , eventHistory);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, academics, admin, notesManager, userPrefs,
-                eventHistory);
+        modelManager = new ModelManager(teaPet, academics, admin, notesManager, eventHistory, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(teaPet, academics, admin, notesManager, eventHistory,
+                userPrefs);
 
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -176,9 +177,9 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentAcademics, differentAdmin,
-                notesManager, userPrefs, eventHistory)));
+        // different teaPet -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentTeaPet, differentAcademics, differentAdmin,
+                notesManager, eventHistory, userPrefs)));
 
         // different filteredList -> returns false
         String[] studentKeywords = ALICE.getName().fullName.split("\\s+");
@@ -186,8 +187,8 @@ public class ModelManagerTest {
         String[] assessmentKeywords = SCIENCE_HOMEWORK.getDescription().split("\\s+");
         modelManager.updateFilteredAcademicsList(
                 new DescriptionContainsKeywordsPredicate(Arrays.asList(assessmentKeywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, admin, notesManager, userPrefs,
-                eventHistory)));
+        assertFalse(modelManager.equals(new ModelManager(teaPet, academics, admin, notesManager, eventHistory,
+                userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -195,9 +196,9 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setTeaPetFilePath(Paths.get("differentFilePath"));
         differentUserPrefs.setAcademicsFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, academics, admin, notesManager,
-                differentUserPrefs, eventHistory)));
+        assertFalse(modelManager.equals(new ModelManager(teaPet, academics, admin, notesManager,
+                eventHistory, differentUserPrefs)));
     }
 }

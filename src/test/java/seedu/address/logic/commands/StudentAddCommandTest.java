@@ -22,9 +22,8 @@ import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
@@ -35,17 +34,16 @@ import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TeaPet;
 import seedu.address.testutil.StudentBuilder;
 
-
-
-
-public class AddCommandTest {
+public class StudentAddCommandTest {
 
     @Test
     public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new StudentAddCommand(null));
     }
 
     @Test
@@ -53,33 +51,34 @@ public class AddCommandTest {
         ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
         Student validStudent = new StudentBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new StudentAddCommand(validStudent).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
+        assertEquals(String.format(StudentAddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student validStudent = new StudentBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
+        StudentAddCommand addCommand = new StudentAddCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_STUDENT, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, StudentAddCommand.MESSAGE_DUPLICATE_STUDENT, () ->
+                addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Student alice = new StudentBuilder().withName("Alice").build();
         Student bob = new StudentBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        StudentAddCommand addAliceCommand = new StudentAddCommand(alice);
+        StudentAddCommand addBobCommand = new StudentAddCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        StudentAddCommand addAliceCommandCopy = new StudentAddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -117,12 +116,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTeaPetFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTeaPetFilePath(Path teaPetFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -132,12 +131,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTeaPet(ReadOnlyTeaPet newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTeaPet getTeaPet() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -227,7 +226,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAcademicsFilePath(Path addressBookFilePath) {
+        public void setAcademicsFilePath(Path academicsFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -483,8 +482,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTeaPet getTeaPet() {
+            return new TeaPet();
         }
     }
 
