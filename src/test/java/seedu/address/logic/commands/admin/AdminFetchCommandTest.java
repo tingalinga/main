@@ -2,6 +2,7 @@ package seedu.address.logic.commands.admin;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
@@ -9,18 +10,23 @@ import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.admin.Date;
 import seedu.address.model.admin.DateContainsKeywordsPredicate;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 
 public class AdminFetchCommandTest {
 
     private Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
+            getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
             getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
 
     @Test
@@ -51,7 +57,7 @@ public class AdminFetchCommandTest {
     }
 
     @Test
-    public void execute_dateNotFound() {
+    public void execute_dateNotInAdmin_throwsDateNotFoundException() {
         boolean thrown = false;
         try {
             DateContainsKeywordsPredicate predicate = new DateContainsKeywordsPredicate(LocalDate.parse("2020-04-26"));
@@ -61,5 +67,18 @@ public class AdminFetchCommandTest {
             thrown = true;
         }
         assertTrue(thrown);
+    }
+
+    @Test
+    public void execute_dateInAdmin_success() {
+        Date date = model.getFilteredDateList().get(0);
+        String fullDate = date.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
+                + date.getDate().getDayOfMonth() + " " + date.getDate().getYear();
+        String expectedMessage = String.format(AdminFetchCommand.MESSAGE_SUCCESS, fullDate);
+        DateContainsKeywordsPredicate predicate = new DateContainsKeywordsPredicate(LocalDate.parse("2020-01-26"));
+        model.updateFilteredDateList(predicate);
+        AdminFetchCommand command = new AdminFetchCommand(predicate);
+        expectedModel.updateFilteredDateList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }
