@@ -222,6 +222,7 @@ public class MainWindow extends UiPart<Stage> {
         studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
         personalSchedule.setStyle(" -fx-background-color: Orange");
     }
+
     /**
      *  Opens the Personal Schedule Page
      */
