@@ -47,7 +47,7 @@ public class JsonAcademicsStorage implements AcademicsStorage {
 
         Optional<JsonSerializableAcademics> jsonAcademics = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAcademics.class);
-        if (!jsonAcademics.isPresent()) {
+        if (jsonAcademics.isEmpty()) {
             return Optional.empty();
         }
 

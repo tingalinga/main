@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path teaPetFilePath = Paths.get("data" , "teapet.json");
     private Path academicsFilePath = Paths.get("data" , "academics.json");
     private Path adminFilePath = Paths.get("data", "admin.json");
     private Path eventHistoryFilePath = Paths.get("data", "events.json");
@@ -40,7 +40,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setTeaPetFilePath(newUserPrefs.getTeaPetFilePath());
         setAdminFilePath(newUserPrefs.getAdminFilePath());
         setAcademicsFilePath(newUserPrefs.getAcademicsFilePath());
     }
@@ -54,13 +54,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getTeaPetFilePath() {
+        return teaPetFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setTeaPetFilePath(Path teaPetFilePath) {
+        requireNonNull(teaPetFilePath);
+        this.teaPetFilePath = teaPetFilePath;
     }
 
     public Path getAcademicsFilePath() {
@@ -111,24 +111,24 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath)
+                && teaPetFilePath.equals(o.teaPetFilePath)
                 && academicsFilePath.equals(o.academicsFilePath)
                 && adminFilePath.equals(o.adminFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, academicsFilePath, adminFilePath);
+        return Objects.hash(guiSettings, teaPetFilePath, academicsFilePath, adminFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data addressbook file location : " + addressBookFilePath);
+        sb.append("\nLocal data tea pet file location : " + teaPetFilePath);
         sb.append("\nLocal data ad,om file location : " + adminFilePath);
         sb.append("\nLocal data academics file location : " + academicsFilePath);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + teaPetFilePath);
         sb.append("\nAcademics data file location : " + academicsFilePath);
         sb.append("\nNotes data file location : " + notesFilePath);
         return sb.toString();

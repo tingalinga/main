@@ -13,15 +13,14 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.RefreshCommand;
+import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.logic.commands.student.StudentClearCommand;
+import seedu.address.logic.commands.student.StudentDeleteCommand;
+import seedu.address.logic.commands.student.StudentEditCommand;
+import seedu.address.logic.commands.student.StudentFindCommand;
+import seedu.address.logic.commands.student.StudentRefreshCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
@@ -36,30 +35,32 @@ public class TeaPetParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
-        assertEquals(new AddCommand(student), command);
+        StudentAddCommand command = (StudentAddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
+        assertEquals(new StudentAddCommand(student), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(StudentClearCommand.COMMAND_WORD + " clear") instanceof StudentClearCommand);
+        assertTrue(parser.parseCommand(StudentClearCommand.COMMAND_WORD + " clear 3") instanceof StudentClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+        StudentDeleteCommand command = (StudentDeleteCommand) parser.parseCommand(
+                StudentDeleteCommand.COMMAND_WORD + " delete " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new StudentDeleteCommand(INDEX_FIRST_STUDENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new StudentBuilder().build();
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        StudentEditCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
+        System.out.println(StudentEditCommand.COMMAND_WORD + " edit "
                 + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
+        StudentEditCommand command = (StudentEditCommand) parser.parseCommand(StudentEditCommand.COMMAND_WORD + " edit "
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new StudentEditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
     @Test
@@ -71,9 +72,9 @@ public class TeaPetParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        StudentFindCommand command = (StudentFindCommand) parser.parseCommand(
+                StudentFindCommand.COMMAND_WORD + " find " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new StudentFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -84,8 +85,8 @@ public class TeaPetParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(RefreshCommand.COMMAND_WORD) instanceof RefreshCommand);
-        assertTrue(parser.parseCommand(RefreshCommand.COMMAND_WORD + " 3") instanceof RefreshCommand);
+        assertTrue(parser.parseCommand("student refresh") instanceof StudentRefreshCommand);
+        assertTrue(parser.parseCommand("student refresh 3") instanceof StudentRefreshCommand);
     }
 
     @Test

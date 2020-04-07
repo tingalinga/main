@@ -10,8 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
@@ -24,7 +24,7 @@ public class StudentUtil {
      * Returns an add command string for adding the {@code student}.
      */
     public static String getAddCommand(Student student) {
-        return AddCommand.COMMAND_WORD + " " + getStudentDetails(student);
+        return StudentAddCommand.COMMAND_WORD + " add " + getStudentDetails(student);
     }
 
     /**
