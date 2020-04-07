@@ -14,8 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_NOK = new Prefix("nok/");
     public static final Prefix PREFIX_TEMPERATURE = new Prefix("temp/");
     public static final Prefix PREFIX_ATTENDANCE = new Prefix("att/");
-    public static final Prefix PREFIX_CONTENT = new Prefix("c/");
-    public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
 
     /* Assessment Prefixes */
     public static final Prefix PREFIX_ADD = new Prefix("add");
@@ -44,5 +42,14 @@ public class CliSyntax {
     public static final Prefix PREFIX_EVENT_DELETE = new Prefix("delete");
     public static final Prefix PREFIX_EVENT_EDIT = new Prefix("edit");
 
+    /* Notes Prefixes */
+    public static final Prefix PREFIX_NOTES_ADD = new Prefix("add");
+    public static final Prefix PREFIX_NOTES_EDIT = new Prefix("edit");
+    public static final Prefix PREFIX_NOTES_DELETE = new Prefix("delete");
+    public static final Prefix PREFIX_NOTES_FILTER = new Prefix("filter");
+    public static final Prefix PREFIX_NOTES_EXPORT = new Prefix("export");
+    public static final Prefix PREFIX_NOTES_STUDENT = new Prefix("n/");
+    public static final Prefix PREFIX_NOTES_CONTENT = new Prefix("c/");
+    public static final Prefix PREFIX_NOTES_PRIORITY = new Prefix("pr/");
 
 }

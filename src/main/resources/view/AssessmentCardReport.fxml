@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+
 <HBox id="cardPane" fx:id="cardPane" styleClass="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <VBox minHeight="105" minWidth="450.0" prefWidth="250.0">
         <padding>

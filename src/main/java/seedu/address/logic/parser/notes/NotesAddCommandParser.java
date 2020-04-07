@@ -2,9 +2,9 @@ package seedu.address.logic.parser.notes;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
 import static seedu.address.model.notes.Notes.PRIORITY_HIGH;
 import static seedu.address.model.notes.Notes.PRIORITY_LOW;
 import static seedu.address.model.notes.Notes.PRIORITY_MEDIUM;
@@ -31,15 +31,17 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
      */
     public NotesAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTENT, PREFIX_PRIORITY);
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !arePrefixesPresent(argMultimap, PREFIX_CONTENT)
-                || !arePrefixesPresent(argMultimap, PREFIX_PRIORITY) || !argMultimap.getPreamble().isEmpty()) {
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_STUDENT, PREFIX_NOTES_CONTENT, PREFIX_NOTES_PRIORITY);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTES_STUDENT)
+                || !arePrefixesPresent(argMultimap, PREFIX_NOTES_CONTENT)
+                || !arePrefixesPresent(argMultimap, PREFIX_NOTES_PRIORITY)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesAddCommand.MESSAGE_USAGE));
         }
 
-        String name = argMultimap.getValue(PREFIX_NAME).get();
-        String content = argMultimap.getValue(PREFIX_CONTENT).get();
-        String priority = argMultimap.getValue(PREFIX_PRIORITY).get();
+        String name = argMultimap.getValue(PREFIX_NOTES_STUDENT).get();
+        String content = argMultimap.getValue(PREFIX_NOTES_CONTENT).get();
+        String priority = argMultimap.getValue(PREFIX_NOTES_PRIORITY).get();
 
         if (!priority.toUpperCase().equals(PRIORITY_HIGH) && !priority.toUpperCase().equals(PRIORITY_MEDIUM)
                 && !priority.toUpperCase().equals(PRIORITY_LOW)) {

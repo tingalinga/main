@@ -85,4 +85,25 @@ public class StringUtil {
         return similarityPercentage;
     }
 
+    /**
+     * Returns true if the {@code content} contains the {@code word}.
+     *   Ignores case, and check is performed based on characters, instead of full word.
+     *   <br>examples:<pre>
+     *       hasKeywordInString("ABc def", "ABc") == true
+     *       hasKeywordInString("ABc def", "de") == true
+     *       hasKeywordInString("ABc def", "p") == false
+     *       </pre>
+     * @param content cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean hasKeywordInString(String content, String word) {
+        requireNonNull(content);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Keyword parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Keyword parameter should be a single word");
+        return content.toLowerCase().contains(preppedWord.toLowerCase());
+    }
+
 }

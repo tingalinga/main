@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_FILTER;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -11,10 +11,11 @@ import seedu.address.model.notes.NotesContainKeywordsPredicate;
 /**
  * Represents a NotesFilterCommand which filters the notes displayed based on input keywords.
  */
-public class NotesFilterCommand extends Command {
-    public static final String COMMAND_WORD = "notesf";
+public class NotesFilterCommand extends NotesCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " <Keywords(s)>\n"
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + " "
+            + PREFIX_NOTES_FILTER + " <Keywords(s)>\n"
             + "This command looks for keywords present in Student, "
             + "DateTime, Priority and Content fields";
 

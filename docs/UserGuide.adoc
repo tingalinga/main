@@ -20,18 +20,21 @@ By: `CS2103T-W12-2`      Since: `Feb 2020`      Licence: `MIT`
 
 == Introduction
 
-Welcome to TeaPet!
+Greetings, and welcome to TeaPet!
 
 Looking for an all-in-one solution for your teaching needs? Look no further!
 
-TeaPet is an integrated platform fully customized for Primary School Form Teachers to help you manage your classroom effectively.
-It contains your personal curriculum schedule, students' particulars, and can also track your class' academic progress.
+TeaPet is an integrated platform fully customized for form teachers in Primary, Secondary and Tertiary institutions,
+with the aim of helping you manage your classroom effectively. The application allows you to keep track of your students'
+personal particulars, daily administration, behavioural notes and academic progress all at a glance. Furthermore,
+TeaPet also comes with an in-built personal scheduler to help with your weekly planning. It looks like you'll never
+have to worry about missing your next coffee appointment anymore!
 
 All your important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI) and we are optimized for users who are very comfortable
 working on the Command Line Interface (CLI).
 
-If you are looking for a way to easily manage your administrative classroom chores
-and have quick hands, then TeaPet is definitely for you!
+If you are looking for a way to easily manage your administrative classroom matters
+and have quick fingers, then TeaPet is definitely for you!
 
 Interested? Hop onto <<Getting started>>. Enjoy!
 //end::intro[]
@@ -71,27 +74,27 @@ TIP: If you have any questions, please check out our <<FAQ>> section.
 == Overview of Features
 This section will provide you a brief overview of TeaPet's cool features and functionalities.
 
-. Manage your students easily
+. **Manage your students easily**
 .. Include student's particulars. e.g. address, contact number, next of kin (NOK)
 .. Include administrative details of the students. e.g. attendance, temperature
 
-. Plan your schedule easily
-.. Create and manage your events with a single calendar
-.. View calendar at a glance
-
-. Manage your class academic progress easily
+. **Manage your class academic progress easily**
 .. Include every student's grades for every examination.
 .. Easy to track progress using helpful tools. e.g. graph plots
 
-. Add Notes to act as lightweight, digital reminders easily
+. **Add Notes to act as lightweight, digital reminders easily**
 .. Include reminders for yourself to help you remember important information.
 .. Search keywords in your notes.
 .. Save the notes as administrative or behavioural
 
-. Toggle different views to find information easily
+. **Plan your schedule easily**
+.. Create and manage your events with a single calendar
+.. View calendar at a glance
+
+. **Toggle different views to find information easily**
 .. Different view modes show only the required information. e.g. detailed, admin, default
 
-. Data is saved onto your hard disk automatically
+. **Data is saved onto your hard disk automatically**
 .. Any changes made will be saved onto your computer so you dont have to worry about data being lost.
 
 == Getting started
@@ -108,15 +111,17 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`part add`**`n/Xiao Ming p/98765432 e/xiaoming@example.com a/Ming Dynasty, block 123, #01-01` : adds a contact named Xiao Ming to the Class List.
-* **`part delete`**`3` : deletes the 3rd contact shown in the current list
+* **`student add`**`n/Kelvin Klein  p/9001 5588 e/kelvink@egmail.com a/Toa Payoh Avenue 1, Block 123, #01-01`
+: adds a contact named Kelvin Klein to the Class List.
+* **`student delete`**`3` : deletes the 3rd student shown in the current list of students.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
 
 [[Features]]
 == Features
-This section will provide you with an in-depth explanation of our features of TeaPet.
+This section aims to provide you with in-depth details of TeaPet's main features, as well as how to
+get started with them.
 
 
 
@@ -200,10 +205,14 @@ better keep track of the stakeholder and information.
 * *Add Note*: `notesa n/[Student Name] c/[Note Content] pr/[Priority]` +
 Priority must be either HIGH, MEDIUM or LOW, case insensitive. +
 e.g. `notesa n/James Ho c/Reminder to print his testimonial pr/HIGH`
+* *Edit Note*: `notese [Index] n/[New Student Name c/New Content pr/[New Priority]` +
+At least one of the three fields must be updated when editing a note.
+e.g. `notese n/Jane Lee c/Reminder to print her testimonial pr/LOW`
 * *Delete Note*: `notesd [Index]`
 * *Filter Search Note*: `notesf [Keywords(s)]`
-* *Export Notes*: `notese` +
-Notes will be exported to a .csv file format.
+* *Export Notes*: `notesex` +
+Notes will be exported to a .csv file format, which is located in the data folder in the same directory.
+The file is named "studentNotes.csv".
 
 GUIDE THEM STEP BY STEP +
 PROVIDE EXAMPLE +
@@ -382,9 +391,11 @@ Here are the default commands available for use. They do not require prefixes.
 |`exit`|`exit`|Safely exits the application
 |`default`|`default`|Displays the default form of student list
 |`detailed`|`detailed`|Displays the detailed details of the class
-|`admin`|`admin`|Displays the administrative details of the class
+|`admin`|`admin`|Displays all administrative details of the class
+|`academics`|`academics`|Displays all academic records of the class
+|`notes`|`notes`|Displays all notes of the class
 |`schedule`|`schedule`|Displays your personal schedule
-|`academics`|`academics`|Displays the academic records of the class
+
 |===
 
 === Student Commands

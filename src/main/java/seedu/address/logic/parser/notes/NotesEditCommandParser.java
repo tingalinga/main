@@ -3,9 +3,9 @@ package seedu.address.logic.parser.notes;
 import static java.util.Objects.requireNonNull;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.notes.NotesEditCommand;
@@ -30,7 +30,7 @@ public class NotesEditCommandParser implements Parser<NotesEditCommand> {
     public NotesEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTENT, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTES_STUDENT, PREFIX_NOTES_CONTENT, PREFIX_NOTES_PRIORITY);
 
         Index index;
 
@@ -42,16 +42,16 @@ public class NotesEditCommandParser implements Parser<NotesEditCommand> {
 
         EditNotesDescriptor editNotesDescriptor = new EditNotesDescriptor();
 
-        if (argMultimap.getValueOptional(PREFIX_NAME).isPresent()) {
-            editNotesDescriptor.setStudent(argMultimap.getValue(PREFIX_NAME).get());
+        if (argMultimap.getValueOptional(PREFIX_NOTES_STUDENT).isPresent()) {
+            editNotesDescriptor.setStudent(argMultimap.getValue(PREFIX_NOTES_STUDENT).get());
         }
 
-        if (argMultimap.getValueOptional(PREFIX_CONTENT).isPresent()) {
-            editNotesDescriptor.setContent(argMultimap.getValue(PREFIX_CONTENT).get());
+        if (argMultimap.getValueOptional(PREFIX_NOTES_CONTENT).isPresent()) {
+            editNotesDescriptor.setContent(argMultimap.getValue(PREFIX_NOTES_CONTENT).get());
         }
 
-        if (argMultimap.getValueOptional(PREFIX_PRIORITY).isPresent()) {
-            editNotesDescriptor.setPriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        if (argMultimap.getValueOptional(PREFIX_NOTES_PRIORITY).isPresent()) {
+            editNotesDescriptor.setPriority(argMultimap.getValue(PREFIX_NOTES_PRIORITY).get());
         }
 
         if (!editNotesDescriptor.isAnyFieldEdited()) {

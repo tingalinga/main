@@ -15,7 +15,7 @@ public class NotesExporter {
     private final ObservableList<Notes> notesList;
 
     /**
-     * Constructor of NotesManager
+     * Constructor of NotesExporter
      * @param notesList
      */
     public NotesExporter(ObservableList<Notes> notesList) {
@@ -33,7 +33,8 @@ public class NotesExporter {
             noteContent.add(note.getStudent());
             noteContent.add(note.getPriority());
             noteContent.add(note.getDateTime());
-            noteContent.add(note.getContent());
+            String newContent = "\"" + note.getContent() + "\"";
+            noteContent.add(newContent);
             rows.add(noteContent);
         }
 

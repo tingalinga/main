@@ -41,10 +41,10 @@ public class NotesContainKeywordsPredicate implements Predicate<Notes> {
     @Override
     public boolean test(Notes notes) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(notes.getStudent(), keyword)
-                || StringUtil.containsWordIgnoreCase(notes.getContent(), keyword)
-                || StringUtil.containsWordIgnoreCase(notes.getPriority(), keyword)
-                || StringUtil.containsWordIgnoreCase(notes.getDateTime(), keyword));
+                .anyMatch(keyword -> StringUtil.hasKeywordInString(notes.getStudent(), keyword)
+                || StringUtil.hasKeywordInString(notes.getContent(), keyword)
+                || StringUtil.hasKeywordInString(notes.getPriority(), keyword)
+                || StringUtil.hasKeywordInString(notes.getDateTime(), keyword));
     }
 
     @Override

@@ -61,7 +61,7 @@ public class Notes {
         checkArgument(isValidName(student), MESSAGE_CONSTRAINTS);
         this.student = student;
         this.content = content;
-        this.priority = priority;
+        this.priority = checkPriority(priority);
         this.dateTime = dateTime;
     }
 
