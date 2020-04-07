@@ -15,7 +15,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TeaPetParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Date;
@@ -23,7 +22,7 @@ import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
-
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
 import seedu.address.storage.Storage;
 
@@ -53,7 +52,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTeaPet(model.getTeaPet());
             storage.saveAcademics(model.getAcademics());
             storage.saveAdmin(model.getAdmin());
             storage.saveEvents(model.getEventHistory());
@@ -65,10 +64,10 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    // ==================== ADDRESS BOOK START ====================
+    // ==================== TEA PET START ====================
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTeaPet getTeaPet() {
+        return model.getTeaPet();
     }
 
     @Override
@@ -77,10 +76,10 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getTeaPetFilePath() {
+        return model.getTeaPetFilePath();
     }
-    // ==================== ADDRESS BOOK END ====================
+    // ==================== TEA PET END ====================
 
     // ==================== ACADEMICS START ====================
     @Override

@@ -5,23 +5,24 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.notes.ReadOnlyNotes;
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.storage.academics.AcademicsStorage;
 import seedu.address.storage.admin.AdminStorage;
 import seedu.address.storage.event.EventStorage;
 import seedu.address.storage.notes.NotesManagerStorage;
+import seedu.address.storage.teapet.TeaPetStorage;
 
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, AcademicsStorage, NotesManagerStorage,
+public interface Storage extends TeaPetStorage, AcademicsStorage, NotesManagerStorage,
         UserPrefsStorage, AdminStorage, EventStorage {
 
     @Override
@@ -30,15 +31,18 @@ public interface Storage extends AddressBookStorage, AcademicsStorage, NotesMana
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
+    // ==================== TEA PET START ====================
     @Override
-    Path getAddressBookFilePath();
+    Path getTeaPetFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTeaPet> readTeaPet() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTeaPet(ReadOnlyTeaPet teaPet) throws IOException;
+    // ==================== TEA PET END ====================
 
+    // ==================== ACADEMICS START ====================
     @Override
     Path getAcademicsFilePath();
 
@@ -47,21 +51,21 @@ public interface Storage extends AddressBookStorage, AcademicsStorage, NotesMana
 
     @Override
     void saveAcademics(ReadOnlyAcademics academics) throws IOException;
+    // ==================== ACADEMICS END ====================
 
-    // ================ Event methods ==============================
-    @Override
-    Optional<ReadOnlyEvents> readEvents() throws DataConversionException, IOException;
-
-    @Override
-    Path getEventHistoryFilePath();
-
-    @Override
-    void saveEvents(ReadOnlyEvents readOnlyEvents) throws IOException;
-
-    // ================ Notes methods ==============================
+    // ==================== ADMIN START ====================
     @Override
     Path getAdminFilePath();
 
+    @Override
+    Optional<ReadOnlyAdmin> readAdmin() throws DataConversionException, IOException;
+
+    @Override
+    void saveAdmin(ReadOnlyAdmin admin) throws IOException;
+
+    // ==================== ADMIN END ====================
+
+    // ==================== NOTES START ====================
     @Override
     Optional<ReadOnlyNotes> readNotesManager() throws DataConversionException, IOException;
 
@@ -70,10 +74,16 @@ public interface Storage extends AddressBookStorage, AcademicsStorage, NotesMana
 
     @Override
     Path getNotesManagerFilePath();
+    // ==================== NOTES END ====================
+
+    // ==================== EVENTS START ====================
+    @Override
+    Optional<ReadOnlyEvents> readEvents() throws DataConversionException, IOException;
 
     @Override
-    Optional<ReadOnlyAdmin> readAdmin() throws DataConversionException, IOException;
+    Path getEventHistoryFilePath();
 
     @Override
-    void saveAdmin(ReadOnlyAdmin admin) throws IOException;
+    void saveEvents(ReadOnlyEvents readOnlyEvents) throws IOException;
+    // ==================== EVENTS END ====================
 }

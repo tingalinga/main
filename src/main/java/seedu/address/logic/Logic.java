@@ -10,7 +10,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Date;
@@ -19,6 +18,7 @@ import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
 
 /**
@@ -34,22 +34,22 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    // ==================== ADDRESS BOOK START ====================
+    // ==================== TEA PET START ====================
     /**
-     * Returns the AddressBook.
+     * Returns TeaPet.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getTeaPet()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTeaPet getTeaPet();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' tea pet file path.
      */
-    Path getAddressBookFilePath();
-    // ==================== ADDRESS BOOK END ====================
+    Path getTeaPetFilePath();
+    // ==================== TEA PET END ====================
 
     // ==================== ACADEMICS START ====================
     /**
@@ -106,7 +106,15 @@ public interface Logic {
      * Returns the user prefs' academics file path.
      */
     Path getNotesManagerFilePath();
-    // ==================== ACADEMICS END ====================
+    // ==================== NOTES END ====================
+
+    // ==================== EVENTS START ====================
+    ObservableList<VEvent> getVEvents();
+
+    LocalDateTime getEventScheduleLocalDateTime();
+
+    EventScheduleView getEventScheduleView();
+    // ==================== EVENTS END ====================
 
     /**
      * Returns the user prefs' GUI settings.
@@ -117,11 +125,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    ObservableList<VEvent> getVEvents();
-
-    LocalDateTime getEventScheduleLocalDateTime();
-
-    EventScheduleView getEventScheduleView();
 
 }

@@ -29,6 +29,11 @@ import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.ui.academics.AcademicsPanel;
 import seedu.address.ui.admin.DateListPanel;
+import seedu.address.ui.event.SchedulePage;
+import seedu.address.ui.event.SchedulePanel;
+import seedu.address.ui.notes.NotesExporter;
+import seedu.address.ui.notes.NotesPanel;
+import seedu.address.ui.teapet.StudentListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -45,16 +50,16 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
-    private DateListPanel dateListPanel;
     private AcademicsPanel academicsPanel;
     private AcademicsPanel academicsHomeworkPanel;
     private AcademicsPanel academicsExamPanel;
     private AcademicsPanel academicsReportPanel;
+    private DateListPanel dateListPanel;
     private NotesPanel notesPanel;
-    private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
     private SchedulePage schedulePage;
     private SchedulePanel schedulePanel;
+    private ResultDisplay resultDisplay;
+    private HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -146,9 +151,6 @@ public class MainWindow extends UiPart<Stage> {
         schedulePanel = new SchedulePanel(logic.getVEvents());
         mainPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
-        dateListPanel = new DateListPanel(logic.getFilteredDateList());
-        mainPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
-
         academicsPanel = new AcademicsPanel(logic.getFilteredAcademicsList());
         mainPanelPlaceholder.getChildren().add(academicsPanel.getRoot());
 
@@ -158,13 +160,16 @@ public class MainWindow extends UiPart<Stage> {
         academicsExamPanel = new AcademicsPanel(logic.getExamList());
         mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
 
+        dateListPanel = new DateListPanel(logic.getFilteredDateList());
+        mainPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
+
         notesPanel = new NotesPanel(logic.getFilteredNotesList());
         notesPanelPlaceholder.getChildren().add(notesPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTeaPetFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
