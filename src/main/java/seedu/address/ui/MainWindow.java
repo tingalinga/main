@@ -23,6 +23,8 @@ import seedu.address.logic.commands.admin.AdminFetchCommand;
 import seedu.address.logic.commands.admin.AdminSaveCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesExportCommand;
+import seedu.address.logic.commands.student.DefaultStudentDisplayCommand;
+import seedu.address.logic.commands.student.DetailedStudentDisplayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
@@ -388,14 +390,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(consoleReply);
 
             switch (consoleReply) {
-            case "The Student list now displays ALL details":
+            case DefaultStudentDisplayCommand.MESSAGE_SUCCESS:
+                handleStudentDefault();
+                break;
+            case DetailedStudentDisplayCommand.MESSAGE_SUCCESS:
                 handleStudentDetailed();
                 break;
             case "The Student list now displays last updated ADMIN details":
                 handleStudentAdmin();
-                break;
-            case "The Student list now displays DEFAULT details":
-                handleStudentDefault();
                 break;
             case "List of dates with admin details of the class displayed!":
                 handleDates();
