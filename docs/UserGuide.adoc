@@ -254,7 +254,8 @@ Shows all assessments in the academics list and a guide for academic commands.
     export academics report: academics export
     Type the following commands for more info!
 
-
+.After using the academics command
+image::academics-view.png[width="790]
 
 ==== Add Assessment: `add`
 
@@ -583,9 +584,18 @@ Here are the commands to manage students. They require the prefix `admin`.
 === Student Academics Commands
 Here are the commands to manage students. They require the prefix `academics`.
 
-[cols="10%, 45%, 45%"]
-.Student Academics commands of TeaPet
+[cols="10%, 50%, 40%"]
+.Student Academics commands of TeaPet.
 |===
+|*Command*|*Format*|*Expected outcome*
+|`add`|`academics add desc/DESCRIPTION type/TYPE date/DATE`|Adds an assessment into the academics list
+|`edit`|`academics edit INDEX [desc/DESCRIPTION] [type/TYPE] [date/DATE]`|Edits an assessment in the academics list
+|`delete`|`academics delete INDEX`|Deletes the assessment at the given index
+|`submit`|`academics submit INDEX [stu/STUDENT_NAME]...`|Submits student(s) work for the assessment at the given index
+|`mark`|`academics mark INDEX [stu/STUDENT_NAME-SCORE]...`|Marks student(s) work and stores the scores for the assessment at the given index
+|`filter`|`academics homework/exam`|Displays either all homework or exam assessments in the academics list
+|`report`|`academics report`|Displays the report for all assessments
+|`export`|`academics export`|Exports the academics report into a .csv file
 |===
 
 === Notes Commands
