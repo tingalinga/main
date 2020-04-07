@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
@@ -214,6 +216,15 @@ public abstract class Assessment {
      * Returns the number of students who have submitted their assessment.
      */
     public int noOfSubmittedStudents() {
+        int submitted = 0;
+        ObservableList<Submission> submissionsList =
+                FXCollections.observableArrayList(submissionTracker);
+
+        Iterator<Submission> iterator = submissionsList.iterator();
+        while (iterator.hasNext()) {
+            Submission next = iterator.next();
+            submitted = next.hasSubmitted() ? submitted + 1 : submitted;
+        }
         return submitted;
     }
 

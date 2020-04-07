@@ -31,16 +31,18 @@ import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TeaPet;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the tea pet data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final UserPrefs userPrefs;
-    private final AddressBook addressBook;
+    private final TeaPet teaPet;
     private final FilteredList<Student> filteredStudents;
     private final Academics academics;
     private final FilteredList<Assessment> filteredAssessments;
@@ -53,26 +55,26 @@ public class ModelManager implements Model {
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given teaPet and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook,
+    public ModelManager(ReadOnlyTeaPet teaPet,
                         ReadOnlyAcademics academics,
                         ReadOnlyAdmin admin,
                         ReadOnlyNotes notes,
-                        ReadOnlyUserPrefs userPrefs,
-                        ReadOnlyEvents events) {
+                        ReadOnlyEvents events,
+                        ReadOnlyUserPrefs userPrefs) {
 
 
         super();
-        requireAllNonNull(addressBook, academics, admin, userPrefs);
+        requireAllNonNull(teaPet, academics, admin, events, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with tea pet: " + teaPet + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.teaPet = new TeaPet(teaPet);
         this.academics = new Academics(academics);
         this.admin = new Admin(admin);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredStudents = new FilteredList<>(this.teaPet.getStudentList());
         filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
         filteredDates = new FilteredList<>(this.admin.getDateList());
         this.notesManager = new NotesManager(notes);
@@ -83,11 +85,10 @@ public class ModelManager implements Model {
 
 
     public ModelManager() {
-        this(new AddressBook(), new Academics(), new Admin(), new NotesManager(), new UserPrefs(), new EventHistory());
+        this(new TeaPet(), new Academics(), new Admin(), new NotesManager(), new EventHistory(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
-
+    // ==================== USER PREFS ====================
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
@@ -110,60 +111,60 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    // ==================== AddressBook START ====================
+    // ==================== TEA PET START ====================
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTeaPetFilePath() {
+        return userPrefs.getTeaPetFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTeaPetFilePath(Path teaPetFilePath) {
+        requireNonNull(teaPetFilePath);
+        userPrefs.setTeaPetFilePath(teaPetFilePath);
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTeaPet(ReadOnlyTeaPet teaPet) {
+        this.teaPet.resetData(teaPet);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTeaPet getTeaPet() {
+        return teaPet;
     }
 
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return teaPet.hasStudent(student);
     }
 
     @Override
     public boolean hasStudentName(String student) {
         requireNonNull(student);
-        return addressBook.hasStudentName(student);
+        return teaPet.hasStudentName(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+        teaPet.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        addressBook.addStudent(student);
+        teaPet.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-        addressBook.setStudent(target, editedStudent);
+        teaPet.setStudent(target, editedStudent);
     }
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTeaPet}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -175,9 +176,9 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
-    // ==================== AddressBook END ====================
+    // ==================== TEA PET END ====================
 
-    // ==================== Academics START ====================
+    // ==================== ACADEMICS START ====================
     @Override
     public Path getAcademicsFilePath() {
         return userPrefs.getAcademicsFilePath();
@@ -278,11 +279,69 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAssessments.setPredicate(predicate);
     }
+    // ==================== ACADEMICS END ====================
 
+    // ==================== ADMIN START ====================
+    @Override
+    public Path getAdminFilePath() {
+        return userPrefs.getAdminFilePath();
+    }
 
-    // ==================== Academics END ====================
+    @Override
+    public void setAdminFilePath(Path adminBookFilePath) {
+        this.admin.resetData(admin);
+    }
 
-    // ==================== Notes START ====================
+    @Override
+    public void setAdmin(ReadOnlyAdmin admin) {
+        this.admin.resetData(admin);
+    }
+
+    @Override
+    public ReadOnlyAdmin getAdmin() {
+        return admin;
+    }
+
+    @Override
+    public boolean hasDate(Date date) {
+        requireNonNull(date);
+        return admin.hasDate(date);
+    }
+
+    @Override
+    public void deleteDate(Date target) {
+        admin.removeDate(target);
+    }
+
+    @Override
+    public void addDate(Date date) {
+        admin.addDate(date);
+        updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
+    }
+
+    @Override
+    public void setDate(Date target, Date editedDate) {
+        requireAllNonNull(target, editedDate);
+        admin.setDate(target, editedDate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Date} backed by the internal list of
+     * {@code versionedDate}
+     */
+    @Override
+    public ObservableList<Date> getFilteredDateList() {
+        return filteredDates;
+    }
+
+    @Override
+    public void updateFilteredDateList(Predicate<Date> predicate) {
+        requireNonNull(predicate);
+        filteredDates.setPredicate(predicate);
+    }
+    // ==================== ADMIN END ====================
+
+    // ==================== NOTES START ====================
     @Override
     public Path getNotesFilePath() {
         return userPrefs.getNotesFilePath();
@@ -338,7 +397,9 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredNotes.setPredicate(predicate);
     }
+    // ==================== NOTES END ====================
 
+    // ==================== EVENTS START ====================
     @Override
     public void setEventHistory(Path eventHistoryFilePath) {
         userPrefs.setEventHistoryFilePath(eventHistoryFilePath);
@@ -424,7 +485,7 @@ public class ModelManager implements Model {
     public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
         return eventHistory.searchMostSimilarVEventName(eventName);
     }
-
+    // ==================== EVENTS END ====================
 
     @Override
     public boolean equals(Object obj) {
@@ -440,73 +501,12 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return teaPet.equals(other.teaPet)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && academics.equals(other.academics)
                 && filteredAssessments.equals(other.filteredAssessments)
                 && eventHistory.equals(other.eventHistory)
                 && filteredNotes.equals(other.filteredNotes);
-    }
-
-    // ==================== Academics END ====================
-
-    // ==================== Admin START ====================
-    @Override
-    public Path getAdminFilePath() {
-        return userPrefs.getAdminFilePath();
-    }
-
-    @Override
-    public void setAdminFilePath(Path adminBookFilePath) {
-        this.admin.resetData(admin);
-    }
-
-    @Override
-    public void setAdmin(ReadOnlyAdmin admin) {
-        this.admin.resetData(admin);
-    }
-
-    @Override
-    public ReadOnlyAdmin getAdmin() {
-        return admin;
-    }
-
-    @Override
-    public boolean hasDate(Date date) {
-        requireNonNull(date);
-        return admin.hasDate(date);
-    }
-
-    @Override
-    public void deleteDate(Date target) {
-        admin.removeDate(target);
-    }
-
-    @Override
-    public void addDate(Date date) {
-        admin.addDate(date);
-        updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
-    }
-
-    @Override
-    public void setDate(Date target, Date editedDate) {
-        requireAllNonNull(target, editedDate);
-        admin.setDate(target, editedDate);
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Date} backed by the internal list of
-     * {@code versionedDate}
-     */
-    @Override
-    public ObservableList<Date> getFilteredDateList() {
-        return filteredDates;
-    }
-
-    @Override
-    public void updateFilteredDateList(Predicate<Date> predicate) {
-        requireNonNull(predicate);
-        filteredDates.setPredicate(predicate);
     }
 }

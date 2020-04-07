@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 
 import java.nio.file.Path;
 
@@ -11,13 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.student.ReadOnlyTeaPet;
+import seedu.address.model.student.TeaPet;
 import seedu.address.storage.academics.JsonAcademicsStorage;
 import seedu.address.storage.admin.JsonAdminStorage;
 import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
+import seedu.address.storage.teapet.JsonTeaPetStorage;
 
 public class StorageManagerTest {
 
@@ -28,14 +29,14 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTeaPetStorage teaPetStorage = new JsonTeaPetStorage(getTempFilePath("ab"));
         JsonAcademicsStorage academicsStorage = new JsonAcademicsStorage(getTempFilePath("acad"));
         JsonAdminStorage adminStorage = new JsonAdminStorage(getTempFilePath("ad"));
         JsonNotesManagerStorage notesManagerStorage = new JsonNotesManagerStorage(getTempFilePath("notes"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonEventStorage eventStorage = new JsonEventStorage(getTempFilePath("event"));
 
-        storageManager = new StorageManager(addressBookStorage, adminStorage, academicsStorage,
+        storageManager = new StorageManager(teaPetStorage, adminStorage, academicsStorage,
                 userPrefsStorage, eventStorage, notesManagerStorage);
     }
 
@@ -58,21 +59,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void teaPetReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonTeaPetStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTeaPetStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        TeaPet original = getTypicalTeaPet();
+        storageManager.saveTeaPet(original);
+        ReadOnlyTeaPet retrieved = storageManager.readTeaPet().get();
+        assertEquals(original, new TeaPet(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getTeaPetFilePath() {
+        assertNotNull(storageManager.getTeaPetFilePath());
     }
 
     /*

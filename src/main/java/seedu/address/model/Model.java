@@ -21,6 +21,7 @@ import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 
+import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
 
 /**
@@ -53,52 +54,52 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    // ==================== ADDRESS BOOK START ====================
+    // ==================== TEA PET START ====================
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' tea pet file path.
      */
-    Path getAddressBookFilePath();
+    Path getTeaPetFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTeaPetFilePath(Path teaPetFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces tea pet data with the data in {@code teaPet}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTeaPet(ReadOnlyTeaPet teaPet);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TeaPet */
+    ReadOnlyTeaPet getTeaPet();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in tea pet.
      */
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in tea pet.
      */
     boolean hasStudentName(String student);
 
     /**
      * Deletes the given student.
-     * The student must exist in the address book.
+     * The student must exist in tea pet.
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the address book.
+     * {@code student} must not already exist in tea pet.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in tea pet.
      * The student identity of {@code editedStudent} must not be the same as another existing student
-     * in the address book.
+     * in tea pet.
      */
     void setStudent(Student target, Student editedStudent);
 
@@ -110,7 +111,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
-    // ==================== ADDRESS BOOK END ====================
+    // ==================== TEA PET END ====================
 
     // ==================== ACADEMICS START ====================
     /**
@@ -249,49 +250,6 @@ public interface Model {
     void updateFilteredDateList(Predicate<Date> predicate);
     // ==================== ADMIN END ====================
 
-    // ==================== EVENTS START ====================
-
-    boolean hasVEvent(VEvent vEvent);
-
-    void addVEvent(VEvent vEvent);
-
-    void delete(Index index);
-
-    void setVEvent(Index index, VEvent vEvent);
-
-    VEvent getVEvent(Index index);
-
-    ObservableList<VEvent> getVEvents();
-
-    void setEventHistory(ReadOnlyEvents events);
-
-    void setEventHistory(Path eventHistoryFilePath);
-
-    ReadOnlyEvents getEventHistory();
-
-    ReadOnlyVEvents getVEventHistory();
-
-    void setEventScheduleLocalDateTime(LocalDateTime localDateTime);
-
-    String getEventSchedulePref();
-
-    LocalDateTime getEventScheduleLocalDateTime();
-
-    EventScheduleView getEventScheduleView();
-
-    void setEventScheduleView(EventScheduleView eventScheduleView);
-
-
-    List<Pair<Index, VEvent>> searchVEvents(String eventName);
-
-    Pair<Index, VEvent> searchMostSimilarVEventName(String eventName);
-
-
-
-
-
-    // ==================== EVENTS END ====================
-
     // ==================== NOTES START ====================
     /**
      * Returns the user prefs' notes file path.
@@ -342,4 +300,42 @@ public interface Model {
     void updateFilteredNotesList(Predicate<Notes> predicate);
     // ==================== NOTES END ====================
 
+    // ==================== EVENTS START ====================
+
+    boolean hasVEvent(VEvent vEvent);
+
+    void addVEvent(VEvent vEvent);
+
+    void delete(Index index);
+
+    void setVEvent(Index index, VEvent vEvent);
+
+    VEvent getVEvent(Index index);
+
+    ObservableList<VEvent> getVEvents();
+
+    void setEventHistory(ReadOnlyEvents events);
+
+    void setEventHistory(Path eventHistoryFilePath);
+
+    ReadOnlyEvents getEventHistory();
+
+    ReadOnlyVEvents getVEventHistory();
+
+    void setEventScheduleLocalDateTime(LocalDateTime localDateTime);
+
+    String getEventSchedulePref();
+
+    LocalDateTime getEventScheduleLocalDateTime();
+
+    EventScheduleView getEventScheduleView();
+
+    void setEventScheduleView(EventScheduleView eventScheduleView);
+
+
+    List<Pair<Index, VEvent>> searchVEvents(String eventName);
+
+    Pair<Index, VEvent> searchMostSimilarVEventName(String eventName);
+
+    // ==================== EVENTS END ====================
 }

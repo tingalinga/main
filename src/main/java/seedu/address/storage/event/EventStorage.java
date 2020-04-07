@@ -5,8 +5,8 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.student.ReadOnlyTeaPet;
 
 /**
  * Represents a storage for {@link seedu.address.model.event.EventHistory}
@@ -19,7 +19,7 @@ public interface EventStorage {
     Path getEventHistoryFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns AddressBook data as a {@link ReadOnlyTeaPet}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -32,7 +32,7 @@ public interface EventStorage {
     Optional<ReadOnlyEvents> readEvents(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyTeaPet} to the storage.
      * @param readOnlyEvents cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
