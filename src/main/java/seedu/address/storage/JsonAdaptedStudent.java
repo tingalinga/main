@@ -17,7 +17,6 @@ import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.NextOfKin;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Remark;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Temperature;
 import seedu.address.model.tag.Tag;
@@ -35,7 +34,6 @@ public class JsonAdaptedStudent {
     private final String address;
     private final String temperature;
     private final String attendance;
-    private final String remark;
     private final String nok;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -47,7 +45,6 @@ public class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("temperature") String temperature,
                               @JsonProperty("attendance") String attendance, @JsonProperty("nok") String nok,
-                              @JsonProperty("remark") String remark,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
         this.name = name;
@@ -56,7 +53,6 @@ public class JsonAdaptedStudent {
         this.address = address;
         this.temperature = temperature;
         this.attendance = attendance;
-        this.remark = remark;
         this.nok = nok;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -73,7 +69,6 @@ public class JsonAdaptedStudent {
         address = source.getAddress().value;
         temperature = source.getTemperature().value;
         attendance = source.getAttendance().value;
-        remark = source.getRemark().value;
         nok = source.getNok().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -145,11 +140,6 @@ public class JsonAdaptedStudent {
         }
         final Attendance modelAttendance = new Attendance(attendance);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
-
         if (nok == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     NextOfKin.class.getSimpleName()));
@@ -162,7 +152,7 @@ public class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTemperature, modelAttendance,
-                modelNok, modelRemark, modelTags);
+                modelNok, modelTags);
 
     }
 }

@@ -220,7 +220,7 @@ public abstract class Assessment {
         ObservableList<Submission> submissionsList =
                 FXCollections.observableArrayList(submissionTracker);
 
-        Iterator<Submission> iterator =  submissionsList.iterator();
+        Iterator<Submission> iterator = submissionsList.iterator();
         while (iterator.hasNext()) {
             Submission next = iterator.next();
             submitted = next.hasSubmitted() ? submitted + 1 : submitted;

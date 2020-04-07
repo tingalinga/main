@@ -81,13 +81,13 @@ public class AssessmentCard extends UiPart<Region> {
         ObservableList<Submission> submissionsList =
                 FXCollections.observableArrayList(assessment.getSubmissionTracker());
 
-        Iterator<Submission> iterator =  submissionsList.iterator();
+        Iterator<Submission> iterator = submissionsList.iterator();
         while (iterator.hasNext()) {
             Submission next = iterator.next();
             submitted = next.hasSubmitted() ? submitted + 1 : submitted;
             marked = next.isMarked() ? marked + 1 : marked;
         }
-        submissionTracker.setText("Submissions: " + submitted  
+        submissionTracker.setText("Submissions: " + submitted
                 + " / " + assessment.getSubmissionTracker().size());
         markingTracker.setText("Marked: " + marked
                 + " / " + assessment.getSubmissionTracker().size());

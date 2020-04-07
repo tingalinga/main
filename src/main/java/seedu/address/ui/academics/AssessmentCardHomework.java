@@ -70,7 +70,7 @@ public class AssessmentCardHomework extends UiPart<Region> {
         ObservableList<Submission> submissionsList =
                 FXCollections.observableArrayList(assessment.getSubmissionTracker());
 
-        Iterator<Submission> iterator =  submissionsList.iterator();
+        Iterator<Submission> iterator = submissionsList.iterator();
         while (iterator.hasNext()) {
             Submission next = iterator.next();
             submitted = next.hasSubmitted() ? submitted + 1 : submitted;

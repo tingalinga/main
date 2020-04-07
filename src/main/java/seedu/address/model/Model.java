@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
+import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Assessment;
@@ -279,6 +280,13 @@ public interface Model {
     EventScheduleView getEventScheduleView();
 
     void setEventScheduleView(EventScheduleView eventScheduleView);
+
+
+    List<Pair<Index, VEvent>> searchVEvents(String eventName);
+
+    Pair<Index, VEvent> searchMostSimilarVEventName(String eventName);
+
+
 
 
 
