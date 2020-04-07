@@ -219,13 +219,46 @@ temperature recordings. Data will be displayed in a weekly format for further pe
 
 === Student Academics
 TeaPet's Class Progress Tracker is able to keep tabs on the class' academic progress. You will be able to store data of
-every student's subject grades with this feature. Thereafter, there will be a graph plot displayed to highlight the
-progress of individual students as well as the entire class.
+every student's subject grades with this feature. Thereafter, there will be a csv file available for export displaying
+the progress of individual students as well as the entire class.
+
+"The Academics tracks all your assessments and student submissions." + '\n'
++ "[HELP ON ACADEMICS COMMANDS]\n"
++ "ADD ASSESSMENT: academics add desc/<Assessment Description> type/<Type> date/<Date>\n"
++ "EDIT ASSESSMENT: academics edit <Index> [desc/<Assessment Description>] [type/<Type>] [date/<Date>]\n"
++ "DELETE ASSESSMENT: academics delete <Index>\n"
++ "SUBMIT ASSESSMENT: academics submit <Index> [stu/<Student Name>]\n"
++ "MARK ASSESSMENT: academics mark <Index> [stu/<Student Name>-<Score>]\n"
++ "FILTER ASSESSMENT BY TYPE: academics <Type> (only Homework or Exam)\n"
++ "VIEW ACADEMIC REPORT: academics report\n"
++ "EXPORT ACADEMICS REPORT: academics export\n"
++ "Type the following commands for more info!\n"
+
+* *Academics Panel*: `academics`
+* *Add Assessment*: `academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE` +
+Assessment description can only be homework or exam. +
+Date should be written in YYYY-MM-DD format. +
+e.g. `academics add desc/Math Graphs Homework type/homework date/2020-05-02`
+* *Edit Assessment*: `academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]` +
+At least one of the three fields must be updated when editing a note. +
+e.g. `academics edit 4 desc/Chemistry Compounds Assignment type/homework date/2020-04-30`
+* *Delete Assessment*: `academics delete INDEX`
+* *Submit Assessment*: `academics submit INDEX [stu/STUDENT_NAME]...` +
+There should be at least 1 student's work being submitted and students' work should not have been submitted before.
+e.g. `academics submit 3 stu/Freddy Zhang` +
+e.g. `academics submit 3 stu/Freddy Zhang stu/Gerren Seow` +
+* *Mark Assessment*: `academics mark INDEX [stu/STUDENT_NAME-SCORE]...` +
+There should be at least 1 student's work being marked and students' work have already been submitted.
+e.g. `academics mark 3 stu/Freddy Zhang-90` +
+e.g. `academics mark 3 stu/Freddy Zhang-90 stu/Gerren Seow-80` +
+* *Filter Assessment by type*: `academics ASSESSMENT_TYPE` +
+e.g. `academics exam`
+* *View Academics Report*: `academics report`
+* *Export Academics Report*: `academics export` +
+Notes will be exported to a .csv file format, which is located in the data folder in the same directory.
+The file is named "studentAcademics.csv".
 
 '''
-
-
-
 === Notes
 TeaPet's Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
 track of important information of their students spontaneously. This feature allows you to label each note with

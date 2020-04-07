@@ -399,9 +399,6 @@ public class MainWindow extends UiPart<Stage> {
             case "List of dates with admin details of the class displayed!":
                 handleDates();
                 break;
-            case "Academics now displays all assessments":
-                handleAcademics();
-                break;
             case "Academics now displays all HOMEWORK assessments":
                 handleAcademicsHomework();
                 break;
@@ -430,7 +427,8 @@ public class MainWindow extends UiPart<Stage> {
             if (consoleReply.contains("Academics submitted following submissions")
                     || consoleReply.contains("Academics marked following submissions")
                     || consoleReply.contains("Added assessment")
-                    || consoleReply.contains("Edited Assessment")) {
+                    || consoleReply.contains("Edited Assessment")
+                    || consoleReply.contains("The Academics tracks all your assessments and student submissions.")) {
                 handleAcademics();
             }
 
