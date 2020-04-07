@@ -2,8 +2,7 @@ package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,12 +20,15 @@ import seedu.address.model.student.Student;
 /**
  * Represents NotesEditCommand class which edits Note tagged to a Student.
  */
-public class NotesEditCommand extends Command {
-    public static final String COMMAND_WORD = "notese";
+public class NotesEditCommand extends NotesCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
-            + "<Index> " + PREFIX_CONTENT + "<Updated Content of Note> "
-            + PREFIX_PRIORITY + "<HIGH/MEDIUM/LOW>";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + " "
+            + PREFIX_NOTES_EDIT + " "
+            + "<Index> "
+            + PREFIX_NOTES_STUDENT + "<Updated Student> "
+            + PREFIX_NOTES_CONTENT + "<Updated Content of Note> "
+            + PREFIX_NOTES_PRIORITY + "<HIGH/MEDIUM/LOW>";
 
     public static final String MESSAGE_SUCCESS = "Student's Note Edited. Wonderful!";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

@@ -4,12 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_NOTES;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,13 +18,13 @@ import seedu.address.model.student.Student;
 /**
  * Represents NotesAddCommand class which adds Note to a Student.
  */
-public class NotesAddCommand extends Command {
+public class NotesAddCommand extends NotesCommand {
 
-    public static final String COMMAND_WORD = "notesa";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
-            + PREFIX_NAME + "<Name of Student> " + PREFIX_CONTENT + "<Content of Note> "
-            + PREFIX_PRIORITY + "<HIGH/MEDIUM/LOW>";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + " "
+            + PREFIX_NOTES_ADD + " "
+            + PREFIX_NOTES_STUDENT + "<Name of Student> " + PREFIX_NOTES_CONTENT + "<Content of Note> "
+            + PREFIX_NOTES_PRIORITY + "<HIGH/MEDIUM/LOW>";
 
     public static final String MESSAGE_SUCCESS = "New Student Note added! Wonderful!";
 
@@ -36,12 +34,13 @@ public class NotesAddCommand extends Command {
     private final Notes note;
 
     /**
-     * Creates a NotesCommand to add note to a student.
+     * Creates a NotesAddCommand to add note to a student.
      * @param name of the student which the note belongs to
      * @param content of the note
+     * @param priority of the note
      */
     public NotesAddCommand(String name, String content, String priority) {
-        requireNonNull(name, content);
+        requireAllNonNull(name, content, priority);
         this.name = name;
         this.content = content;
         this.priority = priority;
@@ -62,6 +61,14 @@ public class NotesAddCommand extends Command {
      */
     public String getContent() {
         return content;
+    }
+
+    /**
+     * Getter of String priority.
+     * @return String
+     */
+    public String getPriority() {
+        return priority;
     }
 
     /**

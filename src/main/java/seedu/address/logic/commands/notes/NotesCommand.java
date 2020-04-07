@@ -14,13 +14,20 @@ import seedu.address.model.Model;
 public class NotesCommand extends Command {
 
     public static final String COMMAND_WORD = "notes";
+    public static final String NOTES_ADD = "add";
+    public static final String NOTES_EDIT = "edit";
+    public static final String NOTES_DELETE = "delete";
+    public static final String NOTES_FILTER = "filter";
+    public static final String NOTES_EXPORT = "export";
+
 
     public static final String MESSAGE_USAGE = "The Column on the right displays all your notes." + '\n'
             + "[HELP ON NOTES COMMANDS]\n"
-            + "ADD NOTE: notesa n/<Name of Student c/<Content> pr/<Priority>\n"
-            + "DELETE NOTE: notesd <Index>\n"
-            + "FILTER SEARCH NOTES: notesf <Keyword(s)>\n"
-            + "EXPORT NOTES: notese";
+            + "ADD NOTE: notes add n/<Name of Student c/<Content> pr/<Priority>\n"
+            + "EDIT NOTE: notes edit n/<Name of Student c/<Content> pr/<Priority>\n"
+            + "DELETE NOTE: notes delete <Index>\n"
+            + "FILTER SEARCH NOTES: notes filter <Keyword(s)>\n"
+            + "EXPORT NOTES: notes export";
 
     /**
      * Creates a NotesCommand
