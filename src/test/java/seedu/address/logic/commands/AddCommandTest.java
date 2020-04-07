@@ -38,9 +38,6 @@ import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
-
-
-
 public class AddCommandTest {
 
     @Test
@@ -487,5 +484,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

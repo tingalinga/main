@@ -20,6 +20,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.Date;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -143,6 +145,23 @@ public class CommandTestUtil {
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code RuntimeException} is thrown <br>
+     * - the RuntimeException message matches {@code expectedMessage} <br>
+     * - the admin, filtered date list and selected date in {@code actualModel} remain unchanged
+     */
+    public static void assertRuntimeFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        Admin expectedAdmin = new Admin(actualModel.getAdmin());
+        List<Date> expectedFilteredList = new ArrayList<>(actualModel.getFilteredDateList());
+
+        assertThrows(RuntimeException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedAdmin, actualModel.getAdmin());
+        assertEquals(expectedFilteredList, actualModel.getFilteredDateList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the

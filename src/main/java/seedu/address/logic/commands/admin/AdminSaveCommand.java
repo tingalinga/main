@@ -24,6 +24,7 @@ public class AdminSaveCommand extends AdminCommand {
     private final LocalDate toAdd;
 
     public AdminSaveCommand(LocalDate date) {
+        requireNonNull(date);
         toAdd = date;
     }
 

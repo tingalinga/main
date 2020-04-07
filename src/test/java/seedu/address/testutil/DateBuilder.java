@@ -13,13 +13,14 @@ import seedu.address.model.student.Student;
 public class DateBuilder {
 
     public static final String DEFAULT_DATE = "2020-03-21";
+    public static final List<Student> STUDENTS = TypicalStudents.getTypicalStudents();
 
     private LocalDate date;
     private List<Student> students;
 
     public DateBuilder() {
         date = LocalDate.parse(DEFAULT_DATE);
-        List<Student> students = new ArrayList<>();
+        students = STUDENTS;
     }
 
     /**
