@@ -20,6 +20,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,6 +28,7 @@ import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
 import seedu.address.model.event.EventScheduleView;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
+import seedu.address.ui.academics.AcademicsExporter;
 import seedu.address.ui.academics.AcademicsPanel;
 import seedu.address.ui.admin.DateListPanel;
 import seedu.address.ui.event.SchedulePage;
@@ -409,6 +411,14 @@ public class MainWindow extends UiPart<Stage> {
             case "Academics now displays the report of each assessment.":
                 handleAcademicsReport();
                 break;
+            case NotesExportCommand.MESSAGE_SUCCESS:
+                NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
+                notesExporter.saveToCsv();
+                break;
+            case AcademicsExportCommand.MESSAGE_SUCCESS:
+                AcademicsExporter academicsExporter = new AcademicsExporter(logic.getFilteredAcademicsList());
+                academicsExporter.saveToCsv();
+                break;
             default:
                 break;
             }
@@ -426,11 +436,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (consoleReply.contains("Refreshed students") || consoleReply.contains("Edited Student")) {
                 handleStudentDefault();
-            }
-
-            if (consoleReply.equals(NotesExportCommand.MESSAGE_SUCCESS)) {
-                NotesExporter notesExporter = new NotesExporter(logic.getFilteredNotesList());
-                notesExporter.saveToCsv();
             }
 
             if (consoleReply.contains("Admin list has been deleted for")) {
