@@ -47,7 +47,7 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
         //Obtaining input from Notes_Student prefix
         if (argMultimap.getValue(PREFIX_NOTES_STUDENT).isPresent()) {
             name = argMultimap.getValue(PREFIX_NOTES_STUDENT).get();
-            if(name.trim().equals("")) {
+            if (name.trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Student name field is empty."));
             }
         } else {
@@ -56,8 +56,8 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
 
         //Obtaining input from Notes_Content prefix
         if (argMultimap.getValue(PREFIX_NOTES_CONTENT).isPresent()) {
-           content = argMultimap.getValue(PREFIX_NOTES_CONTENT).get();
-            if(content.trim().equals("")) {
+            content = argMultimap.getValue(PREFIX_NOTES_CONTENT).get();
+            if (content.trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Content field is empty."));
             }
         } else {
@@ -68,7 +68,7 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
         if (argMultimap.getValue(PREFIX_NOTES_PRIORITY).isPresent()) {
             priority = argMultimap.getValue(PREFIX_NOTES_PRIORITY).get();
 
-            if(priority.trim().equals("")) {
+            if (priority.trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Priority field is empty."));
             }
 

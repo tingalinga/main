@@ -7,7 +7,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
-import static seedu.address.model.notes.Notes.*;
+import static seedu.address.model.notes.Notes.PRIORITY_HIGH;
+import static seedu.address.model.notes.Notes.PRIORITY_LOW;
+import static seedu.address.model.notes.Notes.PRIORITY_MEDIUM;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.notes.NotesEditCommand;
@@ -58,7 +60,7 @@ public class NotesEditCommandParser implements Parser<NotesEditCommand> {
         if (argMultimap.getValue(PREFIX_NOTES_CONTENT).isPresent()) {
             String content = argMultimap.getValue(PREFIX_NOTES_CONTENT).get();
 
-            if(content.trim().equals("")) {
+            if (content.trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Content field is empty."));
             }
             editNotesDescriptor.setContent(content);
@@ -68,7 +70,7 @@ public class NotesEditCommandParser implements Parser<NotesEditCommand> {
         if (argMultimap.getValue(PREFIX_NOTES_PRIORITY).isPresent()) {
             String priority = argMultimap.getValue(PREFIX_NOTES_PRIORITY).get();
 
-            if(priority.trim().equals("")) {
+            if (priority.trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Priority field is empty."));
             }
             //Checking for validity of input priority.

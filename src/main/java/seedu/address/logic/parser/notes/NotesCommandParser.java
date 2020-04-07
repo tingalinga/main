@@ -47,7 +47,6 @@ public class NotesCommandParser implements Parser<NotesCommand> {
 
     /**
      * Obtains the prefix of the corresponding notes feature command
-     * @param preppedArgs, the trimmed version of arguments.
      */
     private String getAction(String preppedArgs) {
         String action = preppedArgs.split(" ")[0];
