@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FOR
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +20,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Temperature;
 
 public class JsonAdaptedStudentTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "R@8hel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
@@ -195,18 +194,5 @@ public class JsonAdaptedStudentTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
-
-    @Test
-    public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedStudent student =
-                new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TEMPERATURE,
-                        VALID_ATTENDANCE, VALID_NOK, invalidTags);
-
-        assertThrows(IllegalValueException.class, student::toModelType);
-    }
-
     // test here for invalidNOK or nullNOK
-
 }
