@@ -588,14 +588,14 @@ Here are the commands to manage students. They require the prefix `academics`.
 .Student Academics commands of TeaPet.
 |===
 |*Command*|*Format*|*Expected outcome*
-|`add`|`academics add desc/DESCRIPTION type/TYPE date/DATE`|Adds an assessment into the academics list
-|`edit`|`academics edit INDEX [desc/DESCRIPTION] [type/TYPE] [date/DATE]`|Edits an assessment in the academics list
-|`delete`|`academics delete INDEX`|Deletes the assessment at the given index
-|`submit`|`academics submit INDEX [stu/STUDENT_NAME]...`|Submits student(s) work for the assessment at the given index
-|`mark`|`academics mark INDEX [stu/STUDENT_NAME-SCORE]...`|Marks student(s) work and stores the scores for the assessment at the given index
-|`filter`|`academics homework/exam`|Displays either all homework or exam assessments in the academics list
-|`report`|`academics report`|Displays the report for all assessments
-|`export`|`academics export`|Exports the academics report into a .csv file
+|`academics add`|`academics add desc/DESCRIPTION type/TYPE date/DATE`|Adds an assessment into the academics list
+|`academics edit`|`academics edit INDEX [desc/DESCRIPTION] [type/TYPE] [date/DATE]`|Edits an assessment in the academics list
+|`academics delete`|`academics delete INDEX`|Deletes the assessment at the given index
+|`academics submit`|`academics submit INDEX [stu/STUDENT_NAME]...`|Submits student(s) work for the assessment at the given index
+|`academics mark`|`academics mark INDEX [stu/STUDENT_NAME-SCORE]...`|Marks student(s) work and stores the scores for the assessment at the given index
+|`academics filter`|`academics homework/exam`|Displays either all homework or exam assessments in the academics list
+|`academics report`|`academics report`|Displays the report for all assessments
+|`academics export`|`academics export`|Exports the academics report into a .csv file
 |===
 
 === Notes Commands
