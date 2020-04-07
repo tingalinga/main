@@ -9,8 +9,8 @@ public abstract class AcademicsCommand extends Command {
 
     public static final String COMMAND_WORD = "academics";
 
-    public static final String MESSAGE_USAGE = "The Academics tracks all your assessments and student submissions." + '\n'
-            + "[HELP ON ACADEMICS COMMANDS]\n"
+    public static final String MESSAGE_USAGE = "The Academics tracks all your assessments and student submissions."
+            + '\n' + "[HELP ON ACADEMICS COMMANDS]\n"
             + "add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE\n"
             + "edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]\n"
             + "delete assessment: academics delete INDEX\n"
