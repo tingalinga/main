@@ -135,6 +135,10 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         String description = argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get();
         String type = argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get();
         String date = argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get();
+        if (description.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsAddCommand.MESSAGE_USAGE));
+        }
         checkValidDate(date);
 
         return new AcademicsAddCommand(description, type, date);
@@ -173,6 +177,10 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         AcademicsEditCommand.EditAssessmentDescriptor editAssessmentDescriptor =
                 new AcademicsEditCommand.EditAssessmentDescriptor();
         if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DESCRIPTION).isPresent()) {
+            if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DESCRIPTION).get().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AcademicsAddCommand.MESSAGE_USAGE));
+            }
             editAssessmentDescriptor.setDescription(argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get());
         }
         if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_TYPE).isPresent()) {
