@@ -24,7 +24,7 @@ public class NotesDeleteCommandParser implements Parser<NotesDeleteCommand> {
             return new NotesDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesDeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Index provided must be greater than zero."));
         }
     }
 }
