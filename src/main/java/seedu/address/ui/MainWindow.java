@@ -37,6 +37,7 @@ import seedu.address.ui.admin.DateListPanel;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static ResultDisplay resultDisplay;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -51,7 +52,6 @@ public class MainWindow extends UiPart<Stage> {
     private AcademicsPanel academicsExamPanel;
     private AcademicsPanel academicsReportPanel;
     private NotesPanel notesPanel;
-    private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private SchedulePage schedulePage;
     private SchedulePanel schedulePanel;
@@ -479,6 +479,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(ssne.getMessage());
             throw ssne;
         }
+    }
+
+    /**
+     * Edits result display message
+     * @param feedback edited display message
+     */
+    public static void editResultDisplay(String feedback) {
+        resultDisplay.setFeedbackToUser(feedback);
     }
 
 }
