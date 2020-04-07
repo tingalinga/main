@@ -1,6 +1,6 @@
 package seedu.address.model.admin.exceptions;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DATE_ADMIN;
+import seedu.address.logic.commands.admin.AdminSaveCommand;
 
 /**
  * Signals that the operation will result in duplicate Dates (Dates are considered duplicates if they
@@ -8,6 +8,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DATE_ADMIN;
  */
 public class DuplicateDateException extends RuntimeException {
     public DuplicateDateException() {
-        super(MESSAGE_DUPLICATE_DATE_ADMIN);
+        super(AdminSaveCommand.MESSAGE_DUPLICATE_DATE_ADMIN);
     }
 }

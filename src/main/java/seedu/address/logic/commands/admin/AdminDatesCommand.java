@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DATES;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -24,7 +23,7 @@ public class AdminDatesCommand extends AdminCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredDateList(PREDICATE_SHOW_ALL_DATES);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
@@ -32,6 +31,7 @@ public class AdminDatesCommand extends AdminCommand {
 
     @Override
     public boolean equals(Object other) { //dummy method here
-        return false;
+        return other == this // short circuit if same object
+                || (other instanceof AdminDatesCommand); // instanceof handles nulls
     }
 }
