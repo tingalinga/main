@@ -8,14 +8,16 @@ import seedu.address.logic.commands.Command;
 public abstract class AcademicsCommand extends Command {
 
     public static final String COMMAND_WORD = "academics";
-    public static final String MESSAGE_USAGE = "Commands: \n"
-            + COMMAND_WORD + " report - displays academic statistics.\n"
-            + COMMAND_WORD + " homework - filters homework assessments.\n"
-            + COMMAND_WORD + " exam - filters exam assessments.\n"
-            + COMMAND_WORD + " add - adds new assessment.\n"
-            + COMMAND_WORD + " delete - deletes assessment.\n"
-            + COMMAND_WORD + " edit - edits current assessment.\n"
-            + COMMAND_WORD + " submit - submits students' work.\n"
-            + COMMAND_WORD + " mark - marks students' work.\n"
-            + "Type the following commands for more info!";
+
+    public static final String MESSAGE_USAGE = "The Academics tracks all your assessments and student submissions." + '\n'
+            + "[HELP ON ACADEMICS COMMANDS]\n"
+            + "ADD ASSESSMENT: academics add desc/<Assessment Description> type/<Type> date/<Date>\n"
+            + "EDIT ASSESSMENT: academics edit <Index> [desc/<Assessment Description>] [type/<Type>] [date/<Date>]\n"
+            + "DELETE ASSESSMENT: academics delete <Index>\n"
+            + "SUBMIT ASSESSMENT: academics submit <Index> [stu/<Student Name>]\n"
+            + "MARK ASSESSMENT: academics mark <Index> [stu/<Student Name>-<Score>]\n"
+            + "FILTER ASSESSMENT BY TYPE: academics <Type> (only Homework or Exam)\n"
+            + "VIEW ACADEMIC REPORT: academics report\n"
+            + "EXPORT ACADEMICS REPORT: academics export\n"
+            + "Type the following commands for more info!\n";
 }
