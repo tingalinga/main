@@ -20,6 +20,7 @@ public class AdminSaveCommand extends AdminCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + ADMIN_SAVE
             + ": to save the most updated admin list as today's date.";
     public static final String MESSAGE_SUCCESS = "This admin list has been saved for %1$s";
+    public static final String MESSAGE_DUPLICATE_DATE_ADMIN = "Operation would result in duplicate dates";
     private final LocalDate toAdd;
 
     public AdminSaveCommand(LocalDate date) {

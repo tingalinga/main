@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_NOT_FOUND_ADMIN;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_DATE_ADMIN;
 import static seedu.address.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 
 import java.util.logging.Logger;
@@ -20,6 +18,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.admin.AdminFetchCommand;
+import seedu.address.logic.commands.admin.AdminSaveCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -467,11 +467,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         } catch (DateNotFoundException dnfe) {
-            logger.info(MESSAGE_DATE_NOT_FOUND_ADMIN);
+            logger.info(AdminFetchCommand.MESSAGE_DATE_NOT_FOUND_ADMIN);
             resultDisplay.setFeedbackToUser(dnfe.getMessage());
             throw dnfe;
         } catch (DuplicateDateException dde) {
-            logger.info(MESSAGE_DUPLICATE_DATE_ADMIN);
+            logger.info(AdminSaveCommand.MESSAGE_DUPLICATE_DATE_ADMIN);
             resultDisplay.setFeedbackToUser(dde.getMessage());
             throw dde;
         } catch (StudentNotFoundException ssne) {
