@@ -11,13 +11,13 @@ public abstract class AcademicsCommand extends Command {
 
     public static final String MESSAGE_USAGE = "The Academics tracks all your assessments and student submissions." + '\n'
             + "[HELP ON ACADEMICS COMMANDS]\n"
-            + "ADD ASSESSMENT: academics add desc/<Assessment Description> type/<Type> date/<Date>\n"
-            + "EDIT ASSESSMENT: academics edit <Index> [desc/<Assessment Description>] [type/<Type>] [date/<Date>]\n"
-            + "DELETE ASSESSMENT: academics delete <Index>\n"
-            + "SUBMIT ASSESSMENT: academics submit <Index> [stu/<Student Name>]\n"
-            + "MARK ASSESSMENT: academics mark <Index> [stu/<Student Name>-<Score>]\n"
-            + "FILTER ASSESSMENT BY TYPE: academics <Type> (only Homework or Exam)\n"
-            + "VIEW ACADEMIC REPORT: academics report\n"
-            + "EXPORT ACADEMICS REPORT: academics export\n"
+            + "add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE\n"
+            + "edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]\n"
+            + "delete assessment: academics delete INDEX\n"
+            + "submit assessment: academics submit INDEX [stu/STUDENT_NAME]...\n"
+            + "mark assessment: academics mark INDEX> [stu/STUDENT_NAME-SCORE]...\n"
+            + "filter assessment BY TYPE: academics ASSESSMENT_TYPE (only Homework or Exam)\n"
+            + "view academics report: academics report\n"
+            + "export academics report: academics export\n"
             + "Type the following commands for more info!\n";
 }

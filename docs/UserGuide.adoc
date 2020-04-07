@@ -108,7 +108,7 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 
 . **Manage your class academic progress easily**
 .. Include every student's grades for every examination.
-.. Easy to track progress using helpful tools. e.g. graph plots
+.. Easy to track progress using helpful tools. e.g. tables, export tools
 
 . **Add Notes to act as lightweight, digital reminders easily**
 .. Include reminders for yourself to help you remember important information.
@@ -142,18 +142,21 @@ Thereafter, you are able to view, update or delete those information of specific
 
 Adds a student into the student list.
 
-Format: `student add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
-[temp/TEMPERATURE] [att/ATTENDANCE]`
+*Format:*
+
+    student add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
+    [temp/TEMPERATURE] [att/ATTENDANCE]
 
 * Adds a new student with the given attributes.
 * The student name *cannot be empty*.
 
-Example:
+*Example:*
 
 * `student add n/Jim p/90045722 e/jim@example.com a/Bishan St 13 Blk 154 #08-18 t/monitor nok/James-Father-91234567
-   temp/36.6 att/Present` Adds a student named Jim into the student list along with his details.
+   temp/36.6 att/Present` +
+Adds a student named Jim into the student list along with his details.
 
-Expected Outcome:
+*Expected Outcome:*
 
     New student added: Jim Phone: 90045722 Email: jim@example.com Address: Bishan St 13 Blk 154 #08-18 Temperature: 36.6 Attendance: Present Tags: [monitor]
 
@@ -162,14 +165,17 @@ Expected Outcome:
 
 Edits personal details of students.
 
-Format: `student edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
-[temp/TEMPERATURE] [att/ATTENDANCE]`
+*Format:*
 
-Example:
+    student edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
+    [temp/TEMPERATURE] [att/ATTENDANCE]
 
-* `student edit 1 p/90023413` Edits the student phone number in index 1 to a new phone number.
+*Example:*
 
-Expected Outcome:
+* `student edit 1 p/90023413` +
+Edits the student phone number in index 1 to a new phone number.
+
+*Expected Outcome:*
 
     Edited Student: Simon Lam Phone: 90023413 Email: simonlam@example.com Address: Blk 30 Geylang Street 29,
     #06-40 Temperature: 36.5 Attendance: Sick Remark:  Tags: [Sheares]
@@ -179,13 +185,15 @@ Expected Outcome:
 
 Deletes the student and all his personal details from the student list.
 
-Format: `student delete INDEX`
+*Format:*
 
-Example:
+    student delete INDEX
+
+*Example:*
 
 * `student delete 1` Deletes the student at index 1.
 
-Expected Outcome:
+*Expected Outcome:*
 
     Deleted Student: Simon Lam Phone: 90023413 Email: simonlam@example.com Address: Blk 30 Geylang Street 29, #06-40 Temperature: 36.5 Attendance: Sick Remark:  Tags: [Sheares]
 
@@ -194,13 +202,15 @@ Expected Outcome:
 
 Finds the student information from the student list and display it.
 
-Format: `student find NAME`
+*Format:*
 
-Example:
+    student find NAME
+
+*Example:*
 
 * `student find simon` Finds the information a student named Simon.
 
-Expected Outcome:
+*Expected Outcome:*
 
     1 students listed!
 
@@ -222,43 +232,204 @@ TeaPet's Class Progress Tracker is able to keep tabs on the class' academic prog
 every student's subject grades with this feature. Thereafter, there will be a csv file available for export displaying
 the progress of individual students as well as the entire class.
 
-"The Academics tracks all your assessments and student submissions." + '\n'
-+ "[HELP ON ACADEMICS COMMANDS]\n"
-+ "ADD ASSESSMENT: academics add desc/<Assessment Description> type/<Type> date/<Date>\n"
-+ "EDIT ASSESSMENT: academics edit <Index> [desc/<Assessment Description>] [type/<Type>] [date/<Date>]\n"
-+ "DELETE ASSESSMENT: academics delete <Index>\n"
-+ "SUBMIT ASSESSMENT: academics submit <Index> [stu/<Student Name>]\n"
-+ "MARK ASSESSMENT: academics mark <Index> [stu/<Student Name>-<Score>]\n"
-+ "FILTER ASSESSMENT BY TYPE: academics <Type> (only Homework or Exam)\n"
-+ "VIEW ACADEMIC REPORT: academics report\n"
-+ "EXPORT ACADEMICS REPORT: academics export\n"
-+ "Type the following commands for more info!\n"
+==== Display all Assessments and Academics Help: `academics`
 
-* *Academics Panel*: `academics`
-* *Add Assessment*: `academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE` +
-Assessment description can only be homework or exam. +
-Date should be written in YYYY-MM-DD format. +
-e.g. `academics add desc/Math Graphs Homework type/homework date/2020-05-02`
-* *Edit Assessment*: `academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]` +
-At least one of the three fields must be updated when editing a note. +
-e.g. `academics edit 4 desc/Chemistry Compounds Assignment type/homework date/2020-04-30`
-* *Delete Assessment*: `academics delete INDEX`
-* *Submit Assessment*: `academics submit INDEX [stu/STUDENT_NAME]...` +
-There should be at least 1 student's work being submitted and students' work should not have been submitted before.
-e.g. `academics submit 3 stu/Freddy Zhang` +
-e.g. `academics submit 3 stu/Freddy Zhang stu/Gerren Seow` +
-* *Mark Assessment*: `academics mark INDEX [stu/STUDENT_NAME-SCORE]...` +
-There should be at least 1 student's work being marked and students' work have already been submitted.
-e.g. `academics mark 3 stu/Freddy Zhang-90` +
-e.g. `academics mark 3 stu/Freddy Zhang-90 stu/Gerren Seow-80` +
-* *Filter Assessment by type*: `academics ASSESSMENT_TYPE` +
-e.g. `academics exam`
-* *View Academics Report*: `academics report`
-* *Export Academics Report*: `academics export` +
-Notes will be exported to a .csv file format, which is located in the data folder in the same directory.
+Shows all assessments in the academics list and a guide for academic commands.
+
+*Format:*
+
+    academics
+
+*Expected Outcome:*
+
+    The Academics tracks all your assessments and student submissions.
+    [HELP ON ACADEMICS COMMANDS]
+    add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
+    edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
+    delete assessment: academics delete INDEX
+    submit assessment: academics submit INDEX [stu/STUDENT_NAME]...
+    mark assessment: academics mark INDEX> [stu/STUDENT_NAME-SCORE]...
+    filter assessment BY TYPE: academics ASSESSMENT_TYPE (only Homework or Exam)
+    view academics report: academics report
+    export academics report: academics export
+    Type the following commands for more info!
+
+
+
+==== Add Assessment: `add`
+
+Adds an assessment into the academics list.
+
+*Format:*
+
+    academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
+
+* Adds a new assessment with the given attributes.
+* The assessment description *cannot be empty*.
+* Date should be written in *YYYY-MM-DD* format.
+
+*Example:*
+
+* `academics add desc/Math Graphs Homework type/homework date/2020-05-02` +
+Adds an assessment _Math Graphs Homework_ into the academics list along with its deadline.
+
+*Expected Outcome:*
+
+    Added assessment:
+    Homework: Math Graphs Homework
+    Due by: 2020-05-02
+
+
+==== Edit Assessment: `edit`
+
+Edits an assessment from the academics list.
+
+*Format:*
+
+    academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
+
+* Edits the assessment with the given attributes.
+* At least one of the three fields must be updated when editing the assessment.
+* Date should be written in *YYYY-MM-DD* format.
+
+*Example:*
+
+* `academics edit 4 desc/Chemistry Compounds Assignment` +
+Edits assessment in the academics list with the new description _Chemistry Compounds Assignment_.
+
+*Expected Outcome:*
+
+    Edited Assessment:
+    Homework: Chemistry Compounds Assignment
+    Due by: 2020-04-30
+
+
+==== Delete Assessment: `delete`
+
+Deletes an assessment from the academics list.
+
+*Format:*
+
+    academics delete INDEX
+
+* Deletes the assessment with at the given index.
+* Index should be a positive integer and be a valid index.
+
+*Example:*
+
+* `academics delete 5` Deletes the student at index 5.
+
+*Expected Outcome:*
+
+    Deleted Assessment:
+    Homework: Chemistry Compounds Assignment
+    Due by: 2020-04-30
+
+
+==== Submit Assessment: `submit`
+
+Submits student(s) work for a specific assessment.
+
+*Format:*
+
+    academics submit INDEX [stu/STUDENT_NAME]...
+
+* Submits work for the assessment with at the given index.
+* Index should be a positive integer and be a valid index.
+
+*Example:*
+
+* `academics submit 3 stu/Freddy Zhang` +
+Submits _Freddy Zhang_ for the assessment at index 3.
+* `academics submit 3 stu/Freddy Zhang stu/Gerren Seow` +
+Submits _Freddy Zhang_ and _Gerren Seow_ for the assessment at index 3.
+
+*Expected Outcome:*
+
+    Academics submitted following submissions:
+    Freddy Zhang
+    Gerren Seow
+
+
+==== Mark Assessment: `mark`
+
+Marks student(s) work for a specific assessment.
+
+*Format:*
+
+    academics mark INDEX [stu/STUDENT_NAME-SCORE]...
+
+* Marks work for the assessment with at the given index.
+* Index should be a positive integer and be a valid index.
+
+*Example:*
+
+* `academics mark 3 stu/Freddy Zhang` +
+Marks _Freddy Zhang_ for the assessment at index 3.
+* `academics mark 3 stu/Freddy Zhang-90 stu/Gerren Seow-80` +
+Marks _Freddy Zhang_ and _Gerren Seow_ for the assessment at index 3.
+
+*Expected Outcome:*
+
+    Academics marked following submissions:
+    Gerren Seow: 80
+    Freddy Zhang: 90
+
+
+==== Filter Assessments by type: `homework/exam`
+
+Filters assessment list by either homework or exam.
+
+*Format:*
+
+    academics ASSESSMENT_TYPE
+
+*Example:*
+
+* `academics homework`
+
+*Expected Outcome:*
+
+    Academics now displays all HOMEWORK assessments
+
+*Example:*
+
+* `academics exam`
+
+*Expected Outcome:*
+
+    Academics now displays all EXAM assessments
+
+
+==== View Academics Report: `report`
+
+Generates an academic report for each assessment.
+
+*Format:*
+
+    academics report
+
+*Expected Outcome:*
+
+    Academics now displays the report of each assessment.
+
+==== Export Academics Report: `export`
+
+Exports the academic report into a csv file.
+
+*Format:*
+
+    academics export
+
+* Academics report will be exported to a .csv file format, which is located in the data folder in the same directory.
 The file is named "studentAcademics.csv".
 
+*Expected Outcome:*
+
+    Academics are exported to studentAcademics.csv in the data folder.
+
 '''
+
 === Notes
 TeaPet's Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
 track of important information of their students spontaneously. This feature allows you to label each note with
