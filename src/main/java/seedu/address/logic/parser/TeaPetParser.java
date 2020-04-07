@@ -8,15 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.RefreshCommand;
 import seedu.address.logic.commands.academics.AcademicsCommand;
 import seedu.address.logic.commands.admin.AdminCommand;
 import seedu.address.logic.commands.event.EventCommand;
@@ -27,8 +21,7 @@ import seedu.address.logic.commands.notes.NotesDeleteCommand;
 import seedu.address.logic.commands.notes.NotesEditCommand;
 import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.commands.notes.NotesFilterCommand;
-import seedu.address.logic.commands.studentdisplay.DefaultStudentDisplayCommand;
-import seedu.address.logic.commands.studentdisplay.DetailedStudentDisplayCommand;
+import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.notes.NotesAddCommandParser;
 import seedu.address.logic.parser.notes.NotesCommandParser;
@@ -66,23 +59,8 @@ public class TeaPetParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-
-            return new DeleteCommandParser().parse(arguments);
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case RefreshCommand.COMMAND_WORD:
-            return new RefreshCommand();
+        case StudentCommand.COMMAND_WORD:
+            return new StudentCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -111,14 +89,8 @@ public class TeaPetParser {
         case AcademicsCommand.COMMAND_WORD:
             return new AcademicsCommandParser().parse(arguments);
 
-        case DetailedStudentDisplayCommand.COMMAND_WORD:
-            return new DetailedStudentDisplayCommand();
-
         case AdminCommand.COMMAND_WORD:
             return new AdminCommandParser().parse(arguments);
-
-        case DefaultStudentDisplayCommand.COMMAND_WORD:
-            return new DefaultStudentDisplayCommand();
 
         case EventCommand.COMMAND_WORD:
             return new EventCommandParser().parse(arguments);

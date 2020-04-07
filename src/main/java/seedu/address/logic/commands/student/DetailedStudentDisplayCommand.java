@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.studentdisplay;
+package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -9,18 +9,16 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Represents a command which displays a concise version of students' list.
+ * Represents a command which displays a comprehensive version of students' list.
  */
-public class DefaultStudentDisplayCommand extends Command {
+public class DetailedStudentDisplayCommand extends StudentCommand {
 
-    public static final String COMMAND_WORD = "default";
-
-    public static final String MESSAGE_SUCCESS = "The Student list now displays DEFAULT details";
+    public static final String MESSAGE_SUCCESS = "The Student list now displays ALL details";
 
     /**
-     * Creates an DefaultStudentDisplayCommand
+     * Creates an DetailedStudentDisplayCommand
      */
-    public DefaultStudentDisplayCommand() {
+    public DetailedStudentDisplayCommand() {
     }
 
     /**

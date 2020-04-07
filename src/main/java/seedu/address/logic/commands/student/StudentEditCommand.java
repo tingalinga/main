@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -21,6 +21,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
 import seedu.address.model.Model;
@@ -40,9 +41,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing student in the address book.
  */
-public class EditCommand extends Command {
-
-    public static final String COMMAND_WORD = "edit";
+public class StudentEditCommand extends StudentCommand {
 
     public static final String MESSAGE_USAGE = "This Command edits the details of the student identified. \n"
             + "Parameters: [STUDENT INDEX] "
@@ -66,7 +65,7 @@ public class EditCommand extends Command {
      * @param index of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public StudentEditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
@@ -162,12 +161,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof StudentEditCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        StudentEditCommand e = (StudentEditCommand) other;
         return index.equals(e.index)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
