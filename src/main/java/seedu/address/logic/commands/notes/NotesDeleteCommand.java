@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_DELETE;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -15,11 +15,11 @@ import seedu.address.model.notes.Notes;
 /**
  *  Represents NotesDeleteCommand which deletes a note from storage.
  */
-public class NotesDeleteCommand extends Command {
+public class NotesDeleteCommand extends NotesCommand {
 
-    public static final String COMMAND_WORD = "notesd";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " <Index>";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + " "
+            + PREFIX_NOTES_DELETE + " <Index>";
 
     public static final String MESSAGE_SUCCESS = "Student Note deleted.";
 

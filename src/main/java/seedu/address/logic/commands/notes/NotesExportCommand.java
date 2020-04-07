@@ -1,17 +1,18 @@
 package seedu.address.logic.commands.notes;
 
-import seedu.address.logic.commands.Command;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_EXPORT;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
  * Represents a NotesExportCommand which exports currently stored notes, into a .txt file format.
  */
-public class NotesExportCommand extends Command {
+public class NotesExportCommand extends NotesCommand {
 
-    public static final String COMMAND_WORD = "notesex";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " [with no other parameters]";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + " "
+            + PREFIX_NOTES_EXPORT + " [with no other parameters]";
 
     public static final String MESSAGE_SUCCESS = "Notes are exported to studentNotes.csv in the data folder";
 

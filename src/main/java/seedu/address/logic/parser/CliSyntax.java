@@ -52,5 +52,14 @@ public class CliSyntax {
     public static final Prefix PREFIX_EVENT_DELETE = new Prefix("delete");
     public static final Prefix PREFIX_EVENT_EDIT = new Prefix("edit");
 
+    /* Notes Prefixes */
+    public static final Prefix PREFIX_NOTES_ADD = new Prefix("add");
+    public static final Prefix PREFIX_NOTES_EDIT = new Prefix("edit");
+    public static final Prefix PREFIX_NOTES_DELETE = new Prefix("delete");
+    public static final Prefix PREFIX_NOTES_FILTER = new Prefix("filter");
+    public static final Prefix PREFIX_NOTES_EXPORT = new Prefix("export");
+    public static final Prefix PREFIX_NOTES_STUDENT = new Prefix("n/");
+    public static final Prefix PREFIX_NOTES_CONTENT = new Prefix("c/");
+    public static final Prefix PREFIX_NOTES_PRIORITY = new Prefix("pr/");
 
 }
