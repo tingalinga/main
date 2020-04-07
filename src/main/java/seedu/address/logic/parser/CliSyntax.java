@@ -10,6 +10,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EDIT = new Prefix("edit");
     public static final Prefix PREFIX_DELETE = new Prefix("delete");
     public static final Prefix PREFIX_FIND = new Prefix("find");
+    public static final Prefix PREFIX_EXPORT = new Prefix("export");
 
     /* Prefix definitions */
     public static final Prefix PREFIX_CLEAR = new Prefix("clear");
@@ -58,7 +59,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_NOTES_EDIT = new Prefix("edit");
     public static final Prefix PREFIX_NOTES_DELETE = new Prefix("delete");
     public static final Prefix PREFIX_NOTES_FILTER = new Prefix("filter");
-    public static final Prefix PREFIX_NOTES_EXPORT = new Prefix("export");
     public static final Prefix PREFIX_NOTES_STUDENT = new Prefix("n/");
     public static final Prefix PREFIX_NOTES_CONTENT = new Prefix("c/");
     public static final Prefix PREFIX_NOTES_PRIORITY = new Prefix("pr/");
