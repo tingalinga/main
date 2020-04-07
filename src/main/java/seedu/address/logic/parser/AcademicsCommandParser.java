@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPORT;
@@ -28,6 +29,7 @@ import seedu.address.logic.commands.academics.AcademicsDisplayExamCommand;
 import seedu.address.logic.commands.academics.AcademicsDisplayHomeworkCommand;
 import seedu.address.logic.commands.academics.AcademicsDisplayReportCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand;
+import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -55,7 +57,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_DELETE, PREFIX_EDIT, PREFIX_HOMEWORK, PREFIX_EXAM,
                         PREFIX_REPORT, PREFIX_SUBMIT, PREFIX_MARK, PREFIX_STUDENT, PREFIX_ASSESSMENT_DESCRIPTION,
-                        PREFIX_ASSESSMENT_TYPE, PREFIX_ASSESSMENT_DATE);
+                        PREFIX_ASSESSMENT_TYPE, PREFIX_ASSESSMENT_DATE, PREFIX_EXPORT);
 
         if (argMultimap.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(argMultimap);
@@ -73,6 +75,8 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
             return academicsDisplayExamCommand();
         } else if (argMultimap.getValue(PREFIX_REPORT).isPresent()) {
             return academicsDisplayReportCommand();
+        } else if (argMultimap.getValue(PREFIX_EXPORT).isPresent()) {
+            return academicsExportCommand();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
@@ -263,6 +267,14 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      */
     private AcademicsDisplayCommand academicsDisplayCommand() throws ParseException, CommandException {
         return new AcademicsDisplayCommand();
+    }
+
+    /**
+     * Returns a AcademicsExportCommand object for execution.
+     * {@code ArgumentMultimap}.
+     */
+    private AcademicsExportCommand academicsExportCommand() throws ParseException, CommandException {
+        return new AcademicsExportCommand();
     }
 
     /**
