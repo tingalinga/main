@@ -21,13 +21,13 @@ import seedu.address.model.student.TeaPet;
 import seedu.address.storage.teapet.JsonTeaPetStorage;
 
 public class JsonTeaPetStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTeaPetStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
+    public void readTeaPet_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readTeaPet(null));
     }
 

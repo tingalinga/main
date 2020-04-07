@@ -17,7 +17,7 @@ import seedu.address.model.student.TeaPet;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyTeaPet_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -25,7 +25,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyTeaPet_success() {
         Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
                 getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
