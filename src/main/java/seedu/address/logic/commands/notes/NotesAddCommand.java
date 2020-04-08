@@ -31,6 +31,8 @@ public class NotesAddCommand extends NotesCommand {
 
     public static final String MESSAGE_SUCCESS = "New Student Note added! Wonderful!";
 
+    public static final String MESSAGE_DUPLICATE_NOTE = "This same note already exists";
+
     private final String name;
     private final String content;
     private final String priority;
