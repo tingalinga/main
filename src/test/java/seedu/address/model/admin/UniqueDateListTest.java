@@ -40,8 +40,8 @@ public class UniqueDateListTest {
     @Test
     public void contains_dateWithSameIdentityFieldsInList_returnsTrue() {
         uniqueDateList.add(JAN_26_2020);
-        Date editedJAN262020 = new DateBuilder(JAN_26_2020).build();
-        assertTrue(uniqueDateList.contains(editedJAN262020));
+        Date editedJan262020 = new DateBuilder(JAN_26_2020).build();
+        assertTrue(uniqueDateList.contains(editedJan262020));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class UniqueDateListTest {
     }
 
     @Test
-    public void setStudent_editedDateIsSameDate_success() {
+    public void setDatet_editedDateIsSameDate_success() {
         uniqueDateList.add(JAN_26_2020);
         uniqueDateList.setDate(JAN_26_2020, JAN_26_2020);
         UniqueDateList expectedUniqueDateList = new UniqueDateList();
@@ -82,86 +82,85 @@ public class UniqueDateListTest {
     @Test
     public void setDate_editedDateHasSameIdentity_success() {
         uniqueDateList.add(JAN_26_2020);
-        Date editedJan262020 = new DateBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        uniqueDateList.setStudent(ALICE, editedAlice);
-        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
-        expectedUniqueStudentList.add(editedAlice);
-        assertEquals(expectedUniqueStudentList, uniqueStudentList);
+        Date editedJan262020 = new DateBuilder(JAN_26_2020).withDate(FEB_26_2020.getDate()).build();
+        uniqueDateList.setDate(JAN_26_2020, editedJan262020);
+        UniqueDateList expectedUniqueDateList = new UniqueDateList();
+        expectedUniqueDateList.add(editedJan262020);
+        assertEquals(expectedUniqueDateList, uniqueDateList);
     }
 
     @Test
-    public void setStudent_editedStudentHasDifferentIdentity_success() {
-        uniqueStudentList.add(ALICE);
-        uniqueStudentList.setStudent(ALICE, BOB);
-        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
-        expectedUniqueStudentList.add(BOB);
-        assertEquals(expectedUniqueStudentList, uniqueStudentList);
+    public void setDate_editedDateHasDifferentIdentity_success() {
+        uniqueDateList.add(JAN_26_2020);
+        uniqueDateList.setDate(JAN_26_2020, FEB_26_2020);
+        UniqueDateList expectedUniqueDateList = new UniqueDateList();
+        expectedUniqueDateList.add(FEB_26_2020);
+        assertEquals(expectedUniqueDateList, uniqueDateList);
     }
 
     @Test
-    public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicateStudentException() {
-        uniqueStudentList.add(ALICE);
-        uniqueStudentList.add(BOB);
-        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudent(ALICE, BOB));
+    public void setDate_editedDateHasNonUniqueIdentity_throwsDuplicateDateException() {
+        uniqueDateList.add(JAN_26_2020);
+        uniqueDateList.add(FEB_26_2020);
+        assertThrows(DuplicateDateException.class, () -> uniqueDateList.setDate(JAN_26_2020, FEB_26_2020));
     }
 
     @Test
-    public void remove_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.remove(null));
+    public void remove_nullDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueDateList.remove(null));
     }
 
     @Test
-    public void remove_studentDoesNotExist_throwsStudentNotFoundException() {
-        assertThrows(StudentNotFoundException.class, () -> uniqueStudentList.remove(ALICE));
+    public void remove_dateDoesNotExist_throwsDateNotFoundException() {
+        assertThrows(DateNotFoundException.class, () -> uniqueDateList.remove(JAN_26_2020));
     }
 
     @Test
-    public void remove_existingStudent_removesStudent() {
-        uniqueStudentList.add(ALICE);
-        uniqueStudentList.remove(ALICE);
-        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
-        assertEquals(expectedUniqueStudentList, uniqueStudentList);
+    public void remove_existingDate_removesDate() {
+        uniqueDateList.add(JAN_26_2020);
+        uniqueDateList.remove(JAN_26_2020);
+        UniqueDateList expectedUniqueDateList = new UniqueDateList();
+        assertEquals(expectedUniqueDateList, uniqueDateList);
     }
 
     @Test
-    public void setStudents_nullUniqueStudentList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudents((UniqueStudentList) null));
+    public void setDates_nullUniqueDateList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueDateList.setDates((UniqueDateList) null));
     }
 
     @Test
-    public void setStudents_uniqueStudentList_replacesOwnListWithProvidedUniqueStudentList() {
-        uniqueStudentList.add(ALICE);
-        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
-        expectedUniqueStudentList.add(BOB);
-        uniqueStudentList.setStudents(expectedUniqueStudentList);
-        assertEquals(expectedUniqueStudentList, uniqueStudentList);
+    public void setDates_uniqueDateList_replacesOwnListWithProvidedUniqueDateList() {
+        uniqueDateList.add(JAN_26_2020);
+        UniqueDateList expectedUniqueDateList = new UniqueDateList();
+        expectedUniqueDateList.add(JAN_26_2020);
+        uniqueDateList.setDates(expectedUniqueDateList);
+        assertEquals(expectedUniqueDateList, uniqueDateList);
     }
 
     @Test
-    public void setStudents_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudents((List<Student>) null));
+    public void setDates_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueDateList.setDates((List<Date>) null));
     }
 
     @Test
-    public void setStudents_list_replacesOwnListWithProvidedList() {
-        uniqueStudentList.add(ALICE);
-        List<Student> studentList = Collections.singletonList(BOB);
-        uniqueStudentList.setStudents(studentList);
-        UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
-        expectedUniqueStudentList.add(BOB);
-        assertEquals(expectedUniqueStudentList, uniqueStudentList);
+    public void setDates_list_replacesOwnListWithProvidedList() {
+        uniqueDateList.add(JAN_26_2020);
+        List<Date> dateList = Collections.singletonList(FEB_26_2020);
+        uniqueDateList.setDates(dateList);
+        UniqueDateList expectedUniqueDateList = new UniqueDateList();
+        expectedUniqueDateList.add(FEB_26_2020);
+        assertEquals(expectedUniqueDateList, uniqueDateList);
     }
 
     @Test
-    public void setStudents_listWithDuplicateStudents_throwsDuplicateStudentException() {
-        List<Student> listWithDuplicateStudents = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudents(listWithDuplicateStudents));
+    public void setDates_listWithDuplicateDates_throwsDuplicateDateException() {
+        List<Date> listWithDuplicateDates = Arrays.asList(JAN_26_2020, JAN_26_2020);
+        assertThrows(DuplicateDateException.class, () -> uniqueDateList.setDates(listWithDuplicateDates));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueStudentList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, (
+        ) -> uniqueDateList.asUnmodifiableObservableList().remove(0));
     }
 }

@@ -32,15 +32,15 @@ public class DateTest {
         assertFalse(JAN_26_2020.isSameDate(FEB_26_2020));
 
         // different dates -> returns false
-        Date editedJAN262020 = new DateBuilder(JAN_26_2020).withDate(LocalDate.parse("2020-02-26")).build();
-        assertFalse(JAN_26_2020.isSameDate(editedJAN262020));
+        Date editedJan262020 = new DateBuilder(JAN_26_2020).withDate(LocalDate.parse("2020-02-26")).build();
+        assertFalse(JAN_26_2020.isSameDate(editedJan262020));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Date JAN262020Copy = new DateBuilder(JAN_26_2020).build();
-        assertTrue(JAN262020Copy.equals(JAN262020Copy));
+        Date jan262020Copy = new DateBuilder(JAN_26_2020).build();
+        assertTrue(jan262020Copy.equals(jan262020Copy));
 
         // same object -> returns true
         assertTrue(JAN_26_2020.equals(JAN_26_2020));
@@ -55,8 +55,8 @@ public class DateTest {
         assertFalse(JAN_26_2020.equals(FEB_26_2020));
 
         // different dates -> returns false
-        Date editedJAN262020 = new DateBuilder(JAN_26_2020).withDate(LocalDate.parse("2020-02-26")).build();
-        assertFalse(JAN_26_2020.isSameDate(editedJAN262020));
+        Date editedJan262020 = new DateBuilder(JAN_26_2020).withDate(LocalDate.parse("2020-02-26")).build();
+        assertFalse(JAN_26_2020.isSameDate(editedJan262020));
 
     }
 }
