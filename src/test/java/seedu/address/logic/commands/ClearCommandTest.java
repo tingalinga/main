@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
@@ -28,9 +29,9 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyTeaPet_success() {
         Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
-                getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+                getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
-                getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+                getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
         expectedModel.setTeaPet(new TeaPet());
 
         assertCommandSuccess(new StudentClearCommand(), model, StudentClearCommand.MESSAGE_SUCCESS, expectedModel);

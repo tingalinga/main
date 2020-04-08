@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
@@ -27,7 +28,7 @@ public class StudentAddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(),
+        model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotesManager(),
                 getTypicalEventHistory(), new UserPrefs());
     }
 

@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
@@ -44,7 +45,7 @@ import seedu.address.testutil.StudentBuilder;
 public class StudentEditCommandTest {
 
     private Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+            getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

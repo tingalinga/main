@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
@@ -28,7 +29,7 @@ public class RefreshCommandTest {
     @BeforeEach
     public void setUp() {
 
-        model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotes(),
+        model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(), getTypicalNotesManager(),
                 getTypicalEventHistory(), new UserPrefs());
         expectedModel = new ModelManager(model.getTeaPet(), model.getAcademics(), model.getAdmin(),
                 model.getNotesManager(), getTypicalEventHistory(), new UserPrefs());

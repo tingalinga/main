@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.ELLE;
 import static seedu.address.testutil.TypicalStudents.FIONA;
@@ -32,9 +33,9 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 public class StudentFindCommandTest {
 
     private Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+            getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+            getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
 
     @Test
     public void equals() {

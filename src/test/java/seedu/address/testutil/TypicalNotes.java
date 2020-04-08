@@ -3,21 +3,34 @@ package seedu.address.testutil;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Represents Typical Notes used for testing.
  */
 public class TypicalNotes {
-    public static final Notes[] TYPICAL_NOTES = {
-        new Notes("Simon Lam", "Good Student", "LOW", "29/03/2020 22:40"),
-        new Notes("Gerren Seow", "Good Student", "LOW", "29/03/2020 22:41"),
-        new Notes("Lee Hui Ting", "Good Student", "LOW", "29/03/2020 22:42"),
-        new Notes("Gary Syndromes", "Good Student", "LOW", "29/03/2020 22:43"),
-        new Notes("Freddy Zhang", "Good Student", "LOW", "29/03/2020 22:44")
-    };
 
-    public static NotesManager getTypicalNotes() {
+    public static final Notes NOTE1 = new Notes("Simon Lam", "Good Student",
+            "LOW", "29/03/2020 22:40");
+    public static final Notes NOTE2 = new Notes("Gerren Seow", "Good Student",
+            "LOW", "29/03/2020 22:40");
+    public static final Notes NOTE3 = new Notes("Lee Hui Ting", "Bad Student",
+            "LOW", "29/03/2020 22:40");
+    public static final Notes NOTE4 = new Notes("Gary Syndromes", "Average Student",
+            "LOW", "29/03/2020 22:40");
+    public static final Notes NOTE5 = new Notes("Freddy Zhang", "Good Student",
+            "LOW", "29/03/2020 22:40");
+
+
+    public static List<Notes> getTypicalNotes() {
+        return new ArrayList<>(Arrays.asList(NOTE1, NOTE2, NOTE3, NOTE4, NOTE5));
+    }
+
+    public static NotesManager getTypicalNotesManager() {
         NotesManager notesManager = new NotesManager();
-        for (Notes note : TYPICAL_NOTES) {
+        for (Notes note : getTypicalNotes()) {
             notesManager.addNote(note);
         }
         return notesManager;
