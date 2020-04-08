@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;

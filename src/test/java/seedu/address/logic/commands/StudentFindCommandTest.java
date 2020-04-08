@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVI
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
 import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.ELLE;

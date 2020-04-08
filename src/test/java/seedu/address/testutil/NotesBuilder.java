@@ -2,9 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.notes.Notes;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * A utility class to help with building Notes objects.
  */

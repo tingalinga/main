@@ -1,20 +1,25 @@
 package seedu.address.model.notes;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.notes.exceptions.DuplicateNotesException;
-import seedu.address.testutil.NotesBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalNotes.NOTE1;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalNotes.NOTE1;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import seedu.address.model.notes.exceptions.DuplicateNotesException;
+import seedu.address.testutil.NotesBuilder;
 
 public class NotesManagerTest {
 
@@ -51,7 +56,7 @@ public class NotesManagerTest {
     }
 
     @Test
-    public void hasNote_NoteNotInNotesManager_returnsFalse() {
+    public void hasNote_noteNotInNotesManager_returnsFalse() {
         assertFalse(notesManager.hasNote(NOTE1));
     }
 

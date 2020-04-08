@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.notes.Notes;
-import seedu.address.model.notes.NotesManager;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.model.notes.Notes;
+import seedu.address.model.notes.NotesManager;
 
 /**
  * Represents Typical Notes used for testing.

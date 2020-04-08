@@ -1,20 +1,24 @@
 package seedu.address.model.notes;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.notes.exceptions.DuplicateNotesException;
-import seedu.address.model.notes.exceptions.NotesUnavailableException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalNotes.NOTE1;
 import static seedu.address.testutil.TypicalNotes.NOTE2;
 import static seedu.address.testutil.TypicalNotes.NOTE3;
 import static seedu.address.testutil.TypicalNotes.NOTE4;
 import static seedu.address.testutil.TypicalNotes.NOTE5;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.notes.exceptions.DuplicateNotesException;
+import seedu.address.model.notes.exceptions.NotesUnavailableException;
 
 public class UniqueNotesListTest {
 
