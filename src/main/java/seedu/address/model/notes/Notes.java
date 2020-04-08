@@ -178,7 +178,6 @@ public class Notes {
         Notes notes = (Notes) o;
         return Objects.equals(student, notes.student)
                 && Objects.equals(content, notes.content)
-                && Objects.equals(dateTime, notes.dateTime)
                 && Objects.equals(priority, notes.priority);
     }
 

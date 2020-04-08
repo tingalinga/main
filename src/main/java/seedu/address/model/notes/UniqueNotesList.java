@@ -61,7 +61,7 @@ public class UniqueNotesList implements Iterable<Notes> {
             throw new NotesUnavailableException();
         }
 
-        if (!toBeChanged.isSameNote(editedNote) && contains(editedNote)) {
+        if (toBeChanged.isSameNote(editedNote) && contains(editedNote)) {
             throw new DuplicateNotesException();
         }
 

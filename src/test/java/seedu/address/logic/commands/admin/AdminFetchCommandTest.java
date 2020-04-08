@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotes;
+import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
@@ -25,9 +25,9 @@ import seedu.address.model.admin.exceptions.DateNotFoundException;
 public class AdminFetchCommandTest {
 
     private Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+            getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
-            getTypicalNotes(), getTypicalEventHistory(), new UserPrefs());
+            getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
 
     @Test
     public void equals() {
