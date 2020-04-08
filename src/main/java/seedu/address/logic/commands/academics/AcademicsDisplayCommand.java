@@ -23,7 +23,7 @@ public class AcademicsDisplayCommand extends AcademicsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(String.format(AcademicsCommand.MESSAGE_USAGE));
     }
 
     @Override

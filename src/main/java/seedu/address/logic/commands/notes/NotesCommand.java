@@ -20,7 +20,6 @@ public class NotesCommand extends Command {
     public static final String NOTES_FILTER = "filter";
     public static final String NOTES_EXPORT = "export";
 
-
     public static final String MESSAGE_USAGE = "The Column on the right displays all your notes." + '\n'
             + "[HELP ON NOTES COMMANDS]\n"
             + "ADD NOTE: notes add n/<Name of Student c/<Content> pr/<Priority>\n"

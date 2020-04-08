@@ -41,7 +41,6 @@ public class NotesCommandParser implements Parser<NotesCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Notes does not have function "
                     + "requested. Enter 'notes' for help."));
         }
-
     }
 
     private String getAction(String preppedArgs) {
