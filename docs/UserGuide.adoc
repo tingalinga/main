@@ -140,13 +140,39 @@ get started with them.
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
 Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
 
+==== Display default student view: `student default`
+
+Shows a summarised version of the class list with important information only.
+
+*Format:* `student default`
+
+*Expected Outcome:*
+
+    The student list now displays DEFAULT details.
+
+.After using `student default` command
+image::default_display.png[width="790]
+
+==== Display detailed student view: `student detailed`
+
+Shows a detailed version of the class list with all information.
+
+*Format:* `student detailed`
+
+*Expected Outcome:*
+
+    The student list now displays ALL details.
+
+.After using `student default` command
+image::detailed_display.png[width="790]
+
 ==== Add Student: `add`
 
 Adds a student into the student list.
 
 *Format:*
 
-    student add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
+    student add name/NAME [phone/PHONE_NUMBER] [email/EMAIL] [adr/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
     [temp/TEMPERATURE] [att/ATTENDANCE]
 
 * Adds a new student with the given attributes.
@@ -552,11 +578,25 @@ CATER THEIR NEEDS
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
 
+==== Display your scheduler: `schedule`
+
+Displays your schedule for the current week.
+
+*Format:* `schedule`
+
+*Expected Outcome:*
+
+    This is your schedule for the week
+
+.After using schedule command
+image::display_schedule.png[width="790"]
+
+
 ==== Creating a schedule: `add`
 
 Adds an event to your personal scheduler.
 
-Format: `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
+*Format:* `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
 
 NOTE: All parameters are required.
 
@@ -613,7 +653,7 @@ image::images_in_folder.png[width="790"]
 
 {nbsp} +
 
-*Step 3*. Type in the `refresh` command in the user interface. Now you can see your students pictures in your student list!
+*Step 3*. Type in the `student refresh` command in the user interface. Now you can see your students pictures in your student list!
 
 
 .Before using the refresh command
@@ -625,6 +665,20 @@ image::before_picture_upload.png[width="790]
 image::after_picture_upload.png[width="790]
 
 [[update-profile]]
+
+==== All in one help window
+
+Suppose you are lost and you need help regarding the many commands in TeaPet, you can easily type in `help` or simply
+press your `F1` key to bring up this user guide!
+
+*Format:* `help`
+
+*Expected Outcome:*
+
+    Opened help window.
+
+.Displayed help window
+image::help_window.png[width="790]
 
 ==== Various Display Modes
 
@@ -713,6 +767,8 @@ Here are the commands to manage students. They require the prefix `schedule`.
 [cols="10%, 45%, 45%"]
 .Personal Scheduler commands of TeaPet
 |===
+|*Command*|*Format*|*Expected outcome*
+|`scheduele add`|`schedule add eventName/EVENT_NAME startDateTime/START_DATE_TIME endDateTime/END_DATE_TIME recur/RECUR color/COLOR`|Adds an event into the scheduler.
 |===
 
 [[Glossary]]

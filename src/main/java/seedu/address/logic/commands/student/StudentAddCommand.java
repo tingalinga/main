@@ -25,9 +25,9 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TAG + "TAG "
             + PREFIX_TEMPERATURE + "TEMPERATURE "
-            + PREFIX_ATTENDANCE + "ATTENDANCE "
-            + "[" + PREFIX_TAG + "TAG]...\n";
+            + PREFIX_ATTENDANCE + "ATTENDANCE ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
