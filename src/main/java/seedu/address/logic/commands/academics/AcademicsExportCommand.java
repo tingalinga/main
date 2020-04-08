@@ -10,8 +10,8 @@ import seedu.address.model.Model;
  */
 public class AcademicsExportCommand extends AcademicsCommand {
 
-    public static final String MESSAGE_USAGE =
-            COMMAND_WORD + " " + PREFIX_EXPORT + " [with no other parameters]";
+    public static final String MESSAGE_USAGE = "This command exports the academics as a csv file. \n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_EXPORT;
 
     public static final String MESSAGE_SUCCESS = "Academics are exported to studentAcademics.csv in the data folder";
 

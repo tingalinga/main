@@ -65,6 +65,9 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
             if (!model.hasStudentName(stu)) {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_SUBMISSION);
             }
+            if (model.hasStudentSubmitted(assessment, stu)) {
+                throw new CommandException(Messages.MESSAGE_STUDENT_HAS_ALREADY_SUBMITTED);
+            }
         }
 
         model.submitAssessment(assessment, students);
