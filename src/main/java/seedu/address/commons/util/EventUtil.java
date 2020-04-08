@@ -133,8 +133,8 @@ public class EventUtil {
      */
     public static boolean isEqualEvent(VEvent vEvent1, VEvent vEvent2) {
         return vEvent1.getSummary().equals(vEvent2.getSummary())
-                && vEvent1.getDateTimeStart().equals(vEvent2.getDateTimeEnd())
-                && vEvent2.getDateTimeEnd().equals(vEvent2.getDateTimeEnd());
+                && vEvent1.getDateTimeStart().equals(vEvent2.getDateTimeStart())
+                && vEvent1.getDateTimeEnd().equals(vEvent2.getDateTimeEnd());
     }
 
 

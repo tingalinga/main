@@ -58,7 +58,8 @@ Take note of the following symbols and formatting used in this document: +
 ^|*Symbol/ +
 Format* <|*Meaning*
 ^| kbd:[Enter] |[gray]#This symbol indicates the enter button on the keyboard.#
-^|[gray]#`command`# |[gray]#A grey highlight indicates that this is a command that can be executed by the program.#
+^|[gray]#`command`# |A grey highlight indicates that this is a command that can be executed by the program. Some
+                     `[command]` will have brackets around them, this indicates that the command is optional.
 
 2+.^a|  NOTE: This symbol indicates notes.
 2+.^a|  WARNING: This symbol indicates warnings.
@@ -134,7 +135,7 @@ This section aims to provide you with in-depth details of TeaPet's main features
 get started with them.
 
 
-
+[[particulars]]
 === Student Particulars
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
 Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
@@ -221,13 +222,99 @@ Finds the student information from the student list and display it.
 
 === Student Administration
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
-temperature recordings. Data will be displayed in a weekly format for further perusal.
+temperature recordings.
 
+==== Displaying of the class's last updated administrative information: `admin`
+Shows the last updated administrative information in the student list.
 
+*Format:*
+
+    admin
+
+*Expected Outcome:*
+
+    The Student list now displays last updated ADMIN details
+
+.After using `admin` command
+image::adminDisplay.png[width="790]
+
+==== Displaying of the dates with administrative information of the class: `admin dates`
+Shows a list of dates that contains administrative information of the class.
+
+*Format:*
+
+    admin dates
+
+*Expected Outcome:*
+
+    List of dates with admin details of the class displayed!
+
+.After using `admin dates` command
+image::adminDates.png[width=790]
+
+==== Fetching of administrative information of the class at the specified date: `admin fetch`
+Retrieves the administrative information of the class at the date provided.
+
+*Format:*
+
+    admin fetch DATE
+
+* Date should be written in *YYYY-MM-DD* format.
+* If date provided is not in data base, an error message will be shown.
+
+*Example:*
+
+* `admin fetch 2020-04-02` +
+Retrieves the administrative information of the class at on April 2 2020.
+
+*Expected Outcome:*
+
+    Class admin details for Apr 2 2020 listed!
+
+==== Saves today's administrative information of the class: `admin save`
+Saves today's administrative information of the class.
+
+*Format:*
+
+    admin save
+
+* Takes a screenshot of the most updated class administrative details and saves it as today's date.
+* If the class administrative information has been saved before earlier on the same day, saving it again will result
+duplicates, resulting in an error and an error message.
+* If there are changes to the class administrative information today and you wish to save it again, you would have to
+delete today's date from the list of dates and save it again.
+* Old dates and their administrative details cannot be edited to prevent mutation of data.
+
+*Example:*
+
+* `admin save` +
+Saves the administrative information of the class with today's date, taking April 8 2020 as an example.
+
+*Expected Outcome:*
+
+    This admin list has been saved for Apr 8 2020
+
+==== Deleting of administrative information of the class at the specified date: `admin delete`
+Deletes the administrative information of the class at the specified date.
+
+*Format:*
+
+    admin delete DATE
+
+* Date should be written in *YYYY-MM-DD* format.
+* If date provided is not in data base, an error message will be shown.
+
+*Example:*
+
+* `admin delete 2020-04-08` +
+Deletes the administrative information of the class at on April 8 2020.
+
+*Expected Outcome:*
+
+    Admin list has been deleted for Apr 8 2020
 
 '''
-
-
+[[acads]]
 === Student Academics
 TeaPet's Class Progress Tracker is able to keep tabs on the class' academic progress. You will be able to store data of
 every student's subject grades with this feature. Thereafter, there will be a csv file available for export displaying
@@ -255,7 +342,7 @@ Shows all assessments in the academics list and a guide for academic commands.
     export academics report: academics export
     Type the following commands for more info!
 
-.After using the academics command
+.After using the `academics` command
 image::academics-view.png[width="790]
 
 ==== Add Assessment: `academics add`
@@ -431,7 +518,7 @@ The file is named "studentAcademics.csv".
     Academics are exported to studentAcademics.csv in the data folder.
 
 '''
-
+[[notes]]
 === Notes
 TeaPet's Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
 track of important information of their students spontaneously. This feature allows you to label each note with
@@ -460,7 +547,7 @@ CATER THEIR NEEDS
 ==== Delete Notes
 ==== Filter Notes
 ==== Export Notes
-
+[[scheduler]]
 === Personal Scheduler
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
@@ -566,12 +653,20 @@ Here are the default commands available for use. They do not require prefixes.
 
 |===
 
-=== Student Commands
+=== Student Particulars Commands
 Here are the commands to manage students. They require the prefix `student`.
 
 [cols="10%, 45%, 45%"]
 .Student commands of TeaPet
 |===
+|`student add`|`student add name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [nok/NOK] [temp/TEMPERATURE]
+[att/ATTENDANCE]`|Adds a student into the class with the respective particulars
+|`student edit`|`student edit INDEX [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [nok/NOK] [temp/TEMPERATURE]
+[att/ATTENDANCE]`|Edits the student at the index with the respective particulars
+|`student delete`|`student delete INDEX`|Deletes the student at the index
+|`student clear`|`student clear`|Deletes the entire class list
+|`student find`|`student find KEYWORD`|Searches through the class list and filter students whose names have the
+specified KEYWORD
 |===
 
 === Student Administration Commands
@@ -580,6 +675,11 @@ Here are the commands to manage students. They require the prefix `admin`.
 [cols="10%, 45%, 45%"]
 .Student Administration commands of TeaPet
 |===
+|*Command*|*Format*|*Expected outcome*
+|`admin dates`|`admin dates`|Shows the dates with admin information of the class
+|`admin save`|`admin save`|Saves the most updated administrative information of the class as today's date
+|`admin fetch`|`academics fetch DATE`|Fetches the administrative information of the class at the specified date
+|`admin delete`|`admin delete DATE`|Deletes the administrative information of the class at the specified date
 |===
 
 === Student Academics Commands
@@ -618,12 +718,115 @@ Here are the commands to manage students. They require the prefix `schedule`.
 [[Glossary]]
 == Glossary
 
+[[command_prefix]]
+.Command Prefix
+|===
+|Prefix |Attributes |Used in the following Command(s)
+
+|name/
+|Name of student
+|<<particulars, Student Particulars>>, <<notes, Notes>>
+
+|phone/
+|Phone number
+|<<particulars, Student Particulars>>
+
+|email/
+|Email address
+|<<particulars, Student Particulars>>
+
+|adr/
+|Address
+|<<particulars, Student Particulars>>
+
+|tag/
+|Tag
+|<<particulars, Student Particulars>>
+
+|nok/
+|Next of Kin details
+|<<particulars, Student Particulars>>
+
+|temp/
+|Temperature
+|<<particulars, Student Particulars>>
+
+|att/
+|Attendance
+|<<particulars, Student Particulars>>
+
+|stu/
+|Student name and score obtained
+|<<acads, Student Academcis>>
+
+|desc/
+|Assessment description
+|<<acads, Student Academcis>>
+
+|type/
+|Assessment type
+|<<acads, Student Academcis>>
+
+|date/
+|Date
+|<<acads, Student Academcis>>, <<scheduler, Personal Scheduler>>
+
+|eventName/
+|Event name
+|<<scheduler, Personal Scheduler>>
+
+|startDateTime/
+|Starting date and time of event
+|<<scheduler, Personal Scheduler>>
+
+|endDateTime/
+|Ending date and time of event
+|<<scheduler, Personal Scheduler>>
+
+|recur/
+|Recurring type
+|<<scheduler, Personal Scheduler>>
+
+|indexGet/
+|Get index of event
+|<<scheduler, Personal Scheduler>>
+
+|mode/
+|Event view mode
+|<<scheduler, Personal Scheduler>>
+
+|c/
+|Content of note
+|<<notes, Notes>>
+
+|pr/
+|Note priority level
+|<<notes, Notes>>
+
+
+|===
 [[FAQ]]
 == FAQ
 This section will provide answers to all Frequently Asked Questions by our users.
 [qanda]
 How do I transfer my data to another Computer? ::
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+
+How do I transfer the information in TeaPet to the co-form teacher? ::
+Right now, TeaPet does not support the transfer of data, but the feature will be coming soon in the near future.
+
+Why can't I see my personal scheduler from a while ago? ::
+To see the schedule for a specific week, you could use the command `schedule view mode/weekly date/DATE`, where date is
+one of the date in the week you are seeking for.
+
+How do I retrieve back all the class list in TeaPet if I accidentally cleared all the content? ::
+Right now TeaPet does not support a backup feature, hence it would be best if you do not accidentally use the clear
+command. The backup feature will be coming soon in the near future.
+
+TeaPet is not working on my computer. How do I fix it? ::
+Ensure that your computer is runnning on Java 11 and not other versions. TeaPet does not support other versions of Java.
+
+
 
 
 
