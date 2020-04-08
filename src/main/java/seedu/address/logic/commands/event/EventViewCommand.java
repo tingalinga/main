@@ -14,7 +14,7 @@ import seedu.address.model.event.EventScheduleView;
  */
 public class EventViewCommand extends EventCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " [view]: view your events" + "\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " [view]: view your timetable for specific weeks" + "\n"
             + "Parameters:" + "\n"
             + "mode/ weekly, daily" + "\n"
             + "date/ yyyy-mm-dd" + "\n"

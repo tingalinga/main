@@ -128,6 +128,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
      */
     public void addVEvent(VEvent vEvent) {
         requireNonNull(vEvent);
+        boolean bool = contains(vEvent);
         if (contains(vEvent)) {
             throw new DuplicateVEventException();
         } else {
@@ -177,6 +178,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
      * Returns true if list contains the VEvent of {@code vEvent}
      */
     public boolean contains(VEvent vEventCheck) {
+        requireNonNull(vEventCheck);
         return vEvents.stream().anyMatch(vEvent -> isEqualEvent(vEvent, vEventCheck));
     }
 
