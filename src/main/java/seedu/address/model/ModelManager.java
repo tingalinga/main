@@ -66,7 +66,7 @@ public class ModelManager implements Model {
 
 
         super();
-        requireAllNonNull(teaPet, academics, admin, events, userPrefs);
+        requireAllNonNull(teaPet, academics, admin, notes, events, userPrefs);
 
         logger.fine("Initializing with tea pet: " + teaPet + " and user prefs " + userPrefs);
 
@@ -78,9 +78,9 @@ public class ModelManager implements Model {
         filteredAssessments = new FilteredList<>(this.academics.getAcademicsList());
         filteredDates = new FilteredList<>(this.admin.getDateList());
         this.notesManager = new NotesManager(notes);
+        filteredNotes = new FilteredList<>(this.notesManager.getNotesList());
         this.eventHistory = new EventHistory(events);
         this.eventSchedulePrefs = new EventSchedulePrefs(EventScheduleView.WEEKLY, LocalDateTime.now());
-        filteredNotes = new FilteredList<>(this.notesManager.getNotesList());
     }
 
 
@@ -507,6 +507,7 @@ public class ModelManager implements Model {
                 && academics.equals(other.academics)
                 && filteredAssessments.equals(other.filteredAssessments)
                 && eventHistory.equals(other.eventHistory)
+                && notesManager.equals(other.notesManager)
                 && filteredNotes.equals(other.filteredNotes);
     }
 }

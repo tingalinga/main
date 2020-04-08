@@ -38,6 +38,7 @@ public class UniqueNotesList implements Iterable<Notes> {
     /**
      * Adds a note to the list.
      * The note must not already exist in the list.
+     *
      */
     public void add(Notes toBeAdded) {
         requireNonNull(toBeAdded);
@@ -48,8 +49,8 @@ public class UniqueNotesList implements Iterable<Notes> {
     }
 
     /**
-     * Replaces the note {@code target} in the list with {@code editedNote}.
-     * {@code target} must exist in the list.
+     * Replaces the note {@code toBeChanged} in the list with {@code editedNote}.
+     * {@code toBeChanged} must exist in the list.
      * The note identity of {@code editedNote} must not be the same as another existing note in the list.
      */
     public void setNote(Notes toBeChanged, Notes editedNote) {
@@ -78,6 +79,9 @@ public class UniqueNotesList implements Iterable<Notes> {
         }
     }
 
+    /**
+     * Replaces the current internalList with another UniqueNotesList's internalList.
+     */
     public void setNotes(UniqueNotesList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -132,14 +136,5 @@ public class UniqueNotesList implements Iterable<Notes> {
         }
         return true;
     }
-
-    //    @Override
-    //    public String toString() {
-    //        StringBuilder sb = new StringBuilder();
-    //        for (Notes note : internalList) {
-    //            sb.append(note + "\n");
-    //        }
-    //        return sb.toString();
-    //    }
 
 }

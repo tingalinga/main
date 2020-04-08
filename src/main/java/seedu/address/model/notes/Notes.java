@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * Represents Notes of a student.
- * 4 main details are stored.
+ * There are 4 attributes in each note:
  * Student, Priority, Timestamp and Content.
  */
 public class Notes {
@@ -42,6 +42,8 @@ public class Notes {
         this.student = student;
         this.content = content;
         this.priority = checkPriority(priority);
+
+        //Obtains the current timestamp
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date = new Date();
         this.dateTime = formatter.format(date);
@@ -49,7 +51,7 @@ public class Notes {
 
     /**
      * Overloaded Notes constructor which is used when Json data is drawn from addressbook.json
-     * This allows initial timestamp to be immutable.
+     * This prevents a new timestamp to be created on the same note.
      * All fields must be present.
      * @param student
      * @param content
@@ -159,10 +161,10 @@ public class Notes {
 
     @Override
     public String toString() {
-        return "[Notes]"
-                + " Student:'" + getStudent() + '\''
-                + ", Content: '" + getContent() + '\''
-                + ", Priority: '" + getPriority() + '\'';
+        return "[NOTE]\n"
+                + "Student: " + student + "\n"
+                + "Content: " + content + "\n"
+                + "Priority: " + priority;
     }
 
     @Override

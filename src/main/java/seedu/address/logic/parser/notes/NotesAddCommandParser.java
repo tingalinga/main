@@ -19,14 +19,14 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Representing a Parser for NotesCommand
+ * Representing a Parser for NotesAddCommand
  */
 public class NotesAddCommandParser implements Parser<NotesAddCommand> {
 
     /**
      * Parsing of input arguments
      * @param args
-     * @return a NotesCommand
+     * @return a NotesAddCommand
      * @throws ParseException user input is in invalid format.
      */
     public NotesAddCommand parse(String args) throws ParseException {
@@ -39,13 +39,46 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesAddCommand.MESSAGE_USAGE));
         }
 
-        String name = argMultimap.getValue(PREFIX_NOTES_STUDENT).get();
-        String content = argMultimap.getValue(PREFIX_NOTES_CONTENT).get();
-        String priority = argMultimap.getValue(PREFIX_NOTES_PRIORITY).get();
 
-        if (!priority.toUpperCase().equals(PRIORITY_HIGH) && !priority.toUpperCase().equals(PRIORITY_MEDIUM)
-                && !priority.toUpperCase().equals(PRIORITY_LOW)) {
-            throw new ParseException(MESSAGE_INVALID_PRIORITY);
+        String name;
+        String content;
+        String priority;
+
+        //Obtaining input from Notes_Student prefix
+        if (argMultimap.getValue(PREFIX_NOTES_STUDENT).isPresent()) {
+            name = argMultimap.getValue(PREFIX_NOTES_STUDENT).get();
+            if (name.trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Student name field is empty."));
+            }
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Student name field is empty."));
+        }
+
+        //Obtaining input from Notes_Content prefix
+        if (argMultimap.getValue(PREFIX_NOTES_CONTENT).isPresent()) {
+            content = argMultimap.getValue(PREFIX_NOTES_CONTENT).get();
+            if (content.trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Content field is empty."));
+            }
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Content field is empty."));
+        }
+
+        //Obtaining input from Notes_Priority prefix
+        if (argMultimap.getValue(PREFIX_NOTES_PRIORITY).isPresent()) {
+            priority = argMultimap.getValue(PREFIX_NOTES_PRIORITY).get();
+
+            if (priority.trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Priority field is empty."));
+            }
+
+            //Checking for validity of input priority.
+            if (!priority.toUpperCase().equals(PRIORITY_HIGH) && !priority.toUpperCase().equals(PRIORITY_MEDIUM)
+                    && !priority.toUpperCase().equals(PRIORITY_LOW)) {
+                throw new ParseException(MESSAGE_INVALID_PRIORITY);
+            }
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Priority field is empty."));
         }
 
         return new NotesAddCommand(name, content, priority);

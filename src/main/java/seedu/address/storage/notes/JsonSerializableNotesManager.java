@@ -15,11 +15,9 @@ import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
 
-
 /**
  * Immutable NotesManager that is serializable to JSON format.
  */
-
 @JsonRootName(value = "notesManager")
 public class JsonSerializableNotesManager {
 
@@ -39,7 +37,6 @@ public class JsonSerializableNotesManager {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableNotesManager}.
      */
-
     public JsonSerializableNotesManager(ReadOnlyNotes source) {
         notes.addAll(source.getNotesList().stream().map(JsonAdaptedNotes::new).collect(Collectors.toList()));
     }
@@ -60,6 +57,4 @@ public class JsonSerializableNotesManager {
         }
         return notesManager;
     }
-
-
 }

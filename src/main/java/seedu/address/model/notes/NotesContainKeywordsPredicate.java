@@ -12,6 +12,7 @@ import seedu.address.commons.util.StringUtil;
  * String content
  * String priority
  * String dateTime
+ * Check is done based on similarity in characters, and not full word match.
  */
 public class NotesContainKeywordsPredicate implements Predicate<Notes> {
     private final List<String> keywords;

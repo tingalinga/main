@@ -13,7 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
 
 /**
- *  Represents NotesDeleteCommand which deletes a note from storage.
+ *  Represents NotesDeleteCommand which deletes a note from model and storage.
+ *  Subclass of NotesCommand
  */
 public class NotesDeleteCommand extends NotesCommand {
 
@@ -30,11 +31,10 @@ public class NotesDeleteCommand extends NotesCommand {
     }
 
     /**
-     * Overriden execute method which deletes a specified note from a student, and returning the
-     * updated student to the model.
+     * The execute() method which deletes a specified note from the model and storage
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException
+     * @return a new CommandResult
+     * @throws CommandException if index given by User is invalid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -47,7 +47,7 @@ public class NotesDeleteCommand extends NotesCommand {
 
         Notes toBeDeleted = lastShownList.get(targetIndex.getZeroBased());
         model.deleteNote(toBeDeleted);
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(MESSAGE_SUCCESS + "\n" + toBeDeleted.toString());
     }
 
     @Override

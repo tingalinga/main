@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
 
-import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -22,6 +21,7 @@ import seedu.address.model.student.Student;
 
 /**
  * Represents NotesEditCommand class which edits Note tagged to a Student.
+ * Subclass of NotesCommand
  */
 public class NotesEditCommand extends NotesCommand {
 
@@ -52,12 +52,17 @@ public class NotesEditCommand extends NotesCommand {
         this.editNotesDescriptor = editNotesDescriptor;
     }
 
+    /**
+     * The execute() function which modifies the a specific note in the model, replacing it with the new note.
+     * @param model {@code Model} which the command should operate on.
+     * @return a new CommandResult
+     * @throws CommandException
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Notes> lastShownList = model.getFilteredNotesList();
+        ObservableList<Notes> lastShownList = model.getFilteredNotesList();
         ObservableList<Student> students = model.getFilteredStudentList();
-
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_NOTES_DISPLAYED_INDEX);
@@ -66,6 +71,7 @@ public class NotesEditCommand extends NotesCommand {
         Notes noteToEdit = lastShownList.get(index.getZeroBased());
         Notes editedNote = createEditedNote(noteToEdit, editNotesDescriptor);
 
+        //Performs a check to ensure the student tagged to the edited note is present in the class-list.
         boolean nameFound = false;
 
         for (Student student : students) {
@@ -85,10 +91,8 @@ public class NotesEditCommand extends NotesCommand {
 
         model.setNote(noteToEdit, editedNote);
         model.updateFilteredNotesList(Model.PREDICATE_SHOW_ALL_NOTES);
-        return new CommandResult(MESSAGE_SUCCESS + "\n"
-                + "Student: " + editedNote.getStudent() + "\n"
-                + "Content: " + editedNote.getContent() + "\n"
-                + "Priority: " + editedNote.getPriority());
+        return new CommandResult(MESSAGE_SUCCESS + "\n" + editedNote.toString());
+
     }
 
     /**
@@ -96,7 +100,8 @@ public class NotesEditCommand extends NotesCommand {
      * edited with {@code editNotesDescriptor}.
      */
     private static Notes createEditedNote(Notes noteToEdit, EditNotesDescriptor editNotesDescriptor) {
-        assert noteToEdit != null;
+        requireNonNull(noteToEdit);
+        requireNonNull(editNotesDescriptor);
 
         String updatedStudent = editNotesDescriptor.getStudent().orElse(noteToEdit.getStudent());
         String updatedContent = editNotesDescriptor.getContent().orElse(noteToEdit.getContent());
@@ -115,6 +120,9 @@ public class NotesEditCommand extends NotesCommand {
         private String content;
         private String priority;
 
+        /**
+         * Constructor which creates an instance of EditNotesDescriptor.
+         */
         public EditNotesDescriptor() {
         }
 
