@@ -37,7 +37,6 @@ public interface NotesManagerStorage {
      */
     void saveNotesManager(ReadOnlyNotes notes) throws IOException;
 
-
     /**
      * @see #saveNotesManager(ReadOnlyNotes) ()
      */

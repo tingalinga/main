@@ -54,6 +54,4 @@ public class JsonAdaptedNotes {
         return new Notes(student, content, priority, dateTime);
     }
 
-
-
 }

@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 /**
  * Represents the Notes Manager, which serves to keep track of all notes.
  * NotesManager implements the interface ReadOnlyNotes
+ * Duplicates are not allowed (by. isSameNote comparison)
  */
 public class NotesManager implements ReadOnlyNotes {
 
@@ -39,7 +40,7 @@ public class NotesManager implements ReadOnlyNotes {
     /**
      * Replaces the contents of the notes.
      * Must not contain duplicate notes.
-     * @param notes refers to the list of notes.
+     * @param notes refers to the unique list of notes.
      */
     public void setNotes(List<Notes> notes) {
         this.notes.setNotes(notes);
@@ -57,7 +58,6 @@ public class NotesManager implements ReadOnlyNotes {
     /**
      * Returns true if a note with the same identity as {@code note} exists in the list
      * @param note
-     * @return
      */
     public boolean hasNote(Notes note) {
         requireNonNull(note);

@@ -13,15 +13,16 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class NotesCommandParser implements Parser<NotesCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the NotesCommand
-     * and returns a NotesCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * and returns respective feature commands.
+     * @throws ParseException if the user input does not conform the expected format,
+     * or entered an irrelevant feature prefix.
      */
     public NotesCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         String preppedArgs = args.trim();
-        System.out.println(preppedArgs);
 
+        //User enters 'notes' itself
         if (preppedArgs.equals("")) {
             return new NotesCommand();
         }
@@ -43,13 +44,25 @@ public class NotesCommandParser implements Parser<NotesCommand> {
         }
     }
 
+    /**
+     * Obtains the prefix of the corresponding notes feature command
+     */
     private String getAction(String preppedArgs) {
         String action = preppedArgs.split(" ")[0];
         return action;
     }
 
+    /**
+     * Removes the feature prefix from the preppedArgument.
+     * This new string will be passed by the respective feature command parsers.
+     * @param preppedArgs
+     * @throws ParseException if user did not pass in any arguments after the feature command.
+     * Eg. 'notes add', 'notes edit'
+     */
     private String getRemainingArguments (String preppedArgs) throws ParseException {
+        //Splits the preppedArgs into 2 parts based on the first spacing encountered.
         String[] parts = preppedArgs.split(" ", 2);
+
         if (parts.length == 1 && parts[0].equals("export")) {
             return "";
         } else if (parts.length == 1) {

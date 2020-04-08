@@ -17,9 +17,9 @@ import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Student;
 
-
 /**
- * Represents NotesAddCommand class which adds Note to a Student.
+ * Represents NotesAddCommand class which adds Note to a particular Student in the class-list.
+ * Subclass of NotesCommand
  */
 public class NotesAddCommand extends NotesCommand {
 
@@ -77,7 +77,7 @@ public class NotesAddCommand extends NotesCommand {
     /**
      * The execute() function which returns to the model an updated student with the new note added.
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
+     * @return a new CommandResult
      * @throws CommandException if student cannot be found.
      */
     @Override
@@ -86,6 +86,7 @@ public class NotesAddCommand extends NotesCommand {
 
         ObservableList<Student> students = model.getFilteredStudentList();
 
+        //Performs a check to ensure the student entered by the user is present in the class-list.
         boolean nameFound = false;
 
         for (Student student : students) {
@@ -94,7 +95,7 @@ public class NotesAddCommand extends NotesCommand {
             }
         }
 
-        if (nameFound == false) {
+        if (!nameFound) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
 
@@ -103,10 +104,7 @@ public class NotesAddCommand extends NotesCommand {
         }
 
         model.addNote(note);
-        return new CommandResult(MESSAGE_SUCCESS + "\n"
-            + "Student: " + note.getStudent() + "\n"
-            + "Content: " + note.getContent() + "\n"
-            + "Priority: " + note.getPriority());
+        return new CommandResult(MESSAGE_SUCCESS + "\n" + note.toString());
     }
 
     @Override
@@ -119,7 +117,8 @@ public class NotesAddCommand extends NotesCommand {
         }
         NotesAddCommand s = (NotesAddCommand) other;
         return name.equals(((NotesAddCommand) other).getName())
-                && content.equals(((NotesAddCommand) other).getContent());
+                && content.equals(((NotesAddCommand) other).getContent())
+                && priority.equals(((NotesAddCommand) other).getPriority());
     }
 
 }

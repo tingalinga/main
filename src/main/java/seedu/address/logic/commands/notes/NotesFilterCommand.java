@@ -10,6 +10,7 @@ import seedu.address.model.notes.NotesContainKeywordsPredicate;
 
 /**
  * Represents a NotesFilterCommand which filters the notes displayed based on input keywords.
+ * Subclass of NotesCommand
  */
 public class NotesFilterCommand extends NotesCommand {
 
@@ -32,9 +33,10 @@ public class NotesFilterCommand extends NotesCommand {
     }
 
     /**
-     * Overriden execute method which returns a CommandResult with success message.
+     * Overriden execute method which updates the model which notes that pass the given predicate.
+     * Predicate refers to the containment of keywords given by user.
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
+     * @return a new CommandResult
      * @throws CommandException
      */
     @Override

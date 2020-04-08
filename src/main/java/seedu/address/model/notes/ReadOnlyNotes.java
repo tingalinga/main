@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 public interface ReadOnlyNotes {
     /**
      * Returns an unmodifiable view of the all the Notes.
-     * This list will not contain any duplicate assessment.
+     * This list will not contain any duplicated copies of notes.
      */
     ObservableList<Notes> getNotesList();
 }
