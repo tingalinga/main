@@ -87,4 +87,17 @@ public class NotesEditCommandParser implements Parser<NotesEditCommand> {
 
         return new NotesEditCommand(index, editNotesDescriptor);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NotesEditCommandParser)) {
+            return false;
+        }
+
+        return true;
+    }
 }

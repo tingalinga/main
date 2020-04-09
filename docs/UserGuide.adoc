@@ -43,7 +43,7 @@ Interested? Explore this User Guide to find out more. Enjoy!
 The aim of this User Guide is to provide you with all the information you need to fully utilise TeaPet. We understand the pains of using a
 Command Line Interface (CLI) program and have bested our efforts into ensuring a very readable guide on how to use our program.
 
-If you need help setting up TeaPet, you can go to the <<Quick Start>> section.
+If you need help setting up TeaPet, you can go to the <<QuickStart>> section.
 
 If you want to find out more about TeaPet's features and commands, you can go to the <<Features>> section.
 
@@ -70,6 +70,7 @@ Format* <|*Meaning*
 |===
 //end::intro[]
 
+[[QuickStart]]
 == Quick Start
 
 === Installation
@@ -99,6 +100,36 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 TIP: If you have any questions, please check out our <<FAQ>> section.
 
 === TeaPet's Layout
+
+TeaPet's User Interface can be divided into 5 main components, each peforming specific functionalities.
+
+.User Interface of TeaPet
+image::userguide/TeaPetLayout.png[width="790"]
+
+. *Feature Tabs* +
+These tabs display some of TeaPet features. There is a drop-down menu in each tab to select and perform various feature
+functionality.
+
+. *Main Panel* +
+The main panel is the display window of Student List, Student Administration, Student Academics and Personal Schedule
+information. Depending on which feature you are currently using, the main panel will display corresponding information.
+
+. *Notes Panel* +
+The notes panel is specifically used to displays all the notes stored in TeaPet.
+
+. *Command Box* +
+The command box is where you will be entering commands into TeaPet.
+
+. *Result Display Box* +
+The result display box is where TeaPet's server replies to every command input. Any success, error or information
+messages will be displayed in this box.
+
+
+
+
+
+
+
 
 
 == Overview of Features
@@ -245,8 +276,8 @@ Finds the student information from the student list and display it.
 
 
 '''
-
-=== Student Administration
+[[admin]]
+=== Student Administration [Done by Zhang Yuan Yu]
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
 temperature recordings.
 
@@ -341,7 +372,7 @@ Deletes the administrative information of the class at on April 8 2020.
 
 '''
 [[acads]]
-=== Student Academics
+=== Student Academics [Done by Lee Hui Ting]
 TeaPet's Class Progress Tracker is able to keep tabs on the class' academic progress. You will be able to store data of
 every student's subject grades with this feature. Thereafter, there will be a csv file available for export displaying
 the progress of individual students as well as the entire class.
@@ -545,34 +576,175 @@ The file is named "studentAcademics.csv".
 
 '''
 [[notes]]
-=== Notes
+=== Notes [Done by Gerren Seow]
 TeaPet's Notes feature performs like the ones we all use in our everyday lives, aiming to help form teachers keep
 track of important information of their students spontaneously. This feature allows you to label each note with
-different priority to better manage tasks. Every note is tagged to one or more students, such you will be able to
+different priority to better manage tasks. Every note is specifically tagged to a student, such you will be able to
 better keep track of the stakeholder and information.
 
-* *Notes Help and Panel Refresh*: `notes`
-* *Add Note*: `notesa n/[Student Name] c/[Note Content] pr/[Priority]` +
-Priority must be either HIGH, MEDIUM or LOW, case insensitive. +
-e.g. `notesa n/James Ho c/Reminder to print his testimonial pr/HIGH`
-* *Edit Note*: `notese [Index] n/[New Student Name c/New Content pr/[New Priority]` +
-At least one of the three fields must be updated when editing a note.
-e.g. `notese n/Jane Lee c/Reminder to print her testimonial pr/LOW`
-* *Delete Note*: `notesd [Index]`
-* *Filter Search Note*: `notesf [Keywords(s)]`
-* *Export Notes*: `notesex` +
-Notes will be exported to a .csv file format, which is located in the data folder in the same directory.
-The file is named "studentNotes.csv".
 
-GUIDE THEM STEP BY STEP +
-PROVIDE EXAMPLE +
-CATER THEIR NEEDS
 
-==== Add Notes
-==== Edit Notes
-==== Delete Notes
-==== Filter Notes
-==== Export Notes
+==== Display all Notes and Help `notes`
+
+Shows all notes currently stored in TeaPet, and displays help on the usage of this feature.
+
+*Format:*
+
+    notes
+
+*Expected Outcome:*
+
+    The Column on the right displays all your notes.
+    [HELP ON NOTES COMMANDS]
+    ADD NOTE: notes add n/<Name of Student c/<Content> pr/<Priority>
+    EDIT NOTE: notes edit n/<Name of Student c/<Content> pr/<Priority>
+    DELETE NOTE: notes delete <Index>
+    FILTER SEARCH NOTES: notes filter <Keyword(s)>
+    EXPORT NOTES: notes export
+
+.After using the `notes` command
+image::userguide/notesfeature/notesDisplay.png[width="790]
+
+
+==== Add Notes `notes add`
+
+Adds a note into TeaPet.
+
+*Format:*
+
+    notes add name/<Name of Student> c/<Content> pr/<Priority>
+
+* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Create and add a new note with the following fields
+* *None* of the fields can be empty.
+* Student's name indicated in the name field must be already *present* in the class-list.
+* Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
+* An automatic timestamp is generated for each note added.
+
+*Example:*
+
+* `notes add name/Kelvin Klein c/Reminder to inform his parents about Kelvin's exemplary behaviour. pr/LOW` +
+Adds a note for student _Kelvin Klein_ into the list of notes, together with content and priority.
+
+*Expected Outcome:*
+
+    New Student Note added! Wonderful!
+    [NOTE]
+    Student: Kelvin Klein
+    Content: Reminder to inform his parents about Kelvin's exemplary behaviour.
+    Priority: LOW
+
+.After using the `notes add` command
+image::userguide/notesfeature/notesAdd.png[width="790]
+
+==== Edit Notes `notes edit`
+
+Edits a note in TeaPet.
+
+*Format:*
+
+    notes edit <Index> name/<Updated name of student> c/<Updated content pr/<Updated priority>
+
+* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Edits a current note in the list by index. Index must be an integer within the total number of notes.
+* *At least 1* of the three prefix fields must be indicated.
+* Updated student's name indicated in the name field must be already *present* in the class-list.
+* Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
+
+*Example:*
+
+* `notes edit 4 c/Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT. pr/HIGH` +
+Edits a note for student _Kelvin Klein_ in the list of notes, together with updated content and updated priority.
+
+*Expected Outcome:*
+
+    Student's Note Edited. Wonderful!
+    [NOTE]
+    Student: Kelvin Klein
+    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Priority: HIGH
+
+.After using the `notes edit` command
+image::userguide/notesfeature/notesEdit.png[width="790]
+
+==== Delete Notes `notes delete`
+
+Deletes a note in TeaPet.
+
+*Format:*
+
+    notes delete <Index>
+
+* Deletes a current note in the list by index. Index must be an integer within the total number of notes.
+
+
+*Example:*
+
+* `notes delete 4` +
+Deletes the 4th note in the list. In this example, the note is the one we created for student _Kelvin Klein_.
+
+*Expected Outcome:*
+
+    Student Note deleted.
+    [NOTE]
+    Student: Kelvin Klein
+    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Priority: HIGH
+
+==== Filter Notes `notes filter`
+
+Displays a list of filtered notes based on specific keywords.
+
+*Format:*
+
+    notes filter <Keyword(s)>
+
+* Filters the list of notes based on the presence of keywords given by the User.
+* This notes filter feature will perform a comparison of *name of student*, *content*, *priority* and *timestamp*
+of the notes.
+* Filtering is done based of character match, not full-word match.
+
+*Example 1:*
+
+* `notes filter low` +
+Displays only notes with the keyword "low" present.
+
+*Expected Outcome:*
+
+    Displaying Notes with Keywords: [low]
+
+*Example 2:*
+
+* `notes filter high 29` +
+Displays only notes with the keyword "high" and "29" present.
+
+*Expected Outcome:*
+
+    Displaying Notes with Keywords: [high, 29]
+
+
+==== Export Notes `notes export`
+
+Exports all notes in TeaPet into a .csv file
+
+*Format:*
+
+    notes export
+
+* Exports all notes into studentNotes.csv, which can be located in the *data* folder of the same directory as the
+TeaPet application
+* The .csv file's column headers are Student, Priority, DateTime and Content, in that order.
+
+*Example:*
+
+* `notes export` +
+
+*Expected Outcome:*
+
+   Notes are exported to studentNotes.csv in the data folder
+
+'''
+
 [[scheduler]]
 === Personal Scheduler
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be

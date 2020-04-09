@@ -45,4 +45,18 @@ public class NotesFilterCommand extends NotesCommand {
         model.updateFilteredNotesList(predicate);
         return new CommandResult(MESSAGE_SUCCESS + predicate.getKeywords().toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof NotesFilterCommand)) {
+            return false;
+        }
+
+        NotesFilterCommand o = (NotesFilterCommand) other;
+        return predicate.equals(o.predicate);
+    }
 }
