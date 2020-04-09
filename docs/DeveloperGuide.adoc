@@ -623,8 +623,47 @@ method.
 
 
 ==== Delete Note
+
+The following is a detailed explanation of the operations which `NotesDeleteCommand` performs.
+
+1. After the successful parsing of user input, the `NotesDeleteCommand#execute(Model model)` method is called which checks if the `Index`
+is defined as an argument when instantiating the `NotesDeleteCommand(Index index)`  constructor. +
+[NOTE]
+The `Index` must be within the bounds of the student list. +
+
+2. The `Notes` at the specified `Index` is then removed from the `UniqueNotesList#notes` observable list using the
+`Model#deleteNote(Index index)` method.
+
+3. The command box will be reflected with the `NotesDeleteCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
+
 ==== Filter Notes
+
+The following is a detailed explanation of the operations which `NotesFilterCommand` performs.
+
+1. After the successful parsing of user input, the `NotesFilterCommand#execute(Model model)` method is called which checks if the
+`NotesContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
+`NotesFilterCommand(NotesContainsKeywordsPredicate predicate)` constructor
+
+2. The `Notes` is then searched through the `UniqueNotesList#notes` list... ...
+
+3. The existing `UniqueNotesList#internalList` is then cleared and updated using the `Model#updateFilteredNotesList(Predicate predicate)`
+method.
+
+4. A new `CommandResult` will be returned with the success message.
+
 ==== Export Notes
+
+The following is a detailed explanation of the operations which `NotesExportCommand` performs.
+
+1. After the successful parsing of user input, the `NotesExportCommand#execute(Model model)` method is called.
+
+2. The command box will be reflected with the `NotesExportCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
+
+3. The `MainWindow` of the UI component will process the `CommandResult` and create a studentNotes.csv in the data folder of
+the current directory.
+
 ==== Design Considerations
 * Alternative 1 (Current Choice): Intuitive, simple syntax and user-friendly
 - Pros: It is easy for the Teacher to use the feature.
