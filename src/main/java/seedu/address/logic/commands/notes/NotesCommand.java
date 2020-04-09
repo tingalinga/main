@@ -26,10 +26,10 @@ public class NotesCommand extends Command {
     public static final String NOTES_EXPORT = "export";
 
     //Displays the generic message which describes the Notes features and how to use them.
-    public static final String MESSAGE_USAGE = "The Column on the right displays all your notes." + '\n'
+    public static final String MESSAGE_SUCCESS = "The Column on the right displays all your notes." + '\n'
             + "[HELP ON NOTES COMMANDS]\n"
-            + "ADD NOTE: notes add n/<Name of Student c/<Content> pr/<Priority>\n"
-            + "EDIT NOTE: notes edit n/<Name of Student c/<Content> pr/<Priority>\n"
+            + "ADD NOTE: notes add name/<Name of Student c/<Content> pr/<Priority>\n"
+            + "EDIT NOTE: notes edit name/<Name of Student c/<Content> pr/<Priority>\n"
             + "DELETE NOTE: notes delete <Index>\n"
             + "FILTER SEARCH NOTES: notes filter <Keyword(s)>\n"
             + "EXPORT NOTES: notes export";
@@ -49,7 +49,7 @@ public class NotesCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateFilteredNotesList(PREDICATE_SHOW_ALL_NOTES);
-        return new CommandResult(MESSAGE_USAGE);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

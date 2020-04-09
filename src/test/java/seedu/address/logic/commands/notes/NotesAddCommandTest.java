@@ -57,7 +57,7 @@ public class NotesAddCommandTest {
         CommandResult commandResult = new NotesAddCommand(validNote.getStudent(), validNote.getContent(),
                 validNote.getPriority()).execute(modelStub);
 
-        assertEquals(NotesAddCommand.MESSAGE_SUCCESS + "\n" + validNote.toString(), commandResult.getFeedbackToUser());
+        assertEquals(String.format(NotesAddCommand.MESSAGE_SUCCESS, validNote), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validNote), modelStub.notesAdded);
     }
 
