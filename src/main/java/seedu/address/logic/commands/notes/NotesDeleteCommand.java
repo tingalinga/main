@@ -58,4 +58,6 @@ public class NotesDeleteCommand extends NotesCommand {
                 && targetIndex.equals(((NotesDeleteCommand) other).targetIndex)); // state check
     }
 
+
+
 }

@@ -27,4 +27,18 @@ public class NotesDeleteCommandParser implements Parser<NotesDeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Index provided must be greater than zero."));
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NotesDeleteCommandParser)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

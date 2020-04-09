@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.notes;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
@@ -25,4 +27,23 @@ public class NotesAddCommandParserTest {
                 new NotesAddCommand(expectedNote.getStudent(), expectedNote.getContent(),
                         expectedNote.getPriority()));
     }
+
+    @Test
+    public void equals() {
+        NotesAddCommandParser firstParser = new NotesAddCommandParser();
+        NotesAddCommandParser secondParser = new NotesAddCommandParser();
+
+        //same object -> return true
+        assertTrue(firstParser.equals(secondParser));
+
+        //same class -> return true
+        assertTrue(firstParser.equals(secondParser));
+
+        //different class -> return false
+        assertFalse(firstParser.equals(new NotesEditCommandParser()));
+
+        //different class -> return false
+        assertFalse(firstParser.equals(null));
+    }
+
 }

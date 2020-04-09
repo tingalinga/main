@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class NotesCommandParserTest {
+public class NotesExportCommandParserTest {
+
     @Test
     public void equals() {
-        NotesCommandParser firstParser = new NotesCommandParser();
-        NotesCommandParser secondParser = new NotesCommandParser();
+        NotesExportCommandParser firstParser = new NotesExportCommandParser();
+        NotesExportCommandParser secondParser = new NotesExportCommandParser();
 
         //same object -> return true
         assertTrue(firstParser.equals(secondParser));
