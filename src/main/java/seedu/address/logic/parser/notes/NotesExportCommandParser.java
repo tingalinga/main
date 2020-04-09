@@ -20,4 +20,18 @@ public class NotesExportCommandParser implements Parser<NotesExportCommand> {
         }
         return new NotesExportCommand();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NotesExportCommandParser)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
