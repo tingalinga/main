@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TeaPetParser" as TeaPetParser LOGIC_COLOR
+participant "delete:AdminDeleteCommand" as AdminDeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":TeaPet" as TeaPet MODEL_COLOR
+end box
+[-> LogicManager : execute(admin delete)
+activate LogicManager
+
+LogicManager -> TeaPetParser : parseCommand(admin delete)
+activate TeaPetParser
+
+create AdminDeleteCommand
+TeaPetParser -> AdminDeleteCommand
+activate AdminDeleteCommand
+
+AdminDeleteCommand --> TeaPetParser
+deactivate AdminDeleteCommand
+
+TeaPetParser --> LogicManager : delete
+deactivate TeaPetParser
+
+LogicManager -> AdminDeleteCommand : execute()
+activate AdminDeleteCommand
+
+AdminDeleteCommand-> Model : updateFilteredDateList()
+activate Model
+
+
+Model --> AdminDeleteCommand :
+deactivate Model
+
+AdminDeleteCommand-> Model : deleteDate()
+activate Model
+
+Model-> TeaPet : deleteDate()
+Activate TeaPet
+
+TeaPet -> Model
+deactivate TeaPet
+
+Model --> AdminDeleteCommand
+deactivate Model
+
+AdminDeleteCommand-> Model : updateFilteredDateList()
+activate Model
+
+
+Model --> AdminDeleteCommand :
+deactivate Model
+
+AdminDeleteCommand --> LogicManager : commandResult
+deactivate AdminDeleteCommand
+AdminDeleteCommand -[hidden]-> LogicManager : commandResult
+destroy AdminDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
