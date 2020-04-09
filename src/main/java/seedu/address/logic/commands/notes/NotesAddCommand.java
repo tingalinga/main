@@ -29,7 +29,10 @@ public class NotesAddCommand extends NotesCommand {
             + PREFIX_NOTES_STUDENT + "<Name of Student> " + PREFIX_NOTES_CONTENT + "<Content of Note> "
             + PREFIX_NOTES_PRIORITY + "<HIGH/MEDIUM/LOW>";
 
-    public static final String MESSAGE_SUCCESS = "New Student Note added! Wonderful!";
+    public static final String MESSAGE_SUCCESS = "New Student Note added! Wonderful!\n"
+            + "%1$s";
+
+    public static final String MESSAGE_DUPLICATE_NOTE = "This same note already exists";
 
     private final String name;
     private final String content;
@@ -104,7 +107,7 @@ public class NotesAddCommand extends NotesCommand {
         }
 
         model.addNote(note);
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + note.toString());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, note));
     }
 
     @Override
