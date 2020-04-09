@@ -105,7 +105,6 @@ You can refer to the guide <<SettingUp#, here>>.
 
 == Design
 
-This section describes the high-level design details of TeaPet.
 
 [[Design-Architecture]]
 === Architecture
@@ -243,20 +242,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-=== Class particulars feature
-The class particulars feature keeps track of essential student details.
-The feature comprises of four commands namely,
+=== Student particulars feature
+The student particulars feature keeps track of essential student details.
+The feature comprises of commands namely,
 
 * `AddCommand` - Adds the student particulars into the class list
 * `EditCommand` - Edits the particulars of a student
 * `DeleteCommand` - Deletes the student information
 * `FindCommand` - Finds information of the required student
+* `RefreshCommand` - Refreshes the student list to update profile pictures
+
+
+The student commands all share similar paths of execution and is illustrated in the following sequence diagram below,
+which shows the sequence diagram for the StudentAddCommand.
 
 The commands when executed, will interface with the methods exposed by the `Model` interface to perform the related operations
 (See <<Design-Logic,logic component>> for the general overview).
 
-.Class Diagram for Commands
-image::CommandClassDiagram.png[]
+.Sequence Diagram for StudentAddCommand
+image::student_sequence_diagram.png[]
+
+{nbsp} +
+
+*These are the common steps among the Student Commands:*
+
+1. The `TeaPetParser` will assign the `StudentCommandParser` to parse the user input
+
+2. The `StudentCommandParser#parse` will take in a string of user input consisting of the arguments
+
+3. The arguments are tokenized and the respective models of each argument are created.
+
+
 
 [[Feature-Add]]
 ==== Add command
@@ -265,23 +281,21 @@ image::CommandClassDiagram.png[]
 
 The following is a detailed explanation of the operations which `AddCommand` performs.
 
-*Step 1*. The `AddCommand#execute(Model model)` method is executed which takes in a necessary student name and additional attributes.
+1. After the successful parsing of user input, the `StudentAddCommand#execute(Model model)` method is called which validates the student defined.
+
+
+2. As student names are unique, if a duplicate student is defined, a `CommandException` is thrown which will not add the defined student.
+
+3. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
+the `StudentAddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the success message.
 [NOTE]
-Format for adding NOK details is `add n/<NAME> nok/<NAME-RELATIONSHIP-CONTACT>`.
+If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be that
+either a unknown command or wrong format error message will be displayed.
 
-*Step 2*. The student is then searched through the `UniqueStudentList#students` list using the
- `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
-with the duplicate students error message.
+4. The newly created student is added to the `UniqueStudentList`.
 
-*Step 3*. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
-the `AddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
-[NOTE]
-If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be similar to step 2, where either a unknown command
-or wrong format error message will be displayed.
 
-The following sequence diagram shows how the add operation works:
 
-image::AddSequenceDiagram.png[]
 
 ==== Edit command
 
@@ -289,21 +303,114 @@ image::AddSequenceDiagram.png[]
 
 The following is a detailed explanation of the operations which `EditCommand` performs.
 
-*Step 1*. The `EditCommand#execute(Model model)` method is executed which edit attributes of the selected student. The method
-checks if the `index` defined when instantiating `EditCommand(Index index, EditStudentDescriptor editStudentDescriptor)` is
-valid. Since it is optional for users to input fields, the fields not entered will reuse the existing values that are currently stored and defined
-in the `Student` object.
+1. After the successful parsing of user input, the `StudentEditCommand#execute(Model model)` method is called which checks
+if the `Index` is defined as an argument when instantiating the `StudentEditCommand(Index, index, EditStudentDescriptor editStudentDescriptor)`
+constructor. It uses the `StudentEditCommand.EditStudentDescriptor` to create a new edited student.
 
-*Step 2*. A new `Student` with the updated values is created and it is then searched  through the `UniqueStudentList#students` list using the
- `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
-with the duplicate students error message.
 
-*Step 3*. The newly created `Student` will replace the old one through the `Model#setStudent(Student oldStudent, Student editedStudent`
+2. A new `Student` with the newly updated values will be created which replaces the existing `Student` object using the
+`Model#setStudent(Student target, Student editedStudent)` method.
+
+3. The filtered student list is then updated with the new `Student` with the `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` method.
+
+4. The command box will be reflected with the `StudentEditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be
+returned with the success message.
+
+==== Delete command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentDeleteCommand` performs.
+
+1. After the successful parsing of user input, the `StudentDeleteCommand#execute(Model model)` method is called which checks if the `Index`
+is defined as an argument when instantiating the `StudentDeleteCommand(Index index)`  constructor. +
+[NOTE]
+The `Index` must be within the bounds of the student list. +
+
+2. The `Student` at the specified `Index` is then removed from the `UniqueStudentList#students` observable list using the
+`Model#deleteStudent(Index index)` method.
+
+3. The command box will be reflected with the `StudentDeleteCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
+
+==== Find command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentFindCommand` performs.
+
+1. After the successful parsing of user input, the `StudentFindCommand#execute(Model model)` method is called which checks if the
+`NameContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
+`StudentFindCommand(NameContainsKeywordsPredicate predicate)` constructor
+
+2. The `Student` is then searched through the `UniqueStudentList#students` list using the `Model#hasStudent(Student student)` method
+to check if the `Student` already exists. If the `Student` does not exist, a `StudentNotFoundException` will be thrown and the `Student` will not be displayed.
+
+3. The existing `UniqueStudentList#internalList` is then cleared and updated using the `Model#updateFilteredStudentList(Predicate predicate)`
 method.
 
-*Step 4*. The command box will be reflected with the `EditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+4. A new `CommandResult` will be returned with the success message.
+
+
+===== Design Considerations
+===== Aspect: Command Syntax
+* *Current Implementation:*
+
+** Current implementation of the commands follows the command word syntax, followed by the arguments necessary for execution.
+For example, `student add/edit/delete/find/refresh`.
+
+* *Alternatives Considered:*
+** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
+and will make inputs more tedious and confusing for users.
+
+===== Aspect: Command Length:
+* *Current Implementation:*
+** Commands are shortened as much as possible without much loss in clarity. For example, instead of using `/temperature`, we used
+`/temp` instead to input the students temperature into the application. Although this may be initially unfamiliar to users, it
+should be easy to pick up and make it less tedious during input.
+
+* *Alternatives Considered:*
+** We considered using more descriptive arguments such that arguments are clear and succinct. However, this will definitely decrease
+the user expereince as the command will be too long to type.
+
 
 === Import image feature
+
+This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
+This feature utilises the `StudentRefreshCommand` class to update the images of students.
+
+The feature comprises of one command namely,
+* `StudentRefreshCommand` - Refreshes the student list to show updated images of students.
+
+This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
+
+.Sequence Diagram for StudentRefreshCommand
+image::refresh_sequence_diagram.png[]
+
+{nbsp} +
+
+==== Refresh command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentRefreshCommand` performs.
+
+1. After the successful parsing of user input, the `StudentRefreshCommand#execute(Model model)` method is called. It does not
+require validation as it does not write into the student list.
+
+2. The `StudentCardDefault#updateImage` method is then called which checks the image folder for the required png file and updates
+the student card.
+[NOTE]
+The png file must match the name of the student and must be in all lower case with no whitespaces.
+
+3. If any view other than the student list view is showing on the `MainWindow`, the `MainWindow#handleDefaultStudent()` method
+will be called and the student list is now visible on the `MainWindow`.
+[NOTE]
+In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
+prints its contents on the Command Result Box.
+
+
+
 === Personal Schedule feature
 ==== Command 1
 ==== Command 2
