@@ -310,12 +310,20 @@ method.
 
 === Class administration feature
 The class administration feature keeps track of essential student administrative details.
-The feature comprises of four commands namely,
+The feature comprises of four commands namely.
+
+The structure of the Admin commands are as shown below:
+
+.Admin Commands Diagram
+image::AdminClassDiagram.png[]
+
+These are the various admin commands to try:
 
 * `admin` - Displays the most updated class administrative details.
 * `admin dates` - Displays the dates that hold administrative information of the class.
 * `admin save` - Saves today’s administrative information of the class.
 * `admin delete` - Deletes the administrative information of the class at the specified date.
+* `admin fetch` - Fetches the administrative information of the class at the specified date.
 
 ==== Admin Display Command
 
@@ -327,6 +335,9 @@ The following is a detailed explanation of the operations which `admin` performs
 
 *Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
 filtered student list to show all current students in the student list.
+
+[NOTE]
+If the class list is empty, a blank page will be shown.
 
 *Step 3*. The command box will be reflected with the `AdminDisplayCommand#MESSAGE_SUCCESS` constant and a new
 `CommandResult` will be returned with the message.
@@ -344,6 +355,9 @@ The following is a detailed explanation of the operations which `admin dates` pe
 
 *Step 2*. The method `Model#updateFilteredDateList(PREDICATE_SHOW_ALL_DATES)` will then be called to update the
 filtered date list to show all current dates in the date list.
+
+[NOTE]
+If the date list is empty, a blank page will be shown.
 
 *Step 3*. The command box will be reflected with the `AdminDatesCommand#MESSAGE_SUCCESS` constant and a new
 `CommandResult` will be returned with the message.
@@ -376,9 +390,70 @@ exists, with the duplicate dates error message.
 If the format or wording of saving of a date contains error(s), an unknown command or wrong format error message will be
 displayed.
 
-The following sequence diagram shows how the add operation works:
+The following activity diagram summarizes what happens when a user executes admin save command:
+
+.Admin Save Activity Diagram
+image::AdminSaveActivityDiagram.png[]
+
+===== Design Considerations
+
+====== Aspect: Which date to save
+
+* **Alternative 1 (current choice):** Saves the most updated administrative list as today's date.
+** Pros: Easy to implement and prevents mutation of dates.
+** Cons: The user will be unable to overwrite dates.
+
+* **Alternative 2:** Saves the most updated administrative list as any date.
+** Pros: The user can mutate any dates as he or she wishes.
+** Cons: Hard to implement, and possible accidental mutation of dates.
+
+====== Aspect: Allow overwriting of data
+
+* **Alternative 1 (current choice):** Saving a date that exists in the storage is not allowed.
+** Pros: Easy to implement and prevent accidental mutation of data
+** Cons: Hard to implement.
+
+* **Alternative 2:** Saving a date that exists in the storage is allowed.
+** Pros: User can make necessary changes to the dates where errors exists.
+** Cons: Hard to implement and could result in accidental mutation of dates.
 
 ==== Admin Delete Command
+
+====== Implementation
+The following is a detailed explanation of the operations which `admin save` performs.
+
+*Step 1*. The `AdminDeleteCommand#execute(Model model)` method is executed which takes in a
+DateContainsKeywordsPredicate object as an argument. User input will be parsed first to a DateContainsKeywordsPredicate
+object before passing to the`AdminDeleteCommand` constructor.
+[NOTE]
+Date is to be entered in YYYY-MM-DD format, or a ParseException will be thrown and an error message will be displayed.
+
+*Step 2*. The method `Model#updateFilteredStudentList(DateContainsKeywordsPredicate predicate)` will then be called to
+update the filtered date list to show the date that matches the given predicate. If no such date is found after
+searching through the `UniqueDateList#dates`, a DateNotFoundException will be thrown with an error message displayed.
+
+*Step 3.* After the date has been found, the method `Model*deleteDate(Date target)` will then be called to remove the
+specified date from `UniqueDateList`.
+
+The following sequence diagram shows how the add operation works:
+
+.Admin Delete Sequence Diagram
+image::AdminDeleteSequenceDiagram.png[]
+
+==== Admin Fetch Command
+
+*Step 1*. The `AdminFetchCommand#execute(Model model)` method is executed which takes in a
+DateContainsKeywordsPredicate object as an argument. User input will be parsed first to a DateContainsKeywordsPredicate
+object before passing to the`AdminFetchCommand` constructor.
+[NOTE]
+Date is to be entered in YYYY-MM-DD format, or a ParseException will be thrown and an error message will be displayed.
+
+*Step 2*. The method `Model#updateFilteredStudentList(DateContainsKeywordsPredicate predicate)` will then be called to
+update the filtered date list to show the date that matches the given predicate. If no such date is found after
+searching through the `UniqueDateList#dates`, a DateNotFoundException will be thrown with an error message displayed.
+
+[NOTE]
+The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
 
 ====== Implementation
 

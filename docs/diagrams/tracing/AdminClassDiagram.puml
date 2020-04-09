@@ -1,0 +1,85 @@
+@startuml
+
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+abstract class "{abstract}\nAdminCommand" {
+    /' Fields '/
+    - COMMAND_WORD : String
+    - ADMIN_FETCH : String
+    - ADMIN_SAVE : String
+    - ADMIN_DELETE : String
+    - ADMIN_DATES : String
+    - MESSAGE_USAGE : String
+
+    /' Methods '/
+    + {abstract} execute(model : Model) : CommandResult
+    + {abstract} equals(Object other) : Boolean
+}
+
+class AdminDatesCommand {
+    /' Fields '/
+    - MESSAGE_USAGE : String
+    - MESSAGE_SUCCESS :String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AdminDeleteCommand {
+    /' Fields '/
+    - MESSAGE_USAGE : String
+    - MESSAGE_SUCCESS : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AdminDisplayCommand {
+    /' Fields '/
+    - MESSAGE_SUCCESS : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AdminSaveCommand {
+    /' Fields '/
+    - MESSAGE_USAGE : String
+    - MESSAGE_SUCCESS : String
+    - MESSAGE_DUPLICATE_DATE_ADMIN : String
+    - toAdd : LocalDate
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AdminFetchCommand {
+    /' Fields '/
+    - MESSAGE_USAGE : String
+    - MESSAGE_SUCCESS : String
+    - MESSAGE_DATE_NOT_FOUND_ADMIN : String
+    - predicate : DateContainsKeywordsPredicate
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+AdminDatesCommand --up|> "{abstract}\nAdminCommand"
+AdminFetchCommand --up|> "{abstract}\nAdminCommand"
+AdminDisplayCommand --up|> "{abstract}\nAdminCommand"
+AdminDeleteCommand --up|> "{abstract}\nAdminCommand"
+AdminSaveCommand --up|> "{abstract}\nAdminCommand"
+"{abstract}\nAdminCommand" --up|> "{abstract}\nCommand"
+
+@enduml
