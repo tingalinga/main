@@ -34,15 +34,24 @@ public class NotesEditCommandTest {
     private Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
             getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
 
+    /**
+     * In order for a note to exist, the corresponding student tagged in the note must be in the class-list.
+     * This method creates a student with name similar to the one in the note, simply for testing purposes.
+     */
+    public static Student createStudentStubForModel(Notes note) {
+        Student student = new StudentBuilder().withName(note.getStudent()).build();
+        return student;
+    }
+
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Notes editedNote = new NotesBuilder().build();
         EditNotesDescriptor descriptor = new EditNotesDescriptorBuilder(editedNote).build();
         NotesEditCommand editCommand = new NotesEditCommand(INDEX_FIRST_NOTE, descriptor);
 
-        String expectedMessage = NotesEditCommand.MESSAGE_SUCCESS + "\n" + editedNote.toString();
+        String expectedMessage = String.format(NotesEditCommand.MESSAGE_SUCCESS, editedNote);
 
-        Student stubStudent = new StudentBuilder().withName(editedNote.getStudent()).build();
+        Student stubStudent = createStudentStubForModel(editedNote);
         model.addStudent(stubStudent);
 
         Model expectedModel = new ModelManager(new TeaPet(model.getTeaPet()), model.getAcademics(),
@@ -59,7 +68,7 @@ public class NotesEditCommandTest {
         Notes editedNote = new NotesBuilder().build().setStudent(firstNoteInList.getStudent());
 
         //Adds a student stub to the model
-        Student studentStub = new StudentBuilder().withName(editedNote.getStudent()).build();
+        Student studentStub = createStudentStubForModel(editedNote);
         model.addStudent(studentStub);
 
         //Student's name in note is not edited
@@ -70,7 +79,7 @@ public class NotesEditCommandTest {
 
         CommandResult commandResult = editCommand.execute(model);
 
-        String expectedMessage = NotesEditCommand.MESSAGE_SUCCESS + "\n" + editedNote.toString();
+        String expectedMessage = String.format(NotesEditCommand.MESSAGE_SUCCESS, editedNote);
 
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
     }

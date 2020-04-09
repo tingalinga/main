@@ -22,7 +22,8 @@ public class NotesDeleteCommand extends NotesCommand {
             COMMAND_WORD + " "
             + PREFIX_NOTES_DELETE + " <Index>";
 
-    public static final String MESSAGE_SUCCESS = "Student Note deleted.";
+    public static final String MESSAGE_SUCCESS = "Student Note deleted.\n"
+            + "%1$s";
 
     private final Index targetIndex;
 
@@ -47,7 +48,7 @@ public class NotesDeleteCommand extends NotesCommand {
 
         Notes toBeDeleted = lastShownList.get(targetIndex.getZeroBased());
         model.deleteNote(toBeDeleted);
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + toBeDeleted.toString());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toBeDeleted));
     }
 
     @Override

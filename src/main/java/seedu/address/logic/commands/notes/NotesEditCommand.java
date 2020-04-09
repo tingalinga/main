@@ -33,7 +33,8 @@ public class NotesEditCommand extends NotesCommand {
             + PREFIX_NOTES_CONTENT + "<Updated Content of Note> "
             + PREFIX_NOTES_PRIORITY + "<HIGH/MEDIUM/LOW>";
 
-    public static final String MESSAGE_SUCCESS = "Student's Note Edited. Wonderful!";
+    public static final String MESSAGE_SUCCESS = "Student's Note Edited. Wonderful!\n"
+            + "%1$s";;
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -91,7 +92,7 @@ public class NotesEditCommand extends NotesCommand {
 
         model.setNote(noteToEdit, editedNote);
         model.updateFilteredNotesList(Model.PREDICATE_SHOW_ALL_NOTES);
-        return new CommandResult(MESSAGE_SUCCESS + "\n" + editedNote.toString());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedNote));
 
     }
 
