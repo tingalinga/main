@@ -31,4 +31,18 @@ public class NotesFilterCommandParser implements Parser<NotesFilterCommand> {
 
         return new NotesFilterCommand(new NotesContainKeywordsPredicate(Arrays.asList(keywords)));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NotesFilterCommandParser)) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
