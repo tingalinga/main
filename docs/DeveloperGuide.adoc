@@ -307,6 +307,81 @@ method.
 === Personal Schedule feature
 ==== Command 1
 ==== Command 2
+
+=== Class administration feature
+The class administration feature keeps track of essential student administrative details.
+The feature comprises of four commands namely,
+
+* `admin` - Displays the most updated class administrative details.
+* `admin dates` - Displays the dates that hold administrative information of the class.
+* `admin save` - Saves today’s administrative information of the class.
+* `admin delete` - Deletes the administrative information of the class at the specified date.
+
+==== Admin Display Command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `admin` performs.
+
+*Step 1*. The `AdminDisplayCommand#execute(Model model)` method is executed which does not take in any arguments.
+
+*Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
+filtered student list to show all current students in the student list.
+
+*Step 3*. The command box will be reflected with the `AdminDisplayCommand#MESSAGE_SUCCESS` constant and a new
+`CommandResult` will be returned with the message.
+
+[NOTE]
+If the wording of the `admin` command contains error(s), an unknown command message will be displayed.
+
+==== Admin Dates Command
+
+====== Implementation
+
+The following is a detailed explanation of the operations which `admin dates` performs.
+
+*Step 1*. The `AdminDatesCommand#execute(Model model)` method is executed which does not take in any arguments.
+
+*Step 2*. The method `Model#updateFilteredDateList(PREDICATE_SHOW_ALL_DATES)` will then be called to update the
+filtered date list to show all current dates in the date list.
+
+*Step 3*. The command box will be reflected with the `AdminDatesCommand#MESSAGE_SUCCESS` constant and a new
+`CommandResult` will be returned with the message.
+
+[NOTE]
+If the format or wording of the `admin dates` command contains error(s), an unknown command or a wrong format message
+will be displayed.
+
+==== Admin Save Command
+
+====== Implementation
+The following is a detailed explanation of the operations which `admin save` performs.
+
+*Step 1*. The `AdminSaveCommand#execute(Model model)` method is executed which takes in today's date as an argument.
+
+*Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
+filtered student list to show all current students in the student list.
+
+*Step 3*. Sequentially, a date constructor will then called, creating a date object with today's date and
+`Model#getFilteredStudentList()`
+
+*Step 4*. The method `Model#addDate(Date date)` will then be called to add the date. This will then trigger the
+`UniqueDateList#addDate(Date toadd)` method, which will throw `DuplicateDateException` if the date that is been added
+exists, with the duplicate dates error message.
+
+*Step 5*. The command box will be reflected with the `AdminSaveCommand#MESSAGE_SUCCESS` constant and a new
+`CommandResult` will be returned with the message.
+
+[NOTE]
+If the format or wording of saving of a date contains error(s), an unknown command or wrong format error message will be
+displayed.
+
+The following sequence diagram shows how the add operation works:
+
+==== Admin Delete Command
+
+====== Implementation
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
