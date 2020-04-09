@@ -111,6 +111,22 @@ public class NotesEditCommand extends NotesCommand {
         return new Notes(updatedStudent, updatedContent, updatedPriority, unchangedDateTime);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof NotesEditCommand)) {
+            return false;
+        }
+
+        NotesEditCommand e = (NotesEditCommand) other;
+        return index.equals(e.index)
+                && editNotesDescriptor.equals(e.editNotesDescriptor);
+    }
+
     /**
      * Stores the details to edit the note with. Each non-empty field value will replace the
      * corresponding field value of the note.

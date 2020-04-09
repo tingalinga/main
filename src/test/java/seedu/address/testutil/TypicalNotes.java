@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
+
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 
@@ -12,6 +14,26 @@ import seedu.address.model.notes.NotesManager;
  */
 public class TypicalNotes {
 
+    /* This sections prepares data for testing of NotesEditDescriptor */
+    public static final String VALID_STUDENT_KELVIN = "Kelvin Klein";
+    public static final String VALID_CONTENT_KELVIN = "He is a good student";
+    public static final String VALID_PRIORITY_KELVIN = "LOW";
+
+    public static final String VALID_STUDENT_JANE = "Jane Klein";
+    public static final String VALID_CONTENT_JANE = "She reported sick and left school";
+    public static final String VALID_PRIORITY_JANE = "HIGH";
+
+    public static final EditNotesDescriptor N_DESC_KELVIN;
+    public static final EditNotesDescriptor N_DESC_JANE;
+
+    static {
+        N_DESC_KELVIN = new EditNotesDescriptorBuilder().withStudent(VALID_STUDENT_KELVIN)
+                .withContent(VALID_CONTENT_KELVIN).withPriority(VALID_PRIORITY_KELVIN).build();
+        N_DESC_JANE = new EditNotesDescriptorBuilder().withStudent(VALID_STUDENT_JANE)
+                .withContent(VALID_CONTENT_JANE).withPriority(VALID_PRIORITY_JANE).build();
+    }
+
+    /* This sections prepares data for testing of Notes */
     public static final Notes NOTE1 = new Notes("Simon Lam", "Good Student",
             "LOW", "29/03/2020 22:40");
     public static final Notes NOTE2 = new Notes("Gerren Seow", "Good Student",
@@ -35,4 +57,7 @@ public class TypicalNotes {
         }
         return notesManager;
     }
+
+
+
 }
