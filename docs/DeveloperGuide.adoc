@@ -351,24 +351,6 @@ method.
 
 4. A new `CommandResult` will be returned with the success message.
 
-==== Refresh command
-
-===== Implementation
-
-The following is a detailed explanation of the operations which `StudentRefreshCommand` performs.
-
-1. After the successful parsing of user input, the `StudentRefreshCommand#execute(Model model)` method is called. It does not
-require validation as it does not write into the student list.
-
-2. The `StudentCardDefault#updateImage` method is then called which checks the image folder for the required png file and updates
-the student card.
-
-3. If any view other than the student list view is showing on the `MainWindow`, the `MainWindow#handleDefaultStudent()` method
-will be called and the student list is now visible on the `MainWindow`.
-
-[NOTE]
-In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
-prints its contents on the Command Result Box.
 
 ===== Design Considerations
 ===== Aspect: Command Syntax
@@ -393,6 +375,42 @@ the user expereince as the command will be too long to type.
 
 
 === Import image feature
+
+This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
+This feature utilises the `StudentRefreshCommand` class to update the images of students.
+
+The feature comprises of one command namely,
+* `StudentRefreshCommand` - Refreshes the student list to show updated images of students.
+
+This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
+
+.Sequence Diagram for StudentRefreshCommand
+image::refresh_sequence_diagram.png[]
+
+{nbsp} +
+
+==== Refresh command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentRefreshCommand` performs.
+
+1. After the successful parsing of user input, the `StudentRefreshCommand#execute(Model model)` method is called. It does not
+require validation as it does not write into the student list.
+
+2. The `StudentCardDefault#updateImage` method is then called which checks the image folder for the required png file and updates
+the student card.
+[NOTE]
+The png file must match the name of the student and must be in all lower case with no whitespaces.
+
+3. If any view other than the student list view is showing on the `MainWindow`, the `MainWindow#handleDefaultStudent()` method
+will be called and the student list is now visible on the `MainWindow`.
+[NOTE]
+In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
+prints its contents on the Command Result Box.
+
+
+
 === Personal Schedule feature
 ==== Command 1
 ==== Command 2
