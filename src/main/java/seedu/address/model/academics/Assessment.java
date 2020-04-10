@@ -38,7 +38,7 @@ public class Assessment {
      */
     public Assessment(String description, String type, String date) {
         this.description = description;
-        this.type = type;
+        this.type = type.toLowerCase().trim();
         this.date = LocalDate.parse(date);
     }
 
@@ -290,7 +290,7 @@ public class Assessment {
     @Override
     public String toString() {
         return "Assessment: " + this.description + "\n"
-                + "Type: " + this.type.toUpperCase() + "\n"
+                + "Type: " + this.type + "\n"
                 + "Date: " + this.date;
     }
 }

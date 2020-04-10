@@ -35,7 +35,7 @@ public class AcademicsAddCommand extends AcademicsCommand {
     private final Assessment toAdd;
 
     public AcademicsAddCommand(String description, String type, String date) throws CommandException {
-        if (!type.equals("exam") && !type.equals("homework")) {
+        if (!type.trim().equals("exam") && !type.trim().equals("homework")) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
         }
 
