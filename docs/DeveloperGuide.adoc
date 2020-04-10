@@ -603,6 +603,12 @@ If the format or wording of adding a student contains error(s), the behaviour of
 or wrong format error message will be displayed.
 
 
+.Sequence Diagram for Adding Notes.
+image::developerguide/notes/NotesAddSequence.png[]
+
+.Supplementary Frame for Sequence Diagram.
+image::developerguide/notes/SDGetNotesAddCommand.png[]
+
 ==== Edit Note
 
 The following is a detailed explanation of the operations which `NotesEditCommand` performs.
