@@ -9,41 +9,65 @@
 
 == Overview
 
-TeaPet is a personal manager application for primary school form teachers. The user interacts with it via
+TeaPet is a personal manager application for form teachers of primary, secondary and tertiary institutions. The user interacts with it via
 a Command Line Interface (CLI) along with a Graphical User Interface (GUI) created with JavaFX. The application is
 written in Java.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: developed the *notes feature* of Teapet
+** What it does: Allows the user to create notes of his/her students spontaneously, functioning as a digitaal "Post-It".
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+** Justification: This feature is crucial in a teacher's daily workflow. There might be instances throughout the day where
+the user wishes to jot down important information of his/her student, such as the student leaving school early due to
+commitments. The teacher can also note down behavioural information whenever neccessary, to prepare for parent-teacher meeting
+and year-end student reviews. The notes feature will manage all student information all within a few simple commands.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+** Highlights: This enhancement features different priority of notes (Low, Medium and High), each displayed with a different colour.
+Users are able to create, edit, delete, filter and export notes in TeaPet.
+
+* *Major enhancement*: developed the UI/UX (User Interface / User Experience) of Teapet
+** What it does: Provides an optimal and pleasant interaction between User and TeaPet.
+
+** Justification: In every product, a well-developed UI/UX is key to getting a User interested in using the application for
+a sustained period of time. TeaPet aims to create an attractive display and pleasant experience for all our Users.
+
+** Highlights: This enhancement saw a makeover of the original AddressBook3 interface. Colours of each component in the application
+is carefully chosen to create a good blend. The tabs at the top of the applications also lights up when a particular feature is
+in use, such that the user is clear on which feature he/she is on.
+
+* *Minor enhancement*:
+** Created a `student default` command, which displays only essential personal information of all students in the Main Display.
+** Created a `student detailed` command, which displays all information of every student in the Main Display, including
+personal, administrative and academic information.
+
+* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=jerrenss&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[Functional and Test code]]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** Managed all releases of the team `v1.1` - `v1.4` (5 releases) on GitHub
+*** Managed all milestones (inclusive of unofficial team milestones) of the team on GitHub.
+*** Consistently reminded the team to complete their tasks assigned by the deadline provided.
+*** Structured the project folders in the repository for the team, to enable a clean and effective workflow.
 
-_{you can add/remove categories in the list above}_
+** Enhancements to existing features:
+*** Updated the GUI color scheme (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/202[#202])
+*** Updated the GUI layout (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/201[#201] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/204[#204])
+*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/230[#230]
+** Documentation:
+*** Updated User Guide to include Notes Feature
+*** Updated User Guide with the Installation details of TeaPet, as well as help on how to navigate the User Interface.
+*** Updated Developer Guide to include Notes Feature
+*** Updated Developer Guide to include "student detailed" and "student default" commands.
+
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-2/main/pull/66[#66],
+https://github.com/AY1920S2-CS2103T-W12-2/main/pull/95[#95]
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/jerrenss/ped[Practical Exam Dry Run])
+** Tools:
+*** Introduced iCalendar API to the team, which was then used to build TeaPet's Personal Scheduler feature.
+
 
 == Contributions to the User Guide
 
@@ -62,12 +86,6 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
-
-include::../DeveloperGuide.adoc[tag=dataencryption]
-
-
-== PROJECT: PowerPointLabs
 
 ---
 
