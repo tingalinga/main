@@ -94,7 +94,7 @@ public class SampleDataUtil {
     public static Assessment[] getSampleAssessments() {
         return new Assessment[] {
             new Assessment("Math Differentiation Homework", "homework", "2020-03-23"),
-            new Assessment("Science Plant and Species Scrapbook", "homework","2020-03-23"),
+            new Assessment("Science Plant and Species Scrapbook", "homework", "2020-03-23"),
             new Assessment("Science Experiment", "homework", "2020-03-25"),
             new Assessment("English Spelling Test", "exam", "2020-05-25"),
             new Assessment("Chinese Final Exam", "exam", "2020-05-25")
