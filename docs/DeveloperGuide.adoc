@@ -260,7 +260,7 @@ The commands when executed, will interface with the methods exposed by the `Mode
 (See <<Design-Logic,logic component>> for the general overview).
 
 .Sequence Diagram for StudentAddCommand
-image::student_sequence_diagram.png[]
+image::student_sequence_diagram_v1.png[]
 
 {nbsp} +
 
@@ -409,7 +409,10 @@ will be called and the student list is now visible on the `MainWindow`.
 In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
 prints its contents on the Command Result Box.
 
+.Activity Diagram for StudentRefreshCommand
+image::activity_diagram_refresh.png[]
 
+{nbsp} +
 
 === Personal Schedule feature
 ==== Command 1
