@@ -622,7 +622,9 @@ The following activity diagram summarizes what happens when a user executes the 
 .Schedule Add Activity Diagram
 image::event_add_activity_diagram.png[]
 
-===== Aspect: Command Clarity:
+===== Design Considerations
+
+====== Aspect: Command Clarity:
 * *Current Implementation:*
 ** `schedule add eventName/Consultation startDateTime/2020-04-08T09:00 endDateTime/2020-04-08T11:00 recur/none color/13`
 
