@@ -89,6 +89,7 @@ public class CommandTestUtil {
     public static final String VALID_DATE_MATH_ASSIGNMENT = "2020-03-05";
     public static final String VALID_DATE_SCIENCE_EXAM = "2020-05-25";
 
+
     public static final StudentEditCommand.EditStudentDescriptor DESC_AMY;
     public static final StudentEditCommand.EditStudentDescriptor DESC_BOB;
 

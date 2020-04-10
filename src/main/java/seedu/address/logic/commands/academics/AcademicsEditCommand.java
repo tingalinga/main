@@ -17,8 +17,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
 
 /**
  * Edits the details of an existing assessment in academics.
@@ -83,23 +81,13 @@ public class AcademicsEditCommand extends AcademicsCommand {
 
         String updatedDescription = editAssessmentDescriptor.getDescription().orElse(assessmentToEdit.getDescription());
         String updatedDate = editAssessmentDescriptor.getDate().orElse(assessmentToEdit.getDate().toString());
-
-        String updatedType;
-        if (assessmentToEdit instanceof Homework) {
-            updatedType = editAssessmentDescriptor.getType().orElse("homework");
-        } else {
-            updatedType = editAssessmentDescriptor.getType().orElse("exam");
-        }
-        Assessment updatedAssessment;
-        if (updatedType.equals("homework")) {
-            updatedAssessment = new Homework(updatedDescription, updatedDate);
-        } else if (updatedType.equals("exam")) {
-            updatedAssessment = new Exam(updatedDescription, updatedDate);
-        } else {
+        String updatedType = editAssessmentDescriptor.getType().orElse(assessmentToEdit.getType());
+        if (!updatedType.equals("exam") && !updatedType.equals("homework")) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
         }
-        updatedAssessment.setSubmissionTracker(assessmentToEdit.getSubmissionTracker());
 
+        Assessment updatedAssessment = new Assessment(updatedDescription, updatedType, updatedDate);
+        updatedAssessment.setSubmissionTracker(assessmentToEdit.getSubmissionTracker());
         return updatedAssessment;
     }
 

@@ -14,8 +14,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
 import seedu.address.model.student.Student;
 
 /**
@@ -37,16 +35,11 @@ public class AcademicsAddCommand extends AcademicsCommand {
     private final Assessment toAdd;
 
     public AcademicsAddCommand(String description, String type, String date) throws CommandException {
-        switch (type) {
-        case "homework":
-            toAdd = new Homework(description, date);
-            break;
-        case "exam":
-            toAdd = new Exam(description, date);
-            break;
-        default:
+        if (!type.equals("exam") && !type.equals("homework")) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
         }
+
+        toAdd = new Assessment(description, type, date);
     }
 
     @Override
