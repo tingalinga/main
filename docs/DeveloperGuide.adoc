@@ -1179,6 +1179,20 @@ Use case ends.
 +
 Use case ends.
 
+=== Use case: UC14 - Update student profile picture
+
+*Preconditions*
+1. Png files in image folder is in correct format.
+
+*MSS*
+
+1. Teacher wants to update image of students.
+2. Teacher adds in the respective images into the image folder.
+3. TeaPet confirms the process.
+4. TeaPet updates the profile pictures of students in the student list.
++
+Use case ends.
+
 [discrete]
 
 [appendix]
@@ -1271,19 +1285,25 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-=== Adding a student
+=== Manual Test: Student particulars
 
 . Adding a student from class list with the specific name entered by user.
 
-.. Test case: `student add n/John Tan Jun Wei p/83391329 e/john@gmail.com temp/36.0 a/Punggol Street 22` +
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
    Expected: Student John Tan Jun Wei has been added to the class list.
 
-.. Test case: `student add n/John Tan Jun Wei p/83393129 e/john@gmail.com temp/3@.5 a/Punggol Street 22` +
+.. Test case: `student add name/John Tan Jun Wei phone/83393129 e/john@gmail.com temp/3@.5 addr/Punggol Street 22 nok/James-father-93259589` +
    Expected: No student is added. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `student add John Tan Jun Wei`, `student add n/John Tan Jun Wei p/phone number` (where the specified student is not a student in the class list due to invalid phone number.) _{give more}_ +
-   Expected: Similar to test case b.
 
-=== Deleting a student
+.. Test case: `student add name/John Tan Jun Wei phone/839 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+   Expected: An error message is shown as the phone number of student is invalid.
+
+
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-dad-93259589` +
+Expected: An error message is shown as the relationship of NOK is not recognised.
+
+.. Test case: `student add name/John333 phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+Expected: An error message is shown as the name of student cannot contain numbers.
 
 . Deleting a student from class list with the specific name entered by user.
 
@@ -1293,6 +1313,9 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
+
+
+
 
 === Saving a date
 
