@@ -5,14 +5,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.academics.Submission;
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
@@ -40,8 +40,6 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-
-
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Simon Lam"), new Phone("87438807"), new Email("simonlam@example.com"),
@@ -65,6 +63,10 @@ public class SampleDataUtil {
                     new Attendance("Present"), new NextOfKin("Joseph Zhang - father - 99999999"),
                     getTagSet("classmates"))
         };
+    }
+
+    public static String[] getSampleStudentsName() {
+        return new String[] {"Simon Lam", "Gerren Seow", "Lee Hui Ting", "Gary Syndromes", "Freddy Zhang"};
     }
 
     public static ReadOnlyTeaPet getSampleTeaPet() {
@@ -91,24 +93,78 @@ public class SampleDataUtil {
 
     public static Assessment[] getSampleAssessments() {
         return new Assessment[] {
-            new Homework("Math Differentiation Homework", "2020-03-23"),
-            new Homework("Science Plant and Species Scrapbook", "2020-03-23"),
-            new Homework("Science Experiment", "2020-03-25"),
-            new Exam("English Spelling Test", "2020-05-25"),
-            new Exam("Chinese Final Exam", "2020-05-25")
+            new Assessment("Math Differentiation Homework", "homework", "2020-03-23"),
+            new Assessment("Science Plant and Species Scrapbook", "homework", "2020-03-23"),
+            new Assessment("Science Experiment", "homework", "2020-03-25"),
+            new Assessment("English Spelling Test", "exam", "2020-05-25"),
+            new Assessment("Chinese Final Exam", "exam", "2020-05-25")
         };
     }
 
     public static ReadOnlyAcademics getSampleAcademics() {
         Academics sampleAcademics = new Academics();
-        for (Assessment sampleAssessment : getSampleAssessments()) {
-            sampleAssessment.setSampleSubmissions(Arrays.asList(getSampleStudents()),
-                    sampleAssessment.getDescription());
+        Assessment[] sampleAssessments = getSampleAssessments();
+        setSampleMathSubmissions(sampleAssessments[0]);
+        setSampleScienceSubmissions(sampleAssessments[1]);
+        setSampleExperimentSubmissions(sampleAssessments[2]);
+        setSampleEnglishSubmissions(sampleAssessments[3]);
+        setSampleChineseSubmissions(sampleAssessments[4]);
+
+        for (Assessment sampleAssessment : sampleAssessments) {
             sampleAcademics.addAssessment(sampleAssessment);
         }
         return sampleAcademics;
     }
 
+    public static void setSampleMathSubmissions(Assessment sampleAssessment) {
+        List<Submission> sampleTracker = new ArrayList<>();
+        sampleTracker.add(new Submission(getSampleStudentsName()[0], true, true, 70));
+        sampleTracker.add(new Submission(getSampleStudentsName()[1], true, true, 78));
+        sampleTracker.add(new Submission(getSampleStudentsName()[2], true, true, 37));
+        sampleTracker.add(new Submission(getSampleStudentsName()[3], true, true, 92));
+        sampleTracker.add(new Submission(getSampleStudentsName()[4], true, true, 56));
+        sampleAssessment.setSubmissionTracker(sampleTracker);
+    }
+
+    public static void setSampleScienceSubmissions(Assessment sampleAssessment) {
+        List<Submission> sampleTracker = new ArrayList<>();
+        sampleTracker.add(new Submission(getSampleStudentsName()[0], true, true, 70));
+        sampleTracker.add(new Submission(getSampleStudentsName()[1], true, true, 68));
+        sampleTracker.add(new Submission(getSampleStudentsName()[2], true, true, 37));
+        sampleTracker.add(new Submission(getSampleStudentsName()[3], true, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[4], true, false, 0));
+        sampleAssessment.setSubmissionTracker(sampleTracker);
+    }
+
+    public static void setSampleExperimentSubmissions(Assessment sampleAssessment) {
+        List<Submission> sampleTracker = new ArrayList<>();
+        sampleTracker.add(new Submission(getSampleStudentsName()[0], false, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[1], false, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[2], true, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[3], true, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[4], false, false, 0));
+        sampleAssessment.setSubmissionTracker(sampleTracker);
+    }
+
+    public static void setSampleEnglishSubmissions(Assessment sampleAssessment) {
+        List<Submission> sampleTracker = new ArrayList<>();
+        sampleTracker.add(new Submission(getSampleStudentsName()[0], true, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[1], true, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[2], true, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[3], true, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[4], true, false, 0));
+        sampleAssessment.setSubmissionTracker(sampleTracker);
+    }
+
+    public static void setSampleChineseSubmissions(Assessment sampleAssessment) {
+        List<Submission> sampleTracker = new ArrayList<>();
+        sampleTracker.add(new Submission(getSampleStudentsName()[0], false, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[1], false, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[2], false, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[3], false, false, 0));
+        sampleTracker.add(new Submission(getSampleStudentsName()[4], false, false, 0));
+        sampleAssessment.setSubmissionTracker(sampleTracker);
+    }
 
     public static Notes[] getSampleNotes() {
         return new Notes[] {

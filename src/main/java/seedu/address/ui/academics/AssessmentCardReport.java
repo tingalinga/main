@@ -1,6 +1,5 @@
 package seedu.address.ui.academics;
 
-import java.util.Iterator;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -15,8 +14,6 @@ import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.Submission;
 import seedu.address.ui.UiPart;
 
@@ -67,9 +64,9 @@ public class AssessmentCardReport extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
-        if (assessment instanceof Homework) {
+        if (assessment.getType().equals("homework")) {
             tags.getChildren().add(new Label("Homework"));
-        } else if (assessment instanceof Exam) {
+        } else if (assessment.getType().equals("exam")) {
             tags.getChildren().add(new Label("Exam"));
         }
         if (assessment.getSubmissionTracker().size() == assessment.noOfSubmittedStudents()) {
@@ -78,24 +75,19 @@ public class AssessmentCardReport extends UiPart<Region> {
         if (assessment.getSubmissionTracker().size() == assessment.noOfMarkedSubmissions()) {
             tags.getChildren().add(new Label("Completed Marking"));
         }
-        int submitted = 0;
-        int marked = 0;
-        ObservableList<Submission> submissionsList =
-                FXCollections.observableArrayList(assessment.getSubmissionTracker());
 
-        Iterator<Submission> iterator = submissionsList.iterator();
-        while (iterator.hasNext()) {
-            Submission next = iterator.next();
-            submitted = next.hasSubmitted() ? submitted + 1 : submitted;
-            marked = next.isMarked() ? marked + 1 : marked;
-        }
-        submissionTracker.setText("Submissions: " + submitted
+        submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());
-        markingTracker.setText("Marked: " + marked
+        markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
                 + " / " + assessment.getSubmissionTracker().size());
 
+        // statistics
         median.setText("Median Score: " + assessment.medianScore());
         average.setText("Average Score: " + assessment.averageScore());
+
+        // submissions panel
+        ObservableList<Submission> submissionsList =
+                FXCollections.observableArrayList(assessment.getSubmissionTracker());
         submissionListTitle.setText("Submissions");
         submissionListView.setItems(submissionsList);
         submissionListView.setCellFactory(listView -> new SubmissionListViewCell());

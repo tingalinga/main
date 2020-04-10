@@ -18,10 +18,11 @@ import seedu.address.model.student.Student;
  * Represents an Assessment given to the class to complete.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public abstract class Assessment {
+public class Assessment {
 
     /* ASSESSMENT PROPERTIES */
     private String description;
+    private String type;
     private LocalDate date;
     private int submitted = 0;
     private int marked = 0;
@@ -32,11 +33,25 @@ public abstract class Assessment {
     /**
      * Every entry field must be present and not null.
      * @param description description of assessment.
+     * @param type type of assessment.
      * @param date date of assessment.
      */
-    public Assessment(String description, String date) {
+    public Assessment(String description, String type, String date) {
         this.description = description;
+        this.type = type;
         this.date = LocalDate.parse(date);
+    }
+
+    /**
+     * Every entry field must be present and not null.
+     * @param description description of assessment.
+     * @param type type of assessment.
+     * @param date date of assessment.
+     */
+    public Assessment(String description, String type, LocalDate date) {
+        this.description = description;
+        this.type = type;
+        this.date = date;
     }
 
     /* ASSESS METHODS */
@@ -46,6 +61,14 @@ public abstract class Assessment {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * Returns the type of the assessment.
+     * @return type of assessment.
+     */
+    public String getType() {
+        return type;
     }
 
     /**
@@ -69,13 +92,7 @@ public abstract class Assessment {
      * Set the submission of each student to not submitted and unmarked.
      * @param students list of students assigned with the assessment.
      */
-    public abstract void setSubmissions(List<Student> students);
-
-    /**
-     * Set the submission of each student to not submitted and unmarked.
-     * @param students list of students assigned with the assessment.
-     */
-    public void setAssessmentSubmissions(List<Student> students) {
+    public void setSubmissions(List<Student> students) {
         for (Student student: students) {
             submissionTracker.add(new Submission(student.getName().fullName));
         }
@@ -85,30 +102,24 @@ public abstract class Assessment {
      * Sets the submission tracker to the new submission tracker.
      * @param newSubmissionTracker new submission tracker.
      */
-    public abstract void setSubmissionTracker(List<Submission> newSubmissionTracker);
-
-    /**
-     * Sets the submission tracker to the new submission tracker.
-     * @param newSubmissionTracker new submission tracker.
-     */
-    public void setAssessmentSubmissionTracker(List<Submission> newSubmissionTracker) {
+    public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
         int hasSubmitted = 0;
         int hasMarked = 0;
-        for (Submission submission: newSubmissionTracker) {
-            submissionTracker.add(submission);
-            hasSubmitted = submission.hasSubmitted() ? hasSubmitted + 1 : hasSubmitted;
-            hasMarked = submission.isMarked() ? hasMarked + 1 : hasMarked;
+        if (newSubmissionTracker != null) {
+            for (Submission submission: newSubmissionTracker) {
+                submissionTracker.add(submission);
+                hasSubmitted = submission.hasSubmitted() ? hasSubmitted + 1 : hasSubmitted;
+                hasMarked = submission.isMarked() ? hasMarked + 1 : hasMarked;
+            }
         }
         submitted = hasSubmitted;
         marked = hasMarked;
     }
 
-    public abstract void updateNewStudentName(String prevName, String newName);
-
     /**
      * Updates the student name in the submission tracker of assessment.
      */
-    public void updateAssessmentNewStudentName(String prevName, String newName) {
+    public void updateNewStudentName(String prevName, String newName) {
         for (Submission submission: submissionTracker) {
             if (submission.getStudentName().equals(prevName)) {
                 submission.setStudentName(newName);
@@ -121,24 +132,14 @@ public abstract class Assessment {
     /**
      * Adds new student to the submission tracker of all assessments.
      */
-    public abstract void addStudent(String toAdd);
-
-    /**
-     * Adds new student to the submission tracker of all assessments.
-     */
-    public void addAssessmentStudent(String toAdd) {
+    public void addStudent(String toAdd) {
         submissionTracker.add(new Submission(toAdd));
     }
 
     /**
      * Removes student to the submission tracker of all assessments.
      */
-    public abstract void removeStudent(String toRemove);
-
-    /**
-     * Removes student to the submission tracker of all assessments.
-     */
-    public void removeAssessmentStudent(String toRemove) {
+    public void removeStudent(String toRemove) {
         for (Submission submission: submissionTracker) {
             if (submission.getStudentName().equals(toRemove)) {
                 submissionTracker.remove(submission);
@@ -206,13 +207,6 @@ public abstract class Assessment {
     }
 
     /**
-     * Returns the number of students who have yet to submit their assessment.
-     */
-    public int noOfUnsubmittedStudents() {
-        return submissionTracker.size() - submitted;
-    }
-
-    /**
      * Returns the number of students who have submitted their assessment.
      */
     public int noOfSubmittedStudents() {
@@ -242,7 +236,7 @@ public abstract class Assessment {
         if (otherAssessment == this) {
             return true;
         }
-        return otherAssessment.getDescription().equals(getDescription());
+        return otherAssessment != null && otherAssessment.getDescription().equals(getDescription());
     }
 
     /* STATISTICS METHODS */
@@ -293,128 +287,10 @@ public abstract class Assessment {
         }
     }
 
-    /* SETTING SAMPLE SUBMISSIONS */
-    /**
-     * Set the submission of each student to not submitted and unmarked.
-     * @param students list of students assigned with the assessment.
-     */
-    public abstract void setSampleSubmissions(List<Student> students, String assessmentDescription);
-
-    /**
-     * Set the submission of each student to not submitted and unmarked.
-     * @param students list of students assigned with the assessment.
-     */
-    public void setAssessmentSampleSubmissions(List<Student> students, String assessmentDescription) {
-        switch (assessmentDescription) {
-        case "Math Differentiation Homework" :
-            setAssessmentSampleMathSubmissions(students);
-            break;
-        case "Science Plant and Species Scrapbook" :
-            setAssessmentSampleScienceSubmissions(students);
-            break;
-        case "Science Experiment" :
-            setAssessmentSampleExperimentSubmissions(students);
-            break;
-        case "English Spelling Test" :
-            setAssessmentSampleEnglishSubmissions(students);
-            break;
-        case "Chinese Final Exam" :
-            setAssessmentSampleChineseSubmissions(students);
-            break;
-        default:
-            break;
-        }
-    }
-
-    /**
-     * Sets the sample submissions.
-     * @param students list of students assigned with the assessment.
-     */
-    public void setAssessmentSampleMathSubmissions(List<Student> students) {
-        submissionTracker.add(new Submission(students.get(0).getName().fullName,
-                true, true, 70));
-        submissionTracker.add(new Submission(students.get(1).getName().fullName,
-                true, true, 78));
-        submissionTracker.add(new Submission(students.get(2).getName().fullName,
-                true, true, 37));
-        submissionTracker.add(new Submission(students.get(3).getName().fullName,
-                true, true, 92));
-        submissionTracker.add(new Submission(students.get(4).getName().fullName,
-                true, true, 56));
-    }
-
-    /**
-     * Sets the sample submissions.
-     * @param students list of students assigned with the assessment.
-     */
-    public void setAssessmentSampleScienceSubmissions(List<Student> students) {
-        submissionTracker.add(new Submission(students.get(0).getName().fullName,
-                true, true, 70));
-        submissionTracker.add(new Submission(students.get(1).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(2).getName().fullName,
-                true, true, 37));
-        submissionTracker.add(new Submission(students.get(3).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(4).getName().fullName,
-                true, false, 0));
-    }
-
-    /**
-     * Sets the sample submissions.
-     * @param students list of students assigned with the assessment.
-     */
-    public void setAssessmentSampleExperimentSubmissions(List<Student> students) {
-        submissionTracker.add(new Submission(students.get(0).getName().fullName,
-                false, false, 0));
-        submissionTracker.add(new Submission(students.get(1).getName().fullName,
-                false, false, 0));
-        submissionTracker.add(new Submission(students.get(2).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(3).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(4).getName().fullName,
-                false, false, 0));
-    }
-
-    /**
-     * Sets the sample submissions.
-     * @param students list of students assigned with the assessment.
-     */
-    public void setAssessmentSampleEnglishSubmissions(List<Student> students) {
-        submissionTracker.add(new Submission(students.get(0).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(1).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(2).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(3).getName().fullName,
-                true, false, 0));
-        submissionTracker.add(new Submission(students.get(4).getName().fullName,
-                true, false, 0));
-    }
-
-    /**
-     * Sets the sample submissions.
-     * @param students list of students assigned with the assessment.
-     */
-    public void setAssessmentSampleChineseSubmissions(List<Student> students) {
-        submissionTracker.add(new Submission(students.get(0).getName().fullName,
-                false, false, 0));
-        submissionTracker.add(new Submission(students.get(1).getName().fullName,
-                false, false, 0));
-        submissionTracker.add(new Submission(students.get(2).getName().fullName,
-                false, false, 0));
-        submissionTracker.add(new Submission(students.get(3).getName().fullName,
-                false, false, 0));
-        submissionTracker.add(new Submission(students.get(4).getName().fullName,
-                false, false, 0));
-    }
-
     @Override
     public String toString() {
         return "Assessment: " + this.description + "\n"
-                + "Submitted: " + noOfSubmittedStudents()
-                + "Unsubmitted: " + noOfUnsubmittedStudents();
+                + "Type: " + this.type.toUpperCase() + "\n"
+                + "Date: " + this.date;
     }
 }

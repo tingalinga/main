@@ -183,7 +183,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         Iterator<Assessment> iterator = iterator();
         while (iterator.hasNext()) {
             Assessment next = iterator.next();
-            if (next instanceof Homework) {
+            if (next.getType().equals("homework")) {
                 homeworkList.add(next);
             }
         }
@@ -194,11 +194,11 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
      * Returns the list of exam assessments.
      */
     public ObservableList<Assessment> getExamList() {
-        examList.clear();;
+        examList.clear();
         Iterator<Assessment> iterator = iterator();
         while (iterator.hasNext()) {
             Assessment next = iterator.next();
-            if (next instanceof Exam) {
+            if (next.getType().equals("exam")) {
                 examList.add(next);
             }
         }
