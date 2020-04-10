@@ -1137,7 +1137,48 @@ Use case ends.
 +
 Use case ends.
 
-_{More to be added}_
+=== Use case: UC12 - Add event into schedule
+
+*MSS*
+
+1. Teacher wishes to add an event into the scheduler
+2. Teacher enters the event details.
+3. TeaPet saves the item and displays it on the scheduler.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Item is missing details
+
+** 2a1. Teapet displays an error message. +
+Use case resumes at step 2.
+
++
+Use case ends.
+
+=== Use case: UC13 - Delete event from schedule
+
+*Preconditions*
+1. Event exists in scheduler.
+
+*MSS*
+
+1. Teacher lists the events in calendar (UC12)
+2. Teacher wishes to delete an event.
+3. Teacher confirms the deletion.
+4. TeaPet deletes the event from the scheduler.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Teacher reconsiders and chooses not to remove the event.
++
+Use case ends.
+
 [discrete]
 
 [appendix]
@@ -1278,5 +1319,32 @@ These instructions only provide a starting point for testers to work on; testers
    YYYY-MM-DD format and ``DATE` is in the wrong `DATE` format. +
    Expected: Status bar displays invalid command and incorrect command format message.
 
+=== Manual Test: Scheduler
 
+. Adding an event to the scheduler
 
+.. Prerequisites: The scheduler already contain an event with name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00".
+The recurrence type and color do not matter as long as they are valid.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T10:00 endDateTime/2020-04-10T12:00 recur/none
+color/5` +
+Expected: An event with name Consultation is added to the scheduler
+
+.. Test case:  `schedule add eventName/Coffee Break startDateTime/2020-04-04T12:00 endDateTime/2020-04-04T13:00 recur/none
+color/5` +
+Expected: An error message is shown due to duplicate events being created.
+
+.. Test case: `schedule add eventName/ ` +
+Expected: An error message is shown due to invalid command.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T10:00 endDateTime/2020-04-10T12:00 recur/none
+color/24` +
+Expected: An error message is shown due to an invalid color code.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T10:00 endDateTime/2020-04-10T12:00 recur/fortnightly
+color/5`
+Expected: An error message is shown due to invalid recurrence type.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
+color/5`
+Expected: An error message is shown due to the invalid date time range.
