@@ -91,7 +91,7 @@ public class EventUtil {
         builder.append(startDateTime);
         builder.append("-");
         builder.append(endDateTime);
-        builder.append(".teapethelper");
+        builder.append(".TeaPetHelper");
         return builder.toString();
     }
 

@@ -21,6 +21,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.admin.AdminFetchCommand;
 import seedu.address.logic.commands.admin.AdminSaveCommand;
+import seedu.address.logic.commands.event.EventExportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.commands.student.DefaultStudentDisplayCommand;
@@ -33,6 +34,7 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.ui.academics.AcademicsExporter;
 import seedu.address.ui.academics.AcademicsPanel;
 import seedu.address.ui.admin.DateListPanel;
+import seedu.address.ui.event.EventExporter;
 import seedu.address.ui.event.SchedulePage;
 import seedu.address.ui.event.SchedulePanel;
 import seedu.address.ui.notes.NotesExporter;
@@ -419,9 +421,15 @@ public class MainWindow extends UiPart<Stage> {
                 AcademicsExporter academicsExporter = new AcademicsExporter(logic.getFilteredAcademicsList());
                 academicsExporter.saveToCsv();
                 break;
+            case EventExportCommand.MESSAGE_SUCCESS:
+                EventExporter eventExporter = new EventExporter(logic.getVEventHistory());
+                eventExporter.saveToIcs();
+                break;
             default:
                 break;
             }
+
+
 
             if (consoleReply.contains("New student added") || consoleReply.contains("Deleted Student")) {
                 handleStudentDefault();
@@ -471,6 +479,7 @@ public class MainWindow extends UiPart<Stage> {
             if ((consoleReply.contains("This is your schedule for the week"))) {
                 openWeeklySchedule();
             }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {

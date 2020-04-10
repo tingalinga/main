@@ -20,6 +20,7 @@ import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventScheduleView;
+import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.ReadOnlyTeaPet;
@@ -142,6 +143,7 @@ public class LogicManager implements Logic {
     }
     // ==================== NOTES END ====================
 
+    // ==================== EVENT END ====================
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
@@ -158,6 +160,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyVEvents getVEventHistory() {
+        return model.getVEventHistory();
+    }
+
+    @Override
     public LocalDateTime getEventScheduleLocalDateTime() {
         return model.getEventScheduleLocalDateTime();
     }
@@ -166,5 +173,6 @@ public class LogicManager implements Logic {
     public EventScheduleView getEventScheduleView() {
         return model.getEventScheduleView();
     }
+    // ==================== EVENT END ====================
 
 }

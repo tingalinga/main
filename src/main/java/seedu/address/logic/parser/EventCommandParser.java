@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GET_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
@@ -43,6 +44,7 @@ import seedu.address.logic.commands.event.EventDeleteCommand;
 import seedu.address.logic.commands.event.EventDisplayCommand;
 import seedu.address.logic.commands.event.EventEditCommand;
 import seedu.address.logic.commands.event.EventEditCommand.EditVEventDescriptor;
+import seedu.address.logic.commands.event.EventExportCommand;
 import seedu.address.logic.commands.event.EventIndexCommand;
 import seedu.address.logic.commands.event.EventViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -80,6 +82,7 @@ public class EventCommandParser implements Parser<EventCommand> {
                 PREFIX_END_DATETIME,
                 PREFIX_EVENT_DELETE,
                 PREFIX_EVENT_EDIT,
+                PREFIX_EXPORT,
                 PREFIX_COLOR,
                 PREFIX_RECUR,
                 PREFIX_GET_INDEX,
@@ -107,6 +110,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return editCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_EXPORT).isPresent()) {
+            return exportCommand();
         } else {
             return null;
         }
@@ -122,7 +127,7 @@ public class EventCommandParser implements Parser<EventCommand> {
     }
 
     /**
-     * Adds the given assessment details to academic report.
+     * Performs validation and Adds the given assessment details to academic report.
      * {@code ArgumentMultimap}.
      */
     public EventAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException {
@@ -299,5 +304,14 @@ public class EventCommandParser implements Parser<EventCommand> {
 
         return eventViewCommand;
     }
+
+    /**
+     * Performs validation and returns a EventExportCommand object for execution.
+     *
+     */
+    private EventExportCommand exportCommand() throws ParseException {
+        return new EventExportCommand();
+    }
+
 
 }

@@ -15,6 +15,7 @@ import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Date;
 import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventScheduleView;
+import seedu.address.model.event.ReadOnlyVEvents;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 
@@ -110,6 +111,8 @@ public interface Logic {
 
     // ==================== EVENTS START ====================
     ObservableList<VEvent> getVEvents();
+
+    ReadOnlyVEvents getVEventHistory();
 
     LocalDateTime getEventScheduleLocalDateTime();
 
