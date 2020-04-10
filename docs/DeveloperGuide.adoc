@@ -1030,12 +1030,14 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC08 - Display detailed class list.
+=== Use case: UC08 - Deleting a date from the list of dates.
 
 *MSS*
 
-1. User enters the command to display the detailed version of the class list.
-2. TeaPet displays the class list with all of the students' attributes.
+1. User enters the command to delete a specific date from the list of dates.
+2. TeaPet searches through the list of dates for the date provided by the user.
+3. TeaPet removes that date from the date list.
+2. TeaPet displays that the date has been deleted successfully.
 +
 Use case ends.
 
@@ -1049,13 +1051,37 @@ Use case ends.
 +
 Use case ends.
 
+[none]
+* 1b. Command is in incorrect format.
++
+[none]
+** 1b1. TeaPet shows an error message displaying the correct format for the command.
++
+Use case ends.
+
+[none]
+* 1c. Date is in incorrect format.
++
+[none]
+** 1c1. TeaPet shows an error message displaying the correct format for date.
++
+Use case ends.
+
+[none]
+* 2a. Date provided is not in the list of dates.
++
+[none]
+** 2a1. TeaPet shows an error message displaying date is not found.
++
+Use case ends.
+
 [discrete]
-=== Use case: UC09 - Display the class list.
+=== Use case: UC09 - Display detailed class list.
 
 *MSS*
 
-1. User enters the command to list the students in the class.
-2. TeaPet displays default class list..
+1. User enters the command to display the detailed version of the class list.
+2. TeaPet displays the class list with all of the students' attributes.
 +
 Use case ends.
 
@@ -1090,7 +1116,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC07 - Add note for specific student
+=== Use case: UC11 - Add note for specific student
 
 *MSS*
 
@@ -1208,39 +1234,53 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-_{ more test cases ... }_
-
 === Adding a student
 
 . Adding a student from class list with the specific name entered by user.
 
-.. Test case: `add n/John Tan Jun Wei p/83391329 e/john@gmail.com temp/36.0 a/Punggol Street 22` +
+.. Test case: `student add n/John Tan Jun Wei p/83391329 e/john@gmail.com temp/36.0 a/Punggol Street 22` +
    Expected: Student John Tan Jun Wei has been added to the class list.
 
-.. Test case: `add n/John Tan Jun Wei p/83393129 e/john@gmail.com temp/3@.5 a/Punggol Street 22` +
+.. Test case: `student add n/John Tan Jun Wei p/83393129 e/john@gmail.com temp/3@.5 a/Punggol Street 22` +
    Expected: No student is added. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `add John Tan Jun Wei`, `add n/John Tan Jun Wei p/phone number` (where the specified student is not a student in the class list due to invalid phone number.) _{give more}_ +
+.. Other incorrect delete commands to try: `student add John Tan Jun Wei`, `student add n/John Tan Jun Wei p/phone number` (where the specified student is not a student in the class list due to invalid phone number.) _{give more}_ +
    Expected: Similar to test case b.
-
-_{ more test cases ... }_
 
 === Deleting a student
 
 . Deleting a student from class list with the specific name entered by user.
 
-.. Test case: `delete 1` +
+.. Test case: `student delete 1` +
    Expected: The student at the first index is deleted from the list. Status message displays that the specified student has been deleted.
 .. Test case: `delete Tan John Wei Jun` +
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
 
-_{ more test cases ... }_
+=== Saving a date
 
-=== Saving data
+. Saving the most updated class administrative information as today's date.
 
-. Dealing with missing/corrupted data files.
+.. Test case: `admin save` +
+   Expected: Date has either been saved if today's date is not in the list of dates, or date not saved if today's date is
+   already in the list of dates. Status message either displays that today's date has been saved or displays that current date
+   already exists in the current list of dates respectively.
 
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+.. Other incorrect delete commands to try: `save`, `admin save DATE` where `DATE` is in YYYY-MM-DD format. +
+   Expected: Status bar displays invalid command and incorrect command format message respectively.
 
-_{ more test cases ... }_
+=== Deleting a date
+
+. Deleting a date from the list of dates.
+
+.. Test case: `admin delete DATE` where DATE is in YYYY-MM-DD format. +
+   Expected: Date has either been deleted if the date provided exists in the list of dates, or no dates will be deleted if the
+   date provided is not in the list. Status message either displays that the specific date has been deleted or displays that current date
+   already exists in the current list of dates respectively.
+
+.. Other incorrect delete commands to try: `admin delete`, `delete DATE`, `admin delete `DATE`, where `DATE` is in
+   YYYY-MM-DD format and ``DATE` is in the wrong `DATE` format. +
+   Expected: Status bar displays invalid command and incorrect command format message.
+
+
+
