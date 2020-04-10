@@ -48,6 +48,8 @@ public class AssessmentCardHomework extends UiPart<Region> {
     private Label date;
     @FXML
     private Label submissionTracker;
+    @FXML
+    private Label markingTracker;
 
     /**
      * Constructor to create the assessment card controller.
@@ -66,16 +68,9 @@ public class AssessmentCardHomework extends UiPart<Region> {
         }
         date.setText("Deadline: "
                 + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-        int submitted = 0;
-        ObservableList<Submission> submissionsList =
-                FXCollections.observableArrayList(assessment.getSubmissionTracker());
-
-        Iterator<Submission> iterator = submissionsList.iterator();
-        while (iterator.hasNext()) {
-            Submission next = iterator.next();
-            submitted = next.hasSubmitted() ? submitted + 1 : submitted;
-        }
-        submissionTracker.setText("Submissions: " + submitted
+        submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
+                + " / " + assessment.getSubmissionTracker().size());
+        markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
                 + " / " + assessment.getSubmissionTracker().size());
     }
 

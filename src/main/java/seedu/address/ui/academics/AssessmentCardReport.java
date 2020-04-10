@@ -76,24 +76,19 @@ public class AssessmentCardReport extends UiPart<Region> {
         if (assessment.getSubmissionTracker().size() == assessment.noOfMarkedSubmissions()) {
             tags.getChildren().add(new Label("Completed Marking"));
         }
-        int submitted = 0;
-        int marked = 0;
-        ObservableList<Submission> submissionsList =
-                FXCollections.observableArrayList(assessment.getSubmissionTracker());
 
-        Iterator<Submission> iterator = submissionsList.iterator();
-        while (iterator.hasNext()) {
-            Submission next = iterator.next();
-            submitted = next.hasSubmitted() ? submitted + 1 : submitted;
-            marked = next.isMarked() ? marked + 1 : marked;
-        }
-        submissionTracker.setText("Submissions: " + submitted
+        submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());
-        markingTracker.setText("Marked: " + marked
+        markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
                 + " / " + assessment.getSubmissionTracker().size());
 
+        // statistics
         median.setText("Median Score: " + assessment.medianScore());
         average.setText("Average Score: " + assessment.averageScore());
+
+        // submissions panel
+        ObservableList<Submission> submissionsList =
+                FXCollections.observableArrayList(assessment.getSubmissionTracker());
         submissionListTitle.setText("Submissions");
         submissionListView.setItems(submissionsList);
         submissionListView.setCellFactory(listView -> new SubmissionListViewCell());
