@@ -11,14 +11,11 @@ import seedu.address.model.Model;
 /**
  * Class to add new events
  */
+
 public class EventAddCommand extends EventCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new event to the scheduler. \n"
-            + "Parameters:\n"
-            + "eventName/[EVENTNAME]\n"
-            + "startDateTime/[STARTDATETIME]\n"
-            + "endDateTime/[ENDDATETIME]\n"
-            + "recur/[DAILY/WEEKLY/NONE]\n"
-            + "color/[0-23]\n"
+    public static final String MESSAGE_USAGE = "This command creates a new event and adds it to the scheduler. \n"
+            + "Format: schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM"
+            + " endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION (none, daily, weekly) color/COLOR_CODE (1 to 23)\n"
             + "Example: schedule add eventName/Consultation startDateTime/2020-03-30T08:00"
             + " endDateTime/2020-03-30T10:00 recur/none color/3";
     public static final String MESSAGE_SUCCESS = "Added Event: %1$s";

@@ -122,7 +122,7 @@ public class EventCommandParser implements Parser<EventCommand> {
      * Displays schedule of events.
      * {@code ArgumentMultimap}.
      */
-    private EventDisplayCommand eventDisplayCommand() throws ParseException, CommandException {
+    private EventDisplayCommand eventDisplayCommand() {
         return new EventDisplayCommand();
     }
 

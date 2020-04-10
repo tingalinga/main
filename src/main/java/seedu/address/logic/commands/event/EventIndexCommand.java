@@ -20,10 +20,9 @@ import seedu.address.model.event.exceptions.VEventNotFoundException;
 public class EventIndexCommand extends EventCommand {
     public static final String COMMAND_WORD = "schedule indexGet/";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets Index of a Event" + "\n"
-            + "Parameters:" + "\n"
-            + "indexGet/eventName"
-            + "Example: schedule indexGet/cs2100 lecture";
+    public static final String MESSAGE_USAGE = "This command gets the index of the specified event.\n"
+            + "Format: schedule indexGet/EVENT_DESCRIPTION\n"
+            + "Example: schedule indexGet/cs2103t lecture";
     public static final String MESSAGE_NO_EVENT = "Currently no events in TeaPet.";
     public static final String MESSAGE_SUGGESTION_EVENT =
             "Could not find specified event. This is the closest event we can find based on what you've entered: \n%s";

@@ -29,13 +29,11 @@ public class EventEditCommand extends EventCommand {
 
     public static final String COMMAND_WORD = "schedule edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " [index]: Edits a event" + "\n"
-            + "Parameters(All are optional):" + "\n"
-            + "eventName/ [EVENTNAME]" + "\n"
-            + "startDateTime/ [STARTDATETIME]" + "\n"
-            + "endDateTime/ [ENDDATETIME]" + "\n"
-            + "recur/ [DAILY/WEEKLY/NONE]" + "\n"
-            + "color/ [0 - 23]" + "\n"
+    public static final String MESSAGE_USAGE = "This command edits the details of an event identified.\n"
+            + "Format: schedule edit INDEX (must be a positive integer) "
+            + "[eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM]"
+            + " [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] (none, daily, weekly) "
+            + "[color/COLOR_CODE] (1 to 23)\n"
             + "Example: schedule edit 2 eventName/cs2100 lecture startDateTime/2019-10-21T14:00 "
             + "endDateTime/2019-10-21T15:00 recur/none color/1";
     public static final String NO_FIELDS_CHANGED = "Please provide at least one field to edit.";
