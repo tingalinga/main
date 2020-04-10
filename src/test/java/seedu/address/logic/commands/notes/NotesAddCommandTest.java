@@ -44,7 +44,7 @@ public class NotesAddCommandTest {
 
     @Test
     public void constructor_nullNote_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new NotesAddCommand(null, null, null));
+        assertThrows(NullPointerException.class, () -> new NotesAddCommand(null));
     }
 
     @Test
@@ -54,8 +54,7 @@ public class NotesAddCommandTest {
         Student validStudent = new StudentBuilder().withName(validNote.getStudent()).build();
         modelStub.addStudent(validStudent);
 
-        CommandResult commandResult = new NotesAddCommand(validNote.getStudent(), validNote.getContent(),
-                validNote.getPriority()).execute(modelStub);
+        CommandResult commandResult = new NotesAddCommand(validNote).execute(modelStub);
 
         assertEquals(String.format(NotesAddCommand.MESSAGE_SUCCESS, validNote), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validNote), modelStub.notesAdded);
@@ -65,8 +64,7 @@ public class NotesAddCommandTest {
     @Test
     public void execute_duplicateNote_throwCommandException() {
         Notes validNote = new NotesBuilder().build();
-        NotesAddCommand addCommand = new NotesAddCommand(validNote.getStudent(), validNote.getContent(),
-                validNote.getPriority());
+        NotesAddCommand addCommand = new NotesAddCommand(validNote);
         ModelStub modelStub = new ModelStubWithNote(validNote);
         Student validStudent = new StudentBuilder().withName(validNote.getStudent()).build();
         modelStub.addStudent(validStudent);
@@ -449,6 +447,18 @@ public class NotesAddCommandTest {
         }
 
         @Override
+        public boolean hasStudentName(String student) {
+            requireNonNull(student);
+            boolean contains = false;
+            for (Student stu : studentsAdded) {
+                if (stu.getName().fullName.equals(student)) {
+                    contains = true;
+                }
+            }
+            return contains;
+        }
+
+        @Override
         public ObservableList<Student> getFilteredStudentList() {
             return FXCollections.observableList(studentsAdded);
         }
@@ -483,6 +493,18 @@ public class NotesAddCommandTest {
         public void addStudent(Student student) {
             requireNonNull(student);
             studentsAdded.add(student);
+        }
+
+        @Override
+        public boolean hasStudentName(String student) {
+            requireNonNull(student);
+            boolean contains = false;
+            for (Student stu : studentsAdded) {
+                if (stu.getName().fullName.equals(student)) {
+                    contains = true;
+                }
+            }
+            return contains;
         }
 
         @Override

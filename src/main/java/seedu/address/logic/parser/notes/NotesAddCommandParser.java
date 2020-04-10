@@ -17,6 +17,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.notes.Notes;
 
 /**
  * Representing a Parser for NotesAddCommand
@@ -81,7 +82,9 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Priority field is empty."));
         }
 
-        return new NotesAddCommand(name, content, priority);
+        Notes toAdd = new Notes(name, content, priority);
+
+        return new NotesAddCommand(toAdd);
     }
 
     /**
