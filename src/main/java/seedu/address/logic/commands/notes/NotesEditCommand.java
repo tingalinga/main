@@ -17,7 +17,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
-import seedu.address.model.student.Student;
 
 /**
  * Represents NotesEditCommand class which edits Note tagged to a Student.
@@ -63,7 +62,6 @@ public class NotesEditCommand extends NotesCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ObservableList<Notes> lastShownList = model.getFilteredNotesList();
-        ObservableList<Student> students = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_NOTES_DISPLAYED_INDEX);
@@ -73,13 +71,7 @@ public class NotesEditCommand extends NotesCommand {
         Notes editedNote = createEditedNote(noteToEdit, editNotesDescriptor);
 
         //Performs a check to ensure the student tagged to the edited note is present in the class-list.
-        boolean nameFound = false;
-
-        for (Student student : students) {
-            if (student.getName().toString().equals(editedNote.getStudent())) {
-                nameFound = true;
-            }
-        }
+        boolean nameFound = model.hasStudentName(editedNote.getStudent());
 
         if (!nameFound) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);

@@ -564,6 +564,132 @@ The sequence diagram for `admin fetch` command is similar to that of `admin dele
 
 ====== Implementation
 
+=== Notes feature
+TeaPet application comes with an in-built notes feature, which serves to allow Teachers to record administrative or behavioural
+information of his/her students. Each note is tagged to a specific student and acts as a lightweight, digital 'Post It'.
+
+The notes feature comprises of 6 main functionalities represented by 6 commands. They are namely: +
+
+* `NotesCommand`
+* `NotesAddCommand`
+* `NotesEditCommand`
+* `NotesDeleteCommand`
+* `NotesFilterCommand`
+* `NotesExportCommand`
+
+.Class Diagram for NotesCommands.
+image::developerguide/notes/NotesClassDiagram.png[]
+
+==== Structure of Notes Class
+Notes object is made up of 4 fields. They are namely: +
+
+* `String student`
+* `String content`
+* `String priority`
+* `String dateTime`
+
+==== Add Note
+The following is a detailed elaboration how `NotesAddCommand` operates.
+
+*Step 1*. The `NotesAddCommand#execute(Model model)` method is executed which takes in a necessary student name, content and priority as input
+[NOTE]
+Format for adding a Note is `notes add name/<NAME OF STUDENT> c/<CONTENT> pr/<LOW/MEDIUM/HIGH>`.
+
+*Step 2*. The note is then searched through the `UniqueNotesList#notes` list using the
+ `Model#hasNote(Notes note)` method to check if the note already exists. If the note exists, the `CommandException` will be thrown
+with the duplicate note error message.
+
+*Step 3*. The method `Model#addNote(Notes note)` will then be called to add the note. The command box will be reflected with
+the `NotesAddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+[NOTE]
+If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be similar to step 2, where either a unknown command
+or wrong format error message will be displayed.
+
+
+.Sequence Diagram for Adding Notes.
+image::developerguide/notes/NotesAddSequence.png[]
+
+.Supplementary Frame for Sequence Diagram.
+image::developerguide/notes/SDGetNotesAddCommand.png[]
+
+==== Edit Note
+
+The following is a detailed explanation of the operations which `NotesEditCommand` performs.
+
+*Step 1*. The `NotesEditCommand#execute(Model model)` method is executed which edit attributes of the selected note. The method
+checks if the `index` defined when instantiating `NotesEditCommand(Index index, EditNotesDecriptor editNotesDescriptor)` is
+valid. Since it is optional for users to input fields, the fields not entered will reuse the existing values that are currently stored and defined
+in the `Notes` object.
+
+*Step 2*. A new `Notes` with the updated values is created and it is then searched  through the `UniqueNotesList#notes` list using the
+ `Model#hasNote(Notes note)` method to check if the note already exists. If the note exists, the `CommandException` will be thrown
+with the duplicate note error message.
+
+*Step 3*. The newly created `Notes` will replace the old one through the `Model#setNote(Notes toBeChanged, Notes editedNote`
+method.
+
+*Step 4*. The command box will be reflected with the `NotesEditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+
+
+==== Delete Note
+
+The following is a detailed explanation of the operations which `NotesDeleteCommand` performs.
+
+1. After the successful parsing of user input, the `NotesDeleteCommand#execute(Model model)` method is called which checks if the `Index`
+is defined as an argument when instantiating the `NotesDeleteCommand(Index index)`  constructor. +
+[NOTE]
+The `Index` must be within the bounds of the student list. +
+
+2. The `Notes` at the specified `Index` is then removed from the `UniqueNotesList#notes` observable list using the
+`Model#deleteNote(Index index)` method.
+
+3. The command box will be reflected with the `NotesDeleteCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
+
+.Activity Diagram for Deleting Note
+image::developerguide/notes/NotesDeleteActivityDiagram.png[]
+
+==== Filter Notes
+
+The following is a detailed explanation of the operations which `NotesFilterCommand` performs.
+
+1. After the successful parsing of user input, the `NotesFilterCommand#execute(Model model)` method is called which checks if the
+`NotesContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
+`NotesFilterCommand(NotesContainsKeywordsPredicate predicate)` constructor
+
+2. The `Notes` is then searched through the `UniqueNotesList#notes` list... ...
+
+3. The existing `UniqueNotesList#internalList` is then cleared and updated using the `Model#updateFilteredNotesList(Predicate predicate)`
+method.
+
+4. A new `CommandResult` will be returned with the success message.
+
+==== Export Notes
+
+The following is a detailed explanation of the operations which `NotesExportCommand` performs.
+
+1. After the successful parsing of user input, the `NotesExportCommand#execute(Model model)` method is called.
+
+2. The command box will be reflected with the `NotesExportCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
+
+3. The `MainWindow` of the UI component will process the `CommandResult` and create a studentNotes.csv in the data folder of
+the current directory.
+
+==== Design Considerations
+* Alternative 1 (Current Choice): Intuitive, simple syntax and user-friendly
+- Pros: It is easy for the Teacher to use the feature.
+- Cons: Not as powerful and less utility for advanced users.
+
+* Alternative 2: Many additional fields including special tags, reminders, etc.
+- Pros: Powerful, many interesting features that advanced users can use.
+- Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
+
+
+
+
+
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
