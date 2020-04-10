@@ -9,7 +9,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":TeaPet" as TeaPet MODEL_COLOR
 end box
 [-> LogicManager : execute(add)
 activate LogicManager
@@ -33,11 +33,11 @@ activate AddCommand
 AddCommand-> Model : addStudent()
 activate Model
 
-Model -> AddressBook : addStudent()
-activate AddressBook
+Model -> TeaPet : addStudent()
+activate TeaPet
 
-AddressBook --> Model
-deactivate AddressBook
+TeaPet-> Model
+deactivate TeaPet
 
 Model --> AddCommand
 deactivate Model

@@ -26,4 +26,17 @@ public class NotesExportCommand extends NotesCommand {
     public CommandResult execute(Model model) {
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof NotesExportCommand)) {
+            return false;
+        }
+
+        return true;
+    }
 }

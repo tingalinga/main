@@ -92,6 +92,18 @@ public class NotesAddCommandParser implements Parser<NotesAddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NotesAddCommandParser)) {
+            return false;
+        }
+
+        return true;
+    }
 
 }
 

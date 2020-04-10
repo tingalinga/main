@@ -105,7 +105,6 @@ You can refer to the guide <<SettingUp#, here>>.
 
 == Design
 
-This section describes the high-level design details of TeaPet.
 
 [[Design-Architecture]]
 === Architecture
@@ -243,20 +242,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-=== Class particulars feature
-The class particulars feature keeps track of essential student details.
-The feature comprises of four commands namely,
+=== Student particulars feature
+The student particulars feature keeps track of essential student details.
+The feature comprises of commands namely,
 
 * `AddCommand` - Adds the student particulars into the class list
 * `EditCommand` - Edits the particulars of a student
 * `DeleteCommand` - Deletes the student information
 * `FindCommand` - Finds information of the required student
+* `RefreshCommand` - Refreshes the student list to update profile pictures
+
+
+The student commands all share similar paths of execution and is illustrated in the following sequence diagram below,
+which shows the sequence diagram for the StudentAddCommand.
 
 The commands when executed, will interface with the methods exposed by the `Model` interface to perform the related operations
 (See <<Design-Logic,logic component>> for the general overview).
 
-.Class Diagram for Commands
-image::CommandClassDiagram.png[]
+.Sequence Diagram for StudentAddCommand
+image::student_sequence_diagram.png[]
+
+{nbsp} +
+
+*These are the common steps among the Student Commands:*
+
+1. The `TeaPetParser` will assign the `StudentCommandParser` to parse the user input
+
+2. The `StudentCommandParser#parse` will take in a string of user input consisting of the arguments
+
+3. The arguments are tokenized and the respective models of each argument are created.
+
+
 
 [[Feature-Add]]
 ==== Add command
@@ -265,23 +281,21 @@ image::CommandClassDiagram.png[]
 
 The following is a detailed explanation of the operations which `AddCommand` performs.
 
-*Step 1*. The `AddCommand#execute(Model model)` method is executed which takes in a necessary student name and additional attributes.
+1. After the successful parsing of user input, the `StudentAddCommand#execute(Model model)` method is called which validates the student defined.
+
+
+2. As student names are unique, if a duplicate student is defined, a `CommandException` is thrown which will not add the defined student.
+
+3. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
+the `StudentAddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the success message.
 [NOTE]
-Format for adding NOK details is `add n/<NAME> nok/<NAME-RELATIONSHIP-CONTACT>`.
+If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be that
+either a unknown command or wrong format error message will be displayed.
 
-*Step 2*. The student is then searched through the `UniqueStudentList#students` list using the
- `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
-with the duplicate students error message.
+4. The newly created student is added to the `UniqueStudentList`.
 
-*Step 3*. The method `Model#addStudent(Student student)` will then be called to add the student. The command box will be reflected with
-the `AddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
-[NOTE]
-If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be similar to step 2, where either a unknown command
-or wrong format error message will be displayed.
 
-The following sequence diagram shows how the add operation works:
 
-image::AddSequenceDiagram.png[]
 
 ==== Edit command
 
@@ -289,24 +303,267 @@ image::AddSequenceDiagram.png[]
 
 The following is a detailed explanation of the operations which `EditCommand` performs.
 
-*Step 1*. The `EditCommand#execute(Model model)` method is executed which edit attributes of the selected student. The method
-checks if the `index` defined when instantiating `EditCommand(Index index, EditStudentDescriptor editStudentDescriptor)` is
-valid. Since it is optional for users to input fields, the fields not entered will reuse the existing values that are currently stored and defined
-in the `Student` object.
+1. After the successful parsing of user input, the `StudentEditCommand#execute(Model model)` method is called which checks
+if the `Index` is defined as an argument when instantiating the `StudentEditCommand(Index, index, EditStudentDescriptor editStudentDescriptor)`
+constructor. It uses the `StudentEditCommand.EditStudentDescriptor` to create a new edited student.
 
-*Step 2*. A new `Student` with the updated values is created and it is then searched  through the `UniqueStudentList#students` list using the
- `Model#hasStudent(Student student)` method to check if the student already exists. If the student exists, the `CommandException` will be thrown
-with the duplicate students error message.
 
-*Step 3*. The newly created `Student` will replace the old one through the `Model#setStudent(Student oldStudent, Student editedStudent`
+2. A new `Student` with the newly updated values will be created which replaces the existing `Student` object using the
+`Model#setStudent(Student target, Student editedStudent)` method.
+
+3. The filtered student list is then updated with the new `Student` with the `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` method.
+
+4. The command box will be reflected with the `StudentEditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be
+returned with the success message.
+
+==== Delete command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentDeleteCommand` performs.
+
+1. After the successful parsing of user input, the `StudentDeleteCommand#execute(Model model)` method is called which checks if the `Index`
+is defined as an argument when instantiating the `StudentDeleteCommand(Index index)`  constructor. +
+[NOTE]
+The `Index` must be within the bounds of the student list. +
+
+2. The `Student` at the specified `Index` is then removed from the `UniqueStudentList#students` observable list using the
+`Model#deleteStudent(Index index)` method.
+
+3. The command box will be reflected with the `StudentDeleteCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
+
+==== Find command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentFindCommand` performs.
+
+1. After the successful parsing of user input, the `StudentFindCommand#execute(Model model)` method is called which checks if the
+`NameContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
+`StudentFindCommand(NameContainsKeywordsPredicate predicate)` constructor
+
+2. The `Student` is then searched through the `UniqueStudentList#students` list using the `Model#hasStudent(Student student)` method
+to check if the `Student` already exists. If the `Student` does not exist, a `StudentNotFoundException` will be thrown and the `Student` will not be displayed.
+
+3. The existing `UniqueStudentList#internalList` is then cleared and updated using the `Model#updateFilteredStudentList(Predicate predicate)`
 method.
 
-*Step 4*. The command box will be reflected with the `EditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+4. A new `CommandResult` will be returned with the success message.
+
+
+===== Design Considerations
+===== Aspect: Command Syntax
+* *Current Implementation:*
+
+** Current implementation of the commands follows the command word syntax, followed by the arguments necessary for execution.
+For example, `student add/edit/delete/find/refresh`.
+
+* *Alternatives Considered:*
+** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
+and will make inputs more tedious and confusing for users.
+
+===== Aspect: Command Length:
+* *Current Implementation:*
+** Commands are shortened as much as possible without much loss in clarity. For example, instead of using `/temperature`, we used
+`/temp` instead to input the students temperature into the application. Although this may be initially unfamiliar to users, it
+should be easy to pick up and make it less tedious during input.
+
+* *Alternatives Considered:*
+** We considered using more descriptive arguments such that arguments are clear and succinct. However, this will definitely decrease
+the user expereince as the command will be too long to type.
+
 
 === Import image feature
+
+This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
+This feature utilises the `StudentRefreshCommand` class to update the images of students.
+
+The feature comprises of one command namely,
+* `StudentRefreshCommand` - Refreshes the student list to show updated images of students.
+
+This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
+
+.Sequence Diagram for StudentRefreshCommand
+image::refresh_sequence_diagram.png[]
+
+{nbsp} +
+
+==== Refresh command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentRefreshCommand` performs.
+
+1. After the successful parsing of user input, the `StudentRefreshCommand#execute(Model model)` method is called. It does not
+require validation as it does not write into the student list.
+
+2. The `StudentCardDefault#updateImage` method is then called which checks the image folder for the required png file and updates
+the student card.
+[NOTE]
+The png file must match the name of the student and must be in all lower case with no whitespaces.
+
+3. If any view other than the student list view is showing on the `MainWindow`, the `MainWindow#handleDefaultStudent()` method
+will be called and the student list is now visible on the `MainWindow`.
+[NOTE]
+In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
+prints its contents on the Command Result Box.
+
+
+
 === Personal Schedule feature
 ==== Command 1
 ==== Command 2
+
+=== Class administration feature
+The class administration feature keeps track of essential student administrative details.
+The feature comprises of four commands namely.
+
+The structure of the Admin commands are as shown below:
+
+.Admin Commands Diagram
+image::AdminClassDiagram.png[]
+
+These are the various admin commands to try:
+
+* `admin` - Displays the most updated class administrative details.
+* `admin dates` - Displays the dates that hold administrative information of the class.
+* `admin save` - Saves today’s administrative information of the class.
+* `admin delete` - Deletes the administrative information of the class at the specified date.
+* `admin fetch` - Fetches the administrative information of the class at the specified date.
+
+==== Admin Display Command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `admin` performs.
+
+*Step 1*. The `AdminDisplayCommand#execute(Model model)` method is executed which does not take in any arguments.
+
+*Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
+filtered student list to show all current students in the student list.
+
+[NOTE]
+If the class list is empty, a blank page will be shown.
+
+*Step 3*. The command box will be reflected with the `AdminDisplayCommand#MESSAGE_SUCCESS` constant and a new
+`CommandResult` will be returned with the message.
+
+[NOTE]
+If the wording of the `admin` command contains error(s), an unknown command message will be displayed.
+
+==== Admin Dates Command
+
+====== Implementation
+
+The following is a detailed explanation of the operations which `admin dates` performs.
+
+*Step 1*. The `AdminDatesCommand#execute(Model model)` method is executed which does not take in any arguments.
+
+*Step 2*. The method `Model#updateFilteredDateList(PREDICATE_SHOW_ALL_DATES)` will then be called to update the
+filtered date list to show all current dates in the date list.
+
+[NOTE]
+If the date list is empty, a blank page will be shown.
+
+*Step 3*. The command box will be reflected with the `AdminDatesCommand#MESSAGE_SUCCESS` constant and a new
+`CommandResult` will be returned with the message.
+
+[NOTE]
+If the format or wording of the `admin dates` command contains error(s), an unknown command or a wrong format message
+will be displayed.
+
+==== Admin Save Command
+
+====== Implementation
+The following is a detailed explanation of the operations which `admin save` performs.
+
+*Step 1*. The `AdminSaveCommand#execute(Model model)` method is executed which takes in today's date as an argument.
+
+*Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
+filtered student list to show all current students in the student list.
+
+*Step 3*. Sequentially, a date constructor will then called, creating a date object with today's date and
+`Model#getFilteredStudentList()`
+
+*Step 4*. The method `Model#addDate(Date date)` will then be called to add the date. This will then trigger the
+`UniqueDateList#addDate(Date toadd)` method, which will throw `DuplicateDateException` if the date that is been added
+exists, with the duplicate dates error message.
+
+*Step 5*. The command box will be reflected with the `AdminSaveCommand#MESSAGE_SUCCESS` constant and a new
+`CommandResult` will be returned with the message.
+
+[NOTE]
+If the format or wording of saving of a date contains error(s), an unknown command or wrong format error message will be
+displayed.
+
+The following activity diagram summarizes what happens when a user executes admin save command:
+
+.Admin Save Activity Diagram
+image::AdminSaveActivityDiagram.png[]
+
+===== Design Considerations
+
+====== Aspect: Which date to save
+
+* **Alternative 1 (current choice):** Saves the most updated administrative list as today's date.
+** Pros: Easy to implement and prevents mutation of dates.
+** Cons: The user will be unable to overwrite dates.
+
+* **Alternative 2:** Saves the most updated administrative list as any date.
+** Pros: The user can mutate any dates as he or she wishes.
+** Cons: Hard to implement, and possible accidental mutation of dates.
+
+====== Aspect: Allow overwriting of data
+
+* **Alternative 1 (current choice):** Saving a date that exists in the storage is not allowed.
+** Pros: Easy to implement and prevent accidental mutation of data
+** Cons: Hard to implement.
+
+* **Alternative 2:** Saving a date that exists in the storage is allowed.
+** Pros: User can make necessary changes to the dates where errors exists.
+** Cons: Hard to implement and could result in accidental mutation of dates.
+
+==== Admin Delete Command
+
+====== Implementation
+The following is a detailed explanation of the operations which `admin save` performs.
+
+*Step 1*. The `AdminDeleteCommand#execute(Model model)` method is executed which takes in a
+DateContainsKeywordsPredicate object as an argument. User input will be parsed first to a DateContainsKeywordsPredicate
+object before passing to the`AdminDeleteCommand` constructor.
+[NOTE]
+Date is to be entered in YYYY-MM-DD format, or a ParseException will be thrown and an error message will be displayed.
+
+*Step 2*. The method `Model#updateFilteredStudentList(DateContainsKeywordsPredicate predicate)` will then be called to
+update the filtered date list to show the date that matches the given predicate. If no such date is found after
+searching through the `UniqueDateList#dates`, a DateNotFoundException will be thrown with an error message displayed.
+
+*Step 3.* After the date has been found, the method `Model*deleteDate(Date target)` will then be called to remove the
+specified date from `UniqueDateList`.
+
+The following sequence diagram shows how the add operation works:
+
+.Admin Delete Sequence Diagram
+image::AdminDeleteSequenceDiagram.png[]
+
+==== Admin Fetch Command
+
+*Step 1*. The `AdminFetchCommand#execute(Model model)` method is executed which takes in a
+DateContainsKeywordsPredicate object as an argument. User input will be parsed first to a DateContainsKeywordsPredicate
+object before passing to the`AdminFetchCommand` constructor.
+[NOTE]
+Date is to be entered in YYYY-MM-DD format, or a ParseException will be thrown and an error message will be displayed.
+
+*Step 2*. The method `Model#updateFilteredStudentList(DateContainsKeywordsPredicate predicate)` will then be called to
+update the filtered date list to show the date that matches the given predicate. If no such date is found after
+searching through the `UniqueDateList#dates`, a DateNotFoundException will be thrown with an error message displayed.
+
+[NOTE]
+The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
+
+====== Implementation
+
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
 
@@ -659,12 +916,14 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC08 - Display detailed class list.
+=== Use case: UC08 - Deleting a date from the list of dates.
 
 *MSS*
 
-1. User enters the command to display the detailed version of the class list.
-2. TeaPet displays the class list with all of the students' attributes.
+1. User enters the command to delete a specific date from the list of dates.
+2. TeaPet searches through the list of dates for the date provided by the user.
+3. TeaPet removes that date from the date list.
+2. TeaPet displays that the date has been deleted successfully.
 +
 Use case ends.
 
@@ -678,13 +937,37 @@ Use case ends.
 +
 Use case ends.
 
+[none]
+* 1b. Command is in incorrect format.
++
+[none]
+** 1b1. TeaPet shows an error message displaying the correct format for the command.
++
+Use case ends.
+
+[none]
+* 1c. Date is in incorrect format.
++
+[none]
+** 1c1. TeaPet shows an error message displaying the correct format for date.
++
+Use case ends.
+
+[none]
+* 2a. Date provided is not in the list of dates.
++
+[none]
+** 2a1. TeaPet shows an error message displaying date is not found.
++
+Use case ends.
+
 [discrete]
-=== Use case: UC09 - Display the class list.
+=== Use case: UC09 - Display detailed class list.
 
 *MSS*
 
-1. User enters the command to list the students in the class.
-2. TeaPet displays default class list..
+1. User enters the command to display the detailed version of the class list.
+2. TeaPet displays the class list with all of the students' attributes.
 +
 Use case ends.
 
@@ -719,7 +1002,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC07 - Add note for specific student
+=== Use case: UC11 - Add note for specific student
 
 *MSS*
 
@@ -837,39 +1120,53 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-_{ more test cases ... }_
-
 === Adding a student
 
 . Adding a student from class list with the specific name entered by user.
 
-.. Test case: `add n/John Tan Jun Wei p/83391329 e/john@gmail.com temp/36.0 a/Punggol Street 22` +
+.. Test case: `student add n/John Tan Jun Wei p/83391329 e/john@gmail.com temp/36.0 a/Punggol Street 22` +
    Expected: Student John Tan Jun Wei has been added to the class list.
 
-.. Test case: `add n/John Tan Jun Wei p/83393129 e/john@gmail.com temp/3@.5 a/Punggol Street 22` +
+.. Test case: `student add n/John Tan Jun Wei p/83393129 e/john@gmail.com temp/3@.5 a/Punggol Street 22` +
    Expected: No student is added. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `add John Tan Jun Wei`, `add n/John Tan Jun Wei p/phone number` (where the specified student is not a student in the class list due to invalid phone number.) _{give more}_ +
+.. Other incorrect delete commands to try: `student add John Tan Jun Wei`, `student add n/John Tan Jun Wei p/phone number` (where the specified student is not a student in the class list due to invalid phone number.) _{give more}_ +
    Expected: Similar to test case b.
-
-_{ more test cases ... }_
 
 === Deleting a student
 
 . Deleting a student from class list with the specific name entered by user.
 
-.. Test case: `delete 1` +
+.. Test case: `student delete 1` +
    Expected: The student at the first index is deleted from the list. Status message displays that the specified student has been deleted.
 .. Test case: `delete Tan John Wei Jun` +
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
 
-_{ more test cases ... }_
+=== Saving a date
 
-=== Saving data
+. Saving the most updated class administrative information as today's date.
 
-. Dealing with missing/corrupted data files.
+.. Test case: `admin save` +
+   Expected: Date has either been saved if today's date is not in the list of dates, or date not saved if today's date is
+   already in the list of dates. Status message either displays that today's date has been saved or displays that current date
+   already exists in the current list of dates respectively.
 
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+.. Other incorrect delete commands to try: `save`, `admin save DATE` where `DATE` is in YYYY-MM-DD format. +
+   Expected: Status bar displays invalid command and incorrect command format message respectively.
 
-_{ more test cases ... }_
+=== Deleting a date
+
+. Deleting a date from the list of dates.
+
+.. Test case: `admin delete DATE` where DATE is in YYYY-MM-DD format. +
+   Expected: Date has either been deleted if the date provided exists in the list of dates, or no dates will be deleted if the
+   date provided is not in the list. Status message either displays that the specific date has been deleted or displays that current date
+   already exists in the current list of dates respectively.
+
+.. Other incorrect delete commands to try: `admin delete`, `delete DATE`, `admin delete `DATE`, where `DATE` is in
+   YYYY-MM-DD format and ``DATE` is in the wrong `DATE` format. +
+   Expected: Status bar displays invalid command and incorrect command format message.
+
+
+

@@ -73,4 +73,18 @@ public class NotesCommandParser implements Parser<NotesCommand> {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NotesCommandParser)) {
+            return false;
+        }
+
+        return true;
+    }
+
+
 }
