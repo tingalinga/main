@@ -82,6 +82,9 @@ public class AcademicsEditCommand extends AcademicsCommand {
         String updatedDescription = editAssessmentDescriptor.getDescription().orElse(assessmentToEdit.getDescription());
         String updatedDate = editAssessmentDescriptor.getDate().orElse(assessmentToEdit.getDate().toString());
         String updatedType = editAssessmentDescriptor.getType().orElse(assessmentToEdit.getType());
+        if (!updatedType.equals("exam") && !updatedType.equals("homework")) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
+        }
 
         Assessment updatedAssessment = new Assessment(updatedDescription, updatedType, updatedDate);
         updatedAssessment.setSubmissionTracker(assessmentToEdit.getSubmissionTracker());
