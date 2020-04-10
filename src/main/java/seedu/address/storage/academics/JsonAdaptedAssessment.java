@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.Submission;
 
 /**
@@ -47,15 +45,8 @@ class JsonAdaptedAssessment {
      */
     public JsonAdaptedAssessment(Assessment source) {
         description = source.getDescription();
-        if (source instanceof Homework) {
-            type = "homework";
-            date = ((Homework) source).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
-        } else if (source instanceof Exam) {
-            type = "exam";
-            date = ((Exam) source).getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
-        } else {
-            type = null;
-        }
+        type = source.getType();
+        date = source.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         List<Submission> submissions = source.getSubmissionTracker();
         for (Submission submission: submissions) {
             submissionTracker.add(new JsonAdaptedSubmission(submission));
@@ -72,7 +63,11 @@ class JsonAdaptedAssessment {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DESCRIPTION"));
         }
         final String modelDescription = description;
+
         if (type == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TYPE"));
+        }
+        if (!type.equals("exam") && !type.equals("homework")) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TYPE"));
         }
         final String modelType = type;
@@ -80,6 +75,7 @@ class JsonAdaptedAssessment {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DATE"));
         }
+
         if (submissionTracker == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "SUBMISSION TRACKER"));
         }
@@ -88,17 +84,10 @@ class JsonAdaptedAssessment {
             modelSubmission.add(jsonAdaptedSubmission.toModelType());
         }
         String modelDate = convertDateFormat(date);
-        if (modelType.equals("homework")) {
-            Homework modelHomework = new Homework(description, modelDate);
-            modelHomework.setSubmissionTracker(modelSubmission);
-            return modelHomework;
-        } else if (modelType.equals("exam")) {
-            Exam modelExam = new Exam(description, modelDate);
-            modelExam.setSubmissionTracker(modelSubmission);
-            return modelExam;
-        } else {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TYPE"));
-        }
+
+        Assessment modelAssessment = new Assessment(modelDescription, modelType, modelDate);
+        modelAssessment.setSubmissionTracker(modelSubmission);
+        return modelAssessment;
     }
 
     /**

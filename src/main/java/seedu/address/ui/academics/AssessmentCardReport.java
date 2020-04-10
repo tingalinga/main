@@ -15,8 +15,6 @@ import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
 import seedu.address.model.academics.Submission;
 import seedu.address.ui.UiPart;
 
@@ -67,9 +65,9 @@ public class AssessmentCardReport extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
-        if (assessment instanceof Homework) {
+        if (assessment.getType().equals("homework")) {
             tags.getChildren().add(new Label("Homework"));
-        } else if (assessment instanceof Exam) {
+        } else if (assessment.getType().equals("exam")) {
             tags.getChildren().add(new Label("Exam"));
         }
         if (assessment.getSubmissionTracker().size() == assessment.noOfSubmittedStudents()) {
