@@ -141,7 +141,6 @@ public class Student {
                 .append(getAttendance())
                 .append(" NextOfKin: ")
                 .append(getNok())
-                .append(" Remark: ")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
