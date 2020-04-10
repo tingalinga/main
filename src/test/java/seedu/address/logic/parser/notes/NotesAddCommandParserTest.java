@@ -24,8 +24,7 @@ public class NotesAddCommandParserTest {
         assertParseSuccess(parser, " " + PREFIX_NOTES_STUDENT + expectedNote.getStudent()
                 + " " + PREFIX_NOTES_CONTENT + expectedNote.getContent()
                 + " " + PREFIX_NOTES_PRIORITY + expectedNote.getPriority(),
-                new NotesAddCommand(expectedNote.getStudent(), expectedNote.getContent(),
-                        expectedNote.getPriority()));
+                new NotesAddCommand(expectedNote));
     }
 
     @Test
