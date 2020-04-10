@@ -10,12 +10,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES_STUDENT;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.notes.Notes;
-import seedu.address.model.student.Student;
+
 
 /**
  * Represents NotesAddCommand class which adds Note to a particular Student in the class-list.
@@ -34,47 +33,47 @@ public class NotesAddCommand extends NotesCommand {
 
     public static final String MESSAGE_DUPLICATE_NOTE = "This same note already exists";
 
-    private final String name;
-    private final String content;
-    private final String priority;
     private final Notes note;
 
     /**
      * Creates a NotesAddCommand to add note to a student.
-     * @param name of the student which the note belongs to
-     * @param content of the note
-     * @param priority of the note
+     * @param note, the object which is to be added.
      */
-    public NotesAddCommand(String name, String content, String priority) {
-        requireAllNonNull(name, content, priority);
-        this.name = name;
-        this.content = content;
-        this.priority = priority;
-        this.note = new Notes(name, content, priority);
+    public NotesAddCommand(Notes note) {
+        requireAllNonNull(note);
+        this.note = note;
     }
 
     /**
-     * Getter of String name.
+     * Getter of String student in note.
      * @return String
      */
-    public String getName() {
-        return name;
+    public String getStudent() {
+        return note.getStudent();
     }
 
     /**
-     * Getter of String content.
+     * Getter of String content in note.
      * @return String
      */
     public String getContent() {
-        return content;
+        return note.getContent();
     }
 
     /**
-     * Getter of String priority.
+     * Getter of String priority in note.
      * @return String
      */
     public String getPriority() {
-        return priority;
+        return note.getPriority();
+    }
+
+    /**
+     * Getter of note.
+     * @return Notes object
+     */
+    public Notes getNote() {
+        return this.note;
     }
 
     /**
@@ -87,16 +86,8 @@ public class NotesAddCommand extends NotesCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Student> students = model.getFilteredStudentList();
-
         //Performs a check to ensure the student entered by the user is present in the class-list.
-        boolean nameFound = false;
-
-        for (Student student : students) {
-            if (student.getName().toString().equals(this.name)) {
-                nameFound = true;
-            }
-        }
+        boolean nameFound = model.hasStudentName(getStudent());
 
         if (!nameFound) {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
@@ -119,9 +110,7 @@ public class NotesAddCommand extends NotesCommand {
             return false;
         }
         NotesAddCommand s = (NotesAddCommand) other;
-        return name.equals(((NotesAddCommand) other).getName())
-                && content.equals(((NotesAddCommand) other).getContent())
-                && priority.equals(((NotesAddCommand) other).getPriority());
+        return note.equals(((NotesAddCommand) other).getNote());
     }
 
 }

@@ -1,0 +1,129 @@
+@startuml
+
+skinparam backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class "NotesCommand" {
+    /' Fields '/
+    + {static} COMMAND_WORD : String
+    + {static} NOTES_ADD : String
+    + {static} NOTES_EDIT : String
+    + {static} NOTES_DELETE : String
+    + {static} NOTES_FILTER : String
+    + {static} NOTES_EXPORT : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class NotesAddCommand {
+    /' Fields '/
+    + {static} MESSAGE_DUPLICATE_NOTE : String
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    - note: Notes
+
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class NotesEditCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    - index: Index
+    - editNotesDescriptor : EditNotesDescriptor
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class NotesDeleteCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    - index: Index
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class NotesFilterCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    - predicate : NotesContainKeywordsPredicate
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class NotesExportCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class Notes {
+    /' Fields '/
+    + {static} MESSAGE_CONSTRAINTS : String
+    + {static} VALIDATION_REGEX : String
+    - student : String
+    - content : String
+    - priority : String
+    - dateTime : String
+
+    /' Methods '/
+    + isSameNote(otherNotes : Notes) : Boolean
+    + equals(Object other) : Boolean
+}
+
+class Index {
+    /' Fields '/
+    - zeroBasedIndex : int
+
+    /' Methods '/
+    + getZeroBased() : int
+    + getOneBased() : int
+    + {static} fromZeroBased(zeroBasedIndex : int) : Index
+    + {static} fromOneBased(oneBasedIndex : int) : Index
+}
+
+class NotesContainKeywordsPredicate {
+    /' Fields '/
+    - keywords : List<String>
+
+    /' Methods '/
+    + test(notes : Notes) : Boolean
+}
+
+NotesAddCommand --up|> "NotesCommand"
+NotesEditCommand --up|> "NotesCommand"
+NotesDeleteCommand --up|> "NotesCommand"
+NotesFilterCommand --up|> "NotesCommand"
+NotesExportCommand --up|> "NotesCommand"
+NotesCommand --up|> "{abstract}\nCommand"
+NotesAddCommand --up> Notes
+NotesEditCommand --up> Index
+NotesDeleteCommand --up> Index
+NotesFilterCommand --up> NotesContainKeywordsPredicate
+NotesContainKeywordsPredicate ..up> Notes
+
+
+
+@enduml

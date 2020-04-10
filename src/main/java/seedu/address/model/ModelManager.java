@@ -397,6 +397,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredNotes.setPredicate(predicate);
     }
+
     // ==================== NOTES END ====================
 
     // ==================== EVENTS START ====================

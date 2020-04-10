@@ -149,7 +149,7 @@ image::LogicClassDiagram.png[]
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `{Entity Name} delete 1`.
 
 .Component interactions for `delete 1` command
 image::ArchitectureSequenceDiagram.png[]
@@ -185,7 +185,7 @@ image::LogicClassDiagram.png[]
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
+.  `Logic` uses the `TeaPetParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a student).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`,and then displayed to the user.
@@ -203,7 +203,7 @@ NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X
 
 This section describes the high-level software structure of TeaPet's Model Component.
 
-.Structure of the Model Component
+.Structure of the Model Component using `Student` as an example.
 image::ModelClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
@@ -211,7 +211,7 @@ image::ModelClassDiagram.png[]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
+* stores the data of different Entities.
 * stores the Notes data.
 * exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -250,7 +250,6 @@ The feature comprises of commands namely,
 * `EditCommand` - Edits the particulars of a student
 * `DeleteCommand` - Deletes the student information
 * `FindCommand` - Finds information of the required student
-* `RefreshCommand` - Refreshes the student list to update profile pictures
 
 
 The student commands all share similar paths of execution and is illustrated in the following sequence diagram below,
@@ -260,7 +259,7 @@ The commands when executed, will interface with the methods exposed by the `Mode
 (See <<Design-Logic,logic component>> for the general overview).
 
 .Sequence Diagram for StudentAddCommand
-image::student_sequence_diagram.png[]
+image::student_sequence_diagram_v1.png[]
 
 {nbsp} +
 
@@ -275,11 +274,11 @@ image::student_sequence_diagram.png[]
 
 
 [[Feature-Add]]
-==== Add command
+==== Student Add command
 
 ===== Implementation
 
-The following is a detailed explanation of the operations which `AddCommand` performs.
+The following is a detailed explanation of the operations which `StudentAddCommand` performs.
 
 1. After the successful parsing of user input, the `StudentAddCommand#execute(Model model)` method is called which validates the student defined.
 
@@ -297,11 +296,11 @@ either a unknown command or wrong format error message will be displayed.
 
 
 
-==== Edit command
+==== Student Edit command
 
 ===== Implementation
 
-The following is a detailed explanation of the operations which `EditCommand` performs.
+The following is a detailed explanation of the operations which `StudentEditCommand` performs.
 
 1. After the successful parsing of user input, the `StudentEditCommand#execute(Model model)` method is called which checks
 if the `Index` is defined as an argument when instantiating the `StudentEditCommand(Index, index, EditStudentDescriptor editStudentDescriptor)`
@@ -316,7 +315,7 @@ constructor. It uses the `StudentEditCommand.EditStudentDescriptor` to create a 
 4. The command box will be reflected with the `StudentEditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be
 returned with the success message.
 
-==== Delete command
+==== Student Delete command
 
 ===== Implementation
 
@@ -333,7 +332,7 @@ The `Index` must be within the bounds of the student list. +
 3. The command box will be reflected with the `StudentDeleteCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
 be returned with the success message.
 
-==== Find command
+==== Student Find command
 
 ===== Implementation
 
@@ -409,7 +408,12 @@ will be called and the student list is now visible on the `MainWindow`.
 In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
 prints its contents on the Command Result Box.
 
+The following activity diagram summarizes what happens when a user executes the `student refresh` command:
 
+.Activity Diagram for StudentRefreshCommand
+image::activity_diagram_refresh.png[]
+
+{nbsp} +
 
 === Personal Schedule feature
 ==== Command 1
@@ -562,95 +566,201 @@ searching through the `UniqueDateList#dates`, a DateNotFoundException will be th
 [NOTE]
 The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
 
-====== Implementation
 
-=== [Proposed] Undo/Redo feature
-==== Proposed Implementation
+=== Notes feature
+TeaPet application comes with an in-built notes feature, which serves to allow Teachers to record administrative or behavioural
+information of his/her students. Each note is tagged to a specific student and acts as a lightweight, digital 'Post It'.
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
+The notes feature comprises of 6 main functionalities represented by 6 commands. They are namely: +
 
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
+* `NotesCommand`
+* `NotesAddCommand`
+* `NotesEditCommand`
+* `NotesDeleteCommand`
+* `NotesFilterCommand`
+* `NotesExportCommand`
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+.Class Diagram for NotesCommands.
+image::developerguide/notes/NotesClassDiagram.png[]
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+==== Structure of Notes Class
+Notes object is made up of 4 fields. They are namely: +
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+* `String student`
+* `String content`
+* `String priority`
+* `String dateTime`
 
-image::UndoRedoState0.png[]
+==== Add Note
+The following is a detailed elaboration how `NotesAddCommand` operates.
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-image::UndoRedoState1.png[]
-
-Step 3. The user executes `add n/David ...` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-image::UndoRedoState2.png[]
-
+*Step 1*. The `NotesAddCommand#execute(Model model)` method is executed which takes in a necessary student name, content and priority as input
 [NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Format for adding a Note is `notes add name/<NAME OF STUDENT> c/<CONTENT> pr/<LOW/MEDIUM/HIGH>`.
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+*Step 2*. The note is then searched through the `UniqueNotesList#notes` list using the
+ `Model#hasNote(Notes note)` method to check if the note already exists. If the note exists, the `CommandException` will be thrown
+with the duplicate note error message.
 
-image::UndoRedoState3.png[]
-
+*Step 3*. The method `Model#addNote(Notes note)` will then be called to add the note. The command box will be reflected with
+the `NotesAddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
 [NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be similar to step 2, where either a unknown command
+or wrong format error message will be displayed.
 
-The following sequence diagram shows how the undo operation works:
 
-image::UndoSequenceDiagram.png[]
+.Sequence Diagram for Adding Notes.
+image::developerguide/notes/NotesAddSequence.png[]
 
-NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+.Supplementary Frame for Sequence Diagram.
+image::developerguide/notes/SDGetNotesAddCommand.png[]
 
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+==== Edit Note
 
+The following is a detailed explanation of the operations which `NotesEditCommand` performs.
+
+*Step 1*. The `NotesEditCommand#execute(Model model)` method is executed which edit attributes of the selected note. The method
+checks if the `index` defined when instantiating `NotesEditCommand(Index index, EditNotesDecriptor editNotesDescriptor)` is
+valid. Since it is optional for users to input fields, the fields not entered will reuse the existing values that are currently stored and defined
+in the `Notes` object.
+
+*Step 2*. A new `Notes` with the updated values is created and it is then searched  through the `UniqueNotesList#notes` list using the
+ `Model#hasNote(Notes note)` method to check if the note already exists. If the note exists, the `CommandException` will be thrown
+with the duplicate note error message.
+
+*Step 3*. The newly created `Notes` will replace the old one through the `Model#setNote(Notes toBeChanged, Notes editedNote`
+method.
+
+*Step 4*. The command box will be reflected with the `NotesEditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+
+
+==== Delete Note
+
+The following is a detailed explanation of the operations which `NotesDeleteCommand` performs.
+
+1. After the successful parsing of user input, the `NotesDeleteCommand#execute(Model model)` method is called which checks if the `Index`
+is defined as an argument when instantiating the `NotesDeleteCommand(Index index)`  constructor. +
 [NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The `Index` must be within the bounds of the student list. +
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+2. The `Notes` at the specified `Index` is then removed from the `UniqueNotesList#notes` observable list using the
+`Model#deleteNote(Index index)` method.
 
-image::UndoRedoState4.png[]
+3. The command box will be reflected with the `NotesDeleteCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
+.Activity Diagram for Deleting Note
+image::developerguide/notes/NotesDeleteActivityDiagram.png[]
 
-image::UndoRedoState5.png[]
+==== Filter Notes
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following is a detailed explanation of the operations which `NotesFilterCommand` performs.
 
-image::CommitActivityDiagram.png[]
+1. After the successful parsing of user input, the `NotesFilterCommand#execute(Model model)` method is called which checks if the
+`NotesContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
+`NotesFilterCommand(NotesContainsKeywordsPredicate predicate)` constructor
+
+2. The `Notes` is then searched through the `UniqueNotesList#notes` list... ...
+
+3. The existing `UniqueNotesList#internalList` is then cleared and updated using the `Model#updateFilteredNotesList(Predicate predicate)`
+method.
+
+4. A new `CommandResult` will be returned with the success message.
+
+==== Export Notes
+
+The following is a detailed explanation of the operations which `NotesExportCommand` performs.
+
+1. After the successful parsing of user input, the `NotesExportCommand#execute(Model model)` method is called.
+
+2. The command box will be reflected with the `NotesExportCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
+be returned with the success message.
+
+3. The `MainWindow` of the UI component will process the `CommandResult` and create a studentNotes.csv in the data folder of
+the current directory.
 
 ==== Design Considerations
+* Alternative 1 (Current Choice): Intuitive, simple syntax and user-friendly
+- Pros: It is easy for the Teacher to use the feature.
+- Cons: Not as powerful and less utility for advanced users.
 
-===== Aspect: How undo & redo executes
+* Alternative 2: Many additional fields including special tags, reminders, etc.
+- Pros: Powerful, many interesting features that advanced users can use.
+- Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-** Cons: We must ensure that the implementation of each individual command are correct.
 
-===== Aspect: Data structure to support the undo/redo commands
+=== Schedule feature
 
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
-// end::undoredo[]
+==== Overview
 
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
+The schedule feature enables teachers to add, delete, edit and view events in their personal scheduler. This feature is built
+based on the Jfxtras iCalendarAgenda library. The iCalendarAgenda object is used on the UI side to render VEvents. The VEvent
+object takes in data such as event name, start date time, end date time, recurrence of events, etc.
 
-_{Explain here how the data encryption feature will be implemented}_
+[NOTE]
+VEvent object is used primarily throughout the application as it is the required object type for the iCalendarAgenda library.
+Hence, at the storage level, the Event objects are mapped to VEvents for reading purposes and vice versa for saving purposes.
 
-// end::dataencryption[]
+The feature comprises of the the following commands:
+
+* `EventAddCommand` - Creates a new event.
+
+To add:
+
+==== Class Overview
+
+The class diagram below shows the interactions between events classes in the `Model`. Notice how the `EventHistory` class depends
+on the `Event` class in its constructor but only has a `VEvent` attribute. This is because an `Event` object will always be
+mapped to a `VEvent` within the `EventHistory` class. Some methods of `EventHistory` has been omitted for brevity as they are
+mostly `VEvent` based, which then again highlights that the interactions with the `Logic` and `UI` components are mostly done
+using the `VEvent` type class. Only the `Storage` component works with `Event` type class.
+
+.Schedule Class Diagram
+image::schedule_class_diagram.png[]
+
+==== Schedule Add Command
+
+===== Implementation
+
+The following is a detailed explanation which `schedule add` performs.
+
+*Step 1:* The `EventAddCommand#execute(Model model)` method is called which validates if the `VEvent` object from
+the parser is valid.
+
+*Step 2:* The method `Model#addVEvent(VEvent vEvent)` is then called which adds the new `VEvent` to the `EventHistory`.
+The `VEvent` is validated to check if it is unique using the `EventUtil#isEqualVEvent(VEvent vEvent)` method.
+
+*Step 3:* If the event is invalid, a `CommandException` will throw an error message. Else, a new `CommandResult` will
+be returned with the success message.
+
+*Step 4:* The `LogicManager` then calls the `Storage#saveEvents(ReadOnlyEvents readOnlyEvents)` which saves the
+`EventHistory` in JSON format after serializing it using the `JsonEventStorage`.
+[NOTE]
+The `ReadOnlyEvents` and `ReadOnlyVEvents` interfaces are an abstraction of the implementation of the `EventHistory`
+from other layers of the application.
+
+The following activity diagram summarizes what happens when a user executes the `schedule add` command:
+
+.Schedule Add Activity Diagram
+image::event_add_activity_diagram.png[]
+
+===== Design Considerations
+
+====== Aspect: Command Clarity:
+* *Current Implementation:*
+** `schedule add eventName/Consultation startDateTime/2020-04-08T09:00 endDateTime/2020-04-08T11:00 recur/none color/13`
+
+** We currently have full names for prefixes such as eventName/ instead of name/, as well as slightly lengthier prefixes such as
+startDateTime/ and endDateTime/. Although this may be slightly more tedious, we believe that it is clearer as there are other
+very similar prefixes in our other features such as name/ and date/.
+
+* *Alternatives Considered:*
+** `schedule add name/Consultation startDateTime/2020-04-08T09:00 endDateTime/2020-04-08T11:00 recur/none color/13`
+
+** By doing this, users may be confused as the Academics feature, Student feature and Notes feature require name as a prefix
+as well. Furthermore, the name required here is not the name of the student but the name of the event.
+
+
 
 === Logging
 This section describes how TeaPet record it's logs.
@@ -1027,7 +1137,62 @@ Use case ends.
 +
 Use case ends.
 
-_{More to be added}_
+=== Use case: UC12 - Add event into schedule
+
+*MSS*
+
+1. Teacher wishes to add an event into the scheduler
+2. Teacher enters the event details.
+3. TeaPet saves the item and displays it on the scheduler.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Item is missing details
+
+** 2a1. Teapet displays an error message. +
+Use case resumes at step 2.
+
++
+Use case ends.
+
+=== Use case: UC13 - Delete event from schedule
+
+*Preconditions*
+1. Event exists in scheduler.
+
+*MSS*
+
+1. Teacher lists the events in calendar (UC12)
+2. Teacher wishes to delete an event.
+3. Teacher confirms the deletion.
+4. TeaPet deletes the event from the scheduler.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. Teacher reconsiders and chooses not to remove the event.
++
+Use case ends.
+
+=== Use case: UC14 - Update student profile picture
+
+*Preconditions*
+1. Png files in image folder is in correct format.
+
+*MSS*
+
+1. Teacher wants to update image of students.
+2. Teacher adds in the respective images into the image folder.
+3. TeaPet confirms the process.
+4. TeaPet updates the profile pictures of students in the student list.
++
+Use case ends.
+
 [discrete]
 
 [appendix]
@@ -1120,19 +1285,25 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-=== Adding a student
+=== Manual Test: Student particulars
 
 . Adding a student from class list with the specific name entered by user.
 
-.. Test case: `student add n/John Tan Jun Wei p/83391329 e/john@gmail.com temp/36.0 a/Punggol Street 22` +
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
    Expected: Student John Tan Jun Wei has been added to the class list.
 
-.. Test case: `student add n/John Tan Jun Wei p/83393129 e/john@gmail.com temp/3@.5 a/Punggol Street 22` +
+.. Test case: `student add name/John Tan Jun Wei phone/83393129 e/john@gmail.com temp/3@.5 addr/Punggol Street 22 nok/James-father-93259589` +
    Expected: No student is added. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `student add John Tan Jun Wei`, `student add n/John Tan Jun Wei p/phone number` (where the specified student is not a student in the class list due to invalid phone number.) _{give more}_ +
-   Expected: Similar to test case b.
 
-=== Deleting a student
+.. Test case: `student add name/John Tan Jun Wei phone/839 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+   Expected: An error message is shown as the phone number of student is invalid.
+
+
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-dad-93259589` +
+Expected: An error message is shown as the relationship of NOK is not recognised.
+
+.. Test case: `student add name/John333 phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+Expected: An error message is shown as the name of student cannot contain numbers.
 
 . Deleting a student from class list with the specific name entered by user.
 
@@ -1142,6 +1313,9 @@ These instructions only provide a starting point for testers to work on; testers
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
+
+
+
 
 === Saving a date
 
@@ -1168,5 +1342,32 @@ These instructions only provide a starting point for testers to work on; testers
    YYYY-MM-DD format and ``DATE` is in the wrong `DATE` format. +
    Expected: Status bar displays invalid command and incorrect command format message.
 
+=== Manual Test: Scheduler
 
+. Adding an event to the scheduler
 
+.. Prerequisites: The scheduler already contain an event with name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00".
+The recurrence type and color do not matter as long as they are valid.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T10:00 endDateTime/2020-04-10T12:00 recur/none
+color/5` +
+Expected: An event with name Consultation is added to the scheduler
+
+.. Test case:  `schedule add eventName/Coffee Break startDateTime/2020-04-04T12:00 endDateTime/2020-04-04T13:00 recur/none
+color/5` +
+Expected: An error message is shown due to duplicate events being created.
+
+.. Test case: `schedule add eventName/ ` +
+Expected: An error message is shown due to invalid command.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T10:00 endDateTime/2020-04-10T12:00 recur/none
+color/24` +
+Expected: An error message is shown due to an invalid color code.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T10:00 endDateTime/2020-04-10T12:00 recur/fortnightly
+color/5`
+Expected: An error message is shown due to invalid recurrence type.
+
+.. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
+color/5`
+Expected: An error message is shown due to the invalid date time range.
