@@ -76,8 +76,10 @@ public class Homework extends Assessment {
      */
     public void setSubmissionTracker(List<Submission> newSubmissionTracker) {
         setAssessmentSubmissionTracker(newSubmissionTracker);
-        for (Submission submission: newSubmissionTracker) {
-            submissionTracker.add(submission);
+        if (newSubmissionTracker != null) {
+            for (Submission submission: newSubmissionTracker) {
+                submissionTracker.add(submission);
+            }
         }
     }
 

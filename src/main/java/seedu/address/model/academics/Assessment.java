@@ -94,10 +94,12 @@ public abstract class Assessment {
     public void setAssessmentSubmissionTracker(List<Submission> newSubmissionTracker) {
         int hasSubmitted = 0;
         int hasMarked = 0;
-        for (Submission submission: newSubmissionTracker) {
-            submissionTracker.add(submission);
-            hasSubmitted = submission.hasSubmitted() ? hasSubmitted + 1 : hasSubmitted;
-            hasMarked = submission.isMarked() ? hasMarked + 1 : hasMarked;
+        if (newSubmissionTracker != null) {
+            for (Submission submission: newSubmissionTracker) {
+                submissionTracker.add(submission);
+                hasSubmitted = submission.hasSubmitted() ? hasSubmitted + 1 : hasSubmitted;
+                hasMarked = submission.isMarked() ? hasMarked + 1 : hasMarked;
+            }
         }
         submitted = hasSubmitted;
         marked = hasMarked;
@@ -242,7 +244,7 @@ public abstract class Assessment {
         if (otherAssessment == this) {
             return true;
         }
-        return otherAssessment.getDescription().equals(getDescription());
+        return otherAssessment != null && otherAssessment.getDescription().equals(getDescription());
     }
 
     /* STATISTICS METHODS */

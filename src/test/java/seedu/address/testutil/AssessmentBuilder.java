@@ -40,8 +40,10 @@ public class AssessmentBuilder {
             type = "exam";
         }
         date = assessmentToCopy.getDate().toString();
-        for (Submission submission: submissionTracker) {
-            submissionTracker.add(submission);
+        if (submissionTracker != null) {
+            for (Submission submission: submissionTracker) {
+                submissionTracker.add(submission);
+            }
         }
     }
 
