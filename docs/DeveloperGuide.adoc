@@ -385,7 +385,7 @@ The feature comprises of one command namely,
 This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
 
 .Sequence Diagram for StudentRefreshCommand
-image::refresh_sequence_diagram.png[]
+image::refresh_sequence_diagram_v1.png[]
 
 {nbsp} +
 
