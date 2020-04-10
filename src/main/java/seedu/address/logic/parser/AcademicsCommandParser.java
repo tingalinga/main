@@ -20,6 +20,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
 import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.logic.commands.academics.AcademicsCommand;
@@ -86,7 +87,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      * Checks the format of the date string given.
      */
     private void checkValidDate(String date) throws ParseException {
-        String[] split = date.split("-");
+        String[] split = date.trim().split("-");
         if (split.length < 3 || split[0].length() < 4 || split[1].length() < 2 || split[2].length() < 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
         }
@@ -132,12 +133,21 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
                     AcademicsAddCommand.MESSAGE_USAGE));
         }
 
-        String description = argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get();
-        String type = argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get();
-        String date = argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get();
+        String description = argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get().trim();
+        String type = argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get().trim();
+        String date = argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get().trim();
         if (description.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsAddCommand.MESSAGE_USAGE));
+        }
+        if (type.isEmpty()) {
+            if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
+                type = "homework";
+            } else if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
+                type = "exam";
+            } else {
+                throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
+            }
         }
         checkValidDate(date);
 
@@ -184,7 +194,17 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
             editAssessmentDescriptor.setDescription(argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get());
         }
         if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_TYPE).isPresent()) {
-            editAssessmentDescriptor.setType(argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get());
+            String type = argMultimap.getValue(PREFIX_ASSESSMENT_TYPE).get();
+            if (type.isEmpty()) {
+                if (argMultimap.getValue(PREFIX_HOMEWORK).isPresent()) {
+                    type = "homework";
+                } else if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
+                    type = "exam";
+                } else {
+                    throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
+                }
+            }
+            editAssessmentDescriptor.setType(type);
         }
         if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DATE).isPresent()) {
             checkValidDate(argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get());
