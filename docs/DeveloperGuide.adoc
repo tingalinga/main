@@ -577,6 +577,9 @@ The notes feature comprises of 6 main functionalities represented by 6 commands.
 * `NotesFilterCommand`
 * `NotesExportCommand`
 
+.Class Diagram for NotesCommands.
+image::developerguide/notes/NotesClassDiagram.png[]
+
 ==== Structure of Notes Class
 Notes object is made up of 4 fields. They are namely: +
 
@@ -642,6 +645,9 @@ The `Index` must be within the bounds of the student list. +
 
 3. The command box will be reflected with the `NotesDeleteCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will
 be returned with the success message.
+
+.Activity Diagram for Deleting Note
+image::developerguide/notes/NotesDeleteActivityDiagram.png[]
 
 ==== Filter Notes
 

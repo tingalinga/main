@@ -447,6 +447,18 @@ public class NotesAddCommandTest {
         }
 
         @Override
+        public boolean hasStudentName(String student) {
+            requireNonNull(student);
+            boolean contains = false;
+            for (Student stu : studentsAdded) {
+                if (stu.getName().fullName.equals(student)) {
+                    contains = true;
+                }
+            }
+            return contains;
+        }
+
+        @Override
         public ObservableList<Student> getFilteredStudentList() {
             return FXCollections.observableList(studentsAdded);
         }
@@ -481,6 +493,18 @@ public class NotesAddCommandTest {
         public void addStudent(Student student) {
             requireNonNull(student);
             studentsAdded.add(student);
+        }
+
+        @Override
+        public boolean hasStudentName(String student) {
+            requireNonNull(student);
+            boolean contains = false;
+            for (Student stu : studentsAdded) {
+                if (stu.getName().fullName.equals(student)) {
+                    contains = true;
+                }
+            }
+            return contains;
         }
 
         @Override
