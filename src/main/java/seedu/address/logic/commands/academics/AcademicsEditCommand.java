@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 
 import java.util.List;
 import java.util.Optional;

@@ -3,7 +3,6 @@ package seedu.address.logic.commands.academics;
 import static java.util.Objects.requireNonNull;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DELETE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 
 import java.util.List;
 

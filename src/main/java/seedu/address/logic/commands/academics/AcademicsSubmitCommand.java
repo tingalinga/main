@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 
 import java.util.List;
 
