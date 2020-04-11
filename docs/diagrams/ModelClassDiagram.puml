@@ -8,11 +8,10 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyTeaPet <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
+Interface ReadOnlyUserPrefs <<Interface>>
 Class TeaPet
-Class Model
 Class ModelManager
 Class UserPrefs
-Class ReadOnlyUserPrefs
 
 Interface ReadOnlyAcademics <<Interface>>
 Interface ReadOnlyAdmin <<Interface>>
