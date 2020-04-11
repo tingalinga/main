@@ -51,7 +51,7 @@ public class Messages {
             + " [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]\n"
             + "delete event: schedule delete INDEX\n"
             + "get index of a event: schedule indexGet/EVENT_DESCRIPTION\n"
-            + "get all index of events in schedule: schedule indexAll\n"
+            + "get all indexes of events in schedule: schedule indexAll\n"
             + "change view mode of schedule: schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD\n"
             + "export schedule: schedule export\n"
             + "Type the following commands for more info!\n";

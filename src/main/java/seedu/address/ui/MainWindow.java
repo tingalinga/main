@@ -22,7 +22,6 @@ import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.admin.AdminFetchCommand;
 import seedu.address.logic.commands.admin.AdminSaveCommand;
 import seedu.address.logic.commands.event.EventExportCommand;
-import seedu.address.logic.commands.event.EventIndexCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.commands.student.DefaultStudentDisplayCommand;
@@ -473,7 +472,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if ((consoleReply.contains("Deleted Event:"))
                     || (consoleReply.contains("Added Event"))
-                    || (consoleReply.contains("Edited Event:"))
+                    || (consoleReply.contains("Successfully edited Event"))
                     || (consoleReply.contains("Event found:"))
                     || (consoleReply.contains("This is the closest event we can find based on what you've entered:"))
                     || (consoleReply.contains("on reference date"))) {

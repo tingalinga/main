@@ -117,8 +117,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return exportCommand();
         } else if (argMultimap.getValue(PREFIX_ALL_INDEX).isPresent()) {
             return indexAllCommand();
-        }else {
-            return null;
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_SCHEDULE_HELP));
         }
     }
 

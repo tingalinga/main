@@ -38,8 +38,14 @@ public class EventEditCommand extends EventCommand {
             + "[color/COLOR_CODE] (1 to 23)\n"
             + "Example: schedule edit 2 eventName/cs2100 lecture startDateTime/2019-10-21T14:00 "
             + "endDateTime/2019-10-21T15:00 recur/none color/1";
-    public static final String NO_FIELDS_CHANGED = "Please provide at least one field to edit.";
-    public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
+    public static final String NO_FIELDS_CHANGED = "Please provide at least one field to edit.\n"
+            + "Format: schedule edit INDEX (must be a positive integer) "
+            + "[eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM]"
+            + " [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] (none, daily, weekly) "
+            + "[color/COLOR_CODE] (1 to 23)\n"
+            + "Example: schedule edit 2 eventName/cs2100 lecture startDateTime/2019-10-21T14:00 "
+            + "endDateTime/2019-10-21T15:00 recur/none color/1";
+    public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Successfully edited Event %d into: %1s";
 
     private final EditVEventDescriptor editVEventDescriptor;
     private final Index index;
@@ -93,7 +99,7 @@ public class EventEditCommand extends EventCommand {
      * @param vEvent that has been editted.
      */
     private String generateSuccessMessage(VEvent vEvent) {
-        return String.format(MESSAGE_EDIT_EVENT_SUCCESS, vEventToString(vEvent));
+        return String.format(MESSAGE_EDIT_EVENT_SUCCESS, index.getOneBased(), vEventToString(vEvent));
     }
 
     @Override

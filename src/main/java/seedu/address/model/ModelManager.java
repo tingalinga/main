@@ -477,7 +477,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<Pair<Index, VEvent>> getAllVEventsWithIndex() { return eventHistory.getAllVEventsWithIndex(); }
+    public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
+        return eventHistory.getAllVEventsWithIndex();
+    }
 
     @Override
     public List<Pair<Index, VEvent>> searchVEvents(String eventName) {

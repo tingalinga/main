@@ -2,14 +2,12 @@ package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_SCHEDULE_HELP;
-import static seedu.address.commons.util.EventUtil.vEventToEventMapper;
 
 import java.time.LocalDateTime;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.Event;
 
 /**
  * Displays the schedule of events.

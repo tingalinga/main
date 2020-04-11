@@ -176,7 +176,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void setEventScheduleLocalDateTime(LocalDateTime localDateTime) {
-         model.setEventScheduleLocalDateTime(localDateTime);
+        model.setEventScheduleLocalDateTime(localDateTime);
     }
     // ==================== EVENT END ====================
 

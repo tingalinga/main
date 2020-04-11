@@ -28,9 +28,9 @@ public class EventIndexCommand extends EventCommand {
     public static final String MESSAGE_NO_EVENT = "Currently no events in TeaPet.";
     public static final String MESSAGE_SUGGESTION_EVENT =
             "Could not find specified event. This is the closest event we can find based on what you've entered:\n"
-                    +"%1$s";
+                    + "%1$s";
     public static final String MESSAGE_SUCCESS = "Event found:\n"
-                    +"%1$s";
+                    + "%1$s";
     private final String eventName;
 
     /**

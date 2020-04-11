@@ -242,7 +242,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
         List<Pair<Index, VEvent>> resultIndexList = new ArrayList<>();
         for (int i = 0; i < vEvents.size(); i++) {
             VEvent currentVEvent = vEvents.get(i);
-                resultIndexList.add(new Pair(Index.fromZeroBased(i), currentVEvent));
+            resultIndexList.add(new Pair(Index.fromZeroBased(i), currentVEvent));
         }
         return resultIndexList;
     }

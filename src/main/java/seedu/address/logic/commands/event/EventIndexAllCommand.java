@@ -1,10 +1,7 @@
 package seedu.address.logic.commands.event;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.EventUtil.formatIndexVEventPair;
-import static seedu.address.commons.util.EventUtil.vEventToEventMapper;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jfxtras.icalendarfx.components.VEvent;
@@ -14,8 +11,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.exceptions.VEventNotFoundException;
 
 /**
  * EventIndexAllCommand represent the indexAll command to obtain all indexes of events in the schedule.
@@ -40,7 +35,7 @@ public class EventIndexAllCommand extends EventCommand {
     public CommandResult execute(Model model) throws CommandException {
         List<Pair<Index, VEvent>> resultVEventIndexList = model.getAllVEventsWithIndex();
         if (resultVEventIndexList.isEmpty()) {
-                return new CommandResult(MESSAGE_NO_EVENT);
+            return new CommandResult(MESSAGE_NO_EVENT);
         } else {
             return new CommandResult(generateResultMessage(resultVEventIndexList));
         }
