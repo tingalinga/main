@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -264,5 +265,13 @@ public class Assessment {
         return "Assessment: " + this.description + "\n"
                 + "Type: " + this.type + "\n"
                 + "Date: " + this.date;
+    }
+}
+
+class AssessmentComparator implements Comparator<Assessment> {
+    @Override
+    public int compare(Assessment a1, Assessment a2) {
+        return a1.getDate()
+                .compareTo(a2.getDate());
     }
 }

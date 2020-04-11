@@ -64,6 +64,8 @@ public class AssessmentCardReport extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
+
+        // tags
         if (assessment.getType().equals("homework")) {
             tags.getChildren().add(new Label("Homework"));
         } else if (assessment.getType().equals("exam")) {
@@ -76,6 +78,7 @@ public class AssessmentCardReport extends UiPart<Region> {
             tags.getChildren().add(new Label("Completed Marking"));
         }
 
+        // submissions & marking
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());
         markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
