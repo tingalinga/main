@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 
-import java.util.Iterator;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -38,7 +37,6 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
         this.index = index;
         this.students = students;
     }
-    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

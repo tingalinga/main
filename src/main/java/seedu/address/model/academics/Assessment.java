@@ -7,15 +7,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
-import java.util.OptionalInt;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
@@ -268,6 +263,9 @@ public class Assessment {
     }
 }
 
+/**
+ * Comparator class for assessments.
+ */
 class AssessmentComparator implements Comparator<Assessment> {
     @Override
     public int compare(Assessment a1, Assessment a2) {
