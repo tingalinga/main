@@ -167,19 +167,26 @@ get started with them.
 
 
 [[particulars]]
-=== Student Particulars
+=== Student Particulars [Done by Simon Lam]
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
 Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
 
-==== Display default student view: `student default`
+==== Display default student view: `student`
 
 Shows a summarised version of the class list with important information only.
 
-*Format:* `student default`
+*Format:* `student`
 
 *Expected Outcome:*
 
     The student list now displays DEFAULT details.
+    [HELP ON STUDENT COMMANDS]
+    DISPLAY DETAILED LIST: student detailed
+    ADD STUDENT: name/NAME phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
+    EDIT STUDENT: student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
+    DELETE STUDENT: student delete INDEX
+    FIND STUDENT: student find NAME
+    REFRESH IMAGES: student refresh
 
 .After using `student default` command
 image::default_display.png[width="790]
@@ -203,15 +210,17 @@ Adds a student into the student list.
 
 *Format:*
 
-    student add name/NAME [phone/PHONE_NUMBER] [email/EMAIL] [adr/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
-    [temp/TEMPERATURE] [att/ATTENDANCE]
+    student add name/NAME phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
 
 * Adds a new student with the given attributes.
 * The student name *cannot be empty*.
 
+[NOTE]
+The address of student is not restricted as it can be subjective to the student and teacher.
+
 *Example:*
 
-* `student add n/Jim p/90045722 e/jim@example.com a/Bishan St 13 Blk 154 #08-18 t/monitor nok/James-Father-91234567
+* `student add name/Jim phone/90045722 email/jim@example.com addr/Bishan St 13 Blk 154 #08-18 tag/monitor nok/James-Father-91234567
    temp/36.6 att/Present` +
 Adds a student named Jim into the student list along with his details.
 
@@ -226,12 +235,11 @@ Edits personal details of students.
 
 *Format:*
 
-    student edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
-    [temp/TEMPERATURE] [att/ATTENDANCE]
+    student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
 
 *Example:*
 
-* `student edit 1 p/90023413` +
+* `student edit 1 phone/90023413` +
 Edits the student phone number in index 1 to a new phone number.
 
 *Expected Outcome:*
@@ -795,7 +803,7 @@ and a color group of '_10_'.
 image::event_add.png[width="790"]
 
 
-=== Additional Features
+=== Additional Features [Done by Simon Lam]
 
 
 //tag::update-profile[]
@@ -819,6 +827,8 @@ NOTE: The filename of your image must of this format: +
 3. Filename have no whitespaces. +
 4. File is in .png format. +
 For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
+
+TIP: For ideal optimization of the image, its dimensions for its length and width should be roughly equal.
 
 .Dragging png file into image folder
 image::images_in_folder.png[width="790"]

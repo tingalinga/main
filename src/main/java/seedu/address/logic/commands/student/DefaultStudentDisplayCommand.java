@@ -12,7 +12,16 @@ import seedu.address.model.Model;
  */
 public class DefaultStudentDisplayCommand extends StudentCommand {
 
-    public static final String MESSAGE_SUCCESS = "The Student list now displays DEFAULT details";
+    public static final String MESSAGE_SUCCESS = "The student list now displays DEFAULT details." + '\n'
+            + "[HELP ON STUDENT COMMANDS]\n"
+            + "DISPLAY DETAILED LIST: student detailed \n"
+            + "ADD STUDENT: name/NAME phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] "
+            + "nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]  \n"
+            + "EDIT STUDENT: student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] "
+            + "temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG] \n"
+            + "DELETE STUDENT: student delete INDEX\n"
+            + "FIND STUDENT: student find NAME\n"
+            + "REFRESH IMAGES: student refresh";;
 
     /**
      * Creates an DefaultStudentDisplayCommand

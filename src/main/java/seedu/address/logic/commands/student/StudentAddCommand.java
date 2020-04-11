@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
@@ -22,12 +23,13 @@ public class StudentAddCommand extends StudentCommand {
     public static final String MESSAGE_USAGE = "This command adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_TAG + "TAG "
-            + PREFIX_TEMPERATURE + "TEMPERATURE "
-            + PREFIX_ATTENDANCE + "ATTENDANCE ";
+            + PREFIX_PHONE + "[PHONE] "
+            + PREFIX_EMAIL + "[EMAIL] "
+            + PREFIX_ADDRESS + "[ADDRESS] "
+            + PREFIX_TEMPERATURE + "[TEMPERATURE] "
+            + PREFIX_ATTENDANCE + "[ATTENDANCE] "
+            + PREFIX_NOK + "[NAME-RELATIONSHIP-PHONE] "
+            + PREFIX_TAG + "[TAG] ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
