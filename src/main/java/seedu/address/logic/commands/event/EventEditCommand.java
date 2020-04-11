@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EVENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DATETIME_RANGE;
 import static seedu.address.commons.util.EventUtil.isEqualEvent;
+import static seedu.address.commons.util.EventUtil.vEventToEventMapper;
 import static seedu.address.commons.util.EventUtil.vEventToString;
 import static seedu.address.commons.util.EventUtil.validateDateTime;
 
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 
 /**
  * EventEditCommand represents the edit command which edits the events details in the events history.
@@ -78,6 +80,9 @@ public class EventEditCommand extends EventCommand {
         }
 
         model.setVEvent(index, editedVEvent);
+        Event event = vEventToEventMapper(editedVEvent);
+        LocalDateTime ldt = event.getStartDateTime();
+        model.setEventScheduleLocalDateTime(ldt);
 
         return new CommandResult(generateSuccessMessage(editedVEvent));
     }

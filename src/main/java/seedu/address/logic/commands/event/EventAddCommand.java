@@ -2,11 +2,15 @@ package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EVENT;
+import static seedu.address.commons.util.EventUtil.vEventToEventMapper;
+
+import java.time.LocalDateTime;
 
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 
 /**
  * Class to add new events
@@ -37,6 +41,9 @@ public class EventAddCommand extends EventCommand {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         } else {
             model.addVEvent(vEventToAdd);
+            Event event = vEventToEventMapper(vEventToAdd);
+            LocalDateTime ldt = event.getStartDateTime();
+            model.setEventScheduleLocalDateTime(ldt);
             String successMessage = makeSuccessMessage(vEventToAdd);
             return new CommandResult(successMessage);
         }

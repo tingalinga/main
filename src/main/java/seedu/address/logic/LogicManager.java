@@ -173,6 +173,11 @@ public class LogicManager implements Logic {
     public EventScheduleView getEventScheduleView() {
         return model.getEventScheduleView();
     }
+
+    @Override
+    public void setEventScheduleLocalDateTime(LocalDateTime localDateTime) {
+         model.setEventScheduleLocalDateTime(localDateTime);
+    }
     // ==================== EVENT END ====================
 
 }

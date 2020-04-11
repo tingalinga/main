@@ -124,7 +124,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
     }
 
     /**
-     * Adds a new VEvnet to the VEvent list
+     * Adds a new VEvent to the VEvent list
      */
     public void addVEvent(VEvent vEvent) {
         requireNonNull(vEvent);
@@ -207,7 +207,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
      * @return a vEvent object that is closest to the event name specified
      * @throws VEventNotFoundException if there are no VEvents that is remotely close to the event name specified.
      */
-    public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) throws VEventNotFoundException {
+    public Pair searchMostSimilarVEventName(String eventName) throws VEventNotFoundException {
         requireNonNull(eventName);
 
         if (vEvents.isEmpty()) {
@@ -231,6 +231,22 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
 
         return new Pair(Index.fromZeroBased(mostSimilarIndex), mostSimilarVEvent);
     }
+
+    /**
+     * Return the list of all pairs of indexes and VEvents that exists.
+     *
+     * @return List of all pairs of Indexes and VEvents
+     */
+    public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
+
+        List<Pair<Index, VEvent>> resultIndexList = new ArrayList<>();
+        for (int i = 0; i < vEvents.size(); i++) {
+            VEvent currentVEvent = vEvents.get(i);
+                resultIndexList.add(new Pair(Index.fromZeroBased(i), currentVEvent));
+        }
+        return resultIndexList;
+    }
+
 
 
     /**

@@ -117,6 +117,9 @@ public interface Logic {
     LocalDateTime getEventScheduleLocalDateTime();
 
     EventScheduleView getEventScheduleView();
+
+    void setEventScheduleLocalDateTime(LocalDateTime localDateTime);
+
     // ==================== EVENTS END ====================
 
     /**
