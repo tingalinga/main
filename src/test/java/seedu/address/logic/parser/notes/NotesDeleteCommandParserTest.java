@@ -25,7 +25,7 @@ public class NotesDeleteCommandParserTest {
         NotesDeleteCommandParser secondParser = new NotesDeleteCommandParser();
 
         //same object -> return true
-        assertTrue(firstParser.equals(secondParser));
+        assertTrue(firstParser.equals(firstParser));
 
         //same class -> return true
         assertTrue(firstParser.equals(secondParser));
