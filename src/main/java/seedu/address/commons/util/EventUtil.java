@@ -26,7 +26,7 @@ public class EventUtil {
 
     public static final String INVALID_RECUR_TYPE = "Invalid recurrence type!";
 
-    public static final String BAD_DATE_FORMAT = "Invalid DateTime format.";
+    public static final String BAD_DATE_FORMAT = "Invalid DateTime format. Format should be YYYY-MM-DDThh:mm.";
 
     public static boolean validateDateTime(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         return startDateTime.compareTo(endDateTime) < 0;
