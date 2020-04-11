@@ -1,0 +1,18 @@
+{
+  "notes" : [ {
+    "student" : "Simon Lam $$",
+    "content" : "He was disruptive in class today, and did not complete his homework as usual.",
+    "priority" : "LOW",
+    "dateTime" : "29/03/2020 22:31"
+  }, {
+    "student" : "Gerren Seow",
+    "content" : "Reminder to print the testimonial as requested.",
+    "priority" : "MEDIUM",
+    "dateTime" : "29/03/2020 22:40"
+  }, {
+    "student" : "Lee Hui Ting",
+    "content" : "Did not take her temperature for the third day in a row. Inform parents.",
+    "priority" : "HIGH",
+    "dateTime" : "29/03/2020 22:40"
+  } ]
+}

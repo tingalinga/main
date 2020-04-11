@@ -1,11 +1,27 @@
 package seedu.address.logic.parser.notes;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.notes.NotesFilterCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.notes.NotesContainKeywordsPredicate;
+
 public class NotesFilterCommandParserTest {
+
+    @Test
+    public void parseSuccess() throws ParseException {
+        NotesFilterCommandParser parser = new NotesFilterCommandParser();
+        String[] keywords = new String[] {"low", "high", "medium"};
+        String arguments = " low high medium";
+        assertEquals(parser.parse(arguments),
+                new NotesFilterCommand(new NotesContainKeywordsPredicate(Arrays.asList(keywords))));
+    }
 
     @Test
     public void equals() {
@@ -13,7 +29,7 @@ public class NotesFilterCommandParserTest {
         NotesFilterCommandParser secondParser = new NotesFilterCommandParser();
 
         //same object -> return true
-        assertTrue(firstParser.equals(secondParser));
+        assertTrue(firstParser.equals(firstParser));
 
         //same class -> return true
         assertTrue(firstParser.equals(secondParser));
