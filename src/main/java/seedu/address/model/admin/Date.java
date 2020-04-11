@@ -54,4 +54,15 @@ public class Date {
     public String toString() {
         return "";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Date)) {
+            return false;
+        }
+        return this.getDate().toString().equals(((Date) o).getDate().toString());
+    }
 }

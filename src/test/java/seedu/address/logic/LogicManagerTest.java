@@ -80,12 +80,6 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = StudentRefreshCommand.COMMAND_WORD + " refresh";
-        assertCommandSuccess(listCommand, StudentRefreshCommand.MESSAGE_SUCCESS, model);
-    }
-
-    @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTeaPetIoExceptionThrowingStub and JsonAcademicsIoExceptionThrowingStub
         JsonTeaPetStorage teaPetStorage =
