@@ -26,7 +26,6 @@ import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.logic.commands.academics.AcademicsCommand;
 import seedu.address.logic.commands.academics.AcademicsDeleteCommand;
 import seedu.address.logic.commands.academics.AcademicsDisplayCommand;
-import seedu.address.logic.commands.academics.AcademicsDisplayReportCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand;
 import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.academics.AcademicsMarkCommand;
@@ -73,7 +72,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         } else if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
             return academicsDisplayCommand("exam");
         } else if (argMultimap.getValue(PREFIX_REPORT).isPresent()) {
-            return academicsDisplayReportCommand();
+            return academicsDisplayCommand("report");
         } else if (argMultimap.getValue(PREFIX_EXPORT).isPresent()) {
             return academicsExportCommand();
         } else {
@@ -262,13 +261,6 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
 
         return new AcademicsMarkCommand(index, students);
-    }
-    /**
-     * Returns a AcademicsDisplayReportCommand object for execution.
-     * {@code ArgumentMultimap}.
-     */
-    private AcademicsDisplayReportCommand academicsDisplayReportCommand() throws ParseException, CommandException {
-        return new AcademicsDisplayReportCommand();
     }
 
     /**

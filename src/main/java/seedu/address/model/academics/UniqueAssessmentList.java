@@ -108,6 +108,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
      */
     public void addStudentToAssessments(String toAdd) {
         requireNonNull(toAdd);
+
         Iterator<Assessment> iterator = iterator();
         while (iterator.hasNext()) {
             Assessment next = iterator.next();

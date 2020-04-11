@@ -14,6 +14,7 @@ public class AcademicsDisplayCommand extends AcademicsCommand {
 
     public static final String MESSAGE_HOMEWORK_SUCCESS = "Academics now displays all HOMEWORK assessments";
     public static final String MESSAGE_EXAM_SUCCESS = "Academics now displays all EXAM assessments";
+    public static final String MESSAGE_REPORT_SUCCESS = "Academics now displays the report of each assessment.";
 
     public final String type;
 
@@ -34,6 +35,8 @@ public class AcademicsDisplayCommand extends AcademicsCommand {
             return new CommandResult(String.format(MESSAGE_HOMEWORK_SUCCESS));
         case "exam":
             return new CommandResult(String.format(MESSAGE_EXAM_SUCCESS));
+        case "report":
+            return new CommandResult(String.format(MESSAGE_REPORT_SUCCESS));
         default:
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsCommand.MESSAGE_USAGE));

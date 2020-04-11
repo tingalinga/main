@@ -82,8 +82,8 @@ public class AssessmentCardReport extends UiPart<Region> {
                 + " / " + assessment.getSubmissionTracker().size());
 
         // statistics
-        median.setText("Median Score: " + assessment.medianScore());
-        average.setText("Average Score: " + assessment.averageScore());
+        median.setText("Median Score: " + String.format("%.1f", assessment.medianScore()));
+        average.setText("Average Score: " + String.format("%.1f", assessment.averageScore()));
 
         // submissions panel
         ObservableList<Submission> submissionsList =

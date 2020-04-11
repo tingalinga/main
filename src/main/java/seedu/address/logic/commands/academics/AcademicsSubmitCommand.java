@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBMIT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
@@ -33,24 +34,11 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
     private List<String> students;
 
     public AcademicsSubmitCommand(Index index, List<String> students) throws CommandException {
-        requireNonNull(index);
-        requireNonNull(students);
+        requireAllNonNull(index, students);
         this.index = index;
         this.students = students;
     }
-
-    /**
-     * Formats list of students.
-     */
-    public String formatStudents() {
-        String formatted = "";
-        Iterator<String> stringIterator = students.iterator();
-        while (stringIterator.hasNext()) {
-            formatted += stringIterator.next() + "\n";
-        }
-        return formatted;
-    }
-
+    
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -72,7 +60,7 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
 
         model.submitAssessment(assessment, students);
         model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
-        return new CommandResult(MESSAGE_SUCCESS + formatStudents());
+        return new CommandResult(MESSAGE_SUCCESS + String.join("\n", students));
     }
 
     @Override
