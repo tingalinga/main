@@ -20,8 +20,7 @@ public class DefaultStudentDisplayCommand extends StudentCommand {
             + "EDIT STUDENT: student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] "
             + "temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG] \n"
             + "DELETE STUDENT: student delete INDEX\n"
-            + "FIND STUDENT: student find NAME\n"
-            + "REFRESH IMAGES: student refresh";;
+            + "FIND STUDENT: student find NAME";
 
     /**
      * Creates an DefaultStudentDisplayCommand

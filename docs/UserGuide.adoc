@@ -173,7 +173,8 @@ Thereafter, you are able to view, update or delete those information of specific
 
 ==== Display default student view: `student`
 
-Shows a summarised version of the class list with important information only.
+Syncs the images of students found in the image folder into the student list. TeaPet then displays a summarised list
+of the student details.
 
 *Format:* `student`
 
@@ -186,9 +187,8 @@ Shows a summarised version of the class list with important information only.
     EDIT STUDENT: student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
     DELETE STUDENT: student delete INDEX
     FIND STUDENT: student find NAME
-    REFRESH IMAGES: student refresh
 
-.After using `student default` command
+.After using `student` command
 image::default_display.png[width="790]
 
 ==== Display detailed student view: `student detailed`
@@ -839,7 +839,8 @@ image::images_in_folder.png[width="790"]
 
 {nbsp} +
 
-*Step 3*. Type in the `student refresh` command in the user interface. Now you can see your students pictures in your student list!
+*Step 3*. Type in the `student` command in the user interface. TeaPet will update the images and
+now you can see pictures of your students in your student list!
 
 
 .Before using the refresh command
