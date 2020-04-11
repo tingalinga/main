@@ -390,7 +390,7 @@ This is further illustrated in the following sequence diagram, which shows the s
 (To Change)
 
 .Sequence Diagram for StudentRefreshCommand
-image::refresh_sequence_diagram.png[]
+image::ImportImage.png[]
 
 ===== Implementation
 
