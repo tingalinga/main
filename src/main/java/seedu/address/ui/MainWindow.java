@@ -21,6 +21,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.admin.AdminFetchCommand;
 import seedu.address.logic.commands.admin.AdminSaveCommand;
+import seedu.address.logic.commands.event.EventExportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.commands.student.DefaultStudentDisplayCommand;
@@ -33,6 +34,7 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.ui.academics.AcademicsExporter;
 import seedu.address.ui.academics.AcademicsPanel;
 import seedu.address.ui.admin.DateListPanel;
+import seedu.address.ui.event.EventExporter;
 import seedu.address.ui.event.SchedulePage;
 import seedu.address.ui.event.SchedulePanel;
 import seedu.address.ui.notes.NotesExporter;
@@ -182,6 +184,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
+        onStudentList();
     }
 
     /**
@@ -209,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     *  Handles the Personal Schedule Page
+     *  Handles the Personal Schedule based on the view mode.
      */
     @FXML
     public void handleSchedule() {
@@ -221,10 +224,7 @@ public class MainWindow extends UiPart<Stage> {
         }
         schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
         schedulePanel.getRoot().toFront();
-        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%) ");
-        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
-        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
-        personalSchedule.setStyle(" -fx-background-color: Orange");
+        onSchedule();
     }
 
     /**
@@ -236,15 +236,14 @@ public class MainWindow extends UiPart<Stage> {
         schedulePanel.setWeekly();
         schedulePanel.setDisplayedDateTime(logic.getEventScheduleLocalDateTime());
         schedulePanel.getRoot().toFront();
-        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%) ");
-        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
-        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
-        personalSchedule.setStyle(" -fx-background-color: Orange");
+        onSchedule();
     }
+
 
 
     void show() {
         primaryStage.show();
+
     }
 
     /**
@@ -279,10 +278,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "detailed");
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         studentListPanel.getRoot().toFront();
-        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
-        studentList.setStyle(" -fx-background-color: Orange");
-        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
-        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+        onStudentList();
 
     }
 
@@ -294,10 +290,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList(), "admin");
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         studentListPanel.getRoot().toFront();
-        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
-        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
-        studentAdmin.setStyle(" -fx-background-color: Orange");
-        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+        onStudentAdmin();
     }
 
     /**
@@ -308,10 +301,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         mainPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         studentListPanel.getRoot().toFront();
-        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
-        studentList.setStyle(" -fx-background-color: Orange");
-        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
-        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+        onStudentList();
     }
 
     /**
@@ -322,10 +312,7 @@ public class MainWindow extends UiPart<Stage> {
         dateListPanel = new DateListPanel(logic.getFilteredDateList());
         mainPanelPlaceholder.getChildren().add(dateListPanel.getRoot());
         dateListPanel.getRoot().toFront();
-        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
-        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
-        studentAdmin.setStyle(" -fx-background-color: Orange");
-        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+        onStudentAdmin();
     }
 
     /**
@@ -336,10 +323,7 @@ public class MainWindow extends UiPart<Stage> {
         academicsPanel = new AcademicsPanel(logic.getFilteredAcademicsList());
         mainPanelPlaceholder.getChildren().add(academicsPanel.getRoot());
         academicsPanel.getRoot().toFront();
-        studentAcademics.setStyle("-fx-background-color: Orange");
-        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
-        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
-        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+        onStudentAcademics();
     }
 
     /**
@@ -350,6 +334,7 @@ public class MainWindow extends UiPart<Stage> {
         academicsHomeworkPanel = new AcademicsPanel(logic.getHomeworkList(), "homework");
         mainPanelPlaceholder.getChildren().add(academicsHomeworkPanel.getRoot());
         academicsHomeworkPanel.getRoot().toFront();
+        onStudentAcademics();
     }
 
     /**
@@ -360,6 +345,7 @@ public class MainWindow extends UiPart<Stage> {
         academicsExamPanel = new AcademicsPanel(logic.getExamList(), "exam");
         mainPanelPlaceholder.getChildren().add(academicsExamPanel.getRoot());
         academicsExamPanel.getRoot().toFront();
+        onStudentAcademics();
     }
 
     /**
@@ -370,10 +356,7 @@ public class MainWindow extends UiPart<Stage> {
         academicsReportPanel = new AcademicsPanel(logic.getFilteredAcademicsList(), "report");
         mainPanelPlaceholder.getChildren().add(academicsReportPanel.getRoot());
         academicsReportPanel.getRoot().toFront();
-        studentAcademics.setStyle(" -fx-background-color: Orange");
-        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
-        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
-        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+        onStudentAcademics();
     }
 
     /**
@@ -415,6 +398,10 @@ public class MainWindow extends UiPart<Stage> {
             case AcademicsExportCommand.MESSAGE_SUCCESS:
                 AcademicsExporter academicsExporter = new AcademicsExporter(logic.getFilteredAcademicsList());
                 academicsExporter.saveToCsv();
+                break;
+            case EventExportCommand.MESSAGE_SUCCESS:
+                EventExporter eventExporter = new EventExporter(logic.getVEventHistory());
+                eventExporter.saveToIcs();
                 break;
             default:
                 break;
@@ -465,7 +452,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if ((consoleReply.contains("Deleted Event:"))
                     || (consoleReply.contains("Added Event"))
-                    || (consoleReply.contains("Edited Event:"))
+                    || (consoleReply.contains("Successfully edited Event"))
+                    || (consoleReply.contains("Event found:"))
+                    || (consoleReply.contains("This is the closest event we can find based on what you've entered:"))
                     || (consoleReply.contains("on reference date"))) {
                 handleSchedule();
             }
@@ -501,5 +490,49 @@ public class MainWindow extends UiPart<Stage> {
     public static void editResultDisplay(String feedback) {
         resultDisplay.setFeedbackToUser(feedback);
     }
+
+    /* -------- Section of commands which handles to GUI tab colours -------- */
+
+    /**
+     * Changes the studentList menu tab to orange, while the rest becomes white.
+     */
+    private void onStudentList() {
+        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
+        studentList.setStyle(" -fx-background-color: Orange");
+        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
+        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+    }
+
+    /**
+     * Changes the studentAdmin menu tab to orange, while the rest becomes white.
+     */
+    private void onStudentAdmin() {
+        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%)");
+        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
+        studentAdmin.setStyle(" -fx-background-color: Orange");
+        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+    }
+
+    /**
+     * Changes the studentAcademics menu tab to orange, while the rest becomes white.
+     */
+    private void onStudentAcademics() {
+        studentAcademics.setStyle("-fx-background-color: Orange");
+        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
+        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
+        personalSchedule.setStyle(" -fx-background-color: derive(#white, 20%)");
+    }
+
+    /**
+     * Changes the personalSchedule menu tab to orange, while the rest becomes white.
+     */
+    private void onSchedule() {
+        studentAcademics.setStyle("-fx-background-color: derive(#white, 20%) ");
+        studentList.setStyle(" -fx-background-color: derive(#white, 20%)");
+        studentAdmin.setStyle(" -fx-background-color: derive(#white, 20%)");
+        personalSchedule.setStyle(" -fx-background-color: Orange");
+    }
+
+    /* --------------------------- End of Section --------------------------- */
 
 }

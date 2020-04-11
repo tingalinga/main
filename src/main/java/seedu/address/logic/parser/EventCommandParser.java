@@ -8,11 +8,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_SCHEDULE_HELP;
 import static seedu.address.commons.util.EventUtil.makeUniqueIdentifier;
 import static seedu.address.commons.util.EventUtil.validateDateTime;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GET_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
@@ -43,6 +45,8 @@ import seedu.address.logic.commands.event.EventDeleteCommand;
 import seedu.address.logic.commands.event.EventDisplayCommand;
 import seedu.address.logic.commands.event.EventEditCommand;
 import seedu.address.logic.commands.event.EventEditCommand.EditVEventDescriptor;
+import seedu.address.logic.commands.event.EventExportCommand;
+import seedu.address.logic.commands.event.EventIndexAllCommand;
 import seedu.address.logic.commands.event.EventIndexCommand;
 import seedu.address.logic.commands.event.EventViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -80,9 +84,11 @@ public class EventCommandParser implements Parser<EventCommand> {
                 PREFIX_END_DATETIME,
                 PREFIX_EVENT_DELETE,
                 PREFIX_EVENT_EDIT,
+                PREFIX_EXPORT,
                 PREFIX_COLOR,
                 PREFIX_RECUR,
                 PREFIX_GET_INDEX,
+                PREFIX_ALL_INDEX,
                 PREFIX_VIEW,
                 PREFIX_VIEW_MODE,
                 PREFIX_VIEW_DATE);
@@ -107,8 +113,12 @@ public class EventCommandParser implements Parser<EventCommand> {
             return editCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
             return viewCommand(argMultimap);
+        } else if (argMultimap.getValue(PREFIX_EXPORT).isPresent()) {
+            return exportCommand();
+        } else if (argMultimap.getValue(PREFIX_ALL_INDEX).isPresent()) {
+            return indexAllCommand();
         } else {
-            return null;
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_SCHEDULE_HELP));
         }
     }
 
@@ -117,12 +127,12 @@ public class EventCommandParser implements Parser<EventCommand> {
      * Displays schedule of events.
      * {@code ArgumentMultimap}.
      */
-    private EventDisplayCommand eventDisplayCommand() throws ParseException, CommandException {
+    private EventDisplayCommand eventDisplayCommand() {
         return new EventDisplayCommand();
     }
 
     /**
-     * Adds the given assessment details to academic report.
+     * Performs validation and Adds the given assessment details to academic report.
      * {@code ArgumentMultimap}.
      */
     public EventAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException {
@@ -188,8 +198,8 @@ public class EventCommandParser implements Parser<EventCommand> {
      * Performs validation and return the EventIndexCommand object to be executed.
      *
      * @param argMultimap for tokenized input.
-     * @return EventAddCommand object.
-     * @throws ParseException
+     * @return EventIndexCommand object.
+     * @throws ParseException errors when no preamble entered or no description entered after preamble
      */
     private EventIndexCommand indexGetCommand(ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_GET_INDEX)
@@ -207,6 +217,16 @@ public class EventCommandParser implements Parser<EventCommand> {
         String eventName = argMultimap.getValue(PREFIX_GET_INDEX).orElse("");
 
         return new EventIndexCommand(eventName);
+    }
+
+    /**
+     * Performs validation and return the EventIndexAllCommand object to be executed.
+     *
+     * @return EventIndexAllCommand object.
+     * @throws ParseException
+     */
+    private EventIndexAllCommand indexAllCommand() throws ParseException {
+        return new EventIndexAllCommand();
     }
 
     /**
@@ -299,5 +319,14 @@ public class EventCommandParser implements Parser<EventCommand> {
 
         return eventViewCommand;
     }
+
+    /**
+     * Performs validation and returns a EventExportCommand object for execution.
+     *
+     */
+    private EventExportCommand exportCommand() throws ParseException {
+        return new EventExportCommand();
+    }
+
 
 }

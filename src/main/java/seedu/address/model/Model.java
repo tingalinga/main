@@ -314,6 +314,8 @@ public interface Model {
 
     ObservableList<VEvent> getVEvents();
 
+    List<Pair<Index, VEvent>> getAllVEventsWithIndex();
+
     void setEventHistory(ReadOnlyEvents events);
 
     void setEventHistory(Path eventHistoryFilePath);

@@ -43,13 +43,19 @@ public class Messages {
     public static final String MESSAGE_INDEX_INVALID_EVENT_NAME = "Invalid event name entered."
             + " Please input a valid Event Name." + "\n"
             + " schedule indexGet/<eventName>";
-    public static final String MESSAGE_SCHEDULE_HELP = "Invalid schedule command entered."
-            + " Please input a valid schedule command." + "\n"
-            + "schedule add" + "\n"
-            + "schedule edit" + "\n"
-            + "schedule delete" + "\n"
-            + "schedule indexGet/" + "\n"
-            + "schedule view";
+    public static final String MESSAGE_SCHEDULE_HELP = "Schedule helps you to keep track of your events.\n"
+            + "[HELP ON SCHEDULE COMMANDS]\n"
+            + "add event: schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM"
+            + " endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE\n"
+            + "edit event: schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM]"
+            + " [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]\n"
+            + "delete event: schedule delete INDEX\n"
+            + "get index of a event: schedule indexGet/EVENT_DESCRIPTION\n"
+            + "get all indexes of events in schedule: schedule indexAll\n"
+            + "change view mode of schedule: schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD\n"
+            + "export schedule: schedule export\n"
+            + "Type the following commands for more info!\n";
+
     public static final String MESSAGE_INVALID_VIEW_MODE = "Invalid schedule view mode."
             + " Please input either weekly or daily.";
 

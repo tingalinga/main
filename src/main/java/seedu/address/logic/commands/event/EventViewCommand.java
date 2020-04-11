@@ -14,11 +14,9 @@ import seedu.address.model.event.EventScheduleView;
  */
 public class EventViewCommand extends EventCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " [view]: view your timetable for specific weeks" + "\n"
-            + "Parameters:" + "\n"
-            + "mode/ weekly, daily" + "\n"
-            + "date/ yyyy-mm-dd" + "\n"
-            + "Example: event view mode/weekly date/2020-04-05";
+    public static final String MESSAGE_USAGE = "This command changes the view mode of your schedule.\n"
+            + "Format: schedule view mode/SCHEDULE_MODE (daily,weekly) date/YYYY-MM-DD\n"
+            + "Example: schedule view mode/weekly date/2020-04-05";
     public static final String MESSAGE_VIEW_SUCCESS = "Showing your %s schedule on reference date %s";
 
     private LocalDateTime targetViewDateTime;

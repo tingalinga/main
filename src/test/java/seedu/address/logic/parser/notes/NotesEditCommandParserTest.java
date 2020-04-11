@@ -41,7 +41,7 @@ public class NotesEditCommandParserTest {
         NotesEditCommandParser secondParser = new NotesEditCommandParser();
 
         //same object -> return true
-        assertTrue(firstParser.equals(secondParser));
+        assertTrue(firstParser.equals(firstParser));
 
         //same class -> return true
         assertTrue(firstParser.equals(secondParser));

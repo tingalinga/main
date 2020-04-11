@@ -1,7 +1,5 @@
 package seedu.address.storage.notes;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_NOTES;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +18,7 @@ import seedu.address.model.notes.ReadOnlyNotes;
  */
 @JsonRootName(value = "notesManager")
 public class JsonSerializableNotesManager {
+    public static final String MESSAGE_DUPLICATE_NOTES = "Notes list contains duplicate note(s).";
 
     private final List<JsonAdaptedNotes> notes = new ArrayList<>();
 
