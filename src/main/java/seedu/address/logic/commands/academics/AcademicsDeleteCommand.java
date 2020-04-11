@@ -25,7 +25,7 @@ public class AcademicsDeleteCommand extends AcademicsCommand {
             + PREFIX_EVENT_DELETE + " INDEX (must be a positive integer)\n"
             + "Example: academics delete 1\n";
 
-    public static final String MESSAGE_DELETE_ASSESSMENT_SUCCESS = "Deleted Assessment:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Deleted Assessment:\n%1$s";
 
     private final Index targetIndex;
 
@@ -43,8 +43,7 @@ public class AcademicsDeleteCommand extends AcademicsCommand {
         }
         Assessment assessmentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAssessment(assessmentToDelete);
-        model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
-        return new CommandResult(String.format(MESSAGE_DELETE_ASSESSMENT_SUCCESS, assessmentToDelete));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, assessmentToDelete));
     }
 
     @Override

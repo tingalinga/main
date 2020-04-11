@@ -88,7 +88,6 @@ public class AcademicsMarkCommand extends AcademicsCommand {
         }
 
         model.markAssessment(assessment, submissions);
-        model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
         return new CommandResult(MESSAGE_SUCCESS + formatStudents());
     }
 

@@ -1,6 +1,6 @@
 @startuml
 
-skinparam backgroundColor #ffffff
+skinparam bjava ackgroundColor #ffffff
 skinparam classAttributeIconSize 0
 hide circle
 

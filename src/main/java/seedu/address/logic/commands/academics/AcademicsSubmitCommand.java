@@ -57,7 +57,6 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
         }
 
         model.submitAssessment(assessment, students);
-        model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
         return new CommandResult(MESSAGE_SUCCESS + String.join("\n", students));
     }
 

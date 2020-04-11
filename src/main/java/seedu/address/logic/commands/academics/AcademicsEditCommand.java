@@ -30,7 +30,7 @@ public class AcademicsEditCommand extends AcademicsCommand {
             + "[" + PREFIX_ASSESSMENT_TYPE + "ASSESSMENT TYPE] (must be homework or exam) "
             + "[" + PREFIX_ASSESSMENT_DATE + "ASSESSMENT DATE]\n";
 
-    public static final String MESSAGE_EDIT_ASSESSMENT_SUCCESS = "Edited Assessment:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Edited Assessment:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ASSESSMENT = "This assessment already exists in the address book.";
 
@@ -66,8 +66,7 @@ public class AcademicsEditCommand extends AcademicsCommand {
         }
 
         model.setAssessment(assessmentToEdit, editedAssessment);
-        model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ASSESSMENT_SUCCESS, editedAssessment));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedAssessment));
     }
 
     /**
