@@ -376,9 +376,6 @@ public class MainWindow extends UiPart<Stage> {
             case DetailedStudentDisplayCommand.MESSAGE_SUCCESS:
                 handleStudentDetailed();
                 break;
-            case "The Student list now displays last updated ADMIN details":
-                handleStudentAdmin();
-                break;
             case "List of dates with admin details of the class displayed!":
                 handleDates();
                 break;
@@ -401,6 +398,10 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             default:
                 break;
+            }
+
+            if (consoleReply.contains("The Student list now displays last updated ADMIN details")) {
+                handleStudentAdmin();
             }
 
             if (consoleReply.contains("New student added") || consoleReply.contains("Deleted Student")

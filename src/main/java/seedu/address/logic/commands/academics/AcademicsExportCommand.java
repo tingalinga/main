@@ -16,7 +16,7 @@ public class AcademicsExportCommand extends AcademicsCommand {
     public static final String MESSAGE_SUCCESS = "Academics are exported to studentAcademics.csv in the data folder";
 
     /**
-     * Overriden execute command which returns CommandResult containing success message.
+     * Overrides execute command which returns CommandResult containing success message.
      * @param model {@code Model} which the command should operate on.
      * @return CommandResult
      */

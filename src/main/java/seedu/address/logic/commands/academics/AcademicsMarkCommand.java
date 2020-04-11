@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -53,13 +54,13 @@ public class AcademicsMarkCommand extends AcademicsCommand {
      * Formats list of students.
      */
     public String formatStudents() {
-        String formatted = "";
-        Iterator<Map.Entry<String, Integer>> stringIterator = submissions.entrySet().iterator();
-        while (stringIterator.hasNext()) {
-            Map.Entry<String, Integer> entry = stringIterator.next();
-            formatted += entry.getKey() + ": " + entry.getValue() + "\n";
-        }
-        return formatted;
+        List<String> result = submissions
+                .entrySet()
+                .stream()
+                .map(entry -> (entry.getKey() + ": " + entry.getValue().toString()))
+                .collect(Collectors.toList());
+
+        return String.join("\n", result);
     }
 
     @Override

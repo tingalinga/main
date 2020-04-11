@@ -55,6 +55,8 @@ public class AssessmentCard extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
+
+        // tags
         if (assessment.getType().equals("homework")) {
             tags.getChildren().add(new Label("Homework"));
             date.setText("Deadline: "
@@ -71,6 +73,7 @@ public class AssessmentCard extends UiPart<Region> {
             tags.getChildren().add(new Label("Completed Marking"));
         }
 
+        // submissions & marking
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());
         markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()

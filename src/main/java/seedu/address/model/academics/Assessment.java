@@ -5,13 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
+import java.util.OptionalDouble;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
@@ -38,7 +37,7 @@ public class Assessment {
      */
     public Assessment(String description, String type, String date) {
         this.description = description;
-        this.type = type;
+        this.type = type.toLowerCase().trim();
         this.date = LocalDate.parse(date);
     }
 
@@ -93,9 +92,7 @@ public class Assessment {
      * @param students list of students assigned with the assessment.
      */
     public void setSubmissions(List<Student> students) {
-        for (Student student: students) {
-            submissionTracker.add(new Submission(student.getName().fullName));
-        }
+        students.stream().forEach(student -> submissionTracker.add(new Submission(student.getName().fullName)));
     }
 
     /**
@@ -120,12 +117,9 @@ public class Assessment {
      * Updates the student name in the submission tracker of assessment.
      */
     public void updateNewStudentName(String prevName, String newName) {
-        for (Submission submission: submissionTracker) {
-            if (submission.getStudentName().equals(prevName)) {
-                submission.setStudentName(newName);
-                break;
-            }
-        }
+        submissionTracker
+                .stream().filter(submission -> submission.getStudentName().equals(prevName))
+                .forEach(submission -> submission.setStudentName(newName));
     }
 
     /* STUDENT-LEVEL METHODS */
@@ -140,13 +134,12 @@ public class Assessment {
      * Removes student to the submission tracker of all assessments.
      */
     public void removeStudent(String toRemove) {
-        for (Submission submission: submissionTracker) {
-            if (submission.getStudentName().equals(toRemove)) {
-                submissionTracker.remove(submission);
-                submitted = submission.hasSubmitted() ? submitted - 1 : submitted;
-                marked = submission.isMarked() ? marked - 1 : marked;
-                break;
-            }
+        Optional<Submission> studentSubmission = submissionTracker
+                .stream().filter(submission -> submission.getStudentName().equals(toRemove)).findFirst();
+        if (studentSubmission.isPresent()) {
+            submissionTracker.remove(studentSubmission.get());
+            submitted = studentSubmission.get().hasSubmitted() ? submitted - 1 : submitted;
+            marked = studentSubmission.get().isMarked() ? marked - 1 : marked;
         }
     }
 
@@ -157,12 +150,9 @@ public class Assessment {
      */
     public boolean hasStudentSubmitted(String student) {
         requireNonNull(student);
-        for (Submission submission: submissionTracker) {
-            if (submission.getStudentName().equals(student)) {
-                return submission.hasSubmitted();
-            }
-        }
-        return false;
+        Optional<Submission> studentSubmission = submissionTracker
+                .stream().filter(submission -> submission.getStudentName().equals(student)).findFirst();
+        return studentSubmission.isEmpty() ? false : studentSubmission.get().hasSubmitted();
     }
 
     /**
@@ -171,11 +161,11 @@ public class Assessment {
      */
     public void setSubmitted(List<String> studentList) {
         for (String studentName: studentList) {
-            for (Submission submission: submissionTracker) {
-                if (submission.getStudentName().equals(studentName)) {
-                    submitted = !submission.hasSubmitted() ? submitted + 1 : submitted;
-                    submission.markAsSubmitted();
-                }
+            Optional<Submission> studentSubmission = submissionTracker.stream()
+                    .filter(submission -> submission.getStudentName().equals(studentName)).findFirst();
+            if (studentSubmission.isPresent()) {
+                submitted = !studentSubmission.get().hasSubmitted() ? submitted + 1 : submitted;
+                studentSubmission.get().markAsSubmitted();
             }
         }
     }
@@ -185,11 +175,7 @@ public class Assessment {
      * {@code target} must exist in the assessment list.
      */
     public void markAssessment(HashMap<String, Integer> submissions) {
-        Iterator<Map.Entry<String, Integer>> iterator = submissions.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, Integer> entry = iterator.next();
-            mark(entry.getKey(), entry.getValue());
-        }
+        submissions.entrySet().stream().forEach(entry -> mark(entry.getKey(), entry.getValue()));
     }
 
     /**
@@ -198,11 +184,11 @@ public class Assessment {
      * @param score score given to the student's submission.
      */
     public void mark(String student, int score) {
-        for (Submission submission: submissionTracker) {
-            if (submission.getStudentName().equals(student)) {
-                marked = !submission.isMarked() ? marked + 1 : marked;
-                submission.markAssessment(score);
-            }
+        Optional<Submission> studentSubmission = submissionTracker
+                .stream().filter(submission -> submission.getStudentName().equals(student)).findFirst();
+        if (studentSubmission.isPresent()) {
+            marked = !studentSubmission.get().isMarked() ? marked + 1 : marked;
+            studentSubmission.get().markAssessment(score);
         }
     }
 
@@ -210,15 +196,6 @@ public class Assessment {
      * Returns the number of students who have submitted their assessment.
      */
     public int noOfSubmittedStudents() {
-        int submitted = 0;
-        ObservableList<Submission> submissionsList =
-                FXCollections.observableArrayList(submissionTracker);
-
-        Iterator<Submission> iterator = submissionsList.iterator();
-        while (iterator.hasNext()) {
-            Submission next = iterator.next();
-            submitted = next.hasSubmitted() ? submitted + 1 : submitted;
-        }
         return submitted;
     }
 
@@ -243,54 +220,56 @@ public class Assessment {
     /**
      * Returns the average score scored by the class for this assessment.
      */
-    public int averageScore() {
-        int totalScore = 0;
-        int count = 0;
-        for (Submission submission: submissionTracker) {
-            if (submission.getScore() != 0) {
-                totalScore += submission.getScore();
-                count++;
-            }
-        }
-        if (count == 0) {
-            return 0;
-        } else {
-            return totalScore / count;
-        }
+    public double averageScore() {
+        OptionalDouble totalScore = submissionTracker.stream().mapToDouble(submission -> submission.getScore())
+                .reduce((s1, s2) -> s1 + s2);
+        int count = (int) submissionTracker.stream().filter(submission -> submission.getScore() != 0).count();
+
+        return count == 0 ? 0 : totalScore.getAsDouble() / count;
     }
 
     /**
      * Returns the median score scored by the class for this assessment.
      */
-    public int medianScore() {
+    public double medianScore() {
         ArrayList<Integer> scores = new ArrayList<>();
-        for (Submission submission: submissionTracker) {
-            if (submission.getScore() != 0) {
-                scores.add(submission.getScore());
-            }
-        }
+        submissionTracker.stream()
+                .filter(submission -> submission.getScore() != 0)
+                .forEach(submission -> scores.add(submission.getScore()));
         Collections.sort(scores);
-        if (scores.size() == 0) {
+        int noOfStudents = scores.size();
+
+        if (noOfStudents == 0) {
             return 0;
-        } else if (scores.size() == 1) {
+        } else if (noOfStudents == 1) {
             return scores.get(0);
-        } else if (scores.size() == 2) {
-            int sum = scores.get(0) + scores.get(1);
-            return sum / 2;
-        } else if (scores.size() % 2 == 0) {
-            int medianIndex = scores.size() / 2;
-            int sum = scores.get(medianIndex - 1) + scores.get(medianIndex);
-            return sum / 2;
+        } else if (noOfStudents == 2) {
+            return (scores.get(0) + scores.get(1)) / 2;
+        }
+
+        if (noOfStudents % 2 == 0) {
+            int medianIndex = noOfStudents / 2;
+            return (double) (scores.get(medianIndex - 1) + scores.get(medianIndex)) / 2;
         } else {
-            int medianIndex = (scores.size() - 1) / 2;
-            return scores.get(medianIndex);
+            return scores.get((noOfStudents - 1) / 2);
         }
     }
 
     @Override
     public String toString() {
         return "Assessment: " + this.description + "\n"
-                + "Type: " + this.type.toUpperCase() + "\n"
+                + "Type: " + this.type + "\n"
                 + "Date: " + this.date;
+    }
+}
+
+/**
+ * Comparator class for assessments.
+ */
+class AssessmentComparator implements Comparator<Assessment> {
+    @Override
+    public int compare(Assessment a1, Assessment a2) {
+        return a1.getDate()
+                .compareTo(a2.getDate());
     }
 }
