@@ -33,6 +33,12 @@ public class TypicalNotes {
                 .withContent(VALID_CONTENT_JANE).withPriority(VALID_PRIORITY_JANE).build();
     }
 
+    /* This section prepares data for testing of Notes Storage component */
+    public static final Notes S_NOTE1 = new Notes("Kelvin Klein", "Good Student",
+            "MEDIUM", "29/03/2020 22:40");
+    public static final Notes S_NOTE2 = new Notes("Calvin Klein", "Good Student",
+            "HIGH", "29/03/2020 22:40");
+
     /* This sections prepares data for testing of Notes */
     public static final Notes NOTE1 = new Notes("Simon Lam", "Good Student",
             "LOW", "29/03/2020 22:40");
