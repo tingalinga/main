@@ -11,11 +11,6 @@ TeaPet is a personal manager application for primary school form teachers. The u
 a Command Line Interface (CLI) along with a Graphical User Interface (GUI) created with JavaFX. The application is
 written in Java.
 
-The following are icons and symbols that I will be using for the Project Portfolio:
-
-`This indicates a component, class or object in the architecture of the application.`
-
-*This indicates important text*.
 
 == Summary of contributions
 

@@ -11,7 +11,16 @@ import seedu.address.model.Model;
  */
 public class EventDisplayCommand extends EventCommand {
 
-    public static final String MESSAGE_SUCCESS = "This is your schedule for the week";
+    public static final String MESSAGE_SUCCESS = "This is your schedule for the week.\n"
+            + "[HELP ON SCHEDULE COMMANDS]\n"
+            +  "ADD SCHEDULE: scheduler add eventName/NAME startDateTime/STARTDATETIME endDateTime/ENDDATETIME "
+            + "recur/RECUR color/COLOR \n"
+            + "EDIT SCHEDULE: schedule edit INDEX schedule edit eventName/[EVENTNAME] startDateTime/[STARTDATETIME]"
+            + "endDateTime/[ENDDATETIME], recur/[RECUR], color/[COLOR] \n"
+            + "DELETE SCHEDULE: schedule delete INDEX \n"
+            + "GET SCHEDULE INDEX: schedule index get EVENTNAME \n"
+            + "VIEW SPECIFIC WEEK: schedule view mode/MODE date/DATE";
+
 
     /**
      * Creates an EventDisplayCommand.
