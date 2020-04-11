@@ -1,7 +1,6 @@
 package seedu.address.model.admin;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
