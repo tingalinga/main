@@ -6,20 +6,49 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface TeaPetStorage <<Interface>>
+Interface AcademicsStorage <<Interface>>
+Interface AdminStorage <<Interface>>
+Interface NotesManagerStorage <<Interface>>
+Interface EventStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonTeaPetStorage
+
+Class JsonAcademicsStorage
+Class JsonAdminStorage
+Class JsonNotesManagerStorage
+Class JsonEventStorage
 
 StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> UserPrefsStorage
+StorageManager o--> TeaPetStorage
+StorageManager o--> AcademicsStorage
+StorageManager o--> AdminStorage
+StorageManager o--> NotesManagerStorage
+StorageManager o--> EventStorage
 
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage ..> JsonAdaptedTag
-JsonSerializableAddressBookStorage ..> JsonAdaptedNotes
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+
+JsonTeaPetStorage .up.|> TeaPetStorage
+JsonTeaPetStorage .down.> JsonSerializableTeaPet
+JsonSerializableTeaPet --> "*" JsonAdaptedStudent
+
+JsonAcademicsStorage .up.|> AcademicsStorage
+JsonAcademicsStorage .down.> JsonSerializableAcademics
+JsonSerializableAcademics --> "*" JsonAdaptedAssessment
+
+JsonAdminStorage .up.|> AdminStorage
+JsonAdminStorage .down.> JsonSerializableAdmin
+JsonSerializableAdmin --> "*" JsonAdaptedDate
+
+JsonNotesManagerStorage .up.|> NotesManagerStorage
+JsonNotesManagerStorage .down.> JsonSerializableNotesManager
+JsonSerializableNotesManager --> "*" JsonAdaptedNotes
+
+JsonEventStorage .up.|> EventStorage
+JsonEventStorage .down.> JsonSerializableEvents
+JsonSerializableEvents --> "*" JsonAdaptedEvent
 
 @enduml

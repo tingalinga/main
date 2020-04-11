@@ -29,7 +29,7 @@ public class NotesFilterCommandParserTest {
         NotesFilterCommandParser secondParser = new NotesFilterCommandParser();
 
         //same object -> return true
-        assertTrue(firstParser.equals(secondParser));
+        assertTrue(firstParser.equals(firstParser));
 
         //same class -> return true
         assertTrue(firstParser.equals(secondParser));

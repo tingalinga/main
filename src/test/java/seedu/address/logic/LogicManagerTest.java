@@ -79,6 +79,10 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> af301185923606987831fa535f8a2884e69f479b
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTeaPetIoExceptionThrowingStub and JsonAcademicsIoExceptionThrowingStub

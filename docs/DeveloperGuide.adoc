@@ -140,7 +140,7 @@ The rest of the App consists of four components.
 Each of the four components
 
 * Defines its _API_ in an `interface` with the same name as the Component.
-* Exposes its functionality using a `{Component Name}Manager` class.
+* Exposes its functionality using a `{Component Name} Manager` class.
 
 For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
@@ -150,9 +150,9 @@ image::LogicClassDiagram.png[]
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `{Entity Name} delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `{Entity Name} student delete 1`.
 
-.Component interactions for `delete 1` command
+.Component interactions for `student delete 1` command
 image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
@@ -166,7 +166,7 @@ image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `NotesPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `NotesPanel`, `StatusBarFooter` and `HelpWindow`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -189,22 +189,22 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 .  `Logic` uses the `TeaPetParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a student).
-.  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`,and then displayed to the user.
-.  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help (for commands) and toggling of view between `default`, `detailed` and `admin`.
+.  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`,and then displayed to the user.
+.  In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help (for commands) and toggling of view between `student default`, `student detailed`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("student delete 1")` API call.
 
-.Interactions Inside the Logic Component for the `delete 1` Command
+.Interactions Inside the Logic Component for the `student delete 1` Command
 image::DeleteSequenceDiagram.png[]
 
-NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `StudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 [[Design-Model]]
 === Model component
 
 This section describes the high-level software structure of TeaPet's Model Component.
 
-.Structure of the Model Component using `Student` as an example.
+.Structure of the Model Component with `Student` class as a detailed example.
 image::ModelClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
@@ -213,8 +213,8 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the data of different Entities.
-* stores the Notes data.
-* exposes an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores in-memory data of Students, Admin, Academics, Notes and Events.
+* exposes multiple unmodifiable `ObservableLists` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the lists change.
 * does not depend on any of the other three components.
 
 
@@ -232,7 +232,7 @@ The `Storage` component,
 
 * converts Model objects into savable data in JSON-format and vice versa.
 * can save `UserPref` objects in json format and read it back.
-* can store `Student`, `Academics` and `PersonalSchedule` data in a single json file, which can be read.
+* can store `Students`, `Admin`, `Academics`, `Notes` and `Events` in a several json files, which can be read.
 
 [[Design-Commons]]
 === Common classes
@@ -294,7 +294,10 @@ either a unknown command or wrong format error message will be displayed.
 
 4. The newly created student is added to the `UniqueStudentList`.
 
+The following activity diagram summarizes what happens when a user executes the `student add` command:
 
+.Sequence Diagram for StudentAddCommand
+image::StudentAddActivityDiagram.png[]
 
 
 ==== Student Edit command
@@ -360,8 +363,9 @@ method.
 For example, `student add/edit/delete/find/refresh`.
 
 * *Alternatives Considered:*
-** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
-and will make inputs more tedious and confusing for users.
+** We considered using a whole new command, `student refresh` to solely refresh and update images of the students. However, we realised
+that it would be more convenient for the user if we just add this functionality into the `student` command instead as it is able to
+both update the images and display the student list concurrently.
 
 ===== Aspect: Command Length:
 * *Current Implementation:*
@@ -377,25 +381,23 @@ the user expereince as the command will be too long to type.
 === Import image feature
 
 This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
-This feature utilises the `StudentRefreshCommand` class to update the images of students.
+This feature utilises the `StudentCard#updateImage` method to update the images of students.
 
 The feature comprises of one command namely,
-* `StudentRefreshCommand` - Refreshes the student list to show updated images of students.
+* `DefaultStudentDisplayCommand` - Refreshes the student list to show updated images of students and displays the student list.
 
 This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
 
+(To Change)
+
 .Sequence Diagram for StudentRefreshCommand
-image::refresh_sequence_diagram.png[]
-
-{nbsp} +
-
-==== Refresh command
+image::ImportImage.png[]
 
 ===== Implementation
 
-The following is a detailed explanation of the operations which `StudentRefreshCommand` performs.
+The following is a detailed explanation of the operations which `DefaultStudentDisplayCommand` performs.
 
-1. After the successful parsing of user input, the `StudentRefreshCommand#execute(Model model)` method is called. It does not
+1. After the successful parsing of user input, the `DefaultStudentDisplayCommand#execute(Model model)` method is called. It does not
 require validation as it does not write into the student list.
 
 2. The `StudentCardDefault#updateImage` method is then called which checks the image folder for the required png file and updates
@@ -405,14 +407,24 @@ The png file must match the name of the student and must be in all lower case wi
 
 3. If any view other than the student list view is showing on the `MainWindow`, the `MainWindow#handleDefaultStudent()` method
 will be called and the student list is now visible on the `MainWindow`.
-[NOTE]
-In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
-prints its contents on the Command Result Box.
 
-The following activity diagram summarizes what happens when a user executes the `student refresh` command:
+The following activity diagram summarizes what happens when a user executes the `student` command:
 
 .Activity Diagram for StudentRefreshCommand
-image::activity_diagram_refresh.png[]
+image::ImportImageSequenceDiagram.png[]
+
+{nbsp} +
+
+===== Design Considerations
+===== Aspect: Command Syntax
+* *Current Implementation:*
+
+** Current implementation of the feature follows just the command word syntax
+For example, `student`.
+
+* *Alternatives Considered:*
+** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
+and will make inputs more tedious and confusing for users.
 
 {nbsp} +
 
@@ -743,7 +755,7 @@ from other layers of the application.
 The following activity diagram summarizes what happens when a user executes the `schedule add` command:
 
 .Schedule Add Activity Diagram
-image::event_add_activity_diagram.png[]
+image::ScheduleAddActivityDiagram.png[]
 
 ===== Design Considerations
 
@@ -1367,3 +1379,78 @@ Expected: An error message is shown due to invalid recurrence type.
 .. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
 color/5`
 Expected: An error message is shown due to the invalid date time range.
+
+=== Notes
+
+[NOTE]
+In order to add or edit a specific note belonging to a student, the student must first be in the class-list. In order for optimal
+manual testing, please create the student first before creating a note which belongs to him/her. You can refer to <<Feature-Add>> to
+find out more on how to add a student to the class-list.
+
+[TIP]
+Delete all previous notes. Be sure to create two students named *Kelvin Klein* and *Jane Khoo* in the class-list. Conduct these tests sequentially
+from first to last, for the most effective testing experience.
+
+. Adding a note to the notes panel.
+
+.. Test case: `notes add name/Kelvin Klein c/Reminder to print his testimonial pr/HIGH` +
+Expected: New note added to the notes panel. This note should be red (high priority) in colour, belonging to Kelvin Klein. The timestamp
+in the note should be the current date and time.
+
+.. Test case: `notes add name/Kelvin Klein c/Kelvin was late for class for the second day in a row. pr/LOW` +
+Expected: New note added to the notes panel. This note should be yellow (low priority) in colour, belonging to Kelvin Klein. The timestamp
+in the note should be the current date and time.
+
+.. Test case: `notes add name/Jane Khoo c/Jane left school for an interview. pr/MEDIUM` +
+Expected: New note added to the notes panel. This note should be orange (medium priority) in colour, belonging to Jane Khoo. The timestamp
+in the note should be the current date and time.
+
+.. Test case: `notes add name/Kelvin_Klein_ c/He exemplified an improvement in behaviour pr/LOW` +
+   Expected: An error message is shown as the student name should be alpha-numeric.
+
+.. Test case: `notes add name/Kelvin Klein c/He exemplified an improvement in behaviour pr/Not High` +
+   Expected: An error message is shown as priority indicated must be either *LOW*, *MEDIUM* or *HIGH*, case-insensitive.
+
+
+. Editing a note in the notes panel.
+
+.. Test case: `notes edit 1 c/Reminder to print his testimonial and gradebook` +
+Expected: First note in the panel is updated with new content. Only the content should be modified, and nothing else.
+
+.. Test case: `notes edit 1 name/Jane Khoo c/Reminder to print her testimonial and gradebook` +
+Expected: First note in the panel is updated with new name and content. Note should reflect student Jane Khoo's name,
+with modfied content. Nothing else should be different.
+
+
+.. Test case: `notes edit 1 pr/MEDIUM` +
+Expected: First note in the panel is updated new priority. Note colour should change from red to orange.
+
+
+
+. Deleting a note in the notes panel.
+
+.. Test case: `notes delete 1` +
+Expected: First note in the panel should be removed.
+
+.. Test case: `notes delete 0` +
+Expected: An error message is shown as the integer provided must be greater than zero.
+
+.. Test case: `notes delete 4` +
+Expected: An error message is shown as the integer provided as the number of notes in the notes panel is less than 4.
+Integer provided is out of range.
+
+. Filtering the list of notes to search for specific notes.
+
+.. Test case: `notes filter Jane` +
+Expected: Only notes containing the word Jane should be displayed in the notes panel.
+
+.. Test case: `notes filter low` +
+Expected: Only notes containing the word low should be displayed in the notes panel.
+
+. Exporting notes in the notes panel into a .csv file.
+
+.. Test case: `notes export` +
+Expected: A file named studentNotes.csv should be created in the data folder of the same directory in which TeaPet is installed.
+
+.. Test case: `notes export 3` +
+Expected: An error message is shown as there should be no arguments passed into notes export command.
