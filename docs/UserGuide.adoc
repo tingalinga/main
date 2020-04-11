@@ -193,7 +193,7 @@ image::default_display.png[width="790]
 
 ==== Display detailed student view: `student detailed`
 
-Shows a detailed version of the class list with all information.
+Shows a detailed version of the class list with all information.I
 
 *Format:* `student detailed`
 
@@ -754,7 +754,7 @@ TeaPet application
 '''
 
 [[scheduler]]
-=== Personal Scheduler
+=== Personal Scheduler [Done by Simon Lam and Gary Lim]
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
 
