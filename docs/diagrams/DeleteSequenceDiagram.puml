@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TeaPetParser" as TeaPetParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":StudentCommandParser" as StudentCommandParser LOGIC_COLOR
+participant "d:StudentDeleteCommand" as StudentDeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,56 +13,56 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("student delete 1")
 activate LogicManager
 
-LogicManager -> TeaPetParser : parseCommand("delete 1")
+LogicManager -> TeaPetParser : parseCommand("student delete 1")
 activate TeaPetParser
 
-create DeleteCommandParser
-TeaPetParser -> DeleteCommandParser
-activate DeleteCommandParser
+create StudentCommandParser
+TeaPetParser -> StudentCommandParser
+activate StudentCommandParser
 
-DeleteCommandParser --> TeaPetParser
-deactivate DeleteCommandParser
+StudentCommandParser --> TeaPetParser
+deactivate StudentCommandParser
 
-TeaPetParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+TeaPetParser -> StudentCommandParser : parse("1")
+activate StudentCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create StudentDeleteCommand
+StudentCommandParser -> StudentDeleteCommand
+activate StudentDeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+StudentDeleteCommand --> StudentCommandParser : d
+deactivate StudentDeleteCommand
 
-DeleteCommandParser --> TeaPetParser : d
-deactivate DeleteCommandParser
+StudentCommandParser --> TeaPetParser : d
+deactivate StudentCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> TeaPetParser
-destroy DeleteCommandParser
+StudentCommandParser -[hidden]-> TeaPetParser
+destroy StudentCommandParser
 
 TeaPetParser --> LogicManager : d
 deactivate TeaPetParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> StudentDeleteCommand : execute()
+activate StudentDeleteCommand
 
-DeleteCommand -> Model : deleteStudent(1)
+StudentDeleteCommand -> Model : deleteStudent(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> StudentDeleteCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+StudentDeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> StudentDeleteCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+StudentDeleteCommand --> LogicManager : result
+deactivate StudentDeleteCommand
 
 [<--LogicManager
 deactivate LogicManager
