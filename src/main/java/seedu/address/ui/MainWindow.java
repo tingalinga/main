@@ -21,6 +21,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.admin.AdminFetchCommand;
 import seedu.address.logic.commands.admin.AdminSaveCommand;
+import seedu.address.logic.commands.event.EventExportCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.commands.student.DefaultStudentDisplayCommand;
@@ -33,6 +34,7 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.ui.academics.AcademicsExporter;
 import seedu.address.ui.academics.AcademicsPanel;
 import seedu.address.ui.admin.DateListPanel;
+import seedu.address.ui.event.EventExporter;
 import seedu.address.ui.event.SchedulePage;
 import seedu.address.ui.event.SchedulePanel;
 import seedu.address.ui.notes.NotesExporter;
@@ -210,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     *  Handles the Personal Schedule Page
+     *  Handles the Personal Schedule based on the view mode.
      */
     @FXML
     public void handleSchedule() {
@@ -236,6 +238,7 @@ public class MainWindow extends UiPart<Stage> {
         schedulePanel.getRoot().toFront();
         onSchedule();
     }
+
 
 
     void show() {
@@ -396,6 +399,10 @@ public class MainWindow extends UiPart<Stage> {
                 AcademicsExporter academicsExporter = new AcademicsExporter(logic.getFilteredAcademicsList());
                 academicsExporter.saveToCsv();
                 break;
+            case EventExportCommand.MESSAGE_SUCCESS:
+                EventExporter eventExporter = new EventExporter(logic.getVEventHistory());
+                eventExporter.saveToIcs();
+                break;
             default:
                 break;
             }
@@ -445,7 +452,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if ((consoleReply.contains("Deleted Event:"))
                     || (consoleReply.contains("Added Event"))
-                    || (consoleReply.contains("Edited Event:"))
+                    || (consoleReply.contains("Successfully edited Event"))
+                    || (consoleReply.contains("Event found:"))
+                    || (consoleReply.contains("This is the closest event we can find based on what you've entered:"))
                     || (consoleReply.contains("on reference date"))) {
                 handleSchedule();
             }
