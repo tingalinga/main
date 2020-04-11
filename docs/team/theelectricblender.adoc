@@ -83,7 +83,24 @@ it gets too packed.
 Please click https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=TheElectricBlender&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=TheElectricBlender&tabRepo=AY1920S2-CS2103T-W12-2%2Fmain%5Bmaster%5D[here] to see my code contributions dashboard.
 
 === Other contributions
+* Project management:
 
+** Team lead of the project, ensuring everyone is up to date and on the same page for the tasked project.
+** In charge of defining, assigning, and tasking of project tasks.
+** Ensures project deliverables are done on time.
+
+* Documentation:
+** Updated User Guide to include Student, Schedule and Additional features. (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/49[#49], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/216[#216], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/217[#217], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/225[#225], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/242[#242])
+** Updated User Guide with a simple and easy to use Command Summary page.
+** Updated User Guide with a product survey. (https://github.com/AY1920S2-CS2103T-W12-2/main/pull/62[#62])
+** Updated Developer Guide to include Student, Schedule and Additional features. (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/245[#245], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/251[#251])
+
+* Community
+** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-2/main/issues/30[#30], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/66[#66], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/67[#67]
+** Reported bugs and suggestions for other teams in the class: (Examples: https://github.com/TheElectricBlender/ped/issues[PE Dry Run])
+
+* Tools
+** Integrated a Github plugin (Travis) to the team project
 
 == Contributions to the User Guide
 
