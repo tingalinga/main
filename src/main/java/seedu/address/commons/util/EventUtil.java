@@ -91,7 +91,7 @@ public class EventUtil {
         builder.append(startDateTime);
         builder.append("-");
         builder.append(endDateTime);
-        builder.append(".teapethelper");
+        builder.append(".TeaPetHelper");
         return builder.toString();
     }
 
@@ -107,7 +107,7 @@ public class EventUtil {
      * Converts VEvent to string
      */
     public static String vEventToString(VEvent vEvent) {
-        return String.format("Event Name: %s , Start Datetime: %s , End Datetime: %s\n",
+        return String.format("Event Name: %s , Start DateTime: %s , End DateTime: %s\n",
                 vEvent.getSummary().getValue().toString(),
                 vEvent.getDateTimeStart().getValue().toString(),
                 vEvent.getDateTimeEnd().getValue().toString());
@@ -119,7 +119,7 @@ public class EventUtil {
     public static String formatIndexVEventPair(Pair<Index, VEvent> indexVEventPair) {
         Index index = indexVEventPair.getKey();
         VEvent vEvent = indexVEventPair.getValue();
-        return String.format("Index: %d , Event Name: %s , Start Datetime: %s , End Datetime: %s\n",
+        return String.format("Index: %d - Event Name: %s , Start DateTime: %s , End DateTime: %s\n",
                 index.getOneBased(), vEvent.getSummary().getValue().toString(),
                 vEvent.getDateTimeStart().getValue().toString(),
                 vEvent.getDateTimeEnd().getValue().toString());
