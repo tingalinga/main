@@ -1371,3 +1371,78 @@ Expected: An error message is shown due to invalid recurrence type.
 .. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
 color/5`
 Expected: An error message is shown due to the invalid date time range.
+
+=== Notes
+
+[NOTE]
+In order to add or edit a specific note belonging to a student, the student must first be in the class-list. In order for optimal
+manual testing, please create the student first before creating a note which belongs to him/her. You can refer to <<Feature-Add>> to
+find out more on how to add a student to the class-list.
+
+[TIP]
+Delete all previous notes. Be sure to create two students named *Kelvin Klein* and *Jane Khoo* in the class-list. Conduct these tests sequentially
+from first to last, for the most effective testing experience.
+
+. Adding a note to the notes panel.
+
+.. Test case: `notes add name/Kelvin Klein c/Reminder to print his testimonial pr/HIGH` +
+Expected: New note added to the notes panel. This note should be red (high priority) in colour, belonging to Kelvin Klein. The timestamp
+in the note should be the current date and time.
+
+.. Test case: `notes add name/Kelvin Klein c/Kelvin was late for class for the second day in a row. pr/LOW` +
+Expected: New note added to the notes panel. This note should be yellow (low priority) in colour, belonging to Kelvin Klein. The timestamp
+in the note should be the current date and time.
+
+.. Test case: `notes add name/Jane Khoo c/Jane left school for an interview. pr/MEDIUM` +
+Expected: New note added to the notes panel. This note should be orange (medium priority) in colour, belonging to Jane Khoo. The timestamp
+in the note should be the current date and time.
+
+.. Test case: `notes add name/Kelvin_Klein_ c/He exemplified an improvement in behaviour pr/LOW` +
+   Expected: An error message is shown as the student name should be alpha-numeric.
+
+.. Test case: `notes add name/Kelvin Klein c/He exemplified an improvement in behaviour pr/Not High` +
+   Expected: An error message is shown as priority indicated must be either *LOW*, *MEDIUM* or *HIGH*, case-insensitive.
+
+
+. Editing a note in the notes panel.
+
+.. Test case: `notes edit 1 c/Reminder to print his testimonial and gradebook` +
+Expected: First note in the panel is updated with new content. Only the content should be modified, and nothing else.
+
+.. Test case: `notes edit 1 name/Jane Khoo c/Reminder to print her testimonial and gradebook` +
+Expected: First note in the panel is updated with new name and content. Note should reflect student Jane Khoo's name,
+with modfied content. Nothing else should be different.
+
+
+.. Test case: `notes edit 1 pr/MEDIUM` +
+Expected: First note in the panel is updated new priority. Note colour should change from red to orange.
+
+
+
+. Deleting a note in the notes panel.
+
+.. Test case: `notes delete 1` +
+Expected: First note in the panel should be removed.
+
+.. Test case: `notes delete 0` +
+Expected: An error message is shown as the integer provided must be greater than zero.
+
+.. Test case: `notes delete 4` +
+Expected: An error message is shown as the integer provided as the number of notes in the notes panel is less than 4.
+Integer provided is out of range.
+
+. Filtering the list of notes to search for specific notes.
+
+.. Test case: `notes filter Jane` +
+Expected: Only notes containing the word Jane should be displayed in the notes panel.
+
+.. Test case: `notes filter low` +
+Expected: Only notes containing the word low should be displayed in the notes panel.
+
+. Exporting notes in the notes panel into a .csv file.
+
+.. Test case: `notes export` +
+Expected: A file named studentNotes.csv should be created in the data folder of the same directory in which TeaPet is installed.
+
+.. Test case: `notes export 3` +
+Expected: An error message is shown as there should be no arguments passed into notes export command.
