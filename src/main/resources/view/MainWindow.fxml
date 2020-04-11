@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root maximized="true" minHeight="600" minWidth="550" onCloseRequest="#handleExit" title="TeaPet" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maximized="true" minHeight="600" minWidth="1000" onCloseRequest="#handleExit" title="TeaPet" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/teapot_icon.png" />
   </icons>
@@ -60,7 +60,7 @@
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
               <children>
-                <Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-font-style: Trebuchet MS; -fx-text-fill: black;" text="Notes Section:" textFill="WHITE" VBox.vgrow="NEVER" />
+                <Label style="-fx-font-size: 15; -fx-font-weight: bold; -fx-font-family: 'Trebuchet MS'; -fx-text-fill: black;" text="Notes Section:" textFill="WHITE" VBox.vgrow="ALWAYS" />
                 <StackPane fx:id="notesPanelPlaceholder" maxWidth="Infinity" minWidth="300" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
               </children>
             </VBox>

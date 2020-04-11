@@ -16,7 +16,7 @@ public class NotesFilterCommand extends NotesCommand {
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + " "
-            + PREFIX_NOTES_FILTER + " <Keywords(s)>\n"
+            + PREFIX_NOTES_FILTER + " KEYWORD(S)\n"
             + "This command looks for keywords present in Student, "
             + "DateTime, Priority and Content fields";
 

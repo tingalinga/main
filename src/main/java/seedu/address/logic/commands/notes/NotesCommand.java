@@ -28,11 +28,12 @@ public class NotesCommand extends Command {
     //Displays the generic message which describes the Notes features and how to use them.
     public static final String MESSAGE_SUCCESS = "The Column on the right displays all your notes." + '\n'
             + "[HELP ON NOTES COMMANDS]\n"
-            + "ADD NOTE: notes add name/<Name of Student c/<Content> pr/<Priority>\n"
-            + "EDIT NOTE: notes edit name/<Name of Student c/<Content> pr/<Priority>\n"
-            + "DELETE NOTE: notes delete <Index>\n"
-            + "FILTER SEARCH NOTES: notes filter <Keyword(s)>\n"
-            + "EXPORT NOTES: notes export";
+            + "1. Display all Notes: notes\n"
+            + "2. Add Note: notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY\n"
+            + "3. Edit Note: notes edit INDEX name/STUDENT_NAME c/CONTENT pr/PRIORITY\n"
+            + "4. Delete Note: notes delete INDEX\n"
+            + "5. Filter Search Notes: notes filter KEYWORD(S)\n"
+            + "6. Export Notes: notes export";
 
     /**
      * Creates a NotesCommand Instance
