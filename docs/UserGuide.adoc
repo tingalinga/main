@@ -90,9 +90,9 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`student add`**`n/Kelvin Klein  p/9001 5588 e/kelvink@egmail.com a/Toa Payoh Avenue 1, Block 123, #01-01`
+* **`student add`**`name/Kelvin Klein`
 : adds a contact named Kelvin Klein to the Class List.
-* **`student delete`**`3` : deletes the 3rd student shown in the current list of students.
+* `student delete 3` : deletes the 3rd student shown in the current list of students.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -101,7 +101,7 @@ TIP: If you have any questions, please check out our <<FAQ>> section.
 
 === TeaPet's Layout
 
-TeaPet's User Interface can be divided into 5 main components, each peforming specific functionalities.
+TeaPet's User Interface can be divided into 5 main components, each performing specific functionalities.
 
 .User Interface of TeaPet
 image::userguide/TeaPetLayout.png[width="790"]
@@ -173,8 +173,8 @@ Thereafter, you are able to view, update or delete those information of specific
 
 ==== Display default student view: `student`
 
-Syncs the images of students found in the image folder into the student list. TeaPet then displays a summarised list
-of the student details.
+TeaPet syncs the images of students found in the image folder into the student list. More information about updating student
+images can be found <<update-profile,here>>. TeaPet then displays a summarised list of the student details.
 
 *Format:* `student`
 
@@ -189,11 +189,11 @@ of the student details.
     FIND STUDENT: student find NAME
 
 .After using `student` command
-image::default_display.png[width="790]
+image::add_student.png[width="790]
 
 ==== Display detailed student view: `student detailed`
 
-Shows a detailed version of the class list with all information.I
+Shows a detailed version of the class list with all information.
 
 *Format:* `student detailed`
 
@@ -218,18 +218,23 @@ Adds a student into the student list.
 [NOTE]
 The address of student is not restricted as it can be subjective to the student and teacher.
 
+[NOTE]
+Next-of-kin relationships allowed: Father, Mother, Sister, Brother, Grandfather, Grandmother
+
 *Example:*
 
-* `student add name/Jim phone/90045722 email/jim@example.com addr/Bishan St 13 Blk 154 #08-18 tag/monitor nok/James-Father-91234567
+* `student add name/Jim phone/90045722 email/jim@example.com adr/Bishan St 13 Blk 154 #08-18 tag/monitor nok/James-Father-91234567
    temp/36.6 att/Present` +
 Adds a student named Jim into the student list along with his details.
 
-[NOTE]
-Next-of-kin relationships allowed : Father, Mother, Sister, Brother, Grandfather, Grandmother
+
 
 *Expected Outcome:*
 
-    New student added: Jim Phone: 90045722 Email: jim@example.com Address: Bishan St 13 Blk 154 #08-18 Temperature: 36.6 Attendance: Present Tags: [monitor]
+   New student added: Jim Phone: 90045722 Email: jim@example.com Address: Bishan St 13 Blk 154 #08-18 Temperature: 36.6 Attendance: Present NextOfKin: James-Father-91234567 Tags: [monitor]
+
+.After using `student add` command
+image::add_student_jim.png[width="790]
 
 
 ==== Edit Student: `edit`
@@ -267,6 +272,21 @@ Deletes the student and all his personal details from the student list.
 
     Deleted Student: Simon Lam Phone: 90023413 Email: simonlam@example.com Address: Blk 30 Geylang Street 29, #06-40 Temperature: 36.5 Attendance: Sick Remark:  Tags: [Sheares]
 
+==== Clear Student List: `clear`
+
+Clears all data from the student list.
+
+*Format:*
+
+    student clear
+
+*Example:*
+
+    `student clear` Deletes the entire student list
+
+*Expected Outcome:*
+
+    Student list has been cleared!
 
 ==== Find Student: `find`
 
@@ -784,6 +804,8 @@ Adds an event to your personal scheduler.
 NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
 For example, 7th April 2020 10AM will be 2020-04-07T10:00
 
+NOTE: The recurrence type can only be either of these, none, daily or weekly.
+
 NOTE: Events which are further away in the future have a darker color code. This is intentional.
 
 NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
@@ -798,13 +820,13 @@ image::color_code.png[width="790"]
 
 Example:
 
-* *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-07T10:00
-                         endDateTime/2020-04-07T12:00 recur/none color/10`
-Creates a schedule with the title '_Teachers Meeting_' from '_7th Apr 2020, 1000_' to '_7th Apr 2020, 1200_' with no recurrence
-and a color group of '_10_'.
+* *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-02T08:00
+                         endDateTime/2020-04-07T10:00 recur/none color/21`
+Creates a schedule with the title '_Teachers Meeting_' from '_2nd Apr 2020, 0800_' to '_2th Apr 2020, 1000_' with no recurrence
+and a color group of '_21_'.
 
-.Adding a consultation event to the schedule
-image::event_add.png[width="790"]
+.Adding an event to the schedule
+image::schedule_add.png[width="790"]
 
 
 === Additional Features [Done by Simon Lam]
@@ -867,9 +889,6 @@ press your `F1` key to bring up this user guide!
 .Displayed help window
 image::help_window.png[width="790]
 
-==== Various Display Modes
-
-'''
 
 
 [[CommandSummary]]
@@ -885,8 +904,7 @@ Here are the default commands available for use. They do not require prefixes.
 |*Command*|*Format*|*Expected outcome*
 |`help`|`help`|Opens up the User Guide
 |`exit`|`exit`|Safely exits the application
-|`default`|`default`|Displays the default form of student list
-|`detailed`|`detailed`|Displays the detailed details of the class
+|`student`|`student`|Displays the student list
 |`admin`|`admin`|Displays all administrative details of the class
 |`academics`|`academics`|Displays all academic records of the class
 |`notes`|`notes`|Displays all notes of the class
@@ -900,6 +918,8 @@ Here are the commands to manage students. They require the prefix `student`.
 [cols="10%, 45%, 45%"]
 .Student commands of TeaPet
 |===
+|*Command*|*Format*|*Expected outcome*
+|`student detailed`|`student detailed`|Displays the detailed details of the class
 |`student add`|`student add name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [nok/NOK] [temp/TEMPERATURE]
 [att/ATTENDANCE]`|Adds a student into the class with the respective particulars
 |`student edit`|`student edit INDEX [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [nok/NOK] [temp/TEMPERATURE]
@@ -946,6 +966,12 @@ Here are the commands to manage students. They require the prefix `notes`.
 [cols="10%, 45%, 45%"]
 .Notes commands of TeaPet
 |===
+|*Command*|*Format*|*Expected outcome*
+|`notes add`|`notes add name/NAME c/CONTENT pr/PRIORITY| Adds a note into TeaPet.
+|`notes edit`|`notes edit INDEX name/NAME c/CONTENT pr/PRIORITY`|Edits a note in TeaPet.
+|`notes delete`| `notes delete INDEX`|Deletes a note in TeaPet.
+|`notes filter`|`notes filter KEYWORDS`|Displays a list of filtered notes based on specific keywords.
+|`notes export`|`notes export`|Exports all notes in TeaPet into a .csv file
 |===
 
 === Personal Scheduler Commands
@@ -1028,6 +1054,10 @@ Here are the commands to manage students. They require the prefix `schedule`.
 
 |recur/
 |Recurring type
+|<<scheduler, Personal Scheduler>>
+
+|color/
+|Color code
 |<<scheduler, Personal Scheduler>>
 
 |indexGet/

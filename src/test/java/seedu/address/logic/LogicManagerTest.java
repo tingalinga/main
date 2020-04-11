@@ -79,11 +79,6 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = StudentRefreshCommand.COMMAND_WORD + " refresh";
-        assertCommandSuccess(listCommand, StudentRefreshCommand.MESSAGE_SUCCESS, model);
-    }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
