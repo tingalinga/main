@@ -293,7 +293,10 @@ either a unknown command or wrong format error message will be displayed.
 
 4. The newly created student is added to the `UniqueStudentList`.
 
+The following activity diagram summarizes what happens when a user executes the `student add` command:
 
+.Sequence Diagram for StudentAddCommand
+image::StudentAddActivityDiagram.png[]
 
 
 ==== Student Edit command
@@ -359,8 +362,9 @@ method.
 For example, `student add/edit/delete/find/refresh`.
 
 * *Alternatives Considered:*
-** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
-and will make inputs more tedious and confusing for users.
+** We considered using a whole new command, `student refresh` to solely refresh and update images of the students. However, we realised
+that it would be more convenient for the user if we just add this functionality into the `student` command instead as it is able to
+both update the images and display the student list concurrently.
 
 ===== Aspect: Command Length:
 * *Current Implementation:*
@@ -376,25 +380,21 @@ the user expereince as the command will be too long to type.
 === Import image feature
 
 This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
-This feature utilises the `StudentRefreshCommand` class to update the images of students.
+This feature utilises the `StudentCard#updateImage` method to update the images of students.
 
 The feature comprises of one command namely,
-* `StudentRefreshCommand` - Refreshes the student list to show updated images of students.
+* `DefaultStudentDisplayCommand` - Refreshes the student list to show updated images of students and displays the student list.
 
 This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
 
 .Sequence Diagram for StudentRefreshCommand
 image::refresh_sequence_diagram.png[]
 
-{nbsp} +
-
-==== Refresh command
-
 ===== Implementation
 
-The following is a detailed explanation of the operations which `StudentRefreshCommand` performs.
+The following is a detailed explanation of the operations which `DefaultStudentDisplayCommand` performs.
 
-1. After the successful parsing of user input, the `StudentRefreshCommand#execute(Model model)` method is called. It does not
+1. After the successful parsing of user input, the `DefaultStudentDisplayCommand#execute(Model model)` method is called. It does not
 require validation as it does not write into the student list.
 
 2. The `StudentCardDefault#updateImage` method is then called which checks the image folder for the required png file and updates
@@ -404,14 +404,24 @@ The png file must match the name of the student and must be in all lower case wi
 
 3. If any view other than the student list view is showing on the `MainWindow`, the `MainWindow#handleDefaultStudent()` method
 will be called and the student list is now visible on the `MainWindow`.
-[NOTE]
-In this implementation of the application, the list of students is rendered on the GUI of the Main Window. Hence,  the command merely
-prints its contents on the Command Result Box.
 
-The following activity diagram summarizes what happens when a user executes the `student refresh` command:
+The following activity diagram summarizes what happens when a user executes the `student` command:
 
 .Activity Diagram for StudentRefreshCommand
-image::activity_diagram_refresh.png[]
+image::ImportImageSequenceDiagram.png[]
+
+{nbsp} +
+
+===== Design Considerations
+===== Aspect: Command Syntax
+* *Current Implementation:*
+
+** Current implementation of the feature follows just the command word syntax
+For example, `student`.
+
+* *Alternatives Considered:*
+** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
+and will make inputs more tedious and confusing for users.
 
 {nbsp} +
 
@@ -938,7 +948,7 @@ from other layers of the application.
 The following activity diagram summarizes what happens when a user executes the `schedule add` command:
 
 .Schedule Add Activity Diagram
-image::event_add_activity_diagram.png[]
+image::ScheduleAddActivityDiagram.png[]
 
 ===== Design Considerations
 
