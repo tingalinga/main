@@ -64,6 +64,8 @@ public class AssessmentCardReport extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
+
+        // tags
         if (assessment.getType().equals("homework")) {
             tags.getChildren().add(new Label("Homework"));
         } else if (assessment.getType().equals("exam")) {
@@ -76,14 +78,15 @@ public class AssessmentCardReport extends UiPart<Region> {
             tags.getChildren().add(new Label("Completed Marking"));
         }
 
+        // submissions & marking
         submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());
         markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
                 + " / " + assessment.getSubmissionTracker().size());
 
         // statistics
-        median.setText("Median Score: " + assessment.medianScore());
-        average.setText("Average Score: " + assessment.averageScore());
+        median.setText("Median Score: " + String.format("%.1f", assessment.medianScore()));
+        average.setText("Average Score: " + String.format("%.1f", assessment.averageScore()));
 
         // submissions panel
         ObservableList<Submission> submissionsList =
