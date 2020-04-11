@@ -443,6 +443,11 @@ public class StudentAddCommandTest {
         public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
