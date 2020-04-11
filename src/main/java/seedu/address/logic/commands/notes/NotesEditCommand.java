@@ -27,9 +27,9 @@ public class NotesEditCommand extends NotesCommand {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + " "
             + PREFIX_NOTES_EDIT + " "
-            + "<Index> "
-            + PREFIX_NOTES_STUDENT + "<Updated Student> "
-            + PREFIX_NOTES_CONTENT + "<Updated Content of Note> "
+            + "INDEX "
+            + PREFIX_NOTES_STUDENT + "UPDATED_STUDENT_NAME "
+            + PREFIX_NOTES_CONTENT + "UPDATED_CONTENT "
             + PREFIX_NOTES_PRIORITY + "<HIGH/MEDIUM/LOW>";
 
     public static final String MESSAGE_SUCCESS = "Student's Note Edited. Wonderful!\n"

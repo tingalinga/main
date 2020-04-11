@@ -25,7 +25,7 @@ public class NotesAddCommand extends NotesCommand {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + " "
             + PREFIX_NOTES_ADD + " "
-            + PREFIX_NOTES_STUDENT + "<Name of Student> " + PREFIX_NOTES_CONTENT + "<Content of Note> "
+            + PREFIX_NOTES_STUDENT + "STUDENT_NAME " + PREFIX_NOTES_CONTENT + "CONTENT "
             + PREFIX_NOTES_PRIORITY + "<HIGH/MEDIUM/LOW>";
 
     public static final String MESSAGE_SUCCESS = "New Student Note added! Wonderful!\n"
