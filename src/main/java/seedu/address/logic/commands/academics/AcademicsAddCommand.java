@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 
 import java.util.List;
 
@@ -52,7 +51,6 @@ public class AcademicsAddCommand extends AcademicsCommand {
         List<Student> lastShownList = model.getFilteredStudentList();
         toAdd.setSubmissions(lastShownList);
         model.addAssessment(toAdd);
-        model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

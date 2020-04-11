@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Academics {
+Interface ReadOnlyAcademics <<Interface>>
+Class Academics
+Class ReadOnlyAcademics
+Academics .left.|> ReadOnlyAcademics
+
+Package Assessment  {
+Class UniqueAssessmentList
+Class AssessmentComparator
+Class Assessment
+Assessment *--> AssessmentDescription
+Assessment *--> AssessmentType
+Assessment *--> AssessmentDate
+Assessment *--> AssessmentSubmissionTracker
+
+Package Submission {
+Class Submission
+AssessmentSubmissionTracker o--> "*" Submission
+Submission *--> SubmissionStudentName
+Submission *--> SubmissionSubmitted
+Submission *--> SubmissionMarked
+Submission *--> SubmissionScore
+}
+
+Academics *--> "1" UniqueAssessmentList
+UniqueAssessmentList o--> "*" Assessment
+
+@enduml

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -88,7 +87,6 @@ public class AcademicsMarkCommand extends AcademicsCommand {
         }
 
         model.markAssessment(assessment, submissions);
-        model.updateFilteredAcademicsList(PREDICATE_SHOW_ALL_ASSESSMENTS);
         return new CommandResult(MESSAGE_SUCCESS + formatStudents());
     }
 

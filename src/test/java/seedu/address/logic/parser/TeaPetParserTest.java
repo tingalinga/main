@@ -20,7 +20,6 @@ import seedu.address.logic.commands.student.StudentClearCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentFindCommand;
-import seedu.address.logic.commands.student.StudentRefreshCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
