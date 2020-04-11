@@ -33,7 +33,7 @@ public class NotesAddCommandParserTest {
         NotesAddCommandParser secondParser = new NotesAddCommandParser();
 
         //same object -> return true
-        assertTrue(firstParser.equals(secondParser));
+        assertTrue(firstParser.equals(firstParser));
 
         //same class -> return true
         assertTrue(firstParser.equals(secondParser));
