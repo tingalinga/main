@@ -11,7 +11,13 @@ import seedu.address.model.Model;
  */
 public class AdminDisplayCommand extends AdminCommand {
 
-    public static final String MESSAGE_SUCCESS = "The Student list now displays last updated ADMIN details";
+    public static final String MESSAGE_SUCCESS = "The Student list now displays last updated ADMIN details.\n"
+                                                  + "[HELP ON ADMIN COMMANDS]\n"
+                                                  + "SAVE DATE: admin save\n"
+                                                  + "SHOW DATES: admin dates\n"
+                                                  + "DELETE DATE: admin delete YYYY-MM-DD\n"
+                                                  + "FETCH DATE: admin fetch YYYY-MM-DD";
+
 
     /**
      * Creates an AdminDisplayCommand.

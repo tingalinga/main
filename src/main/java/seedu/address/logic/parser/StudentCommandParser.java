@@ -83,10 +83,6 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return findCommand(argMultimap);
         } else if (argMultimap.getValue(PREFIX_CLEAR).isPresent()) {
             return clearCommand();
-        } else if (argMultimap.getValue(PREFIX_REFRESH).isPresent()) {
-            return refreshCommand();
-        } else if (argMultimap.getValue(PREFIX_DEFAULT).isPresent()) {
-            return defaultDisplayCommand();
         } else if (argMultimap.getValue(PREFIX_DETAILED).isPresent()) {
             return detailedDisplayCommand();
         } else {

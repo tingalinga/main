@@ -16,7 +16,7 @@ public class Messages {
 
     /* Academics Messages */
     public static final String MESSAGE_INVALID_ASSESSMENT_DISPLAYED_INDEX = "The assessment index provided is invalid";
-    public static final String MESSAGE_INVALID_ASSESSMENT_TYPE = "Invalid assessment type!";
+    public static final String MESSAGE_INVALID_ASSESSMENT_TYPE = "Invalid assessment type! Only homework OR exam.";
     public static final String MESSAGE_INVALID_STUDENT_SUBMISSION = "Invalid student!";
     public static final String MESSAGE_INVALID_MARKS_SUBMISSION =
             "Invalid score! Score must be from 0 to 100 inclusive.";

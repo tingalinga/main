@@ -3,48 +3,104 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: TeaPet
-
----
+{nbsp} +
 
 == Overview
-
+---
 TeaPet is a personal manager application for primary school form teachers. The user interacts with it via
 a Command Line Interface (CLI) along with a Graphical User Interface (GUI) created with JavaFX. The application is
 written in Java.
 
+The following are icons and symbols that I will be using for the Project Portfolio:
+
+`This indicates a component, class or object in the architecture of the application.`
+
+*This indicates important text*.
+
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+This section entails a summary of my specific enhancements, code contributions and other helpful increments towards the TeaPet
+application.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+I implemented the student particulars feature, update student image feature, and part of the personal scheduler feature, which inclide:
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
-* *Other contributions*:
+=== Enhancements
 
-** Project management:
-*** Git master of the project. Managed all the pull requests, ensuring there are no merge conflicts, and helped my team members with git related issues.
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+== Student particulars
 
-_{you can add/remove categories in the list above}_
+=== Student Creation and Deletion
+
+* *What it does:* Users are able to add details of their students into the application. Students are created by specifying their
+full names at the point of their creation. Additional details such as phone number, email, address, temperature and NOK details can be stored
+in the application as well.
+
+* *Justification:* Teachers usually have many students to spend their attention on, and having physical copies of a whole bunch
+of data can be a hassle. With TeaPet, teachers can now enjoy the luxury of keeping track of all necessary details of their students
+with just their laptop. There may also be a possibility where a teacher no longer teaches a student. Therefore, TeaPet
+provides the functionality of removing students whom they no longer teach.
+
+* *Highlights:* This enhancement allows the user to leave optional data unfilled. It might be quite difficult for teachers
+to immediately gather all necessary details from students such as NOK particulars. Therefore, TeaPet allows the creation of students
+to leave in empty optional fields. The only compulsory field is the name of the student.
+
+=== Student editing
+
+* *What it does:* Users are able to edit student details of students in the student list.
+
+* *Justification:* There is always a possibility for teachers to key in information wrongly. Therefore, instead of
+removing the student and creating a new one, TeaPet provides the functionality to simply edit the details of a student within
+the student list.
+
+=== Update Student Image
+
+* *What it does:* Users are able to add in pictures of students into the student list.
+
+* *Justification:* As mentioned, teachers usually have a large class of students and it may be quite challenging to remember
+each of their name. Hence, TeaPet provides the functionality to update images of your students. This allows teachers to identify
+students base of their pictures for easier recognition in classrooms, even if its their first few times meeting them.
+
+
+== Personal Scheduler
+
+=== Event Creation
+
+* *What it does:* Users are able to create events and add them into their personal scheduler. These events are created
+by specifying the event name, start time, end time.
+
+* *Justification:* Teachers are always extremely busy and have many activities to attend. Some of which are teaching classes,
+meetings with teachers, meeting with parents, consultations etc. I wanted to make a feature which are able to manage the
+time of teachers effectively, both inside and outside of classrooms.
+
+* *Highlights:* The events can be set to recur weekly, daily, or not at all, which
+reduces the hassle of re-typing in repeated commands if they have to take part in a particular event everyday. The events
+can also be color coded by users such that they can easily identify and categorise them in their personal schedule if
+it gets too packed.
+
+{nbsp} +
+
+==== Code Contributed
+Please click https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=TheElectricBlender&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=TheElectricBlender&tabRepo=AY1920S2-CS2103T-W12-2%2Fmain%5Bmaster%5D[here] to see my code contributions dashboard.
+
+=== Other contributions
+* Project management:
+
+** Team lead of the project, ensuring everyone is up to date and on the same page for the tasked project.
+** In charge of defining, assigning, and tasking of project tasks.
+** Ensures project deliverables are done on time.
+
+* Documentation:
+** Updated User Guide to include Student, Schedule and Additional features. (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/49[#49], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/216[#216], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/217[#217], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/225[#225], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/242[#242])
+** Updated User Guide with a simple and easy to use Command Summary page.
+** Updated User Guide with a product survey. (https://github.com/AY1920S2-CS2103T-W12-2/main/pull/62[#62])
+** Updated Developer Guide to include Student, Schedule and Additional features. (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/245[#245], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/251[#251])
+
+* Community
+** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-2/main/issues/30[#30], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/66[#66], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/67[#67]
+** Reported bugs and suggestions for other teams in the class: (Examples: https://github.com/TheElectricBlender/ped/issues[PE Dry Run])
+
+* Tools
+** Integrated a Github plugin (Travis) to the team project
 
 == Contributions to the User Guide
 

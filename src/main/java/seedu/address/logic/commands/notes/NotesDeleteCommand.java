@@ -20,7 +20,7 @@ public class NotesDeleteCommand extends NotesCommand {
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + " "
-            + PREFIX_NOTES_DELETE + " <Index>";
+            + PREFIX_NOTES_DELETE + " INDEX";
 
     public static final String MESSAGE_SUCCESS = "Student Note deleted.\n"
             + "%1$s";

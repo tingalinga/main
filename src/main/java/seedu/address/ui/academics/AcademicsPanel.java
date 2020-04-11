@@ -32,13 +32,9 @@ public class AcademicsPanel extends UiPart<Region> {
         assessmentListView.setItems(assessmentList);
         switch (type) {
         case "all":
-            assessmentListView.setCellFactory(listView -> new AssessmentListViewCell());
-            break;
         case "homework":
-            assessmentListView.setCellFactory(listView -> new AssessmentListViewCellHomework());
-            break;
         case "exam":
-            assessmentListView.setCellFactory(listView -> new AssessmentListViewCellExam());
+            assessmentListView.setCellFactory(listView -> new AssessmentListViewCell());
             break;
         case "report":
             assessmentListView.setCellFactory(listView -> new AssessmentListViewCellReport());
@@ -62,40 +58,6 @@ public class AcademicsPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new AssessmentCard(assessment, getIndex() + 1).getRoot());
-            }
-        }
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Assessment} using an {@code AssessmentCard}.
-     */
-    class AssessmentListViewCellHomework extends ListCell<Assessment> {
-        @Override
-        protected void updateItem(Assessment assessment, boolean empty) {
-            super.updateItem(assessment, empty);
-
-            if (empty || assessment == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new AssessmentCardHomework(assessment, getIndex() + 1).getRoot());
-            }
-        }
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Assessment} using an {@code AssessmentCard}.
-     */
-    class AssessmentListViewCellExam extends ListCell<Assessment> {
-        @Override
-        protected void updateItem(Assessment assessment, boolean empty) {
-            super.updateItem(assessment, empty);
-
-            if (empty || assessment == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new AssessmentCardExam(assessment, getIndex() + 1).getRoot());
             }
         }
     }

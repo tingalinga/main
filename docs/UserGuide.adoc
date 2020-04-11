@@ -167,26 +167,33 @@ get started with them.
 
 
 [[particulars]]
-=== Student Particulars
+=== Student Particulars [Done by Simon Lam]
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
 Thereafter, you are able to view, update or delete those information of specific students when deemed necessary.
 
-==== Display default student view: `student default`
+==== Display default student view: `student`
 
-Shows a summarised version of the class list with important information only.
+Syncs the images of students found in the image folder into the student list. TeaPet then displays a summarised list
+of the student details.
 
-*Format:* `student default`
+*Format:* `student`
 
 *Expected Outcome:*
 
     The student list now displays DEFAULT details.
+    [HELP ON STUDENT COMMANDS]
+    DISPLAY DETAILED LIST: student detailed
+    ADD STUDENT: name/NAME phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
+    EDIT STUDENT: student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
+    DELETE STUDENT: student delete INDEX
+    FIND STUDENT: student find NAME
 
-.After using `student default` command
+.After using `student` command
 image::default_display.png[width="790]
 
 ==== Display detailed student view: `student detailed`
 
-Shows a detailed version of the class list with all information.
+Shows a detailed version of the class list with all information.I
 
 *Format:* `student detailed`
 
@@ -203,17 +210,22 @@ Adds a student into the student list.
 
 *Format:*
 
-    student add name/NAME [phone/PHONE_NUMBER] [email/EMAIL] [adr/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
-    [temp/TEMPERATURE] [att/ATTENDANCE]
+    student add name/NAME phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
 
 * Adds a new student with the given attributes.
 * The student name *cannot be empty*.
 
+[NOTE]
+The address of student is not restricted as it can be subjective to the student and teacher.
+
 *Example:*
 
-* `student add n/Jim p/90045722 e/jim@example.com a/Bishan St 13 Blk 154 #08-18 t/monitor nok/James-Father-91234567
+* `student add name/Jim phone/90045722 email/jim@example.com addr/Bishan St 13 Blk 154 #08-18 tag/monitor nok/James-Father-91234567
    temp/36.6 att/Present` +
 Adds a student named Jim into the student list along with his details.
+
+[NOTE]
+Next-of-kin relationships allowed : Father, Mother, Sister, Brother, Grandfather, Grandmother
 
 *Expected Outcome:*
 
@@ -226,12 +238,11 @@ Edits personal details of students.
 
 *Format:*
 
-    student edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [nok/NAME-RELATIONSHIP-PHONE_NUMBER]
-    [temp/TEMPERATURE] [att/ATTENDANCE]
+    student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
 
 *Example:*
 
-* `student edit 1 p/90023413` +
+* `student edit 1 phone/90023413` +
 Edits the student phone number in index 1 to a new phone number.
 
 *Expected Outcome:*
@@ -746,11 +757,11 @@ TeaPet application
 '''
 
 [[scheduler]]
-=== Personal Scheduler
+=== Personal Scheduler [Done by Simon Lam and Gary Lim]
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
 
-==== Display your scheduler: `schedule`
+==== Display your scheduler: `schedule` [Done by Simon Lam]
 
 Displays your schedule for the current week.
 
@@ -764,18 +775,19 @@ Displays your schedule for the current week.
 image::display_schedule.png[width="790"]
 
 
-==== Creating a schedule: `add`
+==== Creating a schedule: `add` [Done by Simon Lam]
 
 Adds an event to your personal scheduler.
 
 *Format:* `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
 
-NOTE: All parameters are required.
-
 NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
 For example, 7th April 2020 10AM will be 2020-04-07T10:00
 
 NOTE: Events which are further away in the future have a darker color code. This is intentional.
+
+NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
+which uses simlar prefixes as well.
 
 TIP: Color group is from 0 to 23 inclusive. +
 
@@ -795,7 +807,7 @@ and a color group of '_10_'.
 image::event_add.png[width="790"]
 
 
-=== Additional Features
+=== Additional Features [Done by Simon Lam]
 
 
 //tag::update-profile[]
@@ -820,12 +832,15 @@ NOTE: The filename of your image must of this format: +
 4. File is in .png format. +
 For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
 
+TIP: For ideal optimization of the image, its dimensions for its length and width should be roughly equal.
+
 .Dragging png file into image folder
 image::images_in_folder.png[width="790"]
 
 {nbsp} +
 
-*Step 3*. Type in the `student refresh` command in the user interface. Now you can see your students pictures in your student list!
+*Step 3*. Type in the `student` command in the user interface. TeaPet will update the images and
+now you can see pictures of your students in your student list!
 
 
 .Before using the refresh command

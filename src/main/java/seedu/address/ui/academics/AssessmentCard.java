@@ -2,11 +2,8 @@ package seedu.address.ui.academics;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.Iterator;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -15,9 +12,6 @@ import javafx.scene.layout.Region;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.academics.Assessment;
-import seedu.address.model.academics.Exam;
-import seedu.address.model.academics.Homework;
-import seedu.address.model.academics.Submission;
 import seedu.address.ui.UiPart;
 
 /**
@@ -61,11 +55,13 @@ public class AssessmentCard extends UiPart<Region> {
         this.assessment = assessment;
         id.setText(displayedIndex + ". ");
         description.setText(assessment.getDescription());
-        if (assessment instanceof Homework) {
+
+        // tags
+        if (assessment.getType().equals("homework")) {
             tags.getChildren().add(new Label("Homework"));
             date.setText("Deadline: "
                     + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
-        } else if (assessment instanceof Exam) {
+        } else if (assessment.getType().equals("exam")) {
             tags.getChildren().add(new Label("Exam"));
             date.setText("Exam Date: "
                     + assessment.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)));
@@ -76,20 +72,11 @@ public class AssessmentCard extends UiPart<Region> {
         if (assessment.getSubmissionTracker().size() == assessment.noOfMarkedSubmissions()) {
             tags.getChildren().add(new Label("Completed Marking"));
         }
-        int submitted = 0;
-        int marked = 0;
-        ObservableList<Submission> submissionsList =
-                FXCollections.observableArrayList(assessment.getSubmissionTracker());
 
-        Iterator<Submission> iterator = submissionsList.iterator();
-        while (iterator.hasNext()) {
-            Submission next = iterator.next();
-            submitted = next.hasSubmitted() ? submitted + 1 : submitted;
-            marked = next.isMarked() ? marked + 1 : marked;
-        }
-        submissionTracker.setText("Submissions: " + submitted
+        // submissions & marking
+        submissionTracker.setText("Submissions: " + assessment.noOfSubmittedStudents()
                 + " / " + assessment.getSubmissionTracker().size());
-        markingTracker.setText("Marked: " + marked
+        markingTracker.setText("Marked: " + assessment.noOfMarkedSubmissions()
                 + " / " + assessment.getSubmissionTracker().size());
     }
 

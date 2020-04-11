@@ -29,11 +29,14 @@ public class NameTest {
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("3")); // only numeric character
         assertFalse(Name.isValidName("3dward")); // only alphanumeric character
+        assertFalse(Name.isValidName("@rhdoo")); // only alphabets and disallowed symbols
         assertFalse(Name.isValidName("3@")); // only numeric and punctuation characters
+
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("peter-jack")); // alphabets with punctuations
-        assertTrue(Name.isValidName("Capital@Tan")); // with capital letters
+        assertTrue(Name.isValidName("peter/jack")); // alphabets with punctuations
+        assertTrue(Name.isValidName("Capital.Tan")); // with capital letters
+        assertTrue(Name.isValidName("peter,jack"));
     }
 }
