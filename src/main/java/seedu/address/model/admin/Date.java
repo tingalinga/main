@@ -1,6 +1,8 @@
 package seedu.address.model.admin;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.model.student.Student;
@@ -64,5 +66,15 @@ public class Date {
             return false;
         }
         return this.getDate().toString().equals(((Date) o).getDate().toString());
+    }
+}
+
+/**
+ * Comparator class for dates.
+ */
+class DateComparator implements Comparator<Date> {
+    @Override
+    public int compare(Date a1, Date a2) {
+        return a1.getDate().compareTo(a2.getDate());
     }
 }

@@ -39,6 +39,7 @@ Now, editing one field of the student still updates that specific field, but the
 *** Helped teammates with testing errors.
 *** Explained to teammates the flow of AB3 to better help them understand the code and therefore aiding them in implementing their own features.
 ** Enhancements to existing features:
+*** Sorted the student list in alphabetical order.
 *** Loosened the restrain of tags to allow better flexibility of creating a tag (Pull request https://github.com/AY1920S2-CS2103T-W12-2/main/pull/228/files[#228])
 *** Added new restrains for name to make naming of a student to be more logical (Pull request https://github.com/AY1920S2-CS2103T-W12-2/main/pull/258/files[#258])
 ** Documentation:

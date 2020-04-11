@@ -12,5 +12,4 @@ public interface ReadOnlyAdmin {
      * This list will not contain any duplicate dates.
      */
     ObservableList<Date> getDateList();
-
 }
