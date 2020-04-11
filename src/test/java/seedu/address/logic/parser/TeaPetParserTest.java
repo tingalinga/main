@@ -83,11 +83,6 @@ public class TeaPetParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand("student refresh") instanceof StudentRefreshCommand);
-        assertTrue(parser.parseCommand("student refresh 3") instanceof StudentRefreshCommand);
-    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

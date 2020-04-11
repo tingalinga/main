@@ -13,7 +13,7 @@ import seedu.address.model.Model;
  * Displays the schedule of events.
  */
 public class EventDisplayCommand extends EventCommand {
-    
+
     public static final String MESSAGE_SUCCESS = "This is your schedule for the week\n" + MESSAGE_SCHEDULE_HELP;
 
     /**
