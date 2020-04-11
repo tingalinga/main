@@ -193,7 +193,7 @@ image::default_display.png[width="790]
 
 ==== Display detailed student view: `student detailed`
 
-Shows a detailed version of the class list with all information.
+Shows a detailed version of the class list with all information.I
 
 *Format:* `student detailed`
 
@@ -223,6 +223,9 @@ The address of student is not restricted as it can be subjective to the student 
 * `student add name/Jim phone/90045722 email/jim@example.com addr/Bishan St 13 Blk 154 #08-18 tag/monitor nok/James-Father-91234567
    temp/36.6 att/Present` +
 Adds a student named Jim into the student list along with his details.
+
+[NOTE]
+Next-of-kin relationships allowed : Father, Mother, Sister, Brother, Grandfather, Grandmother
 
 *Expected Outcome:*
 
@@ -754,11 +757,11 @@ TeaPet application
 '''
 
 [[scheduler]]
-=== Personal Scheduler
+=== Personal Scheduler [Done by Simon Lam and Gary Lim]
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
 
-==== Display your scheduler: `schedule`
+==== Display your scheduler: `schedule` [Done by Simon Lam]
 
 Displays your schedule for the current week.
 
@@ -772,18 +775,19 @@ Displays your schedule for the current week.
 image::display_schedule.png[width="790"]
 
 
-==== Creating a schedule: `add`
+==== Creating a schedule: `add` [Done by Simon Lam]
 
 Adds an event to your personal scheduler.
 
 *Format:* `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
 
-NOTE: All parameters are required.
-
 NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
 For example, 7th April 2020 10AM will be 2020-04-07T10:00
 
 NOTE: Events which are further away in the future have a darker color code. This is intentional.
+
+NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
+which uses simlar prefixes as well.
 
 TIP: Color group is from 0 to 23 inclusive. +
 
