@@ -94,6 +94,7 @@ public class UniqueDateList implements Iterable<Date> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Date> asUnmodifiableObservableList() {
+        FXCollections.sort(internalList, new DateComparator().reversed());
         return internalUnmodifiableList;
     }
 
