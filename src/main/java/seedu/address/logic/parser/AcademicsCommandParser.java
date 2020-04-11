@@ -119,6 +119,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
             }
             break;
         default:
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
         }
     }
 
