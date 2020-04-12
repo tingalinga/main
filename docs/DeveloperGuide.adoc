@@ -378,7 +378,7 @@ should be easy to pick up and make it less tedious during input.
 the user expereince as the command will be too long to type.
 
 
-=== Import image feature
+==== Import image feature
 
 This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
 This feature utilises the `StudentCard#updateImage` method to update the images of students.
@@ -467,7 +467,7 @@ If the wording of the `admin` command contains error(s), an unknown command mess
 
 ==== Admin Dates Command
 
-====== Implementation
+===== Implementation
 
 The following is a detailed explanation of the operations which `admin dates` performs.
 
@@ -488,7 +488,7 @@ will be displayed.
 
 ==== Admin Save Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `admin save` performs.
 
 *Step 1*. The `AdminSaveCommand#execute(Model model)` method is executed which takes in today's date as an argument.
@@ -517,7 +517,7 @@ image::AdminSaveActivityDiagram.png[]
 
 ===== Design Considerations
 
-====== Aspect: Which date to save
+===== Aspect: Which date to save
 
 * **Alternative 1 (current choice):** Saves the most updated administrative list as today's date.
 ** Pros: Easy to implement and prevents mutation of dates.
@@ -539,7 +539,7 @@ image::AdminSaveActivityDiagram.png[]
 
 ==== Admin Delete Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `admin save` performs.
 
 *Step 1*. The `AdminDeleteCommand#execute(Model model)` method is executed which takes in a
@@ -602,7 +602,7 @@ image::academics/AcademicsModelClassDiagram.png[]
 
 ==== Academics Add Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `AcademicsAddCommand` performs.
 
 *Step 1*. The `AcademicsAddCommand#execute(Model model)` method is executed which takes in a necessary assessment
@@ -628,11 +628,11 @@ will be displayed.
 The following sequence diagram summarizes what happens when a user keys in an academics add command:
 
 .Academics Add Command Sequence Diagram
-image::developerguide/academics/academics_add_command_sequence_diagram.png[]
+image::academics/academics_add_command_sequence_diagram.png[]
 
 ==== Academics Edit Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `AcademicsEditCommand` performs.
 
 *Step 1*. The `AcademicsEditCommand#execute(Model model)` method is executed which edits the details of the specified
@@ -652,7 +652,7 @@ assessment results in a duplicate assessment in `UniqueAssessmentList#assessment
 
 ==== Academics Delete Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `AcademicsDeleteCommand` performs.
 
 *Step 1*. The `AcademicsDeleteCommand#execute(Model model)` method is executed which deletes the assessment at the
@@ -669,7 +669,7 @@ list using the `Model#delete(Assessment assessment)` method.
 
 ==== Academics Submit Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `AcademicsSubmitCommand` performs.
 
 *Step 1*. The `AcademicsSubmitCommand#execute(Model model)` method is executed which submits students' work for the
@@ -689,9 +689,14 @@ submitted their work, a `CommandException` will be thrown.
 *Step 4.* The command box will be reflected with the `AcademicsSubmitCommand#MESSAGE_SUCCESS` constant and a new
 `CommandResult` will be returned with the message.
 
+The following activity diagram summarizes what happens when a user executes academics submit command:
+
+.Academics Submit Activity Diagram
+image::academics/AcademicsSubmitActivityDiagram.png[]
+
 ==== Academics Mark Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `AcademicsMarkCommand` performs.
 
 *Step 1*. The `AcademicsMarkCommand#execute(Model model)` method is executed which marks students' work and stores the
@@ -716,7 +721,7 @@ using the method `Model#markAssessment(Assessment assessment, List<String> stude
 
 ===== Design Considerations
 
-====== Aspect: Allow submission along with marking
+===== Aspect: Allow submission along with marking
 
 * **Alternative 1 (current choice):** Marking a submission that has not be submitted is not allowed.
 ** Pros: Clearer and prevents confusion in data.
@@ -726,7 +731,7 @@ using the method `Model#markAssessment(Assessment assessment, List<String> stude
 ** Pros: The user can just submit students work using the mark command, giving them less to type.
 ** Cons: Prone to confusion of submitting and marking commands.
 
-====== Aspect: Allow customizable total score of assessments
+===== Aspect: Allow customizable total score of assessments
 
 * **Alternative 1 (current choice):** Setting the total score for a submission is not allowed. (Total score for all submissions will be 100.)
 ** Pros: Easy to implement and maintains uniformity of data.
@@ -762,7 +767,7 @@ If the wording of the `academics` command contains error(s), an unknown command 
 
 ==== Academics Export Command
 
-====== Implementation
+===== Implementation
 The following is a detailed explanation of the operations which `AcademicsExportCommand` performs.
 
 *Step 1*. The `AcademicsExportCommand#execute(Model model)` method is executed which exports the content of Academics
@@ -888,7 +893,7 @@ be returned with the success message.
 3. The `MainWindow` of the UI component will process the `CommandResult` and create a studentNotes.csv in the data folder of
 the current directory.
 
-==== Design Considerations
+===== Design Considerations
 * Alternative 1 (Current Choice): Intuitive, simple syntax and user-friendly
 - Pros: It is easy for the Teacher to use the feature.
 - Cons: Not as powerful and less utility for advanced users.
@@ -954,8 +959,7 @@ The following activity diagram summarizes what happens when a user executes the 
 image::ScheduleAddActivityDiagram.png[]
 
 ===== Design Considerations
-
-====== Aspect: Command Clarity:
+===== Aspect: Command Clarity
 * *Current Implementation:*
 ** `schedule add eventName/Consultation startDateTime/2020-04-08T09:00 endDateTime/2020-04-08T11:00 recur/none color/13`
 
@@ -1242,7 +1246,7 @@ Use case ends.
 1. User enters the command to delete a specific date from the list of dates.
 2. TeaPet searches through the list of dates for the date provided by the user.
 3. TeaPet removes that date from the date list.
-2. TeaPet displays that the date has been deleted successfully.
+4. TeaPet displays that the date has been deleted successfully.
 +
 Use case ends.
 
