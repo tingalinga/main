@@ -1,0 +1,22 @@
+"events" : [ {
+  "eventName" : "Coffee with Mr Lee",
+  "startDateTime" : "2020-04-04T10:00",
+  "endDateTime" : "2020-04-04T12:00",
+  "uniqueIdentifier" : "2020-04-04T23:29:53.501243-Coffee with Mr Lee-2020-04-04T10:00-2020-04-04T12:00.teapethelper",
+  "recurrenceType" : "NONE",
+  "colorCode" : "group12"
+  }, {
+  "eventName" : "Math Lesson with Class 6E",
+  "startDateTime" : "2020-03-30T10:00",
+  "endDateTime" : "2020-03-30T12:00",
+  "uniqueIdentifier" : "2020-04-04T23:31:05.423082-Math Lesson-2020-03-30T10:00-2020-03-30T12:00.teapethelper",
+  "recurrenceType" : "NONE",
+  "colorCode" : "group01"
+  }, {
+  "eventName" : "Math Lesson with Class 6E",
+  "startDateTime" : "2020-04-01T10:00",
+  "endDateTime" : "2020-04-01T12:00",
+  "uniqueIdentifier" : "2020-04-04T23:33:28.721693-Math Lesson with Class 6E-2020-04-01T10:00-2020-04-01T12:00.teapethelper",
+  "recurrenceType" : "NONE",
+  "colorCode" : "group01"
+}

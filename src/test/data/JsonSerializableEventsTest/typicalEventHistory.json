@@ -1,0 +1,29 @@
+{
+  "events": [
+    {
+      "eventName": "Sleep abit cuz tired",
+      "startDateTime": "2020-04-01T08:00",
+      "endDateTime": "2020-04-01T10:00",
+      "uniqueIdentifier": "eventTest1",
+      "recurrenceType": "NONE",
+      "colorCode": "group01"
+    },
+    {
+      "eventName": "Shower cuz smelly",
+      "startDateTime": "2020-04-02T08:00",
+      "endDateTime": "2020-04-02T10:00",
+      "uniqueIdentifier": "eventTest2",
+      "recurrenceType": "NONE",
+      "colorCode": "group02"
+    },
+    {
+      "eventName": "Run cuz feeling fat",
+      "startDateTime": "2020-04-03T08:00",
+      "endDateTime": "2020-04-03T10:00",
+      "uniqueIdentifier": "eventTest3",
+      "recurrenceType": "NONE",
+      "colorCode": "group03"
+    }
+
+  ]
+}
