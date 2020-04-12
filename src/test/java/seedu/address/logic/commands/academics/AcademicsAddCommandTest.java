@@ -24,7 +24,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.academics.Academics;
@@ -55,7 +54,8 @@ public class AcademicsAddCommandTest {
 
         CommandResult commandResult = new AcademicsAddCommand(validAssessment).execute(modelStub);
 
-        assertEquals(String.format(AcademicsAddCommand.MESSAGE_SUCCESS, validAssessment), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AcademicsAddCommand.MESSAGE_SUCCESS, validAssessment),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAssessment), modelStub.assessmentsAdded);
     }
 
