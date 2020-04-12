@@ -93,13 +93,4 @@ public class JsonAdaptedAssessmentTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "DATE");
         assertThrows(IllegalValueException.class, expectedMessage, assessment::toModelType);
     }
-
-    @Test
-    public void toModelType_nullSubmissions_throwsIllegalValueException() {
-        JsonAdaptedAssessment assessment =
-                new JsonAdaptedAssessment(VALID_DESCRIPTION, VALID_TYPE, VALID_DATE, null);
-
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "SUBMISSION TRACKER");
-        assertThrows(IllegalValueException.class, expectedMessage, assessment::toModelType);
-    }
 }
