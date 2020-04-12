@@ -31,7 +31,7 @@ public class AdminDeleteCommandTest {
     public void execute_validDateUnfilteredList_success() {
         Date dateToDelete = model.getFilteredDateList().get(0);
         AdminDeleteCommand deleteCommand = new AdminDeleteCommand(
-                new DateContainsKeywordsPredicate(LocalDate.parse("2020-01-26")));
+                new DateContainsKeywordsPredicate(LocalDate.parse("2020-02-26")));
 
         String fullDate = dateToDelete.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
                 + dateToDelete.getDate().getDayOfMonth() + " " + dateToDelete.getDate().getYear();

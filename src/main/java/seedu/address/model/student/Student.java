@@ -3,6 +3,7 @@ package seedu.address.model.student;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -69,7 +70,7 @@ public class Student {
         return attendance;
     }
 
-    public NextOfKin getNok () {
+    public NextOfKin getNok() {
         return nok;
     }
 
@@ -77,7 +78,7 @@ public class Student {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags () {
+    public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -85,7 +86,7 @@ public class Student {
      * Returns true if both students of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two students.
      */
-    public boolean isSameStudent (Student otherStudent) {
+    public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
@@ -100,7 +101,7 @@ public class Student {
      * This defines a stronger notion of equality between two students.
      */
     @Override
-    public boolean equals (Object other) {
+    public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
@@ -120,13 +121,13 @@ public class Student {
     }
 
     @Override
-    public int hashCode () {
+    public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, temperature, attendance, tags);
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Phone: ")
@@ -146,3 +147,14 @@ public class Student {
         return builder.toString();
     }
 }
+
+/**
+ * Comparator class for students.
+ */
+class StudentComparator implements Comparator<Student> {
+    @Override
+    public int compare(Student a1, Student a2) {
+        return a1.getName().toString().toLowerCase().compareTo(a2.getName().toString().toLowerCase());
+    }
+}
+

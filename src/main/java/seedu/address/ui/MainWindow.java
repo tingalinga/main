@@ -239,8 +239,6 @@ public class MainWindow extends UiPart<Stage> {
         onSchedule();
     }
 
-
-
     void show() {
         primaryStage.show();
 

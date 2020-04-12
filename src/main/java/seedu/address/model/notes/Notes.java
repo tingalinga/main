@@ -50,7 +50,7 @@ public class Notes {
     }
 
     /**
-     * Overloaded Notes constructor which is used when Json data is drawn from addressbook.json
+     * Overloaded Notes constructor which is used when Json data is drawn from teapet.json
      * This prevents a new timestamp to be created on the same note.
      * All fields must be present.
      * @param student

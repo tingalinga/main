@@ -45,5 +45,4 @@ public class JsonSerializableTeaPetTest {
         assertThrows(IllegalValueException.class, JsonSerializableTeaPet.MESSAGE_DUPLICATE_STUDENT,
                 dataFromFile::toModelType);
     }
-
 }
