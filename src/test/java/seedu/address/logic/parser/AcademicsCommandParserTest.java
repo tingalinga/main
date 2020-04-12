@@ -9,15 +9,20 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_SCIENCE_E
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSESSMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TYPE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.SUBMISSION_GRACE_PAN;
+import static seedu.address.logic.commands.CommandTestUtil.SUBMISSION_SHARADH_RAJARAMAN;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_MATH_ASSIGNMENT;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_SCIENCE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MATH_ASSIGNMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SCIENCE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MATH_ASSIGNMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SCIENCE_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_GRACE_PAN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_SHARADH_RAJARAMAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_MATH_ASSIGNMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_SCIENCE_EXAM;
 import static seedu.address.logic.parser.AcademicsCommandParser.HELP_MESSAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSESSMENT;
@@ -25,14 +30,19 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSESSMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSESSMENT;
 import static seedu.address.testutil.academics.TypicalAssessments.MATH_HOMEWORK;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.logic.commands.academics.AcademicsDeleteCommand;
+import seedu.address.logic.commands.academics.AcademicsDisplayCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand.EditAssessmentDescriptor;
+import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.academics.Assessment;
 import seedu.address.testutil.academics.AssessmentBuilder;
@@ -268,4 +278,66 @@ public class AcademicsCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
     // ==================== EDIT COMMAND END ====================
+
+    // ==================== SUBMIT COMMAND START ====================
+    @Test
+    public void parse_submitCommandOnlyOneSubmission_success() throws CommandException {
+        Index targetIndex = INDEX_FIRST_ASSESSMENT;
+        String userInput = "academics submit " + targetIndex.getOneBased() + SUBMISSION_SHARADH_RAJARAMAN;
+        List<String> studentToSubmit = new ArrayList<>();
+        studentToSubmit.add(VALID_STUDENT_NAME_SHARADH_RAJARAMAN);
+        AcademicsSubmitCommand expectedCommand = new AcademicsSubmitCommand(targetIndex, studentToSubmit);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_submitCommandMultipleSubmission_success() throws CommandException {
+        Index targetIndex = INDEX_FIRST_ASSESSMENT;
+        String userInput = "academics submit " + targetIndex.getOneBased() + SUBMISSION_SHARADH_RAJARAMAN
+                + SUBMISSION_GRACE_PAN;
+        List<String> studentToSubmit = new ArrayList<>();
+        studentToSubmit.add(VALID_STUDENT_NAME_SHARADH_RAJARAMAN);
+        studentToSubmit.add(VALID_STUDENT_NAME_GRACE_PAN);
+        AcademicsSubmitCommand expectedCommand = new AcademicsSubmitCommand(targetIndex, studentToSubmit);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_submitCommandCompulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsSubmitCommand.MESSAGE_USAGE);
+        Index targetIndex = INDEX_FIRST_ASSESSMENT;
+
+        // all prefixes missing
+        assertParseFailure(parser, "academics submit" + targetIndex.getOneBased(), expectedMessage);
+
+        // missing student name
+        assertParseFailure(parser, "academics submit" + targetIndex.getOneBased() + PREFIX_STUDENT, expectedMessage);
+
+        // missing assessment index
+        assertParseFailure(parser, "academics submit" + SUBMISSION_SHARADH_RAJARAMAN, expectedMessage);
+    }
+
+    // ==================== ADD COMMAND END ====================
+
+    // ==================== DISPLAY COMMAND START ====================
+    @Test
+    public void parse_validArgs_returnsDisplayCommand() {
+        assertParseSuccess(parser, "", new AcademicsDisplayCommand(""));
+
+        assertParseSuccess(parser, "academics homework", new AcademicsDisplayCommand("homework"));
+
+        assertParseSuccess(parser, "academics exam", new AcademicsDisplayCommand("exam"));
+
+        assertParseSuccess(parser, "academics report", new AcademicsDisplayCommand("report"));
+    }
+
+    @Test
+    public void parse_academicsDisplayInvalidArgs_throwsParseException() {
+        assertParseFailure(parser, "invalid", String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
+
+        assertParseFailure(parser, "academics invalid",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
+    }
+    // ==================== DISPLAY COMMAND END ====================
+
 }

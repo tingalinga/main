@@ -22,9 +22,10 @@ public abstract class AdminCommand extends Command {
             + "2. " + COMMAND_WORD + " " + ADMIN_DATES + ": displays the list of dates that has admin information of "
             + "the class\n"
             + "3. " + COMMAND_WORD + " " + ADMIN_SAVE + ": saves the last updated admin list of class as today's date\n"
-            + "4. " + COMMAND_WORD + " " + ADMIN_FETCH + " YYYY-MM-DD: fetches the admin details of class at specified date\n"
-            + "5. " + COMMAND_WORD + " " + ADMIN_DELETE + " YYYY-MM-DD: deletes the admin details of class at specified "
-            + "date\n";
+            + "4. " + COMMAND_WORD + " " + ADMIN_FETCH + " YYYY-MM-DD: fetches the admin details of class at specified "
+            + "date\n"
+            + "5. " + COMMAND_WORD + " " + ADMIN_DELETE + " YYYY-MM-DD: deletes the admin details of class at "
+            + "specified date\n";
 
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;

@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMPERATURE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -55,8 +56,6 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_NOK_AMY = "Joseph-Father-98765432";
     public static final String VALID_NOK_BOB = "Johnny-Father-94765432";
-
-
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -126,6 +125,13 @@ public class CommandTestUtil {
     public static final String TYPE_SCIENCE_EXAM = " " + PREFIX_ASSESSMENT_TYPE + VALID_TYPE_SCIENCE_EXAM;
     public static final String DATE_MATH_ASSIGNMENT = " " + PREFIX_ASSESSMENT_DATE + VALID_DATE_MATH_ASSIGNMENT;
     public static final String DATE_SCIENCE_EXAM = " " + PREFIX_ASSESSMENT_DATE + VALID_DATE_SCIENCE_EXAM;
+    public static final String SUBMISSION_SHARADH_RAJARAMAN = " " + PREFIX_STUDENT
+            + VALID_STUDENT_NAME_SHARADH_RAJARAMAN;
+    public static final String SUBMISSION_GRACE_PAN = " " + PREFIX_STUDENT + VALID_STUDENT_NAME_GRACE_PAN;
+    public static final String MARKING_SHARADH_RAJARAMAN = " " + PREFIX_STUDENT + VALID_STUDENT_NAME_SHARADH_RAJARAMAN
+            + "-" + VALID_SCORE_SHARADH_RAJARAMAN;
+    public static final String MARKING_GRACE_PAN = " " + PREFIX_STUDENT + VALID_STUDENT_NAME_GRACE_PAN
+            + "-" + VALID_SCORE_GRACE_PAN;
 
     public static final String INVALID_ASSESSMENT_DESC = " " + PREFIX_NAME + ""; // empty description is not allowed
     public static final String INVALID_TYPE_DESC = " " + PREFIX_ASSESSMENT_TYPE + "assignment"; // homework OR exam
