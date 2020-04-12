@@ -896,7 +896,7 @@ The following is a detailed explanation of the operations which `NotesFilterComm
 `NotesContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
 `NotesFilterCommand(NotesContainsKeywordsPredicate predicate)` constructor
 
-2. The `Notes` is then searched through the `UniqueNotesList#notes` list... ...
+2. The `Notes` objects are then searched through the `UniqueNotesList#notes` list, checking for presence of any keyword given by the user.
 
 3. The existing `UniqueNotesList#internalList` is then cleared and updated using the `Model#updateFilteredNotesList(Predicate predicate)`
 method.
