@@ -91,7 +91,7 @@ public class AcademicsCommandParserTest {
 
 
     @Test
-    public void parse_addCommand_invalidValue_failure() {
+    public void parseAddCommand_invalidValue_failure() {
         // invalid description
         assertParseFailure(parser, "academics add" + INVALID_ASSESSMENT_DESC + TYPE_MATH_ASSIGNMENT
                 + DATE_MATH_ASSIGNMENT, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -161,9 +161,9 @@ public class AcademicsCommandParserTest {
     }
 
     @Test
-    public void parse_editCommand_invalidValue_failure() {
-        assertParseFailure(parser, "academics edit 1" + INVALID_ASSESSMENT_DESC,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsEditCommand.MESSAGE_USAGE)); // invalid description
+    public void parseEditCommand_invalidValue_failure() {
+        assertParseFailure(parser, "academics edit 1" + INVALID_ASSESSMENT_DESC, // invalid description
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsEditCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "academics edit 1" + INVALID_TYPE_DESC,
                 Messages.MESSAGE_INVALID_ASSESSMENT_TYPE); // invalid type
         assertParseFailure(parser, "academics edit 1" + INVALID_DATE_DESC,
