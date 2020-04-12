@@ -39,6 +39,8 @@ and have quick fingers, then TeaPet is definitely for you!
 
 Interested? Explore this User Guide to find out more. Enjoy!
 
+//@@author TheElectricBlender
+//tag::navigate[]
 === Navigating the User Guide
 The aim of this User Guide is to provide you with all the information you need to fully utilise TeaPet. We understand the pains of using a
 Command Line Interface (CLI) program and have bested our efforts into ensuring a very readable guide on how to use our program.
@@ -66,9 +68,9 @@ Format* <|*Meaning*
 2+.^a|  TIP: This symbol indicates tips.
 2+.^a|  CAUTION: This symbol indicates cautions.
 2+.^a|  IMPORTANT: This symbol indicates important information.
-
 |===
-//end::intro[]
+
+//end::navigate[]
 
 [[QuickStart]]
 == Quick Start
@@ -175,7 +177,8 @@ get started with them.
     Most commands have multiple Prefix/Field combinations to fill.
     Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
 
-
+//@@author TheElectricBlender
+//tag::particulars[]
 [[particulars]]
 === Student Particulars [Done by Simon Lam]
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
@@ -314,6 +317,7 @@ Finds the student information from the student list and display it.
 
     1 students listed!
 
+[[particulars]]
 
 
 '''
@@ -410,6 +414,8 @@ Deletes the administrative information of the class at on April 8 2020.
 *Expected Outcome:*
 
     Admin list has been deleted for Apr 8 2020
+
+//end::particulars[]
 
 '''
 [[acads]]
@@ -789,8 +795,9 @@ TeaPet application
    Notes are exported to studentNotes.csv in the data folder
 
 '''
-
-[[scheduler]]
+//@@author TheElectricBlender
+//tag::schedulerA[]
+[[schedulerA]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
 TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
 sorted according to date and time. You will then be able to view your weekly schedule at a glance.
@@ -804,6 +811,17 @@ Displays your schedule for the current week.
 *Expected Outcome:*
 
     This is your schedule for the week
+    Schedule helps you to keep track of your events.
+    [HELP ON SCHEDULE COMMANDS]
+    add event: schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE
+    edit event: schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM] [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]
+    delete event: schedule delete INDEX
+    get index of a event: schedule indexGet/EVENT_DESCRIPTION
+    get all indexes of events in schedule: schedule indexAll
+    change view mode of schedule: schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD
+    export schedule: schedule export
+    Type the following commands for more info!
+
 
 .After using schedule command
 image::display_schedule.png[width="790"]
@@ -813,9 +831,9 @@ image::display_schedule.png[width="790"]
 
 Adds an event to your personal scheduler.
 
-*Format:* `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
+*Format:* `schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`
 
-NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
+NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDTHH:MM format, where time is in the 24-hour format. +
 For example, 7th April 2020 10AM will be 2020-04-07T10:00
 
 NOTE: The recurrence type can only be either of these, none, daily or weekly.
@@ -842,10 +860,14 @@ and a color group of '_21_'.
 .Adding an event to the schedule
 image::schedule_add.png[width="790"]
 
+[[schedulerA]]
+//end::schedulerA[]
+
+//@@author TheElectricBlender
+//tag::additional-features[]
+[[additional-features]]
 
 === Additional Features [Done by Simon Lam]
-
-
 //tag::update-profile[]
 [[update-profile]]
 ==== Update Profile Picture
@@ -880,12 +902,12 @@ now you can see pictures of your students in your student list!
 Editing the name of the student will change the student image back to the default image. To solve this, you have to edit
 the png file in the Image folder as well after you edit the name of the student and then enter the `student` command.
 
-.Before using the refresh command
+.Before using the student command
 image::before_picture_upload.png[width="790]
 
 {nbsp} +
 
-.After using the refresh command
+.After using the student command
 image::after_picture_upload.png[width="790]
 
 [[update-profile]]
@@ -904,7 +926,9 @@ press your `F1` key to bring up this user guide!
 .Displayed help window
 image::help_window.png[width="790]
 
+[[additional-features]]
 
+//end::additional-features[]
 
 [[CommandSummary]]
 == Command Summary
@@ -927,6 +951,9 @@ Here are the default commands available for use. They do not require prefixes.
 
 |===
 
+//@@author TheElectricBlender
+//tag::particulars-summary[]
+[[particulars-summary]]
 === Student Particulars Commands
 Here are the commands to manage students. They require the prefix `student`.
 
@@ -944,6 +971,8 @@ Here are the commands to manage students. They require the prefix `student`.
 |`student find`|`student find KEYWORD`|Searches through the class list and filter students whose names have the
 specified KEYWORD
 |===
+[[particulars-summary]]
+//end::particulars-summary[]
 
 === Student Administration Commands
 Here are the commands to manage students. They require the prefix `admin`.
@@ -975,6 +1004,7 @@ Here are the commands to manage students. They require the prefix `academics`.
 |`academics export`|`academics export`|Exports the academics report into a .csv file
 |===
 
+
 === Notes Commands
 Here are the commands to manage students. They require the prefix `notes`.
 
@@ -996,7 +1026,8 @@ Here are the commands to manage students. They require the prefix `schedule`.
 .Personal Scheduler commands of TeaPet
 |===
 |*Command*|*Format*|*Expected outcome*
-|`scheduele add`|`schedule add eventName/EVENT_NAME startDateTime/START_DATE_TIME endDateTime/END_DATE_TIME recur/RECUR color/COLOR`|Adds an event into the scheduler.
+|`scheduele add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
+
 |===
 
 [[Glossary]]
