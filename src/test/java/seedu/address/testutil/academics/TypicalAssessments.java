@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.academics;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MATH_ASSIGNMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SCIENCE_EXAM;
@@ -14,6 +14,7 @@ import java.util.List;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Submission;
+import seedu.address.testutil.academics.AssessmentBuilder;
 
 /**
  * A utility class containing a list of {@code Assessment} objects to be used in tests.

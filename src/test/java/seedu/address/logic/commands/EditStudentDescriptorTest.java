@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescriptor;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.student.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
 

@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.academics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class AssessmentBuilder {
     }
 
     /**
-     * Initializes the StudentBuilder with the data of {@code studentToCopy}.
+     * Initializes the AssessmentBuilder with the data of {@code assessmentToCopy}.
      */
     public AssessmentBuilder(Assessment assessmentToCopy) {
         description = assessmentToCopy.getDescription();

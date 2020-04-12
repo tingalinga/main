@@ -37,7 +37,7 @@ import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TeaPet;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 
 public class StudentAddCommandTest {
 

@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.admin;
 
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.Date;

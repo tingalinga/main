@@ -3,10 +3,10 @@ package seedu.address.storage.notes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalNotes.NOTE1;
-import static seedu.address.testutil.TypicalNotes.S_NOTE1;
-import static seedu.address.testutil.TypicalNotes.S_NOTE2;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE1;
+import static seedu.address.testutil.notes.TypicalNotes.S_NOTE1;
+import static seedu.address.testutil.notes.TypicalNotes.S_NOTE2;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 
 import java.io.IOException;
 import java.nio.file.Path;

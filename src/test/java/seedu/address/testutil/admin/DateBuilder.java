@@ -1,10 +1,11 @@
-package seedu.address.testutil;
+package seedu.address.testutil.admin;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import seedu.address.model.admin.Date;
 import seedu.address.model.student.Student;
+import seedu.address.testutil.student.TypicalStudents;
 
 /**
  * A utility class to help with building Date objects.

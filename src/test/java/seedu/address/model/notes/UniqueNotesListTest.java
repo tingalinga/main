@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalNotes.NOTE1;
-import static seedu.address.testutil.TypicalNotes.NOTE2;
-import static seedu.address.testutil.TypicalNotes.NOTE3;
-import static seedu.address.testutil.TypicalNotes.NOTE4;
-import static seedu.address.testutil.TypicalNotes.NOTE5;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE1;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE2;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE3;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE4;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE5;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.notes;
 
 import seedu.address.model.notes.Notes;
 

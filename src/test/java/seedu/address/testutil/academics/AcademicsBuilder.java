@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.academics;
 
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;

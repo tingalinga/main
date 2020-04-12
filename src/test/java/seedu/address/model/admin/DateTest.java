@@ -3,14 +3,14 @@ package seedu.address.model.admin;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDates.FEB_26_2020;
-import static seedu.address.testutil.TypicalDates.JAN_26_2020;
+import static seedu.address.testutil.admin.TypicalDates.FEB_26_2020;
+import static seedu.address.testutil.admin.TypicalDates.JAN_26_2020;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.DateBuilder;
+import seedu.address.testutil.admin.DateBuilder;
 
 public class DateTest {
 

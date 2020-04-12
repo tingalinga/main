@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
@@ -260,6 +261,19 @@ public class Assessment {
         return "Assessment: " + this.description + "\n"
                 + "Type: " + this.type + "\n"
                 + "Date: " + this.date;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Assessment assessment = (Assessment) o;
+        return Objects.equals(description, assessment.description)
+                && Objects.equals(type, assessment.type);
     }
 }
 

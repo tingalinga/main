@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
+import static seedu.address.testutil.student.TypicalStudents.ALICE;
+import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,7 +22,7 @@ import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TeaPet;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 
 public class TeaPetTest {
 

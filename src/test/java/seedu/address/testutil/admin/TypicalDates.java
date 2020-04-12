@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.admin;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.Date;
 import seedu.address.model.student.Student;
+import seedu.address.testutil.student.TypicalStudents;
 
 /**
  * A utility class containing a list of {@code Date} objects to be used in tests.

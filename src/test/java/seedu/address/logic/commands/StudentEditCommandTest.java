@@ -10,12 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
-import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
-import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
+import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import org.junit.jupiter.api.Test;
@@ -34,8 +34,8 @@ import seedu.address.model.event.EventHistory;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TeaPet;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.student.EditStudentDescriptorBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

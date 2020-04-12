@@ -3,10 +3,10 @@ package seedu.address.logic.commands.admin;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertRuntimeFailure;
-import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
-import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
-import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
+import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
+import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import java.time.DateTimeException;
@@ -18,7 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.admin.Date;
-import seedu.address.testutil.DateBuilder;
+import seedu.address.testutil.admin.DateBuilder;
 
 public class AdminSaveCommandTest {
 

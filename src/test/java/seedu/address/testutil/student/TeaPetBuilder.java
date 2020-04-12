@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.student;
 
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TeaPet;

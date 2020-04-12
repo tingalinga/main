@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssessments.CHINESE_HOMEWORK;
-import static seedu.address.testutil.TypicalAssessments.SCIENCE_HOMEWORK;
-import static seedu.address.testutil.TypicalDates.FEB_26_2020;
-import static seedu.address.testutil.TypicalDates.JAN_26_2020;
-import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.BENSON;
+import static seedu.address.testutil.academics.TypicalAssessments.CHINESE_HOMEWORK;
+import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_HOMEWORK;
+import static seedu.address.testutil.admin.TypicalDates.FEB_26_2020;
+import static seedu.address.testutil.admin.TypicalDates.JAN_26_2020;
+import static seedu.address.testutil.student.TypicalStudents.ALICE;
+import static seedu.address.testutil.student.TypicalStudents.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,9 +27,9 @@ import seedu.address.model.event.EventHistory;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.TeaPet;
-import seedu.address.testutil.AcademicsBuilder;
-import seedu.address.testutil.AdminBuilder;
-import seedu.address.testutil.TeaPetBuilder;
+import seedu.address.testutil.academics.AcademicsBuilder;
+import seedu.address.testutil.admin.AdminBuilder;
+import seedu.address.testutil.student.TeaPetBuilder;
 
 public class ModelManagerTest {
 
