@@ -18,8 +18,8 @@ written in Java.
 
 * *Major enhancement*: developed the *Personal Schedule* feature of TeaPet.
 ** *What it does*: Allows the user to keep track of all of his/her events by adding it as an Event in the Personal Schedule.
-** *Justification*: This feature is an integral part in any teacher's routine applications. It provides a platform to track the user's
-events that the user has to attend. We decided to integrate this feature into TeaPet because we feel that TeaPet should also be an application
+** *Justification*: This feature ensures our product to be an integrated platform that allows users
+ to track events that they have to attend. We decided to integrate this feature into TeaPet because we feel that TeaPet should also be an application
 that helps the user manage their time, on top of its primary functions of managing the user's class details. An integrated platform will ensure that our
 product will help the user save time by only using TeaPet, since using different applications to keep track of different things is a hassle.
 ** *Highlights*: Users are able to add, edit and delete events scheduled in their personal scheduler. They can set recurring events and have different
@@ -27,8 +27,9 @@ color codes to represent different event types. Users can export their schedule 
 Different view modes are also available for the Personal Schedule. The implementation was challenging as it required me to study the implementation of the library.
 ** *Credits*: JFXtras iCalendar API was used to help develop our Personal Schedule.
 
-* *Minor enhancement*: Ensured code naming is coherent within the project.
-
+* *Minor enhancements*:
+** Ensured code naming is coherent within the project.
+** Ensured product looks coherent by removing AddressBook code in documents.
 * *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=garysyndromes&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[Functional and Test code]]
 * *Other contributions*:
 
@@ -41,7 +42,7 @@ Different view modes are also available for the Personal Schedule. The implement
 ** Documentation:
 *** Did cosmetic tweaks to existing contents of the User Guide: (Pull requests https://github.com[#36], https://github.com[#38])
 *** Updated User Guide to include Personal Schedule feature.
-*** Updated User Guide introduction and format.
+*** Updated User Guide Introduction, Overview of Features, format.
 *** Updated Developer Guide to include Personal Schedule feature.
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
