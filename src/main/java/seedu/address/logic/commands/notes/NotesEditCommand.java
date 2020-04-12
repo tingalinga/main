@@ -28,13 +28,14 @@ public class NotesEditCommand extends NotesCommand {
             COMMAND_WORD + " "
             + PREFIX_NOTES_EDIT + " "
             + "INDEX "
-            + PREFIX_NOTES_STUDENT + "UPDATED_STUDENT_NAME "
-            + PREFIX_NOTES_CONTENT + "UPDATED_CONTENT "
-            + PREFIX_NOTES_PRIORITY + "<HIGH/MEDIUM/LOW>";
+            + "[" + PREFIX_NOTES_STUDENT + "UPDATED_STUDENT_NAME] "
+            + "[" + PREFIX_NOTES_CONTENT + "UPDATED_CONTENT] "
+            + "[" + PREFIX_NOTES_PRIORITY + "UPDATED_PRIORITY]";
 
     public static final String MESSAGE_SUCCESS = "Student's Note Edited. Wonderful!\n"
             + "%1$s";;
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
+            + MESSAGE_USAGE;
 
     private final Index index;
     private final EditNotesDescriptor editNotesDescriptor;
