@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
-import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;

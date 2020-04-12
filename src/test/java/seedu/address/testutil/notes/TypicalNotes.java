@@ -8,7 +8,6 @@ import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
 
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
-import seedu.address.testutil.notes.EditNotesDescriptorBuilder;
 
 /**
  * Represents Typical Notes used for testing.

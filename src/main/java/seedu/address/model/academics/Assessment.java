@@ -87,6 +87,47 @@ public class Assessment {
         return submissionTracker;
     }
 
+    /**
+     * Checks the format of the date string given.
+     */
+    public static boolean checkValidDate(String date) {
+        String[] split = date.trim().split("-");
+        if (split.length < 3 || split[0].length() < 4 || split[1].length() < 2 || split[2].length() < 2) {
+            return false;
+        }
+        int month = Integer.parseInt(split[1]);
+        int day = Integer.parseInt(split[2]);
+        switch (month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            if (day < 0 || day > 31) {
+                return false;
+            }
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            if (day < 0 || day > 30) {
+                return false;
+            }
+            break;
+        case 2:
+            if (day < 0 || day > 28) {
+                return false;
+            }
+            break;
+        default:
+            return false;
+        }
+        return true;
+    }
+
     /* SET METHODS */
     /**
      * Set the submission of each student to not submitted and unmarked.

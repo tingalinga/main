@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SCIENCE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SCIENCE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_SCIENCE_EXAM;
-import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_HOMEWORK;
 import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_EXAM;
+import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_HOMEWORK;
 
 import org.junit.jupiter.api.Test;
 

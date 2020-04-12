@@ -1,5 +1,9 @@
 package seedu.address.storage.academics;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
+import static seedu.address.logic.parser.AcademicsCommandParser.HELP_MESSAGE;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -8,7 +12,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.academics.AcademicsAddCommand;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.Submission;
 
@@ -62,28 +68,35 @@ class JsonAdaptedAssessment {
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DESCRIPTION"));
         }
+        if (description.equals("")) {
+            throw new IllegalValueException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AcademicsAddCommand.MESSAGE_USAGE));
+        }
         final String modelDescription = description;
 
         if (type == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TYPE"));
         }
         if (!type.equals("exam") && !type.equals("homework")) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TYPE"));
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
         }
         final String modelType = type;
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DATE"));
         }
+        String modelDate = convertDateFormat(date);
+        if (!Assessment.checkValidDate(modelDate)) {
+            throw new IllegalValueException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
+        }
 
-        if (submissionTracker == null) {
+        if (submissionTracker.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "SUBMISSION TRACKER"));
         }
         final List<Submission> modelSubmission = new ArrayList<>();
         for (JsonAdaptedSubmission jsonAdaptedSubmission: submissionTracker) {
             modelSubmission.add(jsonAdaptedSubmission.toModelType());
         }
-        String modelDate = convertDateFormat(date);
 
         Assessment modelAssessment = new Assessment(modelDescription, modelType, modelDate);
         modelAssessment.setSubmissionTracker(modelSubmission);
@@ -130,8 +143,11 @@ class JsonAdaptedAssessment {
      * @param date string of date.
      * @return formatted string that can be parsed by java.time.LocalDateTime.
      */
-    public String convertDateFormat(String date) {
+    public String convertDateFormat(String date) throws IllegalValueException {
         String[] parts = date.split(" ");
+        if (parts.length < 3) {
+            throw new IllegalValueException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
+        }
         String year = parts[2];
         String month = convertMonthToInt(parts[1]);
         String day = String.format("%02d", Integer.parseInt(parts[0]));

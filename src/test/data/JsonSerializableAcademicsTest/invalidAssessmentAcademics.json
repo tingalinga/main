@@ -1,0 +1,33 @@
+{
+  "assessments" : [ {
+    "description" : "English Spelling Test",
+    "type" : "invalidType",
+    "date" : "25/05/2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  } ]
+}

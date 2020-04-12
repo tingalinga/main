@@ -44,7 +44,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_descriptionContainsKeywords_returnsTrue() {
         // One keyword
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList("Science"));
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.singletonList("Science"));
         assertTrue(predicate.test(new AssessmentBuilder().withDescription("Science Homework").build()));
 
         // Multiple keywords
@@ -63,7 +64,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_descriptionDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.emptyList());
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new AssessmentBuilder().withDescription("Science").build()));
 
         // Non-matching keyword

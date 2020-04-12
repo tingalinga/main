@@ -60,7 +60,7 @@ public class UniqueAssessmentListTest {
     @Test
     public void setAssessment_nullTargetAssessment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, ()
-                -> uniqueAssessmentList.setAssessment(null, SCIENCE_HOMEWORK));
+            -> uniqueAssessmentList.setAssessment(null, SCIENCE_HOMEWORK));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class UniqueAssessmentListTest {
     @Test
     public void setAssessment_targetAssessmentNotInList_throwsAssessmentNotFoundException() {
         assertThrows(AssessmentNotFoundException.class, ()
-                -> uniqueAssessmentList.setAssessment(SCIENCE_HOMEWORK, SCIENCE_HOMEWORK));
+            -> uniqueAssessmentList.setAssessment(SCIENCE_HOMEWORK, SCIENCE_HOMEWORK));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class UniqueAssessmentListTest {
         uniqueAssessmentList.add(SCIENCE_HOMEWORK);
         uniqueAssessmentList.add(SCIENCE_EXAM);
         assertThrows(DuplicateAssessmentException.class, ()
-                -> uniqueAssessmentList.setAssessment(SCIENCE_HOMEWORK, SCIENCE_EXAM));
+            -> uniqueAssessmentList.setAssessment(SCIENCE_HOMEWORK, SCIENCE_EXAM));
     }
 
     @Test
@@ -131,7 +131,8 @@ public class UniqueAssessmentListTest {
 
     @Test
     public void setAssessments_nullUniqueAssessmentList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueAssessmentList.setAssessments((UniqueAssessmentList) null));
+        assertThrows(NullPointerException.class, ()
+            -> uniqueAssessmentList.setAssessments((UniqueAssessmentList) null));
     }
 
     @Test
@@ -162,12 +163,12 @@ public class UniqueAssessmentListTest {
     public void setAssessments_listWithDuplicateAssessments_throwsDuplicateAssessmentException() {
         List<Assessment> listWithDuplicateAssessments = Arrays.asList(SCIENCE_HOMEWORK, SCIENCE_HOMEWORK);
         assertThrows(DuplicateAssessmentException.class, ()
-                -> uniqueAssessmentList.setAssessments(listWithDuplicateAssessments));
+            -> uniqueAssessmentList.setAssessments(listWithDuplicateAssessments));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueAssessmentList.asUnmodifiableObservableList().remove(0));
+            -> uniqueAssessmentList.asUnmodifiableObservableList().remove(0));
     }
 }

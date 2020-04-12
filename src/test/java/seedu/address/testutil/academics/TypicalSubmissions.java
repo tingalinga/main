@@ -1,6 +1,5 @@
 package seedu.address.testutil.academics;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SCIENCE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MARKED_GRACE_PAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MARKED_SHARADH_RAJARAMAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCORE_GRACE_PAN;
@@ -23,11 +22,11 @@ import seedu.address.model.academics.Submission;
 public class TypicalSubmissions {
 
     public static final Submission[] SUBMISSIONS = {
-            new Submission("Simon Lam"),
-            new Submission("Gerren Seow"),
-            new Submission("Lee Hui Ting"),
-            new Submission("Gary Syndromes"),
-            new Submission("Freddy Zhang")};
+        new Submission("Simon Lam"),
+        new Submission("Gerren Seow"),
+        new Submission("Lee Hui Ting"),
+        new Submission("Gary Syndromes"),
+        new Submission("Freddy Zhang")};
 
     public static final Submission SIMON_LAM = new SubmissionBuilder().withStudentName("Simon Lam")
             .withSubmitted("true").withMarked("true").withScore("76").build();

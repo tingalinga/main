@@ -4,9 +4,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
-import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

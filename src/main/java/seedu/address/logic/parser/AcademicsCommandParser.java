@@ -32,6 +32,7 @@ import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.academics.Assessment;
 
 /**
  * Parses the given {@code String} of arguments in the context of the AcademicsCommand
@@ -81,46 +82,6 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
     }
 
     /**
-     * Checks the format of the date string given.
-     */
-    private void checkValidDate(String date) throws ParseException {
-        String[] split = date.trim().split("-");
-        if (split.length < 3 || split[0].length() < 4 || split[1].length() < 2 || split[2].length() < 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
-        }
-        int month = Integer.parseInt(split[1]);
-        int day = Integer.parseInt(split[2]);
-        switch (month) {
-        case 1:
-        case 3:
-        case 5:
-        case 7:
-        case 8:
-        case 10:
-        case 12:
-            if (day < 0 || day > 31) {
-                throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
-            }
-            break;
-        case 4:
-        case 6:
-        case 9:
-        case 11:
-            if (day < 0 || day > 30) {
-                throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
-            }
-            break;
-        case 2:
-            if (day < 0 || day > 28) {
-                throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
-            }
-            break;
-        default:
-            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
-        }
-    }
-
-    /**
      * Returns a AcademicsAddCommand object for execution.
      * {@code ArgumentMultimap}.
      */
@@ -148,7 +109,9 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
                 throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
             }
         }
-        checkValidDate(date);
+        if (!Assessment.checkValidDate(date)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
+        }
 
         return new AcademicsAddCommand(description, type, date);
     }
@@ -206,7 +169,9 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
             editAssessmentDescriptor.setType(type);
         }
         if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DATE).isPresent()) {
-            checkValidDate(argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get());
+            if (!Assessment.checkValidDate(argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get())) {
+                throw new ParseException(String.format(MESSAGE_INVALID_DATE_FORMAT, HELP_MESSAGE));
+            }
             editAssessmentDescriptor.setDate(argMultimap.getValue(PREFIX_ASSESSMENT_DATE).get());
         }
 

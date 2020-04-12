@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
-import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
+import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
-import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import org.junit.jupiter.api.Test;
 

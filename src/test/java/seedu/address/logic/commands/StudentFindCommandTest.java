@@ -7,12 +7,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVI
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.student.TypicalStudents.CARL;
 import static seedu.address.testutil.student.TypicalStudents.ELLE;
 import static seedu.address.testutil.student.TypicalStudents.FIONA;
 import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
-import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 
 import java.util.Arrays;
 import java.util.Collections;

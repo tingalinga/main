@@ -1,0 +1,63 @@
+{
+  "assessments" : [ {
+    "description" : "Math Differentiation Homework",
+    "type" : "homework",
+    "date" : "23 Mar 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "70"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "78"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "37"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "92"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "56"
+    } ]
+  }, {
+    "description" : "Math Differentiation Homework",
+    "type" : "homework",
+    "date" : "20 Apr 2021",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "78"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "37"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "92"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "56"
+    } ]
+  } ]
+}
