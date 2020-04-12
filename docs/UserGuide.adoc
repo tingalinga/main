@@ -659,7 +659,7 @@ Adds a note into TeaPet.
 * Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Create and add a new note with the following fields
 * *None* of the fields can be empty.
-* Student's name indicated in the name field must be already *present* in the class-list.
+* Student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 * Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
 * An automatic timestamp is generated for each note added.
 
@@ -690,7 +690,7 @@ Edits a note in TeaPet.
 * Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Edits a current note in the list by index. Index must be an integer within the total number of notes.
 * *At least 1* of the three prefix fields must be indicated.
-* Updated student's name indicated in the name field must be already *present* in the class-list.
+* Updated student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 * Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
 
 *Example:*
