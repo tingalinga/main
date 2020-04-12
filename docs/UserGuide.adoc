@@ -25,19 +25,19 @@ Greetings, and welcome to TeaPet!
 
 Looking for an all-in-one solution for your teaching needs? Look no further!
 
-TeaPet is an integrated platform fully customized for form teachers in Primary, Secondary and Tertiary institutions,
+TeaPet is an integrated platform fully customized for Form Teachers in Primary, Secondary and Tertiary institutions,
 with the aim of helping you manage your classroom effectively. The application allows you to keep track of your students'
-personal particulars, daily administration, behavioural notes and academic progress all at a glance. Furthermore,
-TeaPet also comes with an in-built personal scheduler to help with your weekly planning. It looks like you'll never
+personal particulars, daily administration, behavioural notes and academic progress with a few simple commands. Furthermore,
+TeaPet also comes with an in-built personal scheduler to help with your weekly planning needs. It looks like you'll never
 have to worry about missing your next coffee appointment anymore!
 
-All your important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI) and we are optimized for users who are very comfortable
+All your important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI). We are optimized for users who are very comfortable
 working on the Command Line Interface (CLI).
 
-If you are looking for a way to easily manage your administrative classroom matters
-and have quick fingers, then TeaPet is definitely for you!
+Are you are looking for a way to easily manage your administrative classroom matters
+and have quick fingers?
 
-Interested? Explore this User Guide to find out more. Enjoy!
+Then TeaPet is definitely for you! Explore this User Guide to find out more. Enjoy!
 
 === Navigating the User Guide
 The aim of this User Guide is to provide you with all the information you need to fully utilise TeaPet. We understand the pains of using a
@@ -169,8 +169,8 @@ get started with them.
 
     Command + Prefix/Field
 
-    Examples of Command: student add, notes edit, acadmics export, etc.
-    Examples of Prefix/Field combinations: name/Kelvin Klein, phone/9000 8000, att/Present
+    Examples of Command: `student add`, `notes edit`, `acadmics export`, etc.
+    Examples of Prefix/Field combinations: `name/Kelvin Klein`, `phone/9000 8000`, `att/Present`
 
     Most commands have multiple Prefix/Field combinations to fill.
     Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
@@ -677,7 +677,7 @@ Adds a note for student _Freddy Zhang_ into the list of notes, together with con
     Priority: LOW
 
 .After using the `notes add` command
-image::userguide/notesfeature/notesAdd.png[width="790]
+image::userguide/notesfeature/notesAdd.png[width="790"]
 
 ==== Edit Notes `notes edit`
 
@@ -792,40 +792,50 @@ TeaPet application
 
 [[scheduler]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
-TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
-sorted according to date and time. You will then be able to view your weekly schedule at a glance.
+TeaPet's Personal Scheduler allows you to record down your events for the week, which will be
+sorted according to date and time. You will then be able to easily view your schedule as you need it.
 
-==== Display your scheduler: `schedule` [Done by Simon Lam]
+==== Display your scheduler: `schedule` [Done by Simon Lam and Gary Lim]
 
-Displays your schedule for the current week.
+Displays your schedule in this current week.
 
 *Format:* `schedule`
 
 *Expected Outcome:*
 
     This is your schedule for the week
+    Schedule helps you to keep track of your events.
+    [HELP ON SCHEDULE COMMANDS]
+    add event: schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE
+    edit event: schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM] [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]
+    delete event: schedule delete INDEX
+    get index of a event: schedule indexGet/EVENT_DESCRIPTION
+    get all indexes of events in schedule: schedule indexAll
+    change view mode of schedule: schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD
+    export schedule: schedule export
+    Type the following commands for more info!
 
-.After using schedule command
+.After using `schedule` command
 image::display_schedule.png[width="790"]
 
 
-==== Creating a schedule: `add` [Done by Simon Lam]
+==== Adding an event to schedule: `schedule add` [Done by Simon Lam and Gary Lim]
 
 Adds an event to your personal scheduler.
 
-*Format:* `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`
+*Format:* `schedule add eventName/EVENT_DESCRIPTION startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR_DESCRIPTION color/COLOR_CODE`
 
 NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
-For example, 7th April 2020 10AM will be 2020-04-07T10:00
+Example: 7th April 2020 10AM will be 2020-04-07T10:00
 
-NOTE: The recurrence type can only be either of these, none, daily or weekly.
+NOTE: RECUR_DESCRIPTION can only be either of these: `none`, `daily` or `weekly`.
 
 NOTE: Events which are further away in the future have a darker color code. This is intentional.
 
 NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
-which uses simlar prefixes as well.
+which uses similar prefixes as well.
 
-TIP: Color group is from 0 to 23 inclusive. +
+TIP: COLOR_CODE is from 0 to 23 inclusive. +
 
 .Color code for TeaPet's calendar
 image::color_code.png[width="790"]
@@ -836,11 +846,174 @@ Example:
 
 * *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-02T08:00
                          endDateTime/2020-04-07T10:00 recur/none color/21`
-Creates a schedule with the title '_Teachers Meeting_' from '_2nd Apr 2020, 0800_' to '_2th Apr 2020, 1000_' with no recurrence
+Creates an event in the schedule with the description '_Teachers Meeting_' from '_2nd Apr 2020, 0800_' to '_7th Apr 2020, 1000_' with '_no recurrence_'
 and a color group of '_21_'.
 
 .Adding an event to the schedule
 image::schedule_add.png[width="790"]
+
+
+
+==== Editing an event in schedule: `schedule edit` [Done by Gary Lim]
+
+Edits an event in your personal scheduler.
+
+*Format:* `schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/START_DATETIME] [endDateTime/END_DATETIME] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]`
+
+NOTE: INDEX is the index of the event that you wish to edit. This can be obtained using the indexGet Command. More details <<indexGet,here>>
+
+NOTE: INDEX should be a positive integer and be a valid index.
+
+NOTE: You must edit at least *1* field. The rest of the fields are optional.
+
+NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
+Example: 7th April 2020 10AM will be 2020-04-07T10:00
+
+NOTE: RECUR_DESCRIPTION can only be either of these: `none`, `daily` or `weekly`.
+
+NOTE: Events which are further away in the future have a darker color code. This is intentional.
+
+NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
+which uses similar prefixes as well.
+
+TIP: Use the indexGet/indexAll Command to check the index of the event before you edit to ensure you always correctly edit events.
+
+TIP: COLOR_CODE is from 0 to 23 inclusive. +
+
+.Color code for TeaPet's calendar
+image::color_code.png[width="790"]
+
+{nbsp} +
+
+Example:
+
+*  `schedule edit 2 eventName/Teachers Meeting` +
+Edits event with index 2 in the schedule to the new description '_Teachers Meeting_'.
+
+*Expected Outcome:*
+
+        Successfully edited Event 2 into: Event Name: Teachers Meeting , Start DateTime: 2020-04-02T08:00 , End DateTime: 2020-04-07T10:00
+
+==== Delete an event in schedule: `schedule delete` [Done by Gary Lim]
+
+Deletes an event in your personal scheduler.
+
+*Format:* `schedule delete INDEX`
+
+NOTE: INDEX is the index of the event that you wish to delete. This can be obtained using the indexGet Command. More details <<indexGet,here>>
+
+NOTE: INDEX should be a positive integer and be a valid index.
+
+TIP: Use the indexGet/indexAll Command to check the index of the event before you delete to ensure you always correctly delete events.
+
+Example:
+
+*  `schedule delete 2` +
+Deletes event with index 2 in the schedule.
+
+*Expected Outcome:*
+
+        Deleted Event: Event Name: Teachers Meeting , Start DateTime: 2020-04-02T08:00 , End DateTime: 2020-04-07T10:00
+
+[[indexGet]]
+
+==== Get index of an event in schedule: `schedule indexGet` [Done by Gary Lim]
+
+Get the index of an event in your personal scheduler.
+
+*Format:* `schedule indexGet/EVENT_DESCRIPTION`
+
+NOTE: EVENT_DESCRIPTION is the name of the event. +
+ In the unlikely event that you mistype the EVENT_DESCRIPTION, our smart application will
+help you find the closest matching event to the EVENT_DESCRIPTION that you entered.
+
+NOTE: Index is used to identify events and help you edit and delete events.
+
+Example:
+
+*  `schedule indexGet/consult` +
+Gets the index of the event with the EVENT_DESCRIPTION '_consult_'.
+
+*Expected Outcome:*
+
+    Could not find specified event. This is the closest event we can find based on what you've entered:
+    Index: 5 - Event Name: Consultation , Start DateTime: 2020-03-30T08:00 , End DateTime: 2020-03-30T10:00
+
+Example 2 :
+
+*  `schedule indexGet/consultation` +
+Gets the index of the event with the EVENT_DESCRIPTION '_consultation_'.
+
+*Expected Outcome:*
+
+    Event found:
+    Index: 5 - Event Name: Consultation , Start DateTime: 2020-03-30T08:00 , End DateTime: 2020-03-30T10:00
+
+
+==== Get all indexes of events in schedule: `schedule indexAll` [Done by Gary Lim]
+
+Get all indexes of your events in your personal scheduler.
+
+*Format:* `schedule indexAll`
+
+NOTE: Index is used to identify events and help you edit and delete events.
+
+Example:
+
+*  `schedule indexAll` +
+Gets all indexes of all events currently in your schedule.
+
+*Expected Outcome:*
+
+   These are all the events in your scheduler:
+    Index: 1 - Event Name: Consultation , Start DateTime: 2020-03-30T08:00 , End DateTime: 2020-03-30T10:00
+    Index: 2 - Event Name: Consultation , Start DateTime: 2020-04-10T08:00 , End DateTime: 2020-04-10T10:00
+    Index: 3 - Event Name: Family Dinner , Start DateTime: 2020-03-30T19:00 , End DateTime: 2020-03-30T20:00
+
+==== Change view mode of schedule: `schedule view` [Done by Gary Lim]
+
+Change the view mode of your Personal Schedule as how you need it.
+
+*Format:* `schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`
+
+NOTE: SCHEDULE_MODE can only be of these: `daily` or `weekly`.
+
+NOTE: Date is in YYYY-MM-DD format.
+
+TIP: Change the view mode to `daily` to help you see all the events you have on that day!
+
+Example:
+
+*  `schedule view mode/daily date/2020-04-12` +
+View all the events you have on '_12th Apr 2020_'
+
+*Expected Outcome:*
+
+    Showing your daily schedule on reference date 2020-04-12
+
+==== Export all events in schedule: `schedule export` [Done by Gary Lim]
+
+Exports all events currently in schedule into a _.ics_ file.
+The _.ics_ file type can easily be used with Google Calendar and other calendar applications.
+
+*Format:* `schedule export`
+
+NOTE: The file will be exported into the data folder with the file name '_mySchedule.ics_'. Every export command run replaces the existing file.
+
+
+Example:
+
+*  `schedule export' +
+Exports all your events into the data folder with the file name '_mySchedule.ics_'
+
+*Expected Outcome:*
+
+    Schedule is exported to mySchedule.ics in the data folder
+
+'''
+
+
+
 
 
 === Additional Features [Done by Simon Lam]
