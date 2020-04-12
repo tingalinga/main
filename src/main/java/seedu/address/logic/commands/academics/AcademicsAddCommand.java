@@ -42,6 +42,7 @@ public class AcademicsAddCommand extends AcademicsCommand {
     }
 
     public AcademicsAddCommand(Assessment toAdd) {
+        requireNonNull(toAdd);
         this.toAdd = toAdd;
     }
 
