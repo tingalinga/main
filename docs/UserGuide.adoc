@@ -165,6 +165,16 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 This section aims to provide you with in-depth details of TeaPet's main features, as well as how to
 get started with them.
 
+*TeaPet Command Syntax:*
+
+    Command + Prefix/Field
+
+    Examples of Command: student add, notes edit, acadmics export, etc.
+    Examples of Prefix/Field combinations: name/Kelvin Klein, phone/9000 8000, att/Present
+
+    Most commands have multiple Prefix/Field combinations to fill.
+    Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
+
 
 [[particulars]]
 === Student Particulars [Done by Simon Lam]
@@ -627,10 +637,10 @@ Shows all notes currently stored in TeaPet, and displays help on the usage of th
 
     The Column on the right displays all your notes.
     [HELP ON NOTES COMMANDS]
-    ADD NOTE: notes add n/<Name of Student c/<Content> pr/<Priority>
-    EDIT NOTE: notes edit n/<Name of Student c/<Content> pr/<Priority>
-    DELETE NOTE: notes delete <Index>
-    FILTER SEARCH NOTES: notes filter <Keyword(s)>
+    ADD NOTE: notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY
+    EDIT NOTE: notes edit INDEX [name/STUDENT_NAME] [c/CONTENT] [pr/PRIORITY]
+    DELETE NOTE: notes delete INDEX
+    FILTER SEARCH NOTES: notes filter KEYWORD(S)
     EXPORT NOTES: notes export
 
 .After using the `notes` command
@@ -643,7 +653,7 @@ Adds a note into TeaPet.
 
 *Format:*
 
-    notes add name/<Name of Student> c/<Content> pr/<Priority>
+    notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY
 
 * Prefixes used: name/ -> name, c/ -> content pr/ -> priority
 * Create and add a new note with the following fields
@@ -674,7 +684,7 @@ Edits a note in TeaPet.
 
 *Format:*
 
-    notes edit <Index> name/<Updated name of student> c/<Updated content pr/<Updated priority>
+    notes edit INDEX [name/UPDATED_STUDENT_NAME] [c/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
 
 * Prefixes used: name/ -> name, c/ -> content pr/ -> priority
 * Edits a current note in the list by index. Index must be an integer within the total number of notes.
@@ -704,7 +714,7 @@ Deletes a note in TeaPet.
 
 *Format:*
 
-    notes delete <Index>
+    notes delete INDEX
 
 * Deletes a current note in the list by index. Index must be an integer within the total number of notes.
 
@@ -728,7 +738,7 @@ Displays a list of filtered notes based on specific keywords.
 
 *Format:*
 
-    notes filter <Keyword(s)>
+    notes filter KEYWORD(S)
 
 * Filters the list of notes based on the presence of keywords given by the User.
 * This notes filter feature will perform a comparison of *name of student*, *content*, *priority* and *timestamp*
@@ -967,11 +977,11 @@ Here are the commands to manage students. They require the prefix `notes`.
 .Notes commands of TeaPet
 |===
 |*Command*|*Format*|*Expected outcome*
-|`notes add`|`notes add name/NAME c/CONTENT pr/PRIORITY| Adds a note into TeaPet.
-|`notes edit`|`notes edit INDEX name/NAME c/CONTENT pr/PRIORITY`|Edits a note in TeaPet.
-|`notes delete`| `notes delete INDEX`|Deletes a note in TeaPet.
-|`notes filter`|`notes filter KEYWORDS`|Displays a list of filtered notes based on specific keywords.
-|`notes export`|`notes export`|Exports all notes in TeaPet into a .csv file
+|`notes add`| `notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY`| Adds a note into TeaPet
+|`notes edit`|`notes edit INDEX [name/STUDENT_NAME] [c/CONTENT] [pr/PRIORITY]`| Edits a note in TeaPet.
+|`notes delete`| `notes delete INDEX`| Deletes a note in TeaPet.
+|`notes filter`|`notes filter KEYWORDS`| Displays a list of filtered notes based on specific keywords.
+|`notes export`|`notes export`| Exports all notes in TeaPet into a .csv file
 |===
 
 === Personal Scheduler Commands
