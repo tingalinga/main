@@ -41,6 +41,10 @@ public class AcademicsAddCommand extends AcademicsCommand {
         toAdd = new Assessment(description, type, date);
     }
 
+    public AcademicsAddCommand(Assessment toAdd) {
+        this.toAdd = toAdd;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

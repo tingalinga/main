@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSESSMENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -97,6 +100,18 @@ public class CommandTestUtil {
     public static final String VALID_SCORE_SHARADH_RAJARAMAN = "0";
     public static final String VALID_SCORE_GRACE_PAN = "99";
 
+    public static final String DESCRIPTION_MATH_ASSIGNMENT = " "
+            + PREFIX_ASSESSMENT_DESCRIPTION + VALID_DESCRIPTION_MATH_ASSIGNMENT;
+    public static final String DESCRIPTION_SCIENCE_EXAM = " "
+            + PREFIX_ASSESSMENT_DESCRIPTION + VALID_DESCRIPTION_SCIENCE_EXAM;
+    public static final String TYPE_MATH_ASSIGNMENT = " " + PREFIX_ASSESSMENT_TYPE + VALID_TYPE_MATH_ASSIGNMENT;
+    public static final String TYPE_SCIENCE_EXAM = " " + PREFIX_ASSESSMENT_TYPE + VALID_TYPE_SCIENCE_EXAM;
+    public static final String DATE_MATH_ASSIGNMENT = " " + PREFIX_ASSESSMENT_DATE + VALID_DATE_MATH_ASSIGNMENT;
+    public static final String DATE_SCIENCE_EXAM = " " + PREFIX_ASSESSMENT_DATE + VALID_DATE_SCIENCE_EXAM;
+
+    public static final String INVALID_ASSESSMENT_DESC = " " + PREFIX_NAME + ""; // empty description is not allowed
+    public static final String INVALID_TYPE_DESC = " " + PREFIX_ASSESSMENT_TYPE + "assignment"; // homework OR exam
+    public static final String INVALID_DATE_DESC = " " + PREFIX_ASSESSMENT_DATE + "2020/03/04"; // homework OR exam
 
     public static final StudentEditCommand.EditStudentDescriptor DESC_AMY;
     public static final StudentEditCommand.EditStudentDescriptor DESC_BOB;
