@@ -55,7 +55,6 @@ public class Messages {
             + "change view mode of schedule: schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD\n"
             + "export schedule: schedule export\n"
             + "Type the following commands for more info!\n";
-
     public static final String MESSAGE_INVALID_VIEW_MODE = "Invalid schedule view mode."
             + " Please input either weekly or daily.";
 

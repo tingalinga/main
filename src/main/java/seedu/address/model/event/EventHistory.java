@@ -8,11 +8,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
+import org.apache.commons.math3.util.Pair;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
-import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.EventUtil;
 import seedu.address.model.event.exceptions.DuplicateVEventException;
@@ -195,7 +194,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
         for (int i = 0; i < vEvents.size(); i++) {
             VEvent currentVEvent = vEvents.get(i);
             if (currentVEvent.getSummary().getValue().equalsIgnoreCase(eventName)) {
-                resultIndexList.add(new Pair(Index.fromZeroBased(i), currentVEvent));
+                resultIndexList.add(new Pair<Index, VEvent>(Index.fromZeroBased(i), currentVEvent));
             }
         }
         return resultIndexList;
@@ -207,7 +206,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
      * @return a vEvent object that is closest to the event name specified
      * @throws VEventNotFoundException if there are no VEvents that is remotely close to the event name specified.
      */
-    public Pair searchMostSimilarVEventName(String eventName) throws VEventNotFoundException {
+    public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) throws VEventNotFoundException {
         requireNonNull(eventName);
 
         if (vEvents.isEmpty()) {
@@ -229,7 +228,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
             }
         }
 
-        return new Pair(Index.fromZeroBased(mostSimilarIndex), mostSimilarVEvent);
+        return new Pair<Index, VEvent>(Index.fromZeroBased(mostSimilarIndex), mostSimilarVEvent);
     }
 
     /**
@@ -242,7 +241,7 @@ public class EventHistory extends EventUtil implements ReadOnlyEvents, ReadOnlyV
         List<Pair<Index, VEvent>> resultIndexList = new ArrayList<>();
         for (int i = 0; i < vEvents.size(); i++) {
             VEvent currentVEvent = vEvents.get(i);
-            resultIndexList.add(new Pair(Index.fromZeroBased(i), currentVEvent));
+            resultIndexList.add(new Pair<Index, VEvent>(Index.fromZeroBased(i), currentVEvent));
         }
         return resultIndexList;
     }

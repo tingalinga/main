@@ -6,9 +6,9 @@ import static seedu.address.commons.util.EventUtil.vEventToEventMapper;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import org.apache.commons.math3.util.Pair;
 
 import jfxtras.icalendarfx.components.VEvent;
-import jfxtras.icalendarfx.utilities.Pair;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
