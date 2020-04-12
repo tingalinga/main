@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.notes;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
@@ -12,6 +11,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,6 +24,18 @@ public class NotesFilterCommandTest {
             getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
             getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
+
+    @Test
+    public void execute_success() throws CommandException {
+        NotesContainKeywordsPredicate predicate =
+                new NotesContainKeywordsPredicate(Collections.singletonList("first"));
+        NotesFilterCommand command = new NotesFilterCommand(predicate);
+
+        CommandResult expected = new CommandResult(NotesFilterCommand.MESSAGE_SUCCESS
+                + predicate.getKeywords().toString());
+
+        assertEquals(command.execute(model), expected);
+    }
 
 
     @Test
