@@ -107,9 +107,13 @@ Please click https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=TheElect
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=navigate]
+include::../UserGuide.adoc[tag=particulars]
+include::../UserGuide.adoc[tag=schedulerA]
+include::../UserGuide.adoc[tag=additional-features]
+include::../UserGuide.adoc[tag=particulars-summary]
 
-include::../UserGuide.adoc[tag=dataencryption]
+
 
 == Contributions to the Developer Guide
 
@@ -117,9 +121,11 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
-
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=particulars-feature]
+include::../DeveloperGuide.adoc[tag=uc-simon]
+include::../DeveloperGuide.adoc[tag=uc-simon2]
+include::../DeveloperGuide.adoc[tag=manual-test-particulars]
+include::../DeveloperGuide.adoc[tag=manual-test-scheduler]
 
 
 
