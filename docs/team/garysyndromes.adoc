@@ -16,35 +16,36 @@ written in Java.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the a*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: developed the *Personal Schedule* feature of TeaPet.
+** *What it does*: Allows the user to keep track of all of his/her events by adding it as an Event in the Personal Schedule.
+** *Justification*: This feature is an integral part in any teacher's routine applications. It provides a platform to track the user's
+events that the user has to attend. We decided to integrate this feature into TeaPet because we feel that TeaPet should also be an application
+that helps the user manage their time, on top of its primary functions of managing the user's class details. An integrated platform will ensure that our
+product will help the user save time by only using TeaPet, since using different applications to keep track of different things is a hassle.
+** *Highlights*: Users are able to add, edit and delete events scheduled in their personal scheduler. They can set recurring events and have different
+color codes to represent different event types. Users can export their schedule to an .ics file to import into Google Calendar and other mainstream calendar applications.
+Different view modes are also available for the Personal Schedule. The implementation was challenging as it required me to study the implementation of the library.
+** *Credits*: JFXtras iCalendar API was used to help develop our Personal Schedule.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Minor enhancement*: Ensured code naming is coherent within the project.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
-
+* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=garysyndromes&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[Functional and Test code]]
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** In charge of Integration, ensured product does not have bugs when features are merged together.
+*** Cleaned up code base, removed unused code.
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Deleted Student Remark feature (since it was not in use) (Pull requests https://github.com[#33], https://github.com[#34])
+*** Wrote additional tests for existing features to increase coverage from 62% to 74% (Pull requests https://github.com[#36], https://github.com[#38])
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+*** Did cosmetic tweaks to existing contents of the User Guide: (Pull requests https://github.com[#36], https://github.com[#38])
+*** Updated User Guide to include Personal Schedule feature.
+*** Updated User Guide introduction and format.
+*** Updated Developer Guide to include Personal Schedule feature.
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
-
-_{you can add/remove categories in the list above}_
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/garysyndromes/ped[Practical Exam Dry Run])
 
 == Contributions to the User Guide
 
