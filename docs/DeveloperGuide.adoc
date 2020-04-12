@@ -442,6 +442,8 @@ both update the images and display the student list concurrently.
 
 {nbsp} +
 
+//@@author Yuanyu97
+//tag::admin[]
 === Class administration feature
 The class administration feature keeps track of essential student administrative details.
 The feature comprises of four commands namely.
@@ -588,6 +590,7 @@ searching through the `UniqueDateList#dates`, a DateNotFoundException will be th
 
 [NOTE]
 The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
+//end::admin[]
 
 === Student Academics feature
 This student academics feature stores and tracks the class' academics progress.
@@ -1049,6 +1052,8 @@ Refer to the guide <<DevOps#, here>>.
 
 *Value proposition*: Ability to manage students administration and personal commitments better than a typical mouse/GUI driven application. Overall increase in productivity.
 
+//@@author Yuanyu97
+//tag::userstories[]
 [appendix]
 == User Stories
 
@@ -1094,7 +1099,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
-_{More to be added}_
+//end::userstories[]
 
 [appendix]
 == Use Cases
@@ -1242,6 +1247,8 @@ Use case ends.
 Use case ends.
 
 [discrete]
+//@@author Yuanyu97
+//tag::usecases[]
 === Use case: UC07 - Display admin class list.
 
 *MSS*
@@ -1306,7 +1313,7 @@ Use case ends.
 ** 2a1. TeaPet shows an error message displaying date is not found.
 +
 Use case ends.
-
+//end::usecases[]
 [discrete]
 === Use case: UC09 - Display detailed class list.
 
@@ -1550,6 +1557,8 @@ Expected: An error message is shown as the name of student cannot contain number
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
 
+//@@author Yuanyu97
+//tag::adminmanual[]
 === Manual Test: Class Admin Particulars
 
 . Saving a date
@@ -1572,7 +1581,7 @@ Expected: An error message is shown as the name of student cannot contain number
 .. Other incorrect delete commands to try: `admin delete`, `delete DATE`, `admin delete `DATE`, where `DATE` is in
    YYYY-MM-DD format and ``DATE` is in the wrong `DATE` format. +
    Expected: Status bar displays invalid command and incorrect command format message.
-
+//end::adminmanual[]
 === Manual Test: Scheduler
 
 . Adding an event to the scheduler
