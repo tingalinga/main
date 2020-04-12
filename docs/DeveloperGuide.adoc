@@ -251,6 +251,7 @@ The feature comprises of commands namely,
 * `EditCommand` - Edits the particulars of a student
 * `DeleteCommand` - Deletes the student information
 * `FindCommand` - Finds information of the required student
+* `ClearCommand` - Deletes all student details from the student list
 
 
 The student commands all share similar paths of execution and is illustrated in the following sequence diagram below,
@@ -354,18 +355,31 @@ method.
 
 4. A new `CommandResult` will be returned with the success message.
 
+==== Student Clear command
+
+===== Implementation
+
+The following is a detailed explanation of the operations which `StudentFindCommand` performs.
+
+1. After the successful parsing of the user input, the `StudentClearCommand#execute(Model model)` method is called.
+
+2. The `Model#setTeaPet(ReadOnlyTeaPet teaPet)` method is then called which triggers the `TeaPet#resetData(ReadOnlyTeaPet newData)` method
+and creates a brand new student list to replace the old one.
+
+3. A new `CommandResult` will be returned with the success message.
 
 ===== Design Considerations
 ===== Aspect: Command Syntax
 * *Current Implementation:*
 
-** Current implementation of the commands follows the command word syntax, followed by the arguments necessary for execution.
-For example, `student add/edit/delete/find/refresh`.
+** Current implementation of the feature follows just the command word syntax
+For example, `student`.
 
 * *Alternatives Considered:*
-** We considered using a whole new command, `student refresh` to solely refresh and update images of the students. However, we realised
-that it would be more convenient for the user if we just add this functionality into the `student` command instead as it is able to
-both update the images and display the student list concurrently.
+** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
+and will make inputs more tedious and confusing for users.
+
+
 
 ===== Aspect: Command Length:
 * *Current Implementation:*
@@ -386,12 +400,11 @@ This feature utilises the `StudentCard#updateImage` method to update the images 
 The feature comprises of one command namely,
 * `DefaultStudentDisplayCommand` - Refreshes the student list to show updated images of students and displays the student list.
 
-This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
+This is further illustrated in the following sequence diagram below.
 
-(To Change)
 
 .Sequence Diagram for StudentRefreshCommand
-image::ImportImage.png[]
+image::ImportImage.v1.png[]
 
 ===== Implementation
 
@@ -403,7 +416,7 @@ require validation as it does not write into the student list.
 2. The `StudentCardDefault#updateImage` method is then called which checks the image folder for the required png file and updates
 the student card.
 [NOTE]
-The png file must match the name of the student and must be in all lower case with no whitespaces.
+The name of the png file must match the name of the student.
 
 3. If any view other than the student list view is showing on the `MainWindow`, the `MainWindow#handleDefaultStudent()` method
 will be called and the student list is now visible on the `MainWindow`.
@@ -419,12 +432,13 @@ image::ImportImageSequenceDiagram.png[]
 ===== Aspect: Command Syntax
 * *Current Implementation:*
 
-** Current implementation of the feature follows just the command word syntax
-For example, `student`.
+** Current implementation of the commands follows the command word syntax, followed by the arguments necessary for execution.
+For example, `student add/edit/delete/find/refresh`.
 
 * *Alternatives Considered:*
-** We considered using the forward slash `/` before the command word, for example `/add`. However, we realise that it is redundant
-and will make inputs more tedious and confusing for users.
+** We considered using a whole new command, `student refresh` to solely refresh and update images of the students. However, we realised
+that it would be more convenient for the user if we just add this functionality into the `student` command instead as it is able to
+both update the images and display the student list concurrently.
 
 {nbsp} +
 
@@ -808,9 +822,12 @@ Notes object is made up of 4 fields. They are namely: +
 ==== Add Note
 The following is a detailed elaboration how `NotesAddCommand` operates.
 
-*Step 1*. The `NotesAddCommand#execute(Model model)` method is executed which takes in a necessary student name, content and priority as input
 [NOTE]
-Format for adding a Note is `notes add name/<NAME OF STUDENT> c/<CONTENT> pr/<LOW/MEDIUM/HIGH>`.
+Format for adding a Note is `notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY`.
+[NOTE]
+Priority can only be either LOW, MEDIUM or HIGH, case-insensitive.
+
+*Step 1*. The `NotesAddCommand#execute(Model model)` method is executed which takes in a necessary student name, content and priority as input
 
 *Step 2*. The note is then searched through the `UniqueNotesList#notes` list using the
  `Model#hasNote(Notes note)` method to check if the note already exists. If the note exists, the `CommandException` will be thrown
@@ -832,6 +849,12 @@ image::developerguide/notes/SDGetNotesAddCommand.png[]
 ==== Edit Note
 
 The following is a detailed explanation of the operations which `NotesEditCommand` performs.
+
+[NOTE]
+Format for adding a Note is `notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/CONTENT] [pr/PRIORITY]`.
+[NOTE]
+Priority can only be either LOW, MEDIUM or HIGH, case-insensitive. Enclosing [] braces indicate optional fields.
+At least one of the three fields must be present.
 
 *Step 1*. The `NotesEditCommand#execute(Model model)` method is executed which edit attributes of the selected note. The method
 checks if the `index` defined when instantiating `NotesEditCommand(Index index, EditNotesDecriptor editNotesDescriptor)` is
@@ -1593,31 +1616,31 @@ from first to last, for the most effective testing experience.
 
 . Adding a note to the notes panel.
 
-.. Test case: `notes add name/Kelvin Klein c/Reminder to print his testimonial pr/HIGH` +
+.. Test case: `notes add name/Kelvin Klein cont/Reminder to print his testimonial pr/HIGH` +
 Expected: New note added to the notes panel. This note should be red (high priority) in colour, belonging to Kelvin Klein. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Kelvin Klein c/Kelvin was late for class for the second day in a row. pr/LOW` +
+.. Test case: `notes add name/Kelvin Klein cont/Kelvin was late for class for the second day in a row. pr/LOW` +
 Expected: New note added to the notes panel. This note should be yellow (low priority) in colour, belonging to Kelvin Klein. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Jane Khoo c/Jane left school for an interview. pr/MEDIUM` +
+.. Test case: `notes add name/Jane Khoo cont/Jane left school for an interview. pr/MEDIUM` +
 Expected: New note added to the notes panel. This note should be orange (medium priority) in colour, belonging to Jane Khoo. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Kelvin_Klein_ c/He exemplified an improvement in behaviour pr/LOW` +
+.. Test case: `notes add name/Kelvin_Klein_ cont/He exemplified an improvement in behaviour pr/LOW` +
    Expected: An error message is shown as the student name should be alpha-numeric.
 
-.. Test case: `notes add name/Kelvin Klein c/He exemplified an improvement in behaviour pr/Not High` +
+.. Test case: `notes add name/Kelvin Klein cont/He exemplified an improvement in behaviour pr/Not High` +
    Expected: An error message is shown as priority indicated must be either *LOW*, *MEDIUM* or *HIGH*, case-insensitive.
 
 
 . Editing a note in the notes panel.
 
-.. Test case: `notes edit 1 c/Reminder to print his testimonial and gradebook` +
+.. Test case: `notes edit 1 cont/Reminder to print his testimonial and gradebook` +
 Expected: First note in the panel is updated with new content. Only the content should be modified, and nothing else.
 
-.. Test case: `notes edit 1 name/Jane Khoo c/Reminder to print her testimonial and gradebook` +
+.. Test case: `notes edit 1 name/Jane Khoo cont/Reminder to print her testimonial and gradebook` +
 Expected: First note in the panel is updated with new name and content. Note should reflect student Jane Khoo's name,
 with modfied content. Nothing else should be different.
 

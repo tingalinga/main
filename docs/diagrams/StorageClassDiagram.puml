@@ -33,22 +33,22 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 
 JsonTeaPetStorage .up.|> TeaPetStorage
 JsonTeaPetStorage .down.> JsonSerializableTeaPet
-JsonSerializableTeaPet --> "*" JsonAdaptedStudent
+JsonSerializableTeaPet --> "0..*" JsonAdaptedStudent
 
 JsonAcademicsStorage .up.|> AcademicsStorage
 JsonAcademicsStorage .down.> JsonSerializableAcademics
-JsonSerializableAcademics --> "*" JsonAdaptedAssessment
+JsonSerializableAcademics --> "0..*" JsonAdaptedAssessment
 
 JsonAdminStorage .up.|> AdminStorage
 JsonAdminStorage .down.> JsonSerializableAdmin
-JsonSerializableAdmin --> "*" JsonAdaptedDate
+JsonSerializableAdmin --> "0..*" JsonAdaptedDate
 
 JsonNotesManagerStorage .up.|> NotesManagerStorage
 JsonNotesManagerStorage .down.> JsonSerializableNotesManager
-JsonSerializableNotesManager --> "*" JsonAdaptedNotes
+JsonSerializableNotesManager --> "0..*" JsonAdaptedNotes
 
 JsonEventStorage .up.|> EventStorage
 JsonEventStorage .down.> JsonSerializableEvents
-JsonSerializableEvents --> "*" JsonAdaptedEvent
+JsonSerializableEvents --> "0..*" JsonAdaptedEvent
 
 @enduml

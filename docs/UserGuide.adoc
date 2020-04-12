@@ -165,6 +165,16 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 This section aims to provide you with in-depth details of TeaPet's main features, as well as how to
 get started with them.
 
+*TeaPet Command Syntax:*
+
+    Command + Prefix/Field
+
+    Examples of Command: student add, notes edit, acadmics export, etc.
+    Examples of Prefix/Field combinations: name/Kelvin Klein, phone/9000 8000, att/Present
+
+    Most commands have multiple Prefix/Field combinations to fill.
+    Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
+
 
 [[particulars]]
 === Student Particulars [Done by Simon Lam]
@@ -627,11 +637,12 @@ Shows all notes currently stored in TeaPet, and displays help on the usage of th
 
     The Column on the right displays all your notes.
     [HELP ON NOTES COMMANDS]
-    ADD NOTE: notes add n/<Name of Student c/<Content> pr/<Priority>
-    EDIT NOTE: notes edit n/<Name of Student c/<Content> pr/<Priority>
-    DELETE NOTE: notes delete <Index>
-    FILTER SEARCH NOTES: notes filter <Keyword(s)>
-    EXPORT NOTES: notes export
+    1. Display all Notes: notes
+    2. Add Note: notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY
+    3. Edit Note: notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
+    4. Delete Note: notes delete INDEX
+    5. Filter Search Notes: notes filter KEYWORD(S)
+    6. Export Notes: notes export
 
 .After using the `notes` command
 image::userguide/notesfeature/notesDisplay.png[width="790]
@@ -643,26 +654,26 @@ Adds a note into TeaPet.
 
 *Format:*
 
-    notes add name/<Name of Student> c/<Content> pr/<Priority>
+    notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY
 
-* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Create and add a new note with the following fields
 * *None* of the fields can be empty.
-* Student's name indicated in the name field must be already *present* in the class-list.
+* Student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 * Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
 * An automatic timestamp is generated for each note added.
 
 *Example:*
 
-* `notes add name/Kelvin Klein c/Reminder to inform his parents about Kelvin's exemplary behaviour. pr/LOW` +
-Adds a note for student _Kelvin Klein_ into the list of notes, together with content and priority.
+* `notes add name/Freddy Zhang cont/Reminder to inform his parents about Freddy's exemplary behaviour. pr/LOW` +
+Adds a note for student _Freddy Zhang_ into the list of notes, together with content and priority.
 
 *Expected Outcome:*
 
     New Student Note added! Wonderful!
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour.
     Priority: LOW
 
 .After using the `notes add` command
@@ -674,25 +685,25 @@ Edits a note in TeaPet.
 
 *Format:*
 
-    notes edit <Index> name/<Updated name of student> c/<Updated content pr/<Updated priority>
+    notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
 
-* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Edits a current note in the list by index. Index must be an integer within the total number of notes.
 * *At least 1* of the three prefix fields must be indicated.
-* Updated student's name indicated in the name field must be already *present* in the class-list.
+* Updated student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 * Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
 
 *Example:*
 
-* `notes edit 4 c/Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT. pr/HIGH` +
-Edits a note for student _Kelvin Klein_ in the list of notes, together with updated content and updated priority.
+* `notes edit 4 cont/Reminder to inform his parents about Freddy's exemplary behaviour TONIGHT. pr/HIGH` +
+Edits a note for student _Freddy Zhang_ in the list of notes, together with updated content and updated priority.
 
 *Expected Outcome:*
 
     Student's Note Edited. Wonderful!
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour TONIGHT.
     Priority: HIGH
 
 .After using the `notes edit` command
@@ -704,7 +715,7 @@ Deletes a note in TeaPet.
 
 *Format:*
 
-    notes delete <Index>
+    notes delete INDEX
 
 * Deletes a current note in the list by index. Index must be an integer within the total number of notes.
 
@@ -712,14 +723,14 @@ Deletes a note in TeaPet.
 *Example:*
 
 * `notes delete 4` +
-Deletes the 4th note in the list. In this example, the note is the one we created for student _Kelvin Klein_.
+Deletes the 4th note in the list. In this example, the note is the one we created for student _Freddy Zhang_.
 
 *Expected Outcome:*
 
     Student Note deleted.
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour TONIGHT.
     Priority: HIGH
 
 ==== Filter Notes `notes filter`
@@ -728,7 +739,7 @@ Displays a list of filtered notes based on specific keywords.
 
 *Format:*
 
-    notes filter <Keyword(s)>
+    notes filter KEYWORD(S)
 
 * Filters the list of notes based on the presence of keywords given by the User.
 * This notes filter feature will perform a comparison of *name of student*, *content*, *priority* and *timestamp*
@@ -743,6 +754,9 @@ Displays only notes with the keyword "low" present.
 *Expected Outcome:*
 
     Displaying Notes with Keywords: [low]
+
+.After using the `notes filter low` command
+image::userguide/notesfeature/notesFilter.png[width="790]
 
 *Example 2:*
 
@@ -848,11 +862,9 @@ image::locating_image_folder.png[width="790"]
 *Step 2*. Open the image folder and drag the image of your student into the folder.
 
 NOTE: The filename of your image must of this format: +
-1. Filename must be of the same name as the student. +
-2. Filename is all lowercase. +
-3. Filename have no whitespaces. +
+1. Filename of the image must be the same as the student. +
 4. File is in .png format. +
-For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
+For example, a student with name *Simon Lam* must have a image file with name *Simon Lam* in .png format.
 
 TIP: For ideal optimization of the image, its dimensions for its length and width should be roughly equal.
 
@@ -864,6 +876,9 @@ image::images_in_folder.png[width="790"]
 *Step 3*. Type in the `student` command in the user interface. TeaPet will update the images and
 now you can see pictures of your students in your student list!
 
+[WARNING]
+Editing the name of the student will change the student image back to the default image. To solve this, you have to edit
+the png file in the Image folder as well after you edit the name of the student and then enter the `student` command.
 
 .Before using the refresh command
 image::before_picture_upload.png[width="790]
@@ -967,11 +982,11 @@ Here are the commands to manage students. They require the prefix `notes`.
 .Notes commands of TeaPet
 |===
 |*Command*|*Format*|*Expected outcome*
-|`notes add`|`notes add name/NAME c/CONTENT pr/PRIORITY| Adds a note into TeaPet.
-|`notes edit`|`notes edit INDEX name/NAME c/CONTENT pr/PRIORITY`|Edits a note in TeaPet.
-|`notes delete`| `notes delete INDEX`|Deletes a note in TeaPet.
-|`notes filter`|`notes filter KEYWORDS`|Displays a list of filtered notes based on specific keywords.
-|`notes export`|`notes export`|Exports all notes in TeaPet into a .csv file
+|`notes add`| `notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY`| Adds a note into TeaPet
+|`notes edit`|`notes edit INDEX [name/STUDENT_NAME] [cont/CONTENT] [pr/PRIORITY]`| Edits a note in TeaPet.
+|`notes delete`| `notes delete INDEX`| Deletes a note in TeaPet.
+|`notes filter`|`notes filter KEYWORDS`| Displays a list of filtered notes based on specific keywords.
+|`notes export`|`notes export`| Exports all notes in TeaPet into a .csv file
 |===
 
 === Personal Scheduler Commands
@@ -1068,7 +1083,7 @@ Here are the commands to manage students. They require the prefix `schedule`.
 |Event view mode
 |<<scheduler, Personal Scheduler>>
 
-|c/
+|cont/
 |Content of note
 |<<notes, Notes>>
 
