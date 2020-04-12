@@ -1372,6 +1372,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: UC12 - Edit note of specific student
 
 *MSS*
@@ -1403,6 +1404,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: UC13 - Delete note for specific student
 
 *MSS*
@@ -1428,6 +1430,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: UC14 - Add event into schedule
 
 *MSS*
@@ -1449,6 +1452,7 @@ Use case resumes at step 2.
 +
 Use case ends.
 
+[discrete]
 === Use case: UC15 - Delete event from schedule
 
 *Preconditions*
@@ -1470,6 +1474,7 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
 === Use case: UC16 - Update student profile picture
 
 *Preconditions*
