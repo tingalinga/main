@@ -5,7 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.student.TypicalStudents.ALICE;
+import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -26,7 +31,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
@@ -42,6 +49,9 @@ import seedu.address.model.student.Student;
 import seedu.address.testutil.academics.AssessmentBuilder;
 
 public class AcademicsAddCommandTest {
+
+    private Model model = new ModelManager(getTypicalTeaPet(), getTypicalAcademics(), getTypicalAdmin(),
+            getTypicalNotesManager(), getTypicalEventHistory(), new UserPrefs());
 
     @Test
     public void constructor_nullAssessment_throwsNullPointerException() {
