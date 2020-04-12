@@ -136,8 +136,8 @@ public class NextOfKin {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof NextOfKin // instanceof handles nulls
+                && value.equals(((NextOfKin) other).value)); // state check
     }
 
     @Override

@@ -23,10 +23,18 @@ public class TypicalVEvents {
     public static final VEvent VEVENT2 = new VEvent()
             .withSummary("Shower cuz smelly")
             .withDateTimeStart(LocalDateTime.parse("2020-04-02T08:00"))
-            .withDateTimeEnd(LocalDateTime.parse("2020-04-01T10:00"))
+            .withDateTimeEnd(LocalDateTime.parse("2020-04-02T10:00"))
             .withCategories("group02")
             .withUniqueIdentifier("eventTest2")
             .withRecurrenceRule(DAILY_RECUR_RULE);
+
+    public static final VEvent VEVENT3 = new VEvent()
+            .withSummary("Run cuz feeling fat")
+            .withDateTimeStart(LocalDateTime.parse("2020-04-03T08:00"))
+            .withDateTimeEnd(LocalDateTime.parse("2020-04-03T10:00"))
+            .withCategories("group03")
+            .withUniqueIdentifier("eventTest3")
+            .withRecurrenceRule(NO_RECUR_RULE);
 
     public static final VEvent NON_TYPICAL_VEVENT = new VEvent()
             .withSummary("Not Typical Event")

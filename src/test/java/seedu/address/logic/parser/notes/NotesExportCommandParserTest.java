@@ -3,6 +3,7 @@ package seedu.address.logic.parser.notes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,13 @@ public class NotesExportCommandParserTest {
     public void parseSuccess() throws ParseException {
         NotesExportCommandParser parser = new NotesExportCommandParser();
         assertEquals(parser.parse(""), new NotesExportCommand());
+    }
+
+    @Test
+    public void parseFailure() throws ParseException {
+        NotesExportCommandParser parser = new NotesExportCommandParser();
+        assertThrows(ParseException.class,
+                "Notes Export command does not accept any arguments.", ()-> parser.parse(" -1"));
     }
 
     @Test

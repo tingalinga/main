@@ -14,11 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.apache.commons.math3.util.Pair;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
-import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -466,6 +467,11 @@ public class StudentAddCommandTest {
             requireNonNull(student);
             return this.student.isSameStudent(student);
         }
+
+        @Override
+        public boolean hasStudentName(String student) {
+            return this.student.getName().fullName.equals(student);
+        }
     }
 
     /**
@@ -478,6 +484,18 @@ public class StudentAddCommandTest {
         public boolean hasStudent(Student student) {
             requireNonNull(student);
             return studentsAdded.stream().anyMatch(student::isSameStudent);
+        }
+
+        @Override
+        public boolean hasStudentName(String student) {
+            requireNonNull(student);
+            boolean contains = false;
+            for (Student stu : studentsAdded) {
+                if (stu.getName().fullName.equals(student)) {
+                    contains = true;
+                }
+            }
+            return contains;
         }
 
         @Override

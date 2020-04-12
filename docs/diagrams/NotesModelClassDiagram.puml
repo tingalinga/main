@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package NotesManager {
+Interface ReadOnlyNotes <<Interface>>
+Class NotesManager
+NotesManager .left.|> ReadOnlyNotes
+
+Package Notes  {
+Class UniqueNotesList
+Class Notes
+Notes *--> StudentName
+Notes *--> Content
+Notes *--> Priority
+Notes *--> DateTime
+
+NotesManager *--> "1" UniqueNotesList
+UniqueNotesList o--> "*" Notes
+
+@enduml

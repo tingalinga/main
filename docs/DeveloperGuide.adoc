@@ -23,10 +23,10 @@ Welcome to TeaPet!
 
 image::Ui.png[width="790"]
 
-TeaPet is an integrated platform fully customized for Primary School Form Teachers to help you manage your classroom effectively.
-It contains your personal curriculum schedule, students' particulars, and can also track your class' academic progress.
+TeaPet is an integrated platform fully customized for Form Teachers in Primary, Secondary and Tertiary institutions to help them manage their classroom effectively.
+It contains their personal curriculum schedule, students' particulars, and can also track their class' academic progress.
 
-All your important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI) and we are optimized for users who are very comfortable
+All their important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI) and we are optimized for users who are very comfortable
 working on the Command Line Interface (CLI).
 
 If you are looking for a way to easily manage your administrative classroom chores
@@ -51,11 +51,7 @@ If you are only interested in how we develop one feature, you may read the high-
 
 Take note of the following symbols and formatting used in this document:
 
-IMPORTANT: Use this to highlight important stuff
-
 WARNING: Use this for warnings
-
-CAUTION: Use this for caution
 
 NOTE: Use this for note
 
@@ -75,24 +71,21 @@ TIP: This symbol indicates tips.
 This section will provide you a brief overview of TeaPet's cool features and functionalities.
 
 . Manage your students easily
-.. Include student's particulars. e.g. address, contact number, next of kin (NOK)
-.. Include administrative details of the students. e.g. attendance, temperature
+.. Include student's particulars. e.g. address, contact number, next of kin (NOK).
+.. Include administrative details of the students. e.g. attendance, temperature.
 
 . Plan your schedule easily
-.. Create and manage your events with a single calendar
-.. View calendar at a glance
+.. Create and manage your events with a single calendar.
+.. View calendar at a glance.
 
 . Manage your class academic progress easily
 .. Include every student's grades for every examination.
-.. Easy to track progress using helpful tools. e.g. graph plots
+.. Easy to track progress using helpful tools. e.g. graph plots.
 
 . Add Notes to act as lightweight, digital reminders easily
 .. Include reminders for yourself to help you remember important information.
 .. Search keywords in your notes.
-.. Save the notes as administrative or behavioural
-
-. Toggle different views to find information easily
-.. Different view modes show only the required information. e.g. detailed, admin, default
+.. Save the notes as administrative or behavioural.
 
 . Data is saved onto your hard disk automatically
 .. Any changes made will be saved onto your computer so you dont have to worry about data being lost.
@@ -116,7 +109,7 @@ image::ArchitectureDiagram.png[]
 The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 [TIP]
-The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder.
+The `.puml` files used to create diagrams in this document can be found in the link:https://github.com/AY1920S2-CS2103T-W12-2/main/tree/master/docs/diagrams[diagrams] folder.
 Refer to the <<UsingPlantUml#, Using PlantUML guide>> to learn how to create and edit diagrams.
 
 `Main` has two classes called link:https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/java/seedu/address/Main.java[`Main`] and link:https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/java/seedu/address/MainApp.java[`MainApp`].
@@ -164,11 +157,11 @@ This section describes the high-level software structure of TeaPet's UI Componen
 .Structure of the UI Component
 image::UiClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
+*API* : https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `NotesPanel`, `StatusBarFooter` and `HelpWindow`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
 The `UI` component,
 
@@ -184,13 +177,13 @@ This section describes the high-level software structure of TeaPet's Logic Compo
 image::LogicClassDiagram.png[]
 
 *API* :
-link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
+link:https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `TeaPetParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a student).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`,and then displayed to the user.
-.  In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help (for commands) and toggling of view between `student default`, `student detailed`.
+.  In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("student delete 1")` API call.
 
@@ -207,7 +200,7 @@ This section describes the high-level software structure of TeaPet's Model Compo
 .Structure of the Model Component with `Student` class as a detailed example.
 image::ModelClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
+*API* : https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
 The `Model`,
 
@@ -226,7 +219,7 @@ This section describes the high-level software structure of TeaPet's Storage Com
 .Structure of the Storage Component
 image::StorageClassDiagram.png[]
 
-*API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
+*API* : https://github.com/AY1920S2-CS2103T-W12-2/main/blob/master/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
 The `Storage` component,
 
@@ -247,11 +240,11 @@ This section describes some noteworthy details on how certain features are imple
 The student particulars feature keeps track of essential student details.
 The feature comprises of commands namely,
 
-* `AddCommand` - Adds the student particulars into the class list
-* `EditCommand` - Edits the particulars of a student
-* `DeleteCommand` - Deletes the student information
-* `FindCommand` - Finds information of the required student
-* `ClearCommand` - Deletes all student details from the student list
+* `StudentAddCommand` - Adds the student particulars into the class list
+* `StudentEditCommand` - Edits the particulars of a student
+* `StudentDeleteCommand` - Deletes the student information
+* `StudentFindCommand` - Finds information of the required student
+* `StudentClearCommand` - Deletes all student details from the student list
 
 
 The student commands all share similar paths of execution and is illustrated in the following sequence diagram below,
@@ -267,9 +260,9 @@ image::student_sequence_diagram_v1.png[]
 
 *These are the common steps among the Student Commands:*
 
-1. The `TeaPetParser` will assign the `StudentCommandParser` to parse the user input
+1. The `TeaPetParser` will assign the `StudentCommandParser` to parse the user input.
 
-2. The `StudentCommandParser#parse` will take in a string of user input consisting of the arguments
+2. The `StudentCommandParser#parse` will take in a string of user input consisting of the arguments.
 
 3. The arguments are tokenized and the respective models of each argument are created.
 
@@ -297,7 +290,7 @@ either a unknown command or wrong format error message will be displayed.
 
 The following activity diagram summarizes what happens when a user executes the `student add` command:
 
-.Sequence Diagram for StudentAddCommand
+.Activity Diagram for StudentAddCommand
 image::StudentAddActivityDiagram.png[]
 
 
@@ -345,7 +338,7 @@ The following is a detailed explanation of the operations which `StudentFindComm
 
 1. After the successful parsing of user input, the `StudentFindCommand#execute(Model model)` method is called which checks if the
 `NameContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
-`StudentFindCommand(NameContainsKeywordsPredicate predicate)` constructor
+`StudentFindCommand(NameContainsKeywordsPredicate predicate)` constructor.
 
 2. The `Student` is then searched through the `UniqueStudentList#students` list using the `Model#hasStudent(Student student)` method
 to check if the `Student` already exists. If the `Student` does not exist, a `StudentNotFoundException` will be thrown and the `Student` will not be displayed.
@@ -397,8 +390,9 @@ the user expereince as the command will be too long to type.
 This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
 This feature utilises the `StudentCard#updateImage` method to update the images of students.
 
-The feature comprises of one command namely,
-* `DefaultStudentDisplayCommand` - Refreshes the student list to show updated images of students and displays the student list.
+The feature comprises of one command namely, `DefaultStudentDisplayCommand`
+
+* Refreshes the student list to show updated images of students and displays the student list.
 
 This is further illustrated in the following sequence diagram below.
 
@@ -423,7 +417,7 @@ will be called and the student list is now visible on the `MainWindow`.
 
 The following activity diagram summarizes what happens when a user executes the `student` command:
 
-.Activity Diagram for StudentRefreshCommand
+.Activity Diagram Import Image Feature
 image::ImportImageSequenceDiagram.png[]
 
 {nbsp} +
@@ -442,28 +436,30 @@ both update the images and display the student list concurrently.
 
 {nbsp} +
 
+//@@author Yuanyu97
+//tag::admin[]
 === Class administration feature
 The class administration feature keeps track of essential student administrative details.
 The feature comprises of four commands namely.
 
 The structure of the Admin commands are as shown below:
 
-.Admin Commands Diagram
+.Class Diagram for Admin Commands
 image::AdminClassDiagram.png[]
 
-These are the various admin commands to try:
+The student administrative feature keeps track of essential student admin details. The feature comprises of commands namely,
 
-* `admin` - Displays the most updated class administrative details.
-* `admin dates` - Displays the dates that hold administrative information of the class.
-* `admin save` - Saves today’s administrative information of the class.
-* `admin delete` - Deletes the administrative information of the class at the specified date.
-* `admin fetch` - Fetches the administrative information of the class at the specified date.
+* `AdminDisplayCommand` - Displays the most updated class administrative details.
+* `AdminDatesCommand` - Displays the dates that hold administrative information of the class.
+* `AdminSaveCommand` - Saves today’s administrative information of the class.
+* `AdminDeleteCommand` - Deletes the administrative information of the class at the specified date.
+* `AdminFetchCommand` - Fetches the administrative information of the class at the specified date.
 
 ==== Admin Display Command
 
 ===== Implementation
 
-The following is a detailed explanation of the operations which `admin` performs.
+The following is a detailed explanation of the operations which `AdminDisplayCommand` performs.
 
 *Step 1*. The `AdminDisplayCommand#execute(Model model)` method is executed which does not take in any arguments.
 
@@ -477,13 +473,13 @@ If the class list is empty, a blank page will be shown.
 `CommandResult` will be returned with the message.
 
 [NOTE]
-If the wording of the `admin` command contains error(s), an unknown command message will be displayed.
+If the wording of the `AdminDisplayCommand` contains error(s), an unknown command message will be displayed.
 
 ==== Admin Dates Command
 
 ===== Implementation
 
-The following is a detailed explanation of the operations which `admin dates` performs.
+The following is a detailed explanation of the operations which `AdminSaveCommand` performs.
 
 *Step 1*. The `AdminDatesCommand#execute(Model model)` method is executed which does not take in any arguments.
 
@@ -497,13 +493,13 @@ If the date list is empty, a blank page will be shown.
 `CommandResult` will be returned with the message.
 
 [NOTE]
-If the format or wording of the `admin dates` command contains error(s), an unknown command or a wrong format message
+If the format or wording of the `AdminDatesCommand` command contains error(s), an unknown command or a wrong format message
 will be displayed.
 
 ==== Admin Save Command
 
 ===== Implementation
-The following is a detailed explanation of the operations which `admin save` performs.
+The following is a detailed explanation of the operations which `AdminSaveCommand` performs.
 
 *Step 1*. The `AdminSaveCommand#execute(Model model)` method is executed which takes in today's date as an argument.
 
@@ -521,33 +517,33 @@ exists, with the duplicate dates error message.
 `CommandResult` will be returned with the message.
 
 [NOTE]
-If the format or wording of saving of a date contains error(s), an unknown command or wrong format error message will be
+If the format or wording of `AdminSaveCommand` contains error(s), an unknown command or wrong format error message will be
 displayed.
 
-The following activity diagram summarizes what happens when a user executes admin save command:
+The following activity diagram summarizes what happens when a user executes AdminSaveCommand:
 
-.Admin Save Activity Diagram
+.Activity Diagram for AdminSaveCommand
 image::AdminSaveActivityDiagram.png[]
 
 ===== Design Considerations
 
 ===== Aspect: Which date to save
 
-* **Alternative 1 (current choice):** Saves the most updated administrative list as today's date.
+* **Current Implementation:** Saves the most updated administrative list as today's date.
 ** Pros: Easy to implement and prevents mutation of dates.
 ** Cons: The user will be unable to overwrite dates.
 
-* **Alternative 2:** Saves the most updated administrative list as any date.
+* **Alternatives Considered:** Saves the most updated administrative list as any date.
 ** Pros: The user can mutate any dates as he or she wishes.
 ** Cons: Hard to implement, and possible accidental mutation of dates.
 
 ====== Aspect: Allow overwriting of data
 
-* **Alternative 1 (current choice):** Saving a date that exists in the storage is not allowed.
+* **Current Implementation:** Saving a date that exists in the storage is not allowed.
 ** Pros: Easy to implement and prevent accidental mutation of data
 ** Cons: Hard to implement.
 
-* **Alternative 2:** Saving a date that exists in the storage is allowed.
+* **Alternatives Considered:** Saving a date that exists in the storage is allowed.
 ** Pros: User can make necessary changes to the dates where errors exists.
 ** Cons: Hard to implement and could result in accidental mutation of dates.
 
@@ -588,6 +584,7 @@ searching through the `UniqueDateList#dates`, a DateNotFoundException will be th
 
 [NOTE]
 The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
+//end::admin[]
 
 === Student Academics feature
 This student academics feature stores and tracks the class' academics progress.
@@ -600,18 +597,18 @@ The academics feature consists of four commands namely.
 * `AcademicsSubmitCommand` - Submits students' work to the specified assessment.
 * `AcademicsMarkCommand` - Marks students' work of the specified assessment.
 * `AcademicsDisplayCommand` - Displays either homework, exam, or the report of student academics.
-* `AcademicsExportCommand` - Exports the academics information into a csv file.
+* `AcademicsExportCommand` - Exports the academics information into a .csv file.
 
 All academics commands share similar paths of execution. The commands when executed, will interface with the methods
 exposed by the `Model` interface to perform the related operations (See <<Design-Logic,logic component>> for the general overview).
 
-.Academics Commands Diagram
+.Class Diagram for Academics Commands
 image::academics/AcademicsClassDiagram.png[]
 
 ==== Class Overview
 The class diagram below will depict the structure of the Academics Model Component.
 
-.Academics Model Class Diagram
+.Class Diagram for Academics Model
 image::academics/AcademicsModelClassDiagram.png[]
 
 ==== Academics Add Command
@@ -636,10 +633,10 @@ command box will be reflected with the `AcademicsAddCommand#MESSAGE_SUCCESS` con
 returned with the message.
 
 [NOTE]
-If the format or wording of adding an assessment contains error(s), an unknown command or wrong format error message
+If the format or wording of `AcademicsAddCommand` contains error(s), an unknown command or wrong format error message
 will be displayed.
 
-The following sequence diagram summarizes what happens when a user keys in an academics add command:
+The following sequence diagram summarizes what happens when a user executes an AcademicsAddCommand:
 
 .Academics Add Command Sequence Diagram
 image::academics/academics_add_command_sequence_diagram.png[]
@@ -703,7 +700,7 @@ submitted their work, a `CommandException` will be thrown.
 *Step 4.* The command box will be reflected with the `AcademicsSubmitCommand#MESSAGE_SUCCESS` constant and a new
 `CommandResult` will be returned with the message.
 
-The following activity diagram summarizes what happens when a user executes academics submit command:
+The following activity diagram summarizes what happens when a user executes an AcademicsSubmitCommand:
 
 .Academics Submit Activity Diagram
 image::academics/AcademicsSubmitActivityDiagram.png[]
@@ -737,21 +734,21 @@ using the method `Model#markAssessment(Assessment assessment, List<String> stude
 
 ===== Aspect: Allow submission along with marking
 
-* **Alternative 1 (current choice):** Marking a submission that has not be submitted is not allowed.
+* **Current Implementation:** Marking a submission that has not be submitted is not allowed.
 ** Pros: Clearer and prevents confusion in data.
 ** Cons: Harder to implement and the user will have to submit students' work separately.
 
-* **Alternative 2:** Marking an unsubmitted work will also submit it for the assessment.
+* **Alternatives Considered:** Marking an unsubmitted work will also submit it for the assessment.
 ** Pros: The user can just submit students work using the mark command, giving them less to type.
 ** Cons: Prone to confusion of submitting and marking commands.
 
 ===== Aspect: Allow customizable total score of assessments
 
-* **Alternative 1 (current choice):** Setting the total score for a submission is not allowed. (Total score for all submissions will be 100.)
+* **Current Implementation: ** Setting the total score for a submission is not allowed. (Total score for all submissions will be 100.)
 ** Pros: Easy to implement and maintains uniformity of data.
 ** Cons: User cannot set different total scores for assessments and have to grade it to a 100 weightage.
 
-* **Alternative 2:** Setting the total score for a submission is allowed.
+* **Alternatives Considered:** Setting the total score for a submission is allowed.
 ** Pros: User can make set different total scores to different assessments according to its requirements.
 ** Cons: Hard to implement and could result in inconsistency of data.
 
@@ -777,7 +774,7 @@ Example. `homework` type display will reflect `AcademicsDisplayCommand#MESSAGE_H
 If the academics list is empty, a blank page will be shown.
 
 [NOTE]
-If the wording of the `academics` command contains error(s), an unknown command message will be displayed.
+If the wording of the `AcademicsDisplayCommand` contains error(s), an unknown command message will be displayed.
 
 ==== Academics Export Command
 
@@ -792,7 +789,7 @@ Format of the command is: `academics export`.
 *Step 2.* The command box will be reflected with the `AcademicsExportCommand#MESSAGE_SUCCESS` constant and a new
 `CommandResult` will be returned with the message.
 
-*Step 3.* Subsequently, the `CommandResult` will be processed by the`MainWindow` in the UI component and generate a
+*Step 3.* Subsequently, the `CommandResult` will be processed by the `MainWindow` in the UI component and generate a
 studentAcademics.csv in the data folder of the current directory.
 
 === Notes feature
@@ -801,23 +798,22 @@ information of his/her students. Each note is tagged to a specific student and a
 
 The notes feature comprises of 6 main functionalities represented by 6 commands. They are namely: +
 
-* `NotesCommand`
-* `NotesAddCommand`
-* `NotesEditCommand`
-* `NotesDeleteCommand`
-* `NotesFilterCommand`
-* `NotesExportCommand`
+* `NotesCommand` - Displays all notes and help on the notes feature.
+* `NotesAddCommand` - Adds a new note into TeaPet.
+* `NotesEditCommand` - Edits the details of a note in TeaPet.
+* `NotesDeleteCommand` - Deletes a note in TeaPet.
+* `NotesFilterCommand` - Filters the list of notes in TeaPet based on user-input keywords.
+* `NotesExportCommand` - Exports all notes information into a .csv file
 
-.Class Diagram for NotesCommands.
+.Class Diagram for Notes Commands
 image::developerguide/notes/NotesClassDiagram.png[]
 
 ==== Structure of Notes Class
-Notes object is made up of 4 fields. They are namely: +
+Notes object is made up of 4 fields. They are namely: Student Name, Content, Priority and DateTime. The class diagram below
+depicts the structure of the Notes Model Component.
 
-* `String student`
-* `String content`
-* `String priority`
-* `String dateTime`
+.Class Diagram for Notes Model Component
+image::developerguide/notes/NotesModelClassDiagram.png[]
 
 ==== Add Note
 The following is a detailed elaboration how `NotesAddCommand` operates.
@@ -836,14 +832,14 @@ with the duplicate note error message.
 *Step 3*. The method `Model#addNote(Notes note)` will then be called to add the note. The command box will be reflected with
 the `NotesAddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
 [NOTE]
-If the format or wording of adding a student contains error(s), the behaviour of TeaPet will be similar to step 2, where either a unknown command
+If the format or wording of `NotesAddCommand` contains error(s), the behaviour of NotesManager will be similar to step 2, where either a unknown command
 or wrong format error message will be displayed.
 
 
-.Sequence Diagram for Adding Notes.
+.Sequence Diagram for Adding Notes
 image::developerguide/notes/NotesAddSequence.png[]
 
-.Supplementary Frame for Sequence Diagram.
+.Supplementary Frame for Sequence Diagram
 image::developerguide/notes/SDGetNotesAddCommand.png[]
 
 ==== Edit Note
@@ -895,7 +891,7 @@ The following is a detailed explanation of the operations which `NotesFilterComm
 
 1. After the successful parsing of user input, the `NotesFilterCommand#execute(Model model)` method is called which checks if the
 `NotesContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
-`NotesFilterCommand(NotesContainsKeywordsPredicate predicate)` constructor
+`NotesFilterCommand(NotesContainsKeywordsPredicate predicate)` constructor.
 
 2. The `Notes` is then searched through the `UniqueNotesList#notes` list... ...
 
@@ -917,11 +913,11 @@ be returned with the success message.
 the current directory.
 
 ===== Design Considerations
-* Alternative 1 (Current Choice): Intuitive, simple syntax and user-friendly
+* Current Implementation: Intuitive, simple syntax and user-friendly
 - Pros: It is easy for the Teacher to use the feature.
 - Cons: Not as powerful and less utility for advanced users.
 
-* Alternative 2: Many additional fields including special tags, reminders, etc.
+* Alternatives Considered: Many additional fields including special tags, reminders, etc.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
@@ -952,14 +948,14 @@ mapped to a `VEvent` within the `EventHistory` class. Some methods of `EventHist
 mostly `VEvent` based, which then again highlights that the interactions with the `Logic` and `UI` components are mostly done
 using the `VEvent` type class. Only the `Storage` component works with `Event` type class.
 
-.Schedule Class Diagram
+.Class Diagram for Schedule
 image::schedule_class_diagram.png[]
 
 ==== Schedule Add Command
 
 ===== Implementation
 
-The following is a detailed explanation which `schedule add` performs.
+The following is a detailed explanation which `EventAddCommand` performs.
 
 *Step 1:* The `EventAddCommand#execute(Model model)` method is called which validates if the `VEvent` object from
 the parser is valid.
@@ -978,7 +974,7 @@ from other layers of the application.
 
 The following activity diagram summarizes what happens when a user executes the `schedule add` command:
 
-.Schedule Add Activity Diagram
+.Activity Diagram for ScheduleAddCommand
 image::ScheduleAddActivityDiagram.png[]
 
 ===== Design Considerations
@@ -1049,6 +1045,8 @@ Refer to the guide <<DevOps#, here>>.
 
 *Value proposition*: Ability to manage students administration and personal commitments better than a typical mouse/GUI driven application. Overall increase in productivity.
 
+//@@author Yuanyu97
+//tag::userstories[]
 [appendix]
 == User Stories
 
@@ -1081,6 +1079,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |form teacher |maintain emergency contacts of my students |know who to contact in case of emergency
 
+|`* * *` |form teacher |be able to view the available dates in chronological order that contains administrative information of the class |know which are the available dates that I can view
+
+|`* * *` |form teacher |view the administrative information of the class on a specific date |access the required administrative information
+
 |`* *` |form teacher |specify if a student is late or absent for class |know why my student is absent
 
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
@@ -1094,7 +1096,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
-_{More to be added}_
+//end::userstories[]
 
 [appendix]
 == Use Cases
@@ -1242,6 +1244,8 @@ Use case ends.
 Use case ends.
 
 [discrete]
+//@@author Yuanyu97
+//tag::usecases[]
 === Use case: UC07 - Display admin class list.
 
 *MSS*
@@ -1306,7 +1310,7 @@ Use case ends.
 ** 2a1. TeaPet shows an error message displaying date is not found.
 +
 Use case ends.
-
+//end::usecases[]
 [discrete]
 === Use case: UC09 - Display detailed class list.
 
@@ -1369,11 +1373,70 @@ Use case ends.
 * 1b. Student is invalid.
 +
 [none]
-** 1a1. TeaPet shows an error message.
+** 1b1. TeaPet shows an error message.
 +
 Use case ends.
 
-=== Use case: UC12 - Add event into schedule
+[discrete]
+=== Use case: UC12 - Edit note of specific student
+
+*MSS*
+
+1. User enters command, together with an index of the note to edit, and fields to update.
+2. TeaPet displays feedback that the specific note chosen has been edited.
+3. TeaPet's note panel will display the updated list of notes.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+* 1b. Student is invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+[none]
+* 1c. Index is invalid.
++
+[none]
+** 1c1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC13 - Delete note for specific student
+
+*MSS*
+
+1. User enters command, together with an index of the note to delete.
+2. TeaPet displays feedback that the specifed note is deleted.
+3. TeaPet's note panel will display the updated list of notes.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+* 1b. Index is invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC14 - Add event into schedule
 
 *MSS*
 
@@ -1394,7 +1457,8 @@ Use case resumes at step 2.
 +
 Use case ends.
 
-=== Use case: UC13 - Delete event from schedule
+[discrete]
+=== Use case: UC15 - Delete event from schedule
 
 *Preconditions*
 1. Event exists in scheduler.
@@ -1415,7 +1479,8 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case: UC14 - Update student profile picture
+[discrete]
+=== Use case: UC16 - Update student profile picture
 
 *Preconditions*
 1. Png files in image folder is in correct format.
@@ -1466,7 +1531,6 @@ A contact detail that is not meant to be shared with others
 
 [[schedule]] Schedule::
 TeaPet's schedule that stores all of the teacher's events
-t
 [appendix]
 == Product Survey
 
@@ -1550,6 +1614,8 @@ Expected: An error message is shown as the name of student cannot contain number
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
 
+//@@author Yuanyu97
+//tag::adminmanual[]
 === Manual Test: Class Admin Particulars
 
 . Saving a date
@@ -1559,19 +1625,20 @@ Expected: An error message is shown as the name of student cannot contain number
    already in the list of dates. Status message either displays that today's date has been saved or displays that current date
    already exists in the current list of dates respectively.
 
-.. Other incorrect delete commands to try: `save`, `admin save DATE` where `DATE` is in YYYY-MM-DD format. +
+.. Other incorrect delete commands to try: `save`, `admin save DATE` where `DATE` is in *YYYY-MM-DD* format. +
    Expected: Status bar displays invalid command and incorrect command format message respectively.
 
 . Deleting a date
 
-.. Test case: `admin delete DATE` where DATE is in YYYY-MM-DD format. +
+.. Test case: `admin delete DATE` where DATE is in *YYYY-MM-DD* format. +
    Expected: Date has either been deleted if the date provided exists in the list of dates, or no dates will be deleted if the
    date provided is not in the list. Status message either displays that the specific date has been deleted or displays that current date
    already exists in the current list of dates respectively.
 
-.. Other incorrect delete commands to try: `admin delete`, `delete DATE`, `admin delete `DATE`, where `DATE` is in
-   YYYY-MM-DD format and ``DATE` is in the wrong `DATE` format. +
+.. Other incorrect delete commands to try: `admin delete`, `delete DATE`, `admin delete DATE`, where `DATE` is in
+   *YYYY-MM-DD* format and `DATE` is in the wrong `DATE` format. +
    Expected: Status bar displays invalid command and incorrect command format message.
+//end::adminmanual[]
 
 === Manual Test: Scheduler
 
@@ -1582,7 +1649,7 @@ The recurrence type and color do not matter as long as they are valid.
 
 .. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T10:00 endDateTime/2020-04-10T12:00 recur/none
 color/5` +
-Expected: An event with name Consultation is added to the scheduler
+Expected: An event with name Consultation is added to the scheduler.
 
 .. Test case:  `schedule add eventName/Coffee Break startDateTime/2020-04-04T12:00 endDateTime/2020-04-04T13:00 recur/none
 color/5` +
@@ -1611,27 +1678,27 @@ manual testing, please create the student first before creating a note which bel
 find out more on how to add a student to the class-list.
 
 [TIP]
-Delete all previous notes. Be sure to create two students named *Kelvin Klein* and *Jane Khoo* in the class-list. Conduct these tests sequentially
+Delete all previous notes. Be sure two students named *Freddy Zhang* and *Lee Hui Ting* are in the class-list. Conduct these tests sequentially
 from first to last, for the most effective testing experience.
 
 . Adding a note to the notes panel.
 
-.. Test case: `notes add name/Kelvin Klein cont/Reminder to print his testimonial pr/HIGH` +
-Expected: New note added to the notes panel. This note should be red (high priority) in colour, belonging to Kelvin Klein. The timestamp
+.. Test case: `notes add name/Freddy Zhang cont/Reminder to print his testimonial pr/HIGH` +
+Expected: New note added to the notes panel. This note should be red (high priority) in colour, belonging to Freddy Zhang. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Kelvin Klein cont/Kelvin was late for class for the second day in a row. pr/LOW` +
-Expected: New note added to the notes panel. This note should be yellow (low priority) in colour, belonging to Kelvin Klein. The timestamp
+.. Test case: `notes add name/Freddy Zhang cont/Freddy was late for class for the second day in a row. pr/LOW` +
+Expected: New note added to the notes panel. This note should be yellow (low priority) in colour, belonging to Freddy Zhang. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Jane Khoo cont/Jane left school for an interview. pr/MEDIUM` +
-Expected: New note added to the notes panel. This note should be orange (medium priority) in colour, belonging to Jane Khoo. The timestamp
+.. Test case: `notes add name/Lee Hui Ting cont/Hui Ting left school for an interview. pr/MEDIUM` +
+Expected: New note added to the notes panel. This note should be orange (medium priority) in colour, belonging to Lee Hui Ting. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Kelvin_Klein_ cont/He exemplified an improvement in behaviour pr/LOW` +
+.. Test case: `notes add name/Freddy_Zhang_ cont/He exemplified an improvement in behaviour pr/LOW` +
    Expected: An error message is shown as the student name should be alpha-numeric.
 
-.. Test case: `notes add name/Kelvin Klein cont/He exemplified an improvement in behaviour pr/Not High` +
+.. Test case: `notes add name/Freddy Zhang cont/He exemplified an improvement in behaviour pr/Not High` +
    Expected: An error message is shown as priority indicated must be either *LOW*, *MEDIUM* or *HIGH*, case-insensitive.
 
 
@@ -1640,8 +1707,8 @@ in the note should be the current date and time.
 .. Test case: `notes edit 1 cont/Reminder to print his testimonial and gradebook` +
 Expected: First note in the panel is updated with new content. Only the content should be modified, and nothing else.
 
-.. Test case: `notes edit 1 name/Jane Khoo cont/Reminder to print her testimonial and gradebook` +
-Expected: First note in the panel is updated with new name and content. Note should reflect student Jane Khoo's name,
+.. Test case: `notes edit 1 name/Lee Hui Ting cont/Reminder to print her testimonial and gradebook` +
+Expected: First note in the panel is updated with new name and content. Note should reflect student Lee Hui Ting's name,
 with modfied content. Nothing else should be different.
 
 
@@ -1664,8 +1731,8 @@ Integer provided is out of range.
 
 . Filtering the list of notes to search for specific notes.
 
-.. Test case: `notes filter Jane` +
-Expected: Only notes containing the word Jane should be displayed in the notes panel.
+.. Test case: `notes filter Freddy` +
+Expected: Only notes containing the word Freddy should be displayed in the notes panel.
 
 .. Test case: `notes filter low` +
 Expected: Only notes containing the word low should be displayed in the notes panel.
