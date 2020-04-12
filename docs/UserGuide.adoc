@@ -185,11 +185,11 @@ images can be found <<update-profile,here>>. TeaPet then displays a summarised l
 
     The student list now displays DEFAULT details.
     [HELP ON STUDENT COMMANDS]
-    DISPLAY DETAILED LIST: student detailed
-    ADD STUDENT: name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
-    EDIT STUDENT: student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
-    DELETE STUDENT: student delete INDEX
-    FIND STUDENT: student find NAME
+    1. Display detailed list: student detailed
+    2. Add student: student add name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
+    3. Edit student: student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
+    4. Delete student: student delete INDEX
+    5. Find student: student find NAME
 
 .After using `student` command
 image::add_student.png[width="790]
@@ -323,7 +323,12 @@ Shows the last updated administrative information in the student list.
 
 *Expected Outcome:*
 
-    The Student list now displays last updated ADMIN details
+    The Student list now displays last updated ADMIN details.
+    [HELP ON ADMIN COMMANDS]
+    1. Save date: admin save
+    2. Show dates: admin dates
+    3. Delete date: admin delete YYYY-MM-DD
+    4. Fetch date: admin fetch YYYY-MM-DD
 
 .After using `admin` command
 image::adminDisplay.png[width="790]
