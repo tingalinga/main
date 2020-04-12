@@ -377,7 +377,7 @@ should be easy to pick up and make it less tedious during input.
 the user expereince as the command will be too long to type.
 
 
-=== Import image feature
+==== Import image feature
 
 This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
 This feature utilises the `StudentCard#updateImage` method to update the images of students.
