@@ -27,17 +27,17 @@ Looking for an all-in-one solution for your teaching needs? Look no further!
 
 TeaPet is an integrated platform fully customized for Form Teachers in Primary, Secondary and Tertiary institutions,
 with the aim of helping you manage your classroom effectively. The application allows you to keep track of your students'
-personal particulars, daily administration, behavioural notes and academic progress all at a glance. Furthermore,
-TeaPet also comes with an in-built personal scheduler to help with your weekly planning. It looks like you'll never
+personal particulars, daily administration, behavioural notes and academic progress with a few simple commands. Furthermore,
+TeaPet also comes with an in-built personal scheduler to help with your weekly planning needs. It looks like you'll never
 have to worry about missing your next coffee appointment anymore!
 
-All your important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI) and we are optimized for users who are very comfortable
+All your important information is comfortably compartmentalized on our simple and clean Graphical User Interface (GUI). We are optimized for users who are very comfortable
 working on the Command Line Interface (CLI).
 
-If you are looking for a way to easily manage your administrative classroom matters
-and have quick fingers, then TeaPet is definitely for you!
+Are you are looking for a way to easily manage your administrative classroom matters
+and have quick fingers? If so, then TeaPet is definitely for you!
 
-Interested? Explore this User Guide to find out more. Enjoy!
+Explore this User Guide to find out more. Enjoy!
 
 === Navigating the User Guide
 The aim of this User Guide is to provide you with all the information you need to fully utilise TeaPet. We understand the pains of using a
@@ -64,8 +64,6 @@ Format* <|*Meaning*
 2+.^a|  NOTE: This symbol indicates notes.
 2+.^a|  WARNING: This symbol indicates warnings.
 2+.^a|  TIP: This symbol indicates tips.
-2+.^a|  CAUTION: This symbol indicates cautions.
-2+.^a|  IMPORTANT: This symbol indicates important information.
 
 |===
 //end::intro[]
@@ -79,7 +77,7 @@ This section will bring you through the step-by-step process on getting started 
 
 .  The Computer you are using should either be of _Windows_ or _Mac_ operating system.
 .  Ensure you have Java 11 or above installed in your Computer.
-.  Download the latest TeaPet.jar link:{repoURL}/releases[here].
+.  Download the latest TeaPet.jar link:https://github.com/AY1920S2-CS2103T-W12-2/main/releases[here].
 .  Copy the TeaPet.jar file to the folder you want to use as the root directory for TeaPet.
 .  Double-click the file to start the app. The Graphical User Interface (GUI) should appear in a matter of seconds.
 +
@@ -145,9 +143,6 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 .. Create and manage your events with a single calendar.
 .. View calendar at a glance.
 
-. **Toggle different views to find information easily**
-.. Different view modes show only the required information. e.g. detailed, admin, default.
-
 . **Data is saved onto your hard disk automatically**
 .. Any changes made will be saved onto your computer so you don't have to worry about data being lost.
 
@@ -156,12 +151,14 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 This section aims to provide you with in-depth details of TeaPet's main features, as well as how to
 get started with them.
 
-*TeaPet Command Syntax:*
+*TeaPet General Command Syntax:*
 
-    Command + Prefix/Field
+    Feature + Feature Function + Prefix/Field
 
-    Examples of Command: student add, notes edit, acadmics export, etc.
-    Examples of Prefix/Field combinations: name/Kelvin Klein, phone/9000 8000, att/Present
+    Examples of Feature: `student`, `notes`, `academics`, etc.
+    Examples of Feature Function: `add`, `edit`, `export`, etc.
+    Examples of Prefix/Field: `name/Kelvin Klein`, `phone/9000 8000`, `att/Present`
+    Example of a valid command: `student add name/Kelvin Klein`
 
     Most commands have multiple Prefix/Field combinations to fill.
     Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
@@ -183,8 +180,8 @@ images can be found <<update-profile,here>>. TeaPet then displays a summarised l
     The student list now displays DEFAULT details.
     [HELP ON STUDENT COMMANDS]
     DISPLAY DETAILED LIST: student detailed
-    ADD STUDENT: name/NAME phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
-    EDIT STUDENT: student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
+    ADD STUDENT: name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
+    EDIT STUDENT: student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
     DELETE STUDENT: student delete INDEX
     FIND STUDENT: student find NAME
 
@@ -201,7 +198,7 @@ Displays a detailed version of the class list with all information.
 
     The student list now displays ALL details.
 
-.After using `student default` command
+.After using `student detailed` command
 image::detailed_display.png[width="790]
 
 ==== Add Student: `add`
@@ -210,7 +207,7 @@ Adds a student into the student list.
 
 *Format:*
 
-    student add name/NAME phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
+    student add name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
 
 * Adds a new student with the given attributes.
 * The student name *cannot be empty*.
@@ -227,8 +224,6 @@ Next-of-kin relationships allowed: Father, Mother, Sister, Brother, Grandfather,
    temp/36.6 att/Present` +
 Adds a student named Jim into the student list along with his details.
 
-
-
 *Expected Outcome:*
 
    New student added: Jim Phone: 90045722 Email: jim@example.com Address: Bishan St 13 Blk 154 #08-18 Temperature: 36.6 Attendance: Present NextOfKin: James-Father-91234567 Tags: [monitor]
@@ -236,14 +231,13 @@ Adds a student named Jim into the student list along with his details.
 .After using `student add` command
 image::add_student_jim.png[width="790]
 
-
 ==== Edit Student: `edit`
 
 Edits personal details of students.
 
 *Format:*
 
-    student edit INDEX name/[NAME] phone/[PHONE] email/[EMAIL] adr/[ADDRESS] temp/[TEMPERATURE] att/[ATTENDANCE] nok/[NAME-RELATIONSHIP-PHONE] tag/[TAG]
+    student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
 
 *Example:*
 
@@ -304,7 +298,6 @@ Finds the student information from the student list and displays it.
 
     1 students listed!
 
-
 //@@author Yuanyu97
 //tag::admin[]
 '''
@@ -348,8 +341,8 @@ Retrieves the administrative information of the class at the date provided.
 
     admin fetch DATE
 
-* Date should be written in *YYYY-MM-DD* format.
-* If date provided is not in data base, an error message will be shown.
+[NOTE]
+Date should be written in *YYYY-MM-DD* format. If date provided is not in data base, an error message will be shown.
 
 *Example:*
 
@@ -376,8 +369,7 @@ delete today's date from the list of dates and save it again.
 
 *Example:*
 
-* `admin save` +
-Saves the administrative information of the class with today's date, taking April 8 2020 as an example.
+* `admin save`: Saves the administrative information of the class with today's date, taking April 8 2020 as an example.
 
 *Expected Outcome:*
 
@@ -390,13 +382,12 @@ Deletes the administrative information of the class at the specified date.
 
     admin delete DATE
 
-* Date should be written in *YYYY-MM-DD* format.
-* If date provided is not in data base, an error message will be shown.
+[NOTE]
+Date should be written in *YYYY-MM-DD* format. If date provided is not in data base, an error message will be shown.
 
 *Example:*
 
-* `admin delete 2020-04-08` +
-Deletes the administrative information of the class at on April 8 2020.
+* `admin delete 2020-04-08`: Deletes the administrative information of the class at on April 8 2020.
 
 *Expected Outcome:*
 
@@ -443,14 +434,14 @@ Adds an assessment into the academics list.
 
     academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
 
-* Adds a new assessment with the given attributes.
-* The assessment description *cannot be empty*.
-* Date should be written in *YYYY-MM-DD* format.
+Adds a new assessment with the given attributes.
+[NOTE]
+The assessment description *cannot be empty*. Date should be written in *YYYY-MM-DD* format.
 
 *Example:*
 
 * `academics add desc/Math Graphs Homework type/homework date/2020-05-02` +
-Adds an assessment _Math Graphs Homework_ into the academics list along with its deadline.
+Adds an assessment "Math Graphs Homework" into the academics list along with its deadline.
 
 *Expected Outcome:*
 
@@ -467,14 +458,14 @@ Edits an assessment from the academics list.
 
     academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
 
-* Edits the assessment with the given attributes.
-* At least one of the three fields must be updated when editing the assessment.
-* Date should be written in *YYYY-MM-DD* format.
+Edits the assessment with the given attributes.
+[NOTE]
+The assessment description *cannot be empty*. Date should be written in *YYYY-MM-DD* format.
 
 *Example:*
 
 * `academics edit 4 desc/Chemistry Compounds Assignment` +
-Edits assessment in the academics list with the new description _Chemistry Compounds Assignment_.
+Edits assessment in the academics list with the new description "Chemistry Compounds Assignment".
 
 *Expected Outcome:*
 
@@ -491,8 +482,9 @@ Deletes an assessment from the academics list.
 
     academics delete INDEX
 
-* Deletes the assessment with at the given index.
-* Index should be a positive integer and be a valid index.
+Deletes the assessment with at the given index.
+[NOTE]
+Index should be a positive integer and be a valid index.
 
 *Example:*
 
@@ -513,15 +505,16 @@ Submits student(s) work for a specific assessment.
 
     academics submit INDEX [stu/STUDENT_NAME]...
 
-* Submits work for the assessment with at the given index.
-* Index should be a positive integer and be a valid index.
+Submits work for the assessment with at the given index.
+[NOTE]
+Index should be a positive integer and be a valid index.
 
 *Example:*
 
 * `academics submit 3 stu/Freddy Zhang` +
-Submits _Freddy Zhang_ for the assessment at index 3.
+Submits "Freddy Zhang" for the assessment at index 3.
 * `academics submit 3 stu/Freddy Zhang stu/Gerren Seow` +
-Submits _Freddy Zhang_ and _Gerren Seow_ for the assessment at index 3.
+Submits "Freddy Zhang" and "Gerren Seow" for the assessment at index 3.
 
 *Expected Outcome:*
 
@@ -538,15 +531,16 @@ Marks student(s) work for a specific assessment.
 
     academics mark INDEX [stu/STUDENT_NAME-SCORE]...
 
-* Marks work for the assessment with at the given index.
-* Index should be a positive integer and be a valid index.
+Marks work for the assessment with at the given index.
+[NOTE]
+Index should be a positive integer and be a valid index.
 
 *Example:*
 
 * `academics mark 3 stu/Freddy Zhang` +
-Marks _Freddy Zhang_ for the assessment at index 3.
+Marks "Freddy Zhang" for the assessment at index 3.
 * `academics mark 3 stu/Freddy Zhang-90 stu/Gerren Seow-80` +
-Marks _Freddy Zhang_ and _Gerren Seow_ for the assessment at index 3.
+Marks "Freddy Zhang" and "Gerren Seow" for the assessment at index 3.
 
 *Expected Outcome:*
 
@@ -658,7 +652,7 @@ Adds a note into TeaPet.
 *Example:*
 
 * `notes add name/Freddy Zhang cont/Reminder to inform his parents about Freddy's exemplary behaviour. pr/LOW` +
-Adds a note for student _Freddy Zhang_ into the list of notes, together with content and priority.
+Adds a note for student "Freddy Zhang" into the list of notes, together with content and priority.
 
 *Expected Outcome:*
 
@@ -669,7 +663,7 @@ Adds a note for student _Freddy Zhang_ into the list of notes, together with con
     Priority: LOW
 
 .After using the `notes add` command
-image::userguide/notesfeature/notesAdd.png[width="790]
+image::userguide/notesfeature/notesAdd.png[width="790"]
 
 ==== Edit Notes `notes edit`
 
@@ -688,7 +682,7 @@ Edits a note in TeaPet.
 *Example:*
 
 * `notes edit 4 cont/Reminder to inform his parents about Freddy's exemplary behaviour TONIGHT. pr/HIGH` +
-Edits a note for student _Freddy Zhang_ in the list of notes, together with updated content and updated priority.
+Edits a note for student "Freddy Zhang" in the list of notes, together with updated content and updated priority.
 
 *Expected Outcome:*
 
@@ -715,7 +709,7 @@ Deletes a note in TeaPet.
 *Example:*
 
 * `notes delete 4` +
-Deletes the 4th note in the list. In this example, the note is the one we created for student _Freddy Zhang_.
+Deletes the 4th note in the list. In this example, the note is the one we created for student "Freddy Zhang".
 
 *Expected Outcome:*
 
@@ -784,41 +778,52 @@ TeaPet application.
 
 [[scheduler]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
-TeaPet's Personal Scheduler allows you to record down your commitments for the week, which will be
-sorted according to date and time. You will then be able to view your weekly schedule at a glance.
+TeaPet's Personal Scheduler allows you to record down your events for the week, which will be
+sorted according to date and time. You will then be able to easily view your schedule as you need it.
 
-==== Display your scheduler: `schedule` [Done by Simon Lam]
+==== Display your scheduler: `schedule` [Done by Simon Lam and Gary Lim]
 
-Displays your schedule for the current week.
+Displays your schedule in this current week.
 
 *Format:* `schedule`
 
 *Expected Outcome:*
 
     This is your schedule for the week
+    Schedule helps you to keep track of your events.
+    [HELP ON SCHEDULE COMMANDS]
+    add event: schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE
+    edit event: schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM] [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]
+    delete event: schedule delete INDEX
+    get index of a event: schedule indexGet/EVENT_DESCRIPTION
+    get all indexes of events in schedule: schedule indexAll
+    change view mode of schedule: schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD
+    export schedule: schedule export
+    Type the following commands for more info!
 
-.After using schedule command
+.After using `schedule` command
 image::display_schedule.png[width="790"]
 
 
-==== Creating a schedule: `add` [Done by Simon Lam]
+==== Adding an event to schedule: `schedule add` [Done by Simon Lam and Gary Lim]
 
 Adds an event to your personal scheduler.
 
-*Format:* `schedule add eventName/EVENT_NAME startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR color/COLOR`.
+*Format:* `schedule add eventName/EVENT_DESCRIPTION startDateTime/START_DATETIME endDateTime/END_DATETIME recur/RECUR_DESCRIPTION color/COLOR_CODE`
 
 NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
-For example, 7th April 2020 10AM will be 2020-04-07T10:00.
+Example: 7th April 2020 10AM will be 2020-04-07T10:00
 
-NOTE: The recurrence type can only be either of these, none, daily or weekly.
+NOTE: RECUR_DESCRIPTION can only be either of these: `none`, `daily` or `weekly`.
 
 NOTE: Events which are further away in the future have a darker color code. This is intentional.
 
 NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
 which uses similar prefixes as well.
 
-TIP: Color group is from 0 to 23 inclusive. +
+TIP: COLOR_CODE is from 0 to 23 inclusive. +
 
+[[colourcode]]
 .Color code for TeaPet's calendar
 image::color_code.png[width="790"]
 
@@ -828,12 +833,168 @@ Example:
 
 * *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-02T08:00
                          endDateTime/2020-04-07T10:00 recur/none color/21`
-Creates a schedule with the title '_Teachers Meeting_' from '_2nd Apr 2020, 0800_' to '_2th Apr 2020, 1000_' with no recurrence
-and a color group of '_21_'.
+Creates an event in the schedule with the description "Teachers Meeting" from "2nd Apr 2020, 0800" to "7th Apr 2020, 1000" with "no recurrence"
+and a color group of "21".
 
 .Adding an event to the schedule
 image::schedule_add.png[width="790"]
 
+
+
+==== Editing an event in schedule: `schedule edit` [Done by Gary Lim]
+
+Edits an event in your personal scheduler.
+
+*Format:* `schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/START_DATETIME] [endDateTime/END_DATETIME] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]`
+
+NOTE: INDEX is the index of the event that you wish to edit. This can be obtained using the indexGet Command. More details <<indexGet,here>>
+
+NOTE: INDEX should be a positive integer and be a valid index.
+
+NOTE: You must edit at least *1* field. The rest of the fields are optional.
+
+NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
+Example: 7th April 2020 10AM will be 2020-04-07T10:00
+
+NOTE: RECUR_DESCRIPTION can only be either of these: `none`, `daily` or `weekly`.
+
+NOTE: Events which are further away in the future have a darker color code. This is intentional.
+
+NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
+which uses similar prefixes as well.
+
+TIP: Use the indexGet/indexAll Command to check the index of the event before you edit to ensure you always correctly edit events.
+
+TIP: COLOR_CODE is from 0 to 23 inclusive. <<colourcode, Refer here for the colour codes>>
+
+{nbsp} +
+
+Example:
+
+*  `schedule edit 2 eventName/Teachers Meeting` +
+Edits event with index 2 in the schedule to the new description "Teachers Meeting".
+
+*Expected Outcome:*
+
+        Successfully edited Event 2 into: Event Name: Teachers Meeting , Start DateTime: 2020-04-02T08:00 , End DateTime: 2020-04-07T10:00
+
+==== Delete an event in schedule: `schedule delete` [Done by Gary Lim]
+
+Deletes an event in your personal scheduler.
+
+*Format:* `schedule delete INDEX`
+
+NOTE: INDEX is the index of the event that you wish to delete. This can be obtained using the indexGet Command. More details <<indexGet,here>>
+
+NOTE: INDEX should be a positive integer and be a valid index.
+
+TIP: Use the indexGet/indexAll Command to check the index of the event before you delete to ensure you always correctly delete events.
+
+Example:
+
+*  `schedule delete 2` +
+Deletes event with index 2 in the schedule.
+
+*Expected Outcome:*
+
+        Deleted Event: Event Name: Teachers Meeting , Start DateTime: 2020-04-02T08:00 , End DateTime: 2020-04-07T10:00
+
+[[indexGet]]
+
+==== Get index of an event in schedule: `schedule indexGet` [Done by Gary Lim]
+
+Get the index of an event in your personal scheduler.
+
+*Format:* `schedule indexGet/EVENT_DESCRIPTION`
+
+NOTE: EVENT_DESCRIPTION is the name of the event. +
+ In the unlikely event that you mistype the EVENT_DESCRIPTION, our smart application will
+help you find the closest matching event to the EVENT_DESCRIPTION that you entered.
+
+NOTE: Index is used to identify events and help you edit and delete events.
+
+Example:
+
+*  `schedule indexGet/consult` +
+Gets the index of the event with the EVENT_DESCRIPTION "consult".
+
+*Expected Outcome:*
+
+    Could not find specified event. This is the closest event we can find based on what you've entered:
+    Index: 5 - Event Name: Consultation , Start DateTime: 2020-03-30T08:00 , End DateTime: 2020-03-30T10:00
+
+Example 2 :
+
+*  `schedule indexGet/consultation` +
+Gets the index of the event with the EVENT_DESCRIPTION "consultation".
+
+*Expected Outcome:*
+
+    Event found:
+    Index: 5 - Event Name: Consultation , Start DateTime: 2020-03-30T08:00 , End DateTime: 2020-03-30T10:00
+
+
+==== Get all indexes of events in schedule: `schedule indexAll` [Done by Gary Lim]
+
+Get all indexes of your events in your personal scheduler.
+
+*Format:* `schedule indexAll`
+
+NOTE: Index is used to identify events and help you edit and delete events.
+
+Example:
+
+*  `schedule indexAll` +
+Gets all indexes of all events currently in your schedule.
+
+*Expected Outcome:*
+
+   These are all the events in your scheduler:
+    Index: 1 - Event Name: Consultation , Start DateTime: 2020-03-30T08:00 , End DateTime: 2020-03-30T10:00
+    Index: 2 - Event Name: Consultation , Start DateTime: 2020-04-10T08:00 , End DateTime: 2020-04-10T10:00
+    Index: 3 - Event Name: Family Dinner , Start DateTime: 2020-03-30T19:00 , End DateTime: 2020-03-30T20:00
+
+==== Change view mode of schedule: `schedule view` [Done by Gary Lim]
+
+Change the view mode of your Personal Schedule as how you need it.
+
+*Format:* `schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`
+
+NOTE: SCHEDULE_MODE can only be of these: `daily` or `weekly`.
+
+NOTE: Date is in YYYY-MM-DD format.
+
+TIP: Change the view mode to `daily` to help you see all the events you have on that day!
+
+Example:
+
+*  `schedule view mode/daily date/2020-04-12` +
+View all the events you have on "12th Apr 2020".
+
+*Expected Outcome:*
+
+    Showing your daily schedule on reference date 2020-04-12
+
+==== Export all events in schedule: `schedule export` [Done by Gary Lim]
+
+Exports all events currently in schedule into a ".ics" file.
+The _.ics_ file type can easily be used with Google Calendar and other calendar applications.
+
+*Format:* `schedule export`
+
+NOTE: The file will be exported into the data folder with the file name "mySchedule.ics". Every export command run replaces the existing file.
+
+
+Example:
+
+*  `schedule export' +
+Exports all your events into the data folder with the file name "mySchedule.ics".
+
+*Expected Outcome:*
+
+    Schedule is exported to mySchedule.ics in the data folder
+
+'''
 
 === Additional Features [Done by Simon Lam]
 
@@ -871,12 +1032,12 @@ now you can see pictures of your students in your student list!
 Editing the name of the student will change the student image back to the default image. To solve this, you have to edit
 the png file in the Image folder as well after you edit the name of the student and then enter the `student` command.
 
-.Before using the refresh command
+.Before using the student command
 image::before_picture_upload.png[width="790]
 
 {nbsp} +
 
-.After using the refresh command
+.After using the student command
 image::after_picture_upload.png[width="790]
 
 [[update-profile]]

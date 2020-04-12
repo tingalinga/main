@@ -85,6 +85,10 @@ public class StudentEditCommand extends StudentCommand {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
+        if (model.hasStudentName(editedStudent.getName().fullName)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
