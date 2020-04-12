@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
+
 import org.apache.commons.math3.util.Pair;
+
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;

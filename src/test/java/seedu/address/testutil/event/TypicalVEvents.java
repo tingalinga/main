@@ -7,8 +7,6 @@ import static seedu.address.commons.util.EventUtil.WEEKLY_RECUR_RULE;
 import java.time.LocalDateTime;
 
 import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.RecurrenceType;
 
 /**
  * A utility class containing a list of {@code VEvents} objects to be used in tests.

@@ -4,10 +4,9 @@ import static seedu.address.commons.util.EventUtil.formatIndexVEventPair;
 
 import java.util.List;
 
-import jfxtras.icalendarfx.components.VEvent;
-
 import org.apache.commons.math3.util.Pair;
 
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;

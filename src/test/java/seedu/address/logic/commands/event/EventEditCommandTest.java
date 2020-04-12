@@ -54,7 +54,8 @@ public class EventEditCommandTest {
 
         EventEditCommand editCommand = new EventEditCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_EVENT_SUCCESS, INDEX_FIRST.getOneBased(), vEventToString(editedVEvent));
+        String expectedMessage = String.format(MESSAGE_EDIT_EVENT_SUCCESS,
+                INDEX_FIRST.getOneBased(), vEventToString(editedVEvent));
         Model expectedModel = new ModelManager();
         expectedModel.setEventHistory(getTypicalEventHistory());
         expectedModel.setVEvent(INDEX_FIRST, editedVEvent);
@@ -76,7 +77,8 @@ public class EventEditCommandTest {
         descriptor.setEndDateTime(LocalDateTime.from(editedVEvent.getDateTimeEnd().getValue()));
 
         EventEditCommand editCommand = new EventEditCommand(indexVEvent, descriptor);
-        String expectedMessage = String.format(MESSAGE_EDIT_EVENT_SUCCESS, INDEX_FIRST.getOneBased(), vEventToString(editedVEvent));
+        String expectedMessage = String.format(MESSAGE_EDIT_EVENT_SUCCESS,
+                INDEX_FIRST.getOneBased(), vEventToString(editedVEvent));
 
         Model expectedModel = new ModelManager();
         expectedModel.setEventHistory(getTypicalEventHistory());

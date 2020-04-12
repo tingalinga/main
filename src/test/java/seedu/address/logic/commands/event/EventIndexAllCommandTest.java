@@ -2,15 +2,12 @@ package seedu.address.logic.commands.event;
 
 import static seedu.address.commons.util.EventUtil.formatIndexVEventPair;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.event.EventIndexCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.event.TypicalVEvents.VEVENT1;
 import static seedu.address.testutil.event.TypicalVEvents.VEVENT2;
 import static seedu.address.testutil.event.TypicalVEvents.VEVENT3;
 
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.math3.util.Pair;
@@ -49,9 +46,9 @@ class EventIndexAllCommandTest {
         for (String indexVEventPairSummary : list) {
             resultStringBuilder.append(indexVEventPairSummary);
         }
-            assertCommandSuccess(new EventIndexAllCommand(), model,
-                    new CommandResult(String.format(EventIndexAllCommand.MESSAGE_SUCCESS,
-                            resultStringBuilder.toString())), expectedModel);
+        assertCommandSuccess(new EventIndexAllCommand(), model,
+            new CommandResult(String.format(EventIndexAllCommand.MESSAGE_SUCCESS,
+            resultStringBuilder.toString())), expectedModel);
 
     }
 }

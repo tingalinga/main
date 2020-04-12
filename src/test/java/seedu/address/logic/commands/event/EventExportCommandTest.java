@@ -18,7 +18,7 @@ public class EventExportCommandTest {
     public void execute_validCommand_success() {
         Model model = new ModelManager();
         assertCommandSuccess(new EventExportCommand(), model,
-                new CommandResult(MESSAGE_SUCCESS), model);
-}
+            new CommandResult(MESSAGE_SUCCESS), model);
+    }
 
 }

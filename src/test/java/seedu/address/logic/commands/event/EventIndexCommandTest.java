@@ -4,16 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.EventUtil.formatIndexVEventPair;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.event.EventIndexCommand.MESSAGE_NO_EVENT;
 import static seedu.address.logic.commands.event.EventIndexCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.event.EventIndexCommand.MESSAGE_SUGGESTION_EVENT;
-import static seedu.address.logic.commands.event.EventIndexCommand.MESSAGE_NO_EVENT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.event.TypicalVEvents.VEVENT1;
 
-import org.junit.jupiter.api.Test;
-
 import org.apache.commons.math3.util.Pair;
+
+import org.junit.jupiter.api.Test;
 
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.index.Index;
@@ -43,7 +43,7 @@ public class EventIndexCommandTest {
         String desiredEventName = VEVENT1.getSummary().getValue();
 
         String expectedResult = formatIndexVEventPair(new Pair<Index, VEvent>(Index.fromOneBased(1), VEVENT1));
-        String expectedResultFormatted = String.format(MESSAGE_SUCCESS,expectedResult);
+        String expectedResultFormatted = String.format(MESSAGE_SUCCESS, expectedResult);
 
         assertCommandSuccess(new EventIndexCommand(desiredEventName), model,
                 new CommandResult(expectedResultFormatted), expectedModel);

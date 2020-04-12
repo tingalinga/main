@@ -6,10 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.apache.commons.math3.util.Pair;
+
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 
-import org.apache.commons.math3.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -25,6 +26,8 @@ import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
+
+
 
 
 
