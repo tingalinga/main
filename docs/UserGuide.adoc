@@ -792,7 +792,7 @@ TeaPet application
 
 [[scheduler]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
-TeaPet's Personal Scheduler allows you to record down your events for the week, which will be
+TeaPet's Personal Scheduler allows you to record down your events, which will be
 sorted according to date and time. You will then be able to easily view your schedule as you need it.
 
 ==== Display your scheduler: `schedule` [Done by Simon Lam and Gary Lim]
