@@ -33,6 +33,7 @@ public class DetailedStudentDisplayCommand extends StudentCommand {
 
     @Override
     public boolean equals(Object other) {
-        return true;
+        return other == this // short circuit if same object
+                || (other instanceof DetailedStudentDisplayCommand); // instanceof handles nulls
     }
 }
