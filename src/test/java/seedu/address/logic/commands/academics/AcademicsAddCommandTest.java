@@ -109,7 +109,7 @@ public class AcademicsAddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private abstract class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -457,9 +457,7 @@ public class AcademicsAddCommandTest {
         }
 
         @Override
-        public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
-            throw new AssertionError("This method should not be called.");
-        }
+        public abstract Pair<Index, VEvent> searchMostSimilarVEventName(String eventName);
 
         @Override
         public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
@@ -483,6 +481,11 @@ public class AcademicsAddCommandTest {
             requireNonNull(assessment);
             return this.assessment.isSameAssessment(assessment);
         }
+
+        @Override
+        public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -501,6 +504,11 @@ public class AcademicsAddCommandTest {
         public void addAssessment(Assessment assessment) {
             requireNonNull(assessment);
             assessmentsAdded.add(assessment);
+        }
+
+        @Override
+        public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
