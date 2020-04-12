@@ -425,7 +425,7 @@ will be called and the student list is now visible on the `MainWindow`.
 
 The following activity diagram summarizes what happens when a user executes the `student` command:
 
-.Activity Diagram for StudentRefreshCommand
+.Activity Diagram for DefaultStudentDisplayCommand
 image::ImportImageSequenceDiagram.png[]
 
 {nbsp} +
@@ -435,7 +435,7 @@ image::ImportImageSequenceDiagram.png[]
 * *Current Implementation:*
 
 ** Current implementation of the commands follows the command word syntax, followed by the arguments necessary for execution.
-For example, `student add/edit/delete/find/refresh`.
+For example, `student add/edit/delete/find`.
 
 * *Alternatives Considered:*
 ** We considered using a whole new command, `student refresh` to solely refresh and update images of the students. However, we realised
