@@ -15,35 +15,58 @@ written in Java.
 
 == Summary of contributions
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+* *Major enhancement*: Implemented the *Student Academics Feature* of TeaPet
+** What it does: Assist the user in storing and tracking information of the classes' academic progress.
+The user can create assessments, submit and mark students' work.
 
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+** Justification: This feature is essential for the teacher to monitor the classes' progress and manage the submission and marking of assessments better.
+Whenever the user assigns an assessment to the class, he/she would want to track who has submitted their work, and also track which submission she has marked.
+The user can key in when a student has submitted work for a specific assessment, and store the scores when they have marked a submission.
+Teachers can now easily see which students have not submitted and chase them for their work without having to count one by one to find the missing submission.
+Furthermore, being able to store marks in academics can allow the user to see which submission has not been marked and each student's academic progress.
+They can also view general statistics for each individual assessment and export them, so as to prepare for end-of-year teacher performance evaluation.
+This academics feature will manage all information about students' studies.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+** Highlights: This feature calculates some general statistics of the class such as average score and median score.
+Teachers can export the statistics and table of all assessments and student submissions into a csv file for reference and sharing.
+They are also able to filter the list of assessments to only homework or exam assessments.
+
+* *Minor enhancement*: Assisted in the development the UI/UX (User Interface / User Experience) of TeaPet
+** What it does: Enhances the view of TeaPet to be easier to process and the users' experience to be more intuitive.
+
+** Justification: An interface design that is easy on the eyes and intuitive to use is one of the key things to attract users
+to try the product and retain its users.
+
+** Highlights: This enhancement drastically improved the AddressBook3 interface. The colour palette of the whole interface is
+mostly monochrome so as to give TeaPet a more cohesive look. On the top header, the active panel will be highlighted with a bright
+orange to allow easy identification of which feature the user is using.
+
+* *Minor enhancement*:
+** Refactored the student related commands into a `student` command as a standalone feature.
+
+* *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=tingalinga&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&until=2020-04-01&since=2020-02-14&tabType=authorship&tabAuthor=tingalinga&tabRepo=AY1920S2-CS2103T-W12-2%2Fmain%5Bmaster%5D[Functional code and Test code]]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
-** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Integrated a third party library (Natty) to the project (https://github.com[#42])
-*** Integrated a new Github plugin (CircleCI) to the team repo
+*** In charge of code quality of others' PR. Will comment on other's PR if there are any improvements or suggestions to make.
+*** Checks the documentation of the overall code and ensures that it is uniform.
+*** Restructured many commands and model folders, improving the overall packaging of TeaPet.
 
-_{you can add/remove categories in the list above}_
+** Enhancements to existing features:
+*** Edited existing tests for existing features to involve more features (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/110[#110])
+*** Improved code quality of existing features (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/110[#110], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/255[#225], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/261[#261])
+*** Major refactoring of certain commands and packaging (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/229[#229])
+*** Wrote additional tests for existing features to increase coverage by 2.9% (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/279[#279])
+
+** Documentation:
+*** Updated User Guide to include Academics Feature (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/235[#235], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/236[#236])
+*** Updated Developer Guide to include Academics Feature (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/270[#270], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/276[#276])
+*** Updated Developer Guide to include Project Description, User Stories, Use Cases. (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/51[#51])
+
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-2/main/pull/65[#65], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/76[#76], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/95[#95])
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/29#discussion_r397804487[1], https://github.com/nus-cs2103-AY1920S2/addressbook-level3/pull/29#discussion_r397805528[2])
 
 == Contributions to the User Guide
 
@@ -61,8 +84,6 @@ include::../UserGuide.adoc[tag=dataencryption]
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
-
-include::../DeveloperGuide.adoc[tag=undoredo]
 
 include::../DeveloperGuide.adoc[tag=dataencryption]
 

@@ -17,7 +17,7 @@ written in Java.
 This section entails a summary of my specific enhancements, code contributions and other helpful increments towards the TeaPet
 application.
 
-I implemented the student particulars feature, update student image feature, and part of the personal scheduler feature, which inclide:
+I implemented the student particulars feature, update student image feature, and part of the personal scheduler feature, which include:
 
 
 === Enhancements
