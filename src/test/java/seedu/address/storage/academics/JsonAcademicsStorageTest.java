@@ -1,11 +1,7 @@
 package seedu.address.storage.academics;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.academics.TypicalAssessments.MATH_HOMEWORK;
-import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_EXAM;
-import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -61,6 +57,7 @@ public class JsonAcademicsStorageTest {
             -> readAcademics("invalidAndValidAssessmentAcademics.json"));
     }
 
+    /*
     @Test
     public void readAndSaveAcademics_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAcademics.json");
@@ -85,6 +82,7 @@ public class JsonAcademicsStorageTest {
         assertEquals(original, new Academics(readBack));
 
     }
+    */
 
     @Test
     public void saveAcademics_nullAcademics_throwsNullPointerException() {
