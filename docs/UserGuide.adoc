@@ -90,9 +90,9 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`student add`**`n/Kelvin Klein  p/9001 5588 e/kelvink@egmail.com a/Toa Payoh Avenue 1, Block 123, #01-01`
+* **`student add`**`name/Kelvin Klein`
 : adds a contact named Kelvin Klein to the Class List.
-* **`student delete`**`3` : deletes the 3rd student shown in the current list of students.
+* `student delete 3` : deletes the 3rd student shown in the current list of students.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -101,7 +101,7 @@ TIP: If you have any questions, please check out our <<FAQ>> section.
 
 === TeaPet's Layout
 
-TeaPet's User Interface can be divided into 5 main components, each peforming specific functionalities.
+TeaPet's User Interface can be divided into 5 main components, each performing specific functionalities.
 
 .User Interface of TeaPet
 image::userguide/TeaPetLayout.png[width="790"]
@@ -165,6 +165,16 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 This section aims to provide you with in-depth details of TeaPet's main features, as well as how to
 get started with them.
 
+*TeaPet Command Syntax:*
+
+    Command + Prefix/Field
+
+    Examples of Command: student add, notes edit, acadmics export, etc.
+    Examples of Prefix/Field combinations: name/Kelvin Klein, phone/9000 8000, att/Present
+
+    Most commands have multiple Prefix/Field combinations to fill.
+    Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
+
 
 [[particulars]]
 === Student Particulars [Done by Simon Lam]
@@ -173,8 +183,8 @@ Thereafter, you are able to view, update or delete those information of specific
 
 ==== Display default student view: `student`
 
-Syncs the images of students found in the image folder into the student list. TeaPet then displays a summarised list
-of the student details.
+TeaPet syncs the images of students found in the image folder into the student list. More information about updating student
+images can be found <<update-profile,here>>. TeaPet then displays a summarised list of the student details.
 
 *Format:* `student`
 
@@ -189,11 +199,11 @@ of the student details.
     FIND STUDENT: student find NAME
 
 .After using `student` command
-image::default_display.png[width="790]
+image::add_student.png[width="790]
 
 ==== Display detailed student view: `student detailed`
 
-Shows a detailed version of the class list with all information.I
+Shows a detailed version of the class list with all information.
 
 *Format:* `student detailed`
 
@@ -218,18 +228,23 @@ Adds a student into the student list.
 [NOTE]
 The address of student is not restricted as it can be subjective to the student and teacher.
 
+[NOTE]
+Next-of-kin relationships allowed: Father, Mother, Sister, Brother, Grandfather, Grandmother
+
 *Example:*
 
-* `student add name/Jim phone/90045722 email/jim@example.com addr/Bishan St 13 Blk 154 #08-18 tag/monitor nok/James-Father-91234567
+* `student add name/Jim phone/90045722 email/jim@example.com adr/Bishan St 13 Blk 154 #08-18 tag/monitor nok/James-Father-91234567
    temp/36.6 att/Present` +
 Adds a student named Jim into the student list along with his details.
 
-[NOTE]
-Next-of-kin relationships allowed : Father, Mother, Sister, Brother, Grandfather, Grandmother
+
 
 *Expected Outcome:*
 
-    New student added: Jim Phone: 90045722 Email: jim@example.com Address: Bishan St 13 Blk 154 #08-18 Temperature: 36.6 Attendance: Present Tags: [monitor]
+   New student added: Jim Phone: 90045722 Email: jim@example.com Address: Bishan St 13 Blk 154 #08-18 Temperature: 36.6 Attendance: Present NextOfKin: James-Father-91234567 Tags: [monitor]
+
+.After using `student add` command
+image::add_student_jim.png[width="790]
 
 
 ==== Edit Student: `edit`
@@ -267,6 +282,21 @@ Deletes the student and all his personal details from the student list.
 
     Deleted Student: Simon Lam Phone: 90023413 Email: simonlam@example.com Address: Blk 30 Geylang Street 29, #06-40 Temperature: 36.5 Attendance: Sick Remark:  Tags: [Sheares]
 
+==== Clear Student List: `clear`
+
+Clears all data from the student list.
+
+*Format:*
+
+    student clear
+
+*Example:*
+
+    `student clear` Deletes the entire student list
+
+*Expected Outcome:*
+
+    Student list has been cleared!
 
 ==== Find Student: `find`
 
@@ -607,11 +637,12 @@ Shows all notes currently stored in TeaPet, and displays help on the usage of th
 
     The Column on the right displays all your notes.
     [HELP ON NOTES COMMANDS]
-    ADD NOTE: notes add n/<Name of Student c/<Content> pr/<Priority>
-    EDIT NOTE: notes edit n/<Name of Student c/<Content> pr/<Priority>
-    DELETE NOTE: notes delete <Index>
-    FILTER SEARCH NOTES: notes filter <Keyword(s)>
-    EXPORT NOTES: notes export
+    1. Display all Notes: notes
+    2. Add Note: notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY
+    3. Edit Note: notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
+    4. Delete Note: notes delete INDEX
+    5. Filter Search Notes: notes filter KEYWORD(S)
+    6. Export Notes: notes export
 
 .After using the `notes` command
 image::userguide/notesfeature/notesDisplay.png[width="790]
@@ -623,26 +654,26 @@ Adds a note into TeaPet.
 
 *Format:*
 
-    notes add name/<Name of Student> c/<Content> pr/<Priority>
+    notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY
 
-* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Create and add a new note with the following fields
 * *None* of the fields can be empty.
-* Student's name indicated in the name field must be already *present* in the class-list.
+* Student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 * Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
 * An automatic timestamp is generated for each note added.
 
 *Example:*
 
-* `notes add name/Kelvin Klein c/Reminder to inform his parents about Kelvin's exemplary behaviour. pr/LOW` +
-Adds a note for student _Kelvin Klein_ into the list of notes, together with content and priority.
+* `notes add name/Freddy Zhang cont/Reminder to inform his parents about Freddy's exemplary behaviour. pr/LOW` +
+Adds a note for student _Freddy Zhang_ into the list of notes, together with content and priority.
 
 *Expected Outcome:*
 
     New Student Note added! Wonderful!
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour.
     Priority: LOW
 
 .After using the `notes add` command
@@ -654,25 +685,25 @@ Edits a note in TeaPet.
 
 *Format:*
 
-    notes edit <Index> name/<Updated name of student> c/<Updated content pr/<Updated priority>
+    notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
 
-* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Edits a current note in the list by index. Index must be an integer within the total number of notes.
 * *At least 1* of the three prefix fields must be indicated.
-* Updated student's name indicated in the name field must be already *present* in the class-list.
+* Updated student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 * Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
 
 *Example:*
 
-* `notes edit 4 c/Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT. pr/HIGH` +
-Edits a note for student _Kelvin Klein_ in the list of notes, together with updated content and updated priority.
+* `notes edit 4 cont/Reminder to inform his parents about Freddy's exemplary behaviour TONIGHT. pr/HIGH` +
+Edits a note for student _Freddy Zhang_ in the list of notes, together with updated content and updated priority.
 
 *Expected Outcome:*
 
     Student's Note Edited. Wonderful!
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour TONIGHT.
     Priority: HIGH
 
 .After using the `notes edit` command
@@ -684,7 +715,7 @@ Deletes a note in TeaPet.
 
 *Format:*
 
-    notes delete <Index>
+    notes delete INDEX
 
 * Deletes a current note in the list by index. Index must be an integer within the total number of notes.
 
@@ -692,14 +723,14 @@ Deletes a note in TeaPet.
 *Example:*
 
 * `notes delete 4` +
-Deletes the 4th note in the list. In this example, the note is the one we created for student _Kelvin Klein_.
+Deletes the 4th note in the list. In this example, the note is the one we created for student _Freddy Zhang_.
 
 *Expected Outcome:*
 
     Student Note deleted.
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour TONIGHT.
     Priority: HIGH
 
 ==== Filter Notes `notes filter`
@@ -708,7 +739,7 @@ Displays a list of filtered notes based on specific keywords.
 
 *Format:*
 
-    notes filter <Keyword(s)>
+    notes filter KEYWORD(S)
 
 * Filters the list of notes based on the presence of keywords given by the User.
 * This notes filter feature will perform a comparison of *name of student*, *content*, *priority* and *timestamp*
@@ -723,6 +754,9 @@ Displays only notes with the keyword "low" present.
 *Expected Outcome:*
 
     Displaying Notes with Keywords: [low]
+
+.After using the `notes filter low` command
+image::userguide/notesfeature/notesFilter.png[width="790]
 
 *Example 2:*
 
@@ -784,6 +818,8 @@ Adds an event to your personal scheduler.
 NOTE: The format of startDateTime and endDateTime is in YYYY-MM-DDThh:mm format, where time is in the 24-hour format. +
 For example, 7th April 2020 10AM will be 2020-04-07T10:00
 
+NOTE: The recurrence type can only be either of these, none, daily or weekly.
+
 NOTE: Events which are further away in the future have a darker color code. This is intentional.
 
 NOTE: The prefixes are meant to be longer due the the emphasis on clarity as there are other features in this application
@@ -798,13 +834,13 @@ image::color_code.png[width="790"]
 
 Example:
 
-* *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-07T10:00
-                         endDateTime/2020-04-07T12:00 recur/none color/10`
-Creates a schedule with the title '_Teachers Meeting_' from '_7th Apr 2020, 1000_' to '_7th Apr 2020, 1200_' with no recurrence
-and a color group of '_10_'.
+* *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-02T08:00
+                         endDateTime/2020-04-07T10:00 recur/none color/21`
+Creates a schedule with the title '_Teachers Meeting_' from '_2nd Apr 2020, 0800_' to '_2th Apr 2020, 1000_' with no recurrence
+and a color group of '_21_'.
 
-.Adding a consultation event to the schedule
-image::event_add.png[width="790"]
+.Adding an event to the schedule
+image::schedule_add.png[width="790"]
 
 
 === Additional Features [Done by Simon Lam]
@@ -826,11 +862,9 @@ image::locating_image_folder.png[width="790"]
 *Step 2*. Open the image folder and drag the image of your student into the folder.
 
 NOTE: The filename of your image must of this format: +
-1. Filename must be of the same name as the student. +
-2. Filename is all lowercase. +
-3. Filename have no whitespaces. +
+1. Filename of the image must be the same as the student. +
 4. File is in .png format. +
-For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
+For example, a student with name *Simon Lam* must have a image file with name *Simon Lam* in .png format.
 
 TIP: For ideal optimization of the image, its dimensions for its length and width should be roughly equal.
 
@@ -842,6 +876,9 @@ image::images_in_folder.png[width="790"]
 *Step 3*. Type in the `student` command in the user interface. TeaPet will update the images and
 now you can see pictures of your students in your student list!
 
+[WARNING]
+Editing the name of the student will change the student image back to the default image. To solve this, you have to edit
+the png file in the Image folder as well after you edit the name of the student and then enter the `student` command.
 
 .Before using the refresh command
 image::before_picture_upload.png[width="790]
@@ -867,9 +904,6 @@ press your `F1` key to bring up this user guide!
 .Displayed help window
 image::help_window.png[width="790]
 
-==== Various Display Modes
-
-'''
 
 
 [[CommandSummary]]
@@ -885,8 +919,7 @@ Here are the default commands available for use. They do not require prefixes.
 |*Command*|*Format*|*Expected outcome*
 |`help`|`help`|Opens up the User Guide
 |`exit`|`exit`|Safely exits the application
-|`default`|`default`|Displays the default form of student list
-|`detailed`|`detailed`|Displays the detailed details of the class
+|`student`|`student`|Displays the student list
 |`admin`|`admin`|Displays all administrative details of the class
 |`academics`|`academics`|Displays all academic records of the class
 |`notes`|`notes`|Displays all notes of the class
@@ -900,6 +933,8 @@ Here are the commands to manage students. They require the prefix `student`.
 [cols="10%, 45%, 45%"]
 .Student commands of TeaPet
 |===
+|*Command*|*Format*|*Expected outcome*
+|`student detailed`|`student detailed`|Displays the detailed details of the class
 |`student add`|`student add name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [nok/NOK] [temp/TEMPERATURE]
 [att/ATTENDANCE]`|Adds a student into the class with the respective particulars
 |`student edit`|`student edit INDEX [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [nok/NOK] [temp/TEMPERATURE]
@@ -946,6 +981,12 @@ Here are the commands to manage students. They require the prefix `notes`.
 [cols="10%, 45%, 45%"]
 .Notes commands of TeaPet
 |===
+|*Command*|*Format*|*Expected outcome*
+|`notes add`| `notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY`| Adds a note into TeaPet
+|`notes edit`|`notes edit INDEX [name/STUDENT_NAME] [cont/CONTENT] [pr/PRIORITY]`| Edits a note in TeaPet.
+|`notes delete`| `notes delete INDEX`| Deletes a note in TeaPet.
+|`notes filter`|`notes filter KEYWORDS`| Displays a list of filtered notes based on specific keywords.
+|`notes export`|`notes export`| Exports all notes in TeaPet into a .csv file
 |===
 
 === Personal Scheduler Commands
@@ -1030,6 +1071,10 @@ Here are the commands to manage students. They require the prefix `schedule`.
 |Recurring type
 |<<scheduler, Personal Scheduler>>
 
+|color/
+|Color code
+|<<scheduler, Personal Scheduler>>
+
 |indexGet/
 |Get index of event
 |<<scheduler, Personal Scheduler>>
@@ -1038,7 +1083,7 @@ Here are the commands to manage students. They require the prefix `schedule`.
 |Event view mode
 |<<scheduler, Personal Scheduler>>
 
-|c/
+|cont/
 |Content of note
 |<<notes, Notes>>
 

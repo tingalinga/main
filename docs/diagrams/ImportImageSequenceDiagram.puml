@@ -1,0 +1,15 @@
+@startuml
+start
+:User drags student images into image folder;
+:User executes student command;
+if() then ([Format of image file incorrect])
+        :Student image is not updated;
+
+    :Show file not found error message;
+else([else])
+    :Student image is updated;
+    :Show update success message;
+endif
+stop
+
+@enduml

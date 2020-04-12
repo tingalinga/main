@@ -29,8 +29,9 @@ public class NotesCommand extends Command {
     public static final String MESSAGE_SUCCESS = "The Column on the right displays all your notes." + '\n'
             + "[HELP ON NOTES COMMANDS]\n"
             + "1. Display all Notes: notes\n"
-            + "2. Add Note: notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY\n"
-            + "3. Edit Note: notes edit INDEX name/STUDENT_NAME c/CONTENT pr/PRIORITY\n"
+            + "2. Add Note: notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY\n"
+            + "3. Edit Note: notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] "
+            + "[pr/UPDATED_PRIORITY]\n"
             + "4. Delete Note: notes delete INDEX\n"
             + "5. Filter Search Notes: notes filter KEYWORD(S)\n"
             + "6. Export Notes: notes export";

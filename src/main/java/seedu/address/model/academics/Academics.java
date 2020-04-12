@@ -51,7 +51,6 @@ public class Academics implements ReadOnlyAcademics {
      */
     public void resetData(ReadOnlyAcademics newData) {
         requireNonNull(newData);
-
         setAssessments(newData.getAcademicsList());
     }
 

@@ -1,0 +1,116 @@
+@startuml
+
+skinparam java backgroundColor #ffffff
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class "{abstract}\nCommand" {
+    + {abstract} execute(model : Model) : CommandResult
+}
+
+class "AcademicsCommand" {
+    /' Fields '/
+    + {static} COMMAND_WORD : String
+    + {static} MESSAGE_USAGE : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AcademicsAddCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    + {static} MESSAGE_DUPLICATE_ASSESSMENT : String
+    - toAdd : Assessment
+
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AcademicsEditCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    + {static} MESSAGE_NOT_EDITED : String
+    + {static} MESSAGE_DUPLICATE_ASSESSMENT : String
+    - index: Index
+    - editAssessmentDescriptor : EditAssessmentDescriptor
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AcademicsDeleteCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    - targetIndex: Index
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AcademicsSubmitCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    - index : Index
+    - students : List<String>
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AcademicsMarkCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+    - index : Index
+    - submissions : HashMap<String, Integer>
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AcademicsDisplayCommand {
+    /' Fields '/
+    + {static} MESSAGE_HOMEWORK_SUCCESS : String
+    + {static} MESSAGE_EXAM_SUCCESS : String
+    + {static} MESSAGE_REPORT_SUCCESS : String
+    - type : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+class AcademicsExportCommand {
+    /' Fields '/
+    + {static} MESSAGE_USAGE : String
+    + {static} MESSAGE_SUCCESS : String
+
+    /' Methods '/
+    + execute(model : Model) : CommandResult
+    + equals(Object other) : Boolean
+}
+
+AcademicsAddCommand --up|> "AcademicsCommand"
+AcademicsEditCommand --up|> "AcademicsCommand"
+AcademicsDeleteCommand --up|> "AcademicsCommand"
+AcademicsSubmitCommand --up|> "AcademicsCommand"
+AcademicsMarkCommand --up|> "AcademicsCommand"
+AcademicsDisplayCommand --up|> "AcademicsCommand"
+AcademicsExportCommand --up|> "AcademicsCommand"
+AcademicsCommand --up|> "{abstract}\nCommand"
+
+
+
+@enduml

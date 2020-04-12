@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes the schedule add command;
+:Parses the command;
+if() then ([Command is valid])
+    :Add command is executed;
+    if() then ([Event is unique])
+        :Event is added to the scheduler;
+        :Return success message;
+        :New event is displayed on the iCalendar;
+    else([Event is duplicate])
+        :Shows duplicate event error message;
+    endif
+else([Command is missing arguments])
+    :Show parse error message;
+endif
+stop
+@enduml

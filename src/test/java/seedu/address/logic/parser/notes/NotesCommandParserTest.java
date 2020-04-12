@@ -26,8 +26,8 @@ public class NotesCommandParserTest {
 
     public static final String INVALID_COMMAND_SUPPLIED = "addition";
     public static final String VALID_NOTES_COMMAND_SUPPLIED = "";
-    public static final String VALID_ADD_COMMAND_SUPPLIED = "add name/Kelvin Klein c/Good Student pr/LOW";
-    public static final String VALID_EDIT_COMMAND_SUPPLIED = "edit 1 name/Kelvin Klein c/Good Student pr/LOW";
+    public static final String VALID_ADD_COMMAND_SUPPLIED = "add name/Kelvin Klein cont/Good Student pr/LOW";
+    public static final String VALID_EDIT_COMMAND_SUPPLIED = "edit 1 name/Kelvin Klein cont/Good Student pr/LOW";
     public static final String VALID_DELETE_COMMAND_SUPPLIED = "delete 1";
     public static final String VALID_FILTER_COMMAND_SUPPLIED = "filter low high medium";
     public static final String VALID_EXPORT_COMMAND_SUPPLIED = "export";

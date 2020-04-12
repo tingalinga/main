@@ -66,28 +66,28 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
-        if (eventName.isEmpty() || eventName == null) {
+        if (eventName == null || eventName.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "EVENT NAME"));
         }
 
-        if (startDateTime.isEmpty() || startDateTime == null) {
+        if (startDateTime == null || startDateTime.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "START DATE TIME"));
         }
 
-        if (endDateTime.isEmpty() || endDateTime == null) {
+        if (endDateTime == null || endDateTime.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "END DATE TIME"));
         }
 
-        if (uniqueIdentifier.isEmpty() || uniqueIdentifier == null) {
+        if (uniqueIdentifier == null || uniqueIdentifier.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "UNIQUE IDENTIFIER"));
         }
 
-        if (colorCode.isEmpty() || colorCode == null) {
+        if (colorCode == null || colorCode.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "COLOR CODE"));
         }
 
         RecurrenceType recurrenceTypeToAdd;
-        if (recurrenceType.isEmpty() || recurrenceType == null) {
+        if (recurrenceType == null || recurrenceType.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "RECURRENCE TYPE"));
         } else if (recurrenceType.equalsIgnoreCase(RecurrenceType.NONE.name())) {
             recurrenceTypeToAdd = RecurrenceType.NONE;
@@ -97,9 +97,6 @@ class JsonAdaptedEvent {
             recurrenceTypeToAdd = RecurrenceType.WEEKLY;
         } else {
             throw new IllegalValueException(INVALID_RECUR_TYPE);
-        }
-        if (colorCode.isEmpty() || colorCode == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "COLOR CODE"));
         }
 
         LocalDateTime startDateTime;

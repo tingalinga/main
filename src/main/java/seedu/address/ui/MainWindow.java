@@ -239,8 +239,6 @@ public class MainWindow extends UiPart<Stage> {
         onSchedule();
     }
 
-
-
     void show() {
         primaryStage.show();
 
@@ -406,7 +404,6 @@ public class MainWindow extends UiPart<Stage> {
             default:
                 break;
             }
-
 
             if (consoleReply.contains("The Student list now displays last updated ADMIN details")) {
                 handleStudentAdmin();
