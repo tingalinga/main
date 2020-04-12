@@ -7,7 +7,6 @@ skinparam classBackgroundColor MODEL_COLOR
 Package NotesManager {
 Interface ReadOnlyNotes <<Interface>>
 Class NotesManager
-Class ReadOnlyNotes
 NotesManager .left.|> ReadOnlyNotes
 
 Package Notes  {
