@@ -43,7 +43,7 @@ public class NextOfKinTest {
     }
 
     @Test
-    public void isSameNOK() {
+    public void isSameNok() {
         NextOfKin nokOne = new NextOfKin("dawn-sister-63452");
         assertEquals(nokOne, new NextOfKin("dawn-sister-63452"));
         assertFalse(nokOne.equals(new NextOfKin("ahma-grandmother-745456")));
