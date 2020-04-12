@@ -236,7 +236,7 @@ The `Storage` component,
 [[Design-Commons]]
 === Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.commons` package.
 
 == Implementation
 
@@ -627,7 +627,7 @@ will be displayed.
 The following sequence diagram summarizes what happens when a user keys in an academics add command:
 
 .Academics Add Command Sequence Diagram
-image::developerguide/academics/academics_add_command_sequence_diagram.png[]
+image::academics/academics_add_command_sequence_diagram.png[]
 
 ==== Academics Edit Command
 
@@ -687,6 +687,11 @@ submitted their work, a `CommandException` will be thrown.
 
 *Step 4.* The command box will be reflected with the `AcademicsSubmitCommand#MESSAGE_SUCCESS` constant and a new
 `CommandResult` will be returned with the message.
+
+The following activity diagram summarizes what happens when a user executes academics submit command:
+
+.Academics Submit Activity Diagram
+image::academics/AcademicsSubmitActivityDiagram.png[]
 
 ==== Academics Mark Command
 

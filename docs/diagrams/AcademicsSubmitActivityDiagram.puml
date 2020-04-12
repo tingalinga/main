@@ -1,0 +1,31 @@
+@startuml
+start
+:User executes academics mark command;
+:Parses the command;
+if() then ([Command is valid])
+    :Submit command is executed;
+    if() then ([Assessment index is valid])
+        if() then ([Student exists])
+        if() then ([Student has not submitted their work])
+        :Submit students work
+        in assessment;
+        :Show success message;
+        else([Student has submitted])
+        :Show multiple submission
+        error message;
+        endif
+        else([Student does not exists])
+        :Show invalid student
+        error message;
+        endif
+    else([Assessment index is invalid])
+        :Show invalid index
+        error message;
+
+    endif
+else([Command is missing arguments])
+    :Show parse
+    error message;
+endif
+stop
+@enduml
