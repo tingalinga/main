@@ -2,7 +2,9 @@ package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE1;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -61,6 +63,15 @@ public class NotesAddCommandTest {
         assertEquals(Arrays.asList(validNote), modelStub.notesAdded);
     }
 
+    @Test
+    public void execute_noteNoteAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingNoteAdded modelStub = new ModelStubAcceptingNoteAdded();
+        Notes validNote = new NotesBuilder().build();
+
+        //Student not found in model.
+        assertThrows(CommandException.class, () -> new NotesAddCommand(validNote).execute(modelStub));
+    }
+
 
     @Test
     public void execute_duplicateNote_throwCommandException() {
@@ -72,6 +83,21 @@ public class NotesAddCommandTest {
 
         assertThrows(CommandException.class, NotesAddCommand.MESSAGE_DUPLICATE_NOTE, () ->
                 addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void equals() {
+        Notes validNote = new NotesBuilder().build();
+        NotesAddCommand addCommand = new NotesAddCommand(validNote);
+        NotesAddCommand addCommandSecond = new NotesAddCommand(NOTE1);
+
+        assertEquals(addCommand, addCommand);
+
+        assertNotEquals(addCommand, addCommandSecond);
+
+        assertNotEquals(addCommand, null);
+
+        assertNotEquals(addCommand, 3);
     }
 
 
