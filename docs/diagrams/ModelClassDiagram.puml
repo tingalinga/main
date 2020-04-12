@@ -8,32 +8,13 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyTeaPet <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Interface ReadOnlyUserPrefs <<Interface>>
 Class TeaPet
+Class ReadOnlyTeaPet
+Class Model
 Class ModelManager
 Class UserPrefs
-
-Interface ReadOnlyAcademics <<Interface>>
-Interface ReadOnlyAdmin <<Interface>>
-Interface ReadOnlyNotes <<Interface>>
-Interface ReadOnlyEvents <<Interface>>
-
-Class Academics
-Class Admin
-Class NotesManager
-Class EventHistory
-Class UniqueStudentList
-Class UniqueAssessmentList
-Class UniqueDateList
-Class UniqueNotesList
-
-Academics .up.|> ReadOnlyAcademics
-Admin .up.|> ReadOnlyAdmin
-NotesManager .up.|> ReadOnlyNotes
-EventHistory .up.|> ReadOnlyEvents
-UserPrefs .up.|> ReadOnlyUserPrefs
-TeaPet .left.|> ReadOnlyTeaPet
-
+Class ReadOnlyUserPrefs
+Class Notes
 
 Package Student {
 Class Student
@@ -41,11 +22,17 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class UniqueStudentList
 Class Temperature
+Class Attendance
 Class NextOfKin
 NextOfKin *--> NextOfKinName
 NextOfKin *---> NextOfKinRelationship
 NextOfKin *---> NextOfKinContact
+}
+
+Package Notes {
+Class Notes
 }
 
 Package Tag {
@@ -56,21 +43,15 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
+TeaPet .up.|> ReadOnlyTeaPet
+
 ModelManager .up.|> Model
 Model .right.> ObservableList
 ModelManager o--> "1" TeaPet
-ModelManager o-right-> "1" Academics
-ModelManager o-right-> "1" Admin
-ModelManager o-left-> "1" NotesManager
-ModelManager o-left-> "1" EventHistory
-ModelManager o-right-> "1" UserPrefs
-
-Academics *--> "1" UniqueAssessmentList
-Admin *--> "1" UniqueDateList
-NotesManager *--> "1" UniqueNotesList
+ModelManager o-left-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
 
 TeaPet *--> "1" UniqueStudentList
-
 UniqueStudentList o--> "*" Student
 Student *--> Name
 Student *--> Phone
@@ -78,11 +59,15 @@ Student *--> Email
 Student *--> Address
 Student *--> "*" Tag
 Student *--> Temperature
+Student *--> Attendance
 Student *--> NextOfKin
+Student *--> Notes
+
 
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
+ModelManager -->"1" Student : filtered list
 @enduml

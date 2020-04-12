@@ -75,7 +75,7 @@ public class AdminFetchCommandTest {
         String fullDate = date.getDate().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH) + " "
                 + date.getDate().getDayOfMonth() + " " + date.getDate().getYear();
         String expectedMessage = String.format(AdminFetchCommand.MESSAGE_SUCCESS, fullDate);
-        DateContainsKeywordsPredicate predicate = new DateContainsKeywordsPredicate(LocalDate.parse("2020-01-26"));
+        DateContainsKeywordsPredicate predicate = new DateContainsKeywordsPredicate(LocalDate.parse("2020-02-26"));
         model.updateFilteredDateList(predicate);
         AdminFetchCommand command = new AdminFetchCommand(predicate);
         expectedModel.updateFilteredDateList(predicate);
