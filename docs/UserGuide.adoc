@@ -862,11 +862,9 @@ image::locating_image_folder.png[width="790"]
 *Step 2*. Open the image folder and drag the image of your student into the folder.
 
 NOTE: The filename of your image must of this format: +
-1. Filename must be of the same name as the student. +
-2. Filename is all lowercase. +
-3. Filename have no whitespaces. +
+1. Filename of the image must be the same as the student. +
 4. File is in .png format. +
-For example, a student with name *Simon Lam* must have a image file with name *simonlam* in .png format.
+For example, a student with name *Simon Lam* must have a image file with name *Simon Lam* in .png format.
 
 TIP: For ideal optimization of the image, its dimensions for its length and width should be roughly equal.
 
@@ -878,6 +876,9 @@ image::images_in_folder.png[width="790"]
 *Step 3*. Type in the `student` command in the user interface. TeaPet will update the images and
 now you can see pictures of your students in your student list!
 
+[WARNING]
+Editing the name of the student will change the student image back to the default image. To solve this, you have to edit
+the png file in the Image folder as well after you edit the name of the student and then enter the `student` command.
 
 .Before using the refresh command
 image::before_picture_upload.png[width="790]

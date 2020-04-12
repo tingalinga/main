@@ -85,7 +85,7 @@ public class StudentCard extends UiPart<Region> {
      */
     public void updateImage() {
         try {
-            String path = "images/" + student.getName().toString().toLowerCase().replaceAll("\\s+", "") + ".png";
+            String path = "images/" + student.getName().toString() + ".png";
             File file = new File(path);
             if (!file.exists()) {
                 Image defaultImage = new Image("images/default_person.png");
