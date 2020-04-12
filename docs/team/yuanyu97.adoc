@@ -66,10 +66,13 @@ https://github.com/AY1920S2-CS2103T-W12-2/main/pull/74[#74], https://github.com/
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
+include::../UserGuide.adoc[tag=admin]
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=commands]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=glossary]
+
+include::../UserGuide.adoc[tag=faq]
 
 == Contributions to the Developer Guide
 
@@ -77,6 +80,10 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+include::../DeveloperGuide.adoc[tag=admin]
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=userstories]
+
+include::../DeveloperGuide.adoc[tag=usecases]
+
+include::../DeveloperGuide.adoc[tag=adminmanual]
