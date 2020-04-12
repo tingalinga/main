@@ -114,8 +114,11 @@ public class CommandTestUtil {
     public static final String VALID_SUBMITTED_GRACE_PAN = "true";
     public static final String VALID_MARKED_SHARADH_RAJARAMAN = "false";
     public static final String VALID_MARKED_GRACE_PAN = "true";
-    public static final String VALID_SCORE_SHARADH_RAJARAMAN = "0";
+    public static final String VALID_SCORE_SHARADH_RAJARAMAN = "20";
     public static final String VALID_SCORE_GRACE_PAN = "99";
+    public static final String VALID_MARKING_SHARADH_RAJARAMAN = VALID_STUDENT_NAME_SHARADH_RAJARAMAN + "-"
+            + VALID_SCORE_SHARADH_RAJARAMAN;
+    public static final String VALID_MARKING_GRACE_PAN = VALID_STUDENT_NAME_GRACE_PAN + "-" + VALID_SCORE_GRACE_PAN;
 
     public static final String DESCRIPTION_MATH_ASSIGNMENT = " "
             + PREFIX_ASSESSMENT_DESCRIPTION + VALID_DESCRIPTION_MATH_ASSIGNMENT;
@@ -136,6 +139,7 @@ public class CommandTestUtil {
     public static final String INVALID_ASSESSMENT_DESC = " " + PREFIX_NAME + ""; // empty description is not allowed
     public static final String INVALID_TYPE_DESC = " " + PREFIX_ASSESSMENT_TYPE + "assignment"; // homework OR exam
     public static final String INVALID_DATE_DESC = " " + PREFIX_ASSESSMENT_DATE + "2020/03/04"; // homework OR exam
+    public static final String INVALID_MARKING = " " + PREFIX_STUDENT + VALID_STUDENT_NAME_GRACE_PAN;
 
     public static final AcademicsEditCommand.EditAssessmentDescriptor DESC_MATH_ASSIGNMENT;
     public static final AcademicsEditCommand.EditAssessmentDescriptor DESC_SCIENCE_EXAM;

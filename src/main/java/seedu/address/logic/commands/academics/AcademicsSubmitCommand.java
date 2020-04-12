@@ -62,6 +62,7 @@ public class AcademicsSubmitCommand extends AcademicsCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AcademicsSubmitCommand); // instanceof handles nulls
+                || (other instanceof AcademicsSubmitCommand)
+                && index.equals(((AcademicsSubmitCommand) other).index); // instanceof handles nulls
     }
 }

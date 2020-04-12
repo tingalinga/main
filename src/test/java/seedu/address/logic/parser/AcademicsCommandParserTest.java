@@ -9,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_SCIENCE_E
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ASSESSMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TYPE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MARKING_GRACE_PAN;
+import static seedu.address.logic.commands.CommandTestUtil.MARKING_SHARADH_RAJARAMAN;
 import static seedu.address.logic.commands.CommandTestUtil.SUBMISSION_GRACE_PAN;
 import static seedu.address.logic.commands.CommandTestUtil.SUBMISSION_SHARADH_RAJARAMAN;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_MATH_ASSIGNMENT;
@@ -17,6 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MATH_ASSIG
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SCIENCE_EXAM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MATH_ASSIGNMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SCIENCE_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MARKING_GRACE_PAN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MARKING_SHARADH_RAJARAMAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_GRACE_PAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_SHARADH_RAJARAMAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_MATH_ASSIGNMENT;
@@ -42,6 +46,7 @@ import seedu.address.logic.commands.academics.AcademicsDeleteCommand;
 import seedu.address.logic.commands.academics.AcademicsDisplayCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand.EditAssessmentDescriptor;
+import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.academics.Assessment;
@@ -295,10 +300,10 @@ public class AcademicsCommandParserTest {
         Index targetIndex = INDEX_FIRST_ASSESSMENT;
         String userInput = "academics submit " + targetIndex.getOneBased() + SUBMISSION_SHARADH_RAJARAMAN
                 + SUBMISSION_GRACE_PAN;
-        List<String> studentToSubmit = new ArrayList<>();
-        studentToSubmit.add(VALID_STUDENT_NAME_SHARADH_RAJARAMAN);
-        studentToSubmit.add(VALID_STUDENT_NAME_GRACE_PAN);
-        AcademicsSubmitCommand expectedCommand = new AcademicsSubmitCommand(targetIndex, studentToSubmit);
+        List<String> studentsToSubmit = new ArrayList<>();
+        studentsToSubmit.add(VALID_STUDENT_NAME_SHARADH_RAJARAMAN);
+        studentsToSubmit.add(VALID_STUDENT_NAME_GRACE_PAN);
+        AcademicsSubmitCommand expectedCommand = new AcademicsSubmitCommand(targetIndex, studentsToSubmit);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -317,7 +322,48 @@ public class AcademicsCommandParserTest {
         assertParseFailure(parser, "academics submit" + SUBMISSION_SHARADH_RAJARAMAN, expectedMessage);
     }
 
-    // ==================== ADD COMMAND END ====================
+    // ==================== SUBMIT COMMAND END ====================
+
+    // ==================== MARK COMMAND START ====================
+    @Test
+    public void parse_markCommandOnlyOneSubmission_success() throws CommandException {
+        Index targetIndex = INDEX_FIRST_ASSESSMENT;
+        String userInput = "academics mark " + targetIndex.getOneBased() + MARKING_SHARADH_RAJARAMAN;
+        List<String> studentToMark = new ArrayList<>();
+        studentToMark.add(VALID_MARKING_SHARADH_RAJARAMAN);
+        AcademicsMarkCommand expectedCommand = new AcademicsMarkCommand(targetIndex, studentToMark);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_markCommandMultipleSubmission_success() throws CommandException {
+        Index targetIndex = INDEX_FIRST_ASSESSMENT;
+        String userInput = "academics mark " + targetIndex.getOneBased() + MARKING_SHARADH_RAJARAMAN
+                + MARKING_GRACE_PAN;
+        List<String> studentsToMark = new ArrayList<>();
+        studentsToMark.add(VALID_MARKING_SHARADH_RAJARAMAN);
+        studentsToMark.add(VALID_MARKING_GRACE_PAN);
+        AcademicsMarkCommand expectedCommand = new AcademicsMarkCommand(targetIndex, studentsToMark);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_markCommandCompulsoryFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsMarkCommand.MESSAGE_USAGE);
+        Index targetIndex = INDEX_FIRST_ASSESSMENT;
+
+        // all prefixes missing
+        assertParseFailure(parser, "academics mark" + targetIndex.getOneBased(), expectedMessage);
+
+        // missing student name
+        assertParseFailure(parser, "academics mark" + targetIndex.getOneBased() + PREFIX_STUDENT,
+                expectedMessage);
+
+        // missing assessment index
+        assertParseFailure(parser, "academics mark" + MARKING_SHARADH_RAJARAMAN, expectedMessage);
+    }
+
+    // ==================== MARK COMMAND END ====================
 
     // ==================== DISPLAY COMMAND START ====================
     @Test
