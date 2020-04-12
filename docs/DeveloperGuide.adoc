@@ -388,7 +388,6 @@ The feature comprises of one command namely,
 
 This is further illustrated in the following sequence diagram, which shows the sequence diagram for the StudentRefreshCommand.
 
-(To Change)
 
 .Sequence Diagram for StudentRefreshCommand
 image::ImportImage.png[]
