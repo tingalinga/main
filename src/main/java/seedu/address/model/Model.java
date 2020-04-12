@@ -6,9 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.apache.commons.math3.util.Pair;
+
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
-import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Assessment;

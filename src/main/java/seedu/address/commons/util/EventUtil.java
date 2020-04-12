@@ -5,9 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
+import org.apache.commons.math3.util.Pair;
+
 import jfxtras.icalendarfx.components.VEvent;
 import jfxtras.icalendarfx.properties.component.recurrence.RecurrenceRule;
-import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.RecurrenceType;
@@ -115,6 +116,7 @@ public class EventUtil {
 
     /**
      * Presents the index, VEvent pair to user
+     * @param indexVEventPair
      */
     public static String formatIndexVEventPair(Pair<Index, VEvent> indexVEventPair) {
         Index index = indexVEventPair.getKey();
