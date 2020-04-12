@@ -467,6 +467,11 @@ public class StudentAddCommandTest {
             requireNonNull(student);
             return this.student.isSameStudent(student);
         }
+
+        @Override
+        public boolean hasStudentName(String student) {
+            return this.student.getName().fullName.equals(student);
+        }
     }
 
     /**
@@ -479,6 +484,18 @@ public class StudentAddCommandTest {
         public boolean hasStudent(Student student) {
             requireNonNull(student);
             return studentsAdded.stream().anyMatch(student::isSameStudent);
+        }
+
+        @Override
+        public boolean hasStudentName(String student) {
+            requireNonNull(student);
+            boolean contains = false;
+            for (Student stu : studentsAdded) {
+                if (stu.getName().fullName.equals(student)) {
+                    contains = true;
+                }
+            }
+            return contains;
         }
 
         @Override

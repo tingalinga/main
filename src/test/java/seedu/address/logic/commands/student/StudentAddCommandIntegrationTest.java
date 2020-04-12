@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.student;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.student.StudentAddCommand.MESSAGE_DUPLICATE_STUDENT;
 import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
@@ -39,14 +39,13 @@ public class StudentAddCommandIntegrationTest {
 
         expectedModel.addStudent(validStudent);
 
-        assertCommandSuccess(new StudentAddCommand(validStudent), model,
-                String.format(StudentAddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
+        assertCommandFailure(new StudentAddCommand(validStudent), model, MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getTeaPet().getStudentList().get(0);
-        assertCommandFailure(new StudentAddCommand(studentInList), model, StudentAddCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(new StudentAddCommand(studentInList), model, MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

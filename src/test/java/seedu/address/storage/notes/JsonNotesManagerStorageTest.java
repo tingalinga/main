@@ -58,6 +58,11 @@ public class JsonNotesManagerStorageTest {
     }
 
     @Test
+    public void readTeaPet_duplicateNotes_throwIllegalArgumentException() {
+        assertThrows(DataConversionException.class, () -> readNotesManager("duplicateNotes.json"));
+    }
+
+    @Test
     public void readTeaPet_invalidAndValidNotes_throwIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> readNotesManager("invalidAndValidNotesFormat.json"));
     }
@@ -67,6 +72,7 @@ public class JsonNotesManagerStorageTest {
         Path filepath = testFolder.resolve("TempNotesManager.json");
         NotesManager original = getTypicalNotesManager();
         JsonNotesManagerStorage jsonNotesManagerStorage = new JsonNotesManagerStorage(filepath);
+        Path testFilePath = jsonNotesManagerStorage.getNotesManagerFilePath();
 
         // Save in new file and read back
         jsonNotesManagerStorage.saveNotesManager(original, filepath);

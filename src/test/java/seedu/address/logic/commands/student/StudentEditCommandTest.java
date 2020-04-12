@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.address.logic.commands.student.StudentAddCommand.MESSAGE_DUPLICATE_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
@@ -50,13 +51,11 @@ public class StudentEditCommandTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         StudentEditCommand editCommand = new StudentEditCommand(INDEX_FIRST_STUDENT, descriptor);
 
-        String expectedMessage = String.format(StudentEditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
+        String expectedMessage = MESSAGE_DUPLICATE_STUDENT;
 
-        Model expectedModel = new ModelManager(new TeaPet(model.getTeaPet()), model.getAcademics(),
-                model.getAdmin(), model.getNotesManager(), getTypicalEventHistory(), new UserPrefs());
-        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
+        model.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
@@ -87,14 +86,8 @@ public class StudentEditCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         StudentEditCommand editCommand = new StudentEditCommand(INDEX_FIRST_STUDENT, new EditStudentDescriptor());
         Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-
-        String expectedMessage = String.format(StudentEditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
-
-        Model expectedModel = new ModelManager(new TeaPet(model.getTeaPet()),
-                new Academics(model.getAcademics()), new Admin(model.getAdmin()),
-                new NotesManager(model.getNotesManager()), new EventHistory(model.getEventHistory()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        String expectedMessage = MESSAGE_DUPLICATE_STUDENT;
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
@@ -123,7 +116,7 @@ public class StudentEditCommandTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         StudentEditCommand editCommand = new StudentEditCommand(INDEX_SECOND_STUDENT, descriptor);
 
-        assertCommandFailure(editCommand, model, StudentEditCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
@@ -135,7 +128,7 @@ public class StudentEditCommandTest {
         StudentEditCommand editCommand = new StudentEditCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptorBuilder(studentInList).build());
 
-        assertCommandFailure(editCommand, model, StudentEditCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
