@@ -395,7 +395,7 @@ This feature utilises the `StudentCard#updateImage` method to update the images 
 
 The feature comprises of one command namely, `DefaultStudentDisplayCommand`
 
-* Refreshes the student list to show updated images of students and displays the student list.
+* Updates the student list to show updated images of students and displays the student list.
 
 
 This is further illustrated in the following sequence diagram below.
