@@ -185,11 +185,11 @@ images can be found <<update-profile,here>>. TeaPet then displays a summarised l
 
     The student list now displays DEFAULT details.
     [HELP ON STUDENT COMMANDS]
-    DISPLAY DETAILED LIST: student detailed
-    ADD STUDENT: name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
-    EDIT STUDENT: student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
-    DELETE STUDENT: student delete INDEX
-    FIND STUDENT: student find NAME
+    1. Display detailed list: student detailed
+    2. Add student: student add name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
+    3. Edit student: student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
+    4. Delete student: student delete INDEX
+    5. Find student: student find NAME
 
 .After using `student` command
 image::add_student.png[width="790]
@@ -323,7 +323,12 @@ Shows the last updated administrative information in the student list.
 
 *Expected Outcome:*
 
-    The Student list now displays last updated ADMIN details
+    The Student list now displays last updated ADMIN details.
+    [HELP ON ADMIN COMMANDS]
+    1. Save date: admin save
+    2. Show dates: admin dates
+    3. Delete date: admin delete YYYY-MM-DD
+    4. Fetch date: admin fetch YYYY-MM-DD
 
 .After using `admin` command
 image::adminDisplay.png[width="790]
@@ -424,15 +429,16 @@ Shows all assessments in the academics list and a guide for academic commands.
 
     The Academics tracks all your assessments and student submissions.
     [HELP ON ACADEMICS COMMANDS]
-    add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
-    edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
-    delete assessment: academics delete INDEX
-    submit assessment: academics submit INDEX [stu/STUDENT_NAME]...
-    mark assessment: academics mark INDEX> [stu/STUDENT_NAME-SCORE]...
-    filter assessment BY TYPE: academics ASSESSMENT_TYPE (only Homework or Exam)
-    view academics report: academics report
-    export academics report: academics export
+    1. Add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
+    2. Edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
+    3. Delete assessment: academics delete INDEX
+    4. Submit assessment: academics submit INDEX [stu/STUDENT_NAME]...
+    5. Mark assessment: academics mark INDEX [stu/STUDENT_NAME-SCORE]...
+    6. Filter assessment BY TYPE: academics ASSESSMENT_TYPE (only homework or exam)
+    7. View academics report: academics report
+    8. Export academics report: academics export
     Type the following commands for more info!
+
 
 .After using the `academics` command
 image::academics-view.png[width="790]

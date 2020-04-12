@@ -173,6 +173,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Assessment> asUnmodifiableObservableList() {
+        FXCollections.sort(internalList, new AssessmentComparator().reversed());
         return internalUnmodifiableList;
     }
 
@@ -184,6 +185,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         internalList.stream()
                 .filter(next -> next.getType().equals("homework"))
                 .forEach(next -> homeworkList.add(next));
+        FXCollections.sort(homeworkList, new AssessmentComparator().reversed());
         return homeworkList;
     }
 
@@ -195,6 +197,7 @@ public class UniqueAssessmentList implements Iterable<Assessment> {
         internalList.stream()
                 .filter(next -> next.getType().equals("exam"))
                 .forEach(next -> examList.add(next));
+        FXCollections.sort(examList, new AssessmentComparator().reversed());
         return examList;
     }
 
