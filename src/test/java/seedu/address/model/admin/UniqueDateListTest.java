@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDates.FEB_26_2020;
-import static seedu.address.testutil.TypicalDates.JAN_26_2020;
+import static seedu.address.testutil.admin.TypicalDates.FEB_26_2020;
+import static seedu.address.testutil.admin.TypicalDates.JAN_26_2020;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.admin.exceptions.DateNotFoundException;
 import seedu.address.model.admin.exceptions.DuplicateDateException;
-import seedu.address.testutil.DateBuilder;
+import seedu.address.testutil.admin.DateBuilder;
 
 public class UniqueDateListTest {
 

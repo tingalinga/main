@@ -20,7 +20,7 @@ import seedu.address.logic.commands.notes.NotesFilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesContainKeywordsPredicate;
-import seedu.address.testutil.EditNotesDescriptorBuilder;
+import seedu.address.testutil.notes.EditNotesDescriptorBuilder;
 
 public class NotesCommandParserTest {
 

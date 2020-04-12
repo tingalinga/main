@@ -13,7 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.notes.NotesEditCommand;
 import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
 import seedu.address.model.notes.Notes;
-import seedu.address.testutil.NotesBuilder;
+import seedu.address.testutil.notes.NotesBuilder;
 
 public class NotesEditCommandParserTest {
 

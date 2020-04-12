@@ -3,8 +3,8 @@ package seedu.address.storage.admin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalDates.JAN_26_2020;
-import static seedu.address.testutil.TypicalStudents.BENSON;
+import static seedu.address.testutil.admin.TypicalDates.JAN_26_2020;
+import static seedu.address.testutil.student.TypicalStudents.BENSON;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;

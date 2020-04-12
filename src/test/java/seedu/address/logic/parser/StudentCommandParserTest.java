@@ -34,8 +34,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalStudents.AMY;
-import static seedu.address.testutil.TypicalStudents.BOB;
+import static seedu.address.testutil.student.TypicalStudents.AMY;
+import static seedu.address.testutil.student.TypicalStudents.BOB;
 
 import java.util.Arrays;
 
@@ -50,8 +50,8 @@ import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescri
 import seedu.address.logic.commands.student.StudentFindCommand;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.student.EditStudentDescriptorBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 
 public class StudentCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;

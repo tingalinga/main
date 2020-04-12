@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
+import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 
 import java.nio.file.Path;
 

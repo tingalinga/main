@@ -11,6 +11,8 @@ import seedu.address.model.academics.Submission;
  */
 class JsonAdaptedSubmission {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Submissions %s field is missing!";
+
     private final String student;
     private final String submitted;
     private final String marked;
@@ -45,12 +47,28 @@ class JsonAdaptedSubmission {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Submission toModelType() {
+    public Submission toModelType() throws IllegalValueException {
+        if (student == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "STUDENT NAME"));
+        }
+        String modelStudent = student;
+
+        if (submitted == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "SUBMITTED"));
+        }
         boolean modelSubmitted = submitted.equals("Submitted");
+
+        if (marked == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "MARKED"));
+        }
         boolean modelMarked = marked.equals("Marked");
+
+        if (score == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "SCORE"));
+        }
         int modelScore = Integer.parseInt(score);
 
-        return new Submission(student, modelSubmitted, modelMarked, modelScore);
+        return new Submission(modelStudent, modelSubmitted, modelMarked, modelScore);
     }
 
 }

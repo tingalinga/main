@@ -1,0 +1,63 @@
+{
+  "assessments" : [ {
+    "description" : "Valid Assessment",
+    "type" : "exam",
+    "date" : "11 Jan 2022",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "20"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  }, {
+    "description" : "Assessment with invalid assessment type",
+    "type" : "assigment",
+    "date" : "25 May 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  } ]
+}

@@ -2,13 +2,13 @@ package seedu.address.logic.commands.notes;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalNotes.N_DESC_JANE;
-import static seedu.address.testutil.TypicalNotes.N_DESC_KELVIN;
+import static seedu.address.testutil.notes.TypicalNotes.N_DESC_JANE;
+import static seedu.address.testutil.notes.TypicalNotes.N_DESC_KELVIN;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
-import seedu.address.testutil.EditNotesDescriptorBuilder;
+import seedu.address.testutil.notes.EditNotesDescriptorBuilder;
 
 public class EditNotesDescriptorTest {
 
