@@ -637,11 +637,12 @@ Shows all notes currently stored in TeaPet, and displays help on the usage of th
 
     The Column on the right displays all your notes.
     [HELP ON NOTES COMMANDS]
-    ADD NOTE: notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY
-    EDIT NOTE: notes edit INDEX [name/STUDENT_NAME] [c/CONTENT] [pr/PRIORITY]
-    DELETE NOTE: notes delete INDEX
-    FILTER SEARCH NOTES: notes filter KEYWORD(S)
-    EXPORT NOTES: notes export
+    1. Display all Notes: notes
+    2. Add Note: notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY
+    3. Edit Note: notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
+    4. Delete Note: notes delete INDEX
+    5. Filter Search Notes: notes filter KEYWORD(S)
+    6. Export Notes: notes export
 
 .After using the `notes` command
 image::userguide/notesfeature/notesDisplay.png[width="790]
@@ -653,9 +654,9 @@ Adds a note into TeaPet.
 
 *Format:*
 
-    notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY
+    notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY
 
-* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Create and add a new note with the following fields
 * *None* of the fields can be empty.
 * Student's name indicated in the name field must be already *present* in the class-list.
@@ -664,15 +665,15 @@ Adds a note into TeaPet.
 
 *Example:*
 
-* `notes add name/Kelvin Klein c/Reminder to inform his parents about Kelvin's exemplary behaviour. pr/LOW` +
-Adds a note for student _Kelvin Klein_ into the list of notes, together with content and priority.
+* `notes add name/Freddy Zhang cont/Reminder to inform his parents about Freddy's exemplary behaviour. pr/LOW` +
+Adds a note for student _Freddy Zhang_ into the list of notes, together with content and priority.
 
 *Expected Outcome:*
 
     New Student Note added! Wonderful!
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour.
     Priority: LOW
 
 .After using the `notes add` command
@@ -684,9 +685,9 @@ Edits a note in TeaPet.
 
 *Format:*
 
-    notes edit INDEX [name/UPDATED_STUDENT_NAME] [c/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
+    notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
 
-* Prefixes used: name/ -> name, c/ -> content pr/ -> priority
+* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority
 * Edits a current note in the list by index. Index must be an integer within the total number of notes.
 * *At least 1* of the three prefix fields must be indicated.
 * Updated student's name indicated in the name field must be already *present* in the class-list.
@@ -694,15 +695,15 @@ Edits a note in TeaPet.
 
 *Example:*
 
-* `notes edit 4 c/Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT. pr/HIGH` +
-Edits a note for student _Kelvin Klein_ in the list of notes, together with updated content and updated priority.
+* `notes edit 4 cont/Reminder to inform his parents about Freddy's exemplary behaviour TONIGHT. pr/HIGH` +
+Edits a note for student _Freddy Zhang_ in the list of notes, together with updated content and updated priority.
 
 *Expected Outcome:*
 
     Student's Note Edited. Wonderful!
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour TONIGHT.
     Priority: HIGH
 
 .After using the `notes edit` command
@@ -722,14 +723,14 @@ Deletes a note in TeaPet.
 *Example:*
 
 * `notes delete 4` +
-Deletes the 4th note in the list. In this example, the note is the one we created for student _Kelvin Klein_.
+Deletes the 4th note in the list. In this example, the note is the one we created for student _Freddy Zhang_.
 
 *Expected Outcome:*
 
     Student Note deleted.
     [NOTE]
-    Student: Kelvin Klein
-    Content: Reminder to inform his parents about Kelvin's exemplary behaviour TONIGHT.
+    Student: Freddy Zhang
+    Content: Reminder to inform his parents about Freddy’s exemplary behaviour TONIGHT.
     Priority: HIGH
 
 ==== Filter Notes `notes filter`
@@ -753,6 +754,9 @@ Displays only notes with the keyword "low" present.
 *Expected Outcome:*
 
     Displaying Notes with Keywords: [low]
+
+.After using the `notes filter low` command
+image::userguide/notesfeature/notesFilter.png[width="790]
 
 *Example 2:*
 
@@ -977,8 +981,8 @@ Here are the commands to manage students. They require the prefix `notes`.
 .Notes commands of TeaPet
 |===
 |*Command*|*Format*|*Expected outcome*
-|`notes add`| `notes add name/STUDENT_NAME c/CONTENT pr/PRIORITY`| Adds a note into TeaPet
-|`notes edit`|`notes edit INDEX [name/STUDENT_NAME] [c/CONTENT] [pr/PRIORITY]`| Edits a note in TeaPet.
+|`notes add`| `notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY`| Adds a note into TeaPet
+|`notes edit`|`notes edit INDEX [name/STUDENT_NAME] [cont/CONTENT] [pr/PRIORITY]`| Edits a note in TeaPet.
 |`notes delete`| `notes delete INDEX`| Deletes a note in TeaPet.
 |`notes filter`|`notes filter KEYWORDS`| Displays a list of filtered notes based on specific keywords.
 |`notes export`|`notes export`| Exports all notes in TeaPet into a .csv file
@@ -1078,7 +1082,7 @@ Here are the commands to manage students. They require the prefix `schedule`.
 |Event view mode
 |<<scheduler, Personal Scheduler>>
 
-|c/
+|cont/
 |Content of note
 |<<notes, Notes>>
 
