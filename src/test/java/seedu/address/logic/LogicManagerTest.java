@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TEMPERATURE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.AMY;
+import static seedu.address.testutil.student.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -36,7 +36,7 @@ import seedu.address.storage.admin.JsonAdminStorage;
 import seedu.address.storage.event.JsonEventStorage;
 import seedu.address.storage.notes.JsonNotesManagerStorage;
 import seedu.address.storage.teapet.JsonTeaPetStorage;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

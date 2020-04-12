@@ -36,8 +36,8 @@ import seedu.address.model.notes.NotesManager;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.NotesBuilder;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.notes.NotesBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 
 
 public class NotesAddCommandTest {

@@ -2,7 +2,7 @@ package seedu.address.storage.notes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

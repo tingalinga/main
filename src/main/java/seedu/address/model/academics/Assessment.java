@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
@@ -84,6 +85,47 @@ public class Assessment {
      */
     public List<Submission> getSubmissionTracker() {
         return submissionTracker;
+    }
+
+    /**
+     * Checks the format of the date string given.
+     */
+    public static boolean checkValidDate(String date) {
+        String[] split = date.trim().split("-");
+        if (split.length < 3 || split[0].length() < 4 || split[1].length() < 2 || split[2].length() < 2) {
+            return false;
+        }
+        int month = Integer.parseInt(split[1]);
+        int day = Integer.parseInt(split[2]);
+        switch (month) {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            if (day < 0 || day > 31) {
+                return false;
+            }
+            break;
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            if (day < 0 || day > 30) {
+                return false;
+            }
+            break;
+        case 2:
+            if (day < 0 || day > 28) {
+                return false;
+            }
+            break;
+        default:
+            return false;
+        }
+        return true;
     }
 
     /* SET METHODS */
@@ -260,6 +302,19 @@ public class Assessment {
         return "Assessment: " + this.description + "\n"
                 + "Type: " + this.type + "\n"
                 + "Date: " + this.date;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Assessment assessment = (Assessment) o;
+        return Objects.equals(description, assessment.description)
+                && Objects.equals(type, assessment.type);
     }
 }
 

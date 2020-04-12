@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
-import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_NOTE;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
-import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
+import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
+import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 
 
 public class NotesDeleteCommandTest {

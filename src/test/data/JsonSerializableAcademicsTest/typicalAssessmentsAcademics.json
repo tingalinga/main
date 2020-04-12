@@ -1,0 +1,184 @@
+{
+  "_comment": "Academics save file which contains the same Assessment values as in TypicalAssessments#getTypicalAcademics()",
+  "assessments" : [ {
+    "description" : "Science Homework",
+    "type" : "homework",
+    "date" : "04 Mar 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  }, {
+    "description" : "Chinese Homework",
+    "type" : "homework",
+    "date" : "04 Mar 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  }, {
+    "description" : "English Homework",
+    "type" : "homework",
+    "date" : "04 Mar 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  }, {
+    "description" : "Math Exam",
+    "type" : "exam",
+    "date" : "04 Mar 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  }, {
+    "description" : "Chinese Exam",
+    "type" : "exam",
+    "date" : "04 Mar 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  }, {
+    "description" : "English Exam",
+    "type" : "exam",
+    "date" : "04 Mar 2020",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  } ]
+}

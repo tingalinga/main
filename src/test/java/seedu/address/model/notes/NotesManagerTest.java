@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalNotes.NOTE1;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
+import static seedu.address.testutil.notes.TypicalNotes.NOTE1;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,7 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import seedu.address.model.notes.exceptions.DuplicateNotesException;
-import seedu.address.testutil.NotesBuilder;
+import seedu.address.testutil.notes.NotesBuilder;
 
 public class NotesManagerTest {
 

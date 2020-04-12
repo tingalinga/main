@@ -1,5 +1,7 @@
 package seedu.address.model.academics;
 
+import java.util.Objects;
+
 /**
  * Represents a students submission for an assessment.
  */
@@ -75,6 +77,35 @@ public class Submission implements Comparable<Submission> {
     public void markAssessment(int score) {
         this.marked = true;
         this.score = score;
+    }
+
+    /**
+     * Returns true if both submissions have the student name, submission, marked, and score.
+     */
+    public boolean isSameSubmission(Submission otherSubmission) {
+        if (otherSubmission == this) {
+            return true;
+        }
+        return otherSubmission != null
+                && otherSubmission.getStudentName().equals(getStudentName())
+                && (otherSubmission.hasSubmitted() && hasSubmitted())
+                && (otherSubmission.isMarked() && isMarked())
+                && (otherSubmission.getScore() == getScore());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Submission submission = (Submission) o;
+        return Objects.equals(studentName, submission.studentName)
+                && Objects.equals(submitted, submission.submitted)
+                && Objects.equals(marked, submission.marked)
+                && Objects.equals(score, submission.score);
     }
 
     @Override

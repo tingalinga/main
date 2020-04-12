@@ -23,9 +23,9 @@ import seedu.address.logic.commands.student.StudentFindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
-import seedu.address.testutil.StudentBuilder;
-import seedu.address.testutil.StudentUtil;
+import seedu.address.testutil.student.EditStudentDescriptorBuilder;
+import seedu.address.testutil.student.StudentBuilder;
+import seedu.address.testutil.student.StudentUtil;
 
 public class TeaPetParserTest {
 

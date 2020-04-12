@@ -2,11 +2,11 @@ package seedu.address.logic.commands.notes;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalAssessments.getTypicalAcademics;
-import static seedu.address.testutil.TypicalDates.getTypicalAdmin;
-import static seedu.address.testutil.TypicalNotes.getTypicalNotesManager;
-import static seedu.address.testutil.TypicalStudents.getTypicalTeaPet;
+import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
+import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 
 import java.util.Collections;
 

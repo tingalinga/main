@@ -25,7 +25,7 @@ import seedu.address.model.admin.Date;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TeaPet;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.student.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -88,6 +88,14 @@ public class CommandTestUtil {
     public static final String VALID_TYPE_SCIENCE_EXAM = "exam";
     public static final String VALID_DATE_MATH_ASSIGNMENT = "2020-03-05";
     public static final String VALID_DATE_SCIENCE_EXAM = "2020-05-25";
+    public static final String VALID_STUDENT_NAME_SHARADH_RAJARAMAN = "Sharadh Rajaraman";
+    public static final String VALID_STUDENT_NAME_GRACE_PAN = "Grace Pan";
+    public static final String VALID_SUBMITTED_SHARADH_RAJARAMAN = "false";
+    public static final String VALID_SUBMITTED_GRACE_PAN = "true";
+    public static final String VALID_MARKED_SHARADH_RAJARAMAN = "false";
+    public static final String VALID_MARKED_GRACE_PAN = "true";
+    public static final String VALID_SCORE_SHARADH_RAJARAMAN = "0";
+    public static final String VALID_SCORE_GRACE_PAN = "99";
 
 
     public static final StudentEditCommand.EditStudentDescriptor DESC_AMY;

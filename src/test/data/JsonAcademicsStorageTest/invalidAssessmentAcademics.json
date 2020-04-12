@@ -1,0 +1,33 @@
+{
+  "assessments" : [ {
+    "description" : "",
+    "type" : "assignment",
+    "date" : "11 Jan 2022",
+    "submissionTracker" : [ {
+      "student" : "Simon Lam",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Gerren Seow",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Lee Hui Ting",
+      "submitted" : "Submitted",
+      "marked" : "Marked",
+      "score" : "20"
+    }, {
+      "student" : "Gary Syndromes",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    }, {
+      "student" : "Freddy Zhang",
+      "submitted" : "Not Submitted",
+      "marked" : "Not Marked",
+      "score" : "0"
+    } ]
+  } ]
+}

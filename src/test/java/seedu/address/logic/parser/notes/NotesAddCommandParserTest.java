@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.notes.NotesAddCommand;
 import seedu.address.model.notes.Notes;
-import seedu.address.testutil.NotesBuilder;
+import seedu.address.testutil.notes.NotesBuilder;
 
 public class NotesAddCommandParserTest {
 
