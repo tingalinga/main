@@ -3,6 +3,7 @@ package seedu.address.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.admin.AdminDisplayCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -41,6 +42,7 @@ public class DefaultStudentDisplayCommand extends StudentCommand {
 
     @Override
     public boolean equals(Object other) {
-        return true;
+        return other == this // short circuit if same object
+                || (other instanceof DefaultStudentDisplayCommand); // instanceof handles nulls
     }
 }

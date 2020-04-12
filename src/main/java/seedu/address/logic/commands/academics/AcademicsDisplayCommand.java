@@ -43,8 +43,17 @@ public class AcademicsDisplayCommand extends AcademicsCommand {
         }
     }
 
+    /**
+     * Returns the type of display.
+     */
+    public String getType() {
+        return type;
+    }
+
     @Override
     public boolean equals(Object other) {
-        return true;
+        return other == this // short circuit if same object
+                || (other instanceof AcademicsDisplayCommand) // instanceof handles nulls
+                && ((AcademicsDisplayCommand) other).getType().equals(this.getType());
     }
 }
