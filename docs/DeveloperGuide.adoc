@@ -236,6 +236,8 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+//@@author TheElectricBlender
+//tag::particulars-feature[]
 === Student particulars feature
 The student particulars feature keeps track of essential student details.
 The feature comprises of commands namely,
@@ -390,14 +392,16 @@ the user expereince as the command will be too long to type.
 This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
 This feature utilises the `StudentCard#updateImage` method to update the images of students.
 
+
 The feature comprises of one command namely, `DefaultStudentDisplayCommand`
 
-* Refreshes the student list to show updated images of students and displays the student list.
+* Updates the student list to show updated images of students and displays the student list.
+
 
 This is further illustrated in the following sequence diagram below.
 
 
-.Sequence Diagram for StudentRefreshCommand
+.Sequence Diagram for `DefaultStudentDisplayCommand`
 image::ImportImage.v1.png[]
 
 ===== Implementation
@@ -417,6 +421,7 @@ will be called and the student list is now visible on the `MainWindow`.
 
 The following activity diagram summarizes what happens when a user executes the `student` command:
 
+
 .Activity Diagram Import Image Feature
 image::ImportImageSequenceDiagram.png[]
 
@@ -427,7 +432,7 @@ image::ImportImageSequenceDiagram.png[]
 * *Current Implementation:*
 
 ** Current implementation of the commands follows the command word syntax, followed by the arguments necessary for execution.
-For example, `student add/edit/delete/find/refresh`.
+For example, `student add/edit/delete/find`.
 
 * *Alternatives Considered:*
 ** We considered using a whole new command, `student refresh` to solely refresh and update images of the students. However, we realised
@@ -435,6 +440,8 @@ that it would be more convenient for the user if we just add this functionality 
 both update the images and display the student list concurrently.
 
 {nbsp} +
+
+//end::particulars-feature[]
 
 //@@author Yuanyu97
 //tag::admin[]
@@ -465,6 +472,7 @@ The following is a detailed explanation of the operations which `AdminDisplayCom
 
 *Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
 filtered student list to show all current students in the student list.
+
 
 [NOTE]
 If the class list is empty, a blank page will be shown.
@@ -921,7 +929,8 @@ the current directory.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
-
+//@@author TheElectricBlender
+//tag::schedule-featureA[]
 === Schedule feature
 
 ==== Overview
@@ -992,7 +1001,7 @@ very similar prefixes in our other features such as name/ and date/.
 ** By doing this, users may be confused as the Academics feature, Student feature and Notes feature require name as a prefix
 as well. Furthermore, the name required here is not the name of the student but the name of the event.
 
-
+//end::schedule-featureA[]
 
 === Logging
 This section describes how TeaPet record it's logs.
@@ -1104,6 +1113,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `TeaPet` and the *Actor* is the `Teacher`, unless specified otherwise)
 
 [discrete]
+//@@author TheElectricBlender
+//tag::uc-simon[]
 === Use case: UC01 - Add student
 
 *MSS*
@@ -1183,28 +1194,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC04 - Add event
-
-*MSS*
-
-1. User keys in an event.
-2. TeaPet adds the event to the schedule.
-3. TeaPet feedback the event has been added.
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. Event entered is invalid.
-+
-[none]
-** 1a1. TeaPet shows an error message.
-+
-Use case ends.
-
-[discrete]
-=== Use case: UC05 - Display Schedule
+=== Use case: UC04 - Display Schedule
 
 *MSS*
 
@@ -1224,11 +1214,11 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC06 - Display default class list.
+=== Use case: UC05 - Display student class list.
 
 *MSS*
 
-1. User enters the command to display the default version of the class list.
+1. User enters the command to display the class list.
 2. TeaPet displays the class list with the students' tags, mobile number, email, and notes.
 +
 Use case ends.
@@ -1244,9 +1234,12 @@ Use case ends.
 Use case ends.
 
 [discrete]
+//end::uc-simon[]
+
 //@@author Yuanyu97
 //tag::usecases[]
-=== Use case: UC07 - Display admin class list.
+=== Use case: UC06 - Display admin class list.
+
 
 *MSS*
 
@@ -1266,7 +1259,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC08 - Deleting a date from the list of dates.
+=== Use case: UC07 - Deleting a date from the list of dates.
 
 *MSS*
 
@@ -1312,7 +1305,7 @@ Use case ends.
 Use case ends.
 //end::usecases[]
 [discrete]
-=== Use case: UC09 - Display detailed class list.
+=== Use case: UC08 - Display detailed class list.
 
 *MSS*
 
@@ -1332,7 +1325,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC10 - Display students' academic progress
+=== Use case: UC09 - Display students' academic progress
 
 *MSS*
 
@@ -1352,7 +1345,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC11 - Add note for specific student
+=== Use case: UC10 - Add note for specific student
 
 *MSS*
 
@@ -1435,8 +1428,12 @@ Use case ends.
 +
 Use case ends.
 
+
+//@@author TheElectricBlender
+//tag::uc-simon2[]
 [discrete]
 === Use case: UC14 - Add event into schedule
+
 
 *MSS*
 
@@ -1456,6 +1453,7 @@ Use case resumes at step 2.
 
 +
 Use case ends.
+
 
 [discrete]
 === Use case: UC15 - Delete event from schedule
@@ -1479,6 +1477,7 @@ Use case ends.
 +
 Use case ends.
 
+
 [discrete]
 === Use case: UC16 - Update student profile picture
 
@@ -1495,6 +1494,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
+//end::uc-simon2[]
 
 [appendix]
 == Non Functional Requirements
@@ -1532,6 +1532,8 @@ A contact detail that is not meant to be shared with others
 [[schedule]] Schedule::
 TeaPet's schedule that stores all of the teacher's events
 [appendix]
+//@@author TheElectricBlender
+//tag::product-survey[]
 == Product Survey
 
 *TeacherKit*
@@ -1561,7 +1563,7 @@ Cons:
 Author: Simon Lam
 
 Product information can be found at <https://www.teacherkit.net/>
-
+//end::particulars-summary[]
 
 [appendix]
 == Instructions for Manual Testing
@@ -1584,25 +1586,25 @@ These instructions only provide a starting point for testers to work on; testers
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
-
+//@@author TheElectricBlender
+//tag::manual-test-particulars[]
 === Manual Test: Student particulars
 
 . Adding a student from class list with the specific name entered by user.
 
-.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-father-93259589` +
    Expected: Student John Tan Jun Wei has been added to the class list.
 
-.. Test case: `student add name/John Tan Jun Wei phone/83393129 e/john@gmail.com temp/3@.5 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/83393129 email/john@gmail.com temp/3@.5 adr/Punggol Street 22 nok/James-father-93259589` +
    Expected: No student is added. Error details shown in the status message. Status bar remains the same.
 
-.. Test case: `student add name/John Tan Jun Wei phone/839 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/839 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-father-93259589` +
    Expected: An error message is shown as the phone number of student is invalid.
 
-
-.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-dad-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-dad-93259589` +
 Expected: An error message is shown as the relationship of NOK is not recognised.
 
-.. Test case: `student add name/John333 phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John333 phone/83391329 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-father-93259589` +
 Expected: An error message is shown as the name of student cannot contain numbers.
 
 . Deleting a student from class list with the specific name entered by user.
@@ -1613,6 +1615,8 @@ Expected: An error message is shown as the name of student cannot contain number
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
+//end::manual-test-particulars[]
+
 
 //@@author Yuanyu97
 //tag::adminmanual[]
@@ -1640,6 +1644,8 @@ Expected: An error message is shown as the name of student cannot contain number
    Expected: Status bar displays invalid command and incorrect command format message.
 //end::adminmanual[]
 
+//@@author TheElectricBlender
+//tag::manual-test-scheduler[]
 === Manual Test: Scheduler
 
 . Adding an event to the scheduler
@@ -1669,6 +1675,7 @@ Expected: An error message is shown due to invalid recurrence type.
 .. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
 color/5`
 Expected: An error message is shown due to the invalid date time range.
+//end::manual-test-scheduler[]
 
 === Notes
 
