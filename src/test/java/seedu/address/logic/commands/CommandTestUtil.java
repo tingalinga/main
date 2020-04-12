@@ -20,14 +20,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.academics.AcademicsEditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.model.Model;
+import seedu.address.model.academics.Assessment;
+import seedu.address.model.academics.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.Date;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.TeaPet;
+import seedu.address.testutil.academics.EditAssessmentDescriptorBuilder;
 import seedu.address.testutil.student.EditStudentDescriptorBuilder;
 
 /**
@@ -84,6 +88,20 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final StudentEditCommand.EditStudentDescriptor DESC_AMY;
+    public static final StudentEditCommand.EditStudentDescriptor DESC_BOB;
+
+    static {
+        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTemperature(VALID_TEMPERATURE_AMY).withAttendance(VALID_ATTENDANCE_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTemperature(VALID_TEMPERATURE_BOB).withAttendance(VALID_ATTENDANCE_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
     // academics
     public static final String VALID_DESCRIPTION_MATH_ASSIGNMENT = "Math Assignment";
     public static final String VALID_DESCRIPTION_SCIENCE_EXAM = "Science Assignment";
@@ -113,18 +131,14 @@ public class CommandTestUtil {
     public static final String INVALID_TYPE_DESC = " " + PREFIX_ASSESSMENT_TYPE + "assignment"; // homework OR exam
     public static final String INVALID_DATE_DESC = " " + PREFIX_ASSESSMENT_DATE + "2020/03/04"; // homework OR exam
 
-    public static final StudentEditCommand.EditStudentDescriptor DESC_AMY;
-    public static final StudentEditCommand.EditStudentDescriptor DESC_BOB;
+    public static final AcademicsEditCommand.EditAssessmentDescriptor DESC_MATH_ASSIGNMENT;
+    public static final AcademicsEditCommand.EditAssessmentDescriptor DESC_SCIENCE_EXAM;
 
     static {
-        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTemperature(VALID_TEMPERATURE_AMY).withAttendance(VALID_ATTENDANCE_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTemperature(VALID_TEMPERATURE_BOB).withAttendance(VALID_ATTENDANCE_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_MATH_ASSIGNMENT = new EditAssessmentDescriptorBuilder().withDescription(VALID_DESCRIPTION_MATH_ASSIGNMENT)
+                .withType(VALID_TYPE_MATH_ASSIGNMENT).withDate(VALID_DATE_MATH_ASSIGNMENT).build();
+        DESC_SCIENCE_EXAM = new EditAssessmentDescriptorBuilder().withDescription(VALID_DESCRIPTION_SCIENCE_EXAM)
+                .withType(VALID_TYPE_SCIENCE_EXAM).withDate(VALID_DATE_SCIENCE_EXAM).build();
     }
 
     /**
@@ -198,5 +212,18 @@ public class CommandTestUtil {
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
+    }
+    /**
+     * Updates {@code model}'s filtered list to show only the assessment at the given {@code targetIndex} in the
+     * {@code model}'s academics.
+     */
+    public static void showAssessmentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredAcademicsList().size());
+
+        Assessment assessment = model.getFilteredAcademicsList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = assessment.getDescription().split("\\s+");
+        model.updateFilteredAcademicsList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredAcademicsList().size());
     }
 }
