@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.academics.TypicalAssessments.MATH_HOMEWORK;
 import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_EXAM;
-import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_HOMEWORK;
 import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 
 import java.io.IOException;
@@ -75,7 +74,6 @@ public class JsonAcademicsStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addAssessment(MATH_HOMEWORK);
-        original.removeAssessment(SCIENCE_HOMEWORK);
         jsonAcademicsStorage.saveAcademics(original, filePath);
         readBack = jsonAcademicsStorage.readAcademics(filePath).get();
         assertEquals(original, new Academics(readBack));
