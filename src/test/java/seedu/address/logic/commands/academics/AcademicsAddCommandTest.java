@@ -14,12 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.apache.commons.math3.util.Pair;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
-import jfxtras.icalendarfx.utilities.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -393,6 +393,11 @@ public class AcademicsAddCommandTest {
         }
 
         @Override
+        public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setEventHistory(ReadOnlyEvents events) {
             throw new AssertionError("This method should not be called.");
         }
@@ -436,6 +441,7 @@ public class AcademicsAddCommandTest {
         public void setEventScheduleView(EventScheduleView eventScheduleView) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public List<Pair<Index, VEvent>> searchVEvents(String eventName) {
             throw new AssertionError("This method should not be called.");
@@ -443,11 +449,6 @@ public class AcademicsAddCommandTest {
 
         @Override
         public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
             throw new AssertionError("This method should not be called.");
         }
     }
