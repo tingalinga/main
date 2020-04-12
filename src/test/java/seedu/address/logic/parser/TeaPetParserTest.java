@@ -20,7 +20,6 @@ import seedu.address.logic.commands.student.StudentClearCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentFindCommand;
-import seedu.address.logic.commands.student.StudentRefreshCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
@@ -81,12 +80,6 @@ public class TeaPetParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
-    }
-
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand("student refresh") instanceof StudentRefreshCommand);
-        assertTrue(parser.parseCommand("student refresh 3") instanceof StudentRefreshCommand);
     }
 
     @Test
