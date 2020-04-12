@@ -13,7 +13,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.notes.NotesAddCommand;
 import seedu.address.logic.commands.notes.NotesEditCommand;
 import seedu.address.logic.commands.notes.NotesEditCommand.EditNotesDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -45,8 +44,7 @@ public class NotesEditCommandParserTest {
         NotesEditCommandParser parser = new NotesEditCommandParser();
 
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                NotesEditCommand.MESSAGE_USAGE),
-                () -> parser.parse("..."));
+                NotesEditCommand.MESSAGE_USAGE), () -> parser.parse("..."));
     }
 
     @Test
@@ -62,35 +60,32 @@ public class NotesEditCommandParserTest {
     public void parse_contentEmpty_throwsParseException() {
         NotesEditCommandParser parser = new NotesEditCommandParser();
 
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Content field is empty."),
-                () -> parser.parse(" 1 name/Kelvin Klein cont/"
-                        + " pr/HIGH"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                "Content field is empty."), () -> parser.parse(" 1 name/Kelvin Klein cont/ pr/HIGH"));
     }
 
     @Test
     public void parse_priorityEmpty_throwsParseException() {
         NotesEditCommandParser parser = new NotesEditCommandParser();
 
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Priority field is empty."),
-                () -> parser.parse(" 1 name/Kelvin Klein cont/Temporary"
-                        + " pr/"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                "Priority field is empty."), () -> parser.parse(" 1 name/Kelvin Klein cont/Temporary pr/"));
     }
 
     @Test
     public void parse_invalidPriority_throwsParseException() {
         NotesEditCommandParser parser = new NotesEditCommandParser();
 
-        assertThrows(ParseException.class, MESSAGE_INVALID_PRIORITY,
-                () -> parser.parse(" 1 name/Kelvin Klein cont/Temporary"
-                        + " pr/Lowmedium"));
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_PRIORITY, () -> parser.parse(" 1 name/Kelvin Klein cont/Temporary pr/Lowmedium"));
     }
 
     @Test
     public void parse_noFieldsEdited_throwsParseException() {
         NotesEditCommandParser parser = new NotesEditCommandParser();
 
-        assertThrows(ParseException.class, NotesEditCommand.MESSAGE_NOT_EDITED,
-                () -> parser.parse(" 1 "));
+        assertThrows(ParseException.class,
+                NotesEditCommand.MESSAGE_NOT_EDITED, () -> parser.parse(" 1 "));
     }
 
     @Test

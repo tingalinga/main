@@ -600,7 +600,7 @@ The academics feature consists of four commands namely.
 * `AcademicsSubmitCommand` - Submits students' work to the specified assessment.
 * `AcademicsMarkCommand` - Marks students' work of the specified assessment.
 * `AcademicsDisplayCommand` - Displays either homework, exam, or the report of student academics.
-* `AcademicsExportCommand` - Exports the academics information into a csv file.
+* `AcademicsExportCommand` - Exports the academics information into a .csv file.
 
 All academics commands share similar paths of execution. The commands when executed, will interface with the methods
 exposed by the `Model` interface to perform the related operations (See <<Design-Logic,logic component>> for the general overview).
@@ -801,23 +801,22 @@ information of his/her students. Each note is tagged to a specific student and a
 
 The notes feature comprises of 6 main functionalities represented by 6 commands. They are namely: +
 
-* `NotesCommand`
-* `NotesAddCommand`
-* `NotesEditCommand`
-* `NotesDeleteCommand`
-* `NotesFilterCommand`
-* `NotesExportCommand`
+* `NotesCommand` - Displays all notes and help on the notes feature.
+* `NotesAddCommand` - Adds a new note into TeaPet.
+* `NotesEditCommand` - Edits the details of a note in TeaPet.
+* `NotesDeleteCommand` - Deletes a note in TeaPet.
+* `NotesFilterCommand` - Filters the list of notes in TeaPet based on user-input keywords.
+* `NotesExportCommand` - Exports all notes information into a .csv file
 
-.Class Diagram for NotesCommands.
+.Class Diagram for Notes Commands.
 image::developerguide/notes/NotesClassDiagram.png[]
 
 ==== Structure of Notes Class
-Notes object is made up of 4 fields. They are namely: +
+Notes object is made up of 4 fields. They are namely: Student Name, Content, Priority and DateTime. The class diagram below
+depicts the structure of the Notes Model Component.
 
-* `String student`
-* `String content`
-* `String priority`
-* `String dateTime`
+.Class Diagram for Notes Model Component.
+image::developerguide/notes/NotesModelClassDiagram.png[]
 
 ==== Add Note
 The following is a detailed elaboration how `NotesAddCommand` operates.
@@ -1369,11 +1368,67 @@ Use case ends.
 * 1b. Student is invalid.
 +
 [none]
-** 1a1. TeaPet shows an error message.
+** 1b1. TeaPet shows an error message.
 +
 Use case ends.
 
-=== Use case: UC12 - Add event into schedule
+=== Use case: UC12 - Edit note of specific student
+
+*MSS*
+
+1. User enters command, together with an index of the note to edit, and fields to update.
+2. TeaPet displays feedback that the specific note chosen has been edited.
+3. TeaPet's note panel will display the updated list of notes.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+* 1b. Student is invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+[none]
+* 1c. Index is invalid.
++
+[none]
+** 1c1. TeaPet shows an error message.
++
+Use case ends.
+
+=== Use case: UC13 - Delete note for specific student
+
+*MSS*
+
+1. User enters command, together with an index of the note to delete.
+2. TeaPet displays feedback that the specifed note is deleted.
+3. TeaPet's note panel will display the updated list of notes.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Command is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+* 1b. Index is invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+Use case ends.
+
+=== Use case: UC14 - Add event into schedule
 
 *MSS*
 
@@ -1394,7 +1449,7 @@ Use case resumes at step 2.
 +
 Use case ends.
 
-=== Use case: UC13 - Delete event from schedule
+=== Use case: UC15 - Delete event from schedule
 
 *Preconditions*
 1. Event exists in scheduler.
@@ -1415,7 +1470,7 @@ Use case ends.
 +
 Use case ends.
 
-=== Use case: UC14 - Update student profile picture
+=== Use case: UC16 - Update student profile picture
 
 *Preconditions*
 1. Png files in image folder is in correct format.
@@ -1611,27 +1666,27 @@ manual testing, please create the student first before creating a note which bel
 find out more on how to add a student to the class-list.
 
 [TIP]
-Delete all previous notes. Be sure to create two students named *Kelvin Klein* and *Jane Khoo* in the class-list. Conduct these tests sequentially
+Delete all previous notes. Be sure two students named *Freddy Zhang* and *Lee Hui Ting* are in the class-list. Conduct these tests sequentially
 from first to last, for the most effective testing experience.
 
 . Adding a note to the notes panel.
 
-.. Test case: `notes add name/Kelvin Klein cont/Reminder to print his testimonial pr/HIGH` +
-Expected: New note added to the notes panel. This note should be red (high priority) in colour, belonging to Kelvin Klein. The timestamp
+.. Test case: `notes add name/Freddy Zhang cont/Reminder to print his testimonial pr/HIGH` +
+Expected: New note added to the notes panel. This note should be red (high priority) in colour, belonging to Freddy Zhang. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Kelvin Klein cont/Kelvin was late for class for the second day in a row. pr/LOW` +
-Expected: New note added to the notes panel. This note should be yellow (low priority) in colour, belonging to Kelvin Klein. The timestamp
+.. Test case: `notes add name/Freddy Zhang cont/Freddy was late for class for the second day in a row. pr/LOW` +
+Expected: New note added to the notes panel. This note should be yellow (low priority) in colour, belonging to Freddy Zhang. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Jane Khoo cont/Jane left school for an interview. pr/MEDIUM` +
-Expected: New note added to the notes panel. This note should be orange (medium priority) in colour, belonging to Jane Khoo. The timestamp
+.. Test case: `notes add name/Lee Hui Ting cont/Hui Ting left school for an interview. pr/MEDIUM` +
+Expected: New note added to the notes panel. This note should be orange (medium priority) in colour, belonging to Lee Hui Ting. The timestamp
 in the note should be the current date and time.
 
-.. Test case: `notes add name/Kelvin_Klein_ cont/He exemplified an improvement in behaviour pr/LOW` +
+.. Test case: `notes add name/Freddy_Zhang_ cont/He exemplified an improvement in behaviour pr/LOW` +
    Expected: An error message is shown as the student name should be alpha-numeric.
 
-.. Test case: `notes add name/Kelvin Klein cont/He exemplified an improvement in behaviour pr/Not High` +
+.. Test case: `notes add name/Freddy Zhang cont/He exemplified an improvement in behaviour pr/Not High` +
    Expected: An error message is shown as priority indicated must be either *LOW*, *MEDIUM* or *HIGH*, case-insensitive.
 
 
@@ -1640,8 +1695,8 @@ in the note should be the current date and time.
 .. Test case: `notes edit 1 cont/Reminder to print his testimonial and gradebook` +
 Expected: First note in the panel is updated with new content. Only the content should be modified, and nothing else.
 
-.. Test case: `notes edit 1 name/Jane Khoo cont/Reminder to print her testimonial and gradebook` +
-Expected: First note in the panel is updated with new name and content. Note should reflect student Jane Khoo's name,
+.. Test case: `notes edit 1 name/Lee Hui Ting cont/Reminder to print her testimonial and gradebook` +
+Expected: First note in the panel is updated with new name and content. Note should reflect student Lee Hui Ting's name,
 with modfied content. Nothing else should be different.
 
 
@@ -1664,8 +1719,8 @@ Integer provided is out of range.
 
 . Filtering the list of notes to search for specific notes.
 
-.. Test case: `notes filter Jane` +
-Expected: Only notes containing the word Jane should be displayed in the notes panel.
+.. Test case: `notes filter Freddy` +
+Expected: Only notes containing the word Freddy should be displayed in the notes panel.
 
 .. Test case: `notes filter low` +
 Expected: Only notes containing the word low should be displayed in the notes panel.

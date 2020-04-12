@@ -35,8 +35,8 @@ public class NotesAddCommandParserTest {
     public void parse_invalidFormat_throwsParseException() {
         NotesAddCommandParser parser = new NotesAddCommandParser();
 
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesAddCommand.MESSAGE_USAGE),
-                () -> parser.parse("..."));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                NotesAddCommand.MESSAGE_USAGE), () -> parser.parse("..."));
     }
 
     @Test
@@ -52,27 +52,24 @@ public class NotesAddCommandParserTest {
     public void parse_contentEmpty_throwsParseException() {
         NotesAddCommandParser parser = new NotesAddCommandParser();
 
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Content field is empty."),
-                () -> parser.parse(" name/Kelvin Klein cont/"
-                + " pr/HIGH"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                "Content field is empty."), () -> parser.parse(" name/Kelvin Klein cont/ pr/HIGH"));
     }
 
     @Test
     public void parse_priorityEmpty_throwsParseException() {
         NotesAddCommandParser parser = new NotesAddCommandParser();
 
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Priority field is empty."),
-                () -> parser.parse(" name/Kelvin Klein cont/Temporary"
-                        + " pr/"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                "Priority field is empty."), () -> parser.parse(" name/Kelvin Klein cont/Temporary pr/"));
     }
 
     @Test
     public void parse_invalidPriority_throwsParseException() {
         NotesAddCommandParser parser = new NotesAddCommandParser();
 
-        assertThrows(ParseException.class, MESSAGE_INVALID_PRIORITY,
-                () -> parser.parse(" name/Kelvin Klein cont/Temporary"
-                + " pr/Lowmedium"));
+        assertThrows(ParseException.class, MESSAGE_INVALID_PRIORITY, () ->
+                parser.parse(" name/Kelvin Klein cont/Temporary pr/Lowmedium"));
     }
 
 

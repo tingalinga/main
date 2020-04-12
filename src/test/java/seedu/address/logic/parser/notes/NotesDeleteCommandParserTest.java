@@ -1,14 +1,16 @@
 package seedu.address.logic.parser.notes;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.notes.NotesDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class NotesDeleteCommandParserTest {
 
@@ -23,8 +25,8 @@ public class NotesDeleteCommandParserTest {
     public void parse_failure() throws ParseException {
         NotesDeleteCommandParser parser = new NotesDeleteCommandParser();
         assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Index provided must be greater than zero."),
-                () -> parser.parse(" -1"));
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "Index provided must be greater than zero."), () -> parser.parse(" -1"));
     }
 
 
