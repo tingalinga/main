@@ -413,15 +413,16 @@ Shows all assessments in the academics list and a guide for academic commands.
 
     The Academics tracks all your assessments and student submissions.
     [HELP ON ACADEMICS COMMANDS]
-    add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
-    edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
-    delete assessment: academics delete INDEX
-    submit assessment: academics submit INDEX [stu/STUDENT_NAME]...
-    mark assessment: academics mark INDEX> [stu/STUDENT_NAME-SCORE]...
-    filter assessment BY TYPE: academics ASSESSMENT_TYPE (only Homework or Exam)
-    view academics report: academics report
-    export academics report: academics export
+    1. Add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
+    2. Edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
+    3. Delete assessment: academics delete INDEX
+    4. Submit assessment: academics submit INDEX [stu/STUDENT_NAME]...
+    5. Mark assessment: academics mark INDEX [stu/STUDENT_NAME-SCORE]...
+    6. Filter assessment BY TYPE: academics ASSESSMENT_TYPE (only homework or exam)
+    7. View academics report: academics report
+    8. Export academics report: academics export
     Type the following commands for more info!
+
 
 .After using the `academics` command
 image::academics-view.png[width="790]

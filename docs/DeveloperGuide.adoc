@@ -1096,6 +1096,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
+//@@author tingalinga
 //end::userstories[]
 
 [appendix]
@@ -1244,6 +1245,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
+//@@author tingalinga
 //@@author Yuanyu97
 //tag::usecases[]
 === Use case: UC07 - Display admin class list.
@@ -1639,6 +1641,38 @@ Expected: An error message is shown as the name of student cannot contain number
    *YYYY-MM-DD* format and `DATE` is in the wrong `DATE` format. +
    Expected: Status bar displays invalid command and incorrect command format message.
 //end::adminmanual[]
+
+=== Manual Test: Class Academics
+
+. Adding an assessment to academics
+
+.. Prerequisites: The scheduler already contain an assessment with description "Math Differentiation Homework", type "homework", date "2020-03-23".
+
+.. Test case: `academics add desc/Math Integration Homework type/homework date/2020-03-23` +
+Expected: An assessment with the description Math Integration Homework is added to academics.
+
+.. Test case: `academics add desc/ ` +
+Expected: An error message is shown due to invalid command.
+
+.. Test case: `academics add desc/Math Integration Homework type/ date/2020-03-23` +
+Expected: An error message is shown due to invalid assessment type.
+
+.. Test case: `academics add desc/Math Integration Homework type/homework date/` +
+Expected: An error message is shown due to invalid date type.
+
+.. Test case: `academics add desc/Math Integration Homework type/homework date/2020/03/04` +
+Expected: An error message is shown due to invalid date type.
+
+. Deleting an assessment
+
+.. Test case: `academics delete INDEX` where INDEX is a valid index. +
+Expected: Assessment will be deleted if the given index is valid. The status message either displays that the
+specified assessment has been deleted or show that the index given is invalid.
+
+.. Other incorrect delete commands to try: `academics delete`
+Expected: Status bar displays invalid command and incorrect command format message.
+//@@author tingalinga
+//end::academicsmanual[]
 
 === Manual Test: Scheduler
 
