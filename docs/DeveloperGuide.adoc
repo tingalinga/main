@@ -400,12 +400,12 @@ This feature was included in TeaPet to help teachers easily identify the student
 This feature utilises the `StudentCard#updateImage` method to update the images of students.
 
 The feature comprises of one command namely,
-* `DefaultStudentDisplayCommand` - Refreshes the student list to show updated images of students and displays the student list.
+* `DefaultStudentDisplayCommand` - Updates the student list to show updated images of students and displays the student list.
 
 This is further illustrated in the following sequence diagram below.
 
 
-.Sequence Diagram for StudentRefreshCommand
+.Sequence Diagram for `DefaultStudentDisplayCommand`
 image::ImportImage.v1.png[]
 
 ===== Implementation
@@ -472,6 +472,7 @@ The following is a detailed explanation of the operations which `admin` performs
 
 *Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
 filtered student list to show all current students in the student list.
+
 
 [NOTE]
 If the class list is empty, a blank page will be shown.

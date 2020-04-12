@@ -854,8 +854,8 @@ Example:
 
 * *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-02T08:00
                          endDateTime/2020-04-07T10:00 recur/none color/21`
-Creates a schedule with the title '_Teachers Meeting_' from '_2nd Apr 2020, 0800_' to '_2th Apr 2020, 1000_' with no recurrence
-and a color group of '_21_'.
+Creates a schedule with the title 'Teachers Meeting' from '2nd Apr 2020, 0800' to '2th Apr 2020, 1000' with no recurrence
+and a color group of '21'.
 
 .Adding an event to the schedule
 image::schedule_add.png[width="790"]
