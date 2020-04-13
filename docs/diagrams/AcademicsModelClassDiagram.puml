@@ -29,7 +29,7 @@ Submission *--> SubmissionScore
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside --> "1"  Academics
+HiddenOutside o--> "1"  Academics
 
 Academics *--> "1" UniqueAssessmentList
 UniqueAssessmentList o--> "*" Assessment

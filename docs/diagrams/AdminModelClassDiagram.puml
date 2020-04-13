@@ -22,7 +22,7 @@ StudentList o--> "0..*" Student
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside --> "1"  Admin
+HiddenOutside o--> "1"  Admin
 
 Admin *--> "1" UniqueDateList
 UniqueDateList o--> "0..*" Date
