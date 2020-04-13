@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
 import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
@@ -16,8 +15,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.academics.Academics;
-import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Admin;
 import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventHistory;
@@ -87,8 +84,6 @@ public class StorageManagerTest {
     public void getTeaPetFilePath() {
         assertNotNull(storageManager.getTeaPetFilePath());
     }
-    
-
 
     @Test
     public void getAcademicsFilePath() {
