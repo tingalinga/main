@@ -590,6 +590,9 @@ Filters assessment list by either homework or exam.
 
     Academics now displays all EXAM assessments
 
+.After using the `academics exam` command
+image::academics-exam-view.png[width="790]
+
 
 ==== View Academics Report: `academics report`
 
@@ -602,6 +605,9 @@ Generates an academic report for each assessment.
 *Expected Outcome:*
 
     Academics now displays the report of each assessment.
+
+.After using the `academics report` command
+image::academics-report-view.png[width="790]
 
 ==== Export Academics Report: `academics export`
 
