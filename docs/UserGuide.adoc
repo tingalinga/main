@@ -1219,6 +1219,8 @@ Here are the commands to manage notes. They require the prefix `notes`.
 |===
 //end::NotesSummary[]
 
+//@@author TheElectricBlender
+//tag::ScheduleSummary[]
 === Personal Scheduler Commands
 Here are the commands to manage scheduler. They require the prefix `schedule`.
 
@@ -1226,9 +1228,15 @@ Here are the commands to manage scheduler. They require the prefix `schedule`.
 .Personal Scheduler commands of TeaPet
 |===
 |*Command*|*Format*|*Expected outcome*
-|`scheduele add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
-
+|`schedule edit`|`schedule edit 2 eventName/Teachers Meeting`|Edits an event in your personal scheduler.
+|`schedule add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
+|`schedule delete`|`schedule delete INDEX`|Deletes an event in your personal scheduler.
+|`schedule indexGet`|`schedule indexGet/EVENT_DESCRIPTION`|Get the index of an event in your personal scheduler.
+|`schedule indexAll`|`schedule indexAll`|Get all indexes of your events in your personal scheduler.
+|`schedule view`|`schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`|Change the view mode of your Personal Schedule as how you need it.
+|`schedule export`|`schedule export`|Exports all events currently in schedule into a ".ics" file. The .ics file type can easily be used with Google Calendar and other calendar applications.
 |===
+//end::ScheduleSummary[]
 
 //@@author Yuanyu97
 //tag::glossary[]

@@ -317,7 +317,7 @@ public class ParserUtil {
         } else if (viewMode.equalsIgnoreCase(EventScheduleView.DAILY.name())) {
             return EventScheduleView.DAILY;
         } else {
-            throw new ParseException(String.format("Input passed: " + viewMode + "\n", MESSAGE_INVALID_VIEW_MODE));
+            throw new ParseException(MESSAGE_INVALID_VIEW_MODE);
         }
     }
 
