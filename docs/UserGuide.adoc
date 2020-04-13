@@ -122,10 +122,9 @@ image::Ui.png[width="790"]
 For example,  typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`student add`**`name/Kelvin Klein`
-: adds a contact named Kelvin Klein to the class List
+* `student add name/Kelvin Klein` : adds a contact named Kelvin Klein to the class List
 * `student delete 3` : deletes the 3rd student shown in the current list of students
-* *`exit`* : exits the app
+* `exit` : exits the app
 
 .  Refer to <<Features>> for details of each command.
 
