@@ -114,7 +114,6 @@ include::../UserGuide.adoc[tag=additional-features]
 include::../UserGuide.adoc[tag=ScheduleSummary]
 
 
-
 == Contributions to the Developer Guide
 
 |===

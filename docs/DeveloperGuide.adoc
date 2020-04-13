@@ -261,7 +261,7 @@ The commands when executed, will interface with the methods exposed by the `Mode
 (See <<Design-Logic,logic component>> for the general overview).
 
 .Sequence Diagram for StudentAddCommand
-image::student_sequence_diagram_v1.png[]
+image::StudentAddSequence.png[]
 
 {nbsp} +
 
