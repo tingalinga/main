@@ -15,8 +15,22 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.academics.AcademicsCommand;
+import seedu.address.logic.commands.academics.AcademicsDeleteCommand;
+import seedu.address.logic.commands.academics.AcademicsDisplayCommand;
+import seedu.address.logic.commands.academics.AcademicsExportCommand;
+import seedu.address.logic.commands.admin.AdminCommand;
+import seedu.address.logic.commands.admin.AdminFetchCommand;
+import seedu.address.logic.commands.admin.AdminSaveCommand;
+import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.event.EventDeleteCommand;
+import seedu.address.logic.commands.event.EventExportCommand;
+import seedu.address.logic.commands.notes.NotesCommand;
+import seedu.address.logic.commands.notes.NotesDeleteCommand;
+import seedu.address.logic.commands.notes.NotesExportCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.logic.commands.student.StudentClearCommand;
+import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentFindCommand;
@@ -80,6 +94,59 @@ public class TeaPetParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_student() throws Exception {
+        assertTrue(parser.parseCommand(StudentCommand.COMMAND_WORD) instanceof StudentCommand);
+        assertTrue(parser.parseCommand(StudentCommand.COMMAND_WORD + " detailed") instanceof StudentCommand);
+        assertTrue(parser.parseCommand(StudentCommand.COMMAND_WORD + " find Freddy") instanceof StudentCommand);
+    }
+
+    @Test
+    public void parseCommand_academics() throws Exception {
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD) instanceof AcademicsCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " delete 1") instanceof AcademicsCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " exam") instanceof AcademicsCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " homework") instanceof AcademicsCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " report") instanceof AcademicsCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " export") instanceof AcademicsCommand);
+
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " delete 1") instanceof AcademicsDeleteCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " exam") instanceof AcademicsDisplayCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " homework") instanceof AcademicsDisplayCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " report") instanceof AcademicsDisplayCommand);
+        assertTrue(parser.parseCommand(AcademicsCommand.COMMAND_WORD + " export") instanceof AcademicsExportCommand);
+    }
+
+    @Test
+    public void parseCommand_admin() throws Exception {
+        assertTrue(parser.parseCommand(AdminCommand.COMMAND_WORD) instanceof AdminCommand);
+        assertTrue(parser.parseCommand(AdminCommand.COMMAND_WORD + " save") instanceof AdminCommand);
+        assertTrue(parser.parseCommand(AdminCommand.COMMAND_WORD + " fetch 2020-03-04") instanceof AdminCommand);
+
+        assertTrue(parser.parseCommand(AdminCommand.COMMAND_WORD + " save") instanceof AdminSaveCommand);
+        assertTrue(parser.parseCommand(AdminCommand.COMMAND_WORD + " fetch 2020-03-04") instanceof AdminFetchCommand);
+    }
+
+    @Test
+    public void parseCommand_notes() throws Exception {
+        assertTrue(parser.parseCommand(NotesCommand.COMMAND_WORD) instanceof NotesCommand);
+        assertTrue(parser.parseCommand(NotesCommand.COMMAND_WORD + " delete 1") instanceof NotesCommand);
+        assertTrue(parser.parseCommand(NotesCommand.COMMAND_WORD + " export") instanceof NotesCommand);
+
+        assertTrue(parser.parseCommand(NotesCommand.COMMAND_WORD + " delete 1") instanceof NotesDeleteCommand);
+        assertTrue(parser.parseCommand(NotesCommand.COMMAND_WORD + " export") instanceof NotesExportCommand);
+    }
+
+    @Test
+    public void parseCommand_events() throws Exception {
+        assertTrue(parser.parseCommand(EventCommand.COMMAND_WORD) instanceof EventCommand);
+        assertTrue(parser.parseCommand(EventCommand.COMMAND_WORD + " delete 1") instanceof EventCommand);
+        assertTrue(parser.parseCommand(EventCommand.COMMAND_WORD + " export") instanceof EventCommand);
+
+        assertTrue(parser.parseCommand(EventCommand.COMMAND_WORD + " delete 1") instanceof EventDeleteCommand);
+        assertTrue(parser.parseCommand(EventCommand.COMMAND_WORD + " export") instanceof EventExportCommand);
     }
 
     @Test
