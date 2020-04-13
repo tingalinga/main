@@ -39,10 +39,10 @@ public class Messages {
     public static final String MESSAGE_INVALID_DATE = "Invalid date input passed."
             + " The format should be YYYY-MM-DD and should be a valid date.";
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index provided."
-            + " Please use indexGet/<eventName> to obtain the right index";
+            + " Please use indexGet/EVENT_DESCRIPTION to obtain the right index";
     public static final String MESSAGE_INDEX_INVALID_EVENT_NAME = "Invalid event name entered."
             + " Please input a valid Event Name." + "\n"
-            + " schedule indexGet/<eventName>";
+            + " schedule indexGet/EVENT_DESCRIPTION";
     public static final String MESSAGE_SCHEDULE_HELP = "Schedule helps you to keep track of your events.\n"
             + "[HELP ON SCHEDULE COMMANDS]\n"
             + "add event: schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM"
