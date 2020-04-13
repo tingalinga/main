@@ -1,37 +1,34 @@
 {
-  "ignoreGlobList": ["**.adoc", "collate**"],
-  "formats": ["gradle", "jade", "java", "js", "md", "scss", "yml"],
-  "ignoreCommitList": ["7b96c563eb2d3612aa5275364333664a18f01491",
-    "90018e49f129ce7e0abdc8b18e91c9813588c601",
-    "b8dbc3cf3c7c334665a828cf4236dcb442228c94",
-    "832dd728bbfa203d92e4548325d64d5a151c013f",
-    "503c43ed1c90e8dcb46173c8f7c8e62f9286acbf",
-    "14faede3d27097a74063fd407b210f8a5f7e3de5"],
   "authors":
   [
     {
       "githubId": "garysyndromes",
-      "displayName": "Gary Lim",
+      "emails": ["garylimky@u.nus.edu"],
+      "displayName": "GAR. . . YI",
       "authorNames": ["garysyndromes"]
     },
     {
       "githubId": "tingalinga",
-      "displayName": "Lee Huiting",
-      "authorNames": ["tingalinga"]
+      "emails": ["huiting.lee@u.nus.edu"],
+      "displayName": "LEE. . .ING",
+      "authorNames": ["tingalinga", "Lee Hui Ting"]
     },
     {
       "githubId": "jerrenss",
-      "displayName": "Gerren Seow",
+      "emails": ["gerrenseow@u.nus.edu"],
+      "displayName": "SEO. . .REN",
       "authorNames": ["jerrenss"]
     },
     {
       "githubId": "TheElectricBlender",
-      "displayName": "Simon Lam",
+      "emails": ["simon_lam@u.nus.edu"],
+      "displayName": "SIM. . .JUN",
       "authorNames": ["TheElectricBlender"]
     },
     {
       "githubId": "Yuanyu97",
-      "displayName": "Zhang Yuanyu",
+      "emails": ["yuanyu.zhang@u.nus.edu"],
+      "displayName": "ZHA. . .NYU",
       "authorNames": ["Zhang Yuanyu", "Yuanyu97"]
     }
   ]

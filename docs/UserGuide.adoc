@@ -341,7 +341,7 @@ Shows the last updated administrative information in the student list.
     4. Fetch date: admin fetch YYYY-MM-DD
 
 .After using `admin` command
-image::adminDisplay.png[width="790]
+image::admin/adminDisplay.png[width="790]
 
 ==== Displaying of the dates with administrative information of the class: `admin dates`
 Shows a list of dates that contains administrative information of the class.
@@ -355,7 +355,7 @@ Shows a list of dates that contains administrative information of the class.
     List of dates with admin details of the class displayed!
 
 .After using `admin dates` command
-image::adminDates.png[width=790]
+image::admin/adminDates.png[width=790]
 
 ==== Fetching of administrative information of the class at the specified date: `admin fetch`
 Retrieves the administrative information of the class at the date provided.
