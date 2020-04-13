@@ -17,6 +17,9 @@ endif::[]
 
 By: `CS2103T-W12-02`      Since: `Jan 2020`      Licence: `MIT`
 
+//@@author garysyndromes
+//tag::introduction[]
+
 == Introduction
 
 Welcome to TeaPet!
@@ -51,9 +54,9 @@ If you are only interested in how we develop one feature, you may read the high-
 
 Take note of the following symbols and formatting used in this document:
 
-WARNING: Use this for warnings
+WARNING: This is used to show warnings
 
-NOTE: Use this for note
+NOTE: This is used to show descriptions that the user should take note of.
 
 TIP: This symbol indicates tips.
 
@@ -67,6 +70,10 @@ TIP: This symbol indicates tips.
 |A grey highlight indicates that this is a command that can be typed into the command line and executed by the program.
 |===
 
+//end::introduction[]
+
+//@@author garysyndromes
+//tag::overview[]
 == Overview of Features
 This section will provide you a brief overview of TeaPet's cool features and functionalities.
 
@@ -90,6 +97,7 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 . Data is saved onto your hard disk automatically
 .. Any changes made will be saved onto your computer so you dont have to worry about data being lost.
 
+//end::overview[]
 
 == Setting up
 This section provides you with the tools needed for you to set up TeaPet.
@@ -443,6 +451,8 @@ both update the images and display the student list concurrently.
 
 //end::particulars-feature[]
 
+'''
+
 //@@author Yuanyu97
 //tag::admin[]
 === Class administration feature
@@ -593,6 +603,8 @@ searching through the `UniqueDateList#dates`, a DateNotFoundException will be th
 [NOTE]
 The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
 //end::admin[]
+
+'''
 
 === Student Academics feature
 This student academics feature stores and tracks the class' academics progress.
@@ -798,7 +810,9 @@ Format of the command is: `academics export`.
 `CommandResult` will be returned with the message.
 
 *Step 3.* Subsequently, the `CommandResult` will be processed by the `MainWindow` in the UI component and generate a
-studentAcademics.csv in the data folder of the current directory.
+studentAcademics.csv in the data folder of the current directory
+
+'''
 
 === Notes feature
 TeaPet application comes with an in-built notes feature, which serves to allow Teachers to record administrative or behavioural
@@ -929,12 +943,13 @@ the current directory.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
+'''
 
 === Personal Schedule feature
 
-//@@author TheElectricBlender
 //@@author garysyndromes
-//tag::schedule-featureA[]
+//tag::personal-schedule-features[]
+
 
 The Personal Schedule feature enables teachers to record down their events in their personal scheduler, which
 will be sorted accordingly to date and time. Different view modes are available to enable the teachers to easily view their schedule.
@@ -1000,6 +1015,10 @@ so that our features look like one integrated product and not an application wit
 ** If this was the implementation that we used, it can get quite confusing to other users as to why the `academics`
 command works to change the scene to display the academics whilst to look at the schedule, one must enter in `schedule view`.
 
+//@@author TheElectricBlender
+//@@author garysyndromes
+//tag::schedule-featureA[]
+
 ==== Schedule Add Command
 
 
@@ -1047,6 +1066,7 @@ very similar prefixes in our other features such as name/ and date/.
 as well. Furthermore, the name required here is not the name of the student but the name of the event.
 
 //end::schedule-featureA[]
+
 
 
 ==== Schedule Edit Command
@@ -1206,12 +1226,10 @@ EventExportCommand#MESSAGE_SUCCESS constant and a new CommandResult will be retu
 generate a mySchedule.ics file in the data folder of the current directory.
 
 
+//end::personal-schedule-features[]
 
 
-
-
-
-
+'''
 
 
 === Logging
@@ -2097,10 +2115,17 @@ Expected: A file named studentAcademics.csv should be created in the data folder
 
 //end::academics-manual[]
 
-//@@author TheElectricBlender
-//tag::manual-test-scheduler[]
-=== Manual Test: Scheduler
+//@@author garysyndromes
+//tag::manual-test-personal-schedule[]
+=== Manual Test: Personal Schedule
 
+. Displaying the personal schedule
+
+.. Test case: `schedule` +
+Expected: User should now be able to view the schedule at the current date. A help message should also be shown in the command box.
+
+//@@author TheElectricBlender
+//tag::manual-test-schedulerA[]
 . Adding an event to the scheduler
 
 .. Prerequisites: The scheduler already contain an event with name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00".
@@ -2128,7 +2153,93 @@ Expected: An error message is shown due to invalid recurrence type.
 .. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
 color/5`
 Expected: An error message is shown due to the invalid date time range.
-//end::manual-test-scheduler[]
+//end::manual-test-schedulerA[]
+
+. Editing an event in the schedule
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00" .
+No other events exists.
+
+.. Test case: `schedule edit 1 eventName/Meeting at Town` +
+Expected: The event name is changed to "Meeting at Town". The rest of the fields remains the same as before the edit command was called.
+
+.. Test case: `schedule edit 1 endDateTime/2020-04-04T14:00` +
+Expected: The event end date time is extended to 1400 hrs. The rest of the fields remains the same as before the edit command was called.
+
+.. Test case: `schedule edit 2 eventName/Meeting now` +
+Expected: An error message due to invalid index provided.
+
+.. Test case: `schedule edit 2 eventName/` +
+Expected: An error message due to invalid event name entered.
+
+.. Test case: `schedule edit 1` +
+Expected: An error message due to no fields provided to edit.
+
+. Deleting an event in the schedule
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00" .
+No other events exists.
+
+.. Test case: `schedule delete 1` +
+Expected: The event with name "Coffee Break" is removed from the schedule.
+
+.. Test case: `schedule delete 2` +
+Expected: An error message due to invalid index provided.
+
+.. Test case: `schedule delete a` +
+Expected: An error message due to wrong command format provided.
+
+.. Test case: `schedule delete` +
+Expected: An error message due to wrong command format provided.
+
+. Getting the index of an event in the schedule
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00" .
+No other events exists.
+
+.. Test case: `schedule indexGet/Coffee Break` +
+Expected: The event description along with its index is shown in the command box.
+
+.. Test case: `schedule indexGet/coffee` +
+Expected: The event description with the closest name to the search term "coffee" is displayed along with its index in the command box.
+
+.. Test case: `schedule indexGet/i am not trying to find` +
+Expected: By default, the event with index 1 is displayed. Since no events match the search term.
+
+.. Test case: `schedule indexGet/` +
+Expected: An error message due to invalid event name provided.
+
+. Getting the indexes of all events
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00"
+and another event with index 2, name "Dinner", startDateTime "2020-04-04T17:00", endDateTime "2020-04-04T18:00"
+
+.. Test case: `schedule indexAll` +
+Expected: Both event's details along with their indexes will be shown in the command box.
+
+. Changing the view mode of the schedule
+
+.. Test case: `schedule view mode/weekly date/2020-04-20` +
+Expected: The schedule will show the week of Monday to Sunday that reference date "2020-04-20" lies on.
+
+.. Test case: `schedule view mode/daily date/2020-04-21` +
+Expected: The schedule will show all the events on the reference date "2002-04-21".
+
+.. Test case: `schedule view mode/daily` +
+Expected: An error message due to wrong command format provided.
+
+.. Test case: `schedule view date/2020-04-21` +
+Expected: An error message due to wrong command format provided.
+
+.. Test case: `schedule view` +
+Expected: An error message due to wrong command format provided.
+
+. Exporting the schedule into an .ics file
+
+.. Test case `schedule export` +
+Expected: An .ics file with name "mySchedule.ics" will be created in the data folder in the current directory of TeaPet.
+
+//end::manual-test-personal-schedule[]
 
 === Notes
 

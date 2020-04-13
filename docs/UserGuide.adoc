@@ -931,7 +931,10 @@ Get the index of an event in your personal scheduler.
 
 NOTE: EVENT_DESCRIPTION is the name of the event. +
  In the unlikely event that you mistype the EVENT_DESCRIPTION, our smart application will
-help you find the closest matching event to the EVENT_DESCRIPTION that you entered.
+help you find the closest matching event to the EVENT_DESCRIPTION that you entered
+
+NOTE: In the even more unlikely event that you type an EVENT_DESCRIPTION that does not match ANY of the events in the
+schedule, the event with index 1 will be shown.
 
 NOTE: Index is used to identify events and help you edit and delete events.
 
