@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.EventUtil.eventToVEventMapper;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSESSMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,19 +18,31 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import jfxtras.icalendarfx.components.VEvent;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Academics;
+import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.Date;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.EventHistory;
+import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.TeaPet;
+import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.testutil.academics.AcademicsBuilder;
 import seedu.address.testutil.admin.AdminBuilder;
+import seedu.address.testutil.event.EventBuilder;
+import seedu.address.testutil.notes.NotesBuilder;
+import seedu.address.testutil.student.StudentBuilder;
 import seedu.address.testutil.student.TeaPetBuilder;
+import seedu.address.testutil.student.TypicalStudents;
 
 public class ModelManagerTest {
 
@@ -114,8 +127,103 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getStudent_emptyStudentList_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> modelManager.getTeaPet().getStudentList().get(1));
+    }
+
+    @Test
+    public void setStudent_emptyStudentList_throwsStudentNotFoundException() {
+        Student oldStudent = ALICE;
+        Student newStudent = BENSON;
+        assertThrows(StudentNotFoundException.class, () -> modelManager.setStudent(oldStudent, newStudent));
+    }
+
+    @Test
+    public void hasStudent_studentInStudentList_returnsTrue() {
+        Student student = new StudentBuilder().build();
+        modelManager.addStudent(student);
+        assertTrue(modelManager.hasStudent(student));
+    }
+
+    @Test
+    public void sameStudentList_equals() {
+        TeaPet studentRecord = new TeaPet();
+        modelManager.setTeaPet(studentRecord);
+        assertEquals(studentRecord, modelManager.getTeaPet());
+    }
+
+    @Test
+    public void deleteStudent_decreasesStudentListSize_returnsTrue() {
+        Student student = new StudentBuilder().build();
+        modelManager.addStudent(student);
+        int initialSize = modelManager.getTeaPet().getStudentList().size();
+        modelManager.deleteStudent(student);
+        assertEquals(initialSize - 1, modelManager.getTeaPet().getStudentList().size());
+    }
+
+    @Test
+    public void addStudent_increasesStudentListSize_returnsTrue() {
+        Student student = new StudentBuilder().build();
+        int initialSize = modelManager.getTeaPet().getStudentList().size();
+        modelManager.addStudent(student);
+        assertEquals(initialSize + 1, modelManager.getTeaPet().getStudentList().size());
+    }
+
+    @Test
+    public void hasNote_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasNote(null));
+    }
+
+    @Test
+    public void hasDate_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasDate(null));
+    }
+
+    @Test
+    public void hasVEvent_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasVEvent(null));
+    }
+
+    @Test
+    public void hasAssessment_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasAssessment(null));
+    }
+
+    @Test
+    public void hasStudentName_nullInput_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasStudentName(null));
+    }
+
+
+
+    @Test
+    public void hasEvent_eventInEventStorage_returnsTrue() {
+        VEvent event = eventToVEventMapper(new EventBuilder().build());
+        modelManager.addVEvent(event);
+        assertTrue(modelManager.hasVEvent(event));
+    }
+
+
+    @Test
     public void setAcademicsFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setAcademicsFilePath(null));
+    }
+
+    @Test
+    public void deleteEvent_decreasesEventStorageSize_returnsTrue() {
+        VEvent event = eventToVEventMapper(new EventBuilder().build());
+        modelManager.addVEvent(event);
+        int initialSize = modelManager.getEventHistory().getEvents().size();
+        modelManager.delete(Index.fromOneBased(1));
+        assertEquals(initialSize - 1, modelManager.getEventHistory().getEvents().size());
+    }
+
+    @Test
+    public void addEvent_increasesEventStorageSize_returnsTrue() {
+        VEvent event = eventToVEventMapper(new EventBuilder().build());
+        int initialSize = modelManager.getEventHistory().getEvents().size();
+        modelManager.addVEvent(event);
+        assertEquals(initialSize + 1, modelManager.getEventHistory().getEvents().size());
     }
 
     @Test
@@ -146,6 +254,71 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> modelManager.getFilteredAcademicsList().remove(0));
     }
+
+    @Test
+    public void sameNotesManager_equals() {
+        NotesManager notesManager = new NotesManager();
+        modelManager.setNotesManager(notesManager);
+        assertEquals(notesManager, modelManager.getNotesManager());
+    }
+
+    @Test
+    public void sameEventHistory_equals() {
+        EventHistory eventHistory = new EventHistory();
+        modelManager.setEventHistory(eventHistory);
+        assertEquals(eventHistory, modelManager.getEventHistory());
+    }
+
+    @Test
+    public void sameAssessment_equals() {
+        Academics academics = new Academics();
+        modelManager.setAcademics(academics);
+        assertEquals(academics, modelManager.getAcademics());
+    }
+
+    @Test
+    public void sameAdmin_equals() {
+        Admin admin = new Admin();
+        modelManager.setAdmin(admin);
+        assertEquals(admin, modelManager.getAdmin());
+    }
+    
+
+    @Test
+    public void hasNotes_notInNotesManager_returnsFalse() {
+        Notes notes = new NotesBuilder().build();
+        assertFalse(modelManager.hasNote(notes));
+    }
+
+    @Test
+    public void hasNotes_inNotesManager_returnsTrue() {
+        Notes notes = new NotesBuilder().build();
+        modelManager.addNote(notes);
+        assertTrue(modelManager.hasNote(notes));
+    }
+
+    @Test
+    public void addNote_increasesNotesManagerSize_returnsTrue() {
+        Notes note = new NotesBuilder().build();
+        int initialSize = modelManager.getNotesManager().getNotesList().size();
+        modelManager.addNote(note);
+        assertEquals(initialSize + 1, modelManager.getNotesManager().getNotesList().size());
+    }
+
+    @Test
+    public void deleteNotes_decreasesNotesManagerSize_returnsTrue() {
+        Notes note = new NotesBuilder().build();
+        modelManager.addNote(note);
+        int initialSize = modelManager.getNotesManager().getNotesList().size();
+        modelManager.deleteNote(note);
+        assertEquals(initialSize - 1, modelManager.getNotesManager().getNotesList().size());
+    }
+
+
+
+
+
+
 
     @Test
     public void equals() {

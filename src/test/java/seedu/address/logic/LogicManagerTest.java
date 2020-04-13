@@ -79,6 +79,32 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getFilteredStudentList_modify_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredAcademicsList_modify_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredAcademicsList().remove(0));
+    }
+
+    @Test
+    public void getVEventList_modify_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getVEvents().remove(0));
+    }
+
+    @Test
+    public void getFilteredNotesList_modify_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredNotesList().remove(0));
+    }
+
+    @Test
+    public void getFilteredDateList_modify_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredDateList().remove(0));
+    }
+
+
+    @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTeaPetIoExceptionThrowingStub and JsonAcademicsIoExceptionThrowingStub
         JsonTeaPetStorage teaPetStorage =
