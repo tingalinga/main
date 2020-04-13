@@ -15,8 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.academics.AcademicsCommand;
+import seedu.address.logic.commands.admin.AdminCommand;
+import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.notes.NotesCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.logic.commands.student.StudentClearCommand;
+import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentFindCommand;
@@ -30,6 +35,7 @@ import seedu.address.testutil.student.StudentUtil;
 public class TeaPetParserTest {
 
     private final TeaPetParser parser = new TeaPetParser();
+    private final String invalidCommand = "Invalid Command";
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -92,4 +98,50 @@ public class TeaPetParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_invalidEvent_throwsException() {
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(EventCommand.COMMAND_WORD + invalidCommand));
+    }
+
+    @Test
+    public void parseCommand_invalidAdmin_throwsException() {
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(AdminCommand.COMMAND_WORD + invalidCommand));
+    }
+
+    @Test
+    public void parseCommand_admin_success() throws Exception {
+        assertTrue(parser.parseCommand("admin")
+                instanceof AdminCommand);
+    }
+
+    @Test
+    public void parseCommand_notes_success() throws Exception {
+        assertTrue(parser.parseCommand("notes")
+                instanceof NotesCommand);
+    }
+
+    @Test
+    public void parseCommand_schedule_success() throws Exception {
+        assertTrue(parser.parseCommand("schedule")
+                instanceof EventCommand);
+    }
+
+    @Test
+    public void parseCommand_academics_success() throws Exception {
+        assertTrue(parser.parseCommand("academics")
+                instanceof AcademicsCommand);
+    }
+
+    @Test
+    public void parseCommand_student_success() throws Exception {
+        assertTrue(parser.parseCommand("student")
+                instanceof StudentCommand);
+    }
+
+
+
+
 }

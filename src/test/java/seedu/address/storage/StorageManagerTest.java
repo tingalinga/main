@@ -2,7 +2,10 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.academics.TypicalAssessments.getTypicalAcademics;
+import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 
 import java.nio.file.Path;
@@ -13,8 +16,14 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.academics.Academics;
+import seedu.address.model.academics.ReadOnlyAcademics;
+import seedu.address.model.admin.Admin;
+import seedu.address.model.admin.ReadOnlyAdmin;
 import seedu.address.model.event.EventHistory;
 import seedu.address.model.event.ReadOnlyEvents;
+import seedu.address.model.notes.NotesManager;
+import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.TeaPet;
 import seedu.address.storage.academics.JsonAcademicsStorage;
@@ -79,7 +88,7 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getTeaPetFilePath());
     }
 
-    /*
+
     @Test
     public void academicsReadSave() throws Exception {
 
@@ -88,7 +97,7 @@ public class StorageManagerTest {
         ReadOnlyAcademics retrieved = storageManager.readAcademics().get();
         assertEquals(original, new Academics(retrieved));
     }
-    */
+
 
     @Test
     public void getAcademicsFilePath() {
@@ -111,7 +120,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void eventRecordReadSave() throws Exception {
+    public void eventHistoryReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonEventStorage} class.
@@ -120,6 +129,30 @@ public class StorageManagerTest {
         storageManager.saveEvents(original);
         ReadOnlyEvents retrieved = storageManager.readEvents().get();
         assertEquals(original, new EventHistory(retrieved));
+    }
+
+    @Test
+    public void adminReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonEventStorage} class.
+         */
+        Admin original = getTypicalAdmin();
+        storageManager.saveAdmin(original);
+        ReadOnlyAdmin retrieved = storageManager.readAdmin().get();
+        assertEquals(original, new Admin(retrieved));
+    }
+
+    @Test
+    public void notesReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonEventStorage} class.
+         */
+        NotesManager original = getTypicalNotesManager();
+        storageManager.saveNotesManager(original);
+        ReadOnlyNotes retrieved = storageManager.readNotesManager().get();
+        assertEquals(original, new NotesManager(retrieved));
     }
 
 

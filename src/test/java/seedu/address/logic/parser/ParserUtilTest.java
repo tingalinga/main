@@ -2,6 +2,13 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COLOR_STRING;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECURRENCE_TYPE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VIEW_MODE;
+import static seedu.address.commons.util.EventUtil.BAD_DATE_FORMAT;
+import static seedu.address.commons.util.EventUtil.INVALID_RECUR_TYPE;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -183,4 +190,82 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseColorCode_invalidColorMaxBound_throwsParseException() {
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_COLOR_STRING, () -> ParserUtil.parseColorCode("24"));
+    }
+
+    @Test
+    public void parseColorCode_invalidColorMinBound_throwsParseException() {
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_COLOR_STRING, () -> ParserUtil.parseColorCode("-1"));
+    }
+
+    @Test
+    public void parseEventDateTime_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class,
+                BAD_DATE_FORMAT, () -> ParserUtil.parseLocalDateTime(MESSAGE_INVALID_DATE_FORMAT));
+    }
+
+    @Test
+    public void parseEventDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDateTime(null));
+    }
+
+    @Test
+    public void parseEventRecurrenceRule_invalidRule_throwsParseException() {
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_RECURRENCE_TYPE, () -> ParserUtil.parseRecurrenceType(INVALID_RECUR_TYPE));
+    }
+
+    @Test
+    public void parseEventRecurrenceRule_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRecurrenceType(null));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseLocalDate(null));
+    }
+
+    @Test
+    public void parseDate_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_DATE, () -> ParserUtil.parseLocalDate(MESSAGE_INVALID_DATE));
+    }
+
+    @Test
+    public void parseTemperature_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTemperature(null));
+    }
+
+    @Test
+    public void parseNok_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNok(null));
+    }
+
+    @Test
+    public void parseAttendance_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendance(null));
+    }
+
+    @Test
+    public void parseEventName_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventName(null));
+    }
+
+    @Test
+    public void parseEventScheduleView_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEventScheduleView(null));
+    }
+
+    @Test
+    public void parseEventScheduleView_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, (MESSAGE_INVALID_VIEW_MODE), () -> ParserUtil
+                .parseEventScheduleView(MESSAGE_INVALID_VIEW_MODE));
+    }
+
+
 }
