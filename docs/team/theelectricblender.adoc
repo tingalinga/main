@@ -11,7 +11,6 @@ TeaPet is a personal manager application for primary school form teachers. The u
 a Command Line Interface (CLI) along with a Graphical User Interface (GUI) created with JavaFX. The application is
 written in Java.
 
-
 == Summary of contributions
 
 This section entails a summary of my specific enhancements, code contributions and other helpful increments towards the TeaPet
@@ -112,7 +111,6 @@ include::../UserGuide.adoc[tag=particulars]
 include::../UserGuide.adoc[tag=scheduler-A]
 include::../UserGuide.adoc[tag=additional-features]
 include::../UserGuide.adoc[tag=ScheduleSummary]
-
 
 
 == Contributions to the Developer Guide

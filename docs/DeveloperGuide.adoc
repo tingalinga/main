@@ -17,6 +17,9 @@ endif::[]
 
 By: `CS2103T-W12-02`      Since: `Jan 2020`      Licence: `MIT`
 
+//@@author garysyndromes
+//tag::introduction[]
+
 == Introduction
 
 Welcome to TeaPet!
@@ -51,9 +54,9 @@ If you are only interested in how we develop one feature, you may read the high-
 
 Take note of the following symbols and formatting used in this document:
 
-WARNING: Use this for warnings
+WARNING: This is used to show warnings
 
-NOTE: Use this for note
+NOTE: This is used to show descriptions that the user should take note of.
 
 TIP: This symbol indicates tips.
 
@@ -67,6 +70,10 @@ TIP: This symbol indicates tips.
 |A grey highlight indicates that this is a command that can be typed into the command line and executed by the program.
 |===
 
+//end::introduction[]
+
+//@@author garysyndromes
+//tag::overview[]
 == Overview of Features
 This section will provide you a brief overview of TeaPet's cool features and functionalities.
 
@@ -90,6 +97,7 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 . Data is saved onto your hard disk automatically
 .. Any changes made will be saved onto your computer so you dont have to worry about data being lost.
 
+//end::overview[]
 
 == Setting up
 This section provides you with the tools needed for you to set up TeaPet.
@@ -261,7 +269,7 @@ The commands when executed, will interface with the methods exposed by the `Mode
 (See <<Design-Logic,logic component>> for the general overview).
 
 .Sequence Diagram for StudentAddCommand
-image::student_sequence_diagram_v1.png[]
+image::StudentAddSequence.png[]
 
 {nbsp} +
 
@@ -448,6 +456,8 @@ both update the images and display the student list concurrently.
 
 //end::particulars-feature[]
 
+'''
+
 //@@author Yuanyu97
 //tag::admin[]
 === Class administration feature
@@ -605,11 +615,14 @@ searching through the `UniqueDateList#dates`, a DateNotFoundException will be th
 The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
 //end::admin[]
 
+'''
 //@@author tingalinga
 //tag::academics[]
 
+
 === Student Academics feature
 This student academics feature stores and tracks the class' academics progress.
+
 The academics feature consists of the following commands namely,
 
 * `AcademicsCommand` - Displays the most updated student academics details.
@@ -812,7 +825,9 @@ Format of the command is: `academics export`.
 `CommandResult` will be returned with the message.
 
 *Step 3.* Subsequently, the `CommandResult` will be processed by the `MainWindow` in the UI component and generate a
-studentAcademics.csv in the data folder of the current directory.
+studentAcademics.csv in the data folder of the current directory
+
+'''
 
 //end::academics[]
 
@@ -961,45 +976,100 @@ the current directory.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
+<<<<<<< HEAD
+'''
 //end::notes[]
 
 
-//@@author TheElectricBlender
-//tag::schedule-featureA[]
-=== Schedule feature
+//@@author garysyndromes
+//tag::personal-schedule-features[]
 
-==== Overview
+=== Personal Schedule feature
 
-The schedule feature enables teachers to add, delete, edit and view events in their personal scheduler. This feature is built
-based on the Jfxtras iCalendarAgenda library. The iCalendarAgenda object is used on the UI side to render VEvents. The VEvent
+
+The Personal Schedule feature enables teachers to record down their events in their personal scheduler, which
+will be sorted accordingly to date and time. Different view modes are available to enable the teachers to easily view their schedule.
+
+This feature is built based on the Jfxtras iCalendarAgenda library. The iCalendarAgenda object is used on the UI side to render VEvents. The VEvent
 object takes in data such as event name, start date time, end date time, recurrence of events, etc.
 
-[NOTE]
-VEvent object is used primarily throughout the application as it is the required object type for the iCalendarAgenda library.
+NOTE: VEvent object is used primarily throughout the feature as it is the required object type for the iCalendarAgenda library.
 Hence, at the storage level, the Event objects are mapped to VEvents for reading purposes and vice versa for saving purposes.
 
-The feature comprises of the the following commands:
 
-* `EventAddCommand` - Creates a new event.
+The Personal Schedule feature allows the user to track and manage their events. The schedule feature consists of eight commands namely:
 
-To add:
+* `EventDisplayCommand` - Displays all events in the current week.
+* `EventAddCommand` - Creates a new event in the scheduler.
+* `EventEditCommand` - Edits the details of an event in the scheduler.
+* `EventDeleteCommand` - Deletes the specified event from the scheduler.
+* `EventIndexCommand` - Obtain the index of the specified event.
+* `EventIndexAllCommand` - Obtain all the indexes of all the events in the scheduler.
+* `EventViewCommand` - Changes the view mode of the scheduler.
+* `EventExportCommand` - Exports the event details into an .ics file.
+
 
 ==== Class Overview
-
-The class diagram below shows the interactions between events classes in the `Model`. Notice how the `EventHistory` class depends
+//@@author TheElectricBlender
+//tag::class-overview-scheduler[]
+The class diagram below shows the structure of Event classes in the `Model`. Notice how the `EventHistory` class depends
 on the `Event` class in its constructor but only has a `VEvent` attribute. This is because an `Event` object will always be
 mapped to a `VEvent` within the `EventHistory` class. Some methods of `EventHistory` has been omitted for brevity as they are
 mostly `VEvent` based, which then again highlights that the interactions with the `Logic` and `UI` components are mostly done
 using the `VEvent` type class. Only the `Storage` component works with `Event` type class.
 
 .Class Diagram for Schedule
-image::schedule_class_diagram.png[]
-
-==== Schedule Add Command
+image::event/schedule_class_diagram.png[]
+//end::class-overview-scheduler[]
+==== Schedule Display Command
 
 ===== Implementation
 
-The following is a detailed explanation which `EventAddCommand` performs.
+The following is a detailed explanation of the operations which `EventDisplayCommand` performs.
+
+NOTE: Format for displaying the schedule is `schedule`.
+
+*Step 1:* The `EventDisplayCommand#execute(Model model)` method is executed and it updates the current model using the method
+`Model#setEventScheduleLocalDateTime(LocalDateTime localDateTime)`. `LocalDateTime#now()` is used to obtain the current `LocalDateTime`
+and used as the parameter in `Model#setEventScheduleLocalDateTime(LocalDateTime localDateTime)`.
+
+*Step 2:* The `EventSchedulePrefs#localDateTime` is then updated with the current `LocalDateTime`.
+
+*Step 3:*  The CommandBox will be reflected with the `EventDisplayCommand#MESSAGE_SUCCESS` constant and
+a new CommandResult will be returned with the message.
+
+===== Design Considerations
+===== Aspect: Product cohesiveness
+* *Current Implementation:*
+** `schedule`
+
+** Our team chose to use the one-word command `schedule` as the rest of our features also use one-word commands. This is
+so that our features look like one integrated product and not an application with several features.
+
+* *Alternatives Considered:*
+** `schedule view`
+
+** If this was the implementation that we used, it can get quite confusing to other users as to why the `academics`
+command works to change the scene to display the academics whilst to look at the schedule, one must enter in `schedule view`.
+
+//@@author TheElectricBlender
+//@@author garysyndromes
+//tag::schedule-featureA[]
+
+==== Schedule Add Command
+
+
+===== Implementation
+
+
+The following is a detailed explanation of the operations which `EventAddCommand` performs.
+
+NOTE: Format for adding an event to the schedule is `schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM
+ endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`
+
+WARNING: RECUR_DESCRIPTION can only take the values `none`, `daily` or `weekly`.
+
+WARNING: COLOR_CODE can only take the values `1`-`23`.
 
 *Step 1:* The `EventAddCommand#execute(Model model)` method is called which validates if the `VEvent` object from
 the parser is valid.
@@ -1007,19 +1077,15 @@ the parser is valid.
 *Step 2:* The method `Model#addVEvent(VEvent vEvent)` is then called which adds the new `VEvent` to the `EventHistory`.
 The `VEvent` is validated to check if it is unique using the `EventUtil#isEqualVEvent(VEvent vEvent)` method.
 
-*Step 3:* If the event is invalid, a `CommandException` will throw an error message. Else, a new `CommandResult` will
-be returned with the success message.
+*Step 3:* If the event is invalid, a `CommandException` will be thrown with an error message.
 
-*Step 4:* The `LogicManager` then calls the `Storage#saveEvents(ReadOnlyEvents readOnlyEvents)` which saves the
-`EventHistory` in JSON format after serializing it using the `JsonEventStorage`.
-[NOTE]
-The `ReadOnlyEvents` and `ReadOnlyVEvents` interfaces are an abstraction of the implementation of the `EventHistory`
-from other layers of the application.
+*Step 4:* The CommandBox will be reflected with the formatted `EventAddCommand#MESSAGE_SUCCESS` constant with the summary of the `VEvent` and
+a new CommandResult will be returned with this same formatted message.
 
 The following activity diagram summarizes what happens when a user executes the `schedule add` command:
 
 .Activity Diagram for ScheduleAddCommand
-image::ScheduleAddActivityDiagram.png[]
+image::event/ScheduleAddActivityDiagram.png[]
 
 ===== Design Considerations
 ===== Aspect: Command Clarity
@@ -1037,6 +1103,196 @@ very similar prefixes in our other features such as name/ and date/.
 as well. Furthermore, the name required here is not the name of the student but the name of the event.
 
 //end::schedule-featureA[]
+
+
+
+==== Schedule Edit Command
+
+===== Implementation
+The following is a detailed explanation of the operations which `EventEditCommand` performs.
+
+NOTE: Format for editing an event in the schedule is `schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM]
+             [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]`
+NOTE: INDEX is the index of the event. Which can be obtained by the indexGet Command. See <<indexGetCommandSection,below>> for more information.
+
+WARNING: RECUR_DESCRIPTION can only take the values `none`, `daily` or `weekly`.
+
+WARNING: COLOR_CODE can only take the values `1`-`23`.
+
+WARNING: All fields are optional, however at least one field needs to be entered to edit.
+
+*Step 1*: The `EventEditCommand#execute(Model model)` method is executed which edits the details of the specified
+`VEvent` in the model. This method checks if the `index` defined when instantiating
+`EventEditCommand(Index index, EditVEventDescriptor editVEventDescriptor)` is valid. This method also checks if
+the `editVEventDescriptor` is valid.
+Since the fields are optional, the fields not entered by the user will reuse the existing values that are currently stored and defined
+in the `VEvent` object.
+
+WARNING: Index must be a positive number greater than zero.
+
+WARNING: At least 1 field of event needs to be provided to `editVEventDescriptor` to edit.
+
+*Step 2*: A new `VEvent` with the newly updated values will be created which replaces the existing `VEvent`
+object in the current model using the `Model#setVEvent(Index index, VEvent vEvent);` method. The values input to editVEventDescriptor
+are then validated and if the values are not valid, an `IllegalValueException` will be thrown.
+
+*Step 3*: The newly created VEvent is then validated. If the newly created VEvent is the same as any of the events in the scheduler
+or it has not been edited, a `CommandException` will be thrown.
+
+*Step 4*: The new created `VEvent` is then mapped to an Event and the `LocalDateTime` of this `VEvent` is used to update
+`EventSchedulePrefs#localDateTime` using the method `Model#setEventScheduleLocalDateTime(LocalDateTime localDateTime)`.
+
+*Step 5*: `EventEditCommand#generateSuccessMessage(VEvent vEvent)` formats the success message with
+`EventEditCommand#MESSAGE_EDIT_EVENT_SUCCESS` , the `Index` of the event and the `VEvent`.
+
+*Step 6*: The command box will be reflected with the success message and a new
+`CommandResult` will be returned with the message.
+
+
+==== Schedule Delete Command
+
+===== Implementation
+The following is a detailed explanation of the operations which `EventDeleteCommand` performs.
+
+NOTE: Format for deleting an event in the schedule is `schedule delete INDEX`.
+
+NOTE: INDEX is the index of the event. Which can be obtained by the indexGet Command. See <<indexGetCommandSection,below>> for more information.
+
+*Step 1*: The `EventDeleteCommand#execute(Model model)` method is executed which deletes the specified
+`VEvent` in the model. This method checks if the `targetIndex` defined when instantiating
+`EventDeleteCommand(Index targetIndex)` is valid.
+
+WARNING: Index must be a positive number greater than zero and within the bounds of the number of events in the scheduler.
+
+*Step 2*: The `VEvent` at the specified `targetIndex` is then removed from `EventHistory#VEvents`
+using the Model#delete(Index index) method.
+
+*Step 3*: `EventDeleteCommand#generateDeleteSuccessMessage(VEvent vEvent)` formats the success message with
+`EventDeleteCommand#MESSAGE_SUCCESS` and the `VEvent`.
+
+*Step 4*: The command box will be reflected with the success message and a new
+`CommandResult` will be returned with the message.
+
+
+The following sequence diagram will provide a clearer picture on how the EventDeleteCommand works.
+
+.Sequence Diagram for EventDeleteCommand
+image::event/sequence_diagram_event_delete_command.png[]
+
+
+[[indexGetCommandSection]]
+==== Schedule Index Command
+
+===== Implementation
+The following is a detailed explanation of the operations which `EventIndexCommand` performs.
+This command returns the index of the Event(s) with same EVENT_DESCRIPTION as the `eventName` input from the user.
+If there are no Events with the same EVENT_DESCRIPTION, the Event with the most similar EVEnT_DESCRIPTION, calculated
+using the Levenshtein Distance formula, will then be suggested.
+
+NOTE: Format for getting the index of an event in the schedule is `schedule indexGet/EVENT_DESCRIPTION`.
+
+NOTE: `EVENT_DESCRIPTION` is the name of the event.
+
+
+*Step 1*: The `EventIndexCommand#execute(Model model)` method is executed which obtains the index of the specified
+`VEvent` in the model. This method first obtains the current list of `Pair` of `Index` and `VEvents` in `EventHistory#vEvents` using
+`Model#searchVEvents(String eventName)`.
+
+*Step 2*: The current list of Events is then validated.
+
+* If the list of Events is empty, the method will find the most similar `Event` in
+`EventHistory#vEvents` based on the `eventName` entered when when instantiating `EventIndexCommand(String eventName)`. The found `VEvent` is then mapped to an Event and the `LocalDateTime` of this `VEvent` is used to update
+`EventSchedulePrefs#localDateTime` using the method `Model#setEventScheduleLocalDateTime(LocalDateTime localDateTime)`. `VEventNotFoundException` is thrown
+when there are no events in the schedule at all.
+* If the list of Events is not empty, The first `VEvent` of the list of Events is then mapped to an Event and the `LocalDateTime` of this `VEvent` is used to update
+`EventSchedulePrefs#localDateTime` using the method `Model#setEventScheduleLocalDateTime(LocalDateTime localDateTime)`.
+
+
+*Step 3*: `EventIndexCommand#generateSuggestionMessage(Pair<Index, VEvent> resultVEventPair)` or `EventIndexCommand#generateResultMessage(List<Pair<Index, VEvent>> pairVEventIndexList)`
+will then format the message according to whether there the list of Events is empty.
+
+* If the list of Events is empty, the method `EventIndexCommand#generateSuggestionMessage(Pair<Index, VEvent> resultVEventPair)` will be called.
+
+* If the list of Events is not empty, the method `EventIndexCommand#generateResultMessage(List<Pair<Index, VEvent>> pairVEventIndexList)` will be called.
+
+*Step 4*: The command box will be reflected with the message and a new
+`CommandResult` will be returned with the message.
+
+The following Activity Diagram will provide a clearer picture on how the EventIndexCommand is supposed to run.
+
+.Activity Diagram for EventIndexCommand
+image::event/EventIndexCommandActivityDiagram.png[]
+
+
+
+==== Schedule IndexAll Command
+
+===== Implementation
+The following is a detailed explanation of the operations which `EventIndexAllCommand` performs.
+
+NOTE: Format for getting the indexes of all events is `schedule indexAll`.
+
+*Step 1*: The `EventIndexAllCommand#execute(Model model)` method is executed which obtains all indexes of the all of VEvents in the model.
+This method first obtains the current list of `Pair` of `Index` and `VEvents` in `EventHistory#vEvents` using
+`Model#getAllVEventsWithIndex()`.
+
+*Step 2*: The current list is then validated. If the list is empty, a new `CommandResult` with message `EventIndexAllCommand#MESSAGE_NO_EVENT`
+will be returned.
+
+*Step 3*: The success message is generated using EventIndexAllCommand#generateResultMessage(List<Pair<Index, VEvent>> pairVEventIndexList)
+and a new `CommandResult` will be returned with this message.
+
+The following Activity Diagram will provide a clearer picture on how the EventIndexAllCommand is supposed to run.
+
+.Activity Diagram for EventIndexAllCommand
+image::event/EventIndexAllActivityDiagram.png[]
+
+==== Schedule View Command
+
+===== Implementation
+The following is a detailed explanation of the operations which `EventViewCommand` performs.
+
+NOTE: Format for changing the view mode of the schedule is `schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`.
+
+WARNING: `SCHEDULE_MODE` can only takes the values `daily` or `weekly`. Any other values will result in an error thrown.
+
+WARNING: Date must be entered in YYYY-MM-DD format. Any other values will result in an error thrown.
+
+
+*Step 1*: The `EventViewCommand#execute(Model model)` method is executed which changes the view mode of the model.
+ This method sets `EventSchedulePrefs#eventScheduleView` and `EventSchedulePrefs#localDateTime`
+with `EventViewCommand#scheduleViewMode` and `EventViewCommand#targetViewDateTime` respectively.
+
+*Step 2*: The success message is generated using EventViewCommand#generateSuccessMessage(EventScheduleView eventScheduleViewMode, LocalDateTime targetViewDate)
+and a new `CommandResult` will be returned with this message.
+
+The following Activity Diagram will provide a clearer picture on how the EventViewCommand is supposed to run.
+
+.Activity Diagram for EventViewCommand
+image::event/EventViewCommandActivityDiagram.png[]
+
+
+==== Schedule Export Command
+
+===== Implementation
+The following is a detailed explanation of the operations which `EventExportCommand` performs.
+
+NOTE: Format for exporting the schedule into an .ics file is `schedule export`.
+
+*Step 1*: The `The EventExportCommand#execute(Model model) method is executed which exports the events in the scheduler into a .ics file in the data folder.
+
+*Step 2*: The command box will be reflected with the
+EventExportCommand#MESSAGE_SUCCESS constant and a new CommandResult will be returned with the message.
+
+*Step 3*: Subsequently, the CommandResult will be processed by the`MainWindow` in the UI component and
+generate a mySchedule.ics file in the data folder of the current directory.
+
+
+//end::personal-schedule-features[]
+
+
+'''
+
 
 === Logging
 This section describes how TeaPet record it's logs.
@@ -1927,10 +2183,17 @@ Expected: A file named studentAcademics.csv should be created in the data folder
 
 //end::academics-manual[]
 
-//@@author TheElectricBlender
-//tag::manual-test-scheduler[]
-=== Manual Test: Scheduler
+//@@author garysyndromes
+//tag::manual-test-personal-schedule[]
+=== Manual Test: Personal Schedule
 
+. Displaying the personal schedule
+
+.. Test case: `schedule` +
+Expected: User should now be able to view the schedule at the current date. A help message should also be shown in the command box.
+
+//@@author TheElectricBlender
+//tag::manual-test-schedulerA[]
 . Adding an event to the scheduler
 
 .. Prerequisites: The scheduler already contain an event with name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00".
@@ -1958,7 +2221,95 @@ Expected: An error message is shown due to invalid recurrence type.
 .. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
 color/5`
 Expected: An error message is shown due to the invalid date time range.
-//end::manual-test-scheduler[]
+//end::manual-test-schedulerA[]
+
+. Editing an event in the schedule
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00" .
+No other events exists.
+
+.. Test case: `schedule edit 1 eventName/Meeting at Town` +
+Expected: The event name is changed to "Meeting at Town". The rest of the fields remains the same as before the edit command was called.
+
+.. Test case: `schedule edit 1 endDateTime/2020-04-04T14:00` +
+Expected: The event end date time is extended to 1400 hrs. The rest of the fields remains the same as before the edit command was called.
+
+.. Test case: `schedule edit 2 eventName/Meeting now` +
+Expected: An error message due to invalid index provided.
+
+.. Test case: `schedule edit 2 eventName/` +
+Expected: An error message due to invalid event name entered.
+
+.. Test case: `schedule edit 1` +
+Expected: An error message due to no fields provided to edit.
+
+. Deleting an event in the schedule
+
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00" .
+No other events exists.
+
+
+.. Test case: `schedule delete 1` +
+Expected: The event with name "Coffee Break" is removed from the schedule.
+
+.. Test case: `schedule delete 2` +
+Expected: An error message due to invalid index provided.
+
+.. Test case: `schedule delete a` +
+Expected: An error message due to wrong command format provided.
+
+.. Test case: `schedule delete` +
+Expected: An error message due to wrong command format provided.
+
+. Getting the index of an event in the schedule
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00" .
+No other events exists.
+
+.. Test case: `schedule indexGet/Coffee Break` +
+Expected: The event description along with its index is shown in the command box.
+
+.. Test case: `schedule indexGet/coffee` +
+Expected: The event description with the closest name to the search term "coffee" is displayed along with its index in the command box.
+
+.. Test case: `schedule indexGet/i am not trying to find` +
+Expected: By default, the event with index 1 is displayed. Since no events match the search term.
+
+.. Test case: `schedule indexGet/` +
+Expected: An error message due to invalid event name provided.
+
+. Getting the indexes of all events
+
+NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00"
+and another event with index 2, name "Dinner", startDateTime "2020-04-04T17:00", endDateTime "2020-04-04T18:00"
+
+.. Test case: `schedule indexAll` +
+Expected: Both event's details along with their indexes will be shown in the command box.
+
+. Changing the view mode of the schedule
+
+.. Test case: `schedule view mode/weekly date/2020-04-20` +
+Expected: The schedule will show the week of Monday to Sunday that reference date "2020-04-20" lies on.
+
+.. Test case: `schedule view mode/daily date/2020-04-21` +
+Expected: The schedule will show all the events on the reference date "2002-04-21".
+
+.. Test case: `schedule view mode/daily` +
+Expected: An error message due to wrong command format provided.
+
+.. Test case: `schedule view date/2020-04-21` +
+Expected: An error message due to wrong command format provided.
+
+.. Test case: `schedule view` +
+Expected: An error message due to wrong command format provided.
+
+. Exporting the schedule into an .ics file
+
+.. Test case `schedule export` +
+Expected: An .ics file with name "mySchedule.ics" will be created in the data folder in the current directory of TeaPet.
+
+//end::manual-test-personal-schedule[]
 
 //@@author jerrenss
 //tag::manual-test-notes[]
@@ -2037,3 +2388,53 @@ Expected: A file named studentNotes.csv should be created in the data folder of 
 .. Test case: `notes export 3` +
 Expected: An error message is shown as there should be no arguments passed into notes export command.
 //end::manual-test-notes[]
+
+//@@ author
+[appendix]
+== Effort
+
+*Overview* +
+Our team wanted to make an application to create a personal assistant to assist form teachers in their highly
+stressful profession. We decided to build
+TeaPet to easily manage students and their schedule both inside and outside of classrooms. TeaPet is
+significantly different from Address Book 3 (AB3). In addition to the existing basic features of AB3, we had to implement
+additional features to satisfy the needs of our target audience, form teachers. Features that are unique to TeaPet are
+student particulars, student administration, academics tracking, notes keeping, and a easy to use personal scheduler.
+
+*Challenges faced* +
+
+. *Building TeaPet upon AB3* - Initially, our group took a long time understanding the logic of AB3. In addition, converting our
+own ideas into code and building upon it on AB3 was very tough. We took a long time familiarising with the the flow of the code, hence resulting
+in a slow development of TeaPet initially.
+
+. *Debugging* - Each of us was doing our own individual features, hence when we were merging our pull requests, there are
+often merge conflicts. Furthermore, as there are are some inter-dependencies between our features, when one person changes
+his or her code, the other party gets affected. Also, when we were doing quality assurance, we spent a long time figuring out
+why some of the test cases fail. However, that helped us better understand our code and its expected behaviour, which proved
+to be a big help when building TeaPet
+
+. *Documentation* - Initially, it was a challenge to standardise all our format and images in both the user guide and
+the developer guide due to different  documentation styles and formats. To tackle this issue, we often skyped for
+extended periods of time to go through the documents in detail. More often than not, one of us would share their screen
+and we would break down the document line by line. After much hardwork, we were finally able to standardise and
+complete our documentation
+
+*Achievements* +
+
+. *Integration of 5 unique features* - The team had set out with the plan to develop TeaPet with 5 unique,
+user-centric features. They are namely student particulars, student administration, student academics, notes and
+personal scheduler. Throughout the project, we made consistent effort to ensure every feature worked well with one
+another, in seamless fashion. There were certain scenarios where the codebase broke due to associations and
+dependencies. Despite that, the team manage to ensure all 5 features were well integrated in the final version of
+TeaPet, seeking to provide a fantastic user experience.
+
+.  *Maintaining test coverage* – The team had decided to not only ensure our application is well-functioning, but also resistant to bugs. We applied the testing methods taught in the module to write test files for our classes. It is an achievement as despite our large code base, we had managed to achieve our target of 70% test coverage, extensively covering the features.
+
+*Conclusion* +
+In conclusion, our team spent great amounts of effort and we are proud to produce TeaPet by working together.
+Overall, we believe that TeaPet is a good testament of our hard work and time spent to perfect it.
+
+
+
+
+//@@ author

@@ -25,7 +25,9 @@ product will help the user save time by only using TeaPet, since using different
 ** *Highlights*: Users are able to add, edit and delete events scheduled in their personal scheduler. They can set recurring events and have different
 color codes to represent different event types. Users can export their schedule to an .ics file to import into Google Calendar and other mainstream calendar applications.
 Different view modes are also available for the Personal Schedule. The implementation was challenging as it required me to study the implementation of the library.
-** *Credits*: JFXtras iCalendar API was used to help develop our Personal Schedule.
+** *Credits*:
+*** JFXtras iCalendar API was used to help develop our Personal Schedule.
+*** Levenshtein distance formula was used to help us decide the similarity of event names that helped us built a recommendation system.
 
 * *Minor enhancements*:
 ** Ensured code naming is coherent within the project.
@@ -37,15 +39,15 @@ Different view modes are also available for the Personal Schedule. The implement
 *** In charge of Integration, ensured product does not have bugs when features are merged together.
 *** Cleaned up code base, removed unused code.
 ** Enhancements to existing features:
-*** Deleted Student Remark feature (since it was not in use) (Pull requests https://github.com[#33], https://github.com[#34])
-*** Wrote additional tests for existing features to increase coverage from 62% to 74% (Pull requests https://github.com[#36], https://github.com[#38])
+*** Deleted Student Remark feature (since it was not in use) (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/219[#219])
+*** Wrote path coverage tests for existing features to increase class test coverage from 62% to 74% (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/281[#281])
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: (Pull requests https://github.com[#36], https://github.com[#38])
+*** Did cosmetic tweaks to existing contents of the User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/112[#112], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/285[#285])
 *** Updated User Guide to include Personal Schedule feature.
-*** Updated User Guide Introduction, Overview of Features, format.
-*** Updated Developer Guide to include Personal Schedule feature.
+*** Updated User Guide Introduction, Overview of Features and formatting.
+*** Updated Developer Guide to include Personal Schedule feature and manual testing.
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-2/main/pull/66[#66], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/76[#76]
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/garysyndromes/ped[Practical Exam Dry Run])
 
 == Contributions to the User Guide
@@ -55,9 +57,11 @@ Different view modes are also available for the Personal Schedule. The implement
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=overview-features]
+
+
+
 
 == Contributions to the Developer Guide
 
@@ -65,7 +69,9 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=undoredo]
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=personal-schedule-features]
+
+
+
 
