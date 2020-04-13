@@ -155,10 +155,10 @@ get started with them.
 
     Feature + Feature Function + Prefix/Field
 
-    Examples of Feature: `student`, `notes`, `academics`, etc.
-    Examples of Feature Function: `add`, `edit`, `export`, etc.
-    Examples of Prefix/Field: `name/Kelvin Klein`, `phone/9000 8000`, `att/Present`
-    Example of a valid command: `student add name/Kelvin Klein`
+    Examples of Feature: student, notes, academics, etc.
+    Examples of Feature Function: add, edit, export, etc.
+    Examples of Prefix/Field: name/Kelvin Klein, phone/9000 8000, att/Present
+    Example of a valid command: student add name/Kelvin Klein
 
     Most commands have multiple Prefix/Field combinations to fill.
     Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
@@ -642,12 +642,14 @@ Adds a note into TeaPet.
 
     notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY
 
-* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority.
 * Create and add a new note with the following fields.
-* *None* of the fields can be empty.
-* Student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
-* Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
 * An automatic timestamp is generated for each note added.
+
+[NOTE]
+*None* of the fields can be empty. Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
+
+[NOTE]
+Student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 
 *Example:*
 
@@ -673,11 +675,13 @@ Edits a note in TeaPet.
 
     notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/UPDATED_CONTENT] [pr/UPDATED_PRIORITY]
 
-* Prefixes used: name/ -> name, cont/ -> content pr/ -> priority.
-* Edits a current note in the list by index. Index must be an integer within the total number of notes.
-* *At least 1* of the three prefix fields must be indicated.
-* Updated student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
-* Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
+* Edits a current note in the list by index. Index chosen must be an integer within the total number of notes.
+
+[NOTE]
+*At least 1* of the three prefix fields must be indicated.. Priority must either be *LOW*, *MEDIUM* or *HIGH*. Case-insensitive.
+
+[NOTE]
+Updated student's name indicated in the name field must be already *present* in the class-list. Case-sensitive.
 
 *Example:*
 
@@ -743,6 +747,7 @@ Displays only notes with the keyword "low" present.
 
 .After using the `notes filter low` command
 image::userguide/notesfeature/notesFilter.png[width="790]
+
 
 *Example 2:*
 
