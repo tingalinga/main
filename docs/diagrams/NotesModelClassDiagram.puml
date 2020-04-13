@@ -8,6 +8,8 @@ Package NotesManager {
 Interface ReadOnlyNotes <<Interface>>
 Class NotesManager
 NotesManager .left.|> ReadOnlyNotes
+Class HiddenOutside #FFFFFF
+
 
 Package Notes  {
 Class UniqueNotesList
@@ -17,7 +19,11 @@ Notes *--> "1" Content
 Notes *--> "1" Priority
 Notes *--> "1" DateTime
 
+
 NotesManager *--> "1" UniqueNotesList
 UniqueNotesList o--> "0..*" Notes
+
+Class HiddenOutside #FFFFFF
+HiddenOutside o--> "1"  NotesManager
 
 @enduml
