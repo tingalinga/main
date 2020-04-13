@@ -82,14 +82,14 @@ follow our step-by-step guide on how to install the application into your Comput
 
 === TeaPet's Layout
 
-TeaPet's User Interface can be divided into 5 main components, each performing specific functionality.
+TeaPet's User Interface can be divided into 5 main components, each performing a specific functionality.
 
 .User Interface of TeaPet
 image::userguide/TeaPetLayout.png[width="790"]
 
 . *Feature Tabs* +
 These tabs display some of TeaPet features so that you tell easily which section of TeaPet you are in. There is a drop-down menu in each tab to select and perform various feature
-functionality, if you intend to use your mouse instead of using the command line to access the features.
+functionality, if you intend to use your mouse instead of the command line to access the features.
 
 . *Main Panel* +
 The main panel is the display window of Student List, Student Administration, Student Academics and Personal Schedule
