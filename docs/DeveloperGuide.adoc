@@ -976,7 +976,6 @@ the current directory.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
-<<<<<<< HEAD
 '''
 //end::notes[]
 
