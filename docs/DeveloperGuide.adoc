@@ -873,7 +873,7 @@ or wrong format error message will be displayed.
 .Sequence Diagram for Adding Notes
 image::developerguide/notes/NotesAddSequence.png[]
 
-.Supplementary Frame for Sequence Diagram
+.Reference Frame for Sequence Diagram
 image::developerguide/notes/SDGetNotesAddCommand.png[]
 
 ==== Edit Note
