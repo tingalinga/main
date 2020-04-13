@@ -12,7 +12,7 @@ import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.student.DetailedStudentDisplayCommand;
+import seedu.address.logic.commands.student.DefaultStudentDisplayCommand;
 import seedu.address.logic.commands.student.StudentAddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -26,6 +26,8 @@ public class DefaultStudentDisplayCommandTest {
     private Model model;
     private Model expectedModel;
 
+
+
     @BeforeEach
     public void setUp() {
 
@@ -37,8 +39,8 @@ public class DefaultStudentDisplayCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new DetailedStudentDisplayCommand(), model,
-                DetailedStudentDisplayCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new DefaultStudentDisplayCommand(), model,
+                DefaultStudentDisplayCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
