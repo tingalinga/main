@@ -1059,9 +1059,7 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
     Schedule is exported to mySchedule.ics in the data folder
 
 '''
-
 //end::schedule-main[]
-
 
 //@@author TheElectricBlender
 //tag::additional-features[]
