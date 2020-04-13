@@ -16,6 +16,8 @@ endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-W12-2/main/releases
 
 By: `CS2103T-W12-2`      Since: `Feb 2020`      Licence: `MIT`
+
+//@@author garysyndromes
 //tag::intro[]
 
 == Introduction
@@ -824,12 +826,13 @@ TeaPet application.
 '''
 //end::Notes[]
 
+//@@author garysyndromes
 //@@author TheElectricBlender
 //tag::scheduler-A[]
 
 [[schedulerA]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
-TeaPet's Personal Scheduler allows you to record down your events for the week, which will be
+TeaPet's Personal Scheduler allows you to record down your events, which will be
 sorted according to date and time. You will then be able to easily view your schedule as you need it.
 
 ==== Display your scheduler: `schedule` [Done by Simon Lam and Gary Lim]
@@ -896,6 +899,8 @@ image::schedule_add.png[width="790"]
 
 //end::scheduler-A[]
 
+//@@author garysyndromes
+//tag::schedule-main[]
 
 ==== Editing an event in schedule: `schedule edit` [Done by Gary Lim]
 
@@ -965,7 +970,10 @@ Get the index of an event in your personal scheduler.
 
 NOTE: EVENT_DESCRIPTION is the name of the event. +
  In the unlikely event that you mistype the EVENT_DESCRIPTION, our smart application will
-help you find the closest matching event to the EVENT_DESCRIPTION that you entered.
+help you find the closest matching event to the EVENT_DESCRIPTION that you entered
+
+NOTE: In the even more unlikely event that you type an EVENT_DESCRIPTION that does not match ANY of the events in the
+schedule, the event with index 1 will be shown.
 
 NOTE: Index is used to identify events and help you edit and delete events.
 
@@ -1051,6 +1059,7 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
     Schedule is exported to mySchedule.ics in the data folder
 
 '''
+//end::schedule-main[]
 
 //@@author TheElectricBlender
 //tag::additional-features[]
@@ -1215,6 +1224,7 @@ Here are the commands to manage notes. They require the prefix `notes`.
 |===
 //end::NotesSummary[]
 
+//@@author garysyndromes
 //@@author TheElectricBlender
 //tag::ScheduleSummary[]
 === Personal Scheduler Commands
@@ -1222,9 +1232,10 @@ Here are the commands to manage scheduler. They require the prefix `schedule`.
 
 [cols="10%, 45%, 45%"]
 .Personal Scheduler commands of TeaPet
+// @formatter:off
 |===
 |*Command*|*Format*|*Expected outcome*
-|`schedule edit`|`schedule edit 2 eventName/Teachers Meeting`|Edits an event in your personal scheduler.
+|`schedule edit`|`schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM] [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]`|Edits an event in your personal scheduler.
 |`schedule add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
 |`schedule delete`|`schedule delete INDEX`|Deletes an event in your personal scheduler.
 |`schedule indexGet`|`schedule indexGet/EVENT_DESCRIPTION`|Get the index of an event in your personal scheduler.
@@ -1232,6 +1243,7 @@ Here are the commands to manage scheduler. They require the prefix `schedule`.
 |`schedule view`|`schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`|Change the view mode of your Personal Schedule as how you need it.
 |`schedule export`|`schedule export`|Exports all events currently in schedule into a ".ics" file. The .ics file type can easily be used with Google Calendar and other calendar applications.
 |===
+// @formatter:on
 //end::ScheduleSummary[]
 
 //@@author Yuanyu97

@@ -1,0 +1,25 @@
+@startuml
+start
+:Finds VEvents from EventHistory
+with the same EVENT_DESCRIPTION
+as the input eventName;
+if () then ([Size of result list = 0])
+:Get the VEvent from EventHistory
+with the most similar EVENT_DESCRIPTION
+as the input eventName;
+:Get the LocalDateTime of this VEvent;
+:Set the EventSchedulePrefs with this LocalDateTime;
+:Return new CommandResult with
+Suggestion Message with details of this VEvent;
+else ([Size of result list >= 1])
+:Get the first VEvent in the Result List;
+:Get the LocalDateTime of the
+first VEvent in Result List;
+:Set the EventSchedulePrefs with this LocalDateTime;
+:Return CommandResult with
+Success Message with details of this VEvent;
+endif
+
+stop
+@enduml
+

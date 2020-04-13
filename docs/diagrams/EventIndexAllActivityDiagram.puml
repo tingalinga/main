@@ -1,0 +1,11 @@
+@startuml
+start
+:Obtain list of current VEvents with their indexes from EventHistory;
+if () then ([list is empty])
+:Return new CommandResult with EventIndexAllCommand#MESSAGE_NO_EVENT;
+else ([list is not empty])
+:Format success message with the list;
+:Return new CommandResult with formatted success message;
+endif
+stop
+@enduml
