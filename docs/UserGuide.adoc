@@ -161,13 +161,13 @@ get started with them.
 
     Feature + Feature Function + Prefix/Field
 
-    Examples of Feature: student, notes, academics, etc.
-    Examples of Feature Function: add, edit, export, etc.
+    Examples of Feature: student, notes, academics
+    Examples of Feature Function: add, edit, export
     Examples of Prefix/Field: name/Kelvin Klein, phone/9000 8000, att/Present
-    Example of a valid command: student add name/Kelvin Klein
+    Example of a Valid Command: student add name/Kelvin Klein
 
     Most commands have multiple Prefix/Field combinations to fill.
-    Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
+    Prefix/Field combinations with enclosing [] braces refers to it being OPTIONAL.
 
 
 //@@author TheElectricBlender
@@ -755,10 +755,10 @@ Displays a list of filtered notes based on specific keywords.
 
     notes filter KEYWORD(S)
 
-* Filters the list of notes based on the presence of keywords given by the User.
+* Filters the list of notes based on the presence of keywords given.
 * This notes filter feature will perform a comparison of *name of student*, *content*, *priority* and *timestamp*
 of the notes.
-* Filtering is done based of character match, not full-word match.
+* Filtering is done based on character match, not full-word match.
 
 *Example 1:*
 
