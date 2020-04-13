@@ -78,7 +78,8 @@ public class AssessmentTest {
         submissions.put(VALID_STUDENT_NAME_GRACE_PAN, Integer.parseInt(VALID_SCORE_GRACE_PAN));
         editedScienceHomework.markAssessment(submissions);
 
-        Submission gracePanSubmission = new Submission(VALID_STUDENT_NAME_GRACE_PAN, true, true, Integer.parseInt(VALID_SCORE_GRACE_PAN));
+        Submission gracePanSubmission =
+                new Submission(VALID_STUDENT_NAME_GRACE_PAN, true, true, Integer.parseInt(VALID_SCORE_GRACE_PAN));
         assertTrue(editedScienceHomework.getSubmissionTracker().contains(gracePanSubmission));
     }
 
@@ -95,7 +96,8 @@ public class AssessmentTest {
         // marking
         editedScienceHomework.mark(VALID_STUDENT_NAME_GRACE_PAN, Integer.parseInt(VALID_SCORE_GRACE_PAN));
 
-        Submission gracePanSubmission = new Submission(VALID_STUDENT_NAME_GRACE_PAN, true, true, Integer.parseInt(VALID_SCORE_GRACE_PAN));
+        Submission gracePanSubmission =
+                new Submission(VALID_STUDENT_NAME_GRACE_PAN, true, true, Integer.parseInt(VALID_SCORE_GRACE_PAN));
         assertTrue(editedScienceHomework.getSubmissionTracker().contains(gracePanSubmission));
     }
 
@@ -155,7 +157,7 @@ public class AssessmentTest {
         scienceHomework.mark(VALID_STUDENT_NAME_SHARADH_RAJARAMAN,
                 Integer.parseInt(VALID_SCORE_SHARADH_RAJARAMAN));
 
-        double averageScore = ((double)Integer.parseInt(VALID_SCORE_GRACE_PAN)
+        double averageScore = ((double) Integer.parseInt(VALID_SCORE_GRACE_PAN)
                 + Integer.parseInt(VALID_SCORE_SHARADH_RAJARAMAN)) / 2;
 
         assertTrue(scienceHomework.averageScore() == averageScore);

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SCIENCE_EXAM;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_EXAM;
 import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_HOMEWORK;
@@ -12,7 +11,6 @@ import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_HOMEWO
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -208,12 +206,12 @@ public class UniqueAssessmentListTest {
     @Test
     public void getHomeworkList_modifyList_throwsIndexOutOfBoundsException() {
         assertThrows(IndexOutOfBoundsException.class, ()
-                -> uniqueAssessmentList.getHomeworkList().remove(0));
+            -> uniqueAssessmentList.getHomeworkList().remove(0));
     }
 
     @Test
     public void getExamList_modifyList_throwsIndexOutOfBoundsException() {
         assertThrows(IndexOutOfBoundsException.class, ()
-                -> uniqueAssessmentList.getExamList().remove(0));
+            -> uniqueAssessmentList.getExamList().remove(0));
     }
 }
