@@ -46,16 +46,8 @@ public class EventViewCommand extends EventCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (scheduleViewMode != null) {
-            // user wants to change the viewMode
-            model.setEventScheduleView(scheduleViewMode);
-        }
-
-        if (targetViewDateTime != null) {
-            // user wants to change the reference date
-            model.setEventScheduleLocalDateTime(targetViewDateTime);
-        }
-
+        model.setEventScheduleView(scheduleViewMode);
+        model.setEventScheduleLocalDateTime(targetViewDateTime);
         return new CommandResult(generateSuccessMessage(model.getEventScheduleView(),
                 model.getEventScheduleLocalDateTime()));
     }

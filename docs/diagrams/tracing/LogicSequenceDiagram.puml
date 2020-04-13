@@ -18,4 +18,4 @@ ec --> ecp --
 ecp --> abp --: command
 abp --> logic --: command
 
-@enduml
+@endum

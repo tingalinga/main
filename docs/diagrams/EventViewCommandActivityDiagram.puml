@@ -1,0 +1,11 @@
+@startuml
+start
+:Sets EventSchedulePrefs#eventScheduleView
+ to input scheduleViewMode;
+:Sets EventSchedulePrefs#localDateTime
+ to input targetViewDateTime;
+:Generate Success String with EventViewCommand#MESSAGE_VIEW_SUCCESS ,
+EventSchedulePrefs#eventScheduleView and EventSchedulePrefs#localDateTime;
+:Returns CommandResult with the Success String;
+stop
+@enduml

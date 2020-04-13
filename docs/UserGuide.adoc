@@ -16,6 +16,8 @@ endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-W12-2/main/releases
 
 By: `CS2103T-W12-2`      Since: `Feb 2020`      Licence: `MIT`
+
+//@@author garysyndromes
 //tag::intro[]
 
 == Introduction
@@ -82,14 +84,14 @@ follow our step-by-step guide on how to install the application into your Comput
 
 === TeaPet's Layout
 
-TeaPet's User Interface can be divided into 5 main components, each performing specific functionality.
+TeaPet's User Interface can be divided into 5 main components, each performing a specific functionality.
 
 .User Interface of TeaPet
 image::userguide/TeaPetLayout.png[width="790"]
 
 . *Feature Tabs* +
 These tabs display some of TeaPet features so that you tell easily which section of TeaPet you are in. There is a drop-down menu in each tab to select and perform various feature
-functionality, if you intend to use your mouse instead of using the command line to access the features.
+functionality, if you intend to use your mouse instead of the command line to access the features.
 
 . *Main Panel* +
 The main panel is the display window of Student List, Student Administration, Student Academics and Personal Schedule
@@ -119,13 +121,12 @@ The details below indicate the step-by-step process on getting started with TeaP
 image::Ui.png[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
-For example,  typing *`help`* and pressing kbd:[Enter] will open the help window.
+For example,  typing `help` and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`student add`**`name/Kelvin Klein`
-: adds a contact named Kelvin Klein to the class List
+* `student add name/Kelvin Klein` : adds a contact named Kelvin Klein to the class List
 * `student delete 3` : deletes the 3rd student shown in the current list of students
-* *`exit`* : exits the app
+* `exit` : exits the app
 
 .  Refer to <<Features>> for details of each command.
 
@@ -320,7 +321,7 @@ Finds the student information from the student list and displays it.
 //tag::admin[]
 '''
 [[admin]]
-=== Student Administration [Done by Zhang Yuan Yu]
+=== Student Administration [Done by Zhang Yuanyu]
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
 temperature recordings.
 
@@ -341,7 +342,7 @@ Shows the last updated administrative information in the student list.
     4. Fetch date: admin fetch YYYY-MM-DD
 
 .After using `admin` command
-image::adminDisplay.png[width="790]
+image::admin/adminDisplay.png[width="790]
 
 ==== Displaying of the dates with administrative information of the class: `admin dates`
 Shows a list of dates that contains administrative information of the class.
@@ -355,7 +356,7 @@ Shows a list of dates that contains administrative information of the class.
     List of dates with admin details of the class displayed!
 
 .After using `admin dates` command
-image::adminDates.png[width=790]
+image::admin/adminDates.png[width=790]
 
 ==== Fetching of administrative information of the class at the specified date: `admin fetch`
 Retrieves the administrative information of the class at the date provided.
@@ -825,12 +826,13 @@ TeaPet application.
 '''
 //end::Notes[]
 
+//@@author garysyndromes
 //@@author TheElectricBlender
 //tag::scheduler-A[]
 
 [[schedulerA]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
-TeaPet's Personal Scheduler allows you to record down your events for the week, which will be
+TeaPet's Personal Scheduler allows you to record down your events, which will be
 sorted according to date and time. You will then be able to easily view your schedule as you need it.
 
 ==== Display your scheduler: `schedule` [Done by Simon Lam and Gary Lim]
@@ -897,6 +899,8 @@ image::schedule_add.png[width="790"]
 
 //end::scheduler-A[]
 
+//@@author garysyndromes
+//tag::schedule-main[]
 
 ==== Editing an event in schedule: `schedule edit` [Done by Gary Lim]
 
@@ -966,7 +970,10 @@ Get the index of an event in your personal scheduler.
 
 NOTE: EVENT_DESCRIPTION is the name of the event. +
  In the unlikely event that you mistype the EVENT_DESCRIPTION, our smart application will
-help you find the closest matching event to the EVENT_DESCRIPTION that you entered.
+help you find the closest matching event to the EVENT_DESCRIPTION that you entered
+
+NOTE: In the even more unlikely event that you type an EVENT_DESCRIPTION that does not match ANY of the events in the
+schedule, the event with index 1 will be shown.
 
 NOTE: Index is used to identify events and help you edit and delete events.
 
@@ -1053,7 +1060,7 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
 
 '''
 
-
+//end::schedule-main[]
 
 
 //@@author TheElectricBlender
@@ -1186,7 +1193,7 @@ Here are the commands to manage student administration. They require the prefix 
 === Student Academics Commands
 Here are the commands to manage student academics. They require the prefix `academics`.
 
-[cols="10%, 50%, 40%"]
+[cols="10%, 45%, 45%"]
 .Student Academics commands of TeaPet.
 |===
 |*Command*|*Format*|*Expected outcome*
@@ -1219,6 +1226,7 @@ Here are the commands to manage notes. They require the prefix `notes`.
 |===
 //end::NotesSummary[]
 
+//@@author garysyndromes
 //@@author TheElectricBlender
 //tag::ScheduleSummary[]
 === Personal Scheduler Commands
@@ -1226,9 +1234,10 @@ Here are the commands to manage scheduler. They require the prefix `schedule`.
 
 [cols="10%, 45%, 45%"]
 .Personal Scheduler commands of TeaPet
+// @formatter:off
 |===
 |*Command*|*Format*|*Expected outcome*
-|`schedule edit`|`schedule edit 2 eventName/Teachers Meeting`|Edits an event in your personal scheduler.
+|`schedule edit`|`schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM] [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]`|Edits an event in your personal scheduler.
 |`schedule add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
 |`schedule delete`|`schedule delete INDEX`|Deletes an event in your personal scheduler.
 |`schedule indexGet`|`schedule indexGet/EVENT_DESCRIPTION`|Get the index of an event in your personal scheduler.
@@ -1236,6 +1245,7 @@ Here are the commands to manage scheduler. They require the prefix `schedule`.
 |`schedule view`|`schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`|Change the view mode of your Personal Schedule as how you need it.
 |`schedule export`|`schedule export`|Exports all events currently in schedule into a ".ics" file. The .ics file type can easily be used with Google Calendar and other calendar applications.
 |===
+// @formatter:on
 //end::ScheduleSummary[]
 
 //@@author Yuanyu97

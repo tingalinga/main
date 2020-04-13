@@ -232,6 +232,20 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setAdminFilePath_validPath_setsAdminFilePath() {
+        Path path = Paths.get("data/admin.json");
+        modelManager.setAdminFilePath(path);
+        assertEquals(path, modelManager.getAdminFilePath());
+    }
+
+    @Test
+    public void setNotesFilePath_validPath_setsNotesFilePath() {
+        Path path = Paths.get("data/notes.json");
+        modelManager.setAdminFilePath(path);
+        assertEquals(path, modelManager.getNotesFilePath());
+    }
+
+    @Test
     public void hasAssessment_nullAssessment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasAssessment(null));
     }
