@@ -12,7 +12,6 @@ Academics .left.|> ReadOnlyAcademics
 
 Package Assessment  {
 Class UniqueAssessmentList
-Class AssessmentComparator
 Class Assessment
 Assessment *--> AssessmentDescription
 Assessment *--> AssessmentType
