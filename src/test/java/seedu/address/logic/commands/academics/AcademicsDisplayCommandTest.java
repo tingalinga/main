@@ -38,6 +38,8 @@ public class AcademicsDisplayCommandTest {
 
     @Test
     public void equals() {
+
+        AcademicsDisplayCommand displayCommand = new AcademicsDisplayCommand("");
         AcademicsDisplayCommand displayHomeworkCommand = new AcademicsDisplayCommand("homework");
         AcademicsDisplayCommand displayReportCommand = new AcademicsDisplayCommand("report");
         AcademicsDisplayCommand displayExamCommand = new AcademicsDisplayCommand("exam");
@@ -46,8 +48,8 @@ public class AcademicsDisplayCommandTest {
         assertTrue(displayHomeworkCommand.equals(displayHomeworkCommand));
 
         // same values -> returns true
-        AcademicsDisplayCommand displayHomeworkCommand2 = new AcademicsDisplayCommand("homework");
-        assertTrue(displayHomeworkCommand.equals(displayHomeworkCommand2));
+        AcademicsDisplayCommand displayHomeworkCommandCopy = new AcademicsDisplayCommand("homework");
+        assertTrue(displayHomeworkCommand.equals(displayHomeworkCommandCopy));
 
         // different types -> returns false
         assertFalse(displayHomeworkCommand.equals(1));
@@ -55,7 +57,8 @@ public class AcademicsDisplayCommandTest {
         // null -> returns false
         assertFalse(displayHomeworkCommand.equals(null));
 
-        // different adminDisplay -> returns true
+        // different academicsDisplay -> returns true
+        assertFalse(displayHomeworkCommand.equals(displayCommand));
         assertFalse(displayHomeworkCommand.equals(displayReportCommand));
         assertFalse(displayHomeworkCommand.equals(displayExamCommand));
         assertFalse(displayReportCommand.equals(displayExamCommand));

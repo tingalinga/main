@@ -12,12 +12,12 @@ NotesManager .left.|> ReadOnlyNotes
 Package Notes  {
 Class UniqueNotesList
 Class Notes
-Notes *--> StudentName
-Notes *--> Content
-Notes *--> Priority
-Notes *--> DateTime
+Notes *--> "1" StudentName
+Notes *--> "1" Content
+Notes *--> "1" Priority
+Notes *--> "1" DateTime
 
 NotesManager *--> "1" UniqueNotesList
-UniqueNotesList o--> "*" Notes
+UniqueNotesList o--> "0..*" Notes
 
 @enduml

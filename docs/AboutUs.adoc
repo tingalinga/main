@@ -42,8 +42,8 @@ software to create a whole.
 image::jerrenss.png[width="150", align="left"]
 {empty}[http://github.com/jerrenss[github]] [<<jerrenss#, portfolio>>]
 
-Role: Scheduling and Tracking +
-Responsibilities: In charge of defining, assigning and tracking project tasks.
+Role: Project Scheduling, Tracking and UI/UX +
+Responsibilities: In charge of assigning and tracking of project tasks. In charge of TeaPet's front-end outlook.
 
 '''
 
