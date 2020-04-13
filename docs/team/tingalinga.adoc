@@ -70,14 +70,12 @@ orange to allow easy identification of which feature the user is using.
 
 == Contributions to the User Guide
 
-
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
+include::../UserGuide.adoc[tag=academics]
 
-include::../UserGuide.adoc[tag=delete]
-
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=academics-commands]
 
 == Contributions to the Developer Guide
 
@@ -85,7 +83,15 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=dataencryption]
+include::../DeveloperGuide.adoc[tag=academics]
+
+include::../DeveloperGuide.adoc[tag=userstories]
+
+include::../DeveloperGuide.adoc[tag=non-functional-requirements]
+
+include::../DeveloperGuide.adoc[tag=academics-uc]
+
+include::../DeveloperGuide.adoc[tag=academics-manual]
 
 
 == PROJECT: PowerPointLabs

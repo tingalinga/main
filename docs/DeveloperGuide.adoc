@@ -594,6 +594,9 @@ searching through the `UniqueDateList#dates`, a DateNotFoundException will be th
 The sequence diagram for `admin fetch` command is similar to that of `admin delete` command.
 //end::admin[]
 
+//@@author tingalinga
+//tag::academics[]
+
 === Student Academics feature
 This student academics feature stores and tracks the class' academics progress.
 The academics feature consists of four commands namely.
@@ -799,6 +802,8 @@ Format of the command is: `academics export`.
 
 *Step 3.* Subsequently, the `CommandResult` will be processed by the `MainWindow` in the UI component and generate a
 studentAcademics.csv in the data folder of the current directory.
+
+//end::academics[]
 
 === Notes feature
 TeaPet application comes with an in-built notes feature, which serves to allow Teachers to record administrative or behavioural
@@ -1336,6 +1341,7 @@ Use case ends.
 
 //@@author tingalinga
 //tag::academics-uc[]
+
 [discrete]
 === Use case: UC09 - Display students' academic progress
 
@@ -1663,6 +1669,9 @@ Use case ends.
 [discrete]
 //end::uc-simon2[]
 
+//@@author tingalinga
+//tag::non-functional-requirements[]
+
 [appendix]
 == Non Functional Requirements
 
@@ -1674,6 +1683,8 @@ Use case ends.
 .  The teacher should be able to familiarise himself/herself within half an hour of usage.
 
 _{More to be added}_
+
+//end::non-functional-requirements[]
 
 [appendix]
 == Glossary
