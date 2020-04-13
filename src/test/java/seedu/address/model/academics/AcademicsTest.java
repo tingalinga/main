@@ -81,8 +81,48 @@ public class AcademicsTest {
     }
 
     @Test
+    public void submitAssessment_nullStudent_throwsNullPointerException() {
+        academics.addAssessment(SCIENCE_HOMEWORK);
+        Assessment editedScienceHomework = new AssessmentBuilder(SCIENCE_HOMEWORK)
+                .withType(VALID_TYPE_SCIENCE_EXAM).withDate(VALID_DATE_SCIENCE_EXAM)
+                .build();
+
+        assertThrows(NullPointerException.class, () -> academics.submitAssessment(editedScienceHomework, null));
+    }
+
+    @Test
+    public void hasStudentSubmitted_nullStudent_throwsNullPointerException() {
+        academics.addAssessment(SCIENCE_HOMEWORK);
+        Assessment editedScienceHomework = new AssessmentBuilder(SCIENCE_HOMEWORK)
+                .withType(VALID_TYPE_SCIENCE_EXAM).withDate(VALID_DATE_SCIENCE_EXAM)
+                .build();
+
+        assertThrows(NullPointerException.class, () -> academics.hasStudentSubmitted(editedScienceHomework, null));
+    }
+
+    @Test
+    public void markAssessment_nullStudent_throwsNullPointerException() {
+        academics.addAssessment(SCIENCE_HOMEWORK);
+        Assessment editedScienceHomework = new AssessmentBuilder(SCIENCE_HOMEWORK)
+                .withType(VALID_TYPE_SCIENCE_EXAM).withDate(VALID_DATE_SCIENCE_EXAM)
+                .build();
+
+        assertThrows(NullPointerException.class, () -> academics.markAssessment(editedScienceHomework, null));
+    }
+
+    @Test
     public void getAcademicsList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> academics.getAcademicsList().remove(0));
+    }
+
+    @Test
+    public void getHomeworkList_modifyList_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> academics.getHomeworkList().remove(0));
+    }
+
+    @Test
+    public void getExamList_modifyList_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> academics.getExamList().remove(0));
     }
 
     /**

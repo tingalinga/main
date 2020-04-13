@@ -467,7 +467,7 @@ The feature comprises of four commands namely.
 The structure of the Admin commands are as shown below:
 
 .Class Diagram for Admin Commands
-image::AdminClassDiagram.png[]
+image::admin/AdminClassDiagram.png[]
 
 The student administrative feature keeps track of essential student admin details. The feature comprises of commands namely,
 
@@ -476,6 +476,12 @@ The student administrative feature keeps track of essential student admin detail
 * `AdminSaveCommand` - Saves today’s administrative information of the class.
 * `AdminDeleteCommand` - Deletes the administrative information of the class at the specified date.
 * `AdminFetchCommand` - Fetches the administrative information of the class at the specified date.
+
+==== Class Overview
+The class diagram below depicts the structure of the Admin Model Component.
+
+.Class Diagram for Admin Model
+image::admin/AdminModelClassDiagram.png[]
 
 ==== Admin Display Command
 
@@ -546,7 +552,7 @@ displayed.
 The following activity diagram summarizes what happens when a user executes AdminSaveCommand:
 
 .Activity Diagram for AdminSaveCommand
-image::AdminSaveActivityDiagram.png[]
+image::admin/AdminSaveActivityDiagram.png[]
 
 ===== Design Considerations
 
@@ -591,7 +597,7 @@ specified date from `UniqueDateList`.
 The following sequence diagram shows how the add operation works:
 
 .Admin Delete Sequence Diagram
-image::AdminDeleteSequenceDiagram.png[]
+image::admin/AdminDeleteSequenceDiagram.png[]
 
 ==== Admin Fetch Command
 
@@ -616,7 +622,8 @@ The sequence diagram for `admin fetch` command is similar to that of `admin dele
 
 === Student Academics feature
 This student academics feature stores and tracks the class' academics progress.
-The academics feature consists of eight commands namely.
+
+The academics feature consists of the following commands namely,
 
 * `AcademicsCommand` - Displays the most updated student academics details.
 * `AcademicsAddCommand` - Adds a new assessment to the academic list.
@@ -881,7 +888,7 @@ or wrong format error message will be displayed.
 .Sequence Diagram for Adding Notes
 image::developerguide/notes/NotesAddSequence.png[]
 
-.Supplementary Frame for Sequence Diagram
+.Reference Frame for Sequence Diagram
 image::developerguide/notes/SDGetNotesAddCommand.png[]
 
 ==== Edit Note

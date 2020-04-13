@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Admin {
+Interface ReadOnlyAdmin <<Interface>>
+Class Admin
+Class ReadOnlyAdmin
+Admin .left.|> ReadOnlyAdmin
+
+Package Date  {
+Class UniqueDateList
+Class Date
+Date *--> "1" LocalDate
+Date *--> "1" StudentList
+}
+
+Package Student {
+StudentList o--> "0..*" Student
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> "1"  Admin
+
+Admin *--> "1" UniqueDateList
+UniqueDateList o--> "0..*" Date
+
+@enduml

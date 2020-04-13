@@ -57,7 +57,7 @@ orange to allow easy identification of which feature the user is using.
 *** Edited existing tests for existing features to involve more features (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/110[#110])
 *** Improved code quality of existing features (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/110[#110], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/255[#225], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/261[#261])
 *** Major refactoring of certain commands and packaging (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/229[#229])
-*** Wrote additional tests for existing features to increase coverage by 2.9% and 4.7% (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/279[#279], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/283[#283])
+*** Wrote additional tests for existing features to increase coverage by 9.3%(Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/279[#279], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/283[#283], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/301[#301])
 
 ** Documentation:
 *** Updated User Guide to include Academics Feature (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/235[#235], https://github.com/AY1920S2-CS2103T-W12-2/main/pull/236[#236])

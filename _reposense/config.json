@@ -1,0 +1,35 @@
+{
+  "authors":
+  [
+    {
+      "githubId": "garysyndromes",
+      "emails": ["garylimky@u.nus.edu"],
+      "displayName": "GAR. . . YI",
+      "authorNames": ["garysyndromes"]
+    },
+    {
+      "githubId": "tingalinga",
+      "emails": ["huiting.lee@u.nus.edu"],
+      "displayName": "LEE. . .ING",
+      "authorNames": ["tingalinga", "Lee Hui Ting"]
+    },
+    {
+      "githubId": "jerrenss",
+      "emails": ["gerrenseow@u.nus.edu"],
+      "displayName": "SEO. . .REN",
+      "authorNames": ["jerrenss"]
+    },
+    {
+      "githubId": "TheElectricBlender",
+      "emails": ["simon_lam@u.nus.edu"],
+      "displayName": "SIM. . .JUN",
+      "authorNames": ["TheElectricBlender"]
+    },
+    {
+      "githubId": "Yuanyu97",
+      "emails": ["yuanyu.zhang@u.nus.edu"],
+      "displayName": "ZHA. . .NYU",
+      "authorNames": ["Zhang Yuanyu", "Yuanyu97"]
+    }
+  ]
+}

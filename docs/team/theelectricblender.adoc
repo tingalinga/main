@@ -109,9 +109,9 @@ Please click https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=TheElect
 
 include::../UserGuide.adoc[tag=navigate]
 include::../UserGuide.adoc[tag=particulars]
-include::../UserGuide.adoc[tag=schedulerA]
+include::../UserGuide.adoc[tag=scheduler-A]
 include::../UserGuide.adoc[tag=additional-features]
-include::../UserGuide.adoc[tag=particulars-summary]
+include::../UserGuide.adoc[tag=ScheduleSummary]
 
 
 
