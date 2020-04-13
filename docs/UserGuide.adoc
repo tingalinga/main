@@ -513,7 +513,7 @@ Deletes an assessment from the academics list.
 
     academics delete INDEX
 
-Deletes the assessment with at the given index.
+* Deletes the assessment with at the given index.
 [NOTE]
 Index should be a positive integer and be a valid index.
 
@@ -539,6 +539,8 @@ Submits student(s) work for a specific assessment.
 Submits work for the assessment with at the given index.
 [NOTE]
 Index should be a positive integer and be a valid index.
+[NOTE]
+Student whose work has already been submitted cannot be submitted again.
 
 *Example:*
 
@@ -565,6 +567,8 @@ Marks student(s) work for a specific assessment.
 Marks work for the assessment with at the given index.
 [NOTE]
 Index should be a positive integer and be a valid index.
+[NOTE]
+Only the submissions of students whose work has already been submitted can be marked.
 
 *Example:*
 
@@ -1061,9 +1065,7 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
     Schedule is exported to mySchedule.ics in the data folder
 
 '''
-
 //end::schedule-main[]
-
 
 //@@author TheElectricBlender
 //tag::additional-features[]
