@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SCORE_GRACE_PAN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_GRACE_PAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBMITTED_GRACE_PAN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBMITTED_SHARADH_RAJARAMAN;
+import static seedu.address.testutil.academics.TypicalSubmissions.GERREN_SEOW;
 import static seedu.address.testutil.academics.TypicalSubmissions.GRACE_PAN;
 import static seedu.address.testutil.academics.TypicalSubmissions.SIMON_LAM;
 
@@ -48,6 +49,24 @@ public class SubmissionTest {
         // same description, same submitted and marked, different score -> returns false
         editedSimonLam = new SubmissionBuilder(SIMON_LAM).withScore(VALID_SCORE_GRACE_PAN).build();
         assertFalse(SIMON_LAM.isSameSubmission(editedSimonLam));
+    }
+
+    @Test
+    public void setStudentName() {
+        // set name to Gerren Seow -> returns true
+        Submission simonLamCopy = new SubmissionBuilder(SIMON_LAM).build();
+        simonLamCopy.setStudentName(GERREN_SEOW.getStudentName());
+        assertTrue(GERREN_SEOW.getStudentName().equals(simonLamCopy.getStudentName()));
+    }
+
+    @Test
+    public void markAssessment() {
+        Submission simonLamCopy = new SubmissionBuilder(SIMON_LAM).build();
+        simonLamCopy.markAssessment(GERREN_SEOW.getScore());
+        assertTrue(GERREN_SEOW.getScore() == simonLamCopy.getScore());
+
+        simonLamCopy.markAssessment(GRACE_PAN.getScore());
+        assertFalse(GERREN_SEOW.getScore() == simonLamCopy.getScore());
     }
 
     @Test

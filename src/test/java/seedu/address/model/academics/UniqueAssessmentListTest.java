@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SCIENCE_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_EXAM;
 import static seedu.address.testutil.academics.TypicalAssessments.SCIENCE_HOMEWORK;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +33,36 @@ public class UniqueAssessmentListTest {
     @Test
     public void contains_assessmentNotInList_returnsFalse() {
         assertFalse(uniqueAssessmentList.contains(SCIENCE_HOMEWORK));
+    }
+
+    @Test
+    public void hasStudentSubmitted_submittedAssessment_returnsTrue() {
+        List<String> validStudent = new ArrayList<>();
+        validStudent.add("Simon Lam");
+        uniqueAssessmentList.add(SCIENCE_HOMEWORK);
+        uniqueAssessmentList.submitAssessment(SCIENCE_HOMEWORK, validStudent);
+        assertTrue(uniqueAssessmentList.hasStudentSubmitted(SCIENCE_HOMEWORK, "Simon Lam"));
+    }
+
+    @Test
+    public void hasStudentSubmitted_notSubmittedAssessment_returnsFalse() {
+        uniqueAssessmentList.add(SCIENCE_HOMEWORK);
+        assertFalse(uniqueAssessmentList.hasStudentSubmitted(SCIENCE_HOMEWORK, "Freddy Zhang"));
+    }
+
+    @Test
+    public void submitStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueAssessmentList.submitAssessment(SCIENCE_HOMEWORK, null));
+    }
+
+    @Test
+    public void markAssessment_nullSubmission_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueAssessmentList.markAssessment(SCIENCE_HOMEWORK, null));
+    }
+
+    @Test
+    public void hasStudentSubmitted_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueAssessmentList.hasStudentSubmitted(null, "Simon Lam"));
     }
 
     @Test
@@ -170,5 +203,17 @@ public class UniqueAssessmentListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueAssessmentList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void getHomeworkList_modifyList_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, ()
+                -> uniqueAssessmentList.getHomeworkList().remove(0));
+    }
+
+    @Test
+    public void getExamList_modifyList_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, ()
+                -> uniqueAssessmentList.getExamList().remove(0));
     }
 }
