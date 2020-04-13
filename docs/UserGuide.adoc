@@ -71,6 +71,9 @@ Format* <|*Meaning*
 
 //end::navigate[]
 
+
+//@@author jerrenss
+//tag::QuickStart[]
 [[QuickStart]]
 == Quick Start [Done By Gerren Seow]
 
@@ -127,6 +130,7 @@ For example,  typing *`help`* and pressing kbd:[Enter] will open the help window
 .  Refer to <<Features>> for details of each command.
 
 TIP: If you have any questions, please check out our <<FAQ>> section.
+//end::QuickStart[]
 
 
 == Overview of Features
@@ -151,6 +155,7 @@ This section will provide you a brief overview of TeaPet's cool features and fun
 
 . **Data is saved onto your hard disk automatically**
 .. Any changes made will be saved onto your computer so you don't have to worry about data being lost.
+
 
 [[Features]]
 == Features
@@ -623,6 +628,8 @@ The file is named "studentAcademics.csv".
 
     Academics are exported to studentAcademics.csv in the data folder.
 
+//@@author jerrenss
+//tag::Notes[]
 '''
 [[notes]]
 === Notes [Done by Gerren Seow]
@@ -804,6 +811,8 @@ TeaPet application.
    Notes are exported to studentNotes.csv in the data folder
 
 '''
+//end::Notes[]
+
 //@@author TheElectricBlender
 //tag::schedulerA[]
 [[schedulerA]]
@@ -1172,7 +1181,8 @@ Here are the commands to manage student academics. They require the prefix `acad
 |`academics export`|`academics export`|Exports the academics report into a .csv file
 |===
 
-
+//@@author jerrenss
+//tag::NotesSummary[]
 === Notes Commands
 Here are the commands to manage notes. They require the prefix `notes`.
 
@@ -1186,6 +1196,7 @@ Here are the commands to manage notes. They require the prefix `notes`.
 |`notes filter`|`notes filter KEYWORD(S)`| Displays a list of filtered notes based on presence of keywords.
 |`notes export`|`notes export`| Exports all notes in TeaPet into a .csv file
 |===
+//end::NotesSummary[]
 
 === Personal Scheduler Commands
 Here are the commands to manage scheduler. They require the prefix `schedule`.

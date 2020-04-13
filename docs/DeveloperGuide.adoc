@@ -96,6 +96,9 @@ This section provides you with the tools needed for you to set up TeaPet.
 
 You can refer to the guide <<SettingUp#, here>>.
 
+//@@author jerrenss
+//tag::design-doc[]
+
 == Design
 
 
@@ -231,6 +234,8 @@ The `Storage` component,
 === Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
+//end::design-doc[]
+
 
 == Implementation
 
@@ -800,6 +805,9 @@ Format of the command is: `academics export`.
 *Step 3.* Subsequently, the `CommandResult` will be processed by the `MainWindow` in the UI component and generate a
 studentAcademics.csv in the data folder of the current directory.
 
+//@@author jerrenss
+//tag::notes[]
+
 === Notes feature
 TeaPet application comes with an in-built notes feature, which serves to allow Teachers to record administrative or behavioural
 information of his/her students. Each note is tagged to a specific student and acts as a lightweight, digital 'Post It'.
@@ -940,6 +948,9 @@ the current directory.
 * *Alternatives Considered*: Many additional fields including special tags, reminders, etc.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
+
+//end::notes[]
+
 
 //@@author TheElectricBlender
 //tag::schedule-featureA[]
@@ -1931,7 +1942,9 @@ color/5`
 Expected: An error message is shown due to the invalid date time range.
 //end::manual-test-scheduler[]
 
-=== Notes
+//@@author jerrenss
+//tag::manual-test-notes[]
+=== Manual Test: Notes
 
 [NOTE]
 In order to add or edit a specific note belonging to a student, the student must first be in the class-list. In order for optimal
@@ -2005,3 +2018,4 @@ Expected: A file named studentNotes.csv should be created in the data folder of 
 
 .. Test case: `notes export 3` +
 Expected: An error message is shown as there should be no arguments passed into notes export command.
+//end::manual-test-notes[]
