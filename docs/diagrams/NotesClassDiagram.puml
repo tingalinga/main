@@ -79,38 +79,6 @@ class NotesExportCommand {
     + equals(Object other) : Boolean
 }
 
-class Notes {
-    /' Fields '/
-    + {static} MESSAGE_CONSTRAINTS : String
-    + {static} VALIDATION_REGEX : String
-    - student : String
-    - content : String
-    - priority : String
-    - dateTime : String
-
-    /' Methods '/
-    + isSameNote(otherNotes : Notes) : Boolean
-    + equals(Object other) : Boolean
-}
-
-class Index {
-    /' Fields '/
-    - zeroBasedIndex : int
-
-    /' Methods '/
-    + getZeroBased() : int
-    + getOneBased() : int
-    + {static} fromZeroBased(zeroBasedIndex : int) : Index
-    + {static} fromOneBased(oneBasedIndex : int) : Index
-}
-
-class NotesContainKeywordsPredicate {
-    /' Fields '/
-    - keywords : List<String>
-
-    /' Methods '/
-    + test(notes : Notes) : Boolean
-}
 
 NotesAddCommand --up|> "NotesCommand"
 NotesEditCommand --up|> "NotesCommand"
@@ -118,11 +86,6 @@ NotesDeleteCommand --up|> "NotesCommand"
 NotesFilterCommand --up|> "NotesCommand"
 NotesExportCommand --up|> "NotesCommand"
 NotesCommand --up|> "{abstract}\nCommand"
-NotesAddCommand --up> Notes
-NotesEditCommand --up> Index
-NotesDeleteCommand --up> Index
-NotesFilterCommand --up> NotesContainKeywordsPredicate
-NotesContainKeywordsPredicate ..up> Notes
 
 
 

@@ -76,12 +76,23 @@ https://github.com/AY1920S2-CS2103T-W12-2/main/pull/95[#95]
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=QuickStart]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=Notes]
+
+include::../UserGuide.adoc[tag=NotesSummary]
 
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
+
+include::../DeveloperGuide.adoc[tag=design-doc]
+
+include::../DeveloperGuide.adoc[tag=notes]
+
+include::../DeveloperGuide.adoc[tag=notes-uc]
+
+include::../DeveloperGuide.adoc[tag=manual-test-notes]
+
