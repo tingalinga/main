@@ -96,9 +96,6 @@ This section provides you with the tools needed for you to set up TeaPet.
 
 You can refer to the guide <<SettingUp#, here>>.
 
-//@@author jerrenss
-//tag::design-doc[]
-
 == Design
 
 
@@ -194,6 +191,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 image::DeleteSequenceDiagram.png[]
 
 NOTE: The lifeline for `StudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+//@@author jerrenss
+//tag::design-doc[]
 
 [[Design-Model]]
 === Model component
