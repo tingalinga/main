@@ -320,7 +320,7 @@ Finds the student information from the student list and displays it.
 //tag::admin[]
 '''
 [[admin]]
-=== Student Administration [Done by Zhang Yuan Yu]
+=== Student Administration [Done by Zhang Yuanyu]
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
 temperature recordings.
 
