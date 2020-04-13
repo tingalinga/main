@@ -2394,24 +2394,6 @@ student particulars, student administration, academics tracking, notes keeping, 
 
 *Challenges faced* +
 
-. *Brainstorming of ideas* - Ideation was the first hurdle we faced as a team. Coming up with ideas was easy, however,
-the conflict arose when we were deciding on which idea to implement as every member wanted to solve a different problem.
-We listed the pros and cons of each proposed idea, and had a few group meetings to evaluate the proposed ideas. We
-finally chose an idea that was deemed to be most feasible.
-
-//@@ author
-[appendix]
-== Effort
-
-*Overview* +
-Our team wanted to make an application that could reduce the hassle of managing couriers' orders. We decided to build
-Delino which aims to provide a centralised platform for couriers to easily manage their deliveries. Delino is
-significantly different from Address Book 3 (AB3). In addition to the existing basic features of AB3, we needed to add
-additional features to satisfy the needs of our target audience, couriers. Features that are unique to Delino are
-Nearby, Show, Import, Return and the enhanced Search.
-
-*Challenges faced* +
-
 . *Building TeaPet upon AB3* - Initially, our group took a long time understanding the logic of AB3. In addition, converting our
 own ideas into code and building upon it on AB3 was very tough. We took a long time familiarising with the the flow of the code, hence resulting
 in a slow development of TeaPet initially.
@@ -2444,3 +2426,6 @@ In conclusion, our team spent great amounts of effort and we are proud to produc
 Overall, we believe that TeaPet is a good testament of our hard work and time spent to perfect it.
 
 
+
+
+//@@ author
