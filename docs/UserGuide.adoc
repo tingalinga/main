@@ -1053,9 +1053,6 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
 
 '''
 
-
-
-
 //@@author TheElectricBlender
 //tag::additional-features[]
 
