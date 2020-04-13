@@ -18,17 +18,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import jfxtras.icalendarfx.components.VEvent;
 import org.junit.jupiter.api.Test;
+
+import jfxtras.icalendarfx.components.VEvent;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.academics.Academics;
-import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.admin.Admin;
-import seedu.address.model.admin.Date;
-import seedu.address.model.event.Event;
 import seedu.address.model.event.EventHistory;
 import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.NotesManager;
@@ -42,7 +40,7 @@ import seedu.address.testutil.event.EventBuilder;
 import seedu.address.testutil.notes.NotesBuilder;
 import seedu.address.testutil.student.StudentBuilder;
 import seedu.address.testutil.student.TeaPetBuilder;
-import seedu.address.testutil.student.TypicalStudents;
+
 
 public class ModelManagerTest {
 
@@ -282,7 +280,6 @@ public class ModelManagerTest {
         modelManager.setAdmin(admin);
         assertEquals(admin, modelManager.getAdmin());
     }
-    
 
     @Test
     public void hasNotes_notInNotesManager_returnsFalse() {
