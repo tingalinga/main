@@ -2245,8 +2245,10 @@ Expected: An error message due to no fields provided to edit.
 
 . Deleting an event in the schedule
 
+
 NOTE: Prerequisite: The scheduler already contain an event with index 1, name "Coffee Break", startDateTime "2020-04-04T12:00", endDateTime "2020-04-04T13:00" .
 No other events exists.
+
 
 .. Test case: `schedule delete 1` +
 Expected: The event with name "Coffee Break" is removed from the schedule.
