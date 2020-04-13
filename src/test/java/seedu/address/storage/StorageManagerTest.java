@@ -87,16 +87,7 @@ public class StorageManagerTest {
     public void getTeaPetFilePath() {
         assertNotNull(storageManager.getTeaPetFilePath());
     }
-
-
-    @Test
-    public void academicsReadSave() throws Exception {
-
-        Academics original = getTypicalAcademics();
-        storageManager.saveAcademics(original);
-        ReadOnlyAcademics retrieved = storageManager.readAcademics().get();
-        assertEquals(original, new Academics(retrieved));
-    }
+    
 
 
     @Test
