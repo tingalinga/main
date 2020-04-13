@@ -46,6 +46,7 @@ import seedu.address.logic.commands.academics.AcademicsDeleteCommand;
 import seedu.address.logic.commands.academics.AcademicsDisplayCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand;
 import seedu.address.logic.commands.academics.AcademicsEditCommand.EditAssessmentDescriptor;
+import seedu.address.logic.commands.academics.AcademicsExportCommand;
 import seedu.address.logic.commands.academics.AcademicsMarkCommand;
 import seedu.address.logic.commands.academics.AcademicsSubmitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -385,5 +386,21 @@ public class AcademicsCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
     }
     // ==================== DISPLAY COMMAND END ====================
+
+    // ==================== EXPORT COMMAND START ====================
+    @Test
+    public void parse_validArgs_returnsExportCommand() {
+
+        assertParseSuccess(parser, "academics export", new AcademicsExportCommand());
+    }
+
+    @Test
+    public void parse_academicsExportInvalidArgs_throwsParseException() {
+        assertParseFailure(parser, "export invalid", String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
+
+        assertParseFailure(parser, "academics invalidExport",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
+    }
+    // ==================== EXPORT COMMAND END ====================
 
 }
