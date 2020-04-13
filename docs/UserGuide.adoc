@@ -320,7 +320,7 @@ Finds the student information from the student list and displays it.
 //tag::admin[]
 '''
 [[admin]]
-=== Student Administration [Done by Zhang Yuan Yu]
+=== Student Administration [Done by Zhang Yuanyu]
 TeaPet's Class Administration feature is used to keep track of administrative details such as daily attendance and
 temperature recordings.
 
@@ -341,7 +341,7 @@ Shows the last updated administrative information in the student list.
     4. Fetch date: admin fetch YYYY-MM-DD
 
 .After using `admin` command
-image::adminDisplay.png[width="790]
+image::admin/adminDisplay.png[width="790]
 
 ==== Displaying of the dates with administrative information of the class: `admin dates`
 Shows a list of dates that contains administrative information of the class.
@@ -355,7 +355,7 @@ Shows a list of dates that contains administrative information of the class.
     List of dates with admin details of the class displayed!
 
 .After using `admin dates` command
-image::adminDates.png[width=790]
+image::admin/adminDates.png[width=790]
 
 ==== Fetching of administrative information of the class at the specified date: `admin fetch`
 Retrieves the administrative information of the class at the date provided.
@@ -1219,6 +1219,8 @@ Here are the commands to manage notes. They require the prefix `notes`.
 |===
 //end::NotesSummary[]
 
+//@@author TheElectricBlender
+//tag::ScheduleSummary[]
 === Personal Scheduler Commands
 Here are the commands to manage scheduler. They require the prefix `schedule`.
 
@@ -1226,9 +1228,15 @@ Here are the commands to manage scheduler. They require the prefix `schedule`.
 .Personal Scheduler commands of TeaPet
 |===
 |*Command*|*Format*|*Expected outcome*
-|`scheduele add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
-
+|`schedule edit`|`schedule edit 2 eventName/Teachers Meeting`|Edits an event in your personal scheduler.
+|`schedule add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
+|`schedule delete`|`schedule delete INDEX`|Deletes an event in your personal scheduler.
+|`schedule indexGet`|`schedule indexGet/EVENT_DESCRIPTION`|Get the index of an event in your personal scheduler.
+|`schedule indexAll`|`schedule indexAll`|Get all indexes of your events in your personal scheduler.
+|`schedule view`|`schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`|Change the view mode of your Personal Schedule as how you need it.
+|`schedule export`|`schedule export`|Exports all events currently in schedule into a ".ics" file. The .ics file type can easily be used with Google Calendar and other calendar applications.
 |===
+//end::ScheduleSummary[]
 
 //@@author Yuanyu97
 //tag::glossary[]
