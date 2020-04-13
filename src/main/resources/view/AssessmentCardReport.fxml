@@ -10,7 +10,7 @@
 
 
 <HBox id="cardPane" fx:id="cardPane" styleClass="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox minHeight="105" minWidth="450.0" prefWidth="250.0">
+    <VBox minHeight="105" minWidth="350.0" prefWidth="250.0">
         <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
         </padding>

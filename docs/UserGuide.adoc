@@ -418,7 +418,8 @@ Date should be written in *YYYY-MM-DD* format. If date provided is not in data b
 
 //end::admin[]
 
-
+//@@author tingalinga
+//tag::academics[]
 
 '''
 [[acads]]
@@ -600,6 +601,9 @@ Filters assessment list by either homework or exam.
 
     Academics now displays all EXAM assessments
 
+.After using the `academics exam` command
+image::academics-exam-view.png[width="790]
+
 
 ==== View Academics Report: `academics report`
 
@@ -612,6 +616,9 @@ Generates an academic report for each assessment.
 *Expected Outcome:*
 
     Academics now displays the report of each assessment.
+
+.After using the `academics report` command
+image::academics-report-view.png[width="790]
 
 ==== Export Academics Report: `academics export`
 
@@ -628,8 +635,13 @@ The file is named "studentAcademics.csv".
 
     Academics are exported to studentAcademics.csv in the data folder.
 
+
+//end::academics[]
+
+
 //@@author jerrenss
 //tag::Notes[]
+
 '''
 [[notes]]
 === Notes [Done by Gerren Seow]
@@ -814,7 +826,8 @@ TeaPet application.
 //end::Notes[]
 
 //@@author TheElectricBlender
-//tag::schedulerA[]
+//tag::scheduler-A[]
+
 [[schedulerA]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
 TeaPet's Personal Scheduler allows you to record down your events for the week, which will be
@@ -881,7 +894,8 @@ and a color group of "21".
 image::schedule_add.png[width="790"]
 
 [[schedulerA]]
-//end::schedulerA[]
+
+//end::scheduler-A[]
 
 
 ==== Editing an event in schedule: `schedule edit` [Done by Gary Lim]
@@ -1044,8 +1058,10 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
 
 //@@author TheElectricBlender
 //tag::additional-features[]
+
 === Additional Features [Done by Simon Lam]
-//tag::update-profile[]
+//tag::updateprofile[]
+
 [[update-profile]]
 ==== Update Profile Picture
 TeaPet's student list allows you to upload image of your students into your application.
@@ -1164,6 +1180,9 @@ Here are the commands to manage student administration. They require the prefix 
 |===
 //end::commands[]
 
+//@@author tingalinga
+//tag::academics-commands[]
+
 === Student Academics Commands
 Here are the commands to manage student academics. They require the prefix `academics`.
 
@@ -1180,6 +1199,8 @@ Here are the commands to manage student academics. They require the prefix `acad
 |`academics report`|`academics report`|Displays the report for all assessments
 |`academics export`|`academics export`|Exports the academics report into a .csv file
 |===
+
+//end::academics-commands[]
 
 //@@author jerrenss
 //tag::NotesSummary[]
