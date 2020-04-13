@@ -1182,7 +1182,7 @@ Here are the commands to manage student administration. They require the prefix 
 === Student Academics Commands
 Here are the commands to manage student academics. They require the prefix `academics`.
 
-[cols="10%, 50%, 40%"]
+[cols="10%, 45%, 45%"]
 .Student Academics commands of TeaPet.
 |===
 |*Command*|*Format*|*Expected outcome*
