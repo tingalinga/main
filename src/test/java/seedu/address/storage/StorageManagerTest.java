@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
 
 import java.nio.file.Path;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.EventHistory;
+import seedu.address.model.event.ReadOnlyEvents;
 import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.TeaPet;
 import seedu.address.storage.academics.JsonAcademicsStorage;
@@ -91,5 +94,34 @@ public class StorageManagerTest {
     public void getAcademicsFilePath() {
         assertNotNull(storageManager.getAcademicsFilePath());
     }
+
+    @Test
+    public void getEventHistoryFilePath() {
+        assertNotNull(storageManager.getEventHistoryFilePath());
+    }
+
+    @Test
+    public void getAdminFilePath() {
+        assertNotNull(storageManager.getAdminFilePath());
+    }
+
+    @Test
+    public void getNotesManagerFilePath() {
+        assertNotNull(storageManager.getNotesManagerFilePath());
+    }
+
+    @Test
+    public void eventRecordReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonEventStorage} class.
+         */
+        EventHistory original = getTypicalEventHistory();
+        storageManager.saveEvents(original);
+        ReadOnlyEvents retrieved = storageManager.readEvents().get();
+        assertEquals(original, new EventHistory(retrieved));
+    }
+
+
 
 }

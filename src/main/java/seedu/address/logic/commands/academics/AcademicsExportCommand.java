@@ -24,4 +24,10 @@ public class AcademicsExportCommand extends AcademicsCommand {
     public CommandResult execute(Model model) {
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AcademicsExportCommand); // instanceof handles nulls
+    }
 }

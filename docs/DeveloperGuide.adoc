@@ -200,6 +200,9 @@ image::DeleteSequenceDiagram.png[]
 
 NOTE: The lifeline for `StudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+//@@author jerrenss
+//tag::design-doc[]
+
 [[Design-Model]]
 === Model component
 
@@ -239,6 +242,8 @@ The `Storage` component,
 === Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
+//end::design-doc[]
+
 
 == Implementation
 
@@ -605,6 +610,9 @@ The sequence diagram for `admin fetch` command is similar to that of `admin dele
 //end::admin[]
 
 '''
+//@@author tingalinga
+//tag::academics[]
+
 
 === Student Academics feature
 This student academics feature stores and tracks the class' academics progress.
@@ -814,6 +822,12 @@ studentAcademics.csv in the data folder of the current directory
 
 '''
 
+//end::academics[]
+
+
+//@@author jerrenss
+//tag::notes[]
+
 === Notes feature
 TeaPet application comes with an in-built notes feature, which serves to allow Teachers to record administrative or behavioural
 information of his/her students. Each note is tagged to a specific student and acts as a lightweight, digital 'Post It'.
@@ -832,29 +846,35 @@ image::developerguide/notes/NotesClassDiagram.png[]
 
 ==== Structure of Notes Class
 Notes object is made up of 4 fields. They are namely: Student Name, Content, Priority and DateTime. The class diagram below
-depicts the structure of the Notes Model Component.
+depicts the structure of the Notes in the Model Component. Please refer to <<Design-Model>> for the higher-level architecture.
+
 
 .Class Diagram for Notes Model Component
 image::developerguide/notes/NotesModelClassDiagram.png[]
 
 ==== Add Note
-The following is a detailed elaboration how `NotesAddCommand` operates.
+The following is a detailed elaboration of how `NotesAddCommand` operates.
 
 [NOTE]
 Format for adding a Note is `notes add name/STUDENT_NAME cont/CONTENT pr/PRIORITY`.
 [NOTE]
-Priority can only be either LOW, MEDIUM or HIGH, case-insensitive.
+Priority can only be either LOW, MEDIUM or HIGH, case-insensitive. Student must be present in the class list for him/her to be
+tagged in a note.
 
-*Step 1*. The `NotesAddCommand#execute(Model model)` method is executed which takes in a necessary student name, content and priority as input
+*Step 1*. The `NotesAddCommand#execute(Model model)` method is executed which takes in a necessary student name, content and priority as input.
 
-*Step 2*. The note is then searched through the `UniqueNotesList#notes` list using the
+*Step 2*. The note is then searched through the `UniqueStudentList#students` list using the
+ `Model#hasStudentName(String student)` method to check if the specified student exists. If the student does not exist, the `CommandException` will be thrown
+with the invalid student error message.
+
+*Step 3*. The note is then searched through the `UniqueNotesList#notes` list using the
  `Model#hasNote(Notes note)` method to check if the note already exists. If the note exists, the `CommandException` will be thrown
 with the duplicate note error message.
 
-*Step 3*. The method `Model#addNote(Notes note)` will then be called to add the note. The command box will be reflected with
+*Step 4*. The method `Model#addNote(Notes note)` will then be called to add the note. The command box will be reflected with
 the `NotesAddCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
 [NOTE]
-If the format or wording of `NotesAddCommand` contains error(s), the behaviour of NotesManager will be similar to step 2, where either a unknown command
+If the format or wording of `NotesAddCommand` contains error(s), the behaviour of NotesManager will be similar to step 2 and 3, where either a unknown command
 or wrong format error message will be displayed.
 
 
@@ -873,30 +893,36 @@ Format for adding a Note is `notes edit INDEX [name/UPDATED_STUDENT_NAME] [cont/
 [NOTE]
 Priority can only be either LOW, MEDIUM or HIGH, case-insensitive. Enclosing [] braces indicate optional fields.
 At least one of the three fields must be present.
+[NOTE]
+Updated student must be present in the class list for him/her to be tagged in a note.
 
 *Step 1*. The `NotesEditCommand#execute(Model model)` method is executed which edit attributes of the selected note. The method
 checks if the `index` defined when instantiating `NotesEditCommand(Index index, EditNotesDecriptor editNotesDescriptor)` is
 valid. Since it is optional for users to input fields, the fields not entered will reuse the existing values that are currently stored and defined
 in the `Notes` object.
 
-*Step 2*. A new `Notes` with the updated values is created and it is then searched  through the `UniqueNotesList#notes` list using the
+*Step 2*. The note is then searched through the `UniqueStudentList#students` list using the
+ `Model#hasStudentName(String student)` method to check if the specified student exists. If the student does not exist, the `CommandException` will be thrown
+with the invalid student error message.
+
+*Step 3*. A new `Notes` with the updated values is created and it is then searched  through the `UniqueNotesList#notes` list using the
  `Model#hasNote(Notes note)` method to check if the note already exists. If the note exists, the `CommandException` will be thrown
 with the duplicate note error message.
 
-*Step 3*. The newly created `Notes` will replace the old one through the `Model#setNote(Notes toBeChanged, Notes editedNote`
+*Step 4*. The newly created `Notes` will replace the old one through the `Model#setNote(Notes toBeChanged, Notes editedNote`
 method.
 
-*Step 4*. The command box will be reflected with the `NotesEditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
+*Step 5*. The command box will be reflected with the `NotesEditCommand#MESSAGE_SUCCESS` constant and a new `CommandResult` will be returned with the message.
 
 
 ==== Delete Note
 
 The following is a detailed explanation of the operations which `NotesDeleteCommand` performs.
 
-1. After the successful parsing of user input, the `NotesDeleteCommand#execute(Model model)` method is called which checks if the `Index`
+1. After the successful parsing of user input, the `NotesDeleteCommand#execute(Model model)` method is called which checks if the `index`
 is defined as an argument when instantiating the `NotesDeleteCommand(Index index)`  constructor. +
 [NOTE]
-The `Index` must be within the bounds of the student list. +
+The `Index` must be within the bounds of the list of notes. +
 
 2. The `Notes` at the specified `Index` is then removed from the `UniqueNotesList#notes` observable list using the
 `Model#deleteNote(Index index)` method.
@@ -915,7 +941,7 @@ The following is a detailed explanation of the operations which `NotesFilterComm
 `NotesContainsKeywordsPredicate(keywords)` is defined as part of the argument when instantiating the
 `NotesFilterCommand(NotesContainsKeywordsPredicate predicate)` constructor.
 
-2. The `Notes` is then searched through the `UniqueNotesList#notes` list... ...
+2. The `Notes` objects are then searched through the `UniqueNotesList#notes` list, checking for presence of any keyword given by the user.
 
 3. The existing `UniqueNotesList#internalList` is then cleared and updated using the `Model#updateFilteredNotesList(Predicate predicate)`
 method.
@@ -935,20 +961,23 @@ be returned with the success message.
 the current directory.
 
 ===== Design Considerations
-* Current Implementation: Intuitive, simple syntax and user-friendly
+* *Current Implementation*: Intuitive, simple syntax and user-friendly
 - Pros: It is easy for the Teacher to use the feature.
 - Cons: Not as powerful and less utility for advanced users.
 
-* Alternatives Considered: Many additional fields including special tags, reminders, etc.
+* *Alternatives Considered*: Many additional fields including special tags, reminders, etc.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
+<<<<<<< HEAD
 '''
+//end::notes[]
 
-=== Personal Schedule feature
 
 //@@author garysyndromes
 //tag::personal-schedule-features[]
+
+=== Personal Schedule feature
 
 
 The Personal Schedule feature enables teachers to record down their events in their personal scheduler, which
@@ -1565,6 +1594,7 @@ Use case ends.
 
 //@@author tingalinga
 //tag::academics-uc[]
+
 [discrete]
 === Use case: UC09 - Display students' academic progress
 
@@ -1744,7 +1774,7 @@ Use case ends.
 
 *MSS*
 
-1. User enters command, together with a student and note's content.
+1. User enters command, together with a student name, note's content and priority level.
 2. TeaPet displays feedback that a new note is now tagged to the student specified.
 3. TeaPet's note panel will display the updated list of notes.
 +
@@ -1892,6 +1922,9 @@ Use case ends.
 [discrete]
 //end::uc-simon2[]
 
+//@@author tingalinga
+//tag::non-functional-requirements[]
+
 [appendix]
 == Non Functional Requirements
 
@@ -1903,6 +1936,8 @@ Use case ends.
 .  The teacher should be able to familiarise himself/herself within half an hour of usage.
 
 _{More to be added}_
+
+//end::non-functional-requirements[]
 
 [appendix]
 == Glossary
@@ -2241,7 +2276,9 @@ Expected: An .ics file with name "mySchedule.ics" will be created in the data fo
 
 //end::manual-test-personal-schedule[]
 
-=== Notes
+//@@author jerrenss
+//tag::manual-test-notes[]
+=== Manual Test: Notes
 
 [NOTE]
 In order to add or edit a specific note belonging to a student, the student must first be in the class-list. In order for optimal
@@ -2315,3 +2352,4 @@ Expected: A file named studentNotes.csv should be created in the data folder of 
 
 .. Test case: `notes export 3` +
 Expected: An error message is shown as there should be no arguments passed into notes export command.
+//end::manual-test-notes[]
