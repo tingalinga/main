@@ -1003,7 +1003,8 @@ The Personal Schedule feature allows the user to track and manage their events. 
 
 
 ==== Class Overview
-
+//@@author TheElectricBlender
+//tag::class-overview-scheduler[]
 The class diagram below shows the structure of Event classes in the `Model`. Notice how the `EventHistory` class depends
 on the `Event` class in its constructor but only has a `VEvent` attribute. This is because an `Event` object will always be
 mapped to a `VEvent` within the `EventHistory` class. Some methods of `EventHistory` has been omitted for brevity as they are
@@ -1011,8 +1012,8 @@ mostly `VEvent` based, which then again highlights that the interactions with th
 using the `VEvent` type class. Only the `Storage` component works with `Event` type class.
 
 .Class Diagram for Schedule
-image::schedule_class_diagram.png[]
-
+image::event/schedule_class_diagram.png[]
+//end::class-overview-scheduler[]
 ==== Schedule Display Command
 
 ===== Implementation
@@ -1077,7 +1078,7 @@ a new CommandResult will be returned with this same formatted message.
 The following activity diagram summarizes what happens when a user executes the `schedule add` command:
 
 .Activity Diagram for ScheduleAddCommand
-image::ScheduleAddActivityDiagram.png[]
+image::event/ScheduleAddActivityDiagram.png[]
 
 ===== Design Considerations
 ===== Aspect: Command Clarity
@@ -1165,12 +1166,19 @@ using the Model#delete(Index index) method.
 *Step 4*: The command box will be reflected with the success message and a new
 `CommandResult` will be returned with the message.
 
+
+.Sequence Diagram for EventDeleteCommand
+image::event/sequence_diagram_event_delete_command.png[]
+
+
 [[indexGetCommandSection]]
 ==== Schedule Index Command
 
 ===== Implementation
 The following is a detailed explanation of the operations which `EventIndexCommand` performs.
-
+This command returns the index of the Event(s) with same EVENT_DESCRIPTION as the `eventName` input from the user.
+If there are no Events with the same EVENT_DESCRIPTION, the Event with the most similar EVEnT_DESCRIPTION, calculated
+using the Levenshtein Distance formula, will then be suggested.
 
 NOTE: Format for getting the index of an event in the schedule is `schedule indexGet/EVENT_DESCRIPTION`.
 
@@ -1201,6 +1209,9 @@ will then format the message according to whether there the list of Events is em
 *Step 4*: The command box will be reflected with the message and a new
 `CommandResult` will be returned with the message.
 
+.Activity Diagram for EventIndexCommand
+image::event/EventIndexCommandActivityDiagram.png[]
+
 
 
 ==== Schedule IndexAll Command
@@ -1220,6 +1231,10 @@ will be returned.
 *Step 3*: The success message is generated using EventIndexAllCommand#generateResultMessage(List<Pair<Index, VEvent>> pairVEventIndexList)
 and a new `CommandResult` will be returned with this message.
 
+
+.Activity Diagram for EventIndexAllCommand
+image::event/EventIndexAllActivityDiagram.png[]
+
 ==== Schedule View Command
 
 ===== Implementation
@@ -1238,6 +1253,10 @@ with `EventViewCommand#scheduleViewMode` and `EventViewCommand#targetViewDateTim
 
 *Step 2*: The success message is generated using EventViewCommand#generateSuccessMessage(EventScheduleView eventScheduleViewMode, LocalDateTime targetViewDate)
 and a new `CommandResult` will be returned with this message.
+
+.Activity Diagram for EventViewCommand
+image::event/EventViewCommandActivityDiagram.png[]
+
 
 ==== Schedule Export Command
 

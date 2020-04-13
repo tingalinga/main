@@ -16,6 +16,8 @@ endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-W12-2/main/releases
 
 By: `CS2103T-W12-2`      Since: `Feb 2020`      Licence: `MIT`
+
+//@@author garysyndromes
 //tag::intro[]
 
 == Introduction
@@ -825,6 +827,7 @@ TeaPet application.
 '''
 //end::Notes[]
 
+//@@author garysyndromes
 //@@author TheElectricBlender
 //tag::scheduler-A[]
 
@@ -896,7 +899,8 @@ image::schedule_add.png[width="790"]
 [[schedulerA]]
 
 //end::scheduler-A[]
-
+//@@author garysyndromes
+//tag::schedule-main[]
 
 ==== Editing an event in schedule: `schedule edit` [Done by Gary Lim]
 
@@ -1056,6 +1060,7 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
 
 '''
 
+//end::schedule-main[]
 
 
 
