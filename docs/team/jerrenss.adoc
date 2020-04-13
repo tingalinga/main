@@ -37,9 +37,8 @@ is carefully chosen to create a good blend. The tabs at the top of the applicati
 in use, such that the user is clear on which feature he/she is on.
 
 * *Minor enhancement*:
-** Created a `student default` command, which displays only essential personal information of all students in the Main Display.
 ** Created a `student detailed` command, which displays all information of every student in the Main Display, including
-personal, administrative and academic information.
+personal and administrative. It serves as a toggle between default and detailed display of the student list.
 
 * *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=jerrenss&sort=groupTitle&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[Functional and Test code]]
 
@@ -53,13 +52,13 @@ personal, administrative and academic information.
 
 ** Enhancements to existing features:
 *** Updated the GUI color scheme (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/202[#202])
-*** Updated the GUI layout (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/201[#201] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/204[#204])
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/230[#230]
+*** Updated the GUI layout (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/201[#201] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/204[#204] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/208[#208] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/209[#209] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/210[#210])
+*** Did cosmetic tweaks to existing contents of the User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-2/main/pull/226[#226] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/230[#230])
 ** Documentation:
-*** Updated User Guide to include Notes Feature
-*** Updated User Guide with the Installation details of TeaPet, as well as help on how to navigate the User Interface.
-*** Updated Developer Guide to include Notes Feature
-*** Updated Developer Guide to include "student detailed" and "student default" commands.
+*** Updated User Guide to include Notes Feature (Pull requests: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/226[#226])
+*** Updated User Guide with the Installation details of TeaPet, as well as help on how to navigate the User Interface. (Pull requests: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/241[#241])
+*** Updated Developer Guide to include Notes Feature (Pull requests: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/247[#247] https://github.com/AY1920S2-CS2103T-W12-2/main/pull/268[#268])
+*** Updated Developer Guide to include revamped architecture component diagrams. (Pull requests: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/267[#267])
 
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-2/main/pull/66[#66],
