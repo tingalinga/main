@@ -18,6 +18,7 @@ Assessment *--> AssessmentDescription
 Assessment *--> AssessmentType
 Assessment *--> AssessmentDate
 Assessment *--> AssessmentSubmissionTracker
+}
 
 Package Submission {
 Class Submission
@@ -27,6 +28,9 @@ Submission *--> SubmissionSubmitted
 Submission *--> SubmissionMarked
 Submission *--> SubmissionScore
 }
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> "1"  Academics
 
 Academics *--> "1" UniqueAssessmentList
 UniqueAssessmentList o--> "*" Assessment

@@ -86,8 +86,8 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
      * {@code ArgumentMultimap}.
      */
     private AcademicsAddCommand addCommand(ArgumentMultimap argMultimap) throws ParseException, CommandException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_ASSESSMENT_DESCRIPTION, PREFIX_ASSESSMENT_DATE)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_ASSESSMENT_DESCRIPTION, PREFIX_ASSESSMENT_TYPE,
+                PREFIX_ASSESSMENT_DATE) || !argMultimap.getPreamble(PREFIX_ADD.getPrefix()).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AcademicsAddCommand.MESSAGE_USAGE));
         }
@@ -151,7 +151,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DESCRIPTION).isPresent()) {
             if (argMultimap.getValueOptional(PREFIX_ASSESSMENT_DESCRIPTION).get().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        AcademicsAddCommand.MESSAGE_USAGE));
+                        AcademicsEditCommand.MESSAGE_USAGE));
             }
             editAssessmentDescriptor.setDescription(argMultimap.getValue(PREFIX_ASSESSMENT_DESCRIPTION).get());
         }
@@ -163,6 +163,10 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
                 } else if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
                     type = "exam";
                 } else {
+                    throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
+                }
+            } else {
+                if (!type.equals("homework") && !type.equals("exam")) {
                     throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_TYPE);
                 }
             }

@@ -42,6 +42,7 @@ Class Email
 Class Name
 Class Phone
 Class Temperature
+Class Attendance
 Class NextOfKin
 NextOfKin *--> NextOfKinName
 NextOfKin *---> NextOfKinRelationship
@@ -78,6 +79,7 @@ Student *--> Email
 Student *--> Address
 Student *--> "*" Tag
 Student *--> Temperature
+Student *--> Attendance
 Student *--> NextOfKin
 
 

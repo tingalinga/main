@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.student;
+package seedu.address.logic.commands.academics;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,9 +15,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.apache.commons.math3.util.Pair;
-
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
@@ -26,6 +26,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.academics.Academics;
 import seedu.address.model.academics.Assessment;
 import seedu.address.model.academics.ReadOnlyAcademics;
 import seedu.address.model.admin.Date;
@@ -37,59 +38,59 @@ import seedu.address.model.notes.Notes;
 import seedu.address.model.notes.ReadOnlyNotes;
 import seedu.address.model.student.ReadOnlyTeaPet;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.TeaPet;
-import seedu.address.testutil.student.StudentBuilder;
+import seedu.address.testutil.academics.AssessmentBuilder;
 
-public class StudentAddCommandTest {
+public class AcademicsAddCommandTest {
 
     @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new StudentAddCommand(null));
+    public void constructor_nullAssessment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AcademicsAddCommand(null));
     }
 
     @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
+    public void execute_assessmentAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingAssessmentAdded modelStub = new ModelStubAcceptingAssessmentAdded();
+        Assessment validAssessment = new AssessmentBuilder().build();
 
-        CommandResult commandResult = new StudentAddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new AcademicsAddCommand(validAssessment).execute(modelStub);
 
-        assertEquals(String.format(StudentAddCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
+        assertEquals(String.format(AcademicsAddCommand.MESSAGE_SUCCESS, validAssessment),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validAssessment), modelStub.assessmentsAdded);
     }
 
     @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        StudentAddCommand addCommand = new StudentAddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
+    public void execute_duplicateAssessment_throwsCommandException() {
+        Assessment validAssessment = new AssessmentBuilder().build();
+        AcademicsAddCommand addCommand = new AcademicsAddCommand(validAssessment);
+        ModelStub modelStub = new ModelStubWithAssessment(validAssessment);
 
-        assertThrows(CommandException.class, StudentAddCommand.MESSAGE_DUPLICATE_STUDENT, () ->
+        assertThrows(CommandException.class, AcademicsAddCommand.MESSAGE_DUPLICATE_ASSESSMENT, () ->
                 addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").build();
-        Student bob = new StudentBuilder().withName("Bob").build();
-        StudentAddCommand addAliceCommand = new StudentAddCommand(alice);
-        StudentAddCommand addBobCommand = new StudentAddCommand(bob);
+        Assessment scienceHomework = new AssessmentBuilder().withDescription("Science Homework").build();
+        Assessment chineseHomework = new AssessmentBuilder().withDescription("Chinese Homework").build();
+        AcademicsAddCommand addScienceHomeworkCommand = new AcademicsAddCommand(scienceHomework);
+        AcademicsAddCommand addChineseHomeworkCommand = new AcademicsAddCommand(chineseHomework);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addScienceHomeworkCommand.equals(addScienceHomeworkCommand));
 
         // same values -> returns true
-        StudentAddCommand addAliceCommandCopy = new StudentAddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AcademicsAddCommand addScienceHomeworkCommandCopy = new AcademicsAddCommand(scienceHomework);
+        assertTrue(addScienceHomeworkCommand.equals(addScienceHomeworkCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addScienceHomeworkCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addScienceHomeworkCommand.equals(null));
 
         // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addScienceHomeworkCommand.equals(addChineseHomeworkCommand));
     }
 
     /**
@@ -392,6 +393,11 @@ public class StudentAddCommandTest {
         }
 
         @Override
+        public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setEventHistory(ReadOnlyEvents events) {
             throw new AssertionError("This method should not be called.");
         }
@@ -435,6 +441,7 @@ public class StudentAddCommandTest {
         public void setEventScheduleView(EventScheduleView eventScheduleView) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public List<Pair<Index, VEvent>> searchVEvents(String eventName) {
             throw new AssertionError("This method should not be called.");
@@ -444,46 +451,24 @@ public class StudentAddCommandTest {
         public Pair<Index, VEvent> searchMostSimilarVEventName(String eventName) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public List<Pair<Index, VEvent>> getAllVEventsWithIndex() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that contains a single assessment.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    private class ModelStubWithAssessment extends ModelStub {
+        private final Assessment assessment;
+        private final ArrayList<Student> studentsAdded = new ArrayList<>();
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithAssessment(Assessment assessment) {
+            requireNonNull(assessment);
+            this.assessment = assessment;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
+        public void addStudent(Student student) {
             requireNonNull(student);
-            return this.student.isSameStudent(student);
-        }
-
-        @Override
-        public boolean hasStudentName(String student) {
-            return this.student.getName().fullName.equals(student);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the student being added.
-     */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::isSameStudent);
+            studentsAdded.add(student);
         }
 
         @Override
@@ -499,14 +484,64 @@ public class StudentAddCommandTest {
         }
 
         @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            return FXCollections.observableList(studentsAdded);
+        }
+
+        @Override
+        public boolean hasAssessment(Assessment assessment) {
+            requireNonNull(assessment);
+            return this.assessment.isSameAssessment(assessment);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the student being added.
+     */
+    private class ModelStubAcceptingAssessmentAdded extends ModelStub {
+        final ArrayList<Assessment> assessmentsAdded = new ArrayList<>();
+        final ArrayList<Student> studentsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasAssessment(Assessment assessment) {
+            requireNonNull(assessment);
+            return assessmentsAdded.stream().anyMatch(assessment::isSameAssessment);
+        }
+
+        @Override
+        public void addAssessment(Assessment assessment) {
+            requireNonNull(assessment);
+            assessmentsAdded.add(assessment);
+        }
+
+        @Override
         public void addStudent(Student student) {
             requireNonNull(student);
             studentsAdded.add(student);
         }
 
         @Override
-        public ReadOnlyTeaPet getTeaPet() {
-            return new TeaPet();
+        public boolean hasStudentName(String student) {
+            requireNonNull(student);
+            boolean contains = false;
+            for (Student stu : studentsAdded) {
+                if (stu.getName().fullName.equals(student)) {
+                    contains = true;
+                }
+            }
+            return contains;
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            return FXCollections.observableList(studentsAdded);
+        }
+
+        @Override
+        public ReadOnlyAcademics getAcademics() {
+            return new Academics();
         }
     }
+
 }
+
