@@ -64,11 +64,11 @@ public class TypicalAssessments {
      * Returns an {@code Academics} with all the typical assessments.
      */
     public static Academics getTypicalAcademics() {
-        Academics acad = new Academics();
+        Academics academics = new Academics();
         for (Assessment assessment : getTypicalAssessments()) {
-            acad.addAssessment(assessment);
+            academics.addAssessment(assessment);
         }
-        return acad;
+        return academics;
     }
 
     public static List<Assessment> getTypicalAssessments() {

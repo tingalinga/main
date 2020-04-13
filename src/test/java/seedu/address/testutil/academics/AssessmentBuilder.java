@@ -11,7 +11,7 @@ import seedu.address.model.academics.Submission;
  */
 public class AssessmentBuilder {
 
-    public static final String DEFAULT_DESCRIPTION = "Science Homework";
+    public static final String DEFAULT_DESCRIPTION = "Science Digestive Homework";
     public static final String DEFAULT_TYPE = "homework";
     public static final String DEFAULT_DATE = "2020-03-04";
 

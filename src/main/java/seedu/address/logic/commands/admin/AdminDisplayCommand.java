@@ -13,10 +13,10 @@ public class AdminDisplayCommand extends AdminCommand {
 
     public static final String MESSAGE_SUCCESS = "The Student list now displays last updated ADMIN details.\n"
                                                   + "[HELP ON ADMIN COMMANDS]\n"
-                                                  + "SAVE DATE: admin save\n"
-                                                  + "SHOW DATES: admin dates\n"
-                                                  + "DELETE DATE: admin delete YYYY-MM-DD\n"
-                                                  + "FETCH DATE: admin fetch YYYY-MM-DD";
+                                                  + "1. Save date: admin save\n"
+                                                  + "2. Show dates: admin dates\n"
+                                                  + "3. Delete date: admin delete YYYY-MM-DD\n"
+                                                  + "4. Fetch date: admin fetch YYYY-MM-DD";
 
 
     /**

@@ -39,6 +39,8 @@ and have quick fingers? If so, then TeaPet is definitely for you!
 
 Explore this User Guide to find out more. Enjoy!
 
+//@@author TheElectricBlender
+//tag::navigate[]
 === Navigating the User Guide
 The aim of this User Guide is to provide you with all the information you need to fully utilise TeaPet. We understand the pains of using a
 Command Line Interface (CLI) program and have bested our efforts into ensuring a very readable guide on how to use our program.
@@ -66,7 +68,8 @@ Format* <|*Meaning*
 2+.^a|  TIP: This symbol indicates tips.
 
 |===
-//end::intro[]
+
+//end::navigate[]
 
 [[QuickStart]]
 == Quick Start
@@ -163,6 +166,9 @@ get started with them.
     Most commands have multiple Prefix/Field combinations to fill.
     Prefix/Field combinations with an enclosing [] refers to it being OPTIONAL.
 
+
+//@@author TheElectricBlender
+//tag::particulars[]
 [[particulars]]
 === Student Particulars [Done by Simon Lam]
 TeaPet records down personal particulars of students such as address, contact number and Next of Kin (NOK) particulars.
@@ -179,11 +185,11 @@ images can be found <<update-profile,here>>. TeaPet then displays a summarised l
 
     The student list now displays DEFAULT details.
     [HELP ON STUDENT COMMANDS]
-    DISPLAY DETAILED LIST: student detailed
-    ADD STUDENT: name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
-    EDIT STUDENT: student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
-    DELETE STUDENT: student delete INDEX
-    FIND STUDENT: student find NAME
+    1. Display detailed list: student detailed
+    2. Add student: student add name/NAME [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
+    3. Edit student: student edit INDEX [name/NAME] [phone/PHONE] [email/EMAIL] [adr/ADDRESS] [temp/TEMPERATURE] [att/ATTENDANCE] [nok/NAME-RELATIONSHIP-PHONE] [tag/TAG]
+    4. Delete student: student delete INDEX
+    5. Find student: student find NAME
 
 .After using `student` command
 image::add_student.png[width="790]
@@ -298,6 +304,8 @@ Finds the student information from the student list and displays it.
 
     1 students listed!
 
+//end::particulars[]
+
 //@@author Yuanyu97
 //tag::admin[]
 '''
@@ -315,7 +323,12 @@ Shows the last updated administrative information in the student list.
 
 *Expected Outcome:*
 
-    The Student list now displays last updated ADMIN details
+    The Student list now displays last updated ADMIN details.
+    [HELP ON ADMIN COMMANDS]
+    1. Save date: admin save
+    2. Show dates: admin dates
+    3. Delete date: admin delete YYYY-MM-DD
+    4. Fetch date: admin fetch YYYY-MM-DD
 
 .After using `admin` command
 image::adminDisplay.png[width="790]
@@ -394,6 +407,9 @@ Date should be written in *YYYY-MM-DD* format. If date provided is not in data b
     Admin list has been deleted for Apr 8 2020
 
 //end::admin[]
+
+
+
 '''
 [[acads]]
 === Student Academics [Done by Lee Hui Ting]
@@ -413,15 +429,16 @@ Shows all assessments in the academics list and a guide for academic commands.
 
     The Academics tracks all your assessments and student submissions.
     [HELP ON ACADEMICS COMMANDS]
-    add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
-    edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
-    delete assessment: academics delete INDEX
-    submit assessment: academics submit INDEX [stu/STUDENT_NAME]...
-    mark assessment: academics mark INDEX> [stu/STUDENT_NAME-SCORE]...
-    filter assessment BY TYPE: academics ASSESSMENT_TYPE (only Homework or Exam)
-    view academics report: academics report
-    export academics report: academics export
+    1. Add assessment: academics add desc/ASSESSMENT_DESCRIPTION type/TYPE date/DATE
+    2. Edit assessment: academics edit INDEX [desc/ASSESSMENT_DESCRIPTION] [type/TYPE] [date/DATE]
+    3. Delete assessment: academics delete INDEX
+    4. Submit assessment: academics submit INDEX [stu/STUDENT_NAME]...
+    5. Mark assessment: academics mark INDEX [stu/STUDENT_NAME-SCORE]...
+    6. Filter assessment BY TYPE: academics ASSESSMENT_TYPE (only homework or exam)
+    7. View academics report: academics report
+    8. Export academics report: academics export
     Type the following commands for more info!
+
 
 .After using the `academics` command
 image::academics-view.png[width="790]
@@ -780,8 +797,9 @@ TeaPet application.
    Notes are exported to studentNotes.csv in the data folder
 
 '''
-
-[[scheduler]]
+//@@author TheElectricBlender
+//tag::schedulerA[]
+[[schedulerA]]
 === Personal Scheduler [Done by Simon Lam and Gary Lim]
 TeaPet's Personal Scheduler allows you to record down your events for the week, which will be
 sorted according to date and time. You will then be able to easily view your schedule as you need it.
@@ -805,6 +823,7 @@ Displays your schedule in this current week.
     change view mode of schedule: schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD
     export schedule: schedule export
     Type the following commands for more info!
+
 
 .After using `schedule` command
 image::display_schedule.png[width="790"]
@@ -838,12 +857,15 @@ Example:
 
 * *Non-Recurring Event* `schedule add eventName/Teachers Meeting startDateTime/2020-04-02T08:00
                          endDateTime/2020-04-07T10:00 recur/none color/21`
+
 Creates an event in the schedule with the description "Teachers Meeting" from "2nd Apr 2020, 0800" to "7th Apr 2020, 1000" with "no recurrence"
 and a color group of "21".
 
 .Adding an event to the schedule
 image::schedule_add.png[width="790"]
 
+[[schedulerA]]
+//end::schedulerA[]
 
 
 ==== Editing an event in schedule: `schedule edit` [Done by Gary Lim]
@@ -1001,8 +1023,12 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
 
 '''
 
-=== Additional Features [Done by Simon Lam]
 
+
+
+//@@author TheElectricBlender
+//tag::additional-features[]
+=== Additional Features [Done by Simon Lam]
 //tag::update-profile[]
 [[update-profile]]
 ==== Update Profile Picture
@@ -1061,7 +1087,9 @@ press your `F1` key to bring up this user guide!
 .Displayed help window
 image::help_window.png[width="790]
 
+[[additional-features]]
 
+//end::additional-features[]
 
 [[CommandSummary]]
 == Command Summary
@@ -1083,8 +1111,10 @@ Here are the default commands available for use. They do not require prefixes.
 |`schedule`|`schedule`|Displays your personal schedule
 
 |===
+
 //@@author Yuanyu97
 //tag::commands[]
+
 === Student Particulars Commands
 Here are the commands to manage students. They require the prefix `student`.
 
@@ -1102,6 +1132,7 @@ Here are the commands to manage students. They require the prefix `student`.
 |`student find`|`student find KEYWORD`|Searches through the class list and filter students whose names have the
 specified KEYWORD
 |===
+[[particulars-summary]]
 
 === Student Administration Commands
 Here are the commands to manage students. They require the prefix `admin`.
@@ -1134,6 +1165,7 @@ Here are the commands to manage students. They require the prefix `academics`.
 |`academics export`|`academics export`|Exports the academics report into a .csv file
 |===
 
+
 === Notes Commands
 Here are the commands to manage students. They require the prefix `notes`.
 
@@ -1155,7 +1187,8 @@ Here are the commands to manage students. They require the prefix `schedule`.
 .Personal Scheduler commands of TeaPet
 |===
 |*Command*|*Format*|*Expected outcome*
-|`scheduele add`|`schedule add eventName/EVENT_NAME startDateTime/START_DATE_TIME endDateTime/END_DATE_TIME recur/RECUR color/COLOR`|Adds an event into the scheduler.
+|`scheduele add`|`schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`|Adds an event into the scheduler.
+
 |===
 
 //@@author Yuanyu97

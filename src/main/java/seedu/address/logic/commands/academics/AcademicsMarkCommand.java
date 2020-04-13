@@ -93,6 +93,7 @@ public class AcademicsMarkCommand extends AcademicsCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AcademicsMarkCommand); // instanceof handles nulls
+                || (other instanceof AcademicsMarkCommand)
+                && index.equals(((AcademicsMarkCommand) other).index); // instanceof handles nulls
     }
 }

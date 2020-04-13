@@ -236,6 +236,8 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+//@@author TheElectricBlender
+//tag::particulars-feature[]
 === Student particulars feature
 The student particulars feature keeps track of essential student details.
 The feature comprises of commands namely,
@@ -390,14 +392,16 @@ the user expereince as the command will be too long to type.
 This feature was included in TeaPet to help teachers easily identify the students using their pictures instead of just names.
 This feature utilises the `StudentCard#updateImage` method to update the images of students.
 
+
 The feature comprises of one command namely, `DefaultStudentDisplayCommand`
 
-* Refreshes the student list to show updated images of students and displays the student list.
+* Updates the student list to show updated images of students and displays the student list.
+
 
 This is further illustrated in the following sequence diagram below.
 
 
-.Sequence Diagram for StudentRefreshCommand
+.Sequence Diagram for `DefaultStudentDisplayCommand`
 image::ImportImage.v1.png[]
 
 ===== Implementation
@@ -417,6 +421,7 @@ will be called and the student list is now visible on the `MainWindow`.
 
 The following activity diagram summarizes what happens when a user executes the `student` command:
 
+
 .Activity Diagram Import Image Feature
 image::ImportImageSequenceDiagram.png[]
 
@@ -427,7 +432,7 @@ image::ImportImageSequenceDiagram.png[]
 * *Current Implementation:*
 
 ** Current implementation of the commands follows the command word syntax, followed by the arguments necessary for execution.
-For example, `student add/edit/delete/find/refresh`.
+For example, `student add/edit/delete/find`.
 
 * *Alternatives Considered:*
 ** We considered using a whole new command, `student refresh` to solely refresh and update images of the students. However, we realised
@@ -435,6 +440,8 @@ that it would be more convenient for the user if we just add this functionality 
 both update the images and display the student list concurrently.
 
 {nbsp} +
+
+//end::particulars-feature[]
 
 //@@author Yuanyu97
 //tag::admin[]
@@ -465,6 +472,7 @@ The following is a detailed explanation of the operations which `AdminDisplayCom
 
 *Step 2*. The method `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` will then be called to update the
 filtered student list to show all current students in the student list.
+
 
 [NOTE]
 If the class list is empty, a blank page will be shown.
@@ -921,7 +929,8 @@ the current directory.
 - Pros: Powerful, many interesting features that advanced users can use.
 - Cons: It contradicts with the initial goal of the Notes feature which is to enable quick and easy note-taking.
 
-
+//@@author TheElectricBlender
+//tag::schedule-featureA[]
 === Schedule feature
 
 ==== Overview
@@ -992,7 +1001,7 @@ very similar prefixes in our other features such as name/ and date/.
 ** By doing this, users may be confused as the Academics feature, Student feature and Notes feature require name as a prefix
 as well. Furthermore, the name required here is not the name of the student but the name of the event.
 
-
+//end::schedule-featureA[]
 
 === Logging
 This section describes how TeaPet record it's logs.
@@ -1057,35 +1066,45 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |form teacher |take the attendance of my students |know who is present for my class
-
-|`* * *` |form teacher |have a schedule tracking my events |know what I need to attend/do in a day
-
-|`* * *` |form teacher |maintain of a list of students who have completed my homework |know who has not submitted my homework
-
-|`* * *` |form teacher |take down notes for student's behavior |track the behaviour of my students
-
-|`* * *` |form teacher |see the scores of my class |track the academic progress of my class
-
-|`* * *` |form teacher |add students |add new students to the class list
+|`* * *` |competent form teacher |add students |add new students to the class list
 
 |`* * *` |form teacher |delete a student |remove students that I no longer need
 
-|`* * *` |form teacher |find a student by name |locate details of students without having to go through the entire list
+|`* * *` |lazy form teacher |find a student by name |locate details of students without having to go through the entire list
 
-|`* * *` |form teacher |sort students by alphabetical order |locate a student easily
+|`* * *` |form teacher doing their job|take the attendance of my students |know who is present for my class
+
+|`* * *` |organised form teacher |have a schedule tracking my events |know what I need to attend/do in a day
+
+|`* * *` |diligent form teacher |maintain of a list of students who have completed my homework |know who has not submitted my homework
+
+|`* * *` |caring form teacher |take down notes for student's behavior |track the behaviour of my students
+
+|`* * *` |hard working form teacher |see the scores of my class |track the academic progress of my class
+
+|`* * *` |lazy form teacher |sort students by alphabetical order |locate a student easily
 
 |`* * *` |form teacher |update the details of my students |make necessary changes to my student's particulars
 
-|`* * *` |form teacher |maintain emergency contacts of my students |know who to contact in case of emergency
+|`* * *` |well prepared form teacher |maintain emergency contacts of my students |know who to contact in case of emergency
 
 |`* * *` |form teacher |be able to view the available dates in chronological order that contains administrative information of the class |know which are the available dates that I can view
 
 |`* * *` |form teacher |view the administrative information of the class on a specific date |access the required administrative information
 
+|`* *` |form teacher |be able to view my assessment list by the latest date |know which are the more urgent or overdue assessments to monitor
+
+|`* *` |form teacher |view the academic statistics of my class |know the academic progress of my students
+
+|`* *` |form teacher |set different colours to my events |see clearer what type of events I have
+
 |`* *` |form teacher |specify if a student is late or absent for class |know why my student is absent
 
-|`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+|`* *` |form teacher |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
+
+|`* *` |caring form teacher |export academic statistics into a printable file |share and discuss the student's academic progress with their parents
+
+|`* *` |caring form teacher |export behavioural notes into a printable file |share and discuss the student's behaviour with their parents
 
 |`* *` |form teacher |keep track of the sitting arrangement of the class |students who change their seats unknowingly
 
@@ -1096,6 +1115,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
+//@@author tingalinga
 //end::userstories[]
 
 [appendix]
@@ -1104,6 +1124,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is the `TeaPet` and the *Actor* is the `Teacher`, unless specified otherwise)
 
 [discrete]
+//@@author TheElectricBlender
+//tag::uc-simon[]
 === Use case: UC01 - Add student
 
 *MSS*
@@ -1125,7 +1147,7 @@ Use case ends.
 Use case ends.
 +
 [none]
-* 1b. Particulars are invalid.
+* 1b. Student particulars keyed in by user are invalid.
 +
 [none]
 ** 1b1. TeaPet shows an error message.
@@ -1154,7 +1176,7 @@ Use case ends.
 Use case ends.
 +
 [none]
-* 1b. Particulars are invalid.
+* 1b. Student particulars keyed in by user are invalid.
 +
 [none]
 ** 1b1. TeaPet shows an error message.
@@ -1175,7 +1197,7 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. Student name entered is invalid.
+* 1a. Student index entered by user is invalid.
 +
 [none]
 ** 1a1. TeaPet shows an error message.
@@ -1183,28 +1205,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC04 - Add event
-
-*MSS*
-
-1. User keys in an event.
-2. TeaPet adds the event to the schedule.
-3. TeaPet feedback the event has been added.
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 1a. Event entered is invalid.
-+
-[none]
-** 1a1. TeaPet shows an error message.
-+
-Use case ends.
-
-[discrete]
-=== Use case: UC05 - Display Schedule
+=== Use case: UC04 - Display Schedule
 
 *MSS*
 
@@ -1224,11 +1225,11 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC06 - Display default class list.
+=== Use case: UC05 - Display student class list.
 
 *MSS*
 
-1. User enters the command to display the default version of the class list.
+1. User enters the command to display the class list.
 2. TeaPet displays the class list with the students' tags, mobile number, email, and notes.
 +
 Use case ends.
@@ -1244,9 +1245,11 @@ Use case ends.
 Use case ends.
 
 [discrete]
+//end::uc-simon[]
 //@@author Yuanyu97
 //tag::usecases[]
-=== Use case: UC07 - Display admin class list.
+=== Use case: UC06 - Display admin class list.
+
 
 *MSS*
 
@@ -1266,7 +1269,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC08 - Deleting a date from the list of dates.
+=== Use case: UC07 - Deleting a date from the list of dates.
 
 *MSS*
 
@@ -1312,7 +1315,7 @@ Use case ends.
 Use case ends.
 //end::usecases[]
 [discrete]
-=== Use case: UC09 - Display detailed class list.
+=== Use case: UC08 - Display detailed class list.
 
 *MSS*
 
@@ -1331,8 +1334,10 @@ Use case ends.
 +
 Use case ends.
 
+//@@author tingalinga
+//tag::academics-uc[]
 [discrete]
-=== Use case: UC10 - Display students' academic progress
+=== Use case: UC09 - Display students' academic progress
 
 *MSS*
 
@@ -1352,7 +1357,161 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC11 - Add note for specific student
+=== Use case: UC10 - Add assessment to academics
+
+*MSS*
+
+1. User enters command, together with an assessment description, type and date.
+2. TeaPet adds the new assessment and its details to the academics list.
+3. TeaPet displays feedback to the user that a new assessment to the academics list.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Assessment is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+* 1b. Assessment details keyed by user are invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC11 - Edit assessment
+
+*MSS*
+
+1. User specifies which assessment, using its index in the academics list, and what details he/she wants to edit in the
+command line.
+2. TeaPet edits the assessment's details in the academics list as instructed by the commands.
+3. TeaPet displays feedback to the user that the assessment has been edited, followed by the changes made.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Edited assessment is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
++
+[none]
+* 1b. Assessment details keyed in by user are invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC12 - Delete assessment
+
+*MSS*
+
+1. User specifies which assessment, using the index, he/she wants to remove.
+2. TeaPet removes the assessment from the class list.
+3. TeaPet displays feedback to the user that the assessment is being removed.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Assessment index entered by user is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC13 - Submit student's work for assessment
+
+*MSS*
+
+1. User specifies which assessment and student, using index and name respectively, that he/she wants to submit work to.
+2. TeaPet submits the student's work to the assessment from the academics list.
+3. TeaPet displays feedback to the user that the following student's work has been submitted to the assessment.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Assessment index entered by user is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
++
+[none]
+* 1b. Student name is invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+Use case ends.
++
+[none]
+* 1c. Student has already submitted their work.
++
+[none]
+** 1c1. TeaPet shows an error message.
++
+Use case ends.
+
+[discrete]
+=== Use case: UC14 - Marks student's work for assessment
+
+*MSS*
+
+1. User specifies which assessment and student, using index and name respectively, that he/she wants to mark.
+2. TeaPet marks and stores the submission's score to the assessment from the academics list.
+3. TeaPet displays feedback to the user that the following student's work has been marked and stored to the assessment.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Assessment index entered by user is invalid.
++
+[none]
+** 1a1. TeaPet shows an error message.
++
+Use case ends.
++
+[none]
+* 1b. Student name is invalid.
++
+[none]
+** 1b1. TeaPet shows an error message.
++
+Use case ends.
++
+[none]
+* 1c. Student has yet to submit their work.
++
+[none]
+** 1c1. TeaPet shows an error message.
++
+Use case ends.
+//end::academics-uc[]
+
+//@@author jerrenss
+//tag::notes-uc[]
+[discrete]
+=== Use case: UC15 - Add note for specific student
 
 *MSS*
 
@@ -1378,7 +1537,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC12 - Edit note of specific student
+=== Use case: UC16 - Edit note of specific student
 
 *MSS*
 
@@ -1410,7 +1569,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
-=== Use case: UC13 - Delete note for specific student
+=== Use case: UC17 - Delete note for specific student
 
 *MSS*
 
@@ -1434,9 +1593,14 @@ Use case ends.
 ** 1b1. TeaPet shows an error message.
 +
 Use case ends.
+//end::notes-uc[]
 
+
+//@@author TheElectricBlender
+//tag::uc-simon2[]
 [discrete]
-=== Use case: UC14 - Add event into schedule
+=== Use case: UC18 - Add event into schedule
+
 
 *MSS*
 
@@ -1457,8 +1621,9 @@ Use case resumes at step 2.
 +
 Use case ends.
 
+
 [discrete]
-=== Use case: UC15 - Delete event from schedule
+=== Use case: UC19 - Delete event from schedule
 
 *Preconditions*
 1. Event exists in scheduler.
@@ -1479,8 +1644,9 @@ Use case ends.
 +
 Use case ends.
 
+
 [discrete]
-=== Use case: UC16 - Update student profile picture
+=== Use case: UC20 - Update student profile picture
 
 *Preconditions*
 1. Png files in image folder is in correct format.
@@ -1495,6 +1661,7 @@ Use case ends.
 Use case ends.
 
 [discrete]
+//end::uc-simon2[]
 
 [appendix]
 == Non Functional Requirements
@@ -1531,7 +1698,10 @@ A contact detail that is not meant to be shared with others
 
 [[schedule]] Schedule::
 TeaPet's schedule that stores all of the teacher's events
+
 [appendix]
+//@@author TheElectricBlender
+//tag::product-survey[]
 == Product Survey
 
 *TeacherKit*
@@ -1561,7 +1731,7 @@ Cons:
 Author: Simon Lam
 
 Product information can be found at <https://www.teacherkit.net/>
-
+//end::particulars-summary[]
 
 [appendix]
 == Instructions for Manual Testing
@@ -1584,25 +1754,25 @@ These instructions only provide a starting point for testers to work on; testers
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
-
+//@@author TheElectricBlender
+//tag::manual-test-particulars[]
 === Manual Test: Student particulars
 
 . Adding a student from class list with the specific name entered by user.
 
-.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-father-93259589` +
    Expected: Student John Tan Jun Wei has been added to the class list.
 
-.. Test case: `student add name/John Tan Jun Wei phone/83393129 e/john@gmail.com temp/3@.5 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/83393129 email/john@gmail.com temp/3@.5 adr/Punggol Street 22 nok/James-father-93259589` +
    Expected: No student is added. Error details shown in the status message. Status bar remains the same.
 
-.. Test case: `student add name/John Tan Jun Wei phone/839 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/839 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-father-93259589` +
    Expected: An error message is shown as the phone number of student is invalid.
 
-
-.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-dad-93259589` +
+.. Test case: `student add name/John Tan Jun Wei phone/83391329 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-dad-93259589` +
 Expected: An error message is shown as the relationship of NOK is not recognised.
 
-.. Test case: `student add name/John333 phone/83391329 email/john@gmail.com temp/36.0 addr/Punggol Street 22 nok/James-father-93259589` +
+.. Test case: `student add name/John333 phone/83391329 email/john@gmail.com temp/36.0 adr/Punggol Street 22 nok/James-father-93259589` +
 Expected: An error message is shown as the name of student cannot contain numbers.
 
 . Deleting a student from class list with the specific name entered by user.
@@ -1613,6 +1783,8 @@ Expected: An error message is shown as the name of student cannot contain number
    Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 .. Other incorrect delete commands to try: `delete`, `delete 10` (where the specified student is not a student in the class list due to the index being out of bounds.) _{give more}_ +
    Expected: Similar to test case b.
+//end::manual-test-particulars[]
+
 
 //@@author Yuanyu97
 //tag::adminmanual[]
@@ -1640,6 +1812,82 @@ Expected: An error message is shown as the name of student cannot contain number
    Expected: Status bar displays invalid command and incorrect command format message.
 //end::adminmanual[]
 
+//@@author tingalinga
+//tag::academics-manual[]
+=== Manual Test: Class Academics
+
+. Adding an assessment to academics
+
+.. Prerequisites: The scheduler already contain an assessment with description "Math Differentiation Homework", type "homework", date "2020-03-23".
+
+.. Test case: `academics add desc/Math Integration Homework type/homework date/2020-03-23` +
+Expected: An assessment with the description Math Integration Homework is added to academics.
+
+.. Test case: `academics add desc/ ` +
+Expected: An error message is shown due to invalid command.
+
+.. Test case: `academics add desc/Math Integration Homework type/ date/2020-03-23` +
+Expected: An error message is shown due to invalid assessment type.
+
+.. Test case: `academics add desc/Math Integration Homework type/homework date/` +
+Expected: An error message is shown due to invalid assessment date.
+
+.. Test case: `academics add desc/Math Integration Homework type/homework date/2020/03/04` +
+Expected: An error message is shown due to invalid assessment date.
+
+. Editing an assessment in academics.
+
+.. Test case: `academics edit 1 desc/Chinese Spelling Practice` +
+Expected: First assessment in the academics list is updated with new description. Only the description should be modified.
+
+.. Test case: `academics edit 1 desc/Chinese Spelling Practice type/exam date/2020-03-04` +
+Expected: First assessment in the academics list is updated with new description, type and date.
+
+.. Test case: `academics edit 1 desc/` +
+Expected: An error message is shown due to invalid assessment description.
+
+.. Test case: `academics edit 1 desc/Chinese Spelling Practice type/assignment` +
+Expected: An error message is shown due to invalid assessment type.
+
+.. Test case: `academics edit 1 date/2020/03/04` +
+Expected: An error message is shown due to invalid assessment date.
+
+. Deleting an assessment
+
+.. Test case: `academics delete INDEX` where INDEX is a valid index. +
+Expected: Assessment will be deleted if the given index is valid. The status message either displays that the
+specified assessment has been deleted or show that the index given is invalid.
+
+.. Other incorrect delete commands to try: `academics delete`
+Expected: Status bar displays invalid command and incorrect command format message.
+
+. Submitting a student's work for an assessment
+
+.. Test case: `academics submit INDEX stu/Simon_Lam` where INDEX is a valid index and Simon Lam is an existing student in TeaPet. +
+Expected: Simon Lam's work will be submitted to the specified assessment if the given index is valid.
+The status message either displays that the student's work has been submitted or show that the index given is invalid.
+
+.. Other incorrect submission commands to try: `academics submit`
+Expected: Status bar displays invalid command and incorrect command format message.
+
+. Marking a student's work for an assessment
+
+.. Test case: `academics mark INDEX stu/Simon_Lam-90` where INDEX is a valid index and Simon Lam is an existing student in TeaPet who scored 90 for the given assessment. +
+Expected: Simon Lam's work will be marked and his score of 90 will be stored in the specified assessment if the given index is valid.
+The status message either displays that the student's work has been marked or show that the index given is invalid.
+
+.. Other incorrect marking commands to try: `academics mark`
+Expected: Status bar displays invalid command and incorrect command format message.
+
+. Exporting academic statistics into .csv file.
+
+.. Test case: `academics export` +
+Expected: A file named studentAcademics.csv should be created in the data folder of the same directory in which TeaPet is installed.
+
+//end::academics-manual[]
+
+//@@author TheElectricBlender
+//tag::manual-test-scheduler[]
 === Manual Test: Scheduler
 
 . Adding an event to the scheduler
@@ -1669,6 +1917,7 @@ Expected: An error message is shown due to invalid recurrence type.
 .. Test case: `schedule add eventName/Consultation startDateTime/2020-04-10T13:00 endDateTime/2020-04-10T12:00 recur/none
 color/5`
 Expected: An error message is shown due to the invalid date time range.
+//end::manual-test-scheduler[]
 
 === Notes
 
