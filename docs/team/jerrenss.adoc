@@ -61,8 +61,8 @@ personal and administrative. It serves as a toggle between default and detailed 
 *** Updated Developer Guide to include revamped architecture component diagrams. (Pull requests: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/267[#267])
 
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-2/main/pull/66[#66],
-https://github.com/AY1920S2-CS2103T-W12-2/main/pull/95[#95]
+*** PRs reviewed (with non-trivial review comments): (Pull requests: https://github.com/AY1920S2-CS2103T-W12-2/main/pull/66[#66],
+https://github.com/AY1920S2-CS2103T-W12-2/main/pull/95[#95])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/jerrenss/ped[Practical Exam Dry Run])
 ** Tools:
 *** Introduced iCalendar API to the team, which was then used to build TeaPet's Personal Scheduler feature.
