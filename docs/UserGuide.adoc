@@ -899,6 +899,7 @@ image::schedule_add.png[width="790"]
 [[schedulerA]]
 
 //end::scheduler-A[]
+
 //@@author garysyndromes
 //tag::schedule-main[]
 
@@ -1061,7 +1062,6 @@ Exports all your events into the data folder with the file name "mySchedule.ics"
 '''
 
 //end::schedule-main[]
-
 
 
 //@@author TheElectricBlender
