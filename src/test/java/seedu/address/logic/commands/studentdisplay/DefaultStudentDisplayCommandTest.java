@@ -1,15 +1,5 @@
 package seedu.address.logic.commands.studentdisplay;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.student.DetailedStudentDisplayCommand;
-import seedu.address.logic.commands.student.StudentAddCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.student.Student;
-import seedu.address.testutil.student.StudentBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -18,6 +8,19 @@ import static seedu.address.testutil.admin.TypicalDates.getTypicalAdmin;
 import static seedu.address.testutil.event.TypicalEvents.getTypicalEventHistory;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotesManager;
 import static seedu.address.testutil.student.TypicalStudents.getTypicalTeaPet;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.student.DetailedStudentDisplayCommand;
+import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.student.StudentBuilder;
+
+
 
 public class DefaultStudentDisplayCommandTest {
     private Model model;
