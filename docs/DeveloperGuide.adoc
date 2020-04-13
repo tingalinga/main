@@ -967,6 +967,8 @@ image::schedule_class_diagram.png[]
 
 The following is a detailed explanation of the operations which `EventDisplayCommand` performs.
 
+NOTE: Format for displaying the schedule is `schedule`.
+
 *Step 1:* The `EventDisplayCommand#execute(Model model)` method is executed and it updates the current model using the method
 `Model#setEventScheduleLocalDateTime(LocalDateTime localDateTime)`. `LocalDateTime#now()` is used to obtain the current `LocalDateTime`
 and used as the parameter in `Model#setEventScheduleLocalDateTime(LocalDateTime localDateTime)`.
@@ -996,6 +998,13 @@ command works to change the scene to display the academics whilst to look at the
 ===== Implementation
 
 The following is a detailed explanation of the operations which `EventAddCommand` performs.
+
+NOTE: Format for adding an event to the schedule is `schedule add eventName/EVENT_DESCRIPTION startDateTime/YYYY-MM-DDTHH:MM
+ endDateTime/YYYY-MM-DDTHH:MM recur/RECUR_DESCRIPTION color/COLOR_CODE`
+
+NOTE: RECUR_DESCRIPTION can only take the values `none`, `daily` or `weekly`.
+
+NOTE: COLOR_CODE can only take the values `1`-`23`.
 
 *Step 1:* The `EventAddCommand#execute(Model model)` method is called which validates if the `VEvent` object from
 the parser is valid.
@@ -1036,6 +1045,16 @@ as well. Furthermore, the name required here is not the name of the student but 
 ===== Implementation
 The following is a detailed explanation of the operations which `EventEditCommand` performs.
 
+NOTE: Format for editing an event in the schedule is `schedule edit INDEX [eventName/EVENT_DESCRIPTION] [startDateTime/YYYY-MM-DDTHH:MM]
+             [endDateTime/YYYY-MM-DDTHH:MM] [recur/RECUR_DESCRIPTION] [color/COLOR_CODE]`
+NOTE: INDEX is the index of the event. Which can be obtained by the indexGet Command. See <<indexGetCommandSection,below>> for more information.
+
+NOTE: RECUR_DESCRIPTION can only take the values `none`, `daily` or `weekly`.
+
+NOTE: COLOR_CODE can only take the values `1`-`23`.
+
+NOTE: All fields are optional, however at least one field needs to be entered to edit.
+
 *Step 1*: The `EventEditCommand#execute(Model model)` method is executed which edits the details of the specified
 `VEvent` in the model. This method checks if the `index` defined when instantiating
 `EventEditCommand(Index index, EditVEventDescriptor editVEventDescriptor)` is valid. This method also checks if
@@ -1069,6 +1088,10 @@ or it has not been edited, a `CommandException` will be thrown.
 ===== Implementation
 The following is a detailed explanation of the operations which `EventDeleteCommand` performs.
 
+NOTE: Format for deleting an event in the schedule is `schedule delete INDEX`.
+
+NOTE: INDEX is the index of the event. Which can be obtained by the indexGet Command. See <<indexGetCommandSection,below>> for more information.
+
 *Step 1*: The `EventDeleteCommand#execute(Model model)` method is executed which deletes the specified
 `VEvent` in the model. This method checks if the `targetIndex` defined when instantiating
 `EventDeleteCommand(Index targetIndex)` is valid.
@@ -1084,11 +1107,17 @@ using the Model#delete(Index index) method.
 *Step 4*: The command box will be reflected with the success message and a new
 `CommandResult` will be returned with the message.
 
-
+[[indexGetCommandSection]]
 ==== Schedule Index Command
 
 ===== Implementation
 The following is a detailed explanation of the operations which `EventIndexCommand` performs.
+
+
+NOTE: Format for getting the index of an event in the schedule is `schedule indexGet/EVENT_DESCRIPTION`.
+
+NOTE: `EVENT_DESCRIPTION` is the name of the event.
+
 
 *Step 1*: The `EventIndexCommand#execute(Model model)` method is executed which obtains the index of the specified
 `VEvent` in the model. This method first obtains the current list of `Pair` of `Index` and `VEvents` in `EventHistory#vEvents` using
@@ -1121,6 +1150,8 @@ will then format the message according to whether there the list of Events is em
 ===== Implementation
 The following is a detailed explanation of the operations which `EventIndexAllCommand` performs.
 
+NOTE: Format for getting the indexes of all events is `schedule indexAll`.
+
 *Step 1*: The `EventIndexAllCommand#execute(Model model)` method is executed which obtains all indexes of the all of VEvents in the model.
 This method first obtains the current list of `Pair` of `Index` and `VEvents` in `EventHistory#vEvents` using
 `Model#getAllVEventsWithIndex()`.
@@ -1136,6 +1167,13 @@ and a new `CommandResult` will be returned with this message.
 ===== Implementation
 The following is a detailed explanation of the operations which `EventViewCommand` performs.
 
+NOTE: Format for changing the view mode of the schedule is `schedule view mode/SCHEDULE_MODE date/YYYY-MM-DD`.
+
+NOTE: `SCHEDULE_MODE` can only takes the values `daily` or `weekly`
+
+NOTE: Date must be entered in YYYY-MM-DD format.
+
+
 *Step 1*: The `EventViewCommand#execute(Model model)` method is executed which changes the view mode of the model.
  This method sets `EventSchedulePrefs#eventScheduleView` and `EventSchedulePrefs#localDateTime`
 with `EventViewCommand#scheduleViewMode` and `EventViewCommand#targetViewDateTime` respectively.
@@ -1147,6 +1185,8 @@ and a new `CommandResult` will be returned with this message.
 
 ===== Implementation
 The following is a detailed explanation of the operations which `EventExportCommand` performs.
+
+NOTE: Format for exporting the schedule into an .ics file is `schedule export`.
 
 *Step 1*: The `The EventExportCommand#execute(Model model) method is executed which exports the events in the scheduler into a .ics file in the data folder.
 
