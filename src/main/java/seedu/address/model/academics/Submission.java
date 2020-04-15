@@ -1,6 +1,5 @@
 package seedu.address.model.academics;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 /**
