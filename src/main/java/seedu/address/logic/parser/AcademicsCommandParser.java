@@ -125,8 +125,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_DELETE.getPrefix()));
             return new AcademicsDeleteCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AcademicsDeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_DISPLAYED_INDEX, pe);
         }
     }
 
@@ -142,8 +141,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble("edit"));
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AcademicsEditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_DISPLAYED_INDEX, pe);
         }
 
         AcademicsEditCommand.EditAssessmentDescriptor editAssessmentDescriptor =
@@ -201,8 +199,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_SUBMIT.getPrefix()));
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AcademicsSubmitCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_DISPLAYED_INDEX, pe);
         }
         List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
 
@@ -224,8 +221,7 @@ public class AcademicsCommandParser implements Parser<AcademicsCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble(PREFIX_MARK.getPrefix()));
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AcademicsMarkCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(Messages.MESSAGE_INVALID_ASSESSMENT_DISPLAYED_INDEX, pe);
         }
         List<String> students = argMultimap.getAllValues(PREFIX_STUDENT);
 
